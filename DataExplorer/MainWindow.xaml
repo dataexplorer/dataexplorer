@@ -1,8 +1,66 @@
-﻿<Window x:Class="DataExplorer.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+﻿<Window 
+    x:Class="DataExplorer.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:avalonDock="clr-namespace:Xceed.Wpf.AvalonDock;assembly=Xceed.Wpf.AvalonDock"
+    xmlns:panes="clr-namespace:DataExplorer.Presentation.Panes.Filter"
+    xmlns:layout="clr-namespace:DataExplorer.Presentation.Panes.Layout"
+    xmlns:legend="clr-namespace:DataExplorer.Presentation.Panes.Legend"
+    xmlns:statusBar="clr-namespace:DataExplorer.Presentation.Shell.StatusBar"
+    xmlns:mainMenu="clr-namespace:DataExplorer.Presentation.Shell.MainMenu"
+    xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock"
+    xmlns:viewer="clr-namespace:DataExplorer.Presentation.Panes.Viewer"
+    Title="Data Explorer"
+    Height="768"
+    Width="1024">
+    <Window.Resources>
+        <ResourceDictionary>
+            <BooleanToVisibilityConverter x:Key="VisibilityConverter" />
+        </ResourceDictionary>
+    </Window.Resources>
+    <DockPanel>
+        <mainMenu:MainMenu DockPanel.Dock="Top" DataContext="{Binding MainMenuViewModel}" />
+        <statusBar:StatusBar DockPanel.Dock="Bottom" DataContext="{Binding StatusBarViewModel}" />
+        <Grid DockPanel.Dock="Top">
+            <avalonDock:DockingManager>
+                <xcad:LayoutRoot>
+                    <xcad:LayoutPanel Orientation="Horizontal">
+                        <xcad:LayoutAnchorablePane DockWidth="192">
+                            <xcad:LayoutAnchorable Title="Navigation">
+                                <TextBlock>Pane 1</TextBlock>
+                            </xcad:LayoutAnchorable>
+                        </xcad:LayoutAnchorablePane>
+                        <xcad:LayoutDocumentPane  ShowHeader="False">
+                            <xcad:LayoutDocument Title="ScatterPlot">
+                                <TextBlock>Pane 2</TextBlock>
+                            </xcad:LayoutDocument>
+                        </xcad:LayoutDocumentPane>
+                        <xcad:LayoutAnchorablePaneGroup Orientation="Vertical" DockWidth="192">
+                            <xcad:LayoutAnchorablePane>
+                                <xcad:LayoutAnchorable Title="Filters">
+                                    <TextBlock>Pane 3</TextBlock>
+                                </xcad:LayoutAnchorable>
+                            </xcad:LayoutAnchorablePane>
+                            <xcad:LayoutAnchorablePane>
+                                <xcad:LayoutAnchorable Title="Layout">
+                                    <TextBlock>Pane 4</TextBlock>
+                                </xcad:LayoutAnchorable>
+                            </xcad:LayoutAnchorablePane>
+                            <xcad:LayoutAnchorablePane>
+                                <xcad:LayoutAnchorable Title="Legend">
+                                    <TextBlock>Pane 5</TextBlock>
+                                </xcad:LayoutAnchorable>
+                            </xcad:LayoutAnchorablePane>
+                            <xcad:LayoutAnchorablePane>
+                                <xcad:LayoutAnchorable Title="Properties">
+                                    <TextBlock>Pane 6</TextBlock>
+                                </xcad:LayoutAnchorable>
+                            </xcad:LayoutAnchorablePane>
+                        </xcad:LayoutAnchorablePaneGroup>
+                    </xcad:LayoutPanel>
+                </xcad:LayoutRoot>
+                
+            </avalonDock:DockingManager>
+        </Grid>
+    </DockPanel>
 </Window>

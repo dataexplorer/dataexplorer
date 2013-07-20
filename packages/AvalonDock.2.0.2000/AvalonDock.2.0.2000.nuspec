@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>AvalonDock</id>
+    <version>2.0.2000</version>
+    <title>AvalonDock</title>
+    <authors>Xceed Software Inc.</authors>
+    <owners>Xceed Software Inc.</owners>
+    <licenseUrl>http://avalondock.codeplex.com/license</licenseUrl>
+    <projectUrl>http://avalondock.codeplex.com/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>AvalonDock is a docking windows control for WPF that lets you create customizable layouts using a full featured window docking system similar to what is found in many popular integrated development environements (IDEs) such as Visual Studio. It includes themes and samples to get you started.</description>
+    <summary>Powerful and free WPF docking windows control.</summary>
+    <releaseNotes>v2.0.2000 is a bug-fix release</releaseNotes>
+    <copyright>Copyright (c) 2007-2013 Xceed Software Inc.</copyright>
+    <language>en-US</language>
+    <tags>WPF Docking</tags>
+  </metadata>
+</package>
