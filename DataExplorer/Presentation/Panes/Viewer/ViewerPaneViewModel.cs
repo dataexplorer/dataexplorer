@@ -10,7 +10,7 @@ namespace DataExplorer.Presentation.Panes.Viewer
     {
         public ViewerPaneViewModel()
         {
-            var test = 1;
+
         }
 
         public string Message
