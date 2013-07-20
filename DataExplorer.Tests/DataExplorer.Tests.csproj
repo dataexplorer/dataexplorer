@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Presentation\Shell\MainWindow\MainWindowViewModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -55,7 +56,12 @@
     <Folder Include="Common\" />
     <Folder Include="Domain\" />
     <Folder Include="Persistence\" />
-    <Folder Include="Presentation\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataExplorer\DataExplorer.csproj">
+      <Project>{D0D6A590-7F96-43FB-B748-2E1A0D762DB0}</Project>
+      <Name>DataExplorer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
