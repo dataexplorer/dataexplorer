@@ -30,7 +30,7 @@
                                 <TextBlock>Pane 1</TextBlock>
                             </xcad:LayoutAnchorable>
                         </xcad:LayoutAnchorablePane>
-                        <xcad:LayoutDocumentPane  ShowHeader="False">
+                        <xcad:LayoutDocumentPane ShowHeader="False">
                             <xcad:LayoutDocument Title="ScatterPlot">
                                 <viewer:ViewerPane DataContext="{Binding ViewerViewModel}" />
                             </xcad:LayoutDocument>

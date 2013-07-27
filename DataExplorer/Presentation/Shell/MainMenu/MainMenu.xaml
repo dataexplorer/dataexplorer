@@ -7,7 +7,9 @@
     mc:Ignorable="d" 
     d:DesignHeight="24"
     d:DesignWidth="300">
-    <Grid>
-        <TextBlock>Main Menu</TextBlock>       
-    </Grid>
+    <Menu DockPanel.Dock="Top" IsMainMenu="True">
+        <MenuItem Header="File" DataContext="{Binding FileMenuViewModel }">
+            <MenuItem Header="Exit" Command="{Binding ExitCommand}" />
+        </MenuItem>
+    </Menu>
 </UserControl>

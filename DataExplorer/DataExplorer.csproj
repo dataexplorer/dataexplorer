@@ -74,6 +74,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Application\ApplicationWrapper.cs" />
+    <Compile Include="Application\ApplicationService.cs" />
+    <Compile Include="Application\IApplication.cs" />
+    <Compile Include="Presentation\Core\DelegateCommand.cs" />
     <Compile Include="Presentation\Panes\Viewer\IViewerPaneViewModel.cs" />
     <Compile Include="Presentation\Panes\Viewer\ViewerPaneViewModel.cs" />
     <Page Include="Presentation\Shell\MainWindow\MainWindow.xaml">
@@ -85,6 +89,11 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Common\Injection\Container.cs" />
+    <Compile Include="Presentation\Shell\MainMenu\FileMenu\FileMenuViewModel.cs" />
+    <Compile Include="Application\IApplicationService.cs" />
+    <Compile Include="Presentation\Shell\MainMenu\FileMenu\IFileMenuViewModel.cs" />
+    <Compile Include="Presentation\Shell\MainMenu\IMainMenuViewModel.cs" />
+    <Compile Include="Presentation\Shell\MainMenu\MainMenuViewModel.cs" />
     <Compile Include="Presentation\Shell\MainWindow\IMainWindowViewModel.cs" />
     <Compile Include="Presentation\Shell\MainWindow\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -177,7 +186,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Application\" />
     <Folder Include="Domain\" />
     <Folder Include="Persistence\" />
   </ItemGroup>

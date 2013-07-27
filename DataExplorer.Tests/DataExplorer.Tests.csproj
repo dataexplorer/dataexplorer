@@ -46,11 +46,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Application\FileMenu\FileMenuServiceTests.cs" />
+    <Compile Include="Presentation\Core\DelegateCommandTests.cs" />
+    <Compile Include="Presentation\Shell\MainMenu\FileMenu\FileMenuViewModelTests.cs" />
+    <Compile Include="Presentation\Shell\MainMenu\MainMenuViewModelTests.cs" />
     <Compile Include="Presentation\Shell\MainWindow\MainWindowViewModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Application\" />
     <Folder Include="Common\" />
     <Folder Include="Domain\" />
     <Folder Include="Persistence\" />
