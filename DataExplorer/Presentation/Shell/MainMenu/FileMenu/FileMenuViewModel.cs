@@ -1,5 +1,6 @@
 using System.Windows.Input;
 using DataExplorer.Application;
+using DataExplorer.Application.Application;
 using DataExplorer.Presentation.Core;
 
 namespace DataExplorer.Presentation.Shell.MainMenu.FileMenu

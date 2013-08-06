@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataExplorer.Application;
-using DataExplorer.Presentation.Shell.MainMenu.FileMenu;
-
-namespace DataExplorer.Application
+﻿namespace DataExplorer.Application.Application
 {
     public class ApplicationService : IApplicationService
     {

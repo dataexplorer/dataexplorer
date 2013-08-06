@@ -10,9 +10,13 @@
     xmlns:mainMenu="clr-namespace:DataExplorer.Presentation.Shell.MainMenu"
     xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock"
     xmlns:viewer="clr-namespace:DataExplorer.Presentation.Panes.Viewer"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mainWindow="clr-namespace:DataExplorer.Presentation.Shell.MainWindow" mc:Ignorable="d"
     Title="Data Explorer"
     Height="768"
-    Width="1024">
+    Width="1024" 
+    d:DataContext="{d:DesignInstance mainWindow:MainWindowViewModel}">
     <Window.Resources>
         <ResourceDictionary>
             <BooleanToVisibilityConverter x:Key="VisibilityConverter" />
@@ -32,7 +36,8 @@
                         </xcad:LayoutAnchorablePane>
                         <xcad:LayoutDocumentPane ShowHeader="False">
                             <xcad:LayoutDocument Title="ScatterPlot">
-                                <viewer:ViewerPane DataContext="{Binding ViewerViewModel}" />
+                                <viewer:ViewerPane
+                                    DataContext="{Binding ViewerPaneViewModel}" />
                             </xcad:LayoutDocument>
                         </xcad:LayoutDocumentPane>
                         <xcad:LayoutAnchorablePaneGroup Orientation="Vertical" DockWidth="192">

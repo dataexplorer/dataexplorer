@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application;
+using DataExplorer.Application.Application;
 using DataExplorer.Presentation.Shell.MainWindow;
 using Moq;
 using Ninject;
@@ -33,7 +34,7 @@ namespace DataExplorer.Specs
                 .SelectAllClasses()
                 .BindAllInterfaces()
                 .Configure(c => c.InTransientScope()));
-            kernel.Load(Assembly.GetCallingAssembly());
+            kernel.Load(Assembly.GetAssembly(typeof(Context)));
             kernel.Bind(p => p.FromThisAssembly()
                 .SelectAllClasses()
                 .BindAllInterfaces()

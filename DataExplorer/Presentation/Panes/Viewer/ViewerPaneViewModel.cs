@@ -3,19 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataExplorer.Presentation.Views.ScatterPlot;
 
 namespace DataExplorer.Presentation.Panes.Viewer
 {
     public class ViewerPaneViewModel : IViewerPaneViewModel
     {
-        public ViewerPaneViewModel()
-        {
+        private readonly IScatterPlotViewModel _scatterPlotViewModel;
 
+        public ViewerPaneViewModel(IScatterPlotViewModel scatterPlotViewModel)
+        {
+            _scatterPlotViewModel = scatterPlotViewModel;
         }
 
-        public string Message
+        public IScatterPlotViewModel ScatterPlotViewModel
         {
-            get { return "Hello World!"; }
+            get { return _scatterPlotViewModel; }
         }
     }
 }

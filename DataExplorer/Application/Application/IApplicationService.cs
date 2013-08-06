@@ -1,4 +1,4 @@
-namespace DataExplorer.Application
+namespace DataExplorer.Application.Application
 {
     public interface IApplicationService
     {

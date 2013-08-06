@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application;
+using DataExplorer.Application.Application;
 using Moq;
 using NUnit.Framework;
 

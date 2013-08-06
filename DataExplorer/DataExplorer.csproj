@@ -74,10 +74,31 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Application\ApplicationWrapper.cs" />
-    <Compile Include="Application\ApplicationService.cs" />
-    <Compile Include="Application\IApplication.cs" />
+    <Compile Include="Application\Application\ApplicationWrapper.cs" />
+    <Compile Include="Application\Application\ApplicationService.cs" />
+    <Compile Include="Application\Application\IApplication.cs" />
+    <Compile Include="Application\ScatterPlot\IScatterPlotAdapter.cs" />
+    <Compile Include="Application\ScatterPlot\IScatterPlotService.cs" />
+    <Compile Include="Application\ScatterPlot\PlotDto.cs" />
+    <Compile Include="Application\ScatterPlot\ScatterPlotAdapter.cs" />
+    <Compile Include="Application\ScatterPlot\ScatterPlotService.cs" />
+    <Compile Include="Domain\Data\IDataRepository.cs" />
+    <Compile Include="Domain\ScatterPlot\IScatterPlot.cs" />
+    <Compile Include="Domain\ScatterPlot\IScatterPlotRenderer.cs" />
+    <Compile Include="Domain\ScatterPlot\Plot.cs" />
+    <Compile Include="Domain\ScatterPlot\ScatterPlot.cs" />
+    <Compile Include="Domain\ScatterPlot\ScatterPlotRenderer.cs" />
+    <Compile Include="Domain\View\IViewRepository.cs" />
+    <Compile Include="Persistence\Data\DataContext.cs" />
+    <Compile Include="Persistence\Data\DataRepository.cs" />
+    <Compile Include="Persistence\Data\IDataContext.cs" />
+    <Compile Include="Persistence\View\IViewContext.cs" />
+    <Compile Include="Persistence\View\ViewContext.cs" />
+    <Compile Include="Persistence\View\ViewRepository.cs" />
+    <Compile Include="Presentation\Core\BaseViewModel.cs" />
     <Compile Include="Presentation\Core\DelegateCommand.cs" />
+    <Compile Include="Presentation\Core\DependencyPropertyService.cs" />
+    <Compile Include="Presentation\Core\VisualService.cs" />
     <Compile Include="Presentation\Panes\Viewer\IViewerPaneViewModel.cs" />
     <Compile Include="Presentation\Panes\Viewer\ViewerPaneViewModel.cs" />
     <Page Include="Presentation\Shell\MainWindow\MainWindow.xaml">
@@ -90,7 +111,7 @@
     </Compile>
     <Compile Include="Common\Injection\Container.cs" />
     <Compile Include="Presentation\Shell\MainMenu\FileMenu\FileMenuViewModel.cs" />
-    <Compile Include="Application\IApplicationService.cs" />
+    <Compile Include="Application\Application\IApplicationService.cs" />
     <Compile Include="Presentation\Shell\MainMenu\FileMenu\IFileMenuViewModel.cs" />
     <Compile Include="Presentation\Shell\MainMenu\IMainMenuViewModel.cs" />
     <Compile Include="Presentation\Shell\MainMenu\MainMenuViewModel.cs" />
@@ -131,6 +152,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Presentation\Views\ScatterPlot\ScatterPlotView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Presentation\Panes\Filter\FilterPaneView.xaml.cs">
@@ -158,6 +183,24 @@
     <Compile Include="Presentation\Panes\Viewer\ViewerPane.xaml.cs">
       <DependentUpon>ViewerPane.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\Core\IDependencyPropertyService.cs" />
+    <Compile Include="Presentation\Core\IVisualService.cs" />
+    <Compile Include="Presentation\Core\Geometry\Circle.cs" />
+    <Compile Include="Presentation\Core\Geometry\GeometryCalculator.cs" />
+    <Compile Include="Presentation\Core\Geometry\GeometryFactory.cs" />
+    <Compile Include="Presentation\Core\Geometry\IGeometryCalculator.cs" />
+    <Compile Include="Presentation\Core\Geometry\IGeometryFactory.cs" />
+    <Compile Include="Presentation\Views\ScatterPlot\IScatterPlotViewModel.cs" />
+    <Compile Include="Presentation\Core\Canvas\ICanvasRenderer.cs" />
+    <Compile Include="Presentation\Core\Canvas\CanvasControl.cs" />
+    <Compile Include="Presentation\Views\ScatterPlot\IScatterPlotViewRenderer.cs" />
+    <Compile Include="Presentation\Views\ScatterPlot\ScatterPlotViewRenderer.cs" />
+    <Compile Include="Presentation\Views\ScatterPlot\ScatterPlotView.xaml.cs">
+      <DependentUpon>ScatterPlotView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Views\ScatterPlot\ScatterPlotViewModel.cs" />
+    <Compile Include="Presentation\Core\Canvas\CanvasRenderer.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -185,10 +228,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Domain\" />
-    <Folder Include="Persistence\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

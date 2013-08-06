@@ -37,16 +37,38 @@
     <Reference Include="nunit.framework, Version=2.6.2.12296, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application\FileMenu\FileMenuServiceTests.cs" />
+    <Compile Include="Application\ScatterPlot\ScatterPlotAdapterTests.cs" />
+    <Compile Include="Application\ScatterPlot\ScatterPlotServiceTests.cs" />
+    <Compile Include="Domain\DataRowBuilder.cs" />
+    <Compile Include="Domain\ScatterPlotRendererTests.cs" />
+    <Compile Include="Domain\ScatterPlotTests.cs" />
+    <Compile Include="Persistence\Data\DataRepositoryTests.cs" />
+    <Compile Include="Persistence\View\ViewRepositoryTests.cs" />
+    <Compile Include="Presentation\Core\BaseViewModelTests.cs" />
+    <Compile Include="Presentation\Core\Canvas\CanvasRendererTests.cs" />
+    <Compile Include="Presentation\Core\DependencyPropertyServiceTests.cs" />
+    <Compile Include="Presentation\Core\FakeVisual.cs" />
+    <Compile Include="Presentation\Core\VisualServiceTests.cs" />
+    <Compile Include="Presentation\Core\Geometry\GeometryCalculatorTests.cs" />
+    <Compile Include="Presentation\Core\Geometry\GeometryFactoryTests.cs" />
+    <Compile Include="Presentation\Panes\Viewer\ViewerPaneViewModelTests.cs" />
+    <Compile Include="Presentation\Views\ScatterPlot\ScatterPlotViewRendererTests.cs" />
+    <Compile Include="Presentation\Core\Canvas\CanvasControlTests.cs" />
+    <Compile Include="Presentation\Views\ScatterPlot\ScatterPlotViewModelTests.cs" />
     <Compile Include="Presentation\Core\DelegateCommandTests.cs" />
     <Compile Include="Presentation\Shell\MainMenu\FileMenu\FileMenuViewModelTests.cs" />
     <Compile Include="Presentation\Shell\MainMenu\MainMenuViewModelTests.cs" />
@@ -55,8 +77,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Common\" />
-    <Folder Include="Domain\" />
-    <Folder Include="Persistence\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataExplorer\DataExplorer.csproj">

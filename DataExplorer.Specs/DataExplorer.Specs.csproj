@@ -63,6 +63,12 @@
     <Compile Include="BeforeScenario.cs" />
     <Compile Include="Context.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScatterPlot\ScatterPlotSteps.cs" />
+    <Compile Include="ScatterPlot\ViewScatterPlot.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ViewScatterPlot.feature</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -71,6 +77,10 @@
       <LastGenOutput>ExitApplication.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
+    <None Include="ScatterPlot\ViewScatterPlot.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ViewScatterPlot.feature.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataExplorer\DataExplorer.csproj">

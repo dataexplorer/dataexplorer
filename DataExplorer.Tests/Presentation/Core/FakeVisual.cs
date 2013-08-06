@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
-namespace DataExplorer.Application
+namespace DataExplorer.Tests.Presentation.Core
 {
-    public interface IApplication
+    public class FakeVisual : Visual
     {
-        void ShutDown();
+
     }
 }
