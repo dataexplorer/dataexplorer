@@ -1,0 +1,54 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using DataExplorer.Domain.Events;
+using DataExplorer.Domain.ScatterPlots;
+using NUnit.Framework;
+
+namespace DataExplorer.Tests.Domain.ScatterPlots
+{
+    [TestFixture]
+    public class ScatterPlotTests
+    {
+        private ScatterPlot _scatterPlot;
+
+        [SetUp]
+        public void SetUp()
+        {
+            _scatterPlot = new ScatterPlot();
+        }
+
+        // TODO: Should I eliminate this duplication with DCI?
+
+        [Test]
+        public void TestGetSetViewExtentShouldGetSetViewExtent()
+        {
+            var viewExtent = new Rect();
+            _scatterPlot.SetViewExtent(viewExtent);
+            var result = _scatterPlot.GetViewExtent();
+            Assert.That(result, Is.EqualTo(viewExtent));
+        }
+
+        [Test]
+        public void TestGetSetPlotsShouldGetSetPlots()
+        {
+            var plots = new List<Plot>();
+            _scatterPlot.SetPlots(plots);
+            var result = _scatterPlot.GetPlots();
+            Assert.That(result, Is.EqualTo(plots));
+        }
+
+        [Test]
+        public void TestSetPlotsShouldRaiseScatterPlotChangedEvent()
+        {
+            var plots = new List<Plot>();
+            var wasScatterPlotChanged = false;
+            DomainEvents.Register<ScatterPlotChangedEvent>(p => { wasScatterPlotChanged = true; });
+            _scatterPlot.SetPlots(plots);
+            Assert.That(wasScatterPlotChanged, Is.True);
+        }
+    }
+}

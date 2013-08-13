@@ -34,6 +34,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject, Version=3.0.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DataExplorer\bin\Debug\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework, Version=2.6.2.12296, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
     </Reference>
@@ -50,14 +54,20 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Application\FileMenu\FileMenuServiceTests.cs" />
+    <Compile Include="Application\Application\ApplicationServiceTests.cs" />
+    <Compile Include="Application\Project\ProjectServiceTests.cs" />
     <Compile Include="Application\ScatterPlot\ScatterPlotAdapterTests.cs" />
+    <Compile Include="Application\ScatterPlot\ScatterPlotEventsServiceTests.cs" />
     <Compile Include="Application\ScatterPlot\ScatterPlotServiceTests.cs" />
-    <Compile Include="Domain\DataRowBuilder.cs" />
-    <Compile Include="Domain\ScatterPlotRendererTests.cs" />
-    <Compile Include="Domain\ScatterPlotTests.cs" />
-    <Compile Include="Persistence\Data\DataRepositoryTests.cs" />
-    <Compile Include="Persistence\View\ViewRepositoryTests.cs" />
+    <Compile Include="Domain\Events\DomainEventsTests.cs" />
+    <Compile Include="Domain\Events\FakeDomainEvent.cs" />
+    <Compile Include="Domain\Events\FakeDomainEventHandler.cs" />
+    <Compile Include="Domain\Rows\RowBuilder.cs" />
+    <Compile Include="Domain\Rows\RowTests.cs" />
+    <Compile Include="Domain\ScatterPlots\ScatterPlotRendererTests.cs" />
+    <Compile Include="Domain\ScatterPlots\ScatterPlotTests.cs" />
+    <Compile Include="Persistence\Rows\RowRepositoryTests.cs" />
+    <Compile Include="Persistence\Views\ViewRepositoryTests.cs" />
     <Compile Include="Presentation\Core\BaseViewModelTests.cs" />
     <Compile Include="Presentation\Core\Canvas\CanvasRendererTests.cs" />
     <Compile Include="Presentation\Core\DependencyPropertyServiceTests.cs" />

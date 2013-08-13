@@ -33,8 +33,11 @@ namespace DataExplorer.Presentation.Views.ScatterPlot
         {
             _scatterPlotService = scatterPlotService;
             _renderer = renderer;
+
+            // TODO: Should this be moved to an initialize method?
+            _scatterPlotService.ScatterPlotChanged += HandleScatterPlotChangedEvent;
         }
-        
+
         private List<Circle> GetPlots()
         {
             var viewExtent = _scatterPlotService.GetViewExtent();
@@ -55,7 +58,10 @@ namespace DataExplorer.Presentation.Views.ScatterPlot
             var newViewExtent = _renderer.ResizeView(controlSize, viewExtent);
 
             _scatterPlotService.SetViewExtent(newViewExtent);
+        }
 
+        private void HandleScatterPlotChangedEvent(object source, EventArgs e)
+        {
             OnPropertyChanged(() => Plots);
         }
     }

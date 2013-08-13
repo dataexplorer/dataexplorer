@@ -55,6 +55,15 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlot
             Assert.That(results.Single().X, Is.EqualTo(1d));
             Assert.That(results.Single().Y, Is.EqualTo(2d));
         }
+
+        [Test]
+        public void TestHandleScatterPlotChangedEventShouldRaisePlotPropertyChangedEvent()
+        {
+            var wasPropertyChangeEventRaised = false;
+            _viewModel.PropertyChanged += (s, e) => { wasPropertyChangeEventRaised = true; };
+            _mockService.Raise(p => p.ScatterPlotChanged += null, EventArgs.Empty);
+            Assert.That(wasPropertyChangeEventRaised, Is.EqualTo(true));
+        }
     }
 
     

@@ -25,9 +25,11 @@ namespace DataExplorer.Presentation.Views.ScatterPlot
 
         public List<Circle> RenderPlots(Size controlSize, Rect viewExtent, List<PlotDto> plots)
         {
-            var scale = ComputeScale(controlSize, viewExtent);
+            var resizedViewExtent = ResizeView(controlSize, viewExtent);
 
-            return plots.Select(p => RenderPlot(controlSize, viewExtent, scale, p)).ToList();
+            var scale = ComputeScale(controlSize, resizedViewExtent);
+
+            return plots.Select(p => RenderPlot(controlSize, resizedViewExtent, scale, p)).ToList();
         }
 
         public double ComputeScale(Size controlSize, Rect viewExtent)

@@ -12,6 +12,8 @@
     <Menu DockPanel.Dock="Top" IsMainMenu="True">
         <MenuItem Header="File" DataContext="{Binding FileMenuViewModel }">
             <MenuItem Header="Exit" Command="{Binding ExitCommand}" />
+            <Separator />
+            <MenuItem Header="Open" Command="{Binding OpenCommand}" />
         </MenuItem>
     </Menu>
 </UserControl>

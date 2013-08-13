@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.ScatterPlot;
-using DataExplorer.Domain.ScatterPlot;
+using DataExplorer.Domain.ScatterPlots;
 using Moq;
 using NUnit.Framework;
 

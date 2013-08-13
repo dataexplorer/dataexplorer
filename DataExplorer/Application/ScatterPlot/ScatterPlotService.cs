@@ -4,29 +4,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using DataExplorer.Domain.Data;
-using DataExplorer.Domain.ScatterPlot;
-using DataExplorer.Domain.View;
+using DataExplorer.Domain.Events;
+using DataExplorer.Domain.ScatterPlots;
+using DataExplorer.Domain.Views;
 
 namespace DataExplorer.Application.ScatterPlot
 {
-    public class ScatterPlotService : IScatterPlotService
+    public class ScatterPlotService : IScatterPlotService, IHandler<ScatterPlotChangedEvent>
     {
-        private readonly IDataRepository _dataRepository;
         private readonly IViewRepository _viewRepository;
         private readonly IScatterPlotAdapter _adapter;
-        private readonly IScatterPlotRenderer _renderer;
+
+        public event ScatterPlotChangedEventHandler ScatterPlotChanged;
 
         public ScatterPlotService(
-            IDataRepository dataRepository,
             IViewRepository viewRepository,
-            IScatterPlotAdapter adapter,
-            IScatterPlotRenderer renderer)
+            IScatterPlotAdapter adapter)
         {
-            _dataRepository = dataRepository;
             _viewRepository = viewRepository;
             _adapter = adapter;
-            _renderer = renderer;
         }
 
         public Rect GetViewExtent()
@@ -54,15 +50,10 @@ namespace DataExplorer.Application.ScatterPlot
             return plotDtos;
         }
 
-        public void UpdateRows()
+        public void Handle(ScatterPlotChangedEvent args)
         {
-            var rows = _dataRepository.GetAll();
-
-            var scatterPlot = _viewRepository.GetScatterPlot();
-
-            var plots = _renderer.RenderPlots(rows);
-
-            scatterPlot.SetPlots(plots);
+            if (ScatterPlotChanged != null)
+                ScatterPlotChanged(this, EventArgs.Empty);
         }
     }
 }

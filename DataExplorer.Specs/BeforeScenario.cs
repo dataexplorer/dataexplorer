@@ -6,6 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application;
 using DataExplorer.Application.Application;
+using DataExplorer.Persistence.Rows;
+using DataExplorer.Persistence.Views;
+using DataExplorer.Presentation.Shell.MainMenu.FileMenu;
 using DataExplorer.Presentation.Shell.MainWindow;
 using Moq;
 using Ninject;
@@ -38,12 +41,16 @@ namespace DataExplorer.Specs
             kernel.Bind(p => p.FromThisAssembly()
                 .SelectAllClasses()
                 .BindAllInterfaces()
-                .Configure(c => c.InTransientScope()));
+                .Configure(c => c.InSingletonScope()));
 
             _context.MockApplicationService = new Mock<IApplicationService>();
             kernel.Rebind<IApplicationService>().ToConstant(_context.MockApplicationService.Object);
             
             _context.MainWindowViewModel = kernel.Get<MainWindowViewModel>();
+            _context.FileMenuViewModel = kernel.Get<IFileMenuViewModel>();
+
+            _context.RowContext = kernel.Get<IRowContext>();
+            _context.ViewContext = kernel.Get<ViewContext>();
         }
     }
 }

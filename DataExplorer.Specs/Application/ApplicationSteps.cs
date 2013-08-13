@@ -20,7 +20,7 @@ namespace DataExplorer.Specs.Application
         [When(@"I exit the application")]
         public void WhenIExitTheApplication()
         {
-            _context.MainWindowViewModel.MainMenuViewModel.FileMenuViewModel.ExitCommand.Execute(null);
+            _context.FileMenuViewModel.ExitCommand.Execute(null);
         }
 
         [Then(@"the application should shut down")]
