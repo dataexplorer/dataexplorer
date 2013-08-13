@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Rows;
 using DataExplorer.Domain.ScatterPlots;
 
@@ -10,7 +11,14 @@ namespace DataExplorer.Application.Serialization
 {
     public class SerializationService : ISerializationService
     {
-        
+        public List<Column> GetColumns()
+        {
+            // TODO: Remove this fake data
+            var column1 = new Column(0, "X");
+            var column2 = new Column(1, "Y");
+            var columns = new List<Column> { column1, column2 };
+            return columns;
+        }
 
         public List<Row> GetRows()
         {

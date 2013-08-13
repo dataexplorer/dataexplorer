@@ -88,6 +88,7 @@
     <Compile Include="Application\ScatterPlot\ScatterPlotService.cs" />
     <Compile Include="Application\Serialization\ISerializationService.cs" />
     <Compile Include="Application\Serialization\SerializationService.cs" />
+    <Compile Include="Domain\Columns\Column.cs" />
     <Compile Include="Domain\Events\DomainEvents.cs" />
     <Compile Include="Domain\Events\IDomainEvent.cs" />
     <Compile Include="Domain\Events\IHandler.cs" />
@@ -101,6 +102,10 @@
     <Compile Include="Domain\ScatterPlots\ScatterPlotChangedEvent.cs" />
     <Compile Include="Domain\ScatterPlots\ScatterPlotRenderer.cs" />
     <Compile Include="Domain\Views\IViewRepository.cs" />
+    <Compile Include="Persistence\Columns\ColumnContext.cs" />
+    <Compile Include="Persistence\Columns\ColumnRepository.cs" />
+    <Compile Include="Persistence\Columns\IColumnContext.cs" />
+    <Compile Include="Persistence\Columns\IColumnRepository.cs" />
     <Compile Include="Persistence\Rows\RowContext.cs" />
     <Compile Include="Persistence\Rows\RowRepository.cs" />
     <Compile Include="Persistence\Rows\IRowContext.cs" />
