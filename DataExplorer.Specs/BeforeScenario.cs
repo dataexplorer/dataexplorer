@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application;
 using DataExplorer.Application.Application;
+using DataExplorer.Application.Serialization;
+using DataExplorer.Persistence.Columns;
 using DataExplorer.Persistence.Rows;
 using DataExplorer.Persistence.Views;
 using DataExplorer.Presentation.Shell.MainMenu.FileMenu;
@@ -36,7 +38,7 @@ namespace DataExplorer.Specs
             kernel.Bind(p => p.From(Assembly.GetAssembly(typeof(MainWindowViewModel)))
                 .SelectAllClasses()
                 .BindAllInterfaces()
-                .Configure(c => c.InTransientScope()));
+                .Configure(c => c.InSingletonScope()));
             kernel.Load(Assembly.GetAssembly(typeof(Context)));
             kernel.Bind(p => p.FromThisAssembly()
                 .SelectAllClasses()
@@ -45,12 +47,16 @@ namespace DataExplorer.Specs
 
             _context.MockApplicationService = new Mock<IApplicationService>();
             kernel.Rebind<IApplicationService>().ToConstant(_context.MockApplicationService.Object);
+
+            _context.MockSerializationService = new Mock<ISerializationService>();
+            kernel.Rebind<ISerializationService>().ToConstant(_context.MockSerializationService.Object);
             
             _context.MainWindowViewModel = kernel.Get<MainWindowViewModel>();
             _context.FileMenuViewModel = kernel.Get<IFileMenuViewModel>();
 
+            _context.ColumnContext = kernel.Get<IColumnContext>();
             _context.RowContext = kernel.Get<IRowContext>();
-            _context.ViewContext = kernel.Get<ViewContext>();
+            _context.ViewContext = kernel.Get<IViewContext>();
         }
     }
 }

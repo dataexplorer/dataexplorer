@@ -62,15 +62,15 @@
     </Compile>
     <Compile Include="BeforeScenario.cs" />
     <Compile Include="Context.cs" />
-    <Compile Include="Project\OpenAProject.feature.cs">
+    <Compile Include="Projects\OpenAProject.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>OpenAProject.feature</DependentUpon>
     </Compile>
-    <Compile Include="Project\ProjectSteps.cs" />
+    <Compile Include="Projects\ProjectSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ScatterPlot\ScatterPlotSteps.cs" />
-    <Compile Include="ScatterPlot\ViewScatterPlot.feature.cs">
+    <Compile Include="ScatterPlots\ScatterPlotSteps.cs" />
+    <Compile Include="ScatterPlots\ViewScatterPlot.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ViewScatterPlot.feature</DependentUpon>
@@ -83,11 +83,11 @@
       <LastGenOutput>ExitApplication.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
-    <None Include="Project\OpenAProject.feature">
+    <None Include="Projects\OpenAProject.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>OpenAProject.feature.cs</LastGenOutput>
     </None>
-    <None Include="ScatterPlot\ViewScatterPlot.feature">
+    <None Include="ScatterPlots\ViewScatterPlot.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ViewScatterPlot.feature.cs</LastGenOutput>
     </None>
