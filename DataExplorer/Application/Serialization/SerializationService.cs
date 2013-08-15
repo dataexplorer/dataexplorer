@@ -14,8 +14,8 @@ namespace DataExplorer.Application.Serialization
         public List<Column> GetColumns()
         {
             // TODO: Remove this fake data
-            var column1 = new Column(0, "X");
-            var column2 = new Column(1, "Y");
+            var column1 = new Column(1, 0, "X");
+            var column2 = new Column(2, 1, "Y");
             var columns = new List<Column> { column1, column2 };
             return columns;
         }

@@ -5,12 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Domain.Columns;
 
-namespace DataExplorer.Persistence.Columns
+namespace DataExplorer.Application.Columns
 {
-    public interface IColumnRepository
+    public interface IColumnAdapter
     {
-        List<Column> GetAll();
-        Column Get(int id);
-        void Add(Column column);
+        ColumnDto Adapt(Column column);
     }
 }

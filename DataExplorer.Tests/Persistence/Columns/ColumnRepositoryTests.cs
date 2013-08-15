@@ -29,16 +29,25 @@ namespace DataExplorer.Tests.Persistence.Columns
         [Test]
         public void TestGetAllShouldReturnColumns()
         {
-            var column = new Column(1, "Column 1");
+            var column = new Column(1, 0, "Column 1");
             _columns.Add(column);
             var result = _repository.GetAll();
             Assert.That(result.Single(), Is.EqualTo(column));
         }
 
         [Test]
+        public void TestGetShouldReturnColumn()
+        {
+            var column = new Column(1, 0, "Column 1");
+            _columns.Add(column);
+            var result = _repository.Get(1);
+            Assert.That(result, Is.EqualTo(column));
+        }
+
+        [Test]
         public void TestAddShouldAddColumn()
         {
-            var column = new Column(1, "Column 1");
+            var column = new Column(1, 0, "Column 1");
             _repository.Add(column);
             Assert.That(_columns.Single(), Is.EqualTo(column));
         }

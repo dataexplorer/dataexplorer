@@ -14,5 +14,6 @@ namespace DataExplorer.Domain.ScatterPlots
         void SetViewExtent(Rect viewExtent);
         void SetPlots(List<Plot> plots);
         List<Plot> GetPlots();
+        ScatterPlotLayout GetLayout();
     }
 }

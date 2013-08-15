@@ -35,7 +35,7 @@ namespace DataExplorer.Tests.Application.Project
         [SetUp]
         public void SetUp()
         {
-            _column = new Column(1, "Column 1");
+            _column = new Column(1, 0, "Column 1");
             _columns = new List<Column> { _column };
             _row = new Row();
             _rows = new List<Row> { _row };

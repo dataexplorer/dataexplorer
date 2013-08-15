@@ -21,6 +21,12 @@ namespace DataExplorer.Persistence.Columns
             return _context.Columns;
         }
 
+        public Column Get(int id)
+        {
+            return _context.Columns
+                .Single(p => p.Id == id);
+        }
+
         public void Add(Column column)
         {
             _context.Columns.Add(column);

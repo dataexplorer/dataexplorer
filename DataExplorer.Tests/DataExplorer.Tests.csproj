@@ -54,15 +54,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application\Application\ApplicationServiceTests.cs" />
+    <Compile Include="Application\Columns\ColumnAdapterTests.cs" />
     <Compile Include="Application\Project\ProjectServiceTests.cs" />
-    <Compile Include="Application\ScatterPlot\ScatterPlotAdapterTests.cs" />
-    <Compile Include="Application\ScatterPlot\ScatterPlotEventsServiceTests.cs" />
-    <Compile Include="Application\ScatterPlot\ScatterPlotServiceTests.cs" />
+    <Compile Include="Application\ScatterPlots\ScatterPlotAdapterTests.cs" />
+    <Compile Include="Application\ScatterPlots\ScatterPlotEventsServiceTests.cs" />
+    <Compile Include="Application\ScatterPlots\ScatterPlotLayoutServiceTests.cs" />
+    <Compile Include="Application\ScatterPlots\ScatterPlotServiceTests.cs" />
+    <Compile Include="Domain\Columns\ColumnTests.cs" />
     <Compile Include="Domain\Events\DomainEventsTests.cs" />
     <Compile Include="Domain\Events\FakeDomainEvent.cs" />
     <Compile Include="Domain\Events\FakeDomainEventHandler.cs" />
     <Compile Include="Domain\Rows\RowBuilder.cs" />
     <Compile Include="Domain\Rows\RowTests.cs" />
+    <Compile Include="Domain\ScatterPlots\ScatterPlotLayoutTests.cs" />
     <Compile Include="Domain\ScatterPlots\ScatterPlotRendererTests.cs" />
     <Compile Include="Domain\ScatterPlots\ScatterPlotTests.cs" />
     <Compile Include="Persistence\Columns\ColumnRepositoryTests.cs" />
@@ -72,13 +76,17 @@
     <Compile Include="Presentation\Core\Canvas\CanvasRendererTests.cs" />
     <Compile Include="Presentation\Core\DependencyPropertyServiceTests.cs" />
     <Compile Include="Presentation\Core\FakeVisual.cs" />
+    <Compile Include="Presentation\Core\Layout\LayoutItemViewModelTests.cs" />
     <Compile Include="Presentation\Core\VisualServiceTests.cs" />
     <Compile Include="Presentation\Core\Geometry\GeometryCalculatorTests.cs" />
     <Compile Include="Presentation\Core\Geometry\GeometryFactoryTests.cs" />
+    <Compile Include="Presentation\Panes\Layout\LayoutPaneViewModelTests.cs" />
     <Compile Include="Presentation\Panes\Viewer\ViewerPaneViewModelTests.cs" />
-    <Compile Include="Presentation\Views\ScatterPlot\ScatterPlotViewRendererTests.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\Layouts\ScatterPlotLayoutViewModelTests.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\Layouts\XAxisLayoutViewModelTests.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\ScatterPlotViewRendererTests.cs" />
     <Compile Include="Presentation\Core\Canvas\CanvasControlTests.cs" />
-    <Compile Include="Presentation\Views\ScatterPlot\ScatterPlotViewModelTests.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\ScatterPlotViewModelTests.cs" />
     <Compile Include="Presentation\Core\DelegateCommandTests.cs" />
     <Compile Include="Presentation\Shell\MainMenu\FileMenu\FileMenuViewModelTests.cs" />
     <Compile Include="Presentation\Shell\MainMenu\MainMenuViewModelTests.cs" />

@@ -13,11 +13,20 @@ namespace DataExplorer.Domain.ScatterPlots
     {
         private Rect _viewExtent;
         private List<Plot> _plots;
+        private readonly ScatterPlotLayout _layout;
 
         public ScatterPlot()
         {
             _viewExtent = new Rect(-100, -100, 1200, 1200);
             _plots = new List<Plot>();
+            _layout = new ScatterPlotLayout();
+        }
+
+        public ScatterPlot(Rect viewExtent, List<Plot> plots, ScatterPlotLayout layout)
+        {
+            _viewExtent = viewExtent;
+            _plots = plots;
+            _layout = layout;
         }
 
         public Rect GetViewExtent()
@@ -35,6 +44,11 @@ namespace DataExplorer.Domain.ScatterPlots
         public List<Plot> GetPlots()
         {
             return _plots;
+        }
+
+        public ScatterPlotLayout GetLayout()
+        {
+            return _layout;
         }
 
         public void SetPlots(List<Plot> plots)

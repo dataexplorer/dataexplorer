@@ -77,15 +77,21 @@
     <Compile Include="Application\Application\ApplicationWrapper.cs" />
     <Compile Include="Application\Application\ApplicationService.cs" />
     <Compile Include="Application\Application\IApplication.cs" />
+    <Compile Include="Application\Columns\ColumnAdapter.cs" />
+    <Compile Include="Application\Columns\IColumnAdapter.cs" />
+    <Compile Include="Application\Columns\ColumnDto.cs" />
     <Compile Include="Application\Project\IProjectService.cs" />
     <Compile Include="Application\Project\ProjectService.cs" />
-    <Compile Include="Application\ScatterPlot\IScatterPlotAdapter.cs" />
-    <Compile Include="Application\ScatterPlot\IScatterPlotService.cs" />
-    <Compile Include="Application\ScatterPlot\PlotDto.cs" />
-    <Compile Include="Application\ScatterPlot\ScatterPlotAdapter.cs" />
-    <Compile Include="Application\ScatterPlot\ScatterPlotChangedEventHandler.cs" />
-    <Compile Include="Application\ScatterPlot\ScatterPlotEventsService.cs" />
-    <Compile Include="Application\ScatterPlot\ScatterPlotService.cs" />
+    <Compile Include="Application\ScatterPlots\IScatterPlotAdapter.cs" />
+    <Compile Include="Application\ScatterPlots\IScatterPlotLayoutService.cs" />
+    <Compile Include="Application\ScatterPlots\IScatterPlotService.cs" />
+    <Compile Include="Application\ScatterPlots\PlotDto.cs" />
+    <Compile Include="Application\ScatterPlots\ScatterPlotAdapter.cs" />
+    <Compile Include="Application\ScatterPlots\ScatterPlotChangedEventHandler.cs" />
+    <Compile Include="Application\ScatterPlots\ScatterPlotEventsService.cs" />
+    <Compile Include="Application\ScatterPlots\ScatterPlotLayoutColumnsChangedEvent.cs" />
+    <Compile Include="Application\ScatterPlots\ScatterPlotLayoutService.cs" />
+    <Compile Include="Application\ScatterPlots\ScatterPlotService.cs" />
     <Compile Include="Application\Serialization\ISerializationService.cs" />
     <Compile Include="Application\Serialization\SerializationService.cs" />
     <Compile Include="Domain\Columns\Column.cs" />
@@ -100,6 +106,7 @@
     <Compile Include="Domain\ScatterPlots\Plot.cs" />
     <Compile Include="Domain\ScatterPlots\ScatterPlot.cs" />
     <Compile Include="Domain\ScatterPlots\ScatterPlotChangedEvent.cs" />
+    <Compile Include="Domain\ScatterPlots\ScatterPlotLayout.cs" />
     <Compile Include="Domain\ScatterPlots\ScatterPlotRenderer.cs" />
     <Compile Include="Domain\Views\IViewRepository.cs" />
     <Compile Include="Persistence\Columns\ColumnContext.cs" />
@@ -115,7 +122,10 @@
     <Compile Include="Presentation\Core\BaseViewModel.cs" />
     <Compile Include="Presentation\Core\DelegateCommand.cs" />
     <Compile Include="Presentation\Core\DependencyPropertyService.cs" />
+    <Compile Include="Presentation\Core\Layout\LayoutItemViewModel.cs" />
     <Compile Include="Presentation\Core\VisualService.cs" />
+    <Compile Include="Presentation\Panes\Layout\ILayoutPaneViewModel.cs" />
+    <Compile Include="Presentation\Panes\Layout\LayoutPaneViewModel.cs" />
     <Compile Include="Presentation\Panes\Viewer\IViewerPaneViewModel.cs" />
     <Compile Include="Presentation\Panes\Viewer\ViewerPaneViewModel.cs" />
     <Page Include="Presentation\Shell\MainWindow\MainWindow.xaml">
@@ -169,7 +179,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Presentation\Views\ScatterPlot\ScatterPlotView.xaml">
+    <Page Include="Presentation\Views\ScatterPlots\Layout\YAxisLayoutView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Presentation\Views\ScatterPlots\Layout\ScatterPlotLayoutView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Presentation\Views\ScatterPlots\Layout\XAxisLayoutView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Presentation\Views\ScatterPlots\ScatterPlotView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -207,15 +229,28 @@
     <Compile Include="Presentation\Core\Geometry\GeometryFactory.cs" />
     <Compile Include="Presentation\Core\Geometry\IGeometryCalculator.cs" />
     <Compile Include="Presentation\Core\Geometry\IGeometryFactory.cs" />
-    <Compile Include="Presentation\Views\ScatterPlot\IScatterPlotViewModel.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\IScatterPlotViewModel.cs" />
     <Compile Include="Presentation\Core\Canvas\ICanvasRenderer.cs" />
     <Compile Include="Presentation\Core\Canvas\CanvasControl.cs" />
-    <Compile Include="Presentation\Views\ScatterPlot\IScatterPlotViewRenderer.cs" />
-    <Compile Include="Presentation\Views\ScatterPlot\ScatterPlotViewRenderer.cs" />
-    <Compile Include="Presentation\Views\ScatterPlot\ScatterPlotView.xaml.cs">
+    <Compile Include="Presentation\Views\ScatterPlots\IScatterPlotViewRenderer.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\Layout\IScatterPlotLayoutViewModel.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\Layout\IXAxisLayoutViewModel.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\Layout\ScatterPlotLayoutViewModel.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\Layout\XAxisLayoutViewModel.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\Layout\YAxisLayoutView.xaml.cs">
+      <DependentUpon>YAxisLayoutView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Views\ScatterPlots\Layout\ScatterPlotLayoutView.xaml.cs">
+      <DependentUpon>ScatterPlotLayoutView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Views\ScatterPlots\Layout\XAxisLayoutView.xaml.cs">
+      <DependentUpon>XAxisLayoutView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Views\ScatterPlots\ScatterPlotViewRenderer.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\ScatterPlotView.xaml.cs">
       <DependentUpon>ScatterPlotView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Presentation\Views\ScatterPlot\ScatterPlotViewModel.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\ScatterPlotViewModel.cs" />
     <Compile Include="Presentation\Core\Canvas\CanvasRenderer.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

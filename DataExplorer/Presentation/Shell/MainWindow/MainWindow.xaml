@@ -48,7 +48,8 @@
                             </xcad:LayoutAnchorablePane>
                             <xcad:LayoutAnchorablePane>
                                 <xcad:LayoutAnchorable Title="Layout">
-                                    <TextBlock>Pane 4</TextBlock>
+                                    <layout:LayoutPaneView 
+                                        DataContext="{Binding LayoutPaneViewModel}" />
                                 </xcad:LayoutAnchorable>
                             </xcad:LayoutAnchorablePane>
                             <xcad:LayoutAnchorablePane>

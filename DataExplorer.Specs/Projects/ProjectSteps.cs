@@ -29,7 +29,7 @@ namespace DataExplorer.Specs.Projects
         [Given(@"the project has a column")]
         public void GivenTheProjectHasAColumn()
         {
-            var column = new Column(1, "Column 1");
+            var column = new Column(1, 0, "Column 1");
             var columns = new List<Column> { column };
             _context.Column = column;
             _context.MockSerializationService.Setup(p => p.GetColumns()).Returns(columns);
