@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Domain.Columns;
+using DataExplorer.Persistence;
 using DataExplorer.Persistence.Columns;
 using Moq;
 using NUnit.Framework;
@@ -14,14 +15,14 @@ namespace DataExplorer.Tests.Persistence.Columns
     public class ColumnRepositoryTests
     {
         private ColumnRepository _repository;
-        private Mock<IColumnContext> _mockContext;
+        private Mock<IDataContext> _mockContext;
         private List<Column> _columns;
         
         [SetUp]
         public void SetUp()
         {
             _columns = new List<Column>();
-            _mockContext = new Mock<IColumnContext>();
+            _mockContext = new Mock<IDataContext>();
             _mockContext.Setup(p => p.Columns).Returns(_columns);
             _repository = new ColumnRepository(_mockContext.Object);
         }

@@ -37,9 +37,22 @@ namespace DataExplorer.Tests.Application.ScatterPlots
         }
 
         [Test]
-        public void TestHandleProjectOpenedShouldUpdatePlots()
+        public void TestHandleProjectOpenedEventShouldUpdatePlots()
         {
             var @event = new ProjectOpenedEvent();
+            var rows = new List<Row>();
+            var plots = new List<Plot>();
+            _mockDataRepository.Setup(p => p.GetAll()).Returns(rows);
+            _mockViewRepository.Setup(p => p.GetScatterPlot()).Returns(_mockScatterPlot.Object);
+            _mockRenderer.Setup(p => p.RenderPlots(rows)).Returns(plots);
+            _service.Handle(@event);
+            _mockScatterPlot.Verify(p => p.SetPlots(plots), Times.Once());
+        }
+
+        [Test]
+        public void TestHandleProjectClosedEventShouldUpdatePlots()
+        {
+            var @event = new ProjectClosedEvent();
             var rows = new List<Row>();
             var plots = new List<Plot>();
             _mockDataRepository.Setup(p => p.GetAll()).Returns(rows);

@@ -14,7 +14,8 @@ namespace DataExplorer.Application.ScatterPlots
 {
     public class ScatterPlotLayoutService : 
         IScatterPlotLayoutService, 
-        IHandler<ProjectOpenedEvent>
+        IHandler<ProjectOpenedEvent>,
+        IHandler<ProjectClosedEvent>
     {
         private readonly IViewRepository _viewRepository;
         private readonly IColumnRepository _columnRepository;
@@ -68,6 +69,12 @@ namespace DataExplorer.Application.ScatterPlots
         }
 
         public void Handle(ProjectOpenedEvent args)
+        {
+            if (LayoutColumnsChangedEvent != null)
+                LayoutColumnsChangedEvent(this, EventArgs.Empty);
+        }
+
+        public void Handle(ProjectClosedEvent args)
         {
             if (LayoutColumnsChangedEvent != null)
                 LayoutColumnsChangedEvent(this, EventArgs.Empty);

@@ -7,9 +7,9 @@ namespace DataExplorer.Persistence.Rows
 {
     public class RowRepository : IRowRepository
     {
-        private readonly IRowContext _context;
+        private readonly IDataContext _context;
 
-        public RowRepository(IRowContext context)
+        public RowRepository(IDataContext context)
         {
             _context = context;
         }

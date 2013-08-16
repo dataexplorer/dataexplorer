@@ -11,7 +11,9 @@ using DataExplorer.Domain.Views;
 
 namespace DataExplorer.Application.ScatterPlots
 {
-    public class ScatterPlotEventsService : IHandler<ProjectOpenedEvent>
+    public class ScatterPlotEventsService : 
+        IHandler<ProjectOpenedEvent>,
+        IHandler<ProjectClosedEvent>
     {
         private readonly IRowRepository _rowRepository;
         private readonly IViewRepository _viewRepository;
@@ -39,6 +41,11 @@ namespace DataExplorer.Application.ScatterPlots
         }
 
         public void Handle(ProjectOpenedEvent args)
+        {
+            UpdatePlots();
+        }
+
+        public void Handle(ProjectClosedEvent args)
         {
             UpdatePlots();
         }

@@ -8,10 +8,18 @@ using DataExplorer.Domain.Projects;
 using DataExplorer.Domain.Rows;
 using DataExplorer.Domain.ScatterPlots;
 
-namespace DataExplorer.Application.Serialization
+namespace DataExplorer.Persistence
 {
-    public interface ISerializationService
+    public interface IDataContext
     {
-        Project GetProject();
+        List<Column> Columns { get; }
+        
+        List<Row> Rows { get; }
+
+        IScatterPlot ScatterPlot { get; set; }
+
+        void SetProject(Project project);
+        
+        void Clear();
     }
 }

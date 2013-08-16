@@ -7,8 +7,10 @@ using DataExplorer.Application;
 using DataExplorer.Application.Application;
 using DataExplorer.Application.Serialization;
 using DataExplorer.Domain.Columns;
+using DataExplorer.Domain.Projects;
 using DataExplorer.Domain.Rows;
 using DataExplorer.Domain.ScatterPlots;
+using DataExplorer.Persistence;
 using DataExplorer.Persistence.Columns;
 using DataExplorer.Persistence.Rows;
 using DataExplorer.Persistence.Views;
@@ -26,12 +28,11 @@ namespace DataExplorer.Specs
         public Mock<IApplicationService> MockApplicationService;
         public Mock<ISerializationService> MockSerializationService;
 
+        public Project Project;
         public Column Column;
         public Row Row;
         public ScatterPlot ScatterPlot;
 
-        public IColumnContext ColumnContext;
-        public IRowContext RowContext;
-        public IViewContext ViewContext;
+        public IDataContext DataContext;
     }
 }

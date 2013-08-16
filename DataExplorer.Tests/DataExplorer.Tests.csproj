@@ -55,7 +55,7 @@
   <ItemGroup>
     <Compile Include="Application\Application\ApplicationServiceTests.cs" />
     <Compile Include="Application\Columns\ColumnAdapterTests.cs" />
-    <Compile Include="Application\Project\ProjectServiceTests.cs" />
+    <Compile Include="Application\Projects\ProjectServiceTests.cs" />
     <Compile Include="Application\ScatterPlots\ScatterPlotAdapterTests.cs" />
     <Compile Include="Application\ScatterPlots\ScatterPlotEventsServiceTests.cs" />
     <Compile Include="Application\ScatterPlots\ScatterPlotLayoutServiceTests.cs" />
@@ -70,6 +70,7 @@
     <Compile Include="Domain\ScatterPlots\ScatterPlotRendererTests.cs" />
     <Compile Include="Domain\ScatterPlots\ScatterPlotTests.cs" />
     <Compile Include="Persistence\Columns\ColumnRepositoryTests.cs" />
+    <Compile Include="Persistence\DataContextTests.cs" />
     <Compile Include="Persistence\Rows\RowRepositoryTests.cs" />
     <Compile Include="Persistence\Views\ViewRepositoryTests.cs" />
     <Compile Include="Presentation\Core\BaseViewModelTests.cs" />

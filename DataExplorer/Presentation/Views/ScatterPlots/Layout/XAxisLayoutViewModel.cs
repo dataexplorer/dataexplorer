@@ -53,6 +53,10 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Layout
 
         private void SetSelectedColumnViewModel(LayoutItemViewModel value)
         {
+            // TODO: Should this just return or set X Column to null?
+            if (value == null)
+                return;
+
             var column = value.Column;
 
             _service.SetXColumn(column);

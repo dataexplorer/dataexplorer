@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Domain.Columns;
+using DataExplorer.Domain.Projects;
 using DataExplorer.Domain.Rows;
 using DataExplorer.Domain.ScatterPlots;
 
@@ -11,16 +12,29 @@ namespace DataExplorer.Application.Serialization
 {
     public class SerializationService : ISerializationService
     {
-        public List<Column> GetColumns()
+        public Project GetProject()
         {
             // TODO: Remove this fake data
+            var project = new Project()
+            {
+                Columns = GetColumns(),
+                Rows = GetRows(),
+                ScatterPlot = GetViews().Single()
+            };
+
+            return project;
+        }
+
+        private List<Column> GetColumns()
+        {
+            
             var column1 = new Column(1, 0, "X");
             var column2 = new Column(2, 1, "Y");
             var columns = new List<Column> { column1, column2 };
             return columns;
         }
 
-        public List<Row> GetRows()
+        private List<Row> GetRows()
         {
             // TODO: Remove this fake data
             var row1 = new Row(new List<object>() { 0, 0 });
@@ -31,7 +45,7 @@ namespace DataExplorer.Application.Serialization
             return rows;
         }
 
-        public List<IScatterPlot> GetViews()
+        private List<IScatterPlot> GetViews()
         {
             // TODO: Remove this fake data
             //var plot1 = new Plot() { X = 0, Y = 0 };

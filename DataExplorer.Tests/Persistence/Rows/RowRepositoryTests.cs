@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Domain.Rows;
+using DataExplorer.Persistence;
 using DataExplorer.Persistence.Rows;
 using DataExplorer.Tests.Domain.Rows;
 using Moq;
@@ -16,14 +17,14 @@ namespace DataExplorer.Tests.Persistence.Rows
     public class RowRepositoryTests
     {
         private RowRepository _repository;
-        private Mock<IRowContext> _mockDataContext;
+        private Mock<IDataContext> _mockDataContext;
         private List<Row> _rows;
 
         [SetUp]
         public void SetUp()
         {
             _rows = new List<Row>();
-            _mockDataContext = new Mock<IRowContext>();
+            _mockDataContext = new Mock<IDataContext>();
             _mockDataContext.SetupGet(p => p.Rows).Returns(_rows);
             _repository = new RowRepository(_mockDataContext.Object);
         }

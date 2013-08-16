@@ -62,6 +62,11 @@
     </Compile>
     <Compile Include="BeforeScenario.cs" />
     <Compile Include="Context.cs" />
+    <Compile Include="Projects\CloseAProject.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CloseAProject.feature</DependentUpon>
+    </Compile>
     <Compile Include="Projects\OpenAProject.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -83,6 +88,10 @@
       <LastGenOutput>ExitApplication.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
+    <None Include="Projects\CloseAProject.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CloseAProject.feature.cs</LastGenOutput>
+    </None>
     <None Include="Projects\OpenAProject.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>OpenAProject.feature.cs</LastGenOutput>

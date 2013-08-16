@@ -45,12 +45,19 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.Layouts
         }
 
         [Test]
+        public void TestSetSelectedColumnShouldReturnIfNull()
+        {
+            _viewModel.SelectedColumn = null;
+            _mockService.Verify(p => p.SetXColumn(It.IsAny<ColumnDto>()), Times.Never());
+        }
+
+        [Test]
         public void TestSetSelectedColumnShouldSetSelectedColumn()
         {
             var columnDto = new ColumnDto() { Name = "Test" };
             var viewModel = new LayoutItemViewModel(columnDto);
             _viewModel.SelectedColumn = viewModel;
-            _mockService.Verify(p => p.SetXColumn(columnDto));
+            _mockService.Verify(p => p.SetXColumn(columnDto), Times.Once());
         }
     }
 }

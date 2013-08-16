@@ -9,9 +9,9 @@ namespace DataExplorer.Persistence.Columns
 {
     public class ColumnRepository : IColumnRepository
     {
-        private readonly IColumnContext _context;
+        private readonly IDataContext _context;
 
-        public ColumnRepository(IColumnContext context)
+        public ColumnRepository(IDataContext context)
         {
             _context = context;
         }

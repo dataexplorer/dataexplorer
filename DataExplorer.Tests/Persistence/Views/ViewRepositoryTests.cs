@@ -1,4 +1,5 @@
 ﻿using DataExplorer.Domain.ScatterPlots;
+using DataExplorer.Persistence;
 using DataExplorer.Persistence.Views;
 using Moq;
 using NUnit.Framework;
@@ -9,14 +10,14 @@ namespace DataExplorer.Tests.Persistence.Views
     public class ViewRepositoryTests
     {
         private ViewRepository _repository;
-        private Mock<IViewContext> _mockViewContext;
+        private Mock<IDataContext> _mockViewContext;
         private Mock<IScatterPlot> _mockScatterPlot;
 
         [SetUp]
         public void SetUp()
         {
             _mockScatterPlot = new Mock<IScatterPlot>();
-            _mockViewContext = new Mock<IViewContext>();
+            _mockViewContext = new Mock<IDataContext>();
             _repository = new ViewRepository(_mockViewContext.Object);
         }
 

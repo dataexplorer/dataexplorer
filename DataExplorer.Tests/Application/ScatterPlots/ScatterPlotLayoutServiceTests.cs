@@ -82,7 +82,16 @@ namespace DataExplorer.Tests.Application.ScatterPlots
             _service.LayoutColumnsChangedEvent += (s, e) => { wasHandled = true; };
             _service.Handle(args);
             Assert.That(wasHandled, Is.True);
+        }
 
+        [Test]
+        public void TestHandleProjectClosedShouldRaiseLayoutColumnsChangedEvent()
+        {
+            var args = new ProjectClosedEvent();
+            var wasHandled = false;
+            _service.LayoutColumnsChangedEvent += (s, e) => { wasHandled = true; };
+            _service.Handle(args);
+            Assert.That(wasHandled, Is.True);
         }
     }
 }

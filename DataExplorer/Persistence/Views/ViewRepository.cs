@@ -6,9 +6,9 @@ namespace DataExplorer.Persistence.Views
 {
     public class ViewRepository : IViewRepository
     {
-        private readonly IViewContext _viewContext;
+        private readonly IDataContext _viewContext;
 
-        public ViewRepository(IViewContext viewContext)
+        public ViewRepository(IDataContext viewContext)
         {
             _viewContext = viewContext;
         }

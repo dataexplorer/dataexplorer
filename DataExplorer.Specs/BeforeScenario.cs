@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using DataExplorer.Application;
 using DataExplorer.Application.Application;
 using DataExplorer.Application.Serialization;
+using DataExplorer.Persistence;
 using DataExplorer.Persistence.Columns;
 using DataExplorer.Persistence.Rows;
 using DataExplorer.Persistence.Views;
@@ -54,9 +55,7 @@ namespace DataExplorer.Specs
             _context.MainWindowViewModel = kernel.Get<MainWindowViewModel>();
             _context.FileMenuViewModel = kernel.Get<IFileMenuViewModel>();
 
-            _context.ColumnContext = kernel.Get<IColumnContext>();
-            _context.RowContext = kernel.Get<IRowContext>();
-            _context.ViewContext = kernel.Get<IViewContext>();
+            _context.DataContext = kernel.Get<IDataContext>();
         }
     }
 }
