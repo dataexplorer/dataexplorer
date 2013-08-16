@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Domain.Columns;
+using DataExplorer.Domain.Events;
 using DataExplorer.Domain.ScatterPlots;
 using NUnit.Framework;
 
@@ -38,6 +39,17 @@ namespace DataExplorer.Tests.Domain.ScatterPlots
             var column = new Column(10, 9, "X2");
             _layout.XAxisColumn = column;
             Assert.That(_layout.XAxisColumn, Is.EqualTo(column));
+        }
+
+        [Test]
+        public void TestSetXAxisColumnShouldRaiseScatterPlotLayoutChangedEvent()
+        {
+            var column = new Column(10, 9, "X2");
+            _layout.XAxisColumn = column;
+            var wasRaised = false;
+            DomainEvents.Register<ScatterPlotLayoutChangedEvent>(p => { wasRaised = true; });
+            Assert.That(_layout.XAxisColumn, Is.EqualTo(column));
+            DomainEvents.ClearHandlers();
         }
     }
 }

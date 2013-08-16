@@ -4,7 +4,7 @@
 	So that I can reset the state of the application
 
 @mytag
-Scenario: Add two numbers
+Scenario: Close a Project
 	Given a project
 	Given a column
 	Given a row

@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataExplorer.Domain.Rows;
+using DataExplorer.Domain.Events;
 
 namespace DataExplorer.Domain.ScatterPlots
 {
-    public interface IScatterPlotRenderer
+    public class ScatterPlotLayoutChangedEvent : IDomainEvent
     {
-        List<Plot> RenderPlots(List<Row> rows, ScatterPlotLayout layout);
     }
 }

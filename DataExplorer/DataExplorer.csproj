@@ -109,6 +109,7 @@
     <Compile Include="Domain\ScatterPlots\ScatterPlot.cs" />
     <Compile Include="Domain\ScatterPlots\ScatterPlotChangedEvent.cs" />
     <Compile Include="Domain\ScatterPlots\ScatterPlotLayout.cs" />
+    <Compile Include="Domain\ScatterPlots\ScatterPlotLayoutChangedEvent.cs" />
     <Compile Include="Domain\ScatterPlots\ScatterPlotRenderer.cs" />
     <Compile Include="Domain\Views\IViewRepository.cs" />
     <Compile Include="Persistence\Columns\ColumnRepository.cs" />

@@ -61,6 +61,7 @@
       <DependentUpon>ExitApplication.feature</DependentUpon>
     </Compile>
     <Compile Include="BeforeScenario.cs" />
+    <Compile Include="Columns\ColumnSteps.cs" />
     <Compile Include="Context.cs" />
     <Compile Include="Projects\CloseAProject.feature.cs">
       <AutoGen>True</AutoGen>
@@ -74,6 +75,7 @@
     </Compile>
     <Compile Include="Projects\ProjectSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rows\RowSteps.cs" />
     <Compile Include="ScatterPlots\ScatterPlotSteps.cs" />
     <Compile Include="ScatterPlots\ViewScatterPlot.feature.cs">
       <AutoGen>True</AutoGen>

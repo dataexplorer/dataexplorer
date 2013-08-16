@@ -10,30 +10,33 @@ namespace DataExplorer.Domain.ScatterPlots
 {
     public class ScatterPlotRenderer : IScatterPlotRenderer
     {
-        public List<Plot> RenderPlots(List<Row> rows)
+        private ScatterPlotLayout _layout;
+
+        public List<Plot> RenderPlots(List<Row> rows, ScatterPlotLayout layout)
         {
-            var plots = new List<Plot>();
+            // TODO: Should I use a field or just pass this into function?
+            _layout = layout;
 
-            foreach (var row in rows)
-            {
-                var plot = RenderPlot(row);
-                plots.Add(plot);
-            }
-
+            var plots = rows.Select(p => RenderPlot(p)).ToList();
+            
             return plots;
         }
 
         private Plot RenderPlot(Row row)
         {
-            var plot = new Plot();
-            plot.X = RenderX(row);
-            plot.Y = RenderY(row);
+            var plot = new Plot
+            {
+                X = RenderX(row),
+                Y = RenderY(row)
+            };
             return plot;
         }
 
         private double RenderX(Row row)
         {
-            return Convert.ToDouble(row[0]);
+            return _layout.XAxisColumn != null 
+                ? Convert.ToDouble(row[_layout.XAxisColumn.Index])
+                : 0.0;
         }
 
         private double RenderY(Row dataRow)

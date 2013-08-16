@@ -62,22 +62,10 @@ namespace DataExplorer.Specs.Projects
             _context.FileMenuViewModel.OpenCommand.Execute(null);
         }
 
-        [Then(@"the column is added to the repository")]
-        public void ThenTheColumnIsAddedToTheRepository()
+        [When(@"I close the project")]
+        public void WhenICloseTheProject()
         {
-            Assert.That(_context.DataContext.Columns.Single(), Is.EqualTo(_context.Column));
-        }
-
-        [Then(@"the row is added to the repository")]
-        public void ThenTheRowIsAddedToTheRepository()
-        {
-            Assert.That(_context.DataContext.Rows.Single(), Is.EqualTo(_context.Row));
-        }
-
-        [Then(@"the view is added to the repository")]
-        public void ThenTheViewIsAddedToTheRepository()
-        {
-            Assert.That(_context.DataContext.ScatterPlot, Is.EqualTo(_context.ScatterPlot));
+            _context.FileMenuViewModel.CloseCommand.Execute(null);
         }
     }
 }

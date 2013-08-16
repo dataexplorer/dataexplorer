@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.ScatterPlots;
 using DataExplorer.Tests.Domain.Rows;
 using NUnit.Framework;
@@ -25,7 +26,9 @@ namespace DataExplorer.Tests.Domain.ScatterPlots
         public void TestRenderPlotsShouldRenderRowsIntoPlots()
         {
             var rows = new RowBuilder().WithValues(1, 2).BuildList();
-            var results = _renderer.RenderPlots(rows);
+            var layout = new ScatterPlotLayout();
+            layout.XAxisColumn = new Column(1, 0, "Test");
+            var results = _renderer.RenderPlots(rows, layout);
             Assert.That(results.Single().X, Is.EqualTo(1.0));
             Assert.That(results.Single().Y, Is.EqualTo(2.0));
         } 

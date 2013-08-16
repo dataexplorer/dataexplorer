@@ -13,7 +13,8 @@ namespace DataExplorer.Application.ScatterPlots
 {
     public class ScatterPlotEventsService : 
         IHandler<ProjectOpenedEvent>,
-        IHandler<ProjectClosedEvent>
+        IHandler<ProjectClosedEvent>,
+        IHandler<ScatterPlotLayoutChangedEvent>
     {
         private readonly IRowRepository _rowRepository;
         private readonly IViewRepository _viewRepository;
@@ -35,7 +36,9 @@ namespace DataExplorer.Application.ScatterPlots
 
             var scatterPlot = _viewRepository.GetScatterPlot();
 
-            var plots = _renderer.RenderPlots(rows);
+            var layout = scatterPlot.GetLayout();
+
+            var plots = _renderer.RenderPlots(rows, layout);
 
             scatterPlot.SetPlots(plots);
         }
@@ -46,6 +49,11 @@ namespace DataExplorer.Application.ScatterPlots
         }
 
         public void Handle(ProjectClosedEvent args)
+        {
+            UpdatePlots();
+        }
+
+        public void Handle(ScatterPlotLayoutChangedEvent args)
         {
             UpdatePlots();
         }

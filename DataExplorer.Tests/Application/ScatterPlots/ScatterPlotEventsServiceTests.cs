@@ -22,7 +22,7 @@ namespace DataExplorer.Tests.Application.ScatterPlots
         private Mock<IViewRepository> _mockViewRepository;
         private Mock<IScatterPlotRenderer> _mockRenderer;
         private Mock<IScatterPlot> _mockScatterPlot;
-
+        
         [SetUp]
         public void SetUp()
         {
@@ -42,9 +42,11 @@ namespace DataExplorer.Tests.Application.ScatterPlots
             var @event = new ProjectOpenedEvent();
             var rows = new List<Row>();
             var plots = new List<Plot>();
+            var layout = new ScatterPlotLayout();
             _mockDataRepository.Setup(p => p.GetAll()).Returns(rows);
             _mockViewRepository.Setup(p => p.GetScatterPlot()).Returns(_mockScatterPlot.Object);
-            _mockRenderer.Setup(p => p.RenderPlots(rows)).Returns(plots);
+            _mockScatterPlot.Setup(p => p.GetLayout()).Returns(layout);
+            _mockRenderer.Setup(p => p.RenderPlots(rows, layout)).Returns(plots);
             _service.Handle(@event);
             _mockScatterPlot.Verify(p => p.SetPlots(plots), Times.Once());
         }
@@ -55,9 +57,26 @@ namespace DataExplorer.Tests.Application.ScatterPlots
             var @event = new ProjectClosedEvent();
             var rows = new List<Row>();
             var plots = new List<Plot>();
+            var layout = new ScatterPlotLayout();
             _mockDataRepository.Setup(p => p.GetAll()).Returns(rows);
             _mockViewRepository.Setup(p => p.GetScatterPlot()).Returns(_mockScatterPlot.Object);
-            _mockRenderer.Setup(p => p.RenderPlots(rows)).Returns(plots);
+            _mockScatterPlot.Setup(p => p.GetLayout()).Returns(layout);
+            _mockRenderer.Setup(p => p.RenderPlots(rows, layout)).Returns(plots);
+            _service.Handle(@event);
+            _mockScatterPlot.Verify(p => p.SetPlots(plots), Times.Once());
+        }
+
+        [Test]
+        public void TestHandleScatterPlotLayoutChangedEventShouldUpdatePlots()
+        {
+            var @event = new ScatterPlotLayoutChangedEvent();
+            var rows = new List<Row>();
+            var plots = new List<Plot>();
+            var layout = new ScatterPlotLayout();
+            _mockDataRepository.Setup(p => p.GetAll()).Returns(rows);
+            _mockViewRepository.Setup(p => p.GetScatterPlot()).Returns(_mockScatterPlot.Object);
+            _mockScatterPlot.Setup(p => p.GetLayout()).Returns(layout);
+            _mockRenderer.Setup(p => p.RenderPlots(rows, layout)).Returns(plots);
             _service.Handle(@event);
             _mockScatterPlot.Verify(p => p.SetPlots(plots), Times.Once());
         }

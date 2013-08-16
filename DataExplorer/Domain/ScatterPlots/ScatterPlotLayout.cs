@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Domain.Columns;
+using DataExplorer.Domain.Events;
 
 namespace DataExplorer.Domain.ScatterPlots
 {
@@ -14,7 +15,11 @@ namespace DataExplorer.Domain.ScatterPlots
         public Column XAxisColumn
         {
             get { return _xAxisColumn; }
-            set { _xAxisColumn = value; }
+            set
+            {
+                _xAxisColumn = value;
+                DomainEvents.Raise(new ScatterPlotLayoutChangedEvent());
+            }
         }
     }
 }
