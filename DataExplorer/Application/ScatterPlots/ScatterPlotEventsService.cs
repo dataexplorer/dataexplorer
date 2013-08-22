@@ -30,19 +30,6 @@ namespace DataExplorer.Application.ScatterPlots
             _renderer = renderer;
         }
 
-        private void UpdatePlots()
-        {
-            var rows = _rowRepository.GetAll();
-
-            var scatterPlot = _viewRepository.GetScatterPlot();
-
-            var layout = scatterPlot.GetLayout();
-
-            var plots = _renderer.RenderPlots(rows, layout);
-
-            scatterPlot.SetPlots(plots);
-        }
-
         public void Handle(ProjectOpenedEvent args)
         {
             UpdatePlots();
@@ -56,6 +43,19 @@ namespace DataExplorer.Application.ScatterPlots
         public void Handle(ScatterPlotLayoutChangedEvent args)
         {
             UpdatePlots();
+        }
+
+        private void UpdatePlots()
+        {
+            var rows = _rowRepository.GetAll();
+
+            var scatterPlot = _viewRepository.GetScatterPlot();
+
+            var layout = scatterPlot.GetLayout();
+
+            var plots = _renderer.RenderPlots(rows, layout);
+
+            scatterPlot.SetPlots(plots);
         }
     }
 }

@@ -18,7 +18,8 @@ namespace DataExplorer.Application.Columns
             {
                 Id = column.Id,
                 Index = column.Index,
-                Name = column.Name
+                Name = column.Name,
+                Type = column.Type
             };
 
             return columnDto;

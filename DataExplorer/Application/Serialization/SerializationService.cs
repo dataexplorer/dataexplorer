@@ -28,8 +28,8 @@ namespace DataExplorer.Application.Serialization
         private List<Column> GetColumns()
         {
             
-            var column1 = new Column(1, 0, "X");
-            var column2 = new Column(2, 1, "Y");
+            var column1 = new Column(1, 0, "X", typeof(Double), 0d, 1000d);
+            var column2 = new Column(2, 1, "Y", typeof(Double), 0d, 1000d);
             var columns = new List<Column> { column1, column2 };
             return columns;
         }
@@ -37,10 +37,10 @@ namespace DataExplorer.Application.Serialization
         private List<Row> GetRows()
         {
             // TODO: Remove this fake data
-            var row1 = new Row(new List<object>() { 0, 0 });
-            var row2 = new Row(new List<object>() { 1000, 0 });
-            var row3 = new Row(new List<object>() { 0, 1000 });
-            var row4 = new Row(new List<object>() { 1000, 1000 });
+            var row1 = new Row(new List<object>() { 0d, 0d });
+            var row2 = new Row(new List<object>() { 1000d, 0d });
+            var row3 = new Row(new List<object>() { 0d, 1000d });
+            var row4 = new Row(new List<object>() { 1000d, 1000d });
             var rows = new List<Row> { row1, row2, row3, row4 };
             return rows;
         }

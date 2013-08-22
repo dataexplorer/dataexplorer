@@ -6,6 +6,7 @@ using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Projects;
 using DataExplorer.Domain.Rows;
 using DataExplorer.Domain.ScatterPlots;
+using DataExplorer.Tests.Domain.Columns;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -32,7 +33,7 @@ namespace DataExplorer.Specs.Projects
         [Given(@"the project has a column")]
         public void GivenTheProjectHasAColumn()
         {
-            var column = new Column(1, 0, "Column 1");
+            var column = new ColumnBuilder().Build();
             var columns = new List<Column> { column };
             _context.Column = column;
             _context.Project.Columns = columns;

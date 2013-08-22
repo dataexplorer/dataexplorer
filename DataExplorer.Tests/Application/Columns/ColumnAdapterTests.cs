@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.Columns;
 using DataExplorer.Domain.Columns;
+using DataExplorer.Tests.Domain.Columns;
 using NUnit.Framework;
 
 namespace DataExplorer.Tests.Application.Columns
@@ -30,11 +31,17 @@ namespace DataExplorer.Tests.Application.Columns
         [Test]
         public void TestAdaptShouldAdaptColumnToDto()
         {
-            var column = new Column(1, 0, "Test");
+            var column = new ColumnBuilder()
+                .WithId(1)
+                .WithIndex(0)
+                .WithName("Test")
+                .WithType(typeof(bool))
+                .Build();
             var result = _adapter.Adapt(column);
             Assert.That(result.Id, Is.EqualTo(column.Id));
             Assert.That(result.Index, Is.EqualTo(column.Index));
             Assert.That(result.Name, Is.EqualTo(column.Name));
+            Assert.That(result.Type, Is.EqualTo(column.Type));
         }
     }
 }

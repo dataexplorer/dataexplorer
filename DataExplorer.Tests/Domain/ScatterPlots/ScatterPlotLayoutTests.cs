@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Events;
 using DataExplorer.Domain.ScatterPlots;
+using DataExplorer.Tests.Domain.Columns;
 using NUnit.Framework;
 
 namespace DataExplorer.Tests.Domain.ScatterPlots
@@ -15,14 +16,17 @@ namespace DataExplorer.Tests.Domain.ScatterPlots
     {
         private ScatterPlotLayout _layout;
         private Column _xAxisColumn;
+        private Column _yAxisColumn;
 
         [SetUp]
         public void SetUp()
         {
-            _xAxisColumn = new Column(1, 0, "X");
+            _xAxisColumn = new ColumnBuilder().Build();
+            _yAxisColumn = new ColumnBuilder().Build();
             _layout = new ScatterPlotLayout()
             {
-                XAxisColumn = _xAxisColumn
+                XAxisColumn = _xAxisColumn,
+                YAxisColumn = _yAxisColumn
             };
         }
 
@@ -36,7 +40,7 @@ namespace DataExplorer.Tests.Domain.ScatterPlots
         [Test]
         public void TestSetXAxisColumnShouldSetXAxisColumn()
         {
-            var column = new Column(10, 9, "X2");
+            var column = new ColumnBuilder().Build();
             _layout.XAxisColumn = column;
             Assert.That(_layout.XAxisColumn, Is.EqualTo(column));
         }
@@ -44,11 +48,37 @@ namespace DataExplorer.Tests.Domain.ScatterPlots
         [Test]
         public void TestSetXAxisColumnShouldRaiseScatterPlotLayoutChangedEvent()
         {
-            var column = new Column(10, 9, "X2");
-            _layout.XAxisColumn = column;
+            var column = new ColumnBuilder().Build();
             var wasRaised = false;
             DomainEvents.Register<ScatterPlotLayoutChangedEvent>(p => { wasRaised = true; });
-            Assert.That(_layout.XAxisColumn, Is.EqualTo(column));
+            _layout.XAxisColumn = column;
+            Assert.That(wasRaised, Is.True);
+            DomainEvents.ClearHandlers();
+        }
+
+        [Test]
+        public void TestGetYAxisColumnShouldReturnYAxisColumn()
+        {
+            var result = _layout.YAxisColumn;
+            Assert.That(result, Is.EqualTo(_yAxisColumn));
+        }
+
+        [Test]
+        public void TestSetYAxisColumnShouldSetYAxisColumn()
+        {
+            var column = new ColumnBuilder().Build();
+            _layout.YAxisColumn = column;
+            Assert.That(_layout.YAxisColumn, Is.EqualTo(column));
+        }
+
+        [Test]
+        public void TestSetYAxisColumnShouldRaiseScatterPlotLayoutChangedEvent()
+        {
+            var column = new ColumnBuilder().Build();
+            var wasRaised = false;
+            DomainEvents.Register<ScatterPlotLayoutChangedEvent>(p => { wasRaised = true; });
+            _layout.YAxisColumn = column;
+            Assert.That(wasRaised, Is.True);
             DomainEvents.ClearHandlers();
         }
     }

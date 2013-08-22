@@ -11,6 +11,7 @@ using DataExplorer.Domain.Projects;
 using DataExplorer.Domain.ScatterPlots;
 using DataExplorer.Domain.Views;
 using DataExplorer.Persistence.Columns;
+using DataExplorer.Tests.Domain.Columns;
 using Moq;
 using NUnit.Framework;
 
@@ -39,7 +40,7 @@ namespace DataExplorer.Tests.Application.ScatterPlots
         [Test]
         public void TestGetColumnsShouldReturnColumns()
         {
-            var column = new Column(1, 0, "Test");
+            var column = new ColumnBuilder().Build();
             var columns = new List<Column> { column };
             var columnDto = new ColumnDto { Index = column.Index };
             _mockColumnRepository.Setup(p => p.GetAll()).Returns(columns);
@@ -51,7 +52,7 @@ namespace DataExplorer.Tests.Application.ScatterPlots
         [Test]
         public void TestGetXColumnShouldReturnXColumn()
         {
-            var column = new Column(1, 0, "Test");
+            var column = new ColumnBuilder().Build();
             var columnDto = new ColumnDto() { Index = column.Index };
             var layout = new ScatterPlotLayout() { XAxisColumn = column };
             var scatterPlot = new ScatterPlot(new Rect(), null, layout);
@@ -64,7 +65,7 @@ namespace DataExplorer.Tests.Application.ScatterPlots
         [Test]
         public void TestSetXColumnShouldSetXColumn()
         {
-            var column = new Column(1, 0, "Test");
+            var column = new ColumnBuilder().Build();
             var columnDto = new ColumnDto() { Id = 1 };
             var layout = new ScatterPlotLayout();
             var scatterPlot = new ScatterPlot(new Rect(), null, layout);
@@ -72,6 +73,32 @@ namespace DataExplorer.Tests.Application.ScatterPlots
             _mockViewRepository.Setup(p => p.GetScatterPlot()).Returns(scatterPlot);
             _service.SetXColumn(columnDto);
             Assert.That(layout.XAxisColumn, Is.EqualTo(column));
+        }
+
+        [Test]
+        public void TestGetYColumnShouldReturnYColumn()
+        {
+            var column = new ColumnBuilder().Build();
+            var columnDto = new ColumnDto() { Index = column.Index };
+            var layout = new ScatterPlotLayout() { YAxisColumn = column };
+            var scatterPlot = new ScatterPlot(new Rect(), null, layout);
+            _mockViewRepository.Setup(p => p.GetScatterPlot()).Returns(scatterPlot);
+            _mockColumnAdapter.Setup(p => p.Adapt(column)).Returns(columnDto);
+            var result = _service.GetYColumn();
+            Assert.That(result.Index, Is.EqualTo(column.Index));
+        }
+
+        [Test]
+        public void TestSetYColumnShouldSetYColumn()
+        {
+            var column = new ColumnBuilder().Build();
+            var columnDto = new ColumnDto() { Id = 1 };
+            var layout = new ScatterPlotLayout();
+            var scatterPlot = new ScatterPlot(new Rect(), null, layout);
+            _mockColumnRepository.Setup(p => p.Get(1)).Returns(column);
+            _mockViewRepository.Setup(p => p.GetScatterPlot()).Returns(scatterPlot);
+            _service.SetYColumn(columnDto);
+            Assert.That(layout.YAxisColumn, Is.EqualTo(column));
         }
 
         [Test]

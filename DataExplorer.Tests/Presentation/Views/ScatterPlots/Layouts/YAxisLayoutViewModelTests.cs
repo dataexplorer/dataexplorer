@@ -13,22 +13,22 @@ using NUnit.Framework;
 namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.Layouts
 {
     [TestFixture]
-    public class XAxisLayoutViewModelTests
+    public class YAxisLayoutViewModelTests
     {
-        private XAxisLayoutViewModel _viewModel;
+        private YAxisLayoutViewModel _viewModel;
         private Mock<IScatterPlotLayoutService> _mockService;
 
         [SetUp]
         public void SetUp()
         {
             _mockService = new Mock<IScatterPlotLayoutService>();
-            _viewModel = new XAxisLayoutViewModel(_mockService.Object);
+            _viewModel = new YAxisLayoutViewModel(_mockService.Object);
         }
 
         [Test]
         public void TestGetLabelShouldReturnXAxis()
         {
-            Assert.That(_viewModel.Label, Is.EqualTo("x-Axis"));
+            Assert.That(_viewModel.Label, Is.EqualTo("y-Axis"));
         }
 
         [Test]
@@ -45,7 +45,7 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.Layouts
         public void TestGetSelectedColumnhouldReturnSelectedColumn()
         {
             var columnDto = new ColumnDto() { Name = "Test" };
-            _mockService.Setup(p => p.GetXColumn()).Returns(columnDto);
+            _mockService.Setup(p => p.GetYColumn()).Returns(columnDto);
             var result = _viewModel.SelectedColumn;
             Assert.That(result.Name, Is.EqualTo(columnDto.Name));
         }
@@ -54,7 +54,7 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.Layouts
         public void TestSetSelectedColumnShouldReturnIfNull()
         {
             _viewModel.SelectedColumn = null;
-            _mockService.Verify(p => p.SetXColumn(It.IsAny<ColumnDto>()), Times.Never());
+            _mockService.Verify(p => p.SetYColumn(It.IsAny<ColumnDto>()), Times.Never());
         }
 
         [Test]
@@ -63,7 +63,7 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.Layouts
             var columnDto = new ColumnDto() { Name = "Test" };
             var viewModel = new LayoutItemViewModel(columnDto);
             _viewModel.SelectedColumn = viewModel;
-            _mockService.Verify(p => p.SetXColumn(columnDto), Times.Once());
+            _mockService.Verify(p => p.SetYColumn(columnDto), Times.Once());
         }
     }
 }

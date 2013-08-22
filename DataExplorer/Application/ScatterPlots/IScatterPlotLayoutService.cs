@@ -13,5 +13,7 @@ namespace DataExplorer.Application.ScatterPlots
         List<ColumnDto> GetColumns();
         ColumnDto GetXColumn();
         void SetXColumn(ColumnDto columnDto);
+        ColumnDto GetYColumn();
+        void SetYColumn(ColumnDto columnDto);
     }
 }

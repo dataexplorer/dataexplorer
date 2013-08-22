@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using DataExplorer.Application.Columns;
 using DataExplorer.Domain.Events;
 using DataExplorer.Domain.Projects;
-using DataExplorer.Domain.ScatterPlots;
 using DataExplorer.Domain.Views;
 using DataExplorer.Persistence.Columns;
 
@@ -78,6 +77,30 @@ namespace DataExplorer.Application.ScatterPlots
         {
             if (LayoutColumnsChangedEvent != null)
                 LayoutColumnsChangedEvent(this, EventArgs.Empty);
+        }
+
+        public ColumnDto GetYColumn()
+        {
+            var scatterPlot = _viewRepository.GetScatterPlot();
+
+            var layout = scatterPlot.GetLayout();
+
+            var column = layout.YAxisColumn;
+
+            var columnDto = _columnAdapter.Adapt(column);
+
+            return columnDto;
+        }
+
+        public void SetYColumn(ColumnDto columnDto)
+        {
+            var column = _columnRepository.Get(columnDto.Id);
+
+            var scatterPlot = _viewRepository.GetScatterPlot();
+
+            var layout = scatterPlot.GetLayout();
+
+            layout.YAxisColumn = column;
         }
     }
 }

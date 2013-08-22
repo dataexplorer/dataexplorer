@@ -104,6 +104,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DataExplorer.Tests\DataExplorer.Tests.csproj">
+      <Project>{F9B0B78A-6B93-4C45-8EDC-85E643886786}</Project>
+      <Name>DataExplorer.Tests</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataExplorer\DataExplorer.csproj">
       <Project>{D0D6A590-7F96-43FB-B748-2E1A0D762DB0}</Project>
       <Name>DataExplorer</Name>

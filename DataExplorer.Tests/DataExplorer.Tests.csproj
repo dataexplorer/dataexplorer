@@ -60,10 +60,13 @@
     <Compile Include="Application\ScatterPlots\ScatterPlotEventsServiceTests.cs" />
     <Compile Include="Application\ScatterPlots\ScatterPlotLayoutServiceTests.cs" />
     <Compile Include="Application\ScatterPlots\ScatterPlotServiceTests.cs" />
+    <Compile Include="Domain\Columns\ColumnBuilder.cs" />
     <Compile Include="Domain\Columns\ColumnTests.cs" />
     <Compile Include="Domain\Events\DomainEventsTests.cs" />
     <Compile Include="Domain\Events\FakeDomainEvent.cs" />
     <Compile Include="Domain\Events\FakeDomainEventHandler.cs" />
+    <Compile Include="Domain\Maps\FloatToAxisMapTests.cs" />
+    <Compile Include="Domain\Maps\MapFactoryTests.cs" />
     <Compile Include="Domain\Rows\RowBuilder.cs" />
     <Compile Include="Domain\Rows\RowTests.cs" />
     <Compile Include="Domain\ScatterPlots\ScatterPlotLayoutTests.cs" />
@@ -85,6 +88,7 @@
     <Compile Include="Presentation\Panes\Viewer\ViewerPaneViewModelTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Layouts\ScatterPlotLayoutViewModelTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Layouts\XAxisLayoutViewModelTests.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\Layouts\YAxisLayoutViewModelTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\ScatterPlotViewRendererTests.cs" />
     <Compile Include="Presentation\Core\Canvas\CanvasControlTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\ScatterPlotViewModelTests.cs" />

@@ -9,11 +9,11 @@ using DataExplorer.Presentation.Core.Layout;
 
 namespace DataExplorer.Presentation.Views.ScatterPlots.Layout
 {
-    public class XAxisLayoutViewModel : BaseViewModel, IXAxisLayoutViewModel
+    public class YAxisLayoutViewModel : BaseViewModel, IYAxisLayoutViewModel
     {
         private readonly IScatterPlotLayoutService _service;
 
-        public XAxisLayoutViewModel(IScatterPlotLayoutService service)
+        public YAxisLayoutViewModel(IScatterPlotLayoutService service)
         {
             _service = service;
 
@@ -22,7 +22,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Layout
 
         public string Label
         {
-            get { return "x-Axis"; }
+            get { return "y-Axis"; }
         }
 
         public List<LayoutItemViewModel> Columns
@@ -49,7 +49,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Layout
 
         private LayoutItemViewModel GetSelectedColumnViewModel()
         {
-            var column = _service.GetXColumn();
+            var column = _service.GetYColumn();
 
             var viewModel = new LayoutItemViewModel(column);
 
@@ -58,13 +58,13 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Layout
 
         private void SetSelectedColumnViewModel(LayoutItemViewModel value)
         {
-            // TODO: Should this just return or set X Column to null?
+            // TODO: Should this just return or set Y Column to null?
             if (value == null)
                 return;
 
             var column = value.Column;
 
-            _service.SetXColumn(column);
+            _service.SetYColumn(column);
         }
 
         private void HandleLayoutColumnsChangeEvent(object source, EventArgs eventArgs)

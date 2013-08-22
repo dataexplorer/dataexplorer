@@ -11,6 +11,7 @@ namespace DataExplorer.Domain.ScatterPlots
     public class ScatterPlotLayout
     {
         private Column _xAxisColumn;
+        private Column _yAxisColumn;
 
         public Column XAxisColumn
         {
@@ -18,6 +19,16 @@ namespace DataExplorer.Domain.ScatterPlots
             set
             {
                 _xAxisColumn = value;
+                DomainEvents.Raise(new ScatterPlotLayoutChangedEvent());
+            }
+        }
+
+        public Column YAxisColumn
+        {
+            get { return _yAxisColumn; }
+            set
+            {
+                _yAxisColumn = value;
                 DomainEvents.Raise(new ScatterPlotLayoutChangedEvent());
             }
         }

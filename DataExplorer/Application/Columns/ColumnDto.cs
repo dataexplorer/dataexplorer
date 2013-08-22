@@ -11,5 +11,6 @@ namespace DataExplorer.Application.Columns
         public int Id;
         public int Index;
         public string Name;
+        public Type Type;
     }
 }

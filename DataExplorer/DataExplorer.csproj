@@ -98,6 +98,10 @@
     <Compile Include="Domain\Events\DomainEvents.cs" />
     <Compile Include="Domain\Events\IDomainEvent.cs" />
     <Compile Include="Domain\Events\IHandler.cs" />
+    <Compile Include="Domain\Maps\FloatToAxisMap.cs" />
+    <Compile Include="Domain\Maps\IAxisMap.cs" />
+    <Compile Include="Domain\Maps\IMapFactory.cs" />
+    <Compile Include="Domain\Maps\MapFactory.cs" />
     <Compile Include="Domain\Projects\Project.cs" />
     <Compile Include="Domain\Projects\ProjectClosedEvent.cs" />
     <Compile Include="Domain\Projects\ProjectOpenedEvent.cs" />
@@ -234,6 +238,7 @@
     <Compile Include="Presentation\Views\ScatterPlots\IScatterPlotViewRenderer.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Layout\IScatterPlotLayoutViewModel.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Layout\IXAxisLayoutViewModel.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\Layout\IYAxisLayoutViewModel.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Layout\ScatterPlotLayoutViewModel.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Layout\XAxisLayoutViewModel.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Layout\YAxisLayoutView.xaml.cs">
@@ -245,6 +250,7 @@
     <Compile Include="Presentation\Views\ScatterPlots\Layout\XAxisLayoutView.xaml.cs">
       <DependentUpon>XAxisLayoutView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\Views\ScatterPlots\Layout\YAxisLayoutViewModel.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\ScatterPlotViewRenderer.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\ScatterPlotView.xaml.cs">
       <DependentUpon>ScatterPlotView.xaml</DependentUpon>

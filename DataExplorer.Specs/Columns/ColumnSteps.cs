@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Domain.Columns;
+using DataExplorer.Tests.Domain.Columns;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -22,7 +23,7 @@ namespace DataExplorer.Specs.Columns
         [Given(@"a column")]
         public void GivenAColumn()
         {
-            var column = new Column(1, 0, "Test");
+            var column = new ColumnBuilder().Build();
             _context.Column = column;
             _context.DataContext.Columns.Add(column);
         }
