@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataExplorer.Domain.Maps.AxisMaps
 {
-    public class IntegerToAxisMap
+    public class IntegerToAxisMap : IAxisMap
     {
         private readonly int _sourceMin;
         private readonly int _sourceMax;

@@ -27,21 +27,24 @@ namespace DataExplorer.Application.Serialization
 
         private List<Column> GetColumns()
         {
-            
-            var column1 = new Column(1, 0, "X", typeof(Double), 0d, 1000d);
-            var column2 = new Column(2, 1, "Y", typeof(Double), 0d, 1000d);
-            var columns = new List<Column> { column1, column2 };
+            var column1 = new Column(1, 0, "Boolean", typeof(Boolean), GetRows().Select(p => p[0]).ToList());
+            var column2 = new Column(2, 1, "DateTime", typeof(DateTime), GetRows().Select(p => p[1]).ToList());
+            var column3 = new Column(3, 2, "Float", typeof(Double), GetRows().Select(p => p[2]).ToList());
+            var column4 = new Column(4, 3, "Integer", typeof(Int32), GetRows().Select(p => p[3]).ToList());
+            var column5 = new Column(5, 4, "String", typeof(String), GetRows().Select(p => p[4]).ToList());
+            var columns = new List<Column> { column1, column2, column3, column4, column5 };
             return columns;
         }
 
         private List<Row> GetRows()
         {
             // TODO: Remove this fake data
-            var row1 = new Row(new List<object>() { 0d, 0d });
-            var row2 = new Row(new List<object>() { 1000d, 0d });
-            var row3 = new Row(new List<object>() { 0d, 1000d });
-            var row4 = new Row(new List<object>() { 1000d, 1000d });
-            var rows = new List<Row> { row1, row2, row3, row4 };
+            var row1 = new Row(new List<object>() { false, DateTime.Parse("1/1/0001"), 0d, 0, "Apple" });
+            var row2 = new Row(new List<object>() { false, DateTime.Parse("10/1/2500"), 0.25d, 250, "Elephant" });
+            var row3 = new Row(new List<object>() { false, DateTime.Parse("7/2/5000"), 0.5d, 500, "Monkey" });
+            var row4 = new Row(new List<object>() { false, DateTime.Parse("4/2/7500"), 0.75d, 750, "Tiger" });
+            var row5 = new Row(new List<object>() { true, DateTime.Parse("12/31/9999"), 1d, 1000, "Zebra" });
+            var rows = new List<Row> { row1, row2, row3, row4, row5 };
             return rows;
         }
 

@@ -16,7 +16,7 @@ namespace DataExplorer.Tests.Domain.Columns
         [SetUp]
         public void SetUp()
         {
-            _column = new Column(1, 0, "Test", typeof(bool), 0, 1000);
+            _column = new Column(1, 0, "Test", typeof(bool), new List<object> { 0, 1000 });
         }
 
         [Test]

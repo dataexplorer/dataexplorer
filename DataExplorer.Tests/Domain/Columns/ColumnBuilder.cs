@@ -54,7 +54,7 @@ namespace DataExplorer.Tests.Domain.Columns
 
         public Column Build()
         {
-            return new Column(_id, _index, _name, _type, _min, _max);
+            return new Column(_id, _index, _name, _type, new List<object> {_min, _max});
         }
     }
 }

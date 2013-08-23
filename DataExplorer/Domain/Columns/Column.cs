@@ -12,17 +12,20 @@ namespace DataExplorer.Domain.Columns
         private readonly int _index;
         private readonly string _name;
         private readonly Type _type;
+        private readonly List<object> _values;
         private readonly object _min;
         private readonly object _max;
 
-        public Column(int id, int index, string name, Type type, object min, object max)
+        public Column(int id, int index, string name, Type type, List<object> values)
         {
             _id = id;
             _index = index;
             _name = name;
             _type = type;
-            _min = min;
-            _max = max;
+            _values = values;
+            _min = values.Min();
+            _max = values.Max();
+            
         }
 
         public int Id
@@ -53,6 +56,11 @@ namespace DataExplorer.Domain.Columns
         public object Max
         {
             get { return _max; }
+        }
+
+        public List<object> Values
+        {
+            get { return _values; }
         }
     }
 }
