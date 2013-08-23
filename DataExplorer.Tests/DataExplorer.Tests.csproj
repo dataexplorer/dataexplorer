@@ -65,7 +65,11 @@
     <Compile Include="Domain\Events\DomainEventsTests.cs" />
     <Compile Include="Domain\Events\FakeDomainEvent.cs" />
     <Compile Include="Domain\Events\FakeDomainEventHandler.cs" />
-    <Compile Include="Domain\Maps\FloatToAxisMapTests.cs" />
+    <Compile Include="Domain\Maps\AxisMaps\BooleanToAxisMapTests.cs" />
+    <Compile Include="Domain\Maps\AxisMaps\DateTimeToAxisMapTests.cs" />
+    <Compile Include="Domain\Maps\AxisMaps\FloatToAxisMapTests.cs" />
+    <Compile Include="Domain\Maps\AxisMaps\IntegerToAxisMapTests.cs" />
+    <Compile Include="Domain\Maps\AxisMaps\StringToAxisMapTests.cs" />
     <Compile Include="Domain\Maps\MapFactoryTests.cs" />
     <Compile Include="Domain\Rows\RowBuilder.cs" />
     <Compile Include="Domain\Rows\RowTests.cs" />

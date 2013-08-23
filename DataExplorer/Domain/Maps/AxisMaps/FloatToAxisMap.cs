@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataExplorer.Domain.Maps
+namespace DataExplorer.Domain.Maps.AxisMaps
 {
     public class FloatToAxisMap : IAxisMap
     {

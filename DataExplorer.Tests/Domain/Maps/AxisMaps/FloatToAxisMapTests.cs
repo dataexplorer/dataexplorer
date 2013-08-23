@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Domain.Maps;
+using DataExplorer.Domain.Maps.AxisMaps;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Domain.Maps
+namespace DataExplorer.Tests.Domain.Maps.AxisMaps
 {
     [TestFixture]
     public class FloatToAxisMapTests

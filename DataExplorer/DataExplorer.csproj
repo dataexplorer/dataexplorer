@@ -98,7 +98,11 @@
     <Compile Include="Domain\Events\DomainEvents.cs" />
     <Compile Include="Domain\Events\IDomainEvent.cs" />
     <Compile Include="Domain\Events\IHandler.cs" />
-    <Compile Include="Domain\Maps\FloatToAxisMap.cs" />
+    <Compile Include="Domain\Maps\AxisMaps\BooleanToAxisMap.cs" />
+    <Compile Include="Domain\Maps\AxisMaps\DateTimeToAxisMap.cs" />
+    <Compile Include="Domain\Maps\AxisMaps\FloatToAxisMap.cs" />
+    <Compile Include="Domain\Maps\AxisMaps\IntegerToAxisMap.cs" />
+    <Compile Include="Domain\Maps\AxisMaps\StringToAxisMap.cs" />
     <Compile Include="Domain\Maps\IAxisMap.cs" />
     <Compile Include="Domain\Maps\IMapFactory.cs" />
     <Compile Include="Domain\Maps\MapFactory.cs" />

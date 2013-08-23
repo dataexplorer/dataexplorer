@@ -65,5 +65,14 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.Layouts
             _viewModel.SelectedColumn = viewModel;
             _mockService.Verify(p => p.SetXColumn(columnDto), Times.Once());
         }
+
+        [Test]
+        public void TestLayoutColumnsChangedEventShouldRaisePropertyChangedEvents()
+        {
+            var timesRaised = 0;
+            _viewModel.PropertyChanged += (s, e) => { timesRaised++; };
+            _mockService.Raise(p => p.LayoutColumnsChangedEvent += null, this, EventArgs.Empty);
+            Assert.That(timesRaised, Is.EqualTo(2));
+        }
     }
 }
