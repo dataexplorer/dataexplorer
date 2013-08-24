@@ -13,14 +13,20 @@ namespace DataExplorer.Persistence.Views
             _viewContext = viewContext;
         }
 
-        public IScatterPlot GetScatterPlot()
+        public T Get<T>() where T : IView, new()
         {
-            return _viewContext.ScatterPlot;
+            if (!_viewContext.Views.ContainsKey(typeof(T)))
+            {
+                var view = new T();
+                _viewContext.Views.Add(typeof(T), view);
+            }
+
+            return (T) _viewContext.Views[typeof(T)];
         }
 
-        public void Add(IScatterPlot view)
+        public void Set<T>(T view) where T : IView
         {
-            _viewContext.ScatterPlot = view;
+            _viewContext.Views[typeof(T)] = view;
         }
     }
 }

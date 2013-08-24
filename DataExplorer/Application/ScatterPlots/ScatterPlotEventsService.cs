@@ -49,7 +49,7 @@ namespace DataExplorer.Application.ScatterPlots
         {
             var rows = _rowRepository.GetAll();
 
-            var scatterPlot = _viewRepository.GetScatterPlot();
+            var scatterPlot = _viewRepository.Get<ScatterPlot>();
 
             var layout = scatterPlot.GetLayout();
 

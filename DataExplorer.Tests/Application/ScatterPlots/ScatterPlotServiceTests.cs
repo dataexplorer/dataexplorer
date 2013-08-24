@@ -22,14 +22,14 @@ namespace DataExplorer.Tests.Application.ScatterPlots
         private ScatterPlotService _service;
         private Mock<IViewRepository> _mockViewRepository;
         private Mock<IScatterPlotAdapter> _mockAdapter;
-        private Mock<IScatterPlot> _mockScatterPlot;
+        private ScatterPlot _scatterPlot;
 
         [SetUp]
         public void SetUp()
         {
             _mockViewRepository = new Mock<IViewRepository>();
             _mockAdapter = new Mock<IScatterPlotAdapter>();
-            _mockScatterPlot = new Mock<IScatterPlot>();
+            _scatterPlot = new ScatterPlot();
             _service = new ScatterPlotService( 
                 _mockViewRepository.Object, 
                 _mockAdapter.Object);
@@ -38,29 +38,26 @@ namespace DataExplorer.Tests.Application.ScatterPlots
         [Test]
         public void TestGetViewExtentShouldGetViewExtent()
         {
-            var viewExtent = new Rect();
-            _mockViewRepository.Setup(p => p.GetScatterPlot()).Returns(_mockScatterPlot.Object);
-            _mockScatterPlot.Setup(p => p.GetViewExtent()).Returns(viewExtent);
-            _service.GetViewExtent();
-            _mockScatterPlot.Verify(p => p.GetViewExtent(), Times.Once());
+            _mockViewRepository.Setup(p => p.Get<ScatterPlot>()).Returns(_scatterPlot);
+            var result = _service.GetViewExtent();
+            Assert.That(result, Is.EqualTo(_scatterPlot.GetViewExtent()));
         }
 
         [Test]
         public void TestSetViewExtentShouldSetViewExtent()
         {
             var viewExtent = new Rect();
-            _mockViewRepository.Setup(p => p.GetScatterPlot()).Returns(_mockScatterPlot.Object);
+            _mockViewRepository.Setup(p => p.Get<ScatterPlot>()).Returns(_scatterPlot);
             _service.SetViewExtent(viewExtent);
-            _mockScatterPlot.Verify(p => p.SetViewExtent(viewExtent), Times.Once());
+            Assert.That(_scatterPlot.GetViewExtent(), Is.EqualTo(viewExtent));
         }
 
         [Test]
         public void TestGetShouldReturnScatterPlotToDto()
         {
-            var scatterPlot = _mockScatterPlot.Object;
             var plotDtos = new List<PlotDto>();
-            _mockViewRepository.Setup(p => p.GetScatterPlot()).Returns(scatterPlot);
-            _mockAdapter.Setup(p => p.Adapt(scatterPlot.GetPlots())).Returns(plotDtos);
+            _mockViewRepository.Setup(p => p.Get<ScatterPlot>()).Returns(_scatterPlot);
+            _mockAdapter.Setup(p => p.Adapt(_scatterPlot.GetPlots())).Returns(plotDtos);
             var result = _service.GetPlots();
             Assert.That(result, Is.EqualTo(plotDtos));
         }

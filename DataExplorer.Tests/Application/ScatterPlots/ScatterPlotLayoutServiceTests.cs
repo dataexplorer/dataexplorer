@@ -56,7 +56,7 @@ namespace DataExplorer.Tests.Application.ScatterPlots
             var columnDto = new ColumnDto() { Index = column.Index };
             var layout = new ScatterPlotLayout() { XAxisColumn = column };
             var scatterPlot = new ScatterPlot(new Rect(), null, layout);
-            _mockViewRepository.Setup(p => p.GetScatterPlot()).Returns(scatterPlot);
+            _mockViewRepository.Setup(p => p.Get<ScatterPlot>()).Returns(scatterPlot);
             _mockColumnAdapter.Setup(p => p.Adapt(column)).Returns(columnDto);
             var result = _service.GetXColumn();
             Assert.That(result.Index, Is.EqualTo(column.Index));
@@ -70,7 +70,7 @@ namespace DataExplorer.Tests.Application.ScatterPlots
             var layout = new ScatterPlotLayout();
             var scatterPlot = new ScatterPlot(new Rect(), null, layout);
             _mockColumnRepository.Setup(p => p.Get(1)).Returns(column);
-            _mockViewRepository.Setup(p => p.GetScatterPlot()).Returns(scatterPlot);
+            _mockViewRepository.Setup(p => p.Get<ScatterPlot>()).Returns(scatterPlot);
             _service.SetXColumn(columnDto);
             Assert.That(layout.XAxisColumn, Is.EqualTo(column));
         }
@@ -82,7 +82,7 @@ namespace DataExplorer.Tests.Application.ScatterPlots
             var columnDto = new ColumnDto() { Index = column.Index };
             var layout = new ScatterPlotLayout() { YAxisColumn = column };
             var scatterPlot = new ScatterPlot(new Rect(), null, layout);
-            _mockViewRepository.Setup(p => p.GetScatterPlot()).Returns(scatterPlot);
+            _mockViewRepository.Setup(p => p.Get<ScatterPlot>()).Returns(scatterPlot);
             _mockColumnAdapter.Setup(p => p.Adapt(column)).Returns(columnDto);
             var result = _service.GetYColumn();
             Assert.That(result.Index, Is.EqualTo(column.Index));
@@ -96,7 +96,7 @@ namespace DataExplorer.Tests.Application.ScatterPlots
             var layout = new ScatterPlotLayout();
             var scatterPlot = new ScatterPlot(new Rect(), null, layout);
             _mockColumnRepository.Setup(p => p.Get(1)).Returns(column);
-            _mockViewRepository.Setup(p => p.GetScatterPlot()).Returns(scatterPlot);
+            _mockViewRepository.Setup(p => p.Get<ScatterPlot>()).Returns(scatterPlot);
             _service.SetYColumn(columnDto);
             Assert.That(layout.YAxisColumn, Is.EqualTo(column));
         }

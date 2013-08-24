@@ -1,4 +1,7 @@
-﻿using DataExplorer.Domain.ScatterPlots;
+﻿using System;
+using System.Collections.Generic;
+using DataExplorer.Domain.ScatterPlots;
+using DataExplorer.Domain.Views;
 using DataExplorer.Persistence;
 using DataExplorer.Persistence.Views;
 using Moq;
@@ -11,30 +14,33 @@ namespace DataExplorer.Tests.Persistence.Views
     {
         private ViewRepository _repository;
         private Mock<IDataContext> _mockViewContext;
-        private Mock<IScatterPlot> _mockScatterPlot;
+        private Dictionary<Type, IView> _views;
 
         [SetUp]
         public void SetUp()
         {
-            _mockScatterPlot = new Mock<IScatterPlot>();
+            _views = new Dictionary<Type, IView>();
             _mockViewContext = new Mock<IDataContext>();
+            _mockViewContext.Setup(p => p.Views).Returns(_views);
             _repository = new ViewRepository(_mockViewContext.Object);
         }
 
         [Test]
         public void GetScatterPlotReturnsScatterPlot()
         {
-            _mockViewContext.SetupGet(p => p.ScatterPlot).Returns(_mockScatterPlot.Object);
-            var result = _repository.GetScatterPlot();
-            Assert.That(result, Is.EqualTo(_mockScatterPlot.Object));
+            var scatterPlot = new ScatterPlot();
+            _views.Add(scatterPlot.GetType(), scatterPlot);
+            var result = _repository.Get<ScatterPlot>();
+            Assert.That(result, Is.EqualTo(scatterPlot));
         }
 
         [Test]
         public void AddViewShouldAddView()
         {
             var view = new ScatterPlot();
-            _repository.Add(view);
-            _mockViewContext.VerifySet(p => p.ScatterPlot = view, Times.Once());
+            _repository.Set<ScatterPlot>(view);
+            Assert.That(_views.ContainsKey(view.GetType()));
+            Assert.That(_views.ContainsValue(view));
         }
     }
 }

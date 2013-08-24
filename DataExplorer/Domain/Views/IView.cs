@@ -3,13 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataExplorer.Domain.ScatterPlots;
 
 namespace DataExplorer.Domain.Views
 {
-    public interface IViewRepository
+    public interface IView
     {
-        T Get<T>() where T : IView, new();
-        void Set<T>(T view) where T : IView;
     }
 }

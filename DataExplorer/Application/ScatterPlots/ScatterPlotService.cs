@@ -28,21 +28,21 @@ namespace DataExplorer.Application.ScatterPlots
 
         public Rect GetViewExtent()
         {
-            var scatterPlot = _viewRepository.GetScatterPlot();
+            var scatterPlot = _viewRepository.Get<ScatterPlot>();
 
             return scatterPlot.GetViewExtent();
         }
 
         public void SetViewExtent(Rect viewExtent)
         {
-            var scatterPlot = _viewRepository.GetScatterPlot();
+            var scatterPlot = _viewRepository.Get<ScatterPlot>();
 
             scatterPlot.SetViewExtent(viewExtent);
         }
 
         public List<PlotDto> GetPlots()
         {
-            var scatterPlot = _viewRepository.GetScatterPlot();
+            var scatterPlot = _viewRepository.Get<ScatterPlot>();
 
             var plots = scatterPlot.GetPlots();
 

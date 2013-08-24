@@ -7,6 +7,7 @@ using DataExplorer.Domain.Projects;
 using DataExplorer.Domain.Rows;
 using DataExplorer.Domain.ScatterPlots;
 using DataExplorer.Domain.Sources;
+using DataExplorer.Domain.Views;
 using DataExplorer.Tests.Domain.Columns;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
@@ -62,9 +63,9 @@ namespace DataExplorer.Specs.Projects
         public void GivenTheProjectHasAScatterplotView()
         {
             var scatterPlot = new ScatterPlot();
-            var views = new List<IScatterPlot> { scatterPlot };
+            var views = new List<IView> { scatterPlot };
             _context.ScatterPlot = scatterPlot;
-            _context.Project.ScatterPlot = scatterPlot;
+            _context.Project.DataViews = views;
         }
 
         [When(@"I open the project")]

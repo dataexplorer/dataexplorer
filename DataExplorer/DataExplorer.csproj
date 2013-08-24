@@ -89,6 +89,7 @@
     <Compile Include="Domain\Sources\ISourceFactory.cs" />
     <Compile Include="Domain\Sources\ISourceRepository.cs" />
     <Compile Include="Domain\Sources\SourceFactory.cs" />
+    <Compile Include="Domain\Views\IView.cs" />
     <Compile Include="Persistence\Sources\SourceRepository.cs" />
     <Compile Include="Presentation\Dialogs\DialogService.cs" />
     <Compile Include="Presentation\Dialogs\IDialogService.cs" />

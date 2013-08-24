@@ -8,6 +8,7 @@ using DataExplorer.Domain.Projects;
 using DataExplorer.Domain.Rows;
 using DataExplorer.Domain.ScatterPlots;
 using DataExplorer.Domain.Sources;
+using DataExplorer.Domain.Views;
 
 namespace DataExplorer.Application.Serialization
 {
@@ -21,7 +22,7 @@ namespace DataExplorer.Application.Serialization
                 Sources = GetSources(),
                 Columns = GetColumns(),
                 Rows = GetRows(),
-                ScatterPlot = GetViews().Single()
+                DataViews = GetViews()
             };
 
             return project;
@@ -57,14 +58,14 @@ namespace DataExplorer.Application.Serialization
             return rows;
         }
 
-        private List<IScatterPlot> GetViews()
+        private List<IView> GetViews()
         {
             // TODO: Remove this fake data
             //var plot1 = new Plot() { X = 0, Y = 0 };
             //var plot2 = new Plot() { X = 1000, Y = 1000 };
             //var plots = new List<Plot>() { plot1, plot2 };
-            var scatterPlot = new Domain.ScatterPlots.ScatterPlot();
-            return new List<IScatterPlot>() { scatterPlot };
+            var scatterPlot = new ScatterPlot();
+            return new List<IView>() { scatterPlot };
         }
     }
 }

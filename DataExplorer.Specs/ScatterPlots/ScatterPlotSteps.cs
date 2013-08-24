@@ -19,19 +19,20 @@ namespace DataExplorer.Specs.ScatterPlots
         public void GivenAScatterplotView()
         {
             var scatterPlot = new ScatterPlot();
-            _context.DataContext.ScatterPlot = scatterPlot;
+            _context.ScatterPlot = scatterPlot;
+            _context.DataContext.Views.Add(scatterPlot.GetType(), scatterPlot);
         }
 
         [Then(@"the view is added to the repository")]
         public void ThenTheViewIsAddedToTheRepository()
         {
-            Assert.That(_context.DataContext.ScatterPlot, Is.EqualTo(_context.ScatterPlot));
+            Assert.That(_context.DataContext.Sources.ContainsValue(_context.CsvFileSource), Is.True);
         }
 
         [Then(@"the scatterplot view is removed from the repository")]
         public void ThenTheScatterplotViewIsRemovedFromTheRepository()
         {
-            Assert.That(_context.DataContext.ScatterPlot, Is.Not.EqualTo(_context.ScatterPlot));
+            Assert.That(_context.DataContext.Sources.ContainsValue(_context.CsvFileSource), Is.False);
         }
 
         [Given(@"the following data set:")]

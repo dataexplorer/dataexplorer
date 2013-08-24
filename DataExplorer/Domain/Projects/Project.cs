@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Rows;
-using DataExplorer.Domain.ScatterPlots;
 using DataExplorer.Domain.Sources;
+using DataExplorer.Domain.Views;
 
 namespace DataExplorer.Domain.Projects
 {
@@ -18,6 +18,6 @@ namespace DataExplorer.Domain.Projects
 
         public List<Row> Rows { get; set; }
 
-        public IScatterPlot ScatterPlot  { get; set; }
+        public List<IView> DataViews  { get; set; }
     }
 }

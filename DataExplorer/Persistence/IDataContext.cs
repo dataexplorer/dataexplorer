@@ -8,6 +8,7 @@ using DataExplorer.Domain.Projects;
 using DataExplorer.Domain.Rows;
 using DataExplorer.Domain.ScatterPlots;
 using DataExplorer.Domain.Sources;
+using DataExplorer.Domain.Views;
 
 namespace DataExplorer.Persistence
 {
@@ -19,7 +20,7 @@ namespace DataExplorer.Persistence
 
         List<Row> Rows { get; }
 
-        IScatterPlot ScatterPlot { get; set; }
+        Dictionary<Type, IView> Views { get; }
 
         void SetProject(Project project);
         

@@ -8,6 +8,7 @@ using DataExplorer.Domain.Projects;
 using DataExplorer.Domain.Rows;
 using DataExplorer.Domain.ScatterPlots;
 using DataExplorer.Domain.Sources;
+using DataExplorer.Domain.Views;
 
 namespace DataExplorer.Persistence
 {
@@ -16,7 +17,7 @@ namespace DataExplorer.Persistence
         private Dictionary<Type, ISource> _sources;
         private List<Column> _columns;
         private List<Row> _rows;
-        private IScatterPlot _scatterPlot;
+        private Dictionary<Type, IView> _views; 
 
         public Dictionary<Type, ISource> Sources
         {
@@ -33,10 +34,9 @@ namespace DataExplorer.Persistence
             get { return _rows; }
         }
 
-        public IScatterPlot ScatterPlot
+        public Dictionary<Type, IView> Views
         {
-            get { return _scatterPlot; }
-            set { _scatterPlot = value; }
+            get { return _views; }
         }
 
         public DataContext()
@@ -44,7 +44,7 @@ namespace DataExplorer.Persistence
             _sources = new Dictionary<Type, ISource>();
             _columns = new List<Column>();
             _rows = new List<Row>();
-            _scatterPlot = new ScatterPlot();
+            _views = new Dictionary<Type, IView>();
         }
 
         public void SetProject(Project project)
@@ -52,7 +52,7 @@ namespace DataExplorer.Persistence
             _sources = project.Sources.ToDictionary(p => p.GetType());
             _columns = project.Columns;
             _rows = project.Rows;
-            _scatterPlot = project.ScatterPlot;
+            _views = project.DataViews.ToDictionary(p => p.GetType());
         }
 
         public void Clear()
@@ -60,7 +60,7 @@ namespace DataExplorer.Persistence
             _sources.Clear();
             _columns.Clear();
             _rows.Clear();
-            _scatterPlot = new ScatterPlot();
+            _views.Clear();
         }
     }
 }

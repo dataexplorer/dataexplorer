@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DataExplorer.Application.Columns;
 using DataExplorer.Domain.Events;
 using DataExplorer.Domain.Projects;
+using DataExplorer.Domain.ScatterPlots;
 using DataExplorer.Domain.Views;
 using DataExplorer.Persistence.Columns;
 
@@ -45,7 +46,7 @@ namespace DataExplorer.Application.ScatterPlots
 
         public ColumnDto GetXColumn()
         {
-            var scatterPlot = _viewRepository.GetScatterPlot();
+            var scatterPlot = _viewRepository.Get<ScatterPlot>();
 
             var layout = scatterPlot.GetLayout();
 
@@ -60,7 +61,7 @@ namespace DataExplorer.Application.ScatterPlots
         {
             var column = _columnRepository.Get(columnDto.Id);
 
-            var scatterPlot = _viewRepository.GetScatterPlot();
+            var scatterPlot = _viewRepository.Get<ScatterPlot>();
 
             var layout = scatterPlot.GetLayout();
 
@@ -81,7 +82,7 @@ namespace DataExplorer.Application.ScatterPlots
 
         public ColumnDto GetYColumn()
         {
-            var scatterPlot = _viewRepository.GetScatterPlot();
+            var scatterPlot = _viewRepository.Get<ScatterPlot>();
 
             var layout = scatterPlot.GetLayout();
 
@@ -96,7 +97,7 @@ namespace DataExplorer.Application.ScatterPlots
         {
             var column = _columnRepository.Get(columnDto.Id);
 
-            var scatterPlot = _viewRepository.GetScatterPlot();
+            var scatterPlot = _viewRepository.Get<ScatterPlot>();
 
             var layout = scatterPlot.GetLayout();
 
