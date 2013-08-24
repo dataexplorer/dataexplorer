@@ -11,8 +11,10 @@
     d:DataContext="{d:DesignInstance mainMenu:MainMenuViewModel}">
     <Menu DockPanel.Dock="Top" IsMainMenu="True">
         <MenuItem Header="File" DataContext="{Binding FileMenuViewModel }">
-            <MenuItem Header="Open" Command="{Binding OpenCommand}" />
+            <MenuItem Header="Open..." Command="{Binding OpenCommand}" />
             <MenuItem Header="Close" Command="{Binding CloseCommand}" />
+            <Separator />
+            <MenuItem Header="Import..." Command="{Binding ImportCommand}" />
             <Separator />
             <MenuItem Header="Exit" Command="{Binding ExitCommand}" />
         </MenuItem>

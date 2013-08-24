@@ -80,6 +80,18 @@
     <Compile Include="Application\Columns\ColumnAdapter.cs" />
     <Compile Include="Application\Columns\IColumnAdapter.cs" />
     <Compile Include="Application\Columns\ColumnDto.cs" />
+    <Compile Include="Application\Importers\CsvFile\CsvFileImportService.cs" />
+    <Compile Include="Application\Importers\CsvFile\FilePathChangedEvent.cs" />
+    <Compile Include="Application\Importers\CsvFile\ICsvFileImportService.cs" />
+    <Compile Include="Domain\Sources\CsvFileSource.cs" />
+    <Compile Include="Domain\Sources\CsvFilePathChangedEvent.cs" />
+    <Compile Include="Domain\Sources\ISource.cs" />
+    <Compile Include="Domain\Sources\ISourceFactory.cs" />
+    <Compile Include="Domain\Sources\ISourceRepository.cs" />
+    <Compile Include="Domain\Sources\SourceFactory.cs" />
+    <Compile Include="Persistence\Sources\SourceRepository.cs" />
+    <Compile Include="Presentation\Dialogs\DialogService.cs" />
+    <Compile Include="Presentation\Dialogs\IDialogService.cs" />
     <Compile Include="Application\Projects\IProjectService.cs" />
     <Compile Include="Application\Projects\ProjectService.cs" />
     <Compile Include="Application\ScatterPlots\IScatterPlotAdapter.cs" />
@@ -126,15 +138,29 @@
     <Compile Include="Persistence\IDataContext.cs" />
     <Compile Include="Persistence\Rows\RowRepository.cs" />
     <Compile Include="Persistence\Views\ViewRepository.cs" />
+    <Compile Include="Presentation\Dialogs\DialogFactory.cs" />
+    <Compile Include="Presentation\Dialogs\IDialog.cs" />
+    <Compile Include="Presentation\Dialogs\IDialogFactory.cs" />
+    <Compile Include="Presentation\Dialogs\IOpenFileDialog.cs" />
+    <Compile Include="Presentation\Dialogs\OpenFileDialogWrapper.cs" />
+    <Compile Include="Presentation\Importers\CsvFile\ICsvFileImportViewModel.cs" />
+    <Compile Include="Presentation\Importers\CsvFile\ImportCsvFileDialog.xaml.cs">
+      <DependentUpon>ImportCsvFileDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\Core\BaseViewModel.cs" />
     <Compile Include="Presentation\Core\DelegateCommand.cs" />
     <Compile Include="Presentation\Core\DependencyPropertyService.cs" />
     <Compile Include="Presentation\Core\Layout\LayoutItemViewModel.cs" />
     <Compile Include="Presentation\Core\VisualService.cs" />
+    <Compile Include="Presentation\Importers\CsvFile\CsvFileImportViewModel.cs" />
     <Compile Include="Presentation\Panes\Layout\ILayoutPaneViewModel.cs" />
     <Compile Include="Presentation\Panes\Layout\LayoutPaneViewModel.cs" />
     <Compile Include="Presentation\Panes\Viewer\IViewerPaneViewModel.cs" />
     <Compile Include="Presentation\Panes\Viewer\ViewerPaneViewModel.cs" />
+    <Page Include="Presentation\Importers\CsvFile\ImportCsvFileDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Presentation\Shell\MainWindow\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

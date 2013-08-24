@@ -55,6 +55,10 @@
   <ItemGroup>
     <Compile Include="Application\Application\ApplicationServiceTests.cs" />
     <Compile Include="Application\Columns\ColumnAdapterTests.cs" />
+    <Compile Include="Application\Importers\CsvFileImportServiceTests.cs" />
+    <Compile Include="Domain\Importers\CsvFileImporterTests.cs" />
+    <Compile Include="Persistence\Sources\SourceRepositoryTests.cs" />
+    <Compile Include="Presentation\Dialogs\DialogServiceTests.cs" />
     <Compile Include="Application\Projects\ProjectServiceTests.cs" />
     <Compile Include="Application\ScatterPlots\ScatterPlotAdapterTests.cs" />
     <Compile Include="Application\ScatterPlots\ScatterPlotEventsServiceTests.cs" />
@@ -88,6 +92,7 @@
     <Compile Include="Presentation\Core\VisualServiceTests.cs" />
     <Compile Include="Presentation\Core\Geometry\GeometryCalculatorTests.cs" />
     <Compile Include="Presentation\Core\Geometry\GeometryFactoryTests.cs" />
+    <Compile Include="Presentation\Importers\CsvFileImportViewModelTests.cs" />
     <Compile Include="Presentation\Panes\Layout\LayoutPaneViewModelTests.cs" />
     <Compile Include="Presentation\Panes\Viewer\ViewerPaneViewModelTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Layouts\ScatterPlotLayoutViewModelTests.cs" />
@@ -103,6 +108,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Application\Dialogs\" />
     <Folder Include="Common\" />
   </ItemGroup>
   <ItemGroup>

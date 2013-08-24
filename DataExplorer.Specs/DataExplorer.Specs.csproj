@@ -82,6 +82,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ViewScatterPlot.feature</DependentUpon>
     </Compile>
+    <Compile Include="Sources\SourceSteps.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

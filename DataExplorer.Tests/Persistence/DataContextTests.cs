@@ -7,7 +7,10 @@ using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Projects;
 using DataExplorer.Domain.Rows;
 using DataExplorer.Domain.ScatterPlots;
+using DataExplorer.Domain.Sources;
 using DataExplorer.Persistence;
+using DataExplorer.Tests.Domain.Columns;
+using DataExplorer.Tests.Domain.Rows;
 using NUnit.Framework;
 
 namespace DataExplorer.Tests.Persistence
@@ -26,6 +29,7 @@ namespace DataExplorer.Tests.Persistence
         [Test]
         public void TestConstructorShouldCreateDefaults()
         {
+            Assert.That(_dataContext.Sources, Is.Not.Null);
             Assert.That(_dataContext.Columns, Is.Not.Null);
             Assert.That(_dataContext.Rows, Is.Not.Null);
             Assert.That(_dataContext.ScatterPlot, Is.Not.Null);
@@ -34,11 +38,19 @@ namespace DataExplorer.Tests.Persistence
         [Test]
         public void TestSetProjectShouldSetDataProperties()
         {
-            var columns = new List<Column>();
-            var rows = new List<Row>();
+            var sources = new List<ISource>() { new CsvFileSource() };
+            var columns = new List<Column> { new ColumnBuilder().Build() };
+            var rows = new List<Row> { new RowBuilder().Build() };
             var scatterPlot = new ScatterPlot();
-            var project = new Project() { Columns = columns, Rows = rows, ScatterPlot = scatterPlot };
+            var project = new Project()
+            {
+                Sources = sources,
+                Columns = columns, 
+                Rows = rows, 
+                ScatterPlot = scatterPlot
+            };
             _dataContext.SetProject(project);
+            Assert.That(_dataContext.Sources, Is.EqualTo(sources.ToDictionary(p => p.GetType())));
             Assert.That(_dataContext.Columns, Is.EqualTo(columns));
             Assert.That(_dataContext.Rows, Is.EqualTo(rows));
             Assert.That(_dataContext.ScatterPlot, Is.EqualTo(scatterPlot));
@@ -47,7 +59,12 @@ namespace DataExplorer.Tests.Persistence
         [Test]
         public void TestClearShouldClearDataProperties()
         {
+            _dataContext.Sources.Add(typeof(CsvFileSource), new CsvFileSource());
+            _dataContext.Columns.Add(new ColumnBuilder().Build());
+            _dataContext.Rows.Add(new RowBuilder().Build());
+            //_dataContext.Views.Add(new ViewBuilder().Build());
             _dataContext.Clear();
+            Assert.That(_dataContext.Sources.Count(), Is.EqualTo(0));
             Assert.That(_dataContext.Columns.Count(), Is.EqualTo(0));
             Assert.That(_dataContext.Rows.Count(), Is.EqualTo(0));
             //Assert.That(_dataContext.ScatterPlot, Is.EqualTo(new ScatterPlot()));

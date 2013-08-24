@@ -6,6 +6,7 @@ using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Projects;
 using DataExplorer.Domain.Rows;
 using DataExplorer.Domain.ScatterPlots;
+using DataExplorer.Domain.Sources;
 using DataExplorer.Tests.Domain.Columns;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
@@ -29,7 +30,16 @@ namespace DataExplorer.Specs.Projects
             _context.Project = project;
             _context.MockSerializationService.Setup(p => p.GetProject()).Returns(project);
         }
-        
+
+        [Given(@"the project has a CSV file source")]
+        public void GivenTheProjectHasACSVFileSource()
+        {
+            var source = new CsvFileSource();
+            var sources = new List<ISource> { source };
+            _context.CsvFileSource = source;
+            _context.Project.Sources = sources;
+        }
+
         [Given(@"the project has a column")]
         public void GivenTheProjectHasAColumn()
         {

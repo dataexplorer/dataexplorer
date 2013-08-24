@@ -7,13 +7,16 @@ using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Projects;
 using DataExplorer.Domain.Rows;
 using DataExplorer.Domain.ScatterPlots;
+using DataExplorer.Domain.Sources;
 
 namespace DataExplorer.Persistence
 {
     public interface IDataContext
     {
-        List<Column> Columns { get; }
+        Dictionary<Type, ISource> Sources { get; }
         
+        List<Column> Columns { get; }
+
         List<Row> Rows { get; }
 
         IScatterPlot ScatterPlot { get; set; }

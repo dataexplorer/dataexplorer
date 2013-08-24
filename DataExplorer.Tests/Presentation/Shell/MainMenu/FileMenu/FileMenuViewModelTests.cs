@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DataExplorer.Application;
 using DataExplorer.Application.Application;
 using DataExplorer.Application.Projects;
+using DataExplorer.Presentation.Dialogs;
 using DataExplorer.Presentation.Shell.MainMenu.FileMenu;
 using Moq;
 using NUnit.Framework;
@@ -18,15 +19,18 @@ namespace DataExplorer.Tests.Presentation.Shell.MainMenu.FileMenu
         private FileMenuViewModel _viewModel;
         private Mock<IApplicationService> _mockFileService;
         private Mock<IProjectService> _mockProjectService;
+        private Mock<IDialogService> _mockDialogService;
 
         [SetUp]
         public void SetUp()
         {
             _mockFileService = new Mock<IApplicationService>();
             _mockProjectService = new Mock<IProjectService>();
+            _mockDialogService = new Mock<IDialogService>();
             _viewModel = new FileMenuViewModel(
                 _mockFileService.Object, 
-                _mockProjectService.Object);
+                _mockProjectService.Object, 
+                _mockDialogService.Object);
         }
 
         [Test]
@@ -42,6 +46,13 @@ namespace DataExplorer.Tests.Presentation.Shell.MainMenu.FileMenu
             // TODO: This will eventually need to show the Open Project dialog box
             _viewModel.OpenCommand.Execute(null);
             _mockProjectService.Verify(p => p.OpenProject(), Times.Once());
+        }
+
+        [Test]
+        public void TestImportCommandShouldOpenImportDialog()
+        {
+            _viewModel.ImportCommand.Execute(null);
+            _mockDialogService.Verify(p => p.ShowImportDialog(), Times.Once());
         }
 
         [Test]

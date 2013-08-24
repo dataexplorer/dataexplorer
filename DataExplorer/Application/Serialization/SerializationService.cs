@@ -7,6 +7,7 @@ using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Projects;
 using DataExplorer.Domain.Rows;
 using DataExplorer.Domain.ScatterPlots;
+using DataExplorer.Domain.Sources;
 
 namespace DataExplorer.Application.Serialization
 {
@@ -17,12 +18,20 @@ namespace DataExplorer.Application.Serialization
             // TODO: Remove this fake data
             var project = new Project()
             {
+                Sources = GetSources(),
                 Columns = GetColumns(),
                 Rows = GetRows(),
                 ScatterPlot = GetViews().Single()
             };
 
             return project;
+        }
+
+        private List<ISource> GetSources()
+        {
+            var source = new CsvFileSource();
+            var sources = new List<ISource> { source };
+            return sources;
         }
 
         private List<Column> GetColumns()

@@ -6,6 +6,7 @@ namespace DataExplorer.Presentation.Shell.MainMenu.FileMenu
     {
         ICommand OpenCommand { get; }
         ICommand CloseCommand { get; }
+        ICommand ImportCommand { get; }
         ICommand ExitCommand { get; }
     }
 }

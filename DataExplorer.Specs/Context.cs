@@ -10,6 +10,7 @@ using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Projects;
 using DataExplorer.Domain.Rows;
 using DataExplorer.Domain.ScatterPlots;
+using DataExplorer.Domain.Sources;
 using DataExplorer.Persistence;
 using DataExplorer.Persistence.Columns;
 using DataExplorer.Persistence.Rows;
@@ -29,6 +30,7 @@ namespace DataExplorer.Specs
         public Mock<ISerializationService> MockSerializationService;
 
         public Project Project;
+        public CsvFileSource CsvFileSource;
         public Column Column;
         public Row Row;
         public ScatterPlot ScatterPlot;

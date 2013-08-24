@@ -1,0 +1,79 @@
+﻿<Window x:Class="DataExplorer.Presentation.Importers.CsvFile.ImportCsvFileDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:csvFile="clr-namespace:DataExplorer.Presentation.Importers.CsvFile" mc:Ignorable="d"
+        Title="Import CSV File" Height="600" Width="600" d:DataContext="{d:DesignInstance csvFile:CsvFileImportViewModel }">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </Window.Resources>
+    <Grid Margin="11">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Label Grid.Column="0" Content="File path:" />
+            <TextBox 
+                Grid.Column="1" 
+                Margin="5,0,0,0"
+                Height="23"
+                Text="{Binding FilePath, UpdateSourceTrigger=PropertyChanged}" />
+            <Button 
+                Grid.Column="2"
+                Height="23"
+                Width="75"
+                Margin="7,0,0,0"
+                Content="Browse" 
+                Command="{Binding BrowseCommand}" />
+        </Grid>
+        <!--<views:DataSourceMapsView
+            Grid.Row="1"
+            Margin="0,7,0,0"
+            DataContext="{Binding DataSourceMappingViewModel}" />-->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <ProgressBar
+                Grid.Column="0"
+                Margin="0,7,0,0"
+                Height="23"
+                Visibility="{Binding IsImporting, Converter={StaticResource BooleanToVisibilityConverter}}"
+                Maximum="1"
+                Value="{Binding Progress, Mode=OneWay}" />
+            <Button 
+                Grid.Column="1"
+                HorizontalAlignment="Right"
+                Height="23"
+                Width="75"
+                Margin="7,7,0,0"
+                Content="Import" 
+                Command="{Binding ImportCommand}" />
+            <Button 
+                Grid.Column="2"
+                Grid.Row="1"
+                HorizontalAlignment="Right"
+                Height="23"
+                Width="75" 
+                Margin="7,7,0,0"
+                Content="Cancel" 
+                Command="{Binding CancelCommand}" />
+        </Grid>
+    </Grid>
+</Window>
