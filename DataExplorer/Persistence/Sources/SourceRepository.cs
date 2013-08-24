@@ -16,13 +16,14 @@ namespace DataExplorer.Persistence.Sources
             _context = context;
         }
 
-        public bool HasSource<T>() where T : ISource
+        public T GetSource<T>() where T : ISource, new()
         {
-            return _context.Sources.ContainsKey(typeof(T));
-        }
+            if (!_context.Sources.ContainsKey(typeof(T)))
+            {
+                var source = new T();
+                _context.Sources.Add(source.GetType(), source);
+            }
 
-        public T GetSource<T>() where T : ISource
-        {
             return (T) _context.Sources[typeof(T)];
         }
 

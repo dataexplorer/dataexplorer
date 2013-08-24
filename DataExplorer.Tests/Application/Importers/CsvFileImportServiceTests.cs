@@ -31,23 +31,11 @@ namespace DataExplorer.Tests.Application.Importers
         public void TestGetFilePathShouldReturnFilePath()
         {
             _source.FilePath = @"C:\Test.xml";
-            _mockRepository.Setup(p => p.HasSource<CsvFileSource>()).Returns(true);
             _mockRepository.Setup(p => p.GetSource<CsvFileSource>()).Returns(_source);
             var result = _service.GetFilePath();
             Assert.That(result, Is.EqualTo(@"C:\Test.xml"));
         }
-
-        [Test]
-        public void TestGetFilePathShouldCreateSourceIfItDoesNotExist()
-        {
-            _source.FilePath = @"C:\Test.xml";
-            _mockRepository.Setup(p => p.HasSource<CsvFileSource>()).Returns(false);
-            _mockRepository.Setup(p => p.GetSource<CsvFileSource>()).Returns(_source);
-            _mockFactory.Setup(p => p.Create<CsvFileSource>()).Returns(_source);
-            _service.GetFilePath();
-            _mockRepository.Verify(p => p.SetSource(_source), Times.Once());
-        }
-
+        
         [Test]
         public void TestSetFilePathShouldSetFilePathOfImporter()
         {

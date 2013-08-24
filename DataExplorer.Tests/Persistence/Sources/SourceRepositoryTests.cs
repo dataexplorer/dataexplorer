@@ -37,6 +37,13 @@ namespace DataExplorer.Tests.Persistence.Sources
         }
 
         [Test]
+        public void TestGetSourceShouldCreateNewSourceIfNoMatchExists()
+        {
+            _repository.GetSource<CsvFileSource>();
+            Assert.That(_sources.ContainsKey(typeof(CsvFileSource)));
+        }
+
+        [Test]
         public void TestSetSourceShouldSetSetSource()
         {
             var source = new CsvFileSource();

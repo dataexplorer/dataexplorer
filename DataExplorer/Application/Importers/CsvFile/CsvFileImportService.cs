@@ -25,12 +25,6 @@ namespace DataExplorer.Application.Importers.CsvFile
 
         public string GetFilePath()
         {
-            if (!_repository.HasSource<CsvFileSource>())
-            {
-                var newImporter = _factory.Create<CsvFileSource>();
-                _repository.SetSource<CsvFileSource>(newImporter);
-            }
-
             var importer = _repository.GetSource<CsvFileSource>();
             
             return importer.FilePath;
