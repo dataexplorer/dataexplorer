@@ -18,6 +18,7 @@ namespace DataExplorer.Presentation.Importers.CsvFile
         private readonly ICsvFileImportService _service;
         private readonly IDialogFactory _dialogService;
         private readonly DelegateCommand _browseCommand;
+        private readonly DelegateCommand _importCommand;
 
         public string FilePath
         {
@@ -32,6 +33,7 @@ namespace DataExplorer.Presentation.Importers.CsvFile
             _service = service;
             _dialogService = dialogService;
             _browseCommand = new DelegateCommand(Browse);
+            _importCommand = new DelegateCommand(Import);
 
             _service.FilePathChanged += HandleFilePathChanged;
         }
@@ -39,6 +41,11 @@ namespace DataExplorer.Presentation.Importers.CsvFile
         public ICommand BrowseCommand
         {
             get { return _browseCommand; }
+        }
+
+        public ICommand ImportCommand
+        {
+            get { return _importCommand; }
         }
 
         private void Browse(object parameter)
@@ -50,6 +57,11 @@ namespace DataExplorer.Presentation.Importers.CsvFile
 
             if (result == true)
                 _service.SetFilePath(dialog.GetFilePath());
+        }
+
+        private void Import(object obj)
+        {
+            _service.Import();
         }
 
         private void HandleFilePathChanged(object sender, EventArgs e)

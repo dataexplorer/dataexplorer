@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataExplorer.Domain.Maps
+namespace DataExplorer.Application.Importers.Converters
 {
-    public interface IAxisMap
+    public interface IDataTypeConverter
     {
-        double? Map(object value);
+        object Convert(object source);
     }
 }

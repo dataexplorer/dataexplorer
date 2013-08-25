@@ -13,5 +13,7 @@ namespace DataExplorer.Application.Importers.CsvFile
         string GetFilePath();
 
         void SetFilePath(string filePath);
+        
+        void Import();
     }
 }

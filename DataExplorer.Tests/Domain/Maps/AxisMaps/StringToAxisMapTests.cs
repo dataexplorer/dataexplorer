@@ -12,17 +12,18 @@ namespace DataExplorer.Tests.Domain.Maps.AxisMaps
     public class StringToAxisMapTests
     {
         [Test]
+        [TestCase(null, null)]
         [TestCase("Apple", 0d)]
         [TestCase("Elephant", 25d)]
         [TestCase("Monkey", 50d)]
         [TestCase("Tiger", 75d)]
         [TestCase("Zebra", 100d)]
-        public void TestMapScenarios(string value, double expected)
+        public void TestMapScenarios(string value, double? expected)
         {
             var strings = new List<string> { "Apple", "Elephant", "Monkey", "Tiger", "Zebra" };
             var map = new StringToAxisMap(strings, 0, 100);
-            var result = map.Map("Apple");
-            Assert.That(result, Is.EqualTo(0));
+            var result = map.Map(value);
+            Assert.That(result, Is.EqualTo(expected));
         }
     }
 }

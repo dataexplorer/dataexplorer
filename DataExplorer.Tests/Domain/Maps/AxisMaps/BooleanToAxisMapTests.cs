@@ -12,9 +12,10 @@ namespace DataExplorer.Tests.Domain.Maps.AxisMaps
     public class BooleanToAxisMapTests
     {
         [Test]
+        [TestCase(null, null)]
         [TestCase(false, 0d)]
         [TestCase(true, 10d)]
-        public void TestPositiveMapScenarios(bool value, double expected)
+        public void TestPositiveMapScenarios(bool? value, double? expected)
         {
             var map = new BooleanToAxisMap(0d, 10d);
             var result = map.Map(value);
@@ -24,7 +25,7 @@ namespace DataExplorer.Tests.Domain.Maps.AxisMaps
         [Test]
         [TestCase(false, -10d)]
         [TestCase(true, 0d)]
-        public void TestNegativeMapScenarios(bool value, double expected)
+        public void TestNegativeMapScenarios(bool? value, double? expected)
         {
             var map = new BooleanToAxisMap(-10d, 0d);
             var result = map.Map(value);
@@ -34,7 +35,7 @@ namespace DataExplorer.Tests.Domain.Maps.AxisMaps
         [Test]
         [TestCase(false, -10d)]
         [TestCase(true, 10d)]
-        public void TestPositiveAndNegativeMapScenarios(bool value, double expected)
+        public void TestPositiveAndNegativeMapScenarios(bool? value, double? expected)
         {
             var map = new BooleanToAxisMap(-10d, 10d);
             var result = map.Map(value);

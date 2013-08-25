@@ -17,8 +17,11 @@ namespace DataExplorer.Domain.Maps.AxisMaps
             _targetMax = targetMax;
         }
         
-        public double Map(object value)
+        public double? Map(object value)
         {
+            if (value == null)
+                return null;
+
             return (bool) value 
                 ? _targetMax 
                 : _targetMin;

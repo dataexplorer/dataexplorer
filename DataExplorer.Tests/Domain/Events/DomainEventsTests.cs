@@ -50,8 +50,8 @@ namespace DataExplorer.Tests.Domain.Events
         public void TestRaiseShouldRaiseAResolvedEvent()
         {
             var kernel = new StandardKernel();
-            kernel.Bind<IHandler<FakeDomainEvent>>().To<FakeDomainEventHandler>().InSingletonScope();
-            var handler = (FakeDomainEventHandler) kernel.Get<IHandler<FakeDomainEvent>>();
+            kernel.Bind<IDomainHandler<FakeDomainEvent>>().To<FakeDomainEventDomainHandler>().InSingletonScope();
+            var handler = (FakeDomainEventDomainHandler) kernel.Get<IDomainHandler<FakeDomainEvent>>();
             DomainEvents.Kernel = kernel;
             DomainEvents.Raise(_event);
             Assert.That(handler.WasHandled, Is.True);

@@ -12,6 +12,14 @@ namespace DataExplorer.Tests.Domain.Maps.AxisMaps
     public class DateTimeToAxisMapTests
     {
         [Test]
+        public void TestNullScenario()
+        {
+            var map = new DateTimeToAxisMap(DateTime.MinValue, DateTime.MaxValue, 0d, 100d);
+            var result = map.Map(null);
+            Assert.That(result, Is.Null);
+        }
+
+        [Test]
         [TestCase("1/1/0001", 0d)]
         [TestCase("10/1/2500", 25d)]
         [TestCase("7/2/5000", 50d)]

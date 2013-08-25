@@ -30,6 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Moq, Version=4.0.10827.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
@@ -55,7 +56,15 @@
   <ItemGroup>
     <Compile Include="Application\Application\ApplicationServiceTests.cs" />
     <Compile Include="Application\Columns\ColumnAdapterTests.cs" />
-    <Compile Include="Application\Importers\CsvFileImportServiceTests.cs" />
+    <Compile Include="Application\Importers\Converters\DataTypeConverterFactoryTests.cs" />
+    <Compile Include="Application\Importers\Converters\PassThroughConverterTests.cs" />
+    <Compile Include="Application\Importers\Converters\StringToBooleanConverterTests.cs" />
+    <Compile Include="Application\Importers\Converters\StringToDateTimeConverterTests.cs" />
+    <Compile Include="Application\Importers\Converters\StringToFloatConverterTests.cs" />
+    <Compile Include="Application\Importers\Converters\StringToIntegerConverterTest.cs" />
+    <Compile Include="Application\Importers\CsvFile\CsvFileAdapterTests.cs" />
+    <Compile Include="Application\Importers\CsvFile\CsvFileImportServiceTests.cs" />
+    <Compile Include="Application\Importers\DataTypeDetectorTests.cs" />
     <Compile Include="Domain\Importers\CsvFileImporterTests.cs" />
     <Compile Include="Persistence\Sources\SourceRepositoryTests.cs" />
     <Compile Include="Presentation\Dialogs\DialogServiceTests.cs" />
@@ -68,7 +77,7 @@
     <Compile Include="Domain\Columns\ColumnTests.cs" />
     <Compile Include="Domain\Events\DomainEventsTests.cs" />
     <Compile Include="Domain\Events\FakeDomainEvent.cs" />
-    <Compile Include="Domain\Events\FakeDomainEventHandler.cs" />
+    <Compile Include="Domain\Events\FakeDomainEventDomainHandler.cs" />
     <Compile Include="Domain\Maps\AxisMaps\BooleanToAxisMapTests.cs" />
     <Compile Include="Domain\Maps\AxisMaps\DateTimeToAxisMapTests.cs" />
     <Compile Include="Domain\Maps\AxisMaps\FloatToAxisMapTests.cs" />

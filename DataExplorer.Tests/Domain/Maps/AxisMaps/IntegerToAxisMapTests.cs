@@ -12,12 +12,13 @@ namespace DataExplorer.Tests.Domain.Maps.AxisMaps
     public class IntegerToAxisMapTests
     {
         [Test]
+        [TestCase(null, null)]
         [TestCase(0, 0d)]
         [TestCase(2, 20d)]
         [TestCase(5, 50d)]
         [TestCase(7, 70d)]
         [TestCase(10, 100d)]
-        public void TestPositiveSourceAndPositiveTargetMapScenarios(int value, double expected)
+        public void TestPositiveSourceAndPositiveTargetMapScenarios(int? value, double? expected)
         {
             var map = new IntegerToAxisMap(0, 10, 0d, 100d);
             var result = map.Map(value);
@@ -30,7 +31,7 @@ namespace DataExplorer.Tests.Domain.Maps.AxisMaps
         [TestCase(-5, 50d)]
         [TestCase(-2, 80d)]
         [TestCase(0, 100d)]
-        public void TestNegativeSourceAndPositiveTargetMapScenarios(int value, double expected)
+        public void TestNegativeSourceAndPositiveTargetMapScenarios(int? value, double? expected)
         {
             var map = new IntegerToAxisMap(-10, 0, 0d, 100d);
             var result = map.Map(value);
@@ -43,7 +44,7 @@ namespace DataExplorer.Tests.Domain.Maps.AxisMaps
         [TestCase(5, -50d)]
         [TestCase(7, -30d)]
         [TestCase(10, 0d)]
-        public void TestPositiveSourceAndNegativeTargetMapScenarios(int value, double expected)
+        public void TestPositiveSourceAndNegativeTargetMapScenarios(int? value, double? expected)
         {
             var map = new IntegerToAxisMap(0, 10, -100d, 0d);
             var result = map.Map(value);
@@ -56,7 +57,7 @@ namespace DataExplorer.Tests.Domain.Maps.AxisMaps
         [TestCase(-5, -50d)]
         [TestCase(-2, -20d)]
         [TestCase(0, 0d)]
-        public void TestNegativeSourceAndNegativeTargetMapScenarios(int value, double expected)
+        public void TestNegativeSourceAndNegativeTargetMapScenarios(int? value, double? expected)
         {
             var map = new IntegerToAxisMap(-10, 0, -100d, 0d);
             var result = map.Map(value);

@@ -35,11 +35,11 @@ namespace DataExplorer.Domain.ScatterPlots
                 var plot = new Plot();
 
                 plot.X = layout.XAxisColumn != null
-                    ? xAxisMap.Map(row[layout.XAxisColumn.Index])
+                    ? xAxisMap.Map(row[layout.XAxisColumn.Index]) ?? 0.0
                     : 0.0;
 
                 plot.Y = layout.YAxisColumn != null
-                    ? yAxisMap.Map(row[layout.YAxisColumn.Index])
+                    ? yAxisMap.Map(row[layout.YAxisColumn.Index]) ?? 0.0
                     : 0.0;
 
                 plots.Add(plot);

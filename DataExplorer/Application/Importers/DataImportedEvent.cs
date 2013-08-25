@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataExplorer.Application.Events;
 
-namespace DataExplorer.Domain.Maps
+namespace DataExplorer.Application.Importers
 {
-    public interface IAxisMap
+    public class DataImportedEvent : IAppEvent
     {
-        double? Map(object value);
     }
 }

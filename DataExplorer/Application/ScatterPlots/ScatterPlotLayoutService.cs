@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.Columns;
+using DataExplorer.Application.Events;
+using DataExplorer.Application.Importers;
 using DataExplorer.Domain.Events;
 using DataExplorer.Domain.Projects;
 using DataExplorer.Domain.ScatterPlots;
@@ -14,8 +16,9 @@ namespace DataExplorer.Application.ScatterPlots
 {
     public class ScatterPlotLayoutService : 
         IScatterPlotLayoutService, 
-        IHandler<ProjectOpenedEvent>,
-        IHandler<ProjectClosedEvent>
+        IDomainHandler<ProjectOpenedEvent>,
+        IDomainHandler<ProjectClosedEvent>,
+        IAppHandler<DataImportedEvent>
     {
         private readonly IViewRepository _viewRepository;
         private readonly IColumnRepository _columnRepository;
@@ -68,18 +71,6 @@ namespace DataExplorer.Application.ScatterPlots
             layout.XAxisColumn = column;
         }
 
-        public void Handle(ProjectOpenedEvent args)
-        {
-            if (LayoutColumnsChangedEvent != null)
-                LayoutColumnsChangedEvent(this, EventArgs.Empty);
-        }
-
-        public void Handle(ProjectClosedEvent args)
-        {
-            if (LayoutColumnsChangedEvent != null)
-                LayoutColumnsChangedEvent(this, EventArgs.Empty);
-        }
-
         public ColumnDto GetYColumn()
         {
             var scatterPlot = _viewRepository.Get<ScatterPlot>();
@@ -102,6 +93,24 @@ namespace DataExplorer.Application.ScatterPlots
             var layout = scatterPlot.GetLayout();
 
             layout.YAxisColumn = column;
+        }
+
+        public void Handle(ProjectOpenedEvent args)
+        {
+            if (LayoutColumnsChangedEvent != null)
+                LayoutColumnsChangedEvent(this, EventArgs.Empty);
+        }
+
+        public void Handle(ProjectClosedEvent args)
+        {
+            if (LayoutColumnsChangedEvent != null)
+                LayoutColumnsChangedEvent(this, EventArgs.Empty);
+        }
+
+        public void Handle(DataImportedEvent args)
+        {
+            if (LayoutColumnsChangedEvent != null)
+                LayoutColumnsChangedEvent(this, EventArgs.Empty);
         }
     }
 }

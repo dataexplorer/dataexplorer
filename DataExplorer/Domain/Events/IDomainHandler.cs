@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataExplorer.Domain.Maps
+namespace DataExplorer.Domain.Events
 {
-    public interface IAxisMap
+    public interface IDomainHandler<T> where T : IDomainEvent
     {
-        double? Map(object value);
+        void Handle(T args);
     }
 }

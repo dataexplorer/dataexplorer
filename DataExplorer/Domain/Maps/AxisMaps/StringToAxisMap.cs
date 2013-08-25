@@ -23,8 +23,11 @@ namespace DataExplorer.Domain.Maps.AxisMaps
             _targetWidth = targetMax - targetMin;
         }
 
-        public double Map(object value)
+        public double? Map(object value)
         {
+            if (value == null)
+                return null;
+
             var index = _sourceValues.IndexOf((string) value);
             var ratio = index / (_sourceCount - 1d);
             return _targetMin + (ratio * _targetWidth);

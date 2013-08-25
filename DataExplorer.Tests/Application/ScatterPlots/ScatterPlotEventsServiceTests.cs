@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using DataExplorer.Application.Importers;
 using DataExplorer.Application.ScatterPlots;
 using DataExplorer.Domain.Events;
 using DataExplorer.Domain.Projects;
@@ -71,6 +72,21 @@ namespace DataExplorer.Tests.Application.ScatterPlots
         public void TestHandleScatterPlotLayoutChangedEventShouldUpdatePlots()
         {
             var @event = new ScatterPlotLayoutChangedEvent();
+            var rows = new List<Row>();
+            var plots = new List<Plot>();
+            var layout = new ScatterPlotLayout();
+            _scatterPlot = new ScatterPlot(new Rect(), plots, layout);
+            _mockDataRepository.Setup(p => p.GetAll()).Returns(rows);
+            _mockViewRepository.Setup(p => p.Get<ScatterPlot>()).Returns(_scatterPlot);
+            _mockRenderer.Setup(p => p.RenderPlots(rows, layout)).Returns(plots);
+            _service.Handle(@event);
+            Assert.That(_scatterPlot.GetPlots(), Is.EqualTo(plots));
+        }
+
+        [Test]
+        public void TestHandleDataImportedEventShouldUpdatePlots()
+        {
+            var @event = new DataImportedEvent();
             var rows = new List<Row>();
             var plots = new List<Plot>();
             var layout = new ScatterPlotLayout();

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataExplorer.Application.Events;
+using DataExplorer.Application.Importers;
 using DataExplorer.Domain.Events;
 using DataExplorer.Domain.Projects;
 using DataExplorer.Domain.Rows;
@@ -12,9 +14,10 @@ using DataExplorer.Domain.Views;
 namespace DataExplorer.Application.ScatterPlots
 {
     public class ScatterPlotEventsService : 
-        IHandler<ProjectOpenedEvent>,
-        IHandler<ProjectClosedEvent>,
-        IHandler<ScatterPlotLayoutChangedEvent>
+        IDomainHandler<ProjectOpenedEvent>,
+        IDomainHandler<ProjectClosedEvent>,
+        IDomainHandler<ScatterPlotLayoutChangedEvent>,
+        IAppHandler<DataImportedEvent>
     {
         private readonly IRowRepository _rowRepository;
         private readonly IViewRepository _viewRepository;
@@ -41,6 +44,11 @@ namespace DataExplorer.Application.ScatterPlots
         }
 
         public void Handle(ScatterPlotLayoutChangedEvent args)
+        {
+            UpdatePlots();
+        }
+
+        public void Handle(DataImportedEvent args)
         {
             UpdatePlots();
         }

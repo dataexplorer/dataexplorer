@@ -51,6 +51,13 @@ namespace DataExplorer.Tests.Presentation.Importers
         }
 
         [Test]
+        public void TestImportShouldImportData()
+        {
+            _viewModel.ImportCommand.Execute(null);
+            _mockService.Verify(p => p.Import(), Times.Once());
+        }
+
+        [Test]
         public void TestHandleFilePathChangedShouldUpdateBindings()
         {
             var wasRaised = false;

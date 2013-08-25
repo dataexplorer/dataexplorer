@@ -34,6 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.3.0.1.10\lib\net45-full\Ninject.dll</HintPath>
     </Reference>
@@ -80,9 +81,27 @@
     <Compile Include="Application\Columns\ColumnAdapter.cs" />
     <Compile Include="Application\Columns\IColumnAdapter.cs" />
     <Compile Include="Application\Columns\ColumnDto.cs" />
+    <Compile Include="Application\Events\AppEvents.cs" />
+    <Compile Include="Application\Events\IAppEvent.cs" />
+    <Compile Include="Application\Events\IAppHandler.cs" />
+    <Compile Include="Application\Importers\Converters\PassThroughConverter.cs" />
+    <Compile Include="Application\Importers\Converters\StringToBooleanConverter.cs" />
+    <Compile Include="Application\Importers\Converters\StringToDateTimeConverter.cs" />
+    <Compile Include="Application\Importers\Converters\StringToFloatConverter.cs" />
+    <Compile Include="Application\Importers\Converters\StringToIntegerConverter.cs" />
+    <Compile Include="Application\Importers\CsvFile\CsvFileAdapter.cs" />
     <Compile Include="Application\Importers\CsvFile\CsvFileImportService.cs" />
     <Compile Include="Application\Importers\CsvFile\FilePathChangedEvent.cs" />
+    <Compile Include="Application\Importers\CsvFile\ICsvFileAdapter.cs" />
     <Compile Include="Application\Importers\CsvFile\ICsvFileImportService.cs" />
+    <Compile Include="Application\Importers\CsvFile\ICsvFileParser.cs" />
+    <Compile Include="Application\Importers\CsvFile\CsvFileParser.cs" />
+    <Compile Include="Application\Importers\Converters\DataTypeConverterFactory.cs" />
+    <Compile Include="Application\Importers\DataTypeDetector.cs" />
+    <Compile Include="Application\Importers\Converters\IDataTypeConverter.cs" />
+    <Compile Include="Application\Importers\Converters\IDataTypeConverterFactory.cs" />
+    <Compile Include="Application\Importers\IDataTypeDetector.cs" />
+    <Compile Include="Application\Importers\DataImportedEvent.cs" />
     <Compile Include="Domain\Sources\CsvFileSource.cs" />
     <Compile Include="Domain\Sources\CsvFilePathChangedEvent.cs" />
     <Compile Include="Domain\Sources\ISource.cs" />
@@ -110,7 +129,7 @@
     <Compile Include="Domain\Columns\Column.cs" />
     <Compile Include="Domain\Events\DomainEvents.cs" />
     <Compile Include="Domain\Events\IDomainEvent.cs" />
-    <Compile Include="Domain\Events\IHandler.cs" />
+    <Compile Include="Domain\Events\IDomainHandler.cs" />
     <Compile Include="Domain\Maps\AxisMaps\BooleanToAxisMap.cs" />
     <Compile Include="Domain\Maps\AxisMaps\DateTimeToAxisMap.cs" />
     <Compile Include="Domain\Maps\AxisMaps\FloatToAxisMap.cs" />

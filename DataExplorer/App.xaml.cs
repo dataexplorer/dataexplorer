@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
+using DataExplorer.Application.Events;
 using DataExplorer.Domain.Events;
 using DataExplorer.Presentation.Shell.MainWindow;
 using Ninject;
@@ -24,7 +25,7 @@ namespace DataExplorer
         {
             InitializeDependencyInjection();
 
-            InitializeDomainEvents();
+            InitializeEvents();
 
             InitializeShell();
         }
@@ -39,11 +40,12 @@ namespace DataExplorer
                 .Configure(c => c.InSingletonScope()));
         }
 
-        private static void InitializeDomainEvents()
+        private static void InitializeEvents()
         {
+            AppEvents.Kernel = _kernel;
             DomainEvents.Kernel = _kernel;
         }
-
+        
         private static void InitializeShell()
         {
             var mainWindow = _kernel.Get<MainWindow>();

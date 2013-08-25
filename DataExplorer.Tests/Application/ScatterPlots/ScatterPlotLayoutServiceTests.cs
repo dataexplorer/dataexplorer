@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using DataExplorer.Application.Columns;
+using DataExplorer.Application.Importers;
 using DataExplorer.Application.ScatterPlots;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Projects;
@@ -115,6 +116,16 @@ namespace DataExplorer.Tests.Application.ScatterPlots
         public void TestHandleProjectClosedShouldRaiseLayoutColumnsChangedEvent()
         {
             var args = new ProjectClosedEvent();
+            var wasHandled = false;
+            _service.LayoutColumnsChangedEvent += (s, e) => { wasHandled = true; };
+            _service.Handle(args);
+            Assert.That(wasHandled, Is.True);
+        }
+
+        [Test]
+        public void TestHandleDataImportedEventShouldRaiseLayoutColumnsChangedEvent()
+        {
+            var args = new DataImportedEvent();
             var wasHandled = false;
             _service.LayoutColumnsChangedEvent += (s, e) => { wasHandled = true; };
             _service.Handle(args);
