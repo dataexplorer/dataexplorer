@@ -166,8 +166,8 @@
     <Compile Include="Presentation\Dialogs\IOpenFileDialog.cs" />
     <Compile Include="Presentation\Dialogs\OpenFileDialogWrapper.cs" />
     <Compile Include="Presentation\Importers\CsvFile\ICsvFileImportViewModel.cs" />
-    <Compile Include="Presentation\Importers\CsvFile\ImportCsvFileDialog.xaml.cs">
-      <DependentUpon>ImportCsvFileDialog.xaml</DependentUpon>
+    <Compile Include="Presentation\Importers\CsvFile\CsvFileImportDialog.xaml.cs">
+      <DependentUpon>CsvFileImportDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Presentation\Core\BaseViewModel.cs" />
     <Compile Include="Presentation\Core\DelegateCommand.cs" />
@@ -179,7 +179,7 @@
     <Compile Include="Presentation\Panes\Layout\LayoutPaneViewModel.cs" />
     <Compile Include="Presentation\Panes\Viewer\IViewerPaneViewModel.cs" />
     <Compile Include="Presentation\Panes\Viewer\ViewerPaneViewModel.cs" />
-    <Page Include="Presentation\Importers\CsvFile\ImportCsvFileDialog.xaml">
+    <Page Include="Presentation\Importers\CsvFile\CsvFileImportDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

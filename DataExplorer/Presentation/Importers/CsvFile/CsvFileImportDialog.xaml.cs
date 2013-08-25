@@ -29,11 +29,11 @@ namespace DataExplorer.Presentation.Importers.CsvFile
 
         private void HandleDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            if (e.OldValue is CsvFileImportViewModel)
-                ((CsvFileImportViewModel)e.NewValue).DialogClosed -= HandleDialogClosed;
+            if (e.OldValue is ICsvFileImportViewModel)
+                ((ICsvFileImportViewModel)e.NewValue).DialogClosed -= HandleDialogClosed;
 
-            if (e.NewValue is CsvFileImportViewModel)
-                ((CsvFileImportViewModel) e.NewValue).DialogClosed += HandleDialogClosed;
+            if (e.NewValue is ICsvFileImportViewModel)
+                ((ICsvFileImportViewModel) e.NewValue).DialogClosed += HandleDialogClosed;
             
         }
 

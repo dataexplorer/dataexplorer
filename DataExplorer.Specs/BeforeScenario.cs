@@ -6,11 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application;
 using DataExplorer.Application.Application;
+using DataExplorer.Application.Importers.CsvFile;
 using DataExplorer.Application.Serialization;
 using DataExplorer.Persistence;
 using DataExplorer.Persistence.Columns;
 using DataExplorer.Persistence.Rows;
 using DataExplorer.Persistence.Views;
+using DataExplorer.Presentation.Importers.CsvFile;
 using DataExplorer.Presentation.Shell.MainMenu.FileMenu;
 using DataExplorer.Presentation.Shell.MainWindow;
 using Moq;
@@ -51,9 +53,13 @@ namespace DataExplorer.Specs
 
             _context.MockSerializationService = new Mock<ISerializationService>();
             kernel.Rebind<ISerializationService>().ToConstant(_context.MockSerializationService.Object);
+
+            _context.MockCsvFileParser = new Mock<ICsvFileParser>();
+            kernel.Rebind<ICsvFileParser>().ToConstant(_context.MockCsvFileParser.Object);
             
             _context.MainWindowViewModel = kernel.Get<MainWindowViewModel>();
             _context.FileMenuViewModel = kernel.Get<IFileMenuViewModel>();
+            _context.CsvFileImportViewModel = kernel.Get<ICsvFileImportViewModel>();
 
             _context.DataContext = kernel.Get<IDataContext>();
         }

@@ -63,6 +63,13 @@
     <Compile Include="BeforeScenario.cs" />
     <Compile Include="Columns\ColumnSteps.cs" />
     <Compile Include="Context.cs" />
+    <Compile Include="Importers\FakeCsvFile.cs" />
+    <Compile Include="Importers\CsvFileImporterSteps.cs" />
+    <Compile Include="Importers\ImportCsvFile.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImportCsvFile.feature</DependentUpon>
+    </Compile>
     <Compile Include="Projects\CloseAProject.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -89,6 +96,10 @@
     <None Include="Application\ExitApplication.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ExitApplication.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Importers\ImportCsvFile.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ImportCsvFile.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
     <None Include="Projects\CloseAProject.feature">
