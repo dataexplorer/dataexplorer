@@ -4,16 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataExplorer.Application.Importers.Converters
+namespace DataExplorer.Domain.Converters
 {
-    public class StringToBooleanConverter : IDataTypeConverter
+    public class StringToIntegerConverter : IDataTypeConverter
     {
         public object Convert(object source)
         {
             if ((string) source == string.Empty)
                 return null;
 
-            return Boolean.Parse((string) source);
+            return Int32.Parse((string) source);
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.Events;
 using DataExplorer.Application.Importers;
+using DataExplorer.Application.Importers.CsvFile;
 using DataExplorer.Domain.Events;
 using DataExplorer.Domain.Projects;
 using DataExplorer.Domain.Rows;
@@ -17,7 +18,7 @@ namespace DataExplorer.Application.ScatterPlots
         IDomainHandler<ProjectOpenedEvent>,
         IDomainHandler<ProjectClosedEvent>,
         IDomainHandler<ScatterPlotLayoutChangedEvent>,
-        IAppHandler<DataImportedEvent>
+        IAppHandler<CsvFileImportedEvent>
     {
         private readonly IRowRepository _rowRepository;
         private readonly IViewRepository _viewRepository;
@@ -48,7 +49,7 @@ namespace DataExplorer.Application.ScatterPlots
             UpdatePlots();
         }
 
-        public void Handle(DataImportedEvent args)
+        public void Handle(CsvFileImportedEvent args)
         {
             UpdatePlots();
         }

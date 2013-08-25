@@ -23,6 +23,23 @@ namespace DataExplorer.Presentation.Importers.CsvFile
         public ImportCsvFileDialog()
         {
             InitializeComponent();
+
+            DataContextChanged += HandleDataContextChanged;
+        }
+
+        private void HandleDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (e.OldValue is CsvFileImportViewModel)
+                ((CsvFileImportViewModel)e.NewValue).DialogClosed -= HandleDialogClosed;
+
+            if (e.NewValue is CsvFileImportViewModel)
+                ((CsvFileImportViewModel) e.NewValue).DialogClosed += HandleDialogClosed;
+            
+        }
+
+        private void HandleDialogClosed(object sender, EventArgs eventArgs)
+        {
+            this.Close();
         }
     }
 }

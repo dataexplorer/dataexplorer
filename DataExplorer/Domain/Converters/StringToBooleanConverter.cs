@@ -4,16 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataExplorer.Application.Importers.Converters
+namespace DataExplorer.Domain.Converters
 {
-    public class StringToFloatConverter : IDataTypeConverter
+    public class StringToBooleanConverter : IDataTypeConverter
     {
         public object Convert(object source)
         {
             if ((string) source == string.Empty)
                 return null;
 
-            return Double.Parse((string) source);
+            return Boolean.Parse((string) source);
         }
     }
 }

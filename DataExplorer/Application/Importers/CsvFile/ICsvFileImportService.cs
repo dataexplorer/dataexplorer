@@ -10,10 +10,14 @@ namespace DataExplorer.Application.Importers.CsvFile
     {
         event FilePathChangedEvent FilePathChanged;
 
+        event DataImportedEvent DataImported;
+
         string GetFilePath();
 
         void SetFilePath(string filePath);
-        
+
+        bool CanImport();
+
         void Import();
     }
 }

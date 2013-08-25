@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using DataExplorer.Application.Importers;
+using DataExplorer.Application.Importers.CsvFile;
 using DataExplorer.Application.ScatterPlots;
 using DataExplorer.Domain.Events;
 using DataExplorer.Domain.Projects;
@@ -86,7 +87,7 @@ namespace DataExplorer.Tests.Application.ScatterPlots
         [Test]
         public void TestHandleDataImportedEventShouldUpdatePlots()
         {
-            var @event = new DataImportedEvent();
+            var @event = new CsvFileImportedEvent();
             var rows = new List<Row>();
             var plots = new List<Plot>();
             var layout = new ScatterPlotLayout();

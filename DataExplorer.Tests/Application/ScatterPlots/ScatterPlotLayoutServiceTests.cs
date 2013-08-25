@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using DataExplorer.Application.Columns;
 using DataExplorer.Application.Importers;
+using DataExplorer.Application.Importers.CsvFile;
 using DataExplorer.Application.ScatterPlots;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Projects;
@@ -125,7 +126,7 @@ namespace DataExplorer.Tests.Application.ScatterPlots
         [Test]
         public void TestHandleDataImportedEventShouldRaiseLayoutColumnsChangedEvent()
         {
-            var args = new DataImportedEvent();
+            var args = new CsvFileImportedEvent();
             var wasHandled = false;
             _service.LayoutColumnsChangedEvent += (s, e) => { wasHandled = true; };
             _service.Handle(args);

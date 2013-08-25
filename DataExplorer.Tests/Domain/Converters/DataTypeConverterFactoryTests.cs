@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataExplorer.Application.Importers.Converters;
+using DataExplorer.Domain.Converters;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Application.Importers.Converters
+namespace DataExplorer.Tests.Domain.Converters
 {
     [TestFixture]
     public class DataTypeConverterFactoryTests

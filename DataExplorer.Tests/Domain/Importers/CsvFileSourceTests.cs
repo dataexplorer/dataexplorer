@@ -9,7 +9,7 @@ using NUnit.Framework;
 namespace DataExplorer.Tests.Domain.Importers
 {
     [TestFixture]
-    public class CsvFileImporterTests
+    public class CsvFileSourceTests
     {
         private CsvFileSource _source;
 

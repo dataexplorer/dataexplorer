@@ -51,10 +51,27 @@ namespace DataExplorer.Tests.Presentation.Importers
         }
 
         [Test]
+        public void TestCanImportShouldReturnIfImportState()
+        {
+            _mockService.Setup(p => p.CanImport()).Returns(true);
+            var result = _viewModel.ImportCommand.CanExecute(null);
+            Assert.That(result, Is.True);
+        }
+
+        [Test]
         public void TestImportShouldImportData()
         {
             _viewModel.ImportCommand.Execute(null);
             _mockService.Verify(p => p.Import(), Times.Once());
+        }
+
+        [Test]
+        public void TestCanceShouldCloseDialog()
+        {
+            var wasRaised = false;
+            _viewModel.DialogClosed += (s, e) => { wasRaised = true; };
+            _viewModel.CancelCommand.Execute(null);
+            Assert.That(wasRaised, Is.True);
         }
 
         [Test]
@@ -63,6 +80,24 @@ namespace DataExplorer.Tests.Presentation.Importers
             var wasRaised = false;
             _viewModel.PropertyChanged += (sender, args) => { wasRaised = true; };
             _mockService.Raise(p => p.FilePathChanged += null, this, EventArgs.Empty);
+            Assert.That(wasRaised, Is.True);
+        }
+
+        [Test]
+        public void TestHandleFilePathChangedShouldUpdateCanImport()
+        {
+            var wasRaised = false;
+            _viewModel.ImportCommand.CanExecuteChanged += (s, e) => { wasRaised = true; };
+            _mockService.Raise(p => p.FilePathChanged += null, this, EventArgs.Empty);
+            Assert.That(wasRaised, Is.True);
+        }
+
+        [Test]
+        public void TestHandleDataImportedShouldCloseTheDialog()
+        {
+            var wasRaised = false;
+            _viewModel.DialogClosed += (s, e) => { wasRaised = true; };
+            _mockService.Raise(p => p.DataImported += null, this, EventArgs.Empty);
             Assert.That(wasRaised, Is.True);
         }
     }

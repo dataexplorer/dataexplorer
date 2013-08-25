@@ -5,8 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.Events;
-using DataExplorer.Application.Importers.Converters;
 using DataExplorer.Domain.Columns;
+using DataExplorer.Domain.Converters;
 using DataExplorer.Domain.Events;
 using DataExplorer.Domain.Rows;
 using DataExplorer.Domain.Sources;
@@ -14,7 +14,9 @@ using DataExplorer.Persistence.Columns;
 
 namespace DataExplorer.Application.Importers.CsvFile
 {
-    public class CsvFileImportService : ICsvFileImportService, IDomainHandler<CsvFilePathChangedEvent>
+    public class CsvFileImportService : ICsvFileImportService,
+        IDomainHandler<CsvFilePathChangedEvent>,
+        IAppHandler<CsvFileImportedEvent>
     {
         private readonly ISourceRepository _repository;
         private readonly ICsvFileAdapter _adapter;
@@ -23,6 +25,7 @@ namespace DataExplorer.Application.Importers.CsvFile
         private readonly IColumnRepository _columnRepository;
 
         public event FilePathChangedEvent FilePathChanged;
+        public event DataImportedEvent DataImported;
 
         public CsvFileImportService(
             ISourceRepository repository,
@@ -50,6 +53,13 @@ namespace DataExplorer.Application.Importers.CsvFile
             var importer = _repository.GetSource<CsvFileSource>();
 
             importer.FilePath = filePath;
+        }
+
+        public bool CanImport()
+        {
+            var source = _repository.GetSource<CsvFileSource>();
+
+            return !String.IsNullOrEmpty(source.FilePath);
         }
 
         public void Import()
@@ -81,20 +91,28 @@ namespace DataExplorer.Application.Importers.CsvFile
                 var dataColumn = dataColumns[i];
 
                 var values = _rowRepository.GetAll()
-                    .Select(p => p[i]).ToList();
+                    .Select(p => p[i])
+                    .OrderBy(p => p)
+                    .ToList();
 
                 var column = new Column(i + 1, i, dataColumn.ColumnName, dataColumn.DataType, values);
 
                 _columnRepository.Add(column);
             }
             
-            AppEvents.Raise(new DataImportedEvent());
+            AppEvents.Raise(new CsvFileImportedEvent());
         }
 
         public void Handle(CsvFilePathChangedEvent args)
         {
             if (FilePathChanged != null)
                 FilePathChanged(this, EventArgs.Empty);
+        }
+
+        public void Handle(CsvFileImportedEvent args)
+        {
+            if (DataImported != null)
+                DataImported(this, EventArgs.Empty);
         }
     }
 }

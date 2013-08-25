@@ -2,9 +2,9 @@
 using System.Data;
 using DataExplorer.Application.Events;
 using DataExplorer.Application.Importers;
-using DataExplorer.Application.Importers.Converters;
 using DataExplorer.Application.Importers.CsvFile;
 using DataExplorer.Domain.Columns;
+using DataExplorer.Domain.Converters;
 using DataExplorer.Domain.Rows;
 using DataExplorer.Domain.Sources;
 using DataExplorer.Persistence.Columns;
@@ -49,7 +49,7 @@ namespace DataExplorer.Tests.Application.Importers.CsvFile
             var result = _service.GetFilePath();
             Assert.That(result, Is.EqualTo(@"C:\Test.xml"));
         }
-        
+
         [Test]
         public void TestSetFilePathShouldSetFilePathOfImporter()
         {
@@ -57,17 +57,35 @@ namespace DataExplorer.Tests.Application.Importers.CsvFile
             _service.SetFilePath(@"C:\Test.csv");
             Assert.That(_source.FilePath, Is.EqualTo(@"C:\Test.csv"));
         }
-
+        
         [Test]
-        public void TestHandleCsvFilePathChangedEventShouldRaiseFilePathChangedEvent()
+        public void TestCanImportShouldReturnTrueIfFilePathExists()
         {
-            var wasRaised = false;
-            _service.FilePathChanged += (sender, args) => { wasRaised = true; };
-            _service.Handle(new CsvFilePathChangedEvent());
-            Assert.That(wasRaised, Is.True);
+            _source.FilePath = @"C:\Test.csv";
+            _mockRepository.Setup(p => p.GetSource<CsvFileSource>()).Returns(_source);
+            var result = _service.CanImport();
+            Assert.That(result, Is.True);
         }
 
-        // TODO: Should I separate testing data being added to repository and event being raised?
+        [Test]
+        public void TestCanImportShouldReturnFalseIfFilePathIsNull()
+        {
+            _source.FilePath = null;
+            _mockRepository.Setup(p => p.GetSource<CsvFileSource>()).Returns(_source);
+            var result = _service.CanImport();
+            Assert.That(result, Is.False);
+        }
+
+        [Test]
+        public void TestCanImportShouldReturnFalseIfFilePathIsEmpty()
+        {
+            _source.FilePath = string.Empty;
+            _mockRepository.Setup(p => p.GetSource<CsvFileSource>()).Returns(_source);
+            var result = _service.CanImport();
+            Assert.That(result, Is.False);
+        }
+
+    // TODO: Should I separate testing data being added to repository and event being raised?
         [Test]
         public void TestImportShouldImportData()
         {
@@ -84,12 +102,30 @@ namespace DataExplorer.Tests.Application.Importers.CsvFile
             _mockFactory.Setup(p => p.Create(typeof(string), typeof(string))).Returns(new PassThroughConverter());
             _mockRowRepository.Setup(p => p.Add(It.IsAny<Row>())).Callback<Row>(p => rows.Add(p));
             _mockRowRepository.Setup(p => p.GetAll()).Returns(rows);
-            AppEvents.Register<DataImportedEvent>(p => { wasRaised = true; });
+            AppEvents.Register<CsvFileImportedEvent>(p => { wasRaised = true; });
             _service.Import();
             _mockColumnRepository.Verify(p => p.Add(It.IsAny<Column>()), Times.Once());
             _mockRowRepository.Verify(p => p.Add(It.IsAny<Row>()), Times.Once());
             Assert.That(wasRaised, Is.True);
             AppEvents.ClearHandlers();
+        }
+
+        [Test]
+        public void TestHandleCsvFilePathChangedEventShouldRaiseFilePathChangedEvent()
+        {
+            var wasRaised = false;
+            _service.FilePathChanged += (sender, args) => { wasRaised = true; };
+            _service.Handle(new CsvFilePathChangedEvent());
+            Assert.That(wasRaised, Is.True);
+        }
+
+        [Test]
+        public void TestHandleCsvFileImportedEventShouldRaiseDataImportedEvent()
+        {
+            var wasRaised = false;
+            _service.DataImported += (sender, args) => { wasRaised = true; };
+            _service.Handle(new CsvFileImportedEvent());
+            Assert.That(wasRaised, Is.True);
         }
     }
 }

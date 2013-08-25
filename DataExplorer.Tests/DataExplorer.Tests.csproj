@@ -56,16 +56,16 @@
   <ItemGroup>
     <Compile Include="Application\Application\ApplicationServiceTests.cs" />
     <Compile Include="Application\Columns\ColumnAdapterTests.cs" />
-    <Compile Include="Application\Importers\Converters\DataTypeConverterFactoryTests.cs" />
-    <Compile Include="Application\Importers\Converters\PassThroughConverterTests.cs" />
-    <Compile Include="Application\Importers\Converters\StringToBooleanConverterTests.cs" />
-    <Compile Include="Application\Importers\Converters\StringToDateTimeConverterTests.cs" />
-    <Compile Include="Application\Importers\Converters\StringToFloatConverterTests.cs" />
-    <Compile Include="Application\Importers\Converters\StringToIntegerConverterTest.cs" />
+    <Compile Include="Domain\Converters\DataTypeConverterFactoryTests.cs" />
+    <Compile Include="Domain\Converters\PassThroughConverterTests.cs" />
+    <Compile Include="Domain\Converters\StringToBooleanConverterTests.cs" />
+    <Compile Include="Domain\Converters\StringToDateTimeConverterTests.cs" />
+    <Compile Include="Domain\Converters\StringToFloatConverterTests.cs" />
+    <Compile Include="Domain\Converters\StringToIntegerConverterTest.cs" />
     <Compile Include="Application\Importers\CsvFile\CsvFileAdapterTests.cs" />
     <Compile Include="Application\Importers\CsvFile\CsvFileImportServiceTests.cs" />
     <Compile Include="Application\Importers\DataTypeDetectorTests.cs" />
-    <Compile Include="Domain\Importers\CsvFileImporterTests.cs" />
+    <Compile Include="Domain\Importers\CsvFileSourceTests.cs" />
     <Compile Include="Persistence\Sources\SourceRepositoryTests.cs" />
     <Compile Include="Presentation\Dialogs\DialogServiceTests.cs" />
     <Compile Include="Application\Projects\ProjectServiceTests.cs" />
