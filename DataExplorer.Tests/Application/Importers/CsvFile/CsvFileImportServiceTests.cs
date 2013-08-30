@@ -7,6 +7,7 @@ using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Converters;
 using DataExplorer.Domain.Rows;
 using DataExplorer.Domain.Sources;
+using DataExplorer.Persistence;
 using DataExplorer.Persistence.Columns;
 using Moq;
 using NUnit.Framework;
@@ -22,6 +23,7 @@ namespace DataExplorer.Tests.Application.Importers.CsvFile
         private Mock<ISourceRepository> _mockRepository;
         private Mock<IRowRepository> _mockRowRepository;
         private Mock<IColumnRepository> _mockColumnRepository;
+        private Mock<IDataContext> _mockDataContext;
         private CsvFileSource _source;
 
         [SetUp]
@@ -33,12 +35,14 @@ namespace DataExplorer.Tests.Application.Importers.CsvFile
             _mockRepository = new Mock<ISourceRepository>();
             _mockRowRepository = new Mock<IRowRepository>();
             _mockColumnRepository = new Mock<IColumnRepository>();
+            _mockDataContext = new Mock<IDataContext>();
             _service = new CsvFileImportService(
                 _mockRepository.Object,
                 _mockAdapter.Object,
                 _mockFactory.Object,
                 _mockRowRepository.Object,
-                _mockColumnRepository.Object);
+                _mockColumnRepository.Object,
+                _mockDataContext.Object);
         }
 
         [Test]
@@ -85,7 +89,7 @@ namespace DataExplorer.Tests.Application.Importers.CsvFile
             Assert.That(result, Is.False);
         }
 
-    // TODO: Should I separate testing data being added to repository and event being raised?
+        // TODO: Should I separate testing data being added to repository and event being raised?
         [Test]
         public void TestImportShouldImportData()
         {
@@ -104,6 +108,8 @@ namespace DataExplorer.Tests.Application.Importers.CsvFile
             _mockRowRepository.Setup(p => p.GetAll()).Returns(rows);
             AppEvents.Register<CsvFileImportedEvent>(p => { wasRaised = true; });
             _service.Import();
+            _mockDataContext.Verify(p => p.Clear(), Times.Once());
+            _mockRepository.Verify(p => p.SetSource(_source), Times.Once());
             _mockColumnRepository.Verify(p => p.Add(It.IsAny<Column>()), Times.Once());
             _mockRowRepository.Verify(p => p.Add(It.IsAny<Row>()), Times.Once());
             Assert.That(wasRaised, Is.True);

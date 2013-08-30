@@ -10,6 +10,7 @@ using DataExplorer.Domain.Converters;
 using DataExplorer.Domain.Events;
 using DataExplorer.Domain.Rows;
 using DataExplorer.Domain.Sources;
+using DataExplorer.Persistence;
 using DataExplorer.Persistence.Columns;
 
 namespace DataExplorer.Application.Importers.CsvFile
@@ -23,6 +24,7 @@ namespace DataExplorer.Application.Importers.CsvFile
         private readonly IDataTypeConverterFactory _converterFactory;
         private readonly IRowRepository _rowRepository;
         private readonly IColumnRepository _columnRepository;
+        private readonly IDataContext _dataContext;
 
         public event FilePathChangedEvent FilePathChanged;
         public event DataImportedEvent DataImported;
@@ -32,13 +34,15 @@ namespace DataExplorer.Application.Importers.CsvFile
             ICsvFileAdapter adapter,
             IDataTypeConverterFactory converterFactory,
             IRowRepository rowRepository,
-            IColumnRepository columnRepository)
+            IColumnRepository columnRepository,
+            IDataContext dataContext)
         {
             _repository = repository;
             _adapter = adapter;
             _converterFactory = converterFactory;
             _rowRepository = rowRepository;
             _columnRepository = columnRepository;
+            _dataContext = dataContext;
         }
 
         public string GetFilePath()
@@ -65,6 +69,10 @@ namespace DataExplorer.Application.Importers.CsvFile
         public void Import()
         {
             var source = _repository.GetSource<CsvFileSource>();
+
+            _dataContext.Clear();
+
+            _repository.SetSource(source);
 
             var dataColumns = _adapter.GetDataColumns(source);
 
