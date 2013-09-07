@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.Events;
 
-namespace DataExplorer.Application.Importers.CsvFile
+namespace DataExplorer.Application.Importers.CsvFile.Events
 {
-    public class CsvFileImportingEvent : IAppEvent
+    public class CsvFilePathChangedAppEvent : IAppEvent
     {
     }
 }

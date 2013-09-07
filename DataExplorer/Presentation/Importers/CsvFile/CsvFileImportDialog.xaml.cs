@@ -30,10 +30,10 @@ namespace DataExplorer.Presentation.Importers.CsvFile
         private void HandleDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if (e.OldValue is ICsvFileImportViewModel)
-                ((ICsvFileImportViewModel)e.NewValue).DialogClosed -= HandleDialogClosed;
+                ((ICsvFileImportViewModel)e.NewValue).FooterViewModel.DialogClosed -= HandleDialogClosed;
 
             if (e.NewValue is ICsvFileImportViewModel)
-                ((ICsvFileImportViewModel) e.NewValue).DialogClosed += HandleDialogClosed;
+                ((ICsvFileImportViewModel) e.NewValue).FooterViewModel.DialogClosed += HandleDialogClosed;
             
         }
 

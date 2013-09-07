@@ -10,18 +10,8 @@ namespace DataExplorer.Presentation.Importers.CsvFile
 {
     public interface ICsvFileImportViewModel
     {
-        event DialogClosedEvent DialogClosed;
+        ICsvFileImportHeaderViewModel HeaderViewModel { get; }
 
-        string FilePath { get; set; }
-        
-        ICommand BrowseCommand { get; }
-        
-        ICommand ImportCommand { get; }
-        
-        ICommand CancelCommand { get; }
-
-        bool IsProgressBarVisible { get; }
-
-        double Progress { get; }
+        ICsvFileImportFooterViewModel FooterViewModel { get; }
     }
 }

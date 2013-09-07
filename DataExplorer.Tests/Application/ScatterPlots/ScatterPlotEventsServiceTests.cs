@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using DataExplorer.Application.Importers;
 using DataExplorer.Application.Importers.CsvFile;
+using DataExplorer.Application.Importers.CsvFile.Events;
 using DataExplorer.Application.ScatterPlots;
 using DataExplorer.Domain.Events;
 using DataExplorer.Domain.Projects;

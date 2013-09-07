@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DataExplorer.Application.Events;
 using DataExplorer.Application.Importers;
 using DataExplorer.Application.Importers.CsvFile;
+using DataExplorer.Application.Importers.CsvFile.Events;
 using DataExplorer.Domain.Events;
 using DataExplorer.Domain.Projects;
 using DataExplorer.Domain.Rows;

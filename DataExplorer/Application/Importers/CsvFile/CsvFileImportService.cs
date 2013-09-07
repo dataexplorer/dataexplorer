@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.Events;
+using DataExplorer.Application.Importers.CsvFile.Events;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Converters;
 using DataExplorer.Domain.Events;
@@ -15,12 +16,9 @@ using DataExplorer.Persistence.Columns;
 
 namespace DataExplorer.Application.Importers.CsvFile
 {
-    public class CsvFileImportService : ICsvFileImportService,
-        IDomainHandler<CsvFilePathChangedEvent>,
-        IAppHandler<CsvFileImportingEvent>,
-        IAppHandler<CsvFileImportedEvent>,
-        IAppHandler<CsvFileImportProgressChangedEvent>
-
+    public class CsvFileImportService :
+        ICsvFileImportService, 
+        IDomainHandler<CsvFilePathChangedEvent>
     {
         private readonly ISourceRepository _repository;
         private readonly ICsvFileAdapter _adapter;
@@ -28,11 +26,6 @@ namespace DataExplorer.Application.Importers.CsvFile
         private readonly IRowRepository _rowRepository;
         private readonly IColumnRepository _columnRepository;
         private readonly IDataContext _dataContext;
-
-        public event FilePathChangedEvent FilePathChanged;
-        public event DataImportingEvent DataImporting;
-        public event DataImportedEvent DataImported;
-        public event DataImportProgressChangedEvent DataImportProgressChanged;
 
         public CsvFileImportService(
             ISourceRepository repository,
@@ -131,26 +124,7 @@ namespace DataExplorer.Application.Importers.CsvFile
 
         public void Handle(CsvFilePathChangedEvent args)
         {
-            if (FilePathChanged != null)
-                FilePathChanged(this, EventArgs.Empty);
-        }
-
-        public void Handle(CsvFileImportingEvent args)
-        {
-            if (DataImporting != null)
-                DataImporting(this, EventArgs.Empty);
-        }
-
-        public void Handle(CsvFileImportedEvent args)
-        {
-            if (DataImported != null)
-                DataImported(this, EventArgs.Empty);
-        }
-
-        public void Handle(CsvFileImportProgressChangedEvent args)
-        {
-            if (DataImportProgressChanged != null)
-                DataImportProgressChanged(this, new DataImportProgressChangedEventArgs(args.Progress));
+            AppEvents.Raise(new CsvFilePathChangedAppEvent());
         }
     }
 }

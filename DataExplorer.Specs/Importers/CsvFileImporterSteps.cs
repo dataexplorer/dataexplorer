@@ -50,7 +50,7 @@ namespace DataExplorer.Specs.Importers
         [When(@"I import the CSV file source")]
         public void WhenIImportTheCSVFileSource()
         {
-            _context.CsvFileImportViewModel.ImportCommand.Execute(null);
+            _context.CsvFileImportViewModel.FooterViewModel.ImportCommand.Execute(null);
         }
 
         [Then(@"the CSV file column is added to the repository")]

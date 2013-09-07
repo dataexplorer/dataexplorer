@@ -57,7 +57,6 @@
     <Compile Include="Application\Application\ApplicationServiceTests.cs" />
     <Compile Include="Application\Columns\ColumnAdapterTests.cs" />
     <Compile Include="Application\Importers\CsvFile\CsvFileImportProgressChangedEventTests.cs" />
-    <Compile Include="Application\Importers\CsvFile\DataImportProgressChangedEventArgsTests.cs" />
     <Compile Include="Domain\Converters\DataTypeConverterFactoryTests.cs" />
     <Compile Include="Domain\Converters\PassThroughConverterTests.cs" />
     <Compile Include="Domain\Converters\StringToBooleanConverterTests.cs" />
@@ -103,6 +102,8 @@
     <Compile Include="Presentation\Core\VisualServiceTests.cs" />
     <Compile Include="Presentation\Core\Geometry\GeometryCalculatorTests.cs" />
     <Compile Include="Presentation\Core\Geometry\GeometryFactoryTests.cs" />
+    <Compile Include="Presentation\Importers\Footer\CsvFileImportFooterViewModelTests.cs" />
+    <Compile Include="Presentation\Importers\Header\CsvFileImportHeaderViewModelTests.cs" />
     <Compile Include="Presentation\Importers\CsvFileImportViewModelTests.cs" />
     <Compile Include="Presentation\Panes\Layout\LayoutPaneViewModelTests.cs" />
     <Compile Include="Presentation\Panes\Viewer\ViewerPaneViewModelTests.cs" />

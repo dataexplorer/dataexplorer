@@ -3,6 +3,7 @@ using System.Data;
 using DataExplorer.Application.Events;
 using DataExplorer.Application.Importers;
 using DataExplorer.Application.Importers.CsvFile;
+using DataExplorer.Application.Importers.CsvFile.Events;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Converters;
 using DataExplorer.Domain.Rows;
@@ -126,17 +127,8 @@ namespace DataExplorer.Tests.Application.Importers.CsvFile
         public void TestHandleCsvFilePathChangedEventShouldRaiseFilePathChangedEvent()
         {
             var wasRaised = false;
-            _service.FilePathChanged += (sender, args) => { wasRaised = true; };
+            AppEvents.Register<CsvFilePathChangedAppEvent>((e) => { wasRaised = true; });
             _service.Handle(new CsvFilePathChangedEvent());
-            Assert.That(wasRaised, Is.True);
-        }
-
-        [Test]
-        public void TestHandleCsvFileImportedEventShouldRaiseDataImportedEvent()
-        {
-            var wasRaised = false;
-            _service.DataImported += (sender, args) => { wasRaised = true; };
-            _service.Handle(new CsvFileImportedEvent());
             Assert.That(wasRaised, Is.True);
         }
     }
