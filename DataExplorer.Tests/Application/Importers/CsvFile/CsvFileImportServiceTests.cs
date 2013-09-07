@@ -89,30 +89,36 @@ namespace DataExplorer.Tests.Application.Importers.CsvFile
             Assert.That(result, Is.False);
         }
 
-        // TODO: Should I separate testing data being added to repository and event being raised?
+        // TODO: This needs to be separated when I extract this logic into separate components
         [Test]
         public void TestImportShouldImportData()
         {
-            var wasRaised = true;
+            var wasImportingEventRaised = false;
+            var wasImportedEventRaised = false;
+            var wasProgressChangedEventRaised = false;
             var column = new DataColumn("Column 1", typeof(string));
             var columns = new List<DataColumn> { column };
             var dataTable = new DataTable();
             var rows = new List<Row>();
             dataTable.Columns.Add(column);
             dataTable.Rows.Add("Row 1");
+            AppEvents.Register<CsvFileImportingEvent>(p => { wasImportingEventRaised = true; });
             _mockRepository.Setup(p => p.GetSource<CsvFileSource>()).Returns(_source);
             _mockAdapter.Setup(p => p.GetDataColumns(_source)).Returns(columns);
             _mockAdapter.Setup(p => p.GetDataTable(_source)).Returns(dataTable);
             _mockFactory.Setup(p => p.Create(typeof(string), typeof(string))).Returns(new PassThroughConverter());
             _mockRowRepository.Setup(p => p.Add(It.IsAny<Row>())).Callback<Row>(p => rows.Add(p));
             _mockRowRepository.Setup(p => p.GetAll()).Returns(rows);
-            AppEvents.Register<CsvFileImportedEvent>(p => { wasRaised = true; });
+            AppEvents.Register<CsvFileImportProgressChangedEvent>(p => { wasProgressChangedEventRaised = true; });
+            AppEvents.Register<CsvFileImportedEvent>(p => { wasImportedEventRaised = true; });
             _service.Import();
+            Assert.That(wasImportingEventRaised, Is.True);
             _mockDataContext.Verify(p => p.Clear(), Times.Once());
             _mockRepository.Verify(p => p.SetSource(_source), Times.Once());
             _mockColumnRepository.Verify(p => p.Add(It.IsAny<Column>()), Times.Once());
             _mockRowRepository.Verify(p => p.Add(It.IsAny<Row>()), Times.Once());
-            Assert.That(wasRaised, Is.True);
+            Assert.That(wasProgressChangedEventRaised, Is.True);
+            Assert.That(wasImportedEventRaised, Is.True);
             AppEvents.ClearHandlers();
         }
 

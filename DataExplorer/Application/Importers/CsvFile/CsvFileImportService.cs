@@ -17,7 +17,10 @@ namespace DataExplorer.Application.Importers.CsvFile
 {
     public class CsvFileImportService : ICsvFileImportService,
         IDomainHandler<CsvFilePathChangedEvent>,
-        IAppHandler<CsvFileImportedEvent>
+        IAppHandler<CsvFileImportingEvent>,
+        IAppHandler<CsvFileImportedEvent>,
+        IAppHandler<CsvFileImportProgressChangedEvent>
+
     {
         private readonly ISourceRepository _repository;
         private readonly ICsvFileAdapter _adapter;
@@ -27,7 +30,9 @@ namespace DataExplorer.Application.Importers.CsvFile
         private readonly IDataContext _dataContext;
 
         public event FilePathChangedEvent FilePathChanged;
+        public event DataImportingEvent DataImporting;
         public event DataImportedEvent DataImported;
+        public event DataImportProgressChangedEvent DataImportProgressChanged;
 
         public CsvFileImportService(
             ISourceRepository repository,
@@ -68,6 +73,8 @@ namespace DataExplorer.Application.Importers.CsvFile
 
         public void Import()
         {
+            AppEvents.Raise(new CsvFileImportingEvent());
+
             var source = _repository.GetSource<CsvFileSource>();
 
             _dataContext.Clear();
@@ -83,14 +90,20 @@ namespace DataExplorer.Application.Importers.CsvFile
                 .ToList();
 
             // TODO: Move into separate component
-            foreach (DataRow dataRow in dataTable.Rows)
+            for (int i = 0; i < dataTable.Rows.Count; i++)
             {
+                var dataRow = dataTable.Rows[i];
+
                 var row = new Row(dataColumns.Count);
 
-                for (int i = 0; i < dataColumns.Count; i++)
-                    row[i] = converters[i].Convert(dataRow[i]);
+                for (int j = 0; j < dataColumns.Count; j++)
+                    row[j] = converters[j].Convert(dataRow[j]);
                 
                 _rowRepository.Add(row);
+
+                var progress = (i + 1) / (double) dataTable.Rows.Count;
+
+                AppEvents.Raise(new CsvFileImportProgressChangedEvent(progress));
             }
 
             // TODO: Move into separate component
@@ -111,16 +124,33 @@ namespace DataExplorer.Application.Importers.CsvFile
             AppEvents.Raise(new CsvFileImportedEvent());
         }
 
+        public bool IsImporting()
+        {
+            throw new NotImplementedException();
+        }
+
         public void Handle(CsvFilePathChangedEvent args)
         {
             if (FilePathChanged != null)
                 FilePathChanged(this, EventArgs.Empty);
         }
 
+        public void Handle(CsvFileImportingEvent args)
+        {
+            if (DataImporting != null)
+                DataImporting(this, EventArgs.Empty);
+        }
+
         public void Handle(CsvFileImportedEvent args)
         {
             if (DataImported != null)
                 DataImported(this, EventArgs.Empty);
+        }
+
+        public void Handle(CsvFileImportProgressChangedEvent args)
+        {
+            if (DataImportProgressChanged != null)
+                DataImportProgressChanged(this, new DataImportProgressChangedEventArgs(args.Progress));
         }
     }
 }

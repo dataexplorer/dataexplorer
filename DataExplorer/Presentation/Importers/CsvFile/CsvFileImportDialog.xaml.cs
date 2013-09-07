@@ -39,6 +39,12 @@ namespace DataExplorer.Presentation.Importers.CsvFile
 
         private void HandleDialogClosed(object sender, EventArgs eventArgs)
         {
+            if (System.Windows.Threading.Dispatcher.CurrentDispatcher.Thread.IsBackground)
+            {
+                base.Dispatcher.Invoke(() => HandleDialogClosed(sender, eventArgs));
+                return;
+            }
+
             this.Close();
         }
     }

@@ -21,7 +21,10 @@ namespace DataExplorer.Presentation.Importers.CsvFile
         private readonly DelegateCommand _browseCommand;
         private readonly DelegateCommand _importCommand;
         private readonly DelegateCommand _cancelCommand;
-        
+
+        private bool _isImporting;
+        private double _progress;
+
         public event DialogClosedEvent DialogClosed;
 
         public string FilePath
@@ -41,9 +44,14 @@ namespace DataExplorer.Presentation.Importers.CsvFile
             _cancelCommand = new DelegateCommand(Cancel);
 
             _service.FilePathChanged += HandleFilePathChanged;
+            _service.DataImporting += HandleDataImporting;
             _service.DataImported += HandleDataImported;
-        }
+            _service.DataImportProgressChanged += HandleDataImportProgressChanged;
 
+            _isImporting = false;
+            _progress = 0;
+        }
+        
         public ICommand BrowseCommand
         {
             get { return _browseCommand; }
@@ -59,11 +67,22 @@ namespace DataExplorer.Presentation.Importers.CsvFile
             get { return _cancelCommand; }
         }
 
+        public bool IsProgressBarVisible
+        {
+            get { return _isImporting; }
+        }
+
+        public double Progress
+        {
+            get { return _progress; }
+        }
+
         private void Browse(object parameter)
         {
             var dialog = _dialogFactory.CreateOpenFileDialog();
             dialog.SetDefaultExtension(DefaultFileExtension);
             dialog.SetFilter(FileFilter);
+
             var result = dialog.ShowDialog();
 
             if (result == true)
@@ -77,7 +96,7 @@ namespace DataExplorer.Presentation.Importers.CsvFile
 
         private void Import(object obj)
         {
-            _service.Import();
+            Task.Run(() => _service.Import()).Wait();
         }
 
         private void Cancel(object obj)
@@ -89,13 +108,40 @@ namespace DataExplorer.Presentation.Importers.CsvFile
         private void HandleFilePathChanged(object sender, EventArgs e)
         {
             OnPropertyChanged(() => FilePath);
+            
             _importCommand.RaiseCanExecuteChanged();
+        }
+
+        private void HandleDataImporting(object sender, EventArgs e)
+        {
+            _isImporting = true;
+
+            _progress = 0;
+
+            OnPropertyChanged(() => IsProgressBarVisible);
+
+            OnPropertyChanged(() => Progress);
         }
 
         private void HandleDataImported(object sender, EventArgs e)
         {
+            _isImporting = false;
+
+            _progress = 0;
+
+            OnPropertyChanged(() => IsProgressBarVisible);
+
+            OnPropertyChanged(() => Progress);
+
             if (DialogClosed != null)
                 DialogClosed(this, EventArgs.Empty);
+        }
+
+        private void HandleDataImportProgressChanged(object sender, DataImportProgressChangedEventArgs e)
+        {
+            _progress = e.Progress;
+
+            OnPropertyChanged(() => Progress);
         }
     }
 }

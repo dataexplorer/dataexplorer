@@ -10,7 +10,11 @@ namespace DataExplorer.Application.Importers.CsvFile
     {
         event FilePathChangedEvent FilePathChanged;
 
+        event DataImportingEvent DataImporting;
+
         event DataImportedEvent DataImported;
+
+        event DataImportProgressChangedEvent DataImportProgressChanged;
 
         string GetFilePath();
 
@@ -19,5 +23,7 @@ namespace DataExplorer.Application.Importers.CsvFile
         bool CanImport();
 
         void Import();
+        
+        bool IsImporting();
     }
 }

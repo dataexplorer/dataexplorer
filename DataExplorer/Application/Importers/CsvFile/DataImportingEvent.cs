@@ -4,9 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataExplorer.Domain.Events
+namespace DataExplorer.Application.Importers.CsvFile
 {
-    public interface IDomainEvent
-    {
-    }
+    public delegate void DataImportingEvent(object sender, EventArgs e);
 }

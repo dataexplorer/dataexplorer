@@ -30,8 +30,8 @@ namespace DataExplorer.Application.Events
                     handler.Handle(args);
 
             if (_handlers != null)
-                foreach (var handler in _handlers)
-                    ((Action<T>)handler)(args);
+                foreach (var handler in _handlers.OfType<Action<T>>())
+                    handler(args);
         }
 
         public static void ClearHandlers()

@@ -19,5 +19,9 @@ namespace DataExplorer.Presentation.Importers.CsvFile
         ICommand ImportCommand { get; }
         
         ICommand CancelCommand { get; }
+
+        bool IsProgressBarVisible { get; }
+
+        double Progress { get; }
     }
 }

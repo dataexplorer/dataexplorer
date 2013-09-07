@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataExplorer.Application.Events;
 
-namespace DataExplorer.Domain.Events
+namespace DataExplorer.Application.Importers.CsvFile
 {
-    public interface IDomainEvent
+    public class CsvFileImportingEvent : IAppEvent
     {
     }
 }

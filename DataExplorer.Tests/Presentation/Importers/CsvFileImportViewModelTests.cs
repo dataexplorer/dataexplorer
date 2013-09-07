@@ -93,6 +93,68 @@ namespace DataExplorer.Tests.Presentation.Importers
         }
 
         [Test]
+        public void TestHandleDataImportingShouldUpdateIsProgressBarVisible()
+        {
+            _mockService.Raise(p => p.DataImporting += null, this, EventArgs.Empty);
+            Assert.That(_viewModel.IsProgressBarVisible, Is.True);
+        }
+
+        [Test]
+        public void TestHandleDataImportingShouldSetProgressToZero()
+        {
+            _mockService.Raise(p => p.DataImporting += null, this, EventArgs.Empty);
+            Assert.That(_viewModel.Progress, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void TestHandleDataImportingShouldNotifyIsProgressBarVisibleChanged()
+        {
+            var wasRaised = false;
+            _viewModel.PropertyChanged += (s, e) => { wasRaised = (e.PropertyName == "IsProgressBarVisible"); };
+            _mockService.Raise(p => p.DataImporting += null, this, EventArgs.Empty);
+        }
+
+        [Test]
+        public void TestHandleDataImportingShouldNotifyProgressChanged()
+        {
+            var wasRaised = false;
+            _viewModel.PropertyChanged += (s, e) => { wasRaised = (e.PropertyName == "Progress"); };
+            _mockService.Raise(p => p.DataImporting += null, this, EventArgs.Empty);
+        }
+
+        [Test]
+        public void TestHandlDataImportedShouldUpdateIsProgressBarVisible()
+        {
+            _mockService.Raise(p => p.DataImported += null, this, EventArgs.Empty);
+            Assert.That(_viewModel.IsProgressBarVisible, Is.False);
+        }
+
+        [Test]
+        public void TestHandleDataImportedShouldSetProgressToZero()
+        {
+            _mockService.Raise(p => p.DataImported += null, this, EventArgs.Empty);
+            Assert.That(_viewModel.Progress, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void TestHandlDataImportedShouldNotifyIsProgressBarVisibleChanged()
+        {
+            var wasRaised = false;
+            _viewModel.PropertyChanged += (s, e) => 
+                { if (e.PropertyName == "IsProgressBarVisible") wasRaised = true; };
+            _mockService.Raise(p => p.DataImported += null, this, EventArgs.Empty);
+            Assert.That(wasRaised, Is.True);
+        }
+
+        [Test]
+        public void TestHandleDataImportedShouldNotifyProgressChanged()
+        {
+            var wasRaised = false;
+            _viewModel.PropertyChanged += (s, e) => { wasRaised = (e.PropertyName == "Progress"); };
+            _mockService.Raise(p => p.DataImported += null, this, EventArgs.Empty);
+        }
+
+        [Test]
         public void TestHandleDataImportedShouldCloseTheDialog()
         {
             var wasRaised = false;
@@ -100,5 +162,32 @@ namespace DataExplorer.Tests.Presentation.Importers
             _mockService.Raise(p => p.DataImported += null, this, EventArgs.Empty);
             Assert.That(wasRaised, Is.True);
         }
+
+        [Test]
+        public void TestHandleDataImportProgressChangedShouldUpdateProgress()
+        {
+            var args = new DataImportProgressChangedEventArgs(50);
+            _mockService.Raise(p => p.DataImportProgressChanged += null, this, args);
+            Assert.That(_viewModel.Progress, Is.EqualTo(50));
+        }
+
+
+        [Test]
+        public void TestHandleDataImportProgressChangedShouldNotifyProgressChanged()
+        {
+            var wasRaised = false;
+            _viewModel.PropertyChanged += (s, e) => { wasRaised = (e.PropertyName == "Progress"); };
+            var args = new DataImportProgressChangedEventArgs(50);
+            _mockService.Raise(p => p.DataImportProgressChanged += null, this, args);
+            Assert.That(wasRaised, Is.True);
+        }
+
+        //[Test]
+        //public void TestIsProgressBarVisibleShouldReturnIsImporting()
+        //{
+        //    _mockService.Setup(p => p.IsImporting()).Returns(true);
+        //    var result = _viewModel.IsProgressBarVisible;
+        //    Assert.That(result, Is.True);
+        //}
     }
 }

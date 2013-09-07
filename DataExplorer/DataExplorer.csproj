@@ -84,7 +84,12 @@
     <Compile Include="Application\Events\AppEvents.cs" />
     <Compile Include="Application\Events\IAppEvent.cs" />
     <Compile Include="Application\Events\IAppHandler.cs" />
+    <Compile Include="Application\Importers\CsvFile\CsvFileImportingEvent.cs" />
+    <Compile Include="Application\Importers\CsvFile\CsvFileImportProgressChangedEvent.cs" />
     <Compile Include="Application\Importers\CsvFile\DataImportedEvent.cs" />
+    <Compile Include="Application\Importers\CsvFile\DataImportingEvent.cs" />
+    <Compile Include="Application\Importers\CsvFile\DataImportProgressChangedEvent.cs" />
+    <Compile Include="Application\Importers\CsvFile\DataImportProgressChangedEventArgs.cs" />
     <Compile Include="Domain\Converters\PassThroughConverter.cs" />
     <Compile Include="Domain\Converters\StringToBooleanConverter.cs" />
     <Compile Include="Domain\Converters\StringToDateTimeConverter.cs" />

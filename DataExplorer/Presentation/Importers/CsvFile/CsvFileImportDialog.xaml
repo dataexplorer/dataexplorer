@@ -58,7 +58,7 @@
                 Grid.Column="0"
                 Margin="0,7,0,0"
                 Height="23"
-                Visibility="{Binding IsImporting, Converter={StaticResource BooleanToVisibilityConverter}}"
+                Visibility="{Binding IsProgressBarVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
                 Maximum="1"
                 Value="{Binding Progress, Mode=OneWay}" />
             <Button 
