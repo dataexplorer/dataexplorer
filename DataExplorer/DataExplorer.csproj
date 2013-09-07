@@ -116,6 +116,7 @@
     <Compile Include="Domain\Sources\SourceFactory.cs" />
     <Compile Include="Domain\Views\IView.cs" />
     <Compile Include="Persistence\Sources\SourceRepository.cs" />
+    <Compile Include="Presentation\Core\Commands\AsyncDelegateCommand.cs" />
     <Compile Include="Presentation\Core\Events\DialogClosedEvent.cs" />
     <Compile Include="Presentation\Dialogs\DialogService.cs" />
     <Compile Include="Presentation\Dialogs\IDialogService.cs" />
@@ -175,7 +176,7 @@
       <DependentUpon>CsvFileImportDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Presentation\Core\BaseViewModel.cs" />
-    <Compile Include="Presentation\Core\DelegateCommand.cs" />
+    <Compile Include="Presentation\Core\Commands\DelegateCommand.cs" />
     <Compile Include="Presentation\Core\DependencyPropertyService.cs" />
     <Compile Include="Presentation\Core\Layout\LayoutItemViewModel.cs" />
     <Compile Include="Presentation\Core\VisualService.cs" />

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Threading;
 using DataExplorer.Application.Application;
 using DataExplorer.Presentation.Importers.CsvFile;
 
@@ -27,6 +28,12 @@ namespace DataExplorer.Presentation.Dialogs
 
         public void ShowImportDialog()
         {
+            if (Dispatcher.CurrentDispatcher.Thread.IsBackground)
+            {
+                Dispatcher.CurrentDispatcher.Invoke(ShowImportDialog);
+                return;
+            }
+
             var dialog = _factory.CreateImportCsvFileDialog();
             dialog.DataContext = _csvFileImportViewModel;
             dialog.Owner = _application.GetMainWindow();

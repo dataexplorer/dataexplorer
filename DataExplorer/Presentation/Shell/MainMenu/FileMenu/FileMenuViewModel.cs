@@ -3,6 +3,7 @@ using DataExplorer.Application;
 using DataExplorer.Application.Application;
 using DataExplorer.Application.Projects;
 using DataExplorer.Presentation.Core;
+using DataExplorer.Presentation.Core.Commands;
 using DataExplorer.Presentation.Dialogs;
 
 namespace DataExplorer.Presentation.Shell.MainMenu.FileMenu

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using DataExplorer.Presentation.Core;
+using DataExplorer.Presentation.Core.Commands;
 using Moq;
 using NUnit.Framework;
 

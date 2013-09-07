@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using DataExplorer.Application.Importers.CsvFile;
 using DataExplorer.Presentation.Core;
+using DataExplorer.Presentation.Core.Commands;
 using DataExplorer.Presentation.Core.Events;
 using DataExplorer.Presentation.Dialogs;
 
@@ -19,7 +20,7 @@ namespace DataExplorer.Presentation.Importers.CsvFile
         private readonly ICsvFileImportService _service;
         private readonly IDialogFactory _dialogFactory;
         private readonly DelegateCommand _browseCommand;
-        private readonly DelegateCommand _importCommand;
+        private readonly AsyncDelegateCommand _importCommand;
         private readonly DelegateCommand _cancelCommand;
 
         private bool _isImporting;
@@ -40,7 +41,7 @@ namespace DataExplorer.Presentation.Importers.CsvFile
             _service = service;
             _dialogFactory = dialogFactory;
             _browseCommand = new DelegateCommand(Browse);
-            _importCommand = new DelegateCommand(Import, CanImport);
+            _importCommand = new AsyncDelegateCommand(Import, CanImport);
             _cancelCommand = new DelegateCommand(Cancel);
 
             _service.FilePathChanged += HandleFilePathChanged;
@@ -96,7 +97,7 @@ namespace DataExplorer.Presentation.Importers.CsvFile
 
         private void Import(object obj)
         {
-            Task.Run(() => _service.Import()).Wait();
+            _service.Import();
         }
 
         private void Cancel(object obj)
