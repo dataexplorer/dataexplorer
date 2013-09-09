@@ -12,7 +12,8 @@ namespace DataExplorer.Tests.Application.Importers.CsvFile
     [TestFixture]
     public class CsvFileAdapterTests
     {
-        private CsvFileAdapter _adapter;
+        private CsvFileDataAdapter _dataAdapter;
+        private Mock<ICsvFile> _mockFile;
         private Mock<ICsvFileParser> _mockParser;
         private Mock<IDataTypeDetector> _mockDetector;
         private CsvFileSource _source;
@@ -21,11 +22,23 @@ namespace DataExplorer.Tests.Application.Importers.CsvFile
         public void SetUp()
         {
             _source = new CsvFileSource();
+            _mockFile = new Mock<ICsvFile>();
             _mockParser = new Mock<ICsvFileParser>();
             _mockDetector = new Mock<IDataTypeDetector>();
-            _adapter = new CsvFileAdapter(
+            _dataAdapter = new CsvFileDataAdapter(
+                _mockFile.Object,
                 _mockParser.Object,
                 _mockDetector.Object);
+        }
+
+        [Test]
+        public void TestExistsShouldReturnIfCsvFileExists()
+        {
+            var filePath = @"C:\Test.csv";
+            _source.FilePath = filePath;
+            _mockFile.Setup(p => p.Exists(filePath)).Returns(true);
+            var result = _dataAdapter.Exists(_source);
+            Assert.That(result, Is.True);
         }
 
         [Test]
@@ -37,7 +50,7 @@ namespace DataExplorer.Tests.Application.Importers.CsvFile
             _mockParser.SetupSequence(p => p.ReadFields()).Returns(columns).Returns(fields);
             _mockParser.SetupSequence(p => p.IsEndOfFile()).Returns(false).Returns(true);
             _mockDetector.Setup(p => p.Detect(It.Is<List<string>>(q => q.Contains(fields[0])))).Returns(typeof(String));
-            var result = _adapter.GetDataColumns(_source);
+            var result = _dataAdapter.GetDataColumns(_source);
             _mockParser.Verify(p => p.OpenFile(@"C:\Test.csv"), Times.Once());
             _mockParser.Verify(p => p.CloseFile(), Times.Once());
             Assert.That(result.Single().ColumnName, Is.EqualTo("Column 1"));
@@ -53,7 +66,7 @@ namespace DataExplorer.Tests.Application.Importers.CsvFile
             _mockParser.SetupSequence(p => p.ReadFields()).Returns(columns).Returns(fields);
             _mockParser.SetupSequence(p => p.IsEndOfFile()).Returns(false).Returns(true);
             _mockDetector.Setup(p => p.Detect(It.Is<List<string>>(q => q.Contains(fields[0])))).Returns(typeof(String));
-            var result = _adapter.GetDataTable(_source);
+            var result = _dataAdapter.GetDataTable(_source);
             _mockParser.Verify(p => p.OpenFile(@"C:\Test.csv"), Times.Once());
             _mockParser.Verify(p => p.CloseFile(), Times.Once());
             Assert.That(result.Columns[0].ColumnName, Is.EqualTo("Column 1"));

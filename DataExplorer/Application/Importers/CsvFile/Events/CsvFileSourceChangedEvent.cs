@@ -7,7 +7,7 @@ using DataExplorer.Application.Events;
 
 namespace DataExplorer.Application.Importers.CsvFile.Events
 {
-    public class CsvFilePathChangedAppEvent : IAppEvent
+    public class CsvFileSourceChangedEvent : IAppEvent
     {
     }
 }

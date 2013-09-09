@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
+using System.Windows.Threading;
 using DataExplorer.Application.Events;
 using DataExplorer.Application.Importers.CsvFile;
 using DataExplorer.Application.Importers.CsvFile.Events;
@@ -12,7 +13,7 @@ namespace DataExplorer.Presentation.Importers.CsvFile.Footer
     public class CsvFileImportFooterViewModel : 
         BaseViewModel,
         ICsvFileImportFooterViewModel,
-        IAppHandler<CsvFilePathChangedAppEvent>,
+        IAppHandler<CsvFileSourceChangedEvent>,
         IAppHandler<CsvFileImportingEvent>,
         IAppHandler<CsvFileImportedEvent>,
         IAppHandler<CsvFileImportProgressChangedEvent>
@@ -72,7 +73,7 @@ namespace DataExplorer.Presentation.Importers.CsvFile.Footer
                 DialogClosed(this, EventArgs.Empty);
         }
 
-        public void Handle(CsvFilePathChangedAppEvent args)
+        public void Handle(CsvFileSourceChangedEvent args)
         {
             _importCommand.RaiseCanExecuteChanged();
         }

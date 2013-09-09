@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataExplorer.Domain.Sources
+namespace DataExplorer.Tests.Domain.Sources
 {
-    public interface ISource
+    class SourceMapTests
     {
-
     }
 }

@@ -84,17 +84,23 @@
     <Compile Include="Application\Events\AppEvents.cs" />
     <Compile Include="Application\Events\IAppEvent.cs" />
     <Compile Include="Application\Events\IAppHandler.cs" />
+    <Compile Include="Application\Importers\CsvFile\CsvFile.cs" />
+    <Compile Include="Application\Importers\CsvFile\CsvFileSourceAdapter.cs" />
+    <Compile Include="Application\Importers\CsvFile\CsvFileSourceDto.cs" />
     <Compile Include="Application\Importers\CsvFile\Events\CsvFileImportingEvent.cs" />
     <Compile Include="Application\Importers\CsvFile\Events\CsvFileImportProgressChangedEvent.cs" />
-    <Compile Include="Application\Importers\CsvFile\Events\CsvFilePathChangedAppEvent.cs" />
+    <Compile Include="Application\Importers\CsvFile\Events\CsvFileSourceChangedEvent.cs" />
+    <Compile Include="Application\Importers\CsvFile\ICsvFile.cs" />
+    <Compile Include="Application\Importers\CsvFile\ICsvFileSourceAdapter.cs" />
+    <Compile Include="Domain\Sources\Maps\ISourceMapFactory.cs" />
     <Compile Include="Domain\Converters\PassThroughConverter.cs" />
     <Compile Include="Domain\Converters\StringToBooleanConverter.cs" />
     <Compile Include="Domain\Converters\StringToDateTimeConverter.cs" />
     <Compile Include="Domain\Converters\StringToFloatConverter.cs" />
     <Compile Include="Domain\Converters\StringToIntegerConverter.cs" />
-    <Compile Include="Application\Importers\CsvFile\CsvFileAdapter.cs" />
+    <Compile Include="Application\Importers\CsvFile\CsvFileDataAdapter.cs" />
     <Compile Include="Application\Importers\CsvFile\CsvFileImportService.cs" />
-    <Compile Include="Application\Importers\CsvFile\ICsvFileAdapter.cs" />
+    <Compile Include="Application\Importers\CsvFile\ICsvFileDataAdapter.cs" />
     <Compile Include="Application\Importers\CsvFile\ICsvFileImportService.cs" />
     <Compile Include="Application\Importers\CsvFile\ICsvFileParser.cs" />
     <Compile Include="Application\Importers\CsvFile\CsvFileParser.cs" />
@@ -109,7 +115,9 @@
     <Compile Include="Domain\Sources\ISource.cs" />
     <Compile Include="Domain\Sources\ISourceFactory.cs" />
     <Compile Include="Domain\Sources\ISourceRepository.cs" />
+    <Compile Include="Domain\Sources\Maps\SourceMapFactory.cs" />
     <Compile Include="Domain\Sources\SourceFactory.cs" />
+    <Compile Include="Domain\Sources\Maps\SourceMap.cs" />
     <Compile Include="Domain\Views\IView.cs" />
     <Compile Include="Persistence\Sources\SourceRepository.cs" />
     <Compile Include="Presentation\Core\Commands\AsyncDelegateCommand.cs" />
@@ -157,7 +165,7 @@
     <Compile Include="Domain\ScatterPlots\ScatterPlotRenderer.cs" />
     <Compile Include="Domain\Views\IViewRepository.cs" />
     <Compile Include="Persistence\Columns\ColumnRepository.cs" />
-    <Compile Include="Persistence\Columns\IColumnRepository.cs" />
+    <Compile Include="Domain\Columns\IColumnRepository.cs" />
     <Compile Include="Persistence\DataContext.cs" />
     <Compile Include="Persistence\IDataContext.cs" />
     <Compile Include="Persistence\Rows\RowRepository.cs" />
@@ -167,6 +175,11 @@
     <Compile Include="Presentation\Dialogs\IDialogFactory.cs" />
     <Compile Include="Presentation\Dialogs\IOpenFileDialog.cs" />
     <Compile Include="Presentation\Dialogs\OpenFileDialogWrapper.cs" />
+    <Compile Include="Presentation\Importers\CsvFile\Body\CsvFileImportBodyView.xaml.cs">
+      <DependentUpon>CsvFileImportBodyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Importers\CsvFile\Body\CsvFileImportBodyViewModel.cs" />
+    <Compile Include="Presentation\Importers\CsvFile\Body\SourceMapViewModel.cs" />
     <Compile Include="Presentation\Importers\CsvFile\Footer\CsvFileImportFooterView.xaml.cs">
       <DependentUpon>CsvFileImportFooterView.xaml</DependentUpon>
     </Compile>
@@ -177,6 +190,7 @@
     <Compile Include="Presentation\Importers\CsvFile\Header\CsvFileImportHeaderViewModel.cs" />
     <Compile Include="Presentation\Importers\CsvFile\Footer\ICsvFileImportFooterViewModel.cs" />
     <Compile Include="Presentation\Importers\CsvFile\Header\ICsvFileImportHeaderViewModel.cs" />
+    <Compile Include="Presentation\Importers\CsvFile\Body\ICsvFileImportBodyViewModel.cs" />
     <Compile Include="Presentation\Importers\CsvFile\ICsvFileImportViewModel.cs" />
     <Compile Include="Presentation\Importers\CsvFile\CsvFileImportDialog.xaml.cs">
       <DependentUpon>CsvFileImportDialog.xaml</DependentUpon>
@@ -191,6 +205,10 @@
     <Compile Include="Presentation\Panes\Layout\LayoutPaneViewModel.cs" />
     <Compile Include="Presentation\Panes\Viewer\IViewerPaneViewModel.cs" />
     <Compile Include="Presentation\Panes\Viewer\ViewerPaneViewModel.cs" />
+    <Page Include="Presentation\Importers\CsvFile\Body\CsvFileImportBodyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Presentation\Importers\CsvFile\CsvFileImportDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

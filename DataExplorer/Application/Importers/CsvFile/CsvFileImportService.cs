@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,8 +10,8 @@ using DataExplorer.Domain.Converters;
 using DataExplorer.Domain.Events;
 using DataExplorer.Domain.Rows;
 using DataExplorer.Domain.Sources;
+using DataExplorer.Domain.Sources.Maps;
 using DataExplorer.Persistence;
-using DataExplorer.Persistence.Columns;
 
 namespace DataExplorer.Application.Importers.CsvFile
 {
@@ -21,40 +20,67 @@ namespace DataExplorer.Application.Importers.CsvFile
         IDomainHandler<CsvFilePathChangedEvent>
     {
         private readonly ISourceRepository _repository;
-        private readonly ICsvFileAdapter _adapter;
+        private readonly ICsvFileDataAdapter _dataAdapter;
         private readonly IDataTypeConverterFactory _converterFactory;
         private readonly IRowRepository _rowRepository;
         private readonly IColumnRepository _columnRepository;
         private readonly IDataContext _dataContext;
+        private readonly ISourceMapFactory _sourceMapFactory;
+        private readonly ICsvFileSourceAdapter _adapter;
 
         public CsvFileImportService(
             ISourceRepository repository,
-            ICsvFileAdapter adapter,
+            ICsvFileDataAdapter dataAdapter,
             IDataTypeConverterFactory converterFactory,
             IRowRepository rowRepository,
             IColumnRepository columnRepository,
-            IDataContext dataContext)
+            IDataContext dataContext,
+            ISourceMapFactory sourceMapFactory,
+            ICsvFileSourceAdapter adapter)
         {
             _repository = repository;
-            _adapter = adapter;
+            _dataAdapter = dataAdapter;
             _converterFactory = converterFactory;
             _rowRepository = rowRepository;
             _columnRepository = columnRepository;
             _dataContext = dataContext;
+            _sourceMapFactory = sourceMapFactory;
+            _adapter = adapter;
         }
 
-        public string GetFilePath()
+        public CsvFileSourceDto GetSource()
         {
-            var importer = _repository.GetSource<CsvFileSource>();
-            
-            return importer.FilePath;
+            var source = _repository.GetSource<CsvFileSource>();
+
+            var sourceDto = _adapter.Adapt(source);
+
+            return sourceDto;
         }
 
-        public void SetFilePath(string filePath)
+        public void UpdateSource(string filePath)
         {
-            var importer = _repository.GetSource<CsvFileSource>();
+            var source = _repository.GetSource<CsvFileSource>();
 
-            importer.FilePath = filePath;
+            source.FilePath = filePath;
+
+            var columns = _dataAdapter.GetDataColumns(source);
+
+            var maps = columns
+                .Select(p => _sourceMapFactory.Create(p))
+                .ToList();
+
+            source.SetMaps(maps);
+
+            AppEvents.Raise(new CsvFileSourceChangedEvent());
+        }
+        
+        public List<SourceMap> GetMaps()
+        {
+            var source = _repository.GetSource<CsvFileSource>();
+
+            var maps = source.GetMaps();
+
+            return maps.ToList();
         }
 
         public bool CanImport()
@@ -74,9 +100,9 @@ namespace DataExplorer.Application.Importers.CsvFile
 
             _repository.SetSource(source);
 
-            var dataColumns = _adapter.GetDataColumns(source);
+            var dataColumns = _dataAdapter.GetDataColumns(source);
 
-            var dataTable = _adapter.GetDataTable(source);
+            var dataTable = _dataAdapter.GetDataTable(source);
 
             var converters = dataColumns
                 .Select(p => _converterFactory.Create(typeof(string), p.DataType))
@@ -117,14 +143,9 @@ namespace DataExplorer.Application.Importers.CsvFile
             AppEvents.Raise(new CsvFileImportedEvent());
         }
 
-        public bool IsImporting()
-        {
-            throw new NotImplementedException();
-        }
-
         public void Handle(CsvFilePathChangedEvent args)
         {
-            AppEvents.Raise(new CsvFilePathChangedAppEvent());
+            //AppEvents.Raise(new CsvFilePathChangedAppEvent());
         }
     }
 }

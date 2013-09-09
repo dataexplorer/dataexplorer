@@ -6,21 +6,28 @@ using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Sources;
-using Microsoft.VisualBasic.FileIO;
 
 namespace DataExplorer.Application.Importers.CsvFile
 {
-    public class CsvFileAdapter : ICsvFileAdapter
+    public class CsvFileDataAdapter : ICsvFileDataAdapter
     {
+        private readonly ICsvFile _csvFile;
         private readonly ICsvFileParser _parser;
         private readonly IDataTypeDetector _detector;
 
-        public CsvFileAdapter(
+        public CsvFileDataAdapter(
+            ICsvFile csvFile,
             ICsvFileParser parser,
             IDataTypeDetector detector)
         {
+            _csvFile = csvFile;
             _parser = parser;
             _detector = detector;
+        }
+
+        public bool Exists(CsvFileSource source)
+        {
+            return _csvFile.Exists(source.FilePath);
         }
 
         public List<DataColumn> GetDataColumns(CsvFileSource source)

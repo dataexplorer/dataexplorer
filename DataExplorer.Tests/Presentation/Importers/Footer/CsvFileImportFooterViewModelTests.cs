@@ -50,7 +50,7 @@ namespace DataExplorer.Tests.Presentation.Importers.Footer
         {
             var wasRaised = false;
             _viewModel.ImportCommand.CanExecuteChanged += (s, e) => { wasRaised = true; };
-            _viewModel.Handle(new CsvFilePathChangedAppEvent());
+            _viewModel.Handle(new CsvFileSourceChangedEvent());
             Assert.That(wasRaised, Is.True);
         }
 

@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataExplorer.Domain.Sources.Maps;
 
 namespace DataExplorer.Application.Importers.CsvFile
 {
     public interface ICsvFileImportService
     {
-        string GetFilePath();
+        CsvFileSourceDto GetSource();
 
-        void SetFilePath(string filePath);
+        void UpdateSource(string filePath);
+
+        List<SourceMap> GetMaps();
 
         bool CanImport();
 
         void Import();
-        
-        bool IsImporting();
     }
 }

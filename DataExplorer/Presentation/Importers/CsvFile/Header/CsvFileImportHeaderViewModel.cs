@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using DataExplorer.Application.Events;
@@ -11,12 +8,12 @@ using DataExplorer.Presentation.Core;
 using DataExplorer.Presentation.Core.Commands;
 using DataExplorer.Presentation.Dialogs;
 
-namespace DataExplorer.Presentation.Importers.CsvFile
+namespace DataExplorer.Presentation.Importers.CsvFile.Header
 {
-    public class CsvFileImportHeaderViewModel 
-        : BaseViewModel,
+    public class CsvFileImportHeaderViewModel :
+        BaseViewModel,
         ICsvFileImportHeaderViewModel,
-        IAppHandler<CsvFilePathChangedAppEvent>
+        IAppHandler<CsvFileSourceChangedEvent>
     {
         private const string FileFilter = "CSV documents|*.csv";
         private const string DefaultFileExtension = ".csv";
@@ -24,11 +21,10 @@ namespace DataExplorer.Presentation.Importers.CsvFile
         private readonly ICsvFileImportService _service;
         private readonly IDialogFactory _dialogFactory;
         private readonly DelegateCommand _browseCommand;
-
+        
         public string FilePath
         {
-            get { return _service.GetFilePath(); }
-            set { _service.SetFilePath(value); }
+            get { return _service.GetSource().FilePath; }
         }
 
         public ICommand BrowseCommand
@@ -45,6 +41,7 @@ namespace DataExplorer.Presentation.Importers.CsvFile
             _browseCommand = new DelegateCommand(Browse);
         }
 
+        
         private void Browse(object parameter)
         {
             var dialog = _dialogFactory.CreateOpenFileDialog();
@@ -52,12 +49,12 @@ namespace DataExplorer.Presentation.Importers.CsvFile
             dialog.SetFilter(FileFilter);
 
             var result = dialog.ShowDialog();
-
+            
             if (result == true)
-                _service.SetFilePath(dialog.GetFilePath());
+                _service.UpdateSource(dialog.GetFilePath());
         }
         
-        public void Handle(CsvFilePathChangedAppEvent args)
+        public void Handle(CsvFileSourceChangedEvent args)
         {
             OnPropertyChanged(() => FilePath);
         }

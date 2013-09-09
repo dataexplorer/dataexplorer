@@ -4,6 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:csvFile="clr-namespace:DataExplorer.Presentation.Importers.CsvFile"
+        xmlns:body="clr-namespace:DataExplorer.Presentation.Importers.CsvFile.Body"
+        xmlns:header="clr-namespace:DataExplorer.Presentation.Importers.CsvFile.Header"
+        xmlns:footer="clr-namespace:DataExplorer.Presentation.Importers.CsvFile.Footer"
         mc:Ignorable="d"
         Title="Import CSV File" 
         Height="600"
@@ -16,14 +19,13 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <csvFile:CsvFileImportHeaderView 
+        <header:CsvFileImportHeaderView 
             Grid.Row="0"
             DataContext="{Binding HeaderViewModel}"/>
-        <!--<views:DataSourceMapsView
-            Grid.Row="1"
-            Margin="0,7,0,0"
-            DataContext="{Binding DataSourceMappingViewModel}" />-->
-        <csvFile:CsvFileImportFooterView 
+        <body:CsvFileImportBodyView 
+            Grid.Row="1" 
+            DataContext="{Binding BodyViewModel}" />
+        <footer:CsvFileImportFooterView 
             Grid.Row="2"
             DataContext="{Binding FooterViewModel}"/>
     </Grid>

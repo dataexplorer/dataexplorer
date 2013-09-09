@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataExplorer.Domain.Sources
+namespace DataExplorer.Application.Importers.CsvFile
 {
-    public interface ISource
+    public interface ICsvFile
     {
-
+        bool Exists(string filePath);
     }
 }

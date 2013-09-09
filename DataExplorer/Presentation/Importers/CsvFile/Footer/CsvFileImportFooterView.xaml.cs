@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DataExplorer.Presentation.Importers.CsvFile
+namespace DataExplorer.Presentation.Importers.CsvFile.Footer
 {
     /// <summary>
     /// Interaction logic for CsvFileImportFooterView.xaml

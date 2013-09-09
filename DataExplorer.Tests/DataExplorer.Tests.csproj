@@ -57,6 +57,7 @@
     <Compile Include="Application\Application\ApplicationServiceTests.cs" />
     <Compile Include="Application\Columns\ColumnAdapterTests.cs" />
     <Compile Include="Application\Importers\CsvFile\CsvFileImportProgressChangedEventTests.cs" />
+    <Compile Include="Application\Importers\CsvFile\CsvFileSourceAdapterTests.cs" />
     <Compile Include="Domain\Converters\DataTypeConverterFactoryTests.cs" />
     <Compile Include="Domain\Converters\PassThroughConverterTests.cs" />
     <Compile Include="Domain\Converters\StringToBooleanConverterTests.cs" />
@@ -66,7 +67,9 @@
     <Compile Include="Application\Importers\CsvFile\CsvFileAdapterTests.cs" />
     <Compile Include="Application\Importers\CsvFile\CsvFileImportServiceTests.cs" />
     <Compile Include="Application\Importers\DataTypeDetectorTests.cs" />
-    <Compile Include="Domain\Importers\CsvFileSourceTests.cs" />
+    <Compile Include="Domain\Sources\CsvFileSourceTests.cs" />
+    <Compile Include="Domain\Sources\Maps\SourceMapFactoryTests.cs" />
+    <Compile Include="Domain\Sources\SourceMapTests.cs" />
     <Compile Include="Persistence\Sources\SourceRepositoryTests.cs" />
     <Compile Include="Presentation\Dialogs\DialogServiceTests.cs" />
     <Compile Include="Application\Projects\ProjectServiceTests.cs" />
@@ -102,6 +105,8 @@
     <Compile Include="Presentation\Core\VisualServiceTests.cs" />
     <Compile Include="Presentation\Core\Geometry\GeometryCalculatorTests.cs" />
     <Compile Include="Presentation\Core\Geometry\GeometryFactoryTests.cs" />
+    <Compile Include="Presentation\Importers\Body\CsvFileImportBodyViewModelTests.cs" />
+    <Compile Include="Presentation\Importers\Body\SourceMapViewModelTests.cs" />
     <Compile Include="Presentation\Importers\Footer\CsvFileImportFooterViewModelTests.cs" />
     <Compile Include="Presentation\Importers\Header\CsvFileImportHeaderViewModelTests.cs" />
     <Compile Include="Presentation\Importers\CsvFileImportViewModelTests.cs" />
