@@ -24,7 +24,13 @@
             <DataGrid.Columns>
                 <DataGridTextColumn 
                     Header="Name" 
+                    IsReadOnly="True"
                     Binding="{Binding Name}" />
+                <DataGridTextColumn 
+                    Header="Source Type" 
+                    Binding="{Binding SourceType}" 
+                    IsReadOnly="True"
+                    Foreground="Gray" />
                 <!--<DataGridCheckBoxColumn
                     Header="Import"
                     Binding="{Binding IsImporting}"

@@ -175,6 +175,7 @@
     <Compile Include="Presentation\Dialogs\IDialogFactory.cs" />
     <Compile Include="Presentation\Dialogs\IOpenFileDialog.cs" />
     <Compile Include="Presentation\Dialogs\OpenFileDialogWrapper.cs" />
+    <Compile Include="Presentation\Core\FriendlyDataTypeNameConverter.cs" />
     <Compile Include="Presentation\Importers\CsvFile\Body\CsvFileImportBodyView.xaml.cs">
       <DependentUpon>CsvFileImportBodyView.xaml</DependentUpon>
     </Compile>

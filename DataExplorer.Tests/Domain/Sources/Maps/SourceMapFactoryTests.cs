@@ -23,9 +23,10 @@ namespace DataExplorer.Tests.Domain.Sources.Maps
         [Test]
         public void TestCreateShouldReturnNewSourceMap()
         {
-            var column = new DataColumn("Column 1");
+            var column = new DataColumn("Column 1", typeof(string));
             var result = _factory.Create(column);
             Assert.That(result.Name, Is.EqualTo(column.ColumnName));
+            Assert.That(result.SourceType, Is.EqualTo(column.DataType));
         }
     }
 }

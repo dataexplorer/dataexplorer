@@ -29,5 +29,13 @@ namespace DataExplorer.Tests.Presentation.Importers.Body
             var result = _viewModel.Name;
             Assert.That(result, Is.EqualTo("Test"));
         }
+
+        [Test]
+        public void TestSourcTypeShouldReturnSourceType()
+        {
+            _map.SourceType = typeof(String);
+            var result = _viewModel.SourceType;
+            Assert.That(result, Is.EqualTo("String"));
+        }
     }
 }

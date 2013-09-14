@@ -71,6 +71,7 @@
     <Compile Include="Domain\Sources\Maps\SourceMapFactoryTests.cs" />
     <Compile Include="Domain\Sources\SourceMapTests.cs" />
     <Compile Include="Persistence\Sources\SourceRepositoryTests.cs" />
+    <Compile Include="Presentation\Core\FriendlyDataTypeNameConverterTests.cs" />
     <Compile Include="Presentation\Dialogs\DialogServiceTests.cs" />
     <Compile Include="Application\Projects\ProjectServiceTests.cs" />
     <Compile Include="Application\ScatterPlots\ScatterPlotAdapterTests.cs" />

@@ -13,7 +13,9 @@ namespace DataExplorer.Domain.Sources.Maps
         {
             var map = new SourceMap()
             {
-                Name = column.ColumnName
+                Name = column.ColumnName,
+                SourceType = column.DataType
+                
             };
 
             return map;
