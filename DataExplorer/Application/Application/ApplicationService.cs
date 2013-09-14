@@ -1,4 +1,6 @@
-﻿namespace DataExplorer.Application.Application
+﻿using DataExplorer.Infrastructure.Application;
+
+namespace DataExplorer.Application.Application
 {
     public class ApplicationService : IApplicationService
     {

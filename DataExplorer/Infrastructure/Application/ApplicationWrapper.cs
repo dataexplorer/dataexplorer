@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace DataExplorer.Application.Application
+namespace DataExplorer.Infrastructure.Application
 {
     public class ApplicationWrapper : IApplication
     {

@@ -55,9 +55,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application\Application\ApplicationServiceTests.cs" />
+    <Compile Include="Application\Application\ApplicationStateServiceTests.cs" />
     <Compile Include="Application\Columns\ColumnAdapterTests.cs" />
     <Compile Include="Application\Importers\CsvFile\CsvFileImportProgressChangedEventTests.cs" />
     <Compile Include="Application\Importers\CsvFile\CsvFileSourceAdapterTests.cs" />
+    <Compile Include="Application\Web\WebServiceTests.cs" />
     <Compile Include="Domain\Converters\DataTypeConverterFactoryTests.cs" />
     <Compile Include="Domain\Converters\PassThroughConverterTests.cs" />
     <Compile Include="Domain\Converters\StringToBooleanConverterTests.cs" />
@@ -112,6 +114,8 @@
     <Compile Include="Presentation\Importers\Header\CsvFileImportHeaderViewModelTests.cs" />
     <Compile Include="Presentation\Importers\CsvFileImportViewModelTests.cs" />
     <Compile Include="Presentation\Panes\Layout\LayoutPaneViewModelTests.cs" />
+    <Compile Include="Presentation\Panes\Navigation\NavigationPaneViewModelTests.cs" />
+    <Compile Include="Presentation\Panes\Navigation\StartMenu\StartMenuViewModelTests.cs" />
     <Compile Include="Presentation\Panes\Viewer\ViewerPaneViewModelTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Layouts\ScatterPlotLayoutViewModelTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Layouts\XAxisLayoutViewModelTests.cs" />

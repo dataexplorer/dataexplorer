@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataExplorer.Application;
-using DataExplorer.Application.Application;
+﻿using DataExplorer.Application.Application;
+using DataExplorer.Infrastructure.Application;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Application.FileMenu
+namespace DataExplorer.Tests.Application.Application
 {
     [TestFixture]
     public class ApplicationServiceTests

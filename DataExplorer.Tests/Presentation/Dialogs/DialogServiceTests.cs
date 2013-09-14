@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using DataExplorer.Application.Application;
+using DataExplorer.Infrastructure.Application;
 using DataExplorer.Presentation.Dialogs;
 using DataExplorer.Presentation.Importers.CsvFile;
 using Moq;

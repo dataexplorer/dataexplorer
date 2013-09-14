@@ -33,7 +33,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.JScript" />
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.3.0.1.10\lib\net45-full\Ninject.dll</HintPath>
@@ -43,10 +48,10 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
@@ -57,27 +62,19 @@
     <Reference Include="Xceed.Wpf.AvalonDock">
       <HintPath>..\packages\AvalonDock.2.0.2000\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
     </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero">
-      <HintPath>..\packages\AvalonDock.2.0.2000\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Expression">
-      <HintPath>..\packages\AvalonDock.2.0.2000\lib\net40\Xceed.Wpf.AvalonDock.Themes.Expression.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro">
-      <HintPath>..\packages\AvalonDock.2.0.2000\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010">
-      <HintPath>..\packages\AvalonDock.2.0.2000\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Application\Application\ApplicationWrapper.cs" />
+    <Compile Include="Application\Application\ApplicationState.cs" />
+    <Compile Include="Application\Application\ApplicationStateChangedEvent.cs" />
+    <Compile Include="Application\Application\ApplicationStateService.cs" />
+    <Compile Include="Application\Application\IApplicationStateService.cs" />
+    <Compile Include="Infrastructure\Application\ApplicationWrapper.cs" />
     <Compile Include="Application\Application\ApplicationService.cs" />
-    <Compile Include="Application\Application\IApplication.cs" />
+    <Compile Include="Infrastructure\Application\IApplication.cs" />
     <Compile Include="Application\Columns\ColumnAdapter.cs" />
     <Compile Include="Application\Columns\IColumnAdapter.cs" />
     <Compile Include="Application\Columns\ColumnDto.cs" />
@@ -92,6 +89,8 @@
     <Compile Include="Application\Importers\CsvFile\Events\CsvFileSourceChangedEvent.cs" />
     <Compile Include="Application\Importers\CsvFile\ICsvFile.cs" />
     <Compile Include="Application\Importers\CsvFile\ICsvFileSourceAdapter.cs" />
+    <Compile Include="Application\Web\IWebService.cs" />
+    <Compile Include="Application\Web\WebService.cs" />
     <Compile Include="Domain\Sources\Maps\ISourceMapFactory.cs" />
     <Compile Include="Domain\Converters\PassThroughConverter.cs" />
     <Compile Include="Domain\Converters\StringToBooleanConverter.cs" />
@@ -119,6 +118,8 @@
     <Compile Include="Domain\Sources\SourceFactory.cs" />
     <Compile Include="Domain\Sources\Maps\SourceMap.cs" />
     <Compile Include="Domain\Views\IView.cs" />
+    <Compile Include="Infrastructure\Process\IProcess.cs" />
+    <Compile Include="Infrastructure\Process\ProcessWrapper.cs" />
     <Compile Include="Persistence\Sources\SourceRepository.cs" />
     <Compile Include="Presentation\Core\Commands\AsyncDelegateCommand.cs" />
     <Compile Include="Presentation\Core\Events\DialogClosedEvent.cs" />
@@ -204,8 +205,24 @@
     <Compile Include="Presentation\Importers\CsvFile\CsvFileImportViewModel.cs" />
     <Compile Include="Presentation\Panes\Layout\ILayoutPaneViewModel.cs" />
     <Compile Include="Presentation\Panes\Layout\LayoutPaneViewModel.cs" />
+    <Compile Include="Presentation\Panes\Navigation\INavigationPaneViewModel.cs" />
+    <Compile Include="Presentation\Panes\Navigation\NavigationPaneViewModel.cs" />
+    <Compile Include="Presentation\Panes\Navigation\NavigationTree\INavigationTreeViewModel.cs" />
+    <Compile Include="Presentation\Panes\Navigation\NavigationTree\NavigationTreeView.xaml.cs">
+      <DependentUpon>NavigationTreeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Panes\Navigation\NavigationTree\NavigationTreeViewModel.cs" />
+    <Compile Include="Presentation\Panes\Navigation\StartMenu\IStartMenuViewModel.cs" />
+    <Compile Include="Presentation\Panes\Navigation\StartMenu\StartMenuView.xaml.cs">
+      <DependentUpon>StartMenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Panes\Navigation\StartMenu\StartMenuViewModel.cs" />
     <Compile Include="Presentation\Panes\Viewer\IViewerPaneViewModel.cs" />
     <Compile Include="Presentation\Panes\Viewer\ViewerPaneViewModel.cs" />
+    <Page Include="Presentation\Core\LinkButtonStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Presentation\Importers\CsvFile\Body\CsvFileImportBodyView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -219,6 +236,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Presentation\Importers\CsvFile\Header\CsvFileImportHeaderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Presentation\Panes\Navigation\NavigationTree\NavigationTreeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Presentation\Panes\Navigation\StartMenu\StartMenuView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

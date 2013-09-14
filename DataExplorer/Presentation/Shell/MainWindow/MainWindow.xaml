@@ -1,4 +1,4 @@
-﻿<Window 
+﻿<Window xmlns:Navigation="clr-namespace:DataExplorer.Presentation.Panes.Navigation"  
     x:Class="DataExplorer.Presentation.Shell.MainWindow.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -31,7 +31,8 @@
                     <xcad:LayoutPanel Orientation="Horizontal">
                         <xcad:LayoutAnchorablePane DockWidth="192">
                             <xcad:LayoutAnchorable Title="Navigation">
-                                <TextBlock>Pane 1</TextBlock>
+                                 <Navigation:NavigationPane
+                                     DataContext="{Binding NavigationPaneViewModel}"/>
                             </xcad:LayoutAnchorable>
                         </xcad:LayoutAnchorablePane>
                         <xcad:LayoutDocumentPane ShowHeader="False">

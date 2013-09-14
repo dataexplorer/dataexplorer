@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Presentation.Panes.Layout;
+using DataExplorer.Presentation.Panes.Navigation;
 using DataExplorer.Presentation.Panes.Viewer;
 using DataExplorer.Presentation.Shell.MainMenu;
 using DataExplorer.Presentation.Shell.MainWindow;
@@ -17,6 +18,7 @@ namespace DataExplorer.Tests.Presentation.Shell.MainWindow
     {
         private MainWindowViewModel _viewModel;
         private Mock<IMainMenuViewModel> _mockMainMenuViewModel;
+        private Mock<INavigationPaneViewModel> _mockNavigationPaneViewModel;
         private Mock<IViewerPaneViewModel> _mockViewerViewModel;
         private Mock<ILayoutPaneViewModel> _mockLayoutPaneViewModel;
 
@@ -25,9 +27,11 @@ namespace DataExplorer.Tests.Presentation.Shell.MainWindow
         {
             _mockViewerViewModel = new Mock<IViewerPaneViewModel>();
             _mockMainMenuViewModel = new Mock<IMainMenuViewModel>();
+            _mockNavigationPaneViewModel = new Mock<INavigationPaneViewModel>();
             _mockLayoutPaneViewModel = new Mock<ILayoutPaneViewModel>();
             _viewModel = new MainWindowViewModel(
-                _mockMainMenuViewModel.Object, 
+                _mockMainMenuViewModel.Object,
+                _mockNavigationPaneViewModel.Object,
                 _mockViewerViewModel.Object,
                 _mockLayoutPaneViewModel.Object);
         }
@@ -37,6 +41,13 @@ namespace DataExplorer.Tests.Presentation.Shell.MainWindow
         {
             var result = _viewModel.MainMenuViewModel;
             Assert.That(result, Is.EqualTo(_mockMainMenuViewModel.Object));
+        }
+
+        [Test]
+        public void TestGetNavigationPaneViewModelShouldReturnViewModel()
+        {
+            var result = _viewModel.NavigationPaneViewModel;
+            Assert.That(result, Is.EqualTo(_mockNavigationPaneViewModel.Object));
         }
 
         [Test]
