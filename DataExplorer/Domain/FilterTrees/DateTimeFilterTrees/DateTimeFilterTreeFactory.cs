@@ -11,7 +11,7 @@ namespace DataExplorer.Domain.FilterTrees.DateTimeFilterTrees
     {
         public FilterTreeNode CreateRoot(Column column)
         {
-            return new DateTimeFilterTreeRoot(column.Name);
+            return new DateTimeFilterTreeRoot(column.Name, column);
         }
 
         public IEnumerable<FilterTreeNode> CreateChildren(DateTimeFilterTreeNode node)

@@ -42,7 +42,7 @@ namespace DataExplorer.Tests.Domain.FilterTrees
         public void TestCreateRootShouldCreateBooleanFilterTreeRoot()
         {
             var column = new ColumnBuilder().WithType(typeof(Boolean)).Build();
-            var node = new BooleanFilterTreeRoot(string.Empty);
+            var node = new BooleanFilterTreeRoot(string.Empty, column);
             _mockBooleanFactory.Setup(p => p.CreateRoot(column)).Returns(node);
             var result = _factory.CreateRoot(column);
             Assert.That(result, Is.EqualTo(node));
@@ -52,7 +52,7 @@ namespace DataExplorer.Tests.Domain.FilterTrees
         public void TestCreateRootShouldCreateDateTimeFilterTreeRoot()
         {
             var column = new ColumnBuilder().WithType(typeof(DateTime)).Build();
-            var node = new DateTimeFilterTreeRoot(string.Empty);
+            var node = new DateTimeFilterTreeRoot(string.Empty, column);
             _mockDateTimeFactory.Setup(p => p.CreateRoot(column)).Returns(node);
             var result = _factory.CreateRoot(column);
             Assert.That(result, Is.EqualTo(node));
@@ -62,7 +62,7 @@ namespace DataExplorer.Tests.Domain.FilterTrees
         public void TestCreateRootShouldCreateFloatFilterTreeRoot()
         {
             var column = new ColumnBuilder().WithType(typeof(Double)).Build();
-            var node = new FloatFilterTreeRoot(string.Empty);
+            var node = new FloatFilterTreeRoot(string.Empty, column);
             _mockFloatFactory.Setup(p => p.CreateRoot(column)).Returns(node);
             var result = _factory.CreateRoot(column);
             Assert.That(result, Is.EqualTo(node));
@@ -72,7 +72,7 @@ namespace DataExplorer.Tests.Domain.FilterTrees
         public void TestCreateRootShouldCreateIntegerFilterTreeRoot()
         {
             var column = new ColumnBuilder().WithType(typeof(Int32)).Build();
-            var node = new IntegerFilterTreeRoot(string.Empty);
+            var node = new IntegerFilterTreeRoot(string.Empty, column);
             _mockIntegerFactory.Setup(p => p.CreateRoot(column)).Returns(node);
             var result = _factory.CreateRoot(column);
             Assert.That(result, Is.EqualTo(node));
@@ -82,7 +82,7 @@ namespace DataExplorer.Tests.Domain.FilterTrees
         public void TestCreateRootShouldCreateStringFilterTreeRoot()
         {
             var column = new ColumnBuilder().WithType(typeof(String)).Build();
-            var node = new StringFilterTreeRoot(string.Empty);
+            var node = new StringFilterTreeRoot(string.Empty, column);
             _mockStringFactory.Setup(p => p.CreateRoot(column)).Returns(node);
             var result = _factory.CreateRoot(column);
             Assert.That(result, Is.EqualTo(node));
@@ -98,7 +98,8 @@ namespace DataExplorer.Tests.Domain.FilterTrees
         [Test]
         public void TestCreateChildrenShouldReturnBooleanChildren()
         {
-            var node = new BooleanFilterTreeRoot(string.Empty);
+            var column = new ColumnBuilder().Build();
+            var node = new BooleanFilterTreeRoot(string.Empty, column);
             var children = new List<FilterTreeNode>();
             _mockBooleanFactory.Setup(p => p.CreateChildren(node)).Returns(children);
             var result = _factory.CreateChildren(node);
@@ -108,7 +109,8 @@ namespace DataExplorer.Tests.Domain.FilterTrees
         [Test]
         public void TestCreateChildrenShouldReturnDateTimeChildren()
         {
-            var node = new DateTimeFilterTreeRoot(string.Empty);
+            var column = new ColumnBuilder().Build();
+            var node = new DateTimeFilterTreeRoot(string.Empty, column);
             var children = new List<FilterTreeNode>();
             _mockDateTimeFactory.Setup(p => p.CreateChildren(node)).Returns(children);
             var result = _factory.CreateChildren(node);
@@ -118,7 +120,8 @@ namespace DataExplorer.Tests.Domain.FilterTrees
         [Test]
         public void TestCreateChildrenShouldReturnFloatChildren()
         {
-            var node = new FloatFilterTreeRoot(string.Empty);
+            var column = new ColumnBuilder().Build();
+            var node = new FloatFilterTreeRoot(string.Empty, column);
             var children = new List<FilterTreeNode>();
             _mockFloatFactory.Setup(p => p.CreateChildren(node)).Returns(children);
             var result = _factory.CreateChildren(node);
@@ -128,7 +131,8 @@ namespace DataExplorer.Tests.Domain.FilterTrees
         [Test]
         public void TestCreateChildrenShouldReturnIntegerChildren()
         {
-            var node = new IntegerFilterTreeRoot(string.Empty);
+            var column = new ColumnBuilder().Build();
+            var node = new IntegerFilterTreeRoot(string.Empty, column);
             var children = new List<FilterTreeNode>();
             _mockIntegerFactory.Setup(p => p.CreateChildren(node)).Returns(children);
             var result = _factory.CreateChildren(node);
@@ -138,7 +142,8 @@ namespace DataExplorer.Tests.Domain.FilterTrees
         [Test]
         public void TestCreateChildrenShouldReturnStringChildren()
         {
-            var node = new StringFilterTreeRoot(string.Empty);
+            var column = new ColumnBuilder().Build();
+            var node = new StringFilterTreeRoot(string.Empty, column);
             var children = new List<FilterTreeNode>();
             _mockStringFactory.Setup(p => p.CreateChildren(node)).Returns(children);
             var result = _factory.CreateChildren(node);

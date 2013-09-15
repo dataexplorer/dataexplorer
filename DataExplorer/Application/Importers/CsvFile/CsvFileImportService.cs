@@ -15,9 +15,7 @@ using DataExplorer.Persistence;
 
 namespace DataExplorer.Application.Importers.CsvFile
 {
-    public class CsvFileImportService :
-        ICsvFileImportService, 
-        IDomainHandler<CsvFilePathChangedEvent>
+    public class CsvFileImportService : ICsvFileImportService
     {
         private readonly ISourceRepository _repository;
         private readonly ICsvFileDataAdapter _dataAdapter;
@@ -141,11 +139,6 @@ namespace DataExplorer.Application.Importers.CsvFile
             }
             
             AppEvents.Raise(new CsvFileImportedEvent());
-        }
-
-        public void Handle(CsvFilePathChangedEvent args)
-        {
-            //AppEvents.Raise(new CsvFilePathChangedAppEvent());
         }
     }
 }

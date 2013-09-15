@@ -74,6 +74,7 @@
     <Compile Include="Application\Application\IApplicationStateService.cs" />
     <Compile Include="Application\FilterTrees\FilterTreeService.cs" />
     <Compile Include="Domain\FilterTrees\BooleanFilterTrees\BooleanFilterTreeFactory.cs" />
+    <Compile Include="Domain\FilterTrees\BooleanFilterTrees\BooleanFilterTreeLeaf.cs" />
     <Compile Include="Domain\FilterTrees\BooleanFilterTrees\BooleanFilterTreeNode.cs" />
     <Compile Include="Domain\FilterTrees\BooleanFilterTrees\BooleanFilterTreeRoot.cs" />
     <Compile Include="Domain\FilterTrees\BooleanFilterTrees\IBooleanFilterTreeFactory.cs" />
@@ -93,6 +94,7 @@
     <Compile Include="Domain\FilterTrees\IntegerFilterTrees\IntegerFilterTreeFactory.cs" />
     <Compile Include="Domain\FilterTrees\IntegerFilterTrees\IntegerFilterTreeNode.cs" />
     <Compile Include="Domain\FilterTrees\IntegerFilterTrees\IntegerFilterTreeRoot.cs" />
+    <Compile Include="Domain\FilterTrees\NullFilterTrees\NullFilterTreeLeaf.cs" />
     <Compile Include="Domain\FilterTrees\StringFilterTrees\IStringFilterTreeFactory.cs" />
     <Compile Include="Domain\FilterTrees\StringFilterTrees\StringFilterTreeFactory.cs" />
     <Compile Include="Domain\FilterTrees\StringFilterTrees\StringFilterTreeNode.cs" />

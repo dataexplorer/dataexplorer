@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Domain.Columns;
 
-namespace DataExplorer.Domain.FilterTrees.StringFilterTrees
+namespace DataExplorer.Domain.FilterTrees.NullFilterTrees
 {
-    public abstract class StringFilterTreeNode : FilterTreeNode
+    public class NullFilterTreeLeaf : FilterTreeNode
     {
-        protected StringFilterTreeNode(string name, Column column) 
+        public NullFilterTreeLeaf(string name, Column column) 
             : base(name, column)
         {
         }

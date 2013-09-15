@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Linq;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.FilterTrees.BooleanFilterTrees;
 using DataExplorer.Tests.Domain.Columns;
+using DataExplorer.Tests.Presentation.Panes.Navigation.NavigationTree;
 using NUnit.Framework;
 
 namespace DataExplorer.Tests.Domain.FilterTrees.BooleanFilterTrees
@@ -26,9 +28,39 @@ namespace DataExplorer.Tests.Domain.FilterTrees.BooleanFilterTrees
         }
 
         [Test]
-        public void TestCreateChildrenShouldCreateChildren()
+        public void TestCreateChildrenShouldCreateFalseLeaf()
         {
-            Assert.Inconclusive();
+            var column = new ColumnBuilder().Build();
+            var root = new BooleanFilterTreeRoot(string.Empty, column);
+            var results = _factory.CreateChildren(root).ToList();
+            Assert.That(results[0].Name, Is.EqualTo("False"));
+        }
+
+        [Test]
+        public void TestCreateChildrenShouldCreateTrueLeaf()
+        {
+            var column = new ColumnBuilder().Build();
+            var root = new BooleanFilterTreeRoot(string.Empty, column);
+            var results = _factory.CreateChildren(root).ToList();
+            Assert.That(results[1].Name, Is.EqualTo("True"));
+        }
+
+        [Test]
+        public void TestCreateChildrenShouldNotCreateNullLeafIfColumnHasNoNulls()
+        {
+            var column = new ColumnBuilder().Build();
+            var root = new BooleanFilterTreeRoot(string.Empty, column);
+            var results = _factory.CreateChildren(root).ToList();
+            Assert.That(results[0].Name, Is.Not.EqualTo("Null"));
+        }
+
+        [Test]
+        public void TestCreateChildrenShouldCreateNullLeafIfColumnHasNulls()
+        {
+            var column = new ColumnBuilder().WithNulls().Build();
+            var root = new BooleanFilterTreeRoot(string.Empty, column);
+            var results = _factory.CreateChildren(root).ToList();
+            Assert.That(results[0].Name, Is.EqualTo("Null"));
         }
     }
 }

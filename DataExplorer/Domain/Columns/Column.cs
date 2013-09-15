@@ -15,6 +15,7 @@ namespace DataExplorer.Domain.Columns
         private readonly List<object> _values;
         private readonly object _min;
         private readonly object _max;
+        private readonly bool _hasNulls;
 
         public Column(int id, int index, string name, Type type, List<object> values)
         {
@@ -25,7 +26,8 @@ namespace DataExplorer.Domain.Columns
             _values = values;
             _min = values.Min();
             _max = values.Max();
-            
+            _hasNulls = values
+                .Any(p => p == null);
         }
 
         public int Id
@@ -61,6 +63,11 @@ namespace DataExplorer.Domain.Columns
         public List<object> Values
         {
             get { return _values; }
+        }
+
+        public bool HasNulls
+        {
+            get { return _hasNulls; }
         }
     }
 }

@@ -11,7 +11,7 @@ namespace DataExplorer.Domain.FilterTrees.FloatFilterTrees
     {
         public FilterTreeNode CreateRoot(Column column)
         {
-            return new FloatFilterTreeRoot(column.Name);
+            return new FloatFilterTreeRoot(column.Name, column);
         }
 
         public IEnumerable<FilterTreeNode> CreateChildren(FloatFilterTreeNode node)

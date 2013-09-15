@@ -45,7 +45,8 @@ namespace DataExplorer.Tests.Application.FilterTrees
         [Test]
         public void TestGetChildrenShouldReturnBooleanChildren()
         {
-            var node = new FakeFilterTreeNode("Test");
+            var column = new ColumnBuilder().Build();
+            var node = new FakeFilterTreeNode("Test", column);
             var children = new List<FilterTreeNode>();
             _mockFactory.Setup(p => p.CreateChildren(node)).Returns(children);
             var result = _service.GetChildren(node);

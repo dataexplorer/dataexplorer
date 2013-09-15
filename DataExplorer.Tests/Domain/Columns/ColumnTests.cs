@@ -16,7 +16,7 @@ namespace DataExplorer.Tests.Domain.Columns
         [SetUp]
         public void SetUp()
         {
-            _column = new Column(1, 0, "Test", typeof(bool), new List<object> { 0, 1000 });
+            _column = new Column(1, 0, "Test", typeof(bool), new List<object> { 0, 1000, null });
         }
 
         [Test]
@@ -45,6 +45,13 @@ namespace DataExplorer.Tests.Domain.Columns
         {
             var result = _column.Type;
             Assert.That(result, Is.EqualTo(typeof(bool)));
+        }
+
+        [Test]
+        public void TestHasNullsShouldReturnHasNulls()
+        {
+            var result = _column.HasNulls;
+            Assert.That(result, Is.True);
         }
     }
 }

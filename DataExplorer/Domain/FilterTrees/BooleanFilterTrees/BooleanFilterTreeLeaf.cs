@@ -7,11 +7,19 @@ using DataExplorer.Domain.Columns;
 
 namespace DataExplorer.Domain.FilterTrees.BooleanFilterTrees
 {
-    public abstract class BooleanFilterTreeNode : FilterTreeNode
+    public class BooleanFilterTreeLeaf : BooleanFilterTreeNode
     {
-        protected BooleanFilterTreeNode(string name, Column column)
+        private readonly bool _value;
+
+        public BooleanFilterTreeLeaf(string name, Column column, bool value)
             : base(name, column)
         {
+            _value = value;
+        }
+
+        public bool Value
+        {
+            get { return _value; }
         }
     }
 }
