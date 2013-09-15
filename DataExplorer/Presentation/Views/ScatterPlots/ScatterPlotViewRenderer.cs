@@ -7,7 +7,6 @@ using System.Windows;
 using System.Windows.Media;
 using DataExplorer.Application.ScatterPlots;
 using DataExplorer.Presentation.Core.Geometry;
-using DataExplorer.Presentation.Views.ScatterPlot;
 
 namespace DataExplorer.Presentation.Views.ScatterPlots
 {

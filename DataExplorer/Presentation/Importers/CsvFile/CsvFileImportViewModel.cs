@@ -10,6 +10,7 @@ using DataExplorer.Presentation.Core.Commands;
 using DataExplorer.Presentation.Core.Events;
 using DataExplorer.Presentation.Dialogs;
 using DataExplorer.Presentation.Importers.CsvFile.Body;
+using DataExplorer.Presentation.Importers.CsvFile.Footer;
 using DataExplorer.Presentation.Importers.CsvFile.Header;
 
 namespace DataExplorer.Presentation.Importers.CsvFile

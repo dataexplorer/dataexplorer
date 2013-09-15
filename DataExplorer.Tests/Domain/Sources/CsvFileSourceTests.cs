@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using DataExplorer.Domain.Sources;
 using DataExplorer.Domain.Sources.Maps;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Domain.Importers
+namespace DataExplorer.Tests.Domain.Sources
 {
     [TestFixture]
     public class CsvFileSourceTests

@@ -1,7 +1,7 @@
 ﻿using System.Windows.Input;
 using DataExplorer.Presentation.Core.Events;
 
-namespace DataExplorer.Presentation.Importers.CsvFile
+namespace DataExplorer.Presentation.Importers.CsvFile.Footer
 {
     public interface ICsvFileImportFooterViewModel
     {

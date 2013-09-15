@@ -2,7 +2,6 @@
 using System.Windows;
 using System.Windows.Media;
 using DataExplorer.Presentation.Core.Canvas;
-using DataExplorer.Presentation.Views.ScatterPlot;
 
 namespace DataExplorer.Presentation.Core
 {

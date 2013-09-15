@@ -15,9 +15,8 @@
  */
 
 using System;
-using System.ComponentModel;
 
-namespace DataExplorer.Annotations
+namespace DataExplorer.Properties
 {
   /// <summary>
   /// Indicates that marked element should be localized or not.

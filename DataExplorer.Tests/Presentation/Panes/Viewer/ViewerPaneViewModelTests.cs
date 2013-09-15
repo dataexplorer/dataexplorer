@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Presentation.Panes.Viewer;
-using DataExplorer.Presentation.Views.ScatterPlot;
+using DataExplorer.Presentation.Views.ScatterPlots;
 using Moq;
 using NUnit.Framework;
 

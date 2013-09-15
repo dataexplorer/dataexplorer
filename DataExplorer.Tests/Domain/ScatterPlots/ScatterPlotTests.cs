@@ -49,6 +49,7 @@ namespace DataExplorer.Tests.Domain.ScatterPlots
             DomainEvents.Register<ScatterPlotChangedEvent>(p => { wasScatterPlotChanged = true; });
             _scatterPlot.SetPlots(plots);
             Assert.That(wasScatterPlotChanged, Is.True);
+            DomainEvents.ClearHandlers();
         }
     }
 }

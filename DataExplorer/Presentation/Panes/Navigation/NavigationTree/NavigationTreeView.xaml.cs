@@ -24,5 +24,15 @@ namespace DataExplorer.Presentation.Panes.Navigation.NavigationTree
         {
             InitializeComponent();
         }
+
+        private void HandlePreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void HandlePreviewMouseMove(object sender, MouseEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

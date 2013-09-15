@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Presentation.Importers.CsvFile;
 using DataExplorer.Presentation.Importers.CsvFile.Body;
+using DataExplorer.Presentation.Importers.CsvFile.Footer;
 using DataExplorer.Presentation.Importers.CsvFile.Header;
 using Moq;
 using NUnit.Framework;

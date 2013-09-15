@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using DataExplorer.Presentation.Core.Geometry;
 
-namespace DataExplorer.Presentation.Views.ScatterPlot
+namespace DataExplorer.Presentation.Views.ScatterPlots
 {
     public interface IScatterPlotViewModel
     {

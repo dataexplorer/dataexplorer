@@ -8,7 +8,6 @@ using System.Windows;
 using DataExplorer.Application.ScatterPlots;
 using DataExplorer.Presentation.Core;
 using DataExplorer.Presentation.Core.Geometry;
-using DataExplorer.Presentation.Views.ScatterPlot;
 
 namespace DataExplorer.Presentation.Views.ScatterPlots
 {

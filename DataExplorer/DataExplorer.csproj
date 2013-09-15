@@ -72,6 +72,26 @@
     <Compile Include="Application\Application\ApplicationStateChangedEvent.cs" />
     <Compile Include="Application\Application\ApplicationStateService.cs" />
     <Compile Include="Application\Application\IApplicationStateService.cs" />
+    <Compile Include="Application\FilterTrees\FilterTreeService.cs" />
+    <Compile Include="Domain\FilterTrees\BooleanFilterTrees\BooleanFilterTreeFactory.cs" />
+    <Compile Include="Domain\FilterTrees\BooleanFilterTrees\BooleanFilterTreeRoot.cs" />
+    <Compile Include="Domain\FilterTrees\BooleanFilterTrees\IBooleanFilterTreeFactory.cs" />
+    <Compile Include="Domain\FilterTrees\DateTimeFilterTrees\DateTimeFilterTreeRoot.cs" />
+    <Compile Include="Domain\FilterTrees\DateTimeFilterTrees\DateTimeFilterTreeFactory.cs" />
+    <Compile Include="Domain\FilterTrees\DateTimeFilterTrees\IDateTimeFilterTreeFactory.cs" />
+    <Compile Include="Domain\FilterTrees\FilterTreeTreeNodeFactory.cs" />
+    <Compile Include="Domain\FilterTrees\FloatFilterTrees\FloatFilterTreeFactory.cs" />
+    <Compile Include="Domain\FilterTrees\FloatFilterTrees\FloatFilterTreeRoot.cs" />
+    <Compile Include="Domain\FilterTrees\FloatFilterTrees\IFloatFilterTreeFactory.cs" />
+    <Compile Include="Domain\FilterTrees\IFilterTreeNodeFactory.cs" />
+    <Compile Include="Application\FilterTrees\IFilterTreeService.cs" />
+    <Compile Include="Domain\FilterTrees\FilterTreeNode.cs" />
+    <Compile Include="Domain\FilterTrees\IntegerFilterTrees\IIntegerFilterTreeFactory.cs" />
+    <Compile Include="Domain\FilterTrees\IntegerFilterTrees\IntegerFilterTreeFactory.cs" />
+    <Compile Include="Domain\FilterTrees\IntegerFilterTrees\IntegerFilterTreeRoot.cs" />
+    <Compile Include="Domain\FilterTrees\StringFilterTrees\IStringFilterTreeFactory.cs" />
+    <Compile Include="Domain\FilterTrees\StringFilterTrees\StringFilterTreeFactory.cs" />
+    <Compile Include="Domain\FilterTrees\StringFilterTrees\StringFilterTreeRoot.cs" />
     <Compile Include="Infrastructure\Application\ApplicationWrapper.cs" />
     <Compile Include="Application\Application\ApplicationService.cs" />
     <Compile Include="Infrastructure\Application\IApplication.cs" />
@@ -212,6 +232,7 @@
       <DependentUpon>NavigationTreeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Presentation\Panes\Navigation\NavigationTree\NavigationTreeViewModel.cs" />
+    <Compile Include="Presentation\Panes\Navigation\NavigationTree\TreeNodeViewModel.cs" />
     <Compile Include="Presentation\Panes\Navigation\StartMenu\IStartMenuViewModel.cs" />
     <Compile Include="Presentation\Panes\Navigation\StartMenu\StartMenuView.xaml.cs">
       <DependentUpon>StartMenuView.xaml</DependentUpon>

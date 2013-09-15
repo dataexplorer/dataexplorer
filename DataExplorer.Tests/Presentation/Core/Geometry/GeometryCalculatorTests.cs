@@ -1,5 +1,5 @@
 ﻿using System.Windows;
-using DataExplorer.Presentation.Views.ScatterPlot;
+using DataExplorer.Presentation.Core.Geometry;
 using NUnit.Framework;
 
 namespace DataExplorer.Tests.Presentation.Core.Geometry
