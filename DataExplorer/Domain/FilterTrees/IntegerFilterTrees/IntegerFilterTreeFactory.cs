@@ -13,5 +13,10 @@ namespace DataExplorer.Domain.FilterTrees.IntegerFilterTrees
         {
             return new IntegerFilterTreeRoot(column.Name);
         }
+
+        public IEnumerable<FilterTreeNode> CreateChildren(IntegerFilterTreeNode node)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

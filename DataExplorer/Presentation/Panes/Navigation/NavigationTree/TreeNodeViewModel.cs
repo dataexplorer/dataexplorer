@@ -31,8 +31,6 @@ namespace DataExplorer.Presentation.Panes.Navigation.NavigationTree
         {
             get
             {
-                return new List<TreeNodeViewModel>();
-
                 var filterTreeNodes = _service.GetChildren(_filterTreeNode);
 
                 var viewModels = filterTreeNodes

@@ -9,7 +9,7 @@ using DataExplorer.Domain.FilterTrees.StringFilterTrees;
 
 namespace DataExplorer.Domain.FilterTrees
 {
-    public class FilterTreeTreeNodeFactory : IFilterTreeNodeFactory
+    public class FilterTreeFactory : IFilterTreeNodeFactory
     {
         private readonly IBooleanFilterTreeFactory _booleanFactory;
         private readonly IDateTimeFilterTreeFactory _dateTimeFactory;
@@ -17,7 +17,7 @@ namespace DataExplorer.Domain.FilterTrees
         private readonly IIntegerFilterTreeFactory _integerFactory;
         private readonly IStringFilterTreeFactory _stringFactory;
 
-        public FilterTreeTreeNodeFactory(
+        public FilterTreeFactory(
             IBooleanFilterTreeFactory booleanFactory,
             IDateTimeFilterTreeFactory dateTimeFactory,
             IFloatFilterTreeFactory floatFactory,
@@ -48,12 +48,27 @@ namespace DataExplorer.Domain.FilterTrees
             if (column.Type == typeof(String))
                 return _stringFactory.CreateRoot(column);
 
-            throw new ArgumentException("Column data type is not supported.");
+            throw new ArgumentException("Column data type is not recognized.");
         }
 
         public IEnumerable<FilterTreeNode> CreateChildren(FilterTreeNode node)
         {
-            throw new NotImplementedException();
+            if (node is BooleanFilterTreeNode)
+                return _booleanFactory.CreateChildren((BooleanFilterTreeNode) node);
+
+            if (node is DateTimeFilterTreeNode)
+                return _dateTimeFactory.CreateChildren((DateTimeFilterTreeNode) node);
+
+            if (node is FloatFilterTreeNode)
+                return _floatFactory.CreateChildren((FloatFilterTreeNode) node);
+
+            if (node is IntegerFilterTreeNode)
+                return _integerFactory.CreateChildren((IntegerFilterTreeNode) node);
+
+            if (node is StringFilterTreeNode)
+                return _stringFactory.CreateChildren((StringFilterTreeNode) node);
+            
+            throw new ArgumentException("Filter node type not recognized.");
         }
     }
 }

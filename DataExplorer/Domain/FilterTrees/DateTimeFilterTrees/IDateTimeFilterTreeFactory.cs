@@ -10,5 +10,7 @@ namespace DataExplorer.Domain.FilterTrees.DateTimeFilterTrees
     public interface IDateTimeFilterTreeFactory
     {
         FilterTreeNode CreateRoot(Column column);
+
+        IEnumerable<FilterTreeNode> CreateChildren(DateTimeFilterTreeNode node);
     }
 }

@@ -10,5 +10,7 @@ namespace DataExplorer.Domain.FilterTrees.IntegerFilterTrees
     public interface IIntegerFilterTreeFactory
     {
         FilterTreeNode CreateRoot(Column column);
+
+        IEnumerable<FilterTreeNode> CreateChildren(IntegerFilterTreeNode node);
     }
 }

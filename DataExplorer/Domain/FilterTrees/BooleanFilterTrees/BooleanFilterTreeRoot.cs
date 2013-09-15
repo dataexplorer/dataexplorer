@@ -1,6 +1,6 @@
 ﻿namespace DataExplorer.Domain.FilterTrees.BooleanFilterTrees
 {
-    public class BooleanFilterTreeRoot : FilterTreeNode
+    public class BooleanFilterTreeRoot : BooleanFilterTreeNode
     {
         public BooleanFilterTreeRoot(string name)
         {

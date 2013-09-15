@@ -13,5 +13,10 @@ namespace DataExplorer.Domain.FilterTrees.StringFilterTrees
         {
             return new StringFilterTreeRoot(column.Name);
         }
+
+        public IEnumerable<FilterTreeNode> CreateChildren(StringFilterTreeNode node)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

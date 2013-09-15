@@ -10,5 +10,7 @@ namespace DataExplorer.Domain.FilterTrees.BooleanFilterTrees
     public interface IBooleanFilterTreeFactory
     {
         FilterTreeNode CreateRoot(Column column);
+
+        IEnumerable<FilterTreeNode> CreateChildren(BooleanFilterTreeNode node);
     }
 }

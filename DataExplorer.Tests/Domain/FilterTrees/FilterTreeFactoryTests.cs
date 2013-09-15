@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using DataExplorer.Domain.FilterTrees;
 using DataExplorer.Domain.FilterTrees.BooleanFilterTrees;
 using DataExplorer.Domain.FilterTrees.DateTimeFilterTrees;
@@ -12,9 +13,9 @@ using NUnit.Framework;
 namespace DataExplorer.Tests.Domain.FilterTrees
 {
     [TestFixture]
-    public class FilterTreeNodeFactoryTests
+    public class FilterTreeFactoryTests
     {
-        private FilterTreeTreeNodeFactory _factory;
+        private FilterTreeFactory _factory;
         private Mock<IBooleanFilterTreeFactory> _mockBooleanFactory;
         private Mock<IDateTimeFilterTreeFactory> _mockDateTimeFactory;
         private Mock<IFloatFilterTreeFactory> _mockFloatFactory;
@@ -29,7 +30,7 @@ namespace DataExplorer.Tests.Domain.FilterTrees
             _mockFloatFactory = new Mock<IFloatFilterTreeFactory>();
             _mockIntegerFactory = new Mock<IIntegerFilterTreeFactory>();
             _mockStringFactory = new Mock<IStringFilterTreeFactory>();
-            _factory = new FilterTreeTreeNodeFactory(
+            _factory = new FilterTreeFactory(
                 _mockBooleanFactory.Object, 
                 _mockDateTimeFactory.Object, 
                 _mockFloatFactory.Object,
@@ -92,6 +93,56 @@ namespace DataExplorer.Tests.Domain.FilterTrees
         {
             var column = new ColumnBuilder().WithType(typeof(Object)).Build();
             Assert.That(() => _factory.CreateRoot(column), Throws.ArgumentException);
+        }
+
+        [Test]
+        public void TestCreateChildrenShouldReturnBooleanChildren()
+        {
+            var node = new BooleanFilterTreeRoot(string.Empty);
+            var children = new List<FilterTreeNode>();
+            _mockBooleanFactory.Setup(p => p.CreateChildren(node)).Returns(children);
+            var result = _factory.CreateChildren(node);
+            Assert.That(result, Is.EqualTo(children));
+        }
+
+        [Test]
+        public void TestCreateChildrenShouldReturnDateTimeChildren()
+        {
+            var node = new DateTimeFilterTreeRoot(string.Empty);
+            var children = new List<FilterTreeNode>();
+            _mockDateTimeFactory.Setup(p => p.CreateChildren(node)).Returns(children);
+            var result = _factory.CreateChildren(node);
+            Assert.That(result, Is.EqualTo(children));
+        }
+
+        [Test]
+        public void TestCreateChildrenShouldReturnFloatChildren()
+        {
+            var node = new FloatFilterTreeRoot(string.Empty);
+            var children = new List<FilterTreeNode>();
+            _mockFloatFactory.Setup(p => p.CreateChildren(node)).Returns(children);
+            var result = _factory.CreateChildren(node);
+            Assert.That(result, Is.EqualTo(children));
+        }
+
+        [Test]
+        public void TestCreateChildrenShouldReturnIntegerChildren()
+        {
+            var node = new IntegerFilterTreeRoot(string.Empty);
+            var children = new List<FilterTreeNode>();
+            _mockIntegerFactory.Setup(p => p.CreateChildren(node)).Returns(children);
+            var result = _factory.CreateChildren(node);
+            Assert.That(result, Is.EqualTo(children));
+        }
+
+        [Test]
+        public void TestCreateChildrenShouldReturnStringChildren()
+        {
+            var node = new StringFilterTreeRoot(string.Empty);
+            var children = new List<FilterTreeNode>();
+            _mockStringFactory.Setup(p => p.CreateChildren(node)).Returns(children);
+            var result = _factory.CreateChildren(node);
+            Assert.That(result, Is.EqualTo(children));
         }
     }
 }

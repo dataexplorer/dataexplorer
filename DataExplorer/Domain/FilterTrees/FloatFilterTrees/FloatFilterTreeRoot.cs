@@ -1,6 +1,6 @@
 ﻿namespace DataExplorer.Domain.FilterTrees.FloatFilterTrees
 {
-    public class FloatFilterTreeRoot : FilterTreeNode
+    public class FloatFilterTreeRoot : FloatFilterTreeNode
     {
         public FloatFilterTreeRoot(string name)
         {

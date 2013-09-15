@@ -10,5 +10,7 @@ namespace DataExplorer.Domain.FilterTrees.FloatFilterTrees
     public interface IFloatFilterTreeFactory
     {
         FilterTreeNode CreateRoot(Column column);
+
+        IEnumerable<FilterTreeNode> CreateChildren(FloatFilterTreeNode node);
     }
 }

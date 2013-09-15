@@ -10,5 +10,6 @@ namespace DataExplorer.Domain.FilterTrees.StringFilterTrees
     public interface IStringFilterTreeFactory
     {
         FilterTreeNode CreateRoot(Column column);
+        IEnumerable<FilterTreeNode> CreateChildren(StringFilterTreeNode node);
     }
 }

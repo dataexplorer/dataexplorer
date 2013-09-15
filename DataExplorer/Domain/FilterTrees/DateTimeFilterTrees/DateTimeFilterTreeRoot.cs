@@ -1,6 +1,6 @@
 ﻿namespace DataExplorer.Domain.FilterTrees.DateTimeFilterTrees
 {
-    public class DateTimeFilterTreeRoot : FilterTreeNode
+    public class DateTimeFilterTreeRoot : DateTimeFilterTreeNode
     {
         public DateTimeFilterTreeRoot(string name)
         {

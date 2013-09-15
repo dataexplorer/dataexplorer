@@ -61,7 +61,7 @@
     <Compile Include="Domain\FilterTrees\BooleanFilterTrees\BooleanFilterTreeNodeTests.cs" />
     <Compile Include="Domain\FilterTrees\DateTimeFilterTrees\DateTimeFilterTreeFactoryTest.cs" />
     <Compile Include="Domain\FilterTrees\DateTimeFilterTrees\DateTimeRangeFilterTreeNodeTests.cs" />
-    <Compile Include="Domain\FilterTrees\FilterTreeNodeFactoryTests.cs" />
+    <Compile Include="Domain\FilterTrees\FilterTreeFactoryTests.cs" />
     <Compile Include="Application\FilterTrees\FilterTreeServiceTests.cs" />
     <Compile Include="Domain\FilterTrees\FloatFilterTrees\FloatFilterTreeFactoryTests.cs" />
     <Compile Include="Domain\FilterTrees\FloatFilterTrees\FloatRangeFilterTreeNodeTests.cs" />

@@ -42,14 +42,14 @@ namespace DataExplorer.Tests.Application.FilterTrees
             Assert.That(result, Contains.Item(node));
         }
 
-        //[Test]
-        //public void TestGetChildrenShouldReturnBooleanChildren()
-        //{
-        //    var node = new FakeFilterTreeNode("Test");
-        //    var children = new List<FilterTreeNode>();
-        //    _mockFactory.Setup(p => p.CreateChildren(node)).Returns(children);
-        //    _service.GetChildren(node);
-        //    Assert.Fail();
-        //}
+        [Test]
+        public void TestGetChildrenShouldReturnBooleanChildren()
+        {
+            var node = new FakeFilterTreeNode("Test");
+            var children = new List<FilterTreeNode>();
+            _mockFactory.Setup(p => p.CreateChildren(node)).Returns(children);
+            var result = _service.GetChildren(node);
+            Assert.That(result, Is.EqualTo(children));
+        }
     }
 }

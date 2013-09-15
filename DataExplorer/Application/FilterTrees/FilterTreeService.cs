@@ -34,7 +34,9 @@ namespace DataExplorer.Application.FilterTrees
 
         public IEnumerable<FilterTreeNode> GetChildren(FilterTreeNode filterTreeNode)
         {
-            throw new NotImplementedException();
+            var children = _factory.CreateChildren(filterTreeNode);
+
+            return children;
         }
     }
 }

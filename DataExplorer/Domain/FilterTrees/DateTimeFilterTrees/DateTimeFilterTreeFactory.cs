@@ -13,5 +13,10 @@ namespace DataExplorer.Domain.FilterTrees.DateTimeFilterTrees
         {
             return new DateTimeFilterTreeRoot(column.Name);
         }
+
+        public IEnumerable<FilterTreeNode> CreateChildren(DateTimeFilterTreeNode node)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
