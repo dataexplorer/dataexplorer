@@ -28,5 +28,12 @@ namespace DataExplorer.Tests.Domain.FilterTrees.BooleanFilterTrees
         {
             Assert.That(_leaf.Value, Is.EqualTo(true));
         }
+
+        [Test]
+        public void TestCreateChildrenShouldReturnEmptyList()
+        {
+            var result = _leaf.CreateChildren();
+            Assert.That(result, Is.Empty);
+        }
     }
 }

@@ -31,12 +31,5 @@ namespace DataExplorer.Application.FilterTrees
 
             return nodes;
         }
-
-        public IEnumerable<FilterTreeNode> GetChildren(FilterTreeNode filterTreeNode)
-        {
-            var children = _factory.CreateChildren(filterTreeNode);
-
-            return children;
-        }
     }
 }

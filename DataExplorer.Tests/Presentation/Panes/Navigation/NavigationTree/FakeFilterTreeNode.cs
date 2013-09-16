@@ -18,5 +18,10 @@ namespace DataExplorer.Tests.Presentation.Panes.Navigation.NavigationTree
         public FakeFilterTreeNode(string name, Column column) : base(name, column)
         {
         }
+
+        public override IEnumerable<FilterTreeNode> CreateChildren()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

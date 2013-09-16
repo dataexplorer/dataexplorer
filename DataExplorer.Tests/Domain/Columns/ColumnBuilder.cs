@@ -13,9 +13,8 @@ namespace DataExplorer.Tests.Domain.Columns
         private int _index;
         private string _name;
         private Type _type;
-        private object _min;
-        private object _max;
         private bool _hasNulls;
+        private List<object> _values; 
 
         public ColumnBuilder WithId(int id)
         {
@@ -41,21 +40,29 @@ namespace DataExplorer.Tests.Domain.Columns
             return this;
         }
 
-        public ColumnBuilder WithMin(object min)
-        {
-            _min = min;
-            return this;
-        }
-
-        public ColumnBuilder WithMax(object max)
-        {
-            _max = max;
-            return this;
-        }
-
         public ColumnBuilder WithNulls()
         {
             _hasNulls = true;
+            return this;
+        }
+
+        public ColumnBuilder WithValue(object value)
+        {
+            if (_values == null)
+                _values = new List<object>();
+
+            _values.Add(value);
+
+            return this;
+        }
+
+        public ColumnBuilder WithValues(IEnumerable<object> values)
+        {
+            if (_values == null)
+                _values = new List<object>();
+
+            _values.AddRange(values);
+
             return this;
         }
 
@@ -63,14 +70,11 @@ namespace DataExplorer.Tests.Domain.Columns
         {
             var values = new List<object>();
 
-            if (_max != null)
-                values.Add(_max);
-
-            if (_min != null)
-                values.Add(_min);
-
             if (_hasNulls)
                 values.Add(null);
+
+            if (_values != null)
+                values.AddRange(_values);
 
             return new Column(_id, _index, _name, _type, values);
         }

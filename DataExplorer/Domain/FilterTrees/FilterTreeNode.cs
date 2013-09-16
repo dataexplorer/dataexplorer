@@ -1,4 +1,7 @@
-﻿using DataExplorer.Domain.Columns;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using DataExplorer.Domain.Columns;
 
 namespace DataExplorer.Domain.FilterTrees
 {
@@ -21,6 +24,17 @@ namespace DataExplorer.Domain.FilterTrees
         public Column Column
         {
             get { return _column; }
+        }
+
+        public abstract IEnumerable<FilterTreeNode> CreateChildren();
+
+        protected bool HasValuesInRange(object low, object high)
+        {
+            return _column.Values
+                .Where(p => p != null)
+                .Cast<IComparable>()
+                .Any(p => p.CompareTo(low) >= 0
+                    && p.CompareTo(high) <= 0);
         }
     }
 }

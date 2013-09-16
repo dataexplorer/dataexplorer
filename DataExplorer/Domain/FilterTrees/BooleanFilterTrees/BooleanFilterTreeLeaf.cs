@@ -21,5 +21,10 @@ namespace DataExplorer.Domain.FilterTrees.BooleanFilterTrees
         {
             get { return _value; }
         }
+
+        public override IEnumerable<FilterTreeNode> CreateChildren()
+        {
+            return new List<FilterTreeNode>();
+        }
     }
 }

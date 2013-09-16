@@ -1,4 +1,5 @@
-﻿using DataExplorer.Domain.Columns;
+﻿using System.Linq;
+using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.FilterTrees.BooleanFilterTrees;
 using DataExplorer.Tests.Domain.Columns;
 using NUnit.Framework;
@@ -8,20 +9,40 @@ namespace DataExplorer.Tests.Domain.FilterTrees.BooleanFilterTrees
     [TestFixture]
     public class BooleanFilterTreeRootTests
     {
-        private BooleanFilterTreeRoot _node;
-        private Column _column;
-
-        [SetUp]
-        public void SetUp()
-        {
-            _column = new ColumnBuilder().Build();
-            _node = new BooleanFilterTreeRoot("Test", _column);
-        }
-        
         [Test]
-        public void TestConstructorShouldSetName()
+        public void TestCreateChildrenShouldCreateFalseLeaf()
         {
-            Assert.That(_node.Name, Is.EqualTo("Test"));
+            var column = new ColumnBuilder().Build();
+            var node = new BooleanFilterTreeRoot("Test", column);
+            var results = node.CreateChildren().ToList();
+            Assert.That(results[0].Name, Is.EqualTo("False"));
+        }
+
+        [Test]
+        public void TestCreateChildrenShouldCreateTrueLeaf()
+        {
+            var column = new ColumnBuilder().Build();
+            var node = new BooleanFilterTreeRoot("Test", column);
+            var results = node.CreateChildren().ToList();
+            Assert.That(results[1].Name, Is.EqualTo("True"));
+        }
+
+        [Test]
+        public void TestCreateChildrenShouldNotCreateNullLeafIfColumnHasNoNulls()
+        {
+            var column = new ColumnBuilder().Build();
+            var node = new BooleanFilterTreeRoot("Test", column);
+            var results = node.CreateChildren().ToList();
+            Assert.That(results[0].Name, Is.Not.EqualTo("Null"));
+        }
+
+        [Test]
+        public void TestCreateChildrenShouldCreateNullLeafIfColumnHasNulls()
+        {
+            var column = new ColumnBuilder().WithNulls().Build();
+            var node = new BooleanFilterTreeRoot("Test", column);
+            var results = node.CreateChildren().ToList();
+            Assert.That(results[0].Name, Is.EqualTo("Null"));
         }
     }
 }

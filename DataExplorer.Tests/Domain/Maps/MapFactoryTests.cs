@@ -25,7 +25,11 @@ namespace DataExplorer.Tests.Domain.Maps
         [Test]
         public void TestCreateAxisMapForFloatShouldReturnAFloatToAxisMap()
         {
-            var column = new ColumnBuilder().WithType(typeof(double)).WithMin(0d).WithMax(1d).Build();
+            var column = new ColumnBuilder()
+                .WithType(typeof(Double))
+                .WithValue(0d)
+                .WithValue(1d)
+                .Build();
             var result = _factory.CreateAxisMap(column, 0d, 1d);
             Assert.That(result, Is.TypeOf<FloatToAxisMap>());
         }
@@ -33,7 +37,11 @@ namespace DataExplorer.Tests.Domain.Maps
         [Test]
         public void TestCreateAxisMapForBooleanShouldReturnABooleanToAxisMap()
         {
-            var column = new ColumnBuilder().WithType(typeof(bool)).WithMin(0d).WithMax(1d).Build();
+            var column = new ColumnBuilder()
+                .WithType(typeof(Boolean))
+                .WithValue(0d)
+                .WithValue(1d)
+                .Build();
             var result = _factory.CreateAxisMap(column, 0d, 1d);
             Assert.That(result, Is.TypeOf<BooleanToAxisMap>());
         }
@@ -41,7 +49,7 @@ namespace DataExplorer.Tests.Domain.Maps
         [Test]
         public void TestCreateAxisMapForInvalidDataTypeShouldThrowArgumentException()
         {
-            var column = new ColumnBuilder().WithType(typeof(object)).Build();
+            var column = new ColumnBuilder().WithType(typeof(Object)).Build();
             Assert.That(() => _factory.CreateAxisMap(column, 0d, 1d), Throws.ArgumentException);
         }
     }

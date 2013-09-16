@@ -13,5 +13,10 @@ namespace DataExplorer.Domain.FilterTrees.NullFilterTrees
             : base(name, column)
         {
         }
+
+        public override IEnumerable<FilterTreeNode> CreateChildren()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

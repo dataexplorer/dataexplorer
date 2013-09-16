@@ -41,16 +41,5 @@ namespace DataExplorer.Tests.Application.FilterTrees
             var result = _service.GetRoots();
             Assert.That(result, Contains.Item(node));
         }
-
-        [Test]
-        public void TestGetChildrenShouldReturnBooleanChildren()
-        {
-            var column = new ColumnBuilder().Build();
-            var node = new FakeFilterTreeNode("Test", column);
-            var children = new List<FilterTreeNode>();
-            _mockFactory.Setup(p => p.CreateChildren(node)).Returns(children);
-            var result = _service.GetChildren(node);
-            Assert.That(result, Is.EqualTo(children));
-        }
     }
 }
