@@ -12,6 +12,7 @@ namespace DataExplorer.Domain.FilterTrees.StringFilterTrees
 
         public override IEnumerable<FilterTreeNode> CreateChildren()
         {
+            return new List<FilterTreeNode>();
             throw new System.NotImplementedException();
         }
     }

@@ -47,7 +47,10 @@ namespace DataExplorer.Tests.Domain.FilterTrees
         [Test]
         public void TestCreateRootShouldCreateFloatFilterTreeRoot()
         {
-            var column = new ColumnBuilder().WithType(typeof(Double)).Build();
+            var column = new ColumnBuilder()
+                .WithType(typeof(Double))
+                .WithValue(double.MinValue)
+                .Build();
             var result = _factory.CreateRoot(column);
             Assert.That(result is FloatFilterTreeRoot);
         }

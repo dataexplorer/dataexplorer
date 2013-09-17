@@ -5,12 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Domain.Columns;
 
-namespace DataExplorer.Domain.FilterTrees.NullFilterTrees
+namespace DataExplorer.Domain.FilterTrees.FloatFilterTrees
 {
-    public class NullFilterTreeLeaf : FilterTreeNode
+    public class FloatFilterTreeLeaf : FloatFilterTreeNode
     {
-        public NullFilterTreeLeaf(string name, Column column) 
-            : base(name, column)
+        public FloatFilterTreeLeaf(string name, Column column, double value)
+            : base(name, column, value, value)
         {
         }
 

@@ -12,9 +12,7 @@ namespace DataExplorer.Domain.FilterTrees.DateTimeFilterTrees
         }
 
         public override IEnumerable<FilterTreeNode> CreateChildren()
-        {
-            var children = new List<FilterTreeNode>();
-            
+        {          
             var lowerYear = _lower.Year;
 
             var upperYear = _upper.Year;
@@ -32,10 +30,8 @@ namespace DataExplorer.Domain.FilterTrees.DateTimeFilterTrees
 
                 var child = new YearFilterTreeNode(name, _column, lowerDateTime, upperDateTime);
 
-                children.Add(child);
+                yield return child;
             }
-
-            return children;
         }
 
         private DateTime CreateLowerDateTime(int year)

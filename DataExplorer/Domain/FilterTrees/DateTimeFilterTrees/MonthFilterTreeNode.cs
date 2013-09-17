@@ -13,8 +13,6 @@ namespace DataExplorer.Domain.FilterTrees.DateTimeFilterTrees
 
         public override IEnumerable<FilterTreeNode> CreateChildren()
         {
-            var children = new List<FilterTreeNode>();
-
             var year = _lower.Year;
 
             var month = _lower.Month;
@@ -36,10 +34,8 @@ namespace DataExplorer.Domain.FilterTrees.DateTimeFilterTrees
 
                 var child = new DayFilterTreeNode(name, _column, lowerDateTime, upperDateTime);
 
-                children.Add(child);
+                yield return child;
             }
-
-            return children;
         }
 
         private DateTime CreateLowerDateTime(int year, int month, int day)

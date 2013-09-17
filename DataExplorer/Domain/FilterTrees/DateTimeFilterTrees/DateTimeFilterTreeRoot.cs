@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DataExplorer.Domain.Columns;
+using DataExplorer.Domain.FilterTrees.NullFilterTrees;
 
 namespace DataExplorer.Domain.FilterTrees.DateTimeFilterTrees
 {
@@ -20,6 +21,23 @@ namespace DataExplorer.Domain.FilterTrees.DateTimeFilterTrees
         }
 
         public override IEnumerable<FilterTreeNode> CreateChildren()
+        {
+            var children = new List<FilterTreeNode>();
+
+            if (_column.HasNulls)
+            {
+                var nullLeaf = new NullFilterTreeLeaf("(Null)", _column);
+                children.Add(nullLeaf);
+            }
+
+            var derivedChildren = CreateDerivedChildren();
+
+            children.AddRange(derivedChildren);
+
+            return children;
+        }
+
+        private IEnumerable<FilterTreeNode> CreateDerivedChildren()
         {
             var timeSpan = _upper - _lower;
 
@@ -55,8 +73,6 @@ namespace DataExplorer.Domain.FilterTrees.DateTimeFilterTrees
 
         private IEnumerable<FilterTreeNode> CreateMillenniumChildren(DateTime min, DateTime max)
         {
-            var children = new List<FilterTreeNode>();
-
             var lowerMillennium = GetMillennium((DateTime) _column.Min);
 
             var upperMillennium = GetMillennium((DateTime) _column.Max);
@@ -74,10 +90,8 @@ namespace DataExplorer.Domain.FilterTrees.DateTimeFilterTrees
 
                 var child = new MillenniumFilterTreeNode(name, _column, lowerDateTime, upperDateTime);
 
-                children.Add(child);
+                yield return child;
             }
-
-            return children;
         }
 
         private static int GetMillennium(DateTime dateTime)

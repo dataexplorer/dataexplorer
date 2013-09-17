@@ -17,23 +17,7 @@ namespace DataExplorer.Tests.Domain.FilterTrees.DateTimeFilterTrees
         {
             var lower = DateTime.MinValue;
             var upper = DateTime.MinValue.AddDays(3652);
-            var column = new ColumnBuilder().WithValue(lower).WithValue(upper).Build();
-            var node = new CenturyFilterTreeNode(string.Empty, column, lower, upper);
-            var result = node.CreateChildren();
-            Assert.That(result.First().Name, Is.EqualTo("00s"));
-            //TODO: Assert value
-        }
-
-        [Test]
-        public void TestCreateChildrenShouldCreateMaxDecade()
-        {
-            var lower = DateTime.MaxValue.AddDays(-3652);
-            var upper = DateTime.MaxValue;
-            var column = new ColumnBuilder().WithValue(lower).WithValue(upper).Build();
-            var node = new CenturyFilterTreeNode(string.Empty, column, lower, upper);
-            var result = node.CreateChildren();
-            Assert.That(result.Last().Name, Is.EqualTo("9990s"));
-            //TODO: Assert value
+            Test(lower, upper, 0, "00s");
         }
 
         [Test]
@@ -41,11 +25,25 @@ namespace DataExplorer.Tests.Domain.FilterTrees.DateTimeFilterTrees
         {
             var lower = new DateTime(5550, 1, 1);
             var upper = new DateTime(5560, 1, 1);
+            Test(lower, upper, 0, "5550s");
+        }
+
+        [Test]
+        public void TestCreateChildrenShouldCreateMaxDecade()
+        {
+            var lower = DateTime.MaxValue.AddDays(-3652);
+            var upper = DateTime.MaxValue;
+            Test(lower, upper, 1, "9990s");
+        }
+
+
+        private void Test(DateTime lower, DateTime upper, int index, string name)
+        {
             var column = new ColumnBuilder().WithValue(lower).WithValue(upper).Build();
             var node = new CenturyFilterTreeNode(string.Empty, column, lower, upper);
             var result = node.CreateChildren();
-            Assert.That(result.First().Name, Is.EqualTo("5550s"));
-            //TODO: Assert value
+            Assert.That(result.ElementAt(index).Name, Is.EqualTo(name));
+            //TODO: Test value
         }
     }
 }

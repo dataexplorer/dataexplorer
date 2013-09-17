@@ -88,6 +88,7 @@
     <Compile Include="Domain\FilterTrees\DateTimeFilterTrees\SecondFilterTreeNode.cs" />
     <Compile Include="Domain\FilterTrees\DateTimeFilterTrees\YearFilterTreeNode.cs" />
     <Compile Include="Domain\FilterTrees\FilterTreeFactory.cs" />
+    <Compile Include="Domain\FilterTrees\FloatFilterTrees\FloatFilterTreeLeaf.cs" />
     <Compile Include="Domain\FilterTrees\FloatFilterTrees\FloatFilterTreeNode.cs" />
     <Compile Include="Domain\FilterTrees\FloatFilterTrees\FloatFilterTreeRoot.cs" />
     <Compile Include="Domain\FilterTrees\IFilterTreeNodeFactory.cs" />

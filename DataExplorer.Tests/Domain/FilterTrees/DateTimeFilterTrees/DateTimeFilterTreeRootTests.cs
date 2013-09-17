@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.FilterTrees.DateTimeFilterTrees;
+using DataExplorer.Domain.FilterTrees.NullFilterTrees;
 using DataExplorer.Tests.Domain.Columns;
 using NUnit.Framework;
 
@@ -34,41 +35,63 @@ namespace DataExplorer.Tests.Domain.FilterTrees.DateTimeFilterTrees
         }
 
         [Test]
-        public void TestCreateChildrenShouldCreateMinMillennia()
+        public void TestCreateChildrenShouldCreateNullLeafIfColumnHasNulls()
         {
             var column = new ColumnBuilder()
                 .WithValue(DateTime.MinValue)
-                .WithValue(DateTime.MinValue + TimeSpan.FromDays(365242))
+                .WithValue(DateTime.MinValue)
+                .WithNulls()
                 .Build();
             var root = new DateTimeFilterTreeRoot(string.Empty, column);
             var result = root.CreateChildren();
-            Assert.That(result.First().Name, Is.EqualTo("0000s"));
-            //TODO: Assert value
+            Assert.That(result.Single() is NullFilterTreeLeaf);
         }
 
         [Test]
-        public void TestCreateChildrenShouldCreateMaxMillennia()
+        public void TestCreateChildrenShouldNotCreateNullLeafIfColumnHasNoNulls()
         {
             var column = new ColumnBuilder()
-                .WithValue(DateTime.MaxValue - TimeSpan.FromDays(365242))
-                .WithValue(DateTime.MaxValue)
+                .WithValue(DateTime.MinValue)
+                .WithValue(DateTime.MinValue)
                 .Build();
             var root = new DateTimeFilterTreeRoot(string.Empty, column);
             var result = root.CreateChildren();
-            Assert.That(result.Last().Name, Is.EqualTo("9000s"));
-            //TODO: Assert value
+            Assert.That(result.Count(), Is.EqualTo(0));
+        }
+
+        [Test]
+        public void TestCreateChildrenShouldCreateMinMillennia()
+        {
+            var lower = DateTime.MinValue;
+            var upper = DateTime.MinValue + TimeSpan.FromDays(365242);
+            Test(lower, upper, 0, "0000s");
         }
 
         [Test]
         public void TestCreateChildrenShouldCreateMidMillennia()
         {
+            var lower = new DateTime(5000, 1, 1);
+            var upper = new DateTime(6000, 1, 1);
+            Test(lower, upper, 0, "5000s");
+        }
+
+        [Test]
+        public void TestCreateChildrenShouldCreateMaxMillennia()
+        {
+            var lower = DateTime.MaxValue - TimeSpan.FromDays(365242);
+            var upper = DateTime.MaxValue;
+            Test(lower, upper, 1, "9000s");
+        }
+
+        private void Test(DateTime lower, DateTime upper, int index, string name)
+        {
             var column = new ColumnBuilder()
-                .WithValue(new DateTime(5000, 1, 1))
-                .WithValue(new DateTime(6000, 1, 1))
+                .WithValue(lower)
+                .WithValue(upper)
                 .Build();
             var root = new DateTimeFilterTreeRoot(string.Empty, column);
             var result = root.CreateChildren();
-            Assert.That(result.First().Name, Is.EqualTo("5000s"));
+            Assert.That(result.ElementAt(index).Name, Is.EqualTo(name));
             //TODO: Assert value
         }
     }

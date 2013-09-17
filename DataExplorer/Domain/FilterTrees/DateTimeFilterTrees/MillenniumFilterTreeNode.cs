@@ -13,8 +13,6 @@ namespace DataExplorer.Domain.FilterTrees.DateTimeFilterTrees
 
         public override IEnumerable<FilterTreeNode> CreateChildren()
         {
-            var children = new List<FilterTreeNode>();
-
             var lowerCentury = GetCentury(_lower);
 
             var upperCentury = GetCentury(_upper);
@@ -32,10 +30,8 @@ namespace DataExplorer.Domain.FilterTrees.DateTimeFilterTrees
 
                 var child = new CenturyFilterTreeNode(name, _column, lowerDateTime, upperDateTime);
 
-                children.Add(child);
+                yield return child;
             }
-
-            return children;
         }
 
         private static int GetCentury(DateTime dateTime)

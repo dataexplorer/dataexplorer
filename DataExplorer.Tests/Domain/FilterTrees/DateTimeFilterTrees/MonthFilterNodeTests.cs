@@ -17,23 +17,7 @@ namespace DataExplorer.Tests.Domain.FilterTrees.DateTimeFilterTrees
         {
             var lower = DateTime.MinValue;
             var upper = DateTime.MinValue.AddDays(1);
-            var column = new ColumnBuilder().WithValue(lower).WithValue(upper).Build();
-            var node = new MonthFilterTreeNode(string.Empty, column, lower, upper);
-            var result = node.CreateChildren();
-            Assert.That(result.First().Name, Is.EqualTo("01"));
-            //TODO: Assert value
-        }
-
-        [Test]
-        public void TestCreateChildrenShouldCreateMaxDay()
-        {
-            var lower = DateTime.MaxValue.AddDays(-1);
-            var upper = DateTime.MaxValue;
-            var column = new ColumnBuilder().WithValue(lower).WithValue(upper).Build();
-            var node = new MonthFilterTreeNode(string.Empty, column, lower, upper);
-            var result = node.CreateChildren();
-            Assert.That(result.Last().Name, Is.EqualTo("31"));
-            //TODO: Assert value
+            Test(lower, upper, 0, "01");
         }
 
         [Test]
@@ -41,11 +25,24 @@ namespace DataExplorer.Tests.Domain.FilterTrees.DateTimeFilterTrees
         {
             var lower = new DateTime(5555, 6, 15);
             var upper = new DateTime(5555, 6, 16);
+            Test(lower, upper, 0, "15");
+        }
+
+        [Test]
+        public void TestCreateChildrenShouldCreateMaxDay()
+        {
+            var lower = DateTime.MaxValue.AddDays(-1);
+            var upper = DateTime.MaxValue;
+            Test(lower, upper, 1, "31");
+        }
+
+        private void Test(DateTime lower, DateTime upper, int index, string name)
+        {
             var column = new ColumnBuilder().WithValue(lower).WithValue(upper).Build();
             var node = new MonthFilterTreeNode(string.Empty, column, lower, upper);
             var result = node.CreateChildren();
-            Assert.That(result.First().Name, Is.EqualTo("15"));
-            //TODO: Assert value
+            Assert.That(result.ElementAt(index).Name, Is.EqualTo(name));
+            //TODO: Test value
         }
     }
 }
