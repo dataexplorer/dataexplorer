@@ -58,7 +58,10 @@ namespace DataExplorer.Tests.Domain.FilterTrees
         [Test]
         public void TestCreateRootShouldCreateIntegerFilterTreeRoot()
         {
-            var column = new ColumnBuilder().WithType(typeof(Int32)).Build();
+            var column = new ColumnBuilder()
+                .WithType(typeof(Int32))
+                .WithValue(0)
+                .Build();
             var result = _factory.CreateRoot(column);
             Assert.That(result is IntegerFilterTreeRoot);
         }

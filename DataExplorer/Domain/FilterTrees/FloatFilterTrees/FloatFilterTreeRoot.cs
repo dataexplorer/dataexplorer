@@ -13,18 +13,13 @@ namespace DataExplorer.Domain.FilterTrees.FloatFilterTrees
 
         public override IEnumerable<FilterTreeNode> CreateChildren()
         {
-            var children = new List<FilterTreeNode>();
-
             if (_column.HasNulls)
-            {
-                var nullLeaf = new NullFilterTreeLeaf("(Null)", _column);
-                children.Add(nullLeaf);
-            }
-                
-            var derivedChildren = base.CreateChildren();
-            children.AddRange(derivedChildren);
+                yield return  new NullFilterTreeLeaf("(Null)", _column);
 
-            return children;
+            var derivedChildren = base.CreateChildren();
+
+            foreach (var child in derivedChildren)
+                yield return child;
         }
     }
 }

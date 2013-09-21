@@ -75,6 +75,8 @@
     <Compile Include="Domain\FilterTrees\FloatFilterTrees\FloatFilterTreeLeafTests.cs" />
     <Compile Include="Domain\FilterTrees\FloatFilterTrees\FloatFilterTreeNodeTests.cs" />
     <Compile Include="Domain\FilterTrees\FloatFilterTrees\FloatFilterTreeRootTests.cs" />
+    <Compile Include="Domain\FilterTrees\IntegerFilterTrees\IntegerFilterTreeLeafTests.cs" />
+    <Compile Include="Domain\FilterTrees\IntegerFilterTrees\IntegerFilterTreeNodeTests.cs" />
     <Compile Include="Domain\FilterTrees\IntegerFilterTrees\IntegerFilterTreeRootTests.cs" />
     <Compile Include="Domain\FilterTrees\StringFilterTrees\StringFilterTreeRootTests.cs" />
     <Compile Include="Application\Importers\CsvFile\CsvFileImportProgressChangedEventTests.cs" />

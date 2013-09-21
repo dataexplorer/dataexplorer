@@ -94,6 +94,7 @@
     <Compile Include="Domain\FilterTrees\IFilterTreeNodeFactory.cs" />
     <Compile Include="Application\FilterTrees\IFilterTreeService.cs" />
     <Compile Include="Domain\FilterTrees\FilterTreeNode.cs" />
+    <Compile Include="Domain\FilterTrees\IntegerFilterTrees\IntegerFilterTreeLeaf.cs" />
     <Compile Include="Domain\FilterTrees\IntegerFilterTrees\IntegerFilterTreeNode.cs" />
     <Compile Include="Domain\FilterTrees\IntegerFilterTrees\IntegerFilterTreeRoot.cs" />
     <Compile Include="Domain\FilterTrees\NullFilterTrees\NullFilterTreeLeaf.cs" />

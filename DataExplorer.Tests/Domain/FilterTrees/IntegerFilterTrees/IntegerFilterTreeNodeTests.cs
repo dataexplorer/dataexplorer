@@ -4,27 +4,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Domain.Columns;
-using DataExplorer.Domain.FilterTrees.FloatFilterTrees;
+using DataExplorer.Domain.FilterTrees.IntegerFilterTrees;
 using DataExplorer.Tests.Domain.Columns;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Domain.FilterTrees.FloatFilterTrees
+namespace DataExplorer.Tests.Domain.FilterTrees.IntegerFilterTrees
 {
     [TestFixture]
-    public class FloatFilterTreeNodeTests
+    public class IntegerFilterTreeNodeTests
     {
-        private FloatFilterTreeNode _node;
+        private IntegerFilterTreeNode _node;
         private Column _column;
 
         [Test]
         public void TestCreateChildrenShouldReturnLeavesIfLessThanTenNodes()
         {
-            var values = CreateValues(0d, 10, 1d);
+            var values = CreateValues(0, 10, 1);
             _column = new ColumnBuilder().WithValues(values).Build();
-            _node = new FloatFilterTreeNode(string.Empty, _column, 0d, 10d);
+            _node = new IntegerFilterTreeNode(string.Empty, _column, 0, 10);
             var result = _node.CreateChildren();
             Assert.That(result.Count(), Is.EqualTo(10));
-            Assert.That(result.All(p => p is FloatFilterTreeLeaf));
+            Assert.That(result.All(p => p is IntegerFilterTreeLeaf));
             Assert.That(result.First().Name, Is.EqualTo("0"));
             Assert.That(result.Last().Name, Is.EqualTo("9"));
         }
@@ -32,19 +32,19 @@ namespace DataExplorer.Tests.Domain.FilterTrees.FloatFilterTrees
         [Test]
         public void TestCreateChildrenShouldCreateMinValueLeaf()
         {
-            var value = double.MinValue;
+            var value = int.MinValue;
             _column = new ColumnBuilder().WithValue(value).Build();
-            _node = new FloatFilterTreeNode(string.Empty, _column, value, value);
+            _node = new IntegerFilterTreeNode(string.Empty, _column, value, value);
             var results = _node.CreateChildren();
-            Assert.That(results.Single().Name, Is.EqualTo("-1.79769313486232E+308"));
+            Assert.That(results.Single().Name, Is.EqualTo("-2147483648"));
         }
 
         [Test]
         public void TestCreateChildrenShouldCreateMidValueLeaf()
         {
-            var value = 0d;
+            var value = 0;
             _column = new ColumnBuilder().WithValue(value).Build();
-            _node = new FloatFilterTreeNode(string.Empty, _column, value, value);
+            _node = new IntegerFilterTreeNode(string.Empty, _column, value, value);
             var results = _node.CreateChildren();
             Assert.That(results.Single().Name, Is.EqualTo("0"));
         }
@@ -52,22 +52,22 @@ namespace DataExplorer.Tests.Domain.FilterTrees.FloatFilterTrees
         [Test]
         public void TestCreateChildrenShouldCreateMaxValueLeaf()
         {
-            var value = double.MaxValue;
+            var value = int.MaxValue;
             _column = new ColumnBuilder().WithValue(value).Build();
-            _node = new FloatFilterTreeNode(string.Empty, _column, value, value);
+            _node = new IntegerFilterTreeNode(string.Empty, _column, value, value);
             var results = _node.CreateChildren();
-            Assert.That(results.Single().Name, Is.EqualTo("1.79769313486232E+308"));
+            Assert.That(results.Single().Name, Is.EqualTo("2147483647"));
         }
 
         [Test]
         public void TestCreateChildrenShouldReturnNodesIfMoreThanTenNodes()
         {
-            var values = CreateValues(0d, 20, 1d);
+            var values = CreateValues(0, 20, 1);
             _column = new ColumnBuilder().WithValues(values).Build();
-            _node = new FloatFilterTreeNode(string.Empty, _column, 0d, 20d);
+            _node = new IntegerFilterTreeNode(string.Empty, _column, 0, 20);
             var result = _node.CreateChildren();
             Assert.That(result.Count(), Is.EqualTo(10));
-            Assert.That(result.All(p => p is FloatFilterTreeNode));
+            Assert.That(result.All(p => p is IntegerFilterTreeNode));
             Assert.That(result.First().Name, Is.EqualTo("0 - 1"));
             Assert.That(result.Last().Name, Is.EqualTo("18 - 19"));
         }
@@ -75,20 +75,19 @@ namespace DataExplorer.Tests.Domain.FilterTrees.FloatFilterTrees
         [Test]
         public void TestCreateChildrenShouldCreateMinValueNodes()
         {
-            var step = Double.MaxValue / 20d;
-            var values = CreateValues(Double.MinValue, 20, step);;
+            var values = CreateValues(int.MinValue, 20, 1); ;
             _column = new ColumnBuilder().WithValues(values).Build();
-            _node = new FloatFilterTreeNode(string.Empty, _column, (double) _column.Min, (double) _column.Max);
+            _node = new IntegerFilterTreeNode(string.Empty, _column, (int)_column.Min, (int)_column.Max);
             var results = _node.CreateChildren();
-            Assert.That(results.First().Name, Is.EqualTo("-1.79769313486232E+308 - -1.7078084781192E+308"));
+            Assert.That(results.First().Name, Is.EqualTo("-2147483648 - -2147483647"));
         }
 
         [Test]
         public void TestCreateChildrenShouldCreateMidValueNodes()
         {
-            var values = CreateValues(-10, 20, 1d); ;
+            var values = CreateValues(-10, 20, 1); ;
             _column = new ColumnBuilder().WithValues(values).Build();
-            _node = new FloatFilterTreeNode(string.Empty, _column, (double)_column.Min, (double)_column.Max);
+            _node = new IntegerFilterTreeNode(string.Empty, _column, (int)_column.Min, (int)_column.Max);
             var results = _node.CreateChildren();
             Assert.That(results.ElementAt(5).Name, Is.EqualTo("0 - 1"));
         }
@@ -96,16 +95,14 @@ namespace DataExplorer.Tests.Domain.FilterTrees.FloatFilterTrees
         [Test]
         public void TestCreateChildrenShouldCreateMaxValueNodes()
         {
-            var step = Double.MaxValue / 20d;
-            var values = CreateValues(Double.MaxValue, 20, -step);
-            values = values.Reverse();
+            var values = CreateValues(int.MaxValue - 19, 20, 1); ;
             _column = new ColumnBuilder().WithValues(values).Build();
-            _node = new FloatFilterTreeNode(string.Empty, _column, (double)_column.Min, (double)_column.Max);
+            _node = new IntegerFilterTreeNode(string.Empty, _column, (int)_column.Min, (int)_column.Max);
             var results = _node.CreateChildren();
-            Assert.That(results.Last().Name, Is.EqualTo("1.7078084781192E+308 - 1.79769313486232E+308"));
+            Assert.That(results.Last().Name, Is.EqualTo("2147483646 - 2147483647"));
         }
 
-        private IEnumerable<object> CreateValues(double start, int count, double step)
+        private IEnumerable<object> CreateValues(int start, int count, int step)
         {
             for (int i = 0; i < count; i++)
                 yield return start + (i * step);
