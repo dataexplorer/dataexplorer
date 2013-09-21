@@ -78,6 +78,8 @@
     <Compile Include="Domain\FilterTrees\IntegerFilterTrees\IntegerFilterTreeLeafTests.cs" />
     <Compile Include="Domain\FilterTrees\IntegerFilterTrees\IntegerFilterTreeNodeTests.cs" />
     <Compile Include="Domain\FilterTrees\IntegerFilterTrees\IntegerFilterTreeRootTests.cs" />
+    <Compile Include="Domain\FilterTrees\StringFilterTrees\StringFilterTreeLeafTests.cs" />
+    <Compile Include="Domain\FilterTrees\StringFilterTrees\StringFilterTreeNodeTests.cs" />
     <Compile Include="Domain\FilterTrees\StringFilterTrees\StringFilterTreeRootTests.cs" />
     <Compile Include="Application\Importers\CsvFile\CsvFileImportProgressChangedEventTests.cs" />
     <Compile Include="Application\Importers\CsvFile\CsvFileSourceAdapterTests.cs" />

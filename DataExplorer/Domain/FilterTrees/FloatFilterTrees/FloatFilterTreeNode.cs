@@ -79,6 +79,7 @@ namespace DataExplorer.Domain.FilterTrees.FloatFilterTrees
                 + upperValue.ToString(CultureInfo.InvariantCulture);
         }
 
+        // TODO: See if I can refactor out this duplication
         private IEnumerable<T> GetDistinctValuesInRange<T>(T low, T high) 
             where T : IComparable
         {

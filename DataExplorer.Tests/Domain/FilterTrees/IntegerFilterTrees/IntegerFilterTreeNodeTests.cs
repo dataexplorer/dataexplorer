@@ -17,16 +17,23 @@ namespace DataExplorer.Tests.Domain.FilterTrees.IntegerFilterTrees
         private Column _column;
 
         [Test]
-        public void TestCreateChildrenShouldReturnLeavesIfLessThanTenNodes()
+        public void TestCreateChildrenShouldReturnLeavesIfLessThanOrEqualToTenNodes()
         {
             var values = CreateValues(0, 10, 1);
             _column = new ColumnBuilder().WithValues(values).Build();
             _node = new IntegerFilterTreeNode(string.Empty, _column, 0, 10);
             var result = _node.CreateChildren();
-            Assert.That(result.Count(), Is.EqualTo(10));
             Assert.That(result.All(p => p is IntegerFilterTreeLeaf));
-            Assert.That(result.First().Name, Is.EqualTo("0"));
-            Assert.That(result.Last().Name, Is.EqualTo("9"));
+        }
+
+        [Test]
+        public void TestCreateChildrenShouldReturnNodesIfMoreThanTenNodes()
+        {
+            var values = CreateValues(0, 20, 1);
+            _column = new ColumnBuilder().WithValues(values).Build();
+            _node = new IntegerFilterTreeNode(string.Empty, _column, 0, 20);
+            var result = _node.CreateChildren();
+            Assert.That(result.All(p => p is IntegerFilterTreeNode));
         }
 
         [Test]
@@ -59,18 +66,7 @@ namespace DataExplorer.Tests.Domain.FilterTrees.IntegerFilterTrees
             Assert.That(results.Single().Name, Is.EqualTo("2147483647"));
         }
 
-        [Test]
-        public void TestCreateChildrenShouldReturnNodesIfMoreThanTenNodes()
-        {
-            var values = CreateValues(0, 20, 1);
-            _column = new ColumnBuilder().WithValues(values).Build();
-            _node = new IntegerFilterTreeNode(string.Empty, _column, 0, 20);
-            var result = _node.CreateChildren();
-            Assert.That(result.Count(), Is.EqualTo(10));
-            Assert.That(result.All(p => p is IntegerFilterTreeNode));
-            Assert.That(result.First().Name, Is.EqualTo("0 - 1"));
-            Assert.That(result.Last().Name, Is.EqualTo("18 - 19"));
-        }
+       
 
         [Test]
         public void TestCreateChildrenShouldCreateMinValueNodes()

@@ -98,6 +98,7 @@
     <Compile Include="Domain\FilterTrees\IntegerFilterTrees\IntegerFilterTreeNode.cs" />
     <Compile Include="Domain\FilterTrees\IntegerFilterTrees\IntegerFilterTreeRoot.cs" />
     <Compile Include="Domain\FilterTrees\NullFilterTrees\NullFilterTreeLeaf.cs" />
+    <Compile Include="Domain\FilterTrees\StringFilterTrees\StringFilterTreeLeaf.cs" />
     <Compile Include="Domain\FilterTrees\StringFilterTrees\StringFilterTreeNode.cs" />
     <Compile Include="Domain\FilterTrees\StringFilterTrees\StringFilterTreeRoot.cs" />
     <Compile Include="Infrastructure\Application\ApplicationWrapper.cs" />
