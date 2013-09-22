@@ -7,6 +7,8 @@ using DataExplorer.Application;
 using DataExplorer.Application.Application;
 using DataExplorer.Application.Events;
 using DataExplorer.Application.Importers.CsvFile.Events;
+using DataExplorer.Tests.Application.FilterTrees;
+using DataExplorer.Tests.Application.Filters;
 using NUnit.Framework;
 
 namespace DataExplorer.Tests.Application.Application
@@ -16,12 +18,14 @@ namespace DataExplorer.Tests.Application.Application
     {
         private ApplicationStateService _service;
         private ApplicationState _state;
+        private FakeFilter _filter;
         private bool _wasRaised;
 
         [SetUp]
         public void SetUp()
         {
             _wasRaised = false;
+            _filter = new FakeFilter();
             AppEvents.Register<ApplicationStateChangedEvent>(e => { _wasRaised = true; });
             _state = new ApplicationState();
             _service = new ApplicationStateService(_state);
@@ -37,16 +41,41 @@ namespace DataExplorer.Tests.Application.Application
         public void TestConstructorShouldSetDefaultState()
         {
             _service = new ApplicationStateService();
-            var state = _service.GetState();
-            Assert.That(state.IsStartMenuVisible, Is.True);
-            Assert.That(state.IsNavigationTreeVisible, Is.False);
+            Assert.That(_service.IsStartMenuVisible, Is.True);
+            Assert.That(_service.IsNavigationTreeVisible, Is.False);
+            Assert.That(_service.SelectedFilter, Is.Null);
         }
 
         [Test]
-        public void TestGetStateReturnsState()
+        public void TestGetIsStartMenuVisibleShouldGetState()
         {
-            var result = _service.GetState();
-            Assert.That(result, Is.Not.Null);
+            _state.IsStartMenuVisible = true;
+            var result = _service.IsStartMenuVisible;
+            Assert.That(result, Is.True);
+        }
+
+        [Test]
+        public void TestGetIsNavigationTreeVisibleShouldGetState()
+        {
+            _state.IsNavigationTreeVisible = true;
+            var result = _service.IsNavigationTreeVisible;
+            Assert.That(result, Is.True);
+        }
+
+        [Test]
+        public void TestGetSelectedFilterTreeShouldGetState()
+        {
+            
+            _state.SelectedFilter = _filter;
+            var result = _service.SelectedFilter;
+            Assert.That(result, Is.EqualTo(_filter));
+        }
+
+        [Test]
+        public void TestSetSelectedFilterTreeShouldSetState()
+        {
+            _service.SelectedFilter = _filter;
+            Assert.That(_state.SelectedFilter, Is.EqualTo(_filter));
         }
 
         [Test]

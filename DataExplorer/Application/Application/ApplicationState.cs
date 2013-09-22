@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataExplorer.Domain.FilterTrees;
+using DataExplorer.Domain.Filters;
 
 namespace DataExplorer.Application.Application
 {
@@ -11,5 +13,7 @@ namespace DataExplorer.Application.Application
         public bool IsStartMenuVisible { get; set; }
 
         public bool IsNavigationTreeVisible { get; set; }
+
+        public Filter SelectedFilter { get; set; }
     }
 }

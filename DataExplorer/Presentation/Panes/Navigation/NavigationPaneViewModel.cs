@@ -32,7 +32,7 @@ namespace DataExplorer.Presentation.Panes.Navigation
 
         public bool IsStartMenuVisible
         {
-            get { return _stateService.GetState().IsStartMenuVisible; }
+            get { return _stateService.IsStartMenuVisible; }
         }
 
         public IStartMenuViewModel StartMenuViewModel
@@ -42,7 +42,7 @@ namespace DataExplorer.Presentation.Panes.Navigation
 
         public bool IsNavigationTreeVisible
         {
-            get { return _stateService.GetState().IsNavigationTreeVisible; }
+            get { return _stateService.IsNavigationTreeVisible; }
         }
 
         public INavigationTreeViewModel NavigationTreeViewModel

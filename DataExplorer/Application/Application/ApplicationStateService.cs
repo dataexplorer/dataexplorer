@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DataExplorer.Application.Application;
 using DataExplorer.Application.Events;
 using DataExplorer.Application.Importers.CsvFile.Events;
+using DataExplorer.Domain.Filters;
 
 namespace DataExplorer.Application.Application
 {
@@ -27,13 +28,26 @@ namespace DataExplorer.Application.Application
 
             _state.IsStartMenuVisible = true;
             _state.IsNavigationTreeVisible = false;
+            _state.SelectedFilter = null;
         }
 
-        public ApplicationState GetState()
+        public bool IsStartMenuVisible
         {
-            return _state;
+            get { return _state.IsStartMenuVisible; }
+            //set { _state.IsStartMenuVisible = value; }
         }
 
+        public bool IsNavigationTreeVisible
+        {
+            get { return _state.IsNavigationTreeVisible; }
+        }
+
+        public Filter SelectedFilter
+        {
+            get { return _state.SelectedFilter; }
+            set { _state.SelectedFilter = value; }
+        }
+        
         public void Handle(CsvFileImportingEvent args)
         {
             _state.IsStartMenuVisible = false;

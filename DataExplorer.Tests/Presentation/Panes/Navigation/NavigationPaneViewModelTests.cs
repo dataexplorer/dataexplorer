@@ -35,8 +35,7 @@ namespace DataExplorer.Tests.Presentation.Panes.Navigation
         [Test]
         public void TestIsStartMenuVisibleShouldReturnState()
         {
-            var state = new ApplicationState() { IsStartMenuVisible = true };
-            _mockApplicationStateService.Setup(p => p.GetState()).Returns(state);
+            _mockApplicationStateService.Setup(p => p.IsStartMenuVisible).Returns(true);
             var result = _viewModel.IsStartMenuVisible;
             Assert.That(result, Is.True);
         }
@@ -51,8 +50,7 @@ namespace DataExplorer.Tests.Presentation.Panes.Navigation
         [Test]
         public void TestIsNavigationTreeVisibleShouldReturnState()
         {
-            var state = new ApplicationState() { IsNavigationTreeVisible = true };
-            _mockApplicationStateService.Setup(p => p.GetState()).Returns(state);
+            _mockApplicationStateService.Setup(p => p.IsNavigationTreeVisible).Returns(true);
             var result = _viewModel.IsNavigationTreeVisible;
             Assert.That(result, Is.True);
         }
