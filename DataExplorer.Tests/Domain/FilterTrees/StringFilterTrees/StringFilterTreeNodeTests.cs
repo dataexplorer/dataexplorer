@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Domain.FilterTrees.StringFilterTrees;
 using DataExplorer.Domain.Filters;
+using DataExplorer.Domain.Filters.StringFilters;
 using DataExplorer.Tests.Domain.Columns;
 using NUnit.Framework;
 

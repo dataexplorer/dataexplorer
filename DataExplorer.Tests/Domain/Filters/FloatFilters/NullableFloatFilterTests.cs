@@ -1,27 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataExplorer.Domain.Columns;
-using DataExplorer.Domain.Filters;
-using DataExplorer.Domain.Predicates;
+﻿using DataExplorer.Domain.Columns;
+using DataExplorer.Domain.Filters.FloatFilters;
 using DataExplorer.Tests.Domain.Columns;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Domain.Filters
+namespace DataExplorer.Tests.Domain.Filters.FloatFilters
 {
     [TestFixture]
-    public class NullableDateTimeFilterTests
+    public class NullableFloatFilterTests
     {
-        private NullableDateTimeFilter _filter;
+        private NullableFloatFilter _filter;
         private Column _column;
-        
+
         [SetUp]
         public void SetUp()
         {
             _column = new ColumnBuilder().Build();
-            _filter = new NullableDateTimeFilter(_column, DateTime.MinValue, DateTime.MaxValue, true);
+            _filter = new NullableFloatFilter(_column, double.MinValue, double.MaxValue, true);
         }
 
         [Test]

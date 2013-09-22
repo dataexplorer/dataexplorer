@@ -5,6 +5,7 @@ using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.FilterTrees.DateTimeFilterTrees;
 using DataExplorer.Domain.FilterTrees.NullFilterTrees;
 using DataExplorer.Domain.Filters;
+using DataExplorer.Domain.Filters.DateTimeFilters;
 using DataExplorer.Tests.Domain.Columns;
 using NUnit.Framework;
 

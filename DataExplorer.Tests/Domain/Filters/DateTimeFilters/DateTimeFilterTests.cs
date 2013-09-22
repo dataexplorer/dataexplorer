@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DataExplorer.Domain.Columns;
-using DataExplorer.Domain.Filters;
+using DataExplorer.Domain.Filters.DateTimeFilters;
 using DataExplorer.Tests.Domain.Columns;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Domain.Filters
+namespace DataExplorer.Tests.Domain.Filters.DateTimeFilters
 {
     [TestFixture]
     public class DateTimeFilterTests

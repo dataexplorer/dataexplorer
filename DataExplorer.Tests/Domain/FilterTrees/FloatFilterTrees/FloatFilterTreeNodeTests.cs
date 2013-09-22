@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.FilterTrees.FloatFilterTrees;
 using DataExplorer.Domain.Filters;
+using DataExplorer.Domain.Filters.FloatFilters;
 using DataExplorer.Tests.Domain.Columns;
 using NUnit.Framework;
 

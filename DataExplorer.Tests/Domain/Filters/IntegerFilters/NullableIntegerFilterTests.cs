@@ -1,26 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataExplorer.Domain.Columns;
-using DataExplorer.Domain.Filters;
+﻿using DataExplorer.Domain.Columns;
+using DataExplorer.Domain.Filters.IntegerFilters;
 using DataExplorer.Tests.Domain.Columns;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Domain.Filters
+namespace DataExplorer.Tests.Domain.Filters.IntegerFilters
 {
     [TestFixture]
-    public class NullableFloatFilterTests
+    public class NullableIntegerFilterTests
     {
-        private NullableFloatFilter _filter;
+        private NullableIntegerFilter _filter;
         private Column _column;
 
         [SetUp]
         public void SetUp()
         {
             _column = new ColumnBuilder().Build();
-            _filter = new NullableFloatFilter(_column, double.MinValue, double.MaxValue, true);
+            _filter = new NullableIntegerFilter(_column, int.MinValue, int.MaxValue, true);
         }
 
         [Test]

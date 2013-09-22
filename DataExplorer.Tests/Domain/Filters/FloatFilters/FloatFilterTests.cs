@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataExplorer.Domain.Columns;
-using DataExplorer.Domain.Filters;
+﻿using DataExplorer.Domain.Columns;
+using DataExplorer.Domain.Filters.FloatFilters;
 using DataExplorer.Tests.Domain.Columns;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Domain.Filters
+namespace DataExplorer.Tests.Domain.Filters.FloatFilters
 {
     public class FloatFilterTests
     {

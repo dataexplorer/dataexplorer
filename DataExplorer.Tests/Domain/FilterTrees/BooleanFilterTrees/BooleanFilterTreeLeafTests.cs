@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.FilterTrees.BooleanFilterTrees;
 using DataExplorer.Domain.Filters;
+using DataExplorer.Domain.Filters.BooleanFilters;
 using DataExplorer.Tests.Domain.Columns;
 using NUnit.Framework;
 

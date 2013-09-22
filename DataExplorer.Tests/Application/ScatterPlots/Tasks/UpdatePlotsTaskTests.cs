@@ -9,6 +9,7 @@ using DataExplorer.Application.ScatterPlots;
 using DataExplorer.Application.ScatterPlots.Tasks;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Filters;
+using DataExplorer.Domain.Filters.BooleanFilters;
 using DataExplorer.Domain.Rows;
 using DataExplorer.Domain.ScatterPlots;
 using DataExplorer.Domain.Views;

@@ -3,6 +3,7 @@ using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.FilterTrees.NullFilterTrees;
 using DataExplorer.Domain.FilterTrees.StringFilterTrees;
 using DataExplorer.Domain.Filters;
+using DataExplorer.Domain.Filters.StringFilters;
 using DataExplorer.Tests.Domain.Columns;
 using NUnit.Framework;
 

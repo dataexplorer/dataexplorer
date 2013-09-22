@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Filters;
+using DataExplorer.Domain.Filters.FloatFilters;
 
 namespace DataExplorer.Domain.FilterTrees.FloatFilterTrees
 {

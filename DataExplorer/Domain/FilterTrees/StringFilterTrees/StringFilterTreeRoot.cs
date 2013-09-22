@@ -2,6 +2,7 @@
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.FilterTrees.NullFilterTrees;
 using DataExplorer.Domain.Filters;
+using DataExplorer.Domain.Filters.StringFilters;
 
 namespace DataExplorer.Domain.FilterTrees.StringFilterTrees
 {

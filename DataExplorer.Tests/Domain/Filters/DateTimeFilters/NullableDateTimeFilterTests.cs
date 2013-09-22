@@ -1,26 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DataExplorer.Domain.Columns;
-using DataExplorer.Domain.Filters;
+using DataExplorer.Domain.Filters.DateTimeFilters;
 using DataExplorer.Tests.Domain.Columns;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Domain.Filters
+namespace DataExplorer.Tests.Domain.Filters.DateTimeFilters
 {
     [TestFixture]
-    public class NullableStringFilterTests
+    public class NullableDateTimeFilterTests
     {
-        private NullableStringFilter _filter;
+        private NullableDateTimeFilter _filter;
         private Column _column;
-
+        
         [SetUp]
         public void SetUp()
         {
             _column = new ColumnBuilder().Build();
-            _filter = new NullableStringFilter(_column, string.Empty, true);
+            _filter = new NullableDateTimeFilter(_column, DateTime.MinValue, DateTime.MaxValue, true);
         }
 
         [Test]

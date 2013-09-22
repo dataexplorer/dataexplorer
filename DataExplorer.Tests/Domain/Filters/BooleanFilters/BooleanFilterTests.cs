@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using DataExplorer.Domain.Columns;
-using DataExplorer.Domain.Filters;
-using DataExplorer.Domain.Rows;
+using DataExplorer.Domain.Filters.BooleanFilters;
 using DataExplorer.Tests.Domain.Columns;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Domain.Filters
+namespace DataExplorer.Tests.Domain.Filters.BooleanFilters
 {
     [TestFixture]
     public class BooleanFilterTests
