@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.FilterTrees.NullFilterTrees;
+using DataExplorer.Domain.Filters;
 
 namespace DataExplorer.Domain.FilterTrees.StringFilterTrees
 {
@@ -24,6 +25,13 @@ namespace DataExplorer.Domain.FilterTrees.StringFilterTrees
 
             foreach (var child in derivedChildren)
                 yield return child;
+        }
+
+        public override Filter CreateFilter()
+        {
+            return _column.HasNulls 
+                ? new NullableStringFilter(_column, _value, true)
+                : base.CreateFilter();
         }
     }
 }

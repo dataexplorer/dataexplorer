@@ -88,6 +88,10 @@
     <Compile Include="Domain\Filters\FloatFilter.cs" />
     <Compile Include="Domain\Filters\IFilterRepository.cs" />
     <Compile Include="Domain\Filters\IntegerFilter.cs" />
+    <Compile Include="Domain\Filters\NullableDateTimeFilter.cs" />
+    <Compile Include="Domain\Filters\NullableStringFilter.cs" />
+    <Compile Include="Domain\Filters\NullableFloatFilter.cs" />
+    <Compile Include="Domain\Filters\NullableIntegerFilter.cs" />
     <Compile Include="Domain\Filters\NullFilter.cs" />
     <Compile Include="Domain\Filters\StringFilter.cs" />
     <Compile Include="Domain\FilterTrees\BooleanFilterTrees\BooleanFilterTreeLeaf.cs" />
@@ -122,6 +126,10 @@
     <Compile Include="Domain\Predicates\DateTimePredicate.cs" />
     <Compile Include="Domain\Predicates\FloatPredicate.cs" />
     <Compile Include="Domain\Predicates\IntegerPredicate.cs" />
+    <Compile Include="Domain\Predicates\NullableDateTimePredicate.cs" />
+    <Compile Include="Domain\Predicates\NullableFloatPredicate.cs" />
+    <Compile Include="Domain\Predicates\NullableIntegerPredicate.cs" />
+    <Compile Include="Domain\Predicates\NullableStringPredicate.cs" />
     <Compile Include="Domain\Predicates\StringPredicate.cs" />
     <Compile Include="Infrastructure\Application\ApplicationWrapper.cs" />
     <Compile Include="Application\Application\ApplicationService.cs" />

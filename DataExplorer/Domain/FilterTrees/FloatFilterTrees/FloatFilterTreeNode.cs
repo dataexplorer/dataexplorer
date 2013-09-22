@@ -13,8 +13,8 @@ namespace DataExplorer.Domain.FilterTrees.FloatFilterTrees
     {
         private const int EquiValueCount = 10;
 
-        private readonly double _lower;
-        private readonly double _upper;
+        protected readonly double _lower;
+        protected readonly double _upper;
 
         public FloatFilterTreeNode(string name, Column column, double lower, double upper)
             : base(name, column)

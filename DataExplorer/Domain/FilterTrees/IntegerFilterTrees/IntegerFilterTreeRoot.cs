@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.FilterTrees.NullFilterTrees;
+using DataExplorer.Domain.Filters;
 
 namespace DataExplorer.Domain.FilterTrees.IntegerFilterTrees
 {
@@ -20,6 +21,13 @@ namespace DataExplorer.Domain.FilterTrees.IntegerFilterTrees
 
             foreach (var child in derivedChildren)
                 yield return child;
+        }
+
+        public override Filter CreateFilter()
+        {
+            return _column.HasNulls
+                ? new NullableIntegerFilter(_column, _lower, _upper, true)
+                : base.CreateFilter();
         }
     }
 }

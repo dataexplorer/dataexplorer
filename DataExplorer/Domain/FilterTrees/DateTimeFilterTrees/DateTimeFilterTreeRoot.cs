@@ -14,8 +14,7 @@ namespace DataExplorer.Domain.FilterTrees.DateTimeFilterTrees
         private const int DaysPerDecade = 3652;
         private const int DaysPerYear = 365;
         private const int DaysPerMonth = 30;
-
-
+        
         public DateTimeFilterTreeRoot(string name, Column column) 
             : base(name, column, (DateTime) column.Min, (DateTime) column.Max)
         {
@@ -23,19 +22,11 @@ namespace DataExplorer.Domain.FilterTrees.DateTimeFilterTrees
 
         public override IEnumerable<FilterTreeNode> CreateChildren()
         {
-            var children = new List<FilterTreeNode>();
-
             if (_column.HasNulls)
-            {
-                var nullLeaf = new NullFilterTreeLeaf("(Null)", _column);
-                children.Add(nullLeaf);
-            }
-
-            var derivedChildren = CreateDerivedChildren();
-
-            children.AddRange(derivedChildren);
-
-            return children;
+                yield return new NullFilterTreeLeaf("(Null)", _column);
+            
+            foreach (var child in CreateDerivedChildren())
+                yield return child;
         }
 
         private IEnumerable<FilterTreeNode> CreateDerivedChildren()
@@ -117,6 +108,13 @@ namespace DataExplorer.Domain.FilterTrees.DateTimeFilterTrees
         private static string CreateName(int i)
         {
             return i + "000s";
+        }
+
+        public override Filter CreateFilter()
+        {
+            return _column.HasNulls
+                ? new NullableDateTimeFilter(_column, _lower, _upper, true)
+                : base.CreateFilter();
         }
     }
 }

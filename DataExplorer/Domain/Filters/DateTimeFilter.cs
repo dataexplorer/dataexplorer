@@ -11,8 +11,8 @@ namespace DataExplorer.Domain.Filters
 {
     public class DateTimeFilter : Filter
     {
-        private readonly DateTime _lowerValue;
-        private readonly DateTime _upperValue;
+        protected readonly DateTime _lowerValue;
+        protected readonly DateTime _upperValue;
 
         public DateTimeFilter(Column column, DateTime lowerValue, DateTime upperValue) 
             : base(column)

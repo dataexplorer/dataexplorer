@@ -11,8 +11,8 @@ namespace DataExplorer.Domain.Filters
 {
     public class IntegerFilter : Filter
     {
-         private readonly int _lowerValue;
-        private readonly int _upperValue;
+        protected readonly int _lowerValue;
+        protected readonly int _upperValue;
 
         public IntegerFilter(Column column, int lowerValue, int upperValue)
             : base(column)

@@ -11,7 +11,7 @@ namespace DataExplorer.Domain.Filters
 {
     public class StringFilter : Filter
     {
-        private readonly string _value;
+        protected readonly string _value;
         
         public StringFilter(Column column, string value)
             : base(column)

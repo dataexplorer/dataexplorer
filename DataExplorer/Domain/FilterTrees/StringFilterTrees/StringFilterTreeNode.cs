@@ -14,8 +14,8 @@ namespace DataExplorer.Domain.FilterTrees.StringFilterTrees
         private const int MaxDepth = 3;
         private const int StartChar = 32;
         private const int EndChar = 96;
-        
-        private readonly string _value;
+
+        protected readonly string _value;
         private readonly int _depth;
 
         public StringFilterTreeNode(string name, Column column, string value, int depth) 

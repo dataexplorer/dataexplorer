@@ -13,8 +13,8 @@ namespace DataExplorer.Domain.FilterTrees.IntegerFilterTrees
     {
         private const int EquiValueCount = 10;
 
-        private readonly int _lower;
-        private readonly int _upper;
+        protected readonly int _lower;
+        protected readonly int _upper;
 
         public IntegerFilterTreeNode(string name, Column column, int lower, int upper) 
             : base(name, column)

@@ -66,6 +66,9 @@
     <Compile Include="Domain\Filters\DateTimeFilterTests.cs" />
     <Compile Include="Domain\Filters\FloatFilterTests.cs" />
     <Compile Include="Domain\Filters\IntegerFilterTests.cs" />
+    <Compile Include="Domain\Filters\NullableFloatFilterTests.cs" />
+    <Compile Include="Domain\Filters\NullableIntegerFilterTests.cs" />
+    <Compile Include="Domain\Filters\NullableStringFilterTests.cs" />
     <Compile Include="Domain\Filters\NullFilterTests.cs" />
     <Compile Include="Domain\Filters\StringFilterTests.cs" />
     <Compile Include="Domain\FilterTrees\BooleanFilterTrees\BooleanFilterTreeLeafTests.cs" />
@@ -110,6 +113,11 @@
     <Compile Include="Domain\Predicates\DateTimePredicateTests.cs" />
     <Compile Include="Domain\Predicates\FloatPredicateTests.cs" />
     <Compile Include="Domain\Predicates\IntegerPredicateTests.cs" />
+    <Compile Include="Domain\Filters\NullableDateTimeFilterTests.cs" />
+    <Compile Include="Domain\Predicates\NullableDateTimePredicateTests.cs" />
+    <Compile Include="Domain\Predicates\NullableFloatPredicateTests.cs" />
+    <Compile Include="Domain\Predicates\NullableIntegerPredicateTests.cs" />
+    <Compile Include="Domain\Predicates\NullableStringPredicateTests.cs" />
     <Compile Include="Domain\Predicates\StringPredicateTests.cs" />
     <Compile Include="Domain\Sources\CsvFileSourceTests.cs" />
     <Compile Include="Domain\Sources\Maps\SourceMapFactoryTests.cs" />

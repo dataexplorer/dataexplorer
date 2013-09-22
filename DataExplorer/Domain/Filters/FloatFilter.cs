@@ -11,8 +11,8 @@ namespace DataExplorer.Domain.Filters
 {
     public class FloatFilter : Filter
     {
-        private readonly double _lowerValue;
-        private readonly double _upperValue;
+        protected readonly double _lowerValue;
+        protected readonly double _upperValue;
 
         public FloatFilter(Column column, double lowerValue, double upperValue)
             : base(column)

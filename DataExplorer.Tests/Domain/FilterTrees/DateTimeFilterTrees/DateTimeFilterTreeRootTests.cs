@@ -96,6 +96,30 @@ namespace DataExplorer.Tests.Domain.FilterTrees.DateTimeFilterTrees
             //TODO: Assert value
         }
 
-        
+        [Test]
+        public void TestCreateFilterShouldCreateNullableDateTimeFilterIfColumnHasNulls()
+        {
+            var column = new ColumnBuilder()
+                .WithValue(DateTime.MinValue)
+                .WithValue(DateTime.MaxValue)
+                .WithNulls().Build();
+            var root = new DateTimeFilterTreeRoot(string.Empty, column);
+            var result = (NullableDateTimeFilter) root.CreateFilter();
+            Assert.That(result.LowerValue, Is.EqualTo(DateTime.MinValue));
+            Assert.That(result.UpperValue, Is.EqualTo(DateTime.MaxValue));
+            Assert.That(result.IncludeNulls, Is.True);
+        }
+
+        [Test]
+        public void TestCreateFilterShouldCreateDateTimeFilterIfColumnDoesNotHasNulls()
+        {
+            var column = new ColumnBuilder()
+                .WithValue(DateTime.MinValue)
+                .WithValue(DateTime.MaxValue)
+                .Build();
+            var root = new DateTimeFilterTreeRoot(string.Empty, column);
+            var result = root.CreateFilter();
+            Assert.That(result is DateTimeFilter);
+        }
     }
 }

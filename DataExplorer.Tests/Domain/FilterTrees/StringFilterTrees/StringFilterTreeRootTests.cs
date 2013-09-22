@@ -2,6 +2,7 @@
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.FilterTrees.NullFilterTrees;
 using DataExplorer.Domain.FilterTrees.StringFilterTrees;
+using DataExplorer.Domain.Filters;
 using DataExplorer.Tests.Domain.Columns;
 using NUnit.Framework;
 
@@ -34,6 +35,29 @@ namespace DataExplorer.Tests.Domain.FilterTrees.StringFilterTrees
             var root = new StringFilterTreeRoot(string.Empty, column);
             var results = root.CreateChildren();
             Assert.That(results.FirstOrDefault() is NullFilterTreeLeaf, Is.False);
+        }
+
+        [Test]
+        public void TestCreateFilterShouldCreateNullableStringFilterIfColumnHasNulls()
+        {
+            var column = new ColumnBuilder()
+                .WithNulls()
+                .Build();
+            var root = new StringFilterTreeRoot(string.Empty, column);
+            var result = (NullableStringFilter) root.CreateFilter();
+            Assert.That(result.Value, Is.EqualTo(string.Empty));
+            Assert.That(result.IncludeNulls, Is.True);
+        }
+
+        [Test]
+        public void TestCreateFilterShouldCreateStringFilterIfColumnDoesNotHasNulls()
+        {
+            var column = new ColumnBuilder()
+                .WithValue("test")
+                .Build();
+            var root = new StringFilterTreeRoot(string.Empty, column);
+            var result = root.CreateFilter();
+            Assert.That(result is StringFilter);
         }
     }
 }
