@@ -4,14 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Domain.Columns;
+using DataExplorer.Domain.Predicates;
 using DataExplorer.Domain.Rows;
 
 namespace DataExplorer.Domain.Filters
 {
     public class DateTimeFilter : Filter
     {
-        private DateTime _lowerValue;
-        private DateTime _upperValue;
+        private readonly DateTime _lowerValue;
+        private readonly DateTime _upperValue;
 
         public DateTimeFilter(Column column, DateTime lowerValue, DateTime upperValue) 
             : base(column)
@@ -32,8 +33,8 @@ namespace DataExplorer.Domain.Filters
 
         public override Func<Row, bool> CreatePredicate()
         {
-            return p => ((DateTime?) p[_column.Index]) >= _lowerValue
-                && ((DateTime?) p[_column.Index]) <= _upperValue;
+            return new DateTimePredicate()
+                .Create(_column, _lowerValue, _upperValue);
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Domain.Columns;
+using DataExplorer.Domain.Predicates;
 using DataExplorer.Domain.Rows;
 
 namespace DataExplorer.Domain.Filters
@@ -31,7 +32,7 @@ namespace DataExplorer.Domain.Filters
 
         public override Func<Row, bool> CreatePredicate()
         {
-            return p => _values.Contains(((bool?) p[_column.Index]));
+            return new BooleanPredicate().Create(_column, _values);
         }
     }
 }

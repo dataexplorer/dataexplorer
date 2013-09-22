@@ -118,6 +118,11 @@
     <Compile Include="Domain\FilterTrees\StringFilterTrees\StringFilterTreeLeaf.cs" />
     <Compile Include="Domain\FilterTrees\StringFilterTrees\StringFilterTreeNode.cs" />
     <Compile Include="Domain\FilterTrees\StringFilterTrees\StringFilterTreeRoot.cs" />
+    <Compile Include="Domain\Predicates\BooleanPredicate.cs" />
+    <Compile Include="Domain\Predicates\DateTimePredicate.cs" />
+    <Compile Include="Domain\Predicates\FloatPredicate.cs" />
+    <Compile Include="Domain\Predicates\IntegerPredicate.cs" />
+    <Compile Include="Domain\Predicates\StringPredicate.cs" />
     <Compile Include="Infrastructure\Application\ApplicationWrapper.cs" />
     <Compile Include="Application\Application\ApplicationService.cs" />
     <Compile Include="Infrastructure\Application\IApplication.cs" />

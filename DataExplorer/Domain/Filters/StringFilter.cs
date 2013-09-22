@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Domain.Columns;
+using DataExplorer.Domain.Predicates;
 using DataExplorer.Domain.Rows;
 
 namespace DataExplorer.Domain.Filters
@@ -25,7 +26,8 @@ namespace DataExplorer.Domain.Filters
 
         public override Func<Row, bool> CreatePredicate()
         {
-            return p => ((string) p[_column.Index]).StartsWith(_value);
+            return new StringPredicate()
+                .Create(_column, _value);
         }
     }
 }

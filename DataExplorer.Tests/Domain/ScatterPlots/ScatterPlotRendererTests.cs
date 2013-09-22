@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Maps;
 using DataExplorer.Domain.Maps.AxisMaps;
+using DataExplorer.Domain.Rows;
 using DataExplorer.Domain.ScatterPlots;
 using DataExplorer.Tests.Domain.Columns;
 using DataExplorer.Tests.Domain.Rows;
@@ -31,7 +32,8 @@ namespace DataExplorer.Tests.Domain.ScatterPlots
         [Test]
         public void TestRenderPlotsShouldRenderRowsIntoPlots()
         {
-            var rows = new RowBuilder().WithValues(1d, 2d).BuildList();
+            var row = new RowBuilder().WithFields(1d, 2d).Build();
+            var rows = new List<Row> { row };
             var layout = new ScatterPlotLayout();
             layout.XAxisColumn = new ColumnBuilder().WithIndex(0).Build();
             layout.YAxisColumn = new ColumnBuilder().WithIndex(1).Build();

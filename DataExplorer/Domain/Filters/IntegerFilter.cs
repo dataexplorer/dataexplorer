@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Domain.Columns;
+using DataExplorer.Domain.Predicates;
 using DataExplorer.Domain.Rows;
 
 namespace DataExplorer.Domain.Filters
@@ -32,8 +33,8 @@ namespace DataExplorer.Domain.Filters
 
         public override Func<Row, bool> CreatePredicate()
         {
-            return p => ((int?) p[_column.Index]) >= _lowerValue
-                && ((int?) p[_column.Index]) <= _upperValue;
+            return new IntegerPredicate()
+                .Create(_column, _lowerValue, _upperValue);
         }
     }
 }

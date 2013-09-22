@@ -17,7 +17,13 @@ namespace DataExplorer.Tests.Domain.Rows
             _fields = new List<object>();
         }
 
-        public RowBuilder WithValues(params object[] values)
+        public RowBuilder WithField(object field)
+        {
+            _fields.Add(field);
+            return this;
+        }
+
+        public RowBuilder WithFields(params object[] values)
         {
             _fields.AddRange(values);
             return this;
@@ -27,12 +33,6 @@ namespace DataExplorer.Tests.Domain.Rows
         {
             var row = new Row(_fields);
             return row;
-        }
-
-        public List<Row> BuildList()
-        {
-            var row = Build();
-            return new List<Row>() { row };
         }
     }
 }

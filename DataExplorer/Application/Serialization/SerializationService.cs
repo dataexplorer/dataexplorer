@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Domain.Columns;
+using DataExplorer.Domain.Filters;
 using DataExplorer.Domain.Projects;
 using DataExplorer.Domain.Rows;
 using DataExplorer.Domain.ScatterPlots;
@@ -22,6 +23,7 @@ namespace DataExplorer.Application.Serialization
                 Sources = GetSources(),
                 Columns = GetColumns(),
                 Rows = GetRows(),
+                Filters = GetFilters(),
                 DataViews = GetViews()
             };
 
@@ -56,6 +58,11 @@ namespace DataExplorer.Application.Serialization
             var row5 = new Row(new List<object>() { true, DateTime.Parse("12/31/9999"), 1d, 1000, "Zebra" });
             var rows = new List<Row> { row1, row2, row3, row4, row5 };
             return rows;
+        }
+
+        private List<Filter> GetFilters()
+        {
+            return new List<Filter>();
         }
 
         private List<IView> GetViews()
