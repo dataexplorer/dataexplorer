@@ -8,15 +8,15 @@ using DataExplorer.Domain.Rows;
 
 namespace DataExplorer.Domain.Filters
 {
-    public abstract class Filter
+    public class NullFilter : Filter
     {
-        protected Column _column;
-
-        protected Filter(Column column)
+        public NullFilter(Column column) : base(column)
         {
-            _column = column;
         }
 
-        public abstract Func<Row, bool> CreatePredicate();
+        public override Func<Row, bool> CreatePredicate()
+        {
+            return p => p[_column.Index] == null;
+        }
     }
 }

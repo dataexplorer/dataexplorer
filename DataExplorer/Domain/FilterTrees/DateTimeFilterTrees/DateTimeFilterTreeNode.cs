@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Domain.Columns;
+using DataExplorer.Domain.Filters;
 
 namespace DataExplorer.Domain.FilterTrees.DateTimeFilterTrees
 {
@@ -19,9 +20,9 @@ namespace DataExplorer.Domain.FilterTrees.DateTimeFilterTrees
             _upper = upper;
         }
 
-        public override Filters.Filter CreateFilter()
+        public override Filter CreateFilter()
         {
-            throw new NotImplementedException();
+            return new DateTimeFilter(_column, _lower, _upper);
         }
     }
 }

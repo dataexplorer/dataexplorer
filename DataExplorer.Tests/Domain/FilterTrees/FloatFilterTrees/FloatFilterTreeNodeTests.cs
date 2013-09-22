@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.FilterTrees.FloatFilterTrees;
+using DataExplorer.Domain.Filters;
 using DataExplorer.Tests.Domain.Columns;
 using NUnit.Framework;
 
@@ -104,6 +105,17 @@ namespace DataExplorer.Tests.Domain.FilterTrees.FloatFilterTrees
         {
             for (int i = 0; i < count; i++)
                 yield return start + (i * step);
+        }
+
+        [Test]
+        public void TestCreateFilterShouldReturnFilter()
+        {
+            var lowerValue = double.MinValue;
+            var upperValue = double.MaxValue;
+            _node = new FloatFilterTreeNode(string.Empty, _column, lowerValue, upperValue);
+            var result = (FloatFilter) _node.CreateFilter();
+            Assert.That(result.LowerValue, Is.EqualTo(lowerValue));
+            Assert.That(result.UpperValue, Is.EqualTo(upperValue));
         }
     }
 }

@@ -10,21 +10,17 @@ namespace DataExplorer.Domain.Filters
 {
     public class BooleanFilter : Filter
     {
-        private readonly Column _column;
         private readonly List<bool?> _values;
 
-        public BooleanFilter(Column column)
+        public BooleanFilter(Column column, List<bool?> values)
+            : base(column)
         {
-            _column = column;
-            _values = new List<bool?>();
-            _values.Add(null);
-            _values.Add(true);
-            _values.Add(false);
+            _values = values;
         }
 
-        public BooleanFilter(Column column, bool value)
+        public BooleanFilter(Column column, bool? value)
+            : base(column)
         {
-            _column = column;
             _values = new List<bool?> { value };
         }
 
@@ -35,7 +31,7 @@ namespace DataExplorer.Domain.Filters
 
         public override Func<Row, bool> CreatePredicate()
         {
-            return p => _values.Contains(((bool) p[_column.Index]));
+            return p => _values.Contains(((bool?) p[_column.Index]));
         }
     }
 }

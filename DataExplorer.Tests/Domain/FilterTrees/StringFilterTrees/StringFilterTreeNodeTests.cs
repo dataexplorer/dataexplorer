@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Domain.FilterTrees.StringFilterTrees;
+using DataExplorer.Domain.Filters;
 using DataExplorer.Tests.Domain.Columns;
 using NUnit.Framework;
 
@@ -118,6 +119,16 @@ namespace DataExplorer.Tests.Domain.FilterTrees.StringFilterTrees
         {
             for (var i = 0; i < count; i++)
                 yield return new string(start, depth - 1) + ((char)(start + i)).ToString();
+        }
+
+        [Test]
+        public void TestCreateFilterShouldReturnFilter()
+        {
+            var value = "Test";
+            var column = new ColumnBuilder().Build();
+            var node = new StringFilterTreeNode(string.Empty, column, value, 0);
+            var result = (StringFilter) node.CreateFilter();
+            Assert.That(result.Value, Is.EqualTo(value));
         }
     }
 }

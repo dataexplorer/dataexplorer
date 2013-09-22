@@ -4,6 +4,7 @@ using System.Linq;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.FilterTrees.DateTimeFilterTrees;
 using DataExplorer.Domain.FilterTrees.NullFilterTrees;
+using DataExplorer.Domain.Filters;
 using DataExplorer.Tests.Domain.Columns;
 using NUnit.Framework;
 
@@ -94,5 +95,7 @@ namespace DataExplorer.Tests.Domain.FilterTrees.DateTimeFilterTrees
             Assert.That(result.ElementAt(index).Name, Is.EqualTo(name));
             //TODO: Assert value
         }
+
+        
     }
 }

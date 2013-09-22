@@ -34,7 +34,7 @@ namespace DataExplorer.Domain.FilterTrees.FloatFilterTrees
 
         public override Filter CreateFilter()
         {
-            throw new NotImplementedException();
+            return new FloatFilter(_column, _lower, _upper);
         }
 
         private IEnumerable<FilterTreeNode> CreateLeaves(IEnumerable<double> values)

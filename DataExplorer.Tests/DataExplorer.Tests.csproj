@@ -63,9 +63,15 @@
     <Compile Include="Application\FilterTrees\SelectedFilterTreeNodeChangedEventTests.cs" />
     <Compile Include="Application\ScatterPlots\Tasks\UpdatePlotsTaskTests.cs" />
     <Compile Include="Domain\Filters\BooleanFilterTests.cs" />
+    <Compile Include="Domain\Filters\DateTimeFilterTests.cs" />
+    <Compile Include="Domain\Filters\FloatFilterTests.cs" />
+    <Compile Include="Domain\Filters\IntegerFilterTests.cs" />
+    <Compile Include="Domain\Filters\NullFilterTests.cs" />
+    <Compile Include="Domain\Filters\StringFilterTests.cs" />
     <Compile Include="Domain\FilterTrees\BooleanFilterTrees\BooleanFilterTreeLeafTests.cs" />
     <Compile Include="Domain\FilterTrees\BooleanFilterTrees\BooleanFilterTreeRootTests.cs" />
     <Compile Include="Domain\FilterTrees\DateTimeFilterTrees\CenturyFilterTreeNodeTests.cs" />
+    <Compile Include="Domain\FilterTrees\DateTimeFilterTrees\DateTimeFilterTreeNodeTests.cs" />
     <Compile Include="Domain\FilterTrees\DateTimeFilterTrees\DateTimeFilterTreeRootTests.cs" />
     <Compile Include="Domain\FilterTrees\DateTimeFilterTrees\DayFilterTreeNodeTests.cs" />
     <Compile Include="Domain\FilterTrees\DateTimeFilterTrees\DecadeFilterNodeTests.cs" />
@@ -84,6 +90,7 @@
     <Compile Include="Domain\FilterTrees\IntegerFilterTrees\IntegerFilterTreeLeafTests.cs" />
     <Compile Include="Domain\FilterTrees\IntegerFilterTrees\IntegerFilterTreeNodeTests.cs" />
     <Compile Include="Domain\FilterTrees\IntegerFilterTrees\IntegerFilterTreeRootTests.cs" />
+    <Compile Include="Domain\FilterTrees\NullFilterTrees\NullFilterTreeLeafTests.cs" />
     <Compile Include="Domain\FilterTrees\StringFilterTrees\StringFilterTreeLeafTests.cs" />
     <Compile Include="Domain\FilterTrees\StringFilterTrees\StringFilterTreeNodeTests.cs" />
     <Compile Include="Domain\FilterTrees\StringFilterTrees\StringFilterTreeRootTests.cs" />

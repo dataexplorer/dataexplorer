@@ -16,6 +16,10 @@ namespace DataExplorer.Domain.FilterTrees.StringFilterTrees
             if (_column.HasNulls)
                 yield return new NullFilterTreeLeaf("(Null)", _column);
 
+            // TODO: Uncomment this line (and unit test) once I have added string equality filters to leaf nodes
+            //if (_column.Values.Contains(string.Empty))
+            //    yield return new StringFilterTreeLeaf("(Empty)", _column, string.Empty, 1);
+
             var derivedChildren = base.CreateChildren();
 
             foreach (var child in derivedChildren)

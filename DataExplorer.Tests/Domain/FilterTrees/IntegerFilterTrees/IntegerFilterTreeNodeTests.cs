@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.FilterTrees.IntegerFilterTrees;
+using DataExplorer.Domain.Filters;
 using DataExplorer.Tests.Domain.Columns;
 using NUnit.Framework;
 
@@ -102,6 +103,17 @@ namespace DataExplorer.Tests.Domain.FilterTrees.IntegerFilterTrees
         {
             for (int i = 0; i < count; i++)
                 yield return start + (i * step);
+        }
+
+        [Test]
+        public void TestCreateFilterShouldReturnFilter()
+        {
+            var lowerValue = int.MinValue;
+            var upperValue = int.MaxValue;
+            _node = new IntegerFilterTreeNode(string.Empty, _column, lowerValue, upperValue);
+            var result = (IntegerFilter) _node.CreateFilter();
+            Assert.That(result.LowerValue, Is.EqualTo(lowerValue));
+            Assert.That(result.UpperValue, Is.EqualTo(upperValue));
         }
     }
 }

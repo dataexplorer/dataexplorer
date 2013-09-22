@@ -22,7 +22,7 @@ namespace DataExplorer.Domain.FilterTrees.NullFilterTrees
 
         public override Filter CreateFilter()
         {
-            throw new NotImplementedException();
+            return new NullFilter(_column);
         }
     }
 }

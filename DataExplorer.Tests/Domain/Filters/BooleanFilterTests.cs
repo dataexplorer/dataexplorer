@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Filters;
+using DataExplorer.Domain.Rows;
 using DataExplorer.Tests.Domain.Columns;
 using NUnit.Framework;
 
@@ -23,20 +24,19 @@ namespace DataExplorer.Tests.Domain.Filters
         }
 
         [Test]
-        public void TestDefaultConstructorShouldAddAllValues()
+        public void TestDefaultConstructorShouldSetValues()
         {
-            _filter = new BooleanFilter(_column);
-            //Assert.That(filter.Values.Contains(null));
-            Assert.That(_filter.Values.Contains(false));
-            Assert.That(_filter.Values.Contains(true));
+            var values = new List<bool?> { true };
+            _filter = new BooleanFilter(_column, values);
+            Assert.That(_filter.Values, Has.Member(true));
         }
 
-        //[Test]
-        //public void TestValueShouldReturnFalseIfNullIsIncluded()
-        //{
-        //    var filter = new BooleanFilter(null);
-        //    Assert.That(filter.Values.Contains(null));
-        //}
+        [Test]
+        public void TestValueShouldReturnFalseIfNullIsIncluded()
+        {
+            var filter = new BooleanFilter(_column, (bool?) null);
+            Assert.That(filter.Values.Contains(null));
+        }
 
         [Test]
         public void TestValueShouldReturnFalseIfFalseIsIncluded()
@@ -50,6 +50,14 @@ namespace DataExplorer.Tests.Domain.Filters
         {
             _filter = new BooleanFilter(_column, true);
             Assert.That(_filter.Values.Contains(true));
+        }
+
+        [Test]
+        public void TestCreatePredicateShouldReturnBooleanPredicate()
+        {
+            _filter = new BooleanFilter(_column, false);
+            var result = _filter.CreatePredicate();
+            Assert.That(result != null);
         }
     }
 }

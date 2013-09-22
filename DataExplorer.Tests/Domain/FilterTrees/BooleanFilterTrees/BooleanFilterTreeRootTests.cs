@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.FilterTrees.BooleanFilterTrees;
+using DataExplorer.Domain.Filters;
 using DataExplorer.Tests.Domain.Columns;
 using NUnit.Framework;
 
@@ -50,8 +51,10 @@ namespace DataExplorer.Tests.Domain.FilterTrees.BooleanFilterTrees
         {
             var column = new ColumnBuilder().WithNulls().Build();
             var node = new BooleanFilterTreeRoot(string.Empty, column);
-            var result = node.CreateFilter();
-            Assert.That(result, Is.Not.Null);
+            var result = (BooleanFilter) node.CreateFilter();
+            Assert.That(result.Values, Has.Member(null));
+            Assert.That(result.Values, Has.Member(false));
+            Assert.That(result.Values, Has.Member(true));
         }
     }
 }
