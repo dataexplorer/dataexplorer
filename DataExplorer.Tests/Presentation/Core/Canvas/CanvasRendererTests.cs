@@ -26,9 +26,8 @@ namespace DataExplorer.Tests.Presentation.Core.Canvas
         public void TestDrawVisualsWithACircleReturnsACircle()
         {
             var circle = new Circle() { X = 0, Y = 0, Radius = 8};
-            var circles = new List<Circle> { circle };
-            var results = _renderer.DrawVisuals(circles);
-            var visual = (DrawingVisual) results.Single();
+            var result = _renderer.DrawVisual(circle);
+            var visual = (DrawingVisual) result;
             var drawing = (GeometryDrawing) visual.Drawing.Children[0];
             var outline = (SolidColorBrush) drawing.Pen.Brush;
             var fill = (SolidColorBrush) drawing.Brush;

@@ -11,7 +11,6 @@ namespace DataExplorer.Presentation.Core.Canvas
 {
     public interface ICanvasRenderer
     {
-        List<Visual> DrawVisuals(List<Circle> plots);
-        Visual DrawCircle(Circle circle);
+        Visual DrawVisual(Circle plot);
     }
 }

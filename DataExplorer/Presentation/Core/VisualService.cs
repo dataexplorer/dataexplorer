@@ -40,7 +40,7 @@ namespace DataExplorer.Presentation.Core
             return _visuals[index];
         }
 
-        public void Add(List<Visual> visuals)
+        public void Add(IEnumerable<Visual> visuals)
         {
             _visuals.AddRange(visuals);
 

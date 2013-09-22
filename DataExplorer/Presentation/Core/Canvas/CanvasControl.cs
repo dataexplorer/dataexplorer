@@ -67,7 +67,8 @@ namespace DataExplorer.Presentation.Core.Canvas
         {
             var plots = (List<Circle>) _propertyService.GetValue(PlotsProperty);
 
-            var visuals = _renderer.DrawVisuals(plots);
+            var visuals = plots
+                .Select(p => _renderer.DrawVisual(p));
 
             _visualService.Clear();
 

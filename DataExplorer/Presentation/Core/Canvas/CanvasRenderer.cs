@@ -8,9 +8,9 @@ namespace DataExplorer.Presentation.Core.Canvas
 {
     public class CanvasRenderer : ICanvasRenderer
     {
-        public List<Visual> DrawVisuals(List<Circle> plots)
+        public Visual DrawVisual(Circle plot)
         {
-            return plots.Select(p => DrawCircle(p)).ToList();
+            return DrawCircle(plot);
         }
 
         public Visual DrawCircle(Circle circle)

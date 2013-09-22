@@ -10,7 +10,7 @@ namespace DataExplorer.Presentation.Core
         void SetSource(CanvasControl source);
         int GetVisualsCount();
         Visual GetVisual(int index);
-        void Add(List<Visual> visuals);
+        void Add(IEnumerable<Visual> visuals);
         void Clear();
     }
 }

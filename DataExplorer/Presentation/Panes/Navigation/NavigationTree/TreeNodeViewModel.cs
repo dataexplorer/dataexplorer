@@ -47,7 +47,7 @@ namespace DataExplorer.Presentation.Panes.Navigation.NavigationTree
             OnPropertyChanged(() => IsSelected);
 
             if (_isSelected)
-                AppEvents.Raise(new SelectedFilterTreeNodeChangedEvent(_filterTreeNode));
+                Task.Run(() => AppEvents.Raise(new SelectedFilterTreeNodeChangedEvent(_filterTreeNode)));
         }
 
         private IEnumerable<TreeNodeViewModel> GetChildren()
