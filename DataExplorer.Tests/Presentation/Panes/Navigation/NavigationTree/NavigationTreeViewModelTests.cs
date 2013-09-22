@@ -7,6 +7,7 @@ using DataExplorer.Application.FilterTrees;
 using DataExplorer.Application.Importers.CsvFile.Events;
 using DataExplorer.Domain.FilterTrees;
 using DataExplorer.Presentation.Panes.Navigation.NavigationTree;
+using DataExplorer.Tests.Application.FilterTrees;
 using Moq;
 using NUnit.Framework;
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DataExplorer.Domain.Columns;
+using DataExplorer.Domain.Filters;
 
 namespace DataExplorer.Domain.FilterTrees
 {
@@ -27,6 +28,8 @@ namespace DataExplorer.Domain.FilterTrees
         }
 
         public abstract IEnumerable<FilterTreeNode> CreateChildren();
+
+        public abstract Filter CreateFilter();
 
         protected bool HasValuesInRange(object low, object high)
         {

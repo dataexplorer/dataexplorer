@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.FilterTrees;
+using DataExplorer.Application.FilterTrees.Tasks;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.FilterTrees;
-using DataExplorer.Tests.Domain.Columns;
-using DataExplorer.Tests.Presentation.Panes.Navigation.NavigationTree;
 using Moq;
 using NUnit.Framework;
 
@@ -17,29 +16,35 @@ namespace DataExplorer.Tests.Application.FilterTrees
     public class FilterTreeServiceTests
     {
         private FilterTreeService _service;
-        private Mock<IColumnRepository> _mockRepository;
-        private Mock<IFilterTreeNodeFactory> _mockFactory;
+        private Mock<IGetRootFilterTreeNodesTask> _mockGetRootsTasks;
+        private Mock<IHandleSelectedFilterTreeNodeChangedTask> _mockHandleTask;
 
         [SetUp]
         public void SetUp()
         {
-            _mockRepository = new Mock<IColumnRepository>();
-            _mockFactory = new Mock<IFilterTreeNodeFactory>();
+            _mockGetRootsTasks = new Mock<IGetRootFilterTreeNodesTask>();
+            _mockHandleTask = new Mock<IHandleSelectedFilterTreeNodeChangedTask>();
             _service = new FilterTreeService(
-                _mockRepository.Object,
-                _mockFactory.Object);
+                _mockGetRootsTasks.Object,
+                _mockHandleTask.Object);
         }
 
         [Test]
-        public void TestGetRootFilterTreeNodesShouldReturnNodes()
+        public void TestGetRootsShouldReturnRoots()
         {
-            var column = new ColumnBuilder().Build();
-            var columns = new List<Column> { column };
-            var node = new FakeFilterTreeNode();
-            _mockRepository.Setup(p => p.GetAll()).Returns(columns);
-            _mockFactory.Setup(p => p.CreateRoot(column)).Returns(node);
+            var root = new FakeFilterTreeNode();
+            var roots = new List<FilterTreeNode> { root };
+            _mockGetRootsTasks.Setup(p => p.GetRoots()).Returns(roots);
             var result = _service.GetRoots();
-            Assert.That(result, Contains.Item(node));
+            Assert.That(result, Is.EqualTo(roots));
+        }
+
+        [Test]
+        public void TestHandleShouldHandleEvent()
+        {
+            var @event = new SelectedFilterTreeNodeChangedEvent(null);
+            _service.Handle(@event);
+            _mockHandleTask.Verify(p => p.Handle(@event));
         }
     }
 }

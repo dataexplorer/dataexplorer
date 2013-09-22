@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using DataExplorer.Domain.Columns;
+using DataExplorer.Domain.Filters;
 
 namespace DataExplorer.Domain.FilterTrees.DateTimeFilterTrees
 {

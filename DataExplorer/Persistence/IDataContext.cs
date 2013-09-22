@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Domain.Columns;
+using DataExplorer.Domain.Filters;
 using DataExplorer.Domain.Projects;
 using DataExplorer.Domain.Rows;
-using DataExplorer.Domain.ScatterPlots;
 using DataExplorer.Domain.Sources;
 using DataExplorer.Domain.Views;
 
@@ -19,6 +19,8 @@ namespace DataExplorer.Persistence
         List<Column> Columns { get; }
 
         List<Row> Rows { get; }
+
+        List<Filter> Filters { get; }
 
         Dictionary<Type, IView> Views { get; }
 

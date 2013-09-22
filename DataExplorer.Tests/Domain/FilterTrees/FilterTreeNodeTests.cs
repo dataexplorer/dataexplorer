@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Domain.Columns;
+using DataExplorer.Tests.Application.FilterTrees;
 using DataExplorer.Tests.Domain.Columns;
-using DataExplorer.Tests.Presentation.Panes.Navigation.NavigationTree;
 using NUnit.Framework;
 
 namespace DataExplorer.Tests.Domain.FilterTrees

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Domain.Columns;
+using DataExplorer.Domain.Filters;
 
 namespace DataExplorer.Domain.FilterTrees.IntegerFilterTrees
 {
@@ -29,6 +30,11 @@ namespace DataExplorer.Domain.FilterTrees.IntegerFilterTrees
             return values.Count() <= EquiValueCount
                 ? CreateLeaves(values)
                 : CreateNodes(values);
+        }
+
+        public override Filter CreateFilter()
+        {
+            throw new NotImplementedException();
         }
 
         private IEnumerable<FilterTreeNode> CreateLeaves(IEnumerable<int> values)

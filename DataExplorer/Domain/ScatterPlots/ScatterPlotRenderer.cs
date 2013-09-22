@@ -28,8 +28,9 @@ namespace DataExplorer.Domain.ScatterPlots
             var yAxisMap = layout.YAxisColumn != null
                 ? _factory.CreateAxisMap(layout.YAxisColumn, 0d, 1000d)
                 : null;
-
+            
             var plots = new List<Plot>();
+            
             foreach (var row in rows)
             {
                 var plot = new Plot();

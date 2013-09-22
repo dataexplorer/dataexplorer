@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Domain.Columns;
+using DataExplorer.Domain.Filters;
 
 namespace DataExplorer.Domain.FilterTrees.NullFilterTrees
 {
@@ -17,6 +18,11 @@ namespace DataExplorer.Domain.FilterTrees.NullFilterTrees
         public override IEnumerable<FilterTreeNode> CreateChildren()
         {
             return new List<FilterTreeNode>();
+        }
+
+        public override Filter CreateFilter()
+        {
+            throw new NotImplementedException();
         }
     }
 }

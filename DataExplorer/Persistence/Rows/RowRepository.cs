@@ -14,7 +14,7 @@ namespace DataExplorer.Persistence.Rows
             _context = context;
         }
 
-        public List<Row> GetAll()
+        public IEnumerable<Row> GetAll()
         {
             return _context.Rows;
         }

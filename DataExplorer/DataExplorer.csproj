@@ -72,7 +72,19 @@
     <Compile Include="Application\Application\ApplicationStateChangedEvent.cs" />
     <Compile Include="Application\Application\ApplicationStateService.cs" />
     <Compile Include="Application\Application\IApplicationStateService.cs" />
+    <Compile Include="Application\Filters\FilterChangedEvent.cs" />
+    <Compile Include="Application\Filters\FilterService.cs" />
+    <Compile Include="Application\FilterTrees\SelectedFilterTreeNodeChangedEvent.cs" />
     <Compile Include="Application\FilterTrees\FilterTreeService.cs" />
+    <Compile Include="Application\FilterTrees\Tasks\GetRootFilterTreeNodesTask.cs" />
+    <Compile Include="Application\FilterTrees\Tasks\HandleSelectedFilterTreeNodeChangedTask.cs" />
+    <Compile Include="Application\FilterTrees\Tasks\IGetRootFilterTreeNodesTask.cs" />
+    <Compile Include="Application\FilterTrees\Tasks\IHandleSelectedFilterTreeNodeChangedTask.cs" />
+    <Compile Include="Application\ScatterPlots\Tasks\IUpdatePlotsTask.cs" />
+    <Compile Include="Application\ScatterPlots\Tasks\UpdatePlotsTask.cs" />
+    <Compile Include="Domain\Filters\BooleanFilter.cs" />
+    <Compile Include="Domain\Filters\Filter.cs" />
+    <Compile Include="Domain\Filters\IFilterRepository.cs" />
     <Compile Include="Domain\FilterTrees\BooleanFilterTrees\BooleanFilterTreeLeaf.cs" />
     <Compile Include="Domain\FilterTrees\BooleanFilterTrees\BooleanFilterTreeNode.cs" />
     <Compile Include="Domain\FilterTrees\BooleanFilterTrees\BooleanFilterTreeRoot.cs" />
@@ -149,6 +161,7 @@
     <Compile Include="Domain\Views\IView.cs" />
     <Compile Include="Infrastructure\Process\IProcess.cs" />
     <Compile Include="Infrastructure\Process\ProcessWrapper.cs" />
+    <Compile Include="Persistence\Filters\FilterRepository.cs" />
     <Compile Include="Persistence\Sources\SourceRepository.cs" />
     <Compile Include="Presentation\Core\Commands\AsyncDelegateCommand.cs" />
     <Compile Include="Presentation\Core\Events\DialogClosedEvent.cs" />

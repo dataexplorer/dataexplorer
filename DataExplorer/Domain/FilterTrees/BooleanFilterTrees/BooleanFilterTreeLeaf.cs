@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Domain.Columns;
+using DataExplorer.Domain.Filters;
 
 namespace DataExplorer.Domain.FilterTrees.BooleanFilterTrees
 {
@@ -25,6 +26,11 @@ namespace DataExplorer.Domain.FilterTrees.BooleanFilterTrees
         public override IEnumerable<FilterTreeNode> CreateChildren()
         {
             return new List<FilterTreeNode>();
+        }
+
+        public override Filter CreateFilter()
+        {
+            return new BooleanFilter(_column, _value);
         }
     }
 }

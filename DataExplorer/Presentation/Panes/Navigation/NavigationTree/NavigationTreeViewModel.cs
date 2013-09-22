@@ -25,14 +25,6 @@ namespace DataExplorer.Presentation.Panes.Navigation.NavigationTree
             get { return _treeNodeViewModels; }
         }
 
-        public NavigationTreeViewModel(
-            IFilterTreeService service,
-            List<TreeNodeViewModel> treeNodeViewModels)
-        {
-            _service = service;
-            _treeNodeViewModels = treeNodeViewModels;
-        }
-
         public NavigationTreeViewModel(IFilterTreeService service)
         {
             _service = service;

@@ -11,7 +11,9 @@ using DataExplorer.Domain.Views;
 
 namespace DataExplorer.Application.ScatterPlots
 {
-    public class ScatterPlotService : IScatterPlotService, IDomainHandler<ScatterPlotChangedEvent>
+    public class ScatterPlotService 
+        : IScatterPlotService, 
+        IDomainHandler<ScatterPlotChangedEvent>
     {
         private readonly IViewRepository _viewRepository;
         private readonly IScatterPlotAdapter _adapter;

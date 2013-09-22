@@ -57,6 +57,12 @@
     <Compile Include="Application\Application\ApplicationServiceTests.cs" />
     <Compile Include="Application\Application\ApplicationStateServiceTests.cs" />
     <Compile Include="Application\Columns\ColumnAdapterTests.cs" />
+    <Compile Include="Application\Filters\FakeFilter.cs" />
+    <Compile Include="Application\FilterTrees\Tasks\GetRootFilterTreeNodesTaskTests.cs" />
+    <Compile Include="Application\FilterTrees\Tasks\HandleSelectedFilterTreeNodeChangedTaskTests.cs" />
+    <Compile Include="Application\FilterTrees\SelectedFilterTreeNodeChangedEventTests.cs" />
+    <Compile Include="Application\ScatterPlots\Tasks\UpdatePlotsTaskTests.cs" />
+    <Compile Include="Domain\Filters\BooleanFilterTests.cs" />
     <Compile Include="Domain\FilterTrees\BooleanFilterTrees\BooleanFilterTreeLeafTests.cs" />
     <Compile Include="Domain\FilterTrees\BooleanFilterTrees\BooleanFilterTreeRootTests.cs" />
     <Compile Include="Domain\FilterTrees\DateTimeFilterTrees\CenturyFilterTreeNodeTests.cs" />
@@ -96,6 +102,7 @@
     <Compile Include="Domain\Sources\CsvFileSourceTests.cs" />
     <Compile Include="Domain\Sources\Maps\SourceMapFactoryTests.cs" />
     <Compile Include="Domain\Sources\SourceMapTests.cs" />
+    <Compile Include="Persistence\Filters\FilterRepositoryTests.cs" />
     <Compile Include="Persistence\Sources\SourceRepositoryTests.cs" />
     <Compile Include="Presentation\Core\FriendlyDataTypeNameConverterTests.cs" />
     <Compile Include="Presentation\Dialogs\DialogServiceTests.cs" />
@@ -139,7 +146,7 @@
     <Compile Include="Presentation\Importers\CsvFileImportViewModelTests.cs" />
     <Compile Include="Presentation\Panes\Layout\LayoutPaneViewModelTests.cs" />
     <Compile Include="Presentation\Panes\Navigation\NavigationPaneViewModelTests.cs" />
-    <Compile Include="Presentation\Panes\Navigation\NavigationTree\FakeFilterTreeNode.cs" />
+    <Compile Include="Application\FilterTrees\FakeFilterTreeNode.cs" />
     <Compile Include="Presentation\Panes\Navigation\NavigationTree\NavigationTreeViewModelTests.cs" />
     <Compile Include="Presentation\Panes\Navigation\NavigationTree\TreeNodeViewModelTests.cs" />
     <Compile Include="Presentation\Panes\Navigation\StartMenu\StartMenuViewModelTests.cs" />

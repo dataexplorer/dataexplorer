@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.FilterTrees;
+using DataExplorer.Domain.Filters;
+using DataExplorer.Tests.Application.Filters;
 
-namespace DataExplorer.Tests.Presentation.Panes.Navigation.NavigationTree
+namespace DataExplorer.Tests.Application.FilterTrees
 {
     public class FakeFilterTreeNode : FilterTreeNode
     {
+        private readonly Filter _filter;
+
         public FakeFilterTreeNode() : base(null, null)
         {
             
@@ -19,9 +20,19 @@ namespace DataExplorer.Tests.Presentation.Panes.Navigation.NavigationTree
         {
         }
 
+        public FakeFilterTreeNode(FakeFilter filter) : base(null, null)
+        {
+            _filter = filter;
+        }
+
         public override IEnumerable<FilterTreeNode> CreateChildren()
         {
             throw new NotImplementedException();
+        }
+
+        public override Filter CreateFilter()
+        {
+            return _filter;
         }
     }
 }

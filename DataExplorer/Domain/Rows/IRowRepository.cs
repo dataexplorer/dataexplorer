@@ -9,7 +9,7 @@ namespace DataExplorer.Domain.Rows
 {
     public interface IRowRepository
     {
-        List<Row> GetAll();
+        IEnumerable<Row> GetAll();
         void Add(Row row);
     }
 }

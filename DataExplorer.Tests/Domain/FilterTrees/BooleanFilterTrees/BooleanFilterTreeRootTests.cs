@@ -44,5 +44,14 @@ namespace DataExplorer.Tests.Domain.FilterTrees.BooleanFilterTrees
             var results = node.CreateChildren().ToList();
             Assert.That(results[0].Name, Is.EqualTo("Null"));
         }
+
+        [Test]
+        public void TestCreateFilterShouldReturnFilter()
+        {
+            var column = new ColumnBuilder().WithNulls().Build();
+            var node = new BooleanFilterTreeRoot(string.Empty, column);
+            var result = node.CreateFilter();
+            Assert.That(result, Is.Not.Null);
+        }
     }
 }

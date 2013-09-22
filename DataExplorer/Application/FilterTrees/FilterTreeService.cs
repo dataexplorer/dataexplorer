@@ -3,33 +3,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataExplorer.Domain.Columns;
+using DataExplorer.Application.Events;
+using DataExplorer.Application.FilterTrees.Tasks;
 using DataExplorer.Domain.FilterTrees;
 
 namespace DataExplorer.Application.FilterTrees
 {
-    public class FilterTreeService : IFilterTreeService
+    public class FilterTreeService 
+        : IFilterTreeService, 
+        IAppHandler<SelectedFilterTreeNodeChangedEvent>
     {
-        private readonly IColumnRepository _repository;
-        private readonly IFilterTreeNodeFactory _factory;
+        private readonly IGetRootFilterTreeNodesTask _getRootsTask;
+        private readonly IHandleSelectedFilterTreeNodeChangedTask _handleTask;
 
         public FilterTreeService(
-            IColumnRepository repository,
-            IFilterTreeNodeFactory factory)
+            IGetRootFilterTreeNodesTask getRootsTask, 
+            IHandleSelectedFilterTreeNodeChangedTask handleTask)
         {
-            _repository = repository;
-            _factory = factory;
+            _getRootsTask = getRootsTask;
+            _handleTask = handleTask;
         }
 
-        public List<FilterTreeNode> GetRoots()
+        public IEnumerable<FilterTreeNode> GetRoots()
         {
-            var columns = _repository.GetAll();
+            return _getRootsTask.GetRoots();
+        }
 
-            var nodes = columns
-                .Select(p => _factory.CreateRoot(p))
-                .ToList();
-
-            return nodes;
+        public void Handle(SelectedFilterTreeNodeChangedEvent args)
+        {
+            _handleTask.Handle(args);
         }
     }
 }

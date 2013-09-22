@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.FilterTrees.BooleanFilterTrees;
+using DataExplorer.Domain.Filters;
 using DataExplorer.Tests.Domain.Columns;
 using NUnit.Framework;
 
@@ -34,6 +35,14 @@ namespace DataExplorer.Tests.Domain.FilterTrees.BooleanFilterTrees
         {
             var result = _leaf.CreateChildren();
             Assert.That(result, Is.Empty);
+        }
+
+        [Test]
+        public void TestCreateFilterShouldReturnFilter()
+        {
+            _leaf = new BooleanFilterTreeLeaf(string.Empty, _column, true);
+            var result = (BooleanFilter) _leaf.CreateFilter();
+            Assert.That(result.Values.Contains(true));
         }
     }
 }

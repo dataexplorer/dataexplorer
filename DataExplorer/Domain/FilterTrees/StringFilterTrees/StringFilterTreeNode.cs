@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Domain.Columns;
+using DataExplorer.Domain.Filters;
 
 namespace DataExplorer.Domain.FilterTrees.StringFilterTrees
 {
@@ -31,6 +32,11 @@ namespace DataExplorer.Domain.FilterTrees.StringFilterTrees
             return ShouldCreateLeaves(values)
                 ? CreateLeaves(values)
                 : CreateNodes(values);
+        }
+
+        public override Filter CreateFilter()
+        {
+            throw new NotImplementedException();
         }
 
         private bool ShouldCreateLeaves(List<string> values)

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.FilterTrees.NullFilterTrees;
+using DataExplorer.Domain.Filters;
 
 namespace DataExplorer.Domain.FilterTrees.BooleanFilterTrees
 {
@@ -29,6 +30,11 @@ namespace DataExplorer.Domain.FilterTrees.BooleanFilterTrees
             children.Add(trueNode);
 
             return children;
+        }
+
+        public override Filter CreateFilter()
+        {
+            return new BooleanFilter(_column);
         }
     }
 }

@@ -4,10 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using DataExplorer.Application.Events;
+using DataExplorer.Application.Filters;
 using DataExplorer.Application.Importers;
 using DataExplorer.Application.Importers.CsvFile;
 using DataExplorer.Application.Importers.CsvFile.Events;
 using DataExplorer.Application.ScatterPlots;
+using DataExplorer.Application.ScatterPlots.Tasks;
 using DataExplorer.Domain.Events;
 using DataExplorer.Domain.Projects;
 using DataExplorer.Domain.Rows;
@@ -22,82 +25,53 @@ namespace DataExplorer.Tests.Application.ScatterPlots
     public class ScatterPlotEventsServiceTests
     {
         private ScatterPlotEventsService _service;
-        private Mock<IRowRepository> _mockDataRepository;
-        private Mock<IViewRepository> _mockViewRepository;
-        private Mock<IScatterPlotRenderer> _mockRenderer;
-        private ScatterPlot _scatterPlot;
-        
+        private Mock<IUpdatePlotsTask> _mockTask;
+
         [SetUp]
         public void SetUp()
         {
-            _mockDataRepository = new Mock<IRowRepository>();
-            _mockViewRepository = new Mock<IViewRepository>();
-            _mockRenderer = new Mock<IScatterPlotRenderer>();
-            _scatterPlot = new ScatterPlot();
-            _service = new ScatterPlotEventsService(
-                _mockDataRepository.Object,
-                _mockViewRepository.Object,
-                _mockRenderer.Object);
+            _mockTask = new Mock<IUpdatePlotsTask>();
+            _service = new ScatterPlotEventsService(_mockTask.Object);
         }
 
         [Test]
         public void TestHandleProjectOpenedEventShouldUpdatePlots()
         {
             var @event = new ProjectOpenedEvent();
-            var rows = new List<Row>();
-            var plots = new List<Plot>();
-            var layout = new ScatterPlotLayout();
-            _scatterPlot = new ScatterPlot(new Rect(), plots, layout);
-            _mockDataRepository.Setup(p => p.GetAll()).Returns(rows);
-            _mockViewRepository.Setup(p => p.Get<ScatterPlot>()).Returns(_scatterPlot);
-            _mockRenderer.Setup(p => p.RenderPlots(rows, layout)).Returns(plots);
             _service.Handle(@event);
-            Assert.That(_scatterPlot.GetPlots(), Is.EqualTo(plots));
+            _mockTask.Verify(p => p.UpdatePlots(), Times.Once());
         }
 
         [Test]
         public void TestHandleProjectClosedEventShouldUpdatePlots()
         {
             var @event = new ProjectClosedEvent();
-            var rows = new List<Row>();
-            var plots = new List<Plot>();
-            var layout = new ScatterPlotLayout();
-            _scatterPlot = new ScatterPlot(new Rect(), plots, layout);
-            _mockDataRepository.Setup(p => p.GetAll()).Returns(rows);
-            _mockViewRepository.Setup(p => p.Get<ScatterPlot>()).Returns(_scatterPlot);
-            _mockRenderer.Setup(p => p.RenderPlots(rows, layout)).Returns(plots);
             _service.Handle(@event);
-            Assert.That(_scatterPlot.GetPlots(), Is.EqualTo(plots));
+            _mockTask.Verify(p => p.UpdatePlots(), Times.Once());
         }
 
         [Test]
         public void TestHandleScatterPlotLayoutChangedEventShouldUpdatePlots()
         {
             var @event = new ScatterPlotLayoutChangedEvent();
-            var rows = new List<Row>();
-            var plots = new List<Plot>();
-            var layout = new ScatterPlotLayout();
-            _scatterPlot = new ScatterPlot(new Rect(), plots, layout);
-            _mockDataRepository.Setup(p => p.GetAll()).Returns(rows);
-            _mockViewRepository.Setup(p => p.Get<ScatterPlot>()).Returns(_scatterPlot);
-            _mockRenderer.Setup(p => p.RenderPlots(rows, layout)).Returns(plots);
             _service.Handle(@event);
-            Assert.That(_scatterPlot.GetPlots(), Is.EqualTo(plots));
+            _mockTask.Verify(p => p.UpdatePlots(), Times.Once());
         }
 
         [Test]
         public void TestHandleDataImportedEventShouldUpdatePlots()
         {
             var @event = new CsvFileImportedEvent();
-            var rows = new List<Row>();
-            var plots = new List<Plot>();
-            var layout = new ScatterPlotLayout();
-            _scatterPlot = new ScatterPlot(new Rect(), plots, layout);
-            _mockDataRepository.Setup(p => p.GetAll()).Returns(rows);
-            _mockViewRepository.Setup(p => p.Get<ScatterPlot>()).Returns(_scatterPlot);
-            _mockRenderer.Setup(p => p.RenderPlots(rows, layout)).Returns(plots);
             _service.Handle(@event);
-            Assert.That(_scatterPlot.GetPlots(), Is.EqualTo(plots));
+            _mockTask.Verify(p => p.UpdatePlots(), Times.Once());
+        }
+
+        [Test]
+        public void TestHandleFilterChangedEventShouldUpdatePlots()
+        {
+            var @event = new FilterChangedEvent();
+            _service.Handle(@event);
+            _mockTask.Verify(p => p.UpdatePlots(), Times.Once());
         }
     }
 }

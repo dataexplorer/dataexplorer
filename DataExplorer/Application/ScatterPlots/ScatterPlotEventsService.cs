@@ -4,14 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.Events;
-using DataExplorer.Application.Importers;
-using DataExplorer.Application.Importers.CsvFile;
+using DataExplorer.Application.Filters;
 using DataExplorer.Application.Importers.CsvFile.Events;
+using DataExplorer.Application.ScatterPlots.Tasks;
 using DataExplorer.Domain.Events;
 using DataExplorer.Domain.Projects;
-using DataExplorer.Domain.Rows;
 using DataExplorer.Domain.ScatterPlots;
-using DataExplorer.Domain.Views;
 
 namespace DataExplorer.Application.ScatterPlots
 {
@@ -19,53 +17,39 @@ namespace DataExplorer.Application.ScatterPlots
         IDomainHandler<ProjectOpenedEvent>,
         IDomainHandler<ProjectClosedEvent>,
         IDomainHandler<ScatterPlotLayoutChangedEvent>,
-        IAppHandler<CsvFileImportedEvent>
+        IAppHandler<CsvFileImportedEvent>,
+        IAppHandler<FilterChangedEvent>
     {
-        private readonly IRowRepository _rowRepository;
-        private readonly IViewRepository _viewRepository;
-        private readonly IScatterPlotRenderer _renderer;
-
-        public ScatterPlotEventsService(
-            IRowRepository rowRepository,
-            IViewRepository viewRepository,
-            IScatterPlotRenderer renderer)
+        private readonly IUpdatePlotsTask _updateTask;
+        
+        public ScatterPlotEventsService(IUpdatePlotsTask updateTask)
         {
-            _rowRepository = rowRepository;
-            _viewRepository = viewRepository;
-            _renderer = renderer;
+            _updateTask = updateTask;
         }
 
         public void Handle(ProjectOpenedEvent args)
         {
-            UpdatePlots();
+            _updateTask.UpdatePlots();
         }
 
         public void Handle(ProjectClosedEvent args)
         {
-            UpdatePlots();
+            _updateTask.UpdatePlots();
         }
 
         public void Handle(ScatterPlotLayoutChangedEvent args)
         {
-            UpdatePlots();
+            _updateTask.UpdatePlots();
         }
 
         public void Handle(CsvFileImportedEvent args)
         {
-            UpdatePlots();
+            _updateTask.UpdatePlots();
         }
 
-        private void UpdatePlots()
+        public void Handle(FilterChangedEvent args)
         {
-            var rows = _rowRepository.GetAll();
-
-            var scatterPlot = _viewRepository.Get<ScatterPlot>();
-
-            var layout = scatterPlot.GetLayout();
-
-            var plots = _renderer.RenderPlots(rows, layout);
-
-            scatterPlot.SetPlots(plots);
+            _updateTask.UpdatePlots();
         }
     }
 }

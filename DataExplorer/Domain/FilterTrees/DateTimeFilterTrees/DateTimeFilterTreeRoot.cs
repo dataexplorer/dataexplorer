@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.FilterTrees.NullFilterTrees;
+using DataExplorer.Domain.Filters;
 
 namespace DataExplorer.Domain.FilterTrees.DateTimeFilterTrees
 {

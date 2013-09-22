@@ -18,5 +18,10 @@ namespace DataExplorer.Domain.FilterTrees.DateTimeFilterTrees
             _lower = lower;
             _upper = upper;
         }
+
+        public override Filters.Filter CreateFilter()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
