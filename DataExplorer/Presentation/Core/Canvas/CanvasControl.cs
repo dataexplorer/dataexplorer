@@ -4,8 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Media;
 using DataExplorer.Presentation.Core;
+using DataExplorer.Presentation.Core.Canvas.Events;
+using DataExplorer.Presentation.Core.Canvas.Renderers;
 using DataExplorer.Presentation.Core.Geometry;
 
 namespace DataExplorer.Presentation.Core.Canvas
@@ -15,6 +18,10 @@ namespace DataExplorer.Presentation.Core.Canvas
         private readonly IDependencyPropertyService _propertyService;
         private readonly ICanvasRenderer _renderer;
         private readonly IVisualService _visualService;
+
+        public event CanvasPanEvent Pan;
+        public event CanvasZoomInEvent ZoomIn;
+        public event CanvasZoomOutEvent ZoomOut;
 
         public static readonly DependencyProperty ControlSizeProperty = DependencyProperty.Register(
             "ControlSize",
@@ -27,6 +34,9 @@ namespace DataExplorer.Presentation.Core.Canvas
             typeof(List<Circle>),
             typeof(CanvasControl),
             new PropertyMetadata(new List<Circle>(), HandlePlotsChanged));
+
+        private bool _isMouseDown;
+        private Point _previousMousePosition;
 
         public Size ControlSize
         {
@@ -41,13 +51,15 @@ namespace DataExplorer.Presentation.Core.Canvas
 
         public CanvasControl() : this(
             new DependencyPropertyService(),
-            new CanvasRenderer(),
+            new CanvasRenderer(
+                new CanvasBackgroundRenderer(), 
+                new CanvasPlotRenderer(
+                    new CanvasCirclePlotRenderer())),
             new VisualService())
         {
             // Default constructor necessary to declare control in XAML
             // TODO: Determine if there is a way to inject these dependencies with XAML
         }
-        
 
         public CanvasControl(
             IDependencyPropertyService propertyService,
@@ -65,17 +77,24 @@ namespace DataExplorer.Presentation.Core.Canvas
 
         private void DrawPlots()
         {
+            var visuals = new List<Visual>();
+
+            var backgroundVisual = _renderer.DrawBackground(this.ActualWidth, this.ActualHeight);
+
+            visuals.Add(backgroundVisual);
+
             var plots = (List<Circle>) _propertyService.GetValue(PlotsProperty);
 
-            var visuals = plots
-                .Select(p => _renderer.DrawVisual(p));
+            var plotVisuals = _renderer.DrawPlots(plots);
+
+            visuals.AddRange(plotVisuals);
 
             _visualService.Clear();
-
+            
             _visualService.Add(visuals);
         }
 
-        
+
         protected override int VisualChildrenCount
         {
             get { return _visualService.GetVisualsCount(); }
@@ -90,7 +109,35 @@ namespace DataExplorer.Presentation.Core.Canvas
         {
             ((CanvasControl) source).DrawPlots();
         }
-        
+
+        protected override void OnMouseDown(MouseButtonEventArgs e)
+        {
+            base.OnMouseDown(e);
+
+            _isMouseDown = true;
+            _previousMousePosition = Mouse.GetPosition(this);
+        }
+
+        protected override void OnMouseUp(MouseButtonEventArgs e)
+        {
+            base.OnMouseUp(e);
+
+            _isMouseDown = false;
+        }
+
+        protected override void OnMouseMove(MouseEventArgs e)
+        {
+            base.OnMouseMove(e);
+
+            var location = e.GetPosition(this);
+
+            if (_isMouseDown)
+            {
+                var delta = _previousMousePosition - location;
+                OnPan(new CanvasPanEventArgs(delta));
+            }
+        }
+
         protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
         {
             base.OnRenderSizeChanged(sizeInfo);
@@ -109,6 +156,24 @@ namespace DataExplorer.Presentation.Core.Canvas
         {
             RemoveVisualChild(visual);
             RemoveLogicalChild(visual);
+        }
+
+        protected virtual void OnPan(CanvasPanEventArgs e)
+        {
+            if (Pan != null) 
+                Pan(this, e);
+        }
+
+        protected virtual void OnZoomIn(CanvasZoomInEventArg e)
+        {
+            if (ZoomIn != null) 
+                ZoomIn(this, e);
+        }
+
+        protected virtual void OnZoomOut(CanvasZoomOutEventArgs e)
+        {
+            if (ZoomOut != null) 
+                ZoomOut(this, e);
         }
     }
 }

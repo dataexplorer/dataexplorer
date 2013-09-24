@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using DataExplorer.Presentation.Core.Canvas.Events;
 
 namespace DataExplorer.Presentation.Views.ScatterPlots
 {
@@ -10,6 +11,12 @@ namespace DataExplorer.Presentation.Views.ScatterPlots
         public ScatterPlotView()
         {
             InitializeComponent();
+        }
+
+        private void HandlePan(object sender, CanvasPanEventArgs e)
+        {
+            var viewModel = ((ScatterPlotViewModel) DataContext);
+            viewModel.Pan(e.Delta);
         }
     }
 }

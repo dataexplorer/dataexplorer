@@ -3,15 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Media;
-using DataExplorer.Presentation.Core.Geometry;
 
-namespace DataExplorer.Presentation.Core.Canvas
+namespace DataExplorer.Presentation.Core.Canvas.Renderers
 {
-    public interface ICanvasRenderer
+    public interface ICanvasBackgroundRenderer
     {
         Visual DrawBackground(double width, double height);
-        IEnumerable<Visual> DrawPlots(List<Circle> plots);
     }
 }

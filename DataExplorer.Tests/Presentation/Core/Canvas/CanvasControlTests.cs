@@ -72,13 +72,16 @@ namespace DataExplorer.Tests.Presentation.Core.Canvas
         {
             var plot = new Circle();
             var plots = new List<Circle> { plot };
-            var visual = new DrawingVisual();
-            var visuals = new List<Visual> { visual };
+            var backgroundVisual = new FakeVisual();
+            var plotVisual = new FakeVisual();
+            var plotVisuals = new List<Visual> { plotVisual };
+            var visuals = new List<Visual> { backgroundVisual, plotVisual };
             var callback = CanvasControl.PlotsProperty.GetMetadata(_control).PropertyChangedCallback;
             var callback2 = new Action(() => callback.Invoke(_control, new DependencyPropertyChangedEventArgs()));
             _mockPropertyService.Setup(p => p.SetValue(CanvasControl.PlotsProperty, It.IsAny<object>())).Callback(callback2);
             _mockPropertyService.Setup(p => p.GetValue(CanvasControl.PlotsProperty)).Returns(plots);
-            _mockRenderer.Setup(p => p.DrawVisual(plot)).Returns(visual);
+            _mockRenderer.Setup(p => p.DrawBackground(0d, 0d)).Returns(backgroundVisual);
+            _mockRenderer.Setup(p => p.DrawPlots(plots)).Returns(plotVisuals);
             _control.Plots = plots;
             _mockVisualService.Verify(p => p.Clear(), Times.Once());
             _mockVisualService.Verify(p => p.Add(visuals));

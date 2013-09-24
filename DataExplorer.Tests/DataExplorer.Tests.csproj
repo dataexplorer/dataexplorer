@@ -125,6 +125,9 @@
     <Compile Include="Domain\Sources\SourceMapTests.cs" />
     <Compile Include="Persistence\Filters\FilterRepositoryTests.cs" />
     <Compile Include="Persistence\Sources\SourceRepositoryTests.cs" />
+    <Compile Include="Presentation\Core\Canvas\CanvasRendererTests.cs" />
+    <Compile Include="Presentation\Core\Canvas\Renderers\CanvasBackgroundRendererTests.cs" />
+    <Compile Include="Presentation\Core\Canvas\Renderers\CanvasCirclePlotRendererTests.cs" />
     <Compile Include="Presentation\Core\FriendlyDataTypeNameConverterTests.cs" />
     <Compile Include="Presentation\Dialogs\DialogServiceTests.cs" />
     <Compile Include="Application\Projects\ProjectServiceTests.cs" />
@@ -153,7 +156,7 @@
     <Compile Include="Persistence\Rows\RowRepositoryTests.cs" />
     <Compile Include="Persistence\Views\ViewRepositoryTests.cs" />
     <Compile Include="Presentation\Core\BaseViewModelTests.cs" />
-    <Compile Include="Presentation\Core\Canvas\CanvasRendererTests.cs" />
+    <Compile Include="Presentation\Core\Canvas\Renderers\CanvasPlotRendererTests.cs" />
     <Compile Include="Presentation\Core\DependencyPropertyServiceTests.cs" />
     <Compile Include="Presentation\Core\FakeVisual.cs" />
     <Compile Include="Presentation\Core\Layout\LayoutItemViewModelTests.cs" />
@@ -187,6 +190,7 @@
   <ItemGroup>
     <Folder Include="Application\Dialogs\" />
     <Folder Include="Common\" />
+    <Folder Include="Presentation\Core\Canvas\Events\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataExplorer\DataExplorer.csproj">

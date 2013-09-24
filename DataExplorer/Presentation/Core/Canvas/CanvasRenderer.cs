@@ -2,31 +2,32 @@
 using System.Linq;
 using System.Windows;
 using System.Windows.Media;
+using DataExplorer.Presentation.Core.Canvas.Renderers;
 using DataExplorer.Presentation.Core.Geometry;
 
 namespace DataExplorer.Presentation.Core.Canvas
 {
     public class CanvasRenderer : ICanvasRenderer
     {
-        public Visual DrawVisual(Circle plot)
+        private readonly ICanvasBackgroundRenderer _backgroundRenderer;
+        private readonly ICanvasPlotRenderer _plotRenderer;
+
+        public CanvasRenderer(
+            ICanvasBackgroundRenderer backgroundRenderer, 
+            ICanvasPlotRenderer plotRenderer)
         {
-            return DrawCircle(plot);
+            _backgroundRenderer = backgroundRenderer;
+            _plotRenderer = plotRenderer;
         }
 
-        public Visual DrawCircle(Circle circle)
+        public Visual DrawBackground(double width, double height)
         {
-            var visual = new DrawingVisual();
-            using (var context = visual.RenderOpen())
-            {
-                var brush = new SolidColorBrush(Colors.LightBlue);
-                brush.Freeze();
+            return _backgroundRenderer.DrawBackground(width, height);
+        }
 
-                var pen = new Pen(Brushes.Black, 1);
-                pen.Freeze();
-
-                context.DrawEllipse(brush, pen, new Point(circle.X, circle.Y),  circle.Radius, circle.Radius);
-            }
-            return visual;
+        public IEnumerable<Visual> DrawPlots(List<Circle> plots)
+        {
+            return _plotRenderer.DrawPlots(plots);
         }
     }
 }

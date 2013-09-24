@@ -64,5 +64,10 @@ namespace DataExplorer.Presentation.Views.ScatterPlots
         {
             OnPropertyChanged(() => Plots);
         }
+
+        public void Pan(Vector delta)
+        {
+            Console.WriteLine("Pan (" + delta.X + "," + delta.Y + ")");
+        }
     }
 }
