@@ -1,4 +1,4 @@
-﻿using DataExplorer.Application.Events;
+﻿using DataExplorer.Application.Core.Events;
 
 namespace DataExplorer.Application.Importers.CsvFile.Events
 {

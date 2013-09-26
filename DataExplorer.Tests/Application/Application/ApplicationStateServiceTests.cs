@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application;
 using DataExplorer.Application.Application;
-using DataExplorer.Application.Events;
+using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Importers.CsvFile.Events;
 using DataExplorer.Tests.Application.FilterTrees;
 using DataExplorer.Tests.Application.Filters;

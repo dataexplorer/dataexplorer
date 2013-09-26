@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Media;
 using DataExplorer.Presentation.Core;
 using DataExplorer.Presentation.Core.Canvas;
@@ -119,7 +120,7 @@ namespace DataExplorer.Tests.Presentation.Core.Canvas
             public CanvasControlHarness(
                 IDependencyPropertyService propertyService,
                 ICanvasRenderer renderer,
-                IVisualService visualService) 
+                IVisualService visualService)
                 : base(propertyService, renderer, visualService)
             {
             }

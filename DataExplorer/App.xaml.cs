@@ -6,7 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
-using DataExplorer.Application.Events;
+using DataExplorer.Application.Core.Events;
 using DataExplorer.Domain.Events;
 using DataExplorer.Presentation.Shell.MainWindow;
 using Ninject;

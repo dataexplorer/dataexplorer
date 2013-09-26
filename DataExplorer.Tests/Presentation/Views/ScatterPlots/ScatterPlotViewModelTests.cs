@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using DataExplorer.Application.ScatterPlots;
+using DataExplorer.Domain.ScatterPlots;
 using DataExplorer.Presentation.Core.Geometry;
 using DataExplorer.Presentation.Views.ScatterPlots;
 using Moq;
@@ -61,12 +62,21 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots
         {
             var wasPropertyChangeEventRaised = false;
             _viewModel.PropertyChanged += (s, e) => { wasPropertyChangeEventRaised = true; };
-            _mockService.Raise(p => p.ScatterPlotChanged += null, EventArgs.Empty);
+            _viewModel.Handle(new ScatterPlotChangedEvent());
             Assert.That(wasPropertyChangeEventRaised, Is.EqualTo(true));
         }
+
+        [Test]
+        public void TestPanShouldScalePanValues()
+        {
+            var controlSize = new Size(100, 100);
+            var viewExtent = new Rect(0, 0, 1, 1);
+            var vector = new Vector(25, 50);
+            var scaledVector = new Vector(0.25, -0.50);
+            _viewModel.ControlSize = controlSize;
+            _mockService.Setup(p => p.GetViewExtent()).Returns(viewExtent);
+            _viewModel.Pan(vector);
+            _mockService.Verify(p => p.Pan(scaledVector));
+        }
     }
-
-    
-
-   
 }

@@ -136,6 +136,13 @@ namespace DataExplorer.Presentation.Core.Canvas
                 var delta = _previousMousePosition - location;
                 OnPan(new CanvasPanEventArgs(delta));
             }
+
+            _previousMousePosition = location;
+        }
+
+        protected override void OnMouseLeave(MouseEventArgs e)
+        {
+            _isMouseDown = false;
         }
 
         protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)

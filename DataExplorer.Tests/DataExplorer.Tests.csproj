@@ -61,6 +61,10 @@
     <Compile Include="Application\FilterTrees\Tasks\GetRootFilterTreeNodesTaskTests.cs" />
     <Compile Include="Application\FilterTrees\Tasks\HandleSelectedFilterTreeNodeChangedTaskTests.cs" />
     <Compile Include="Application\FilterTrees\SelectedFilterTreeNodeChangedEventTests.cs" />
+    <Compile Include="Application\ScatterPlots\Tasks\GetScatterPlotsTaskTests.cs" />
+    <Compile Include="Application\ScatterPlots\Tasks\GetViewExtentTaskTests.cs" />
+    <Compile Include="Application\ScatterPlots\Tasks\PanTaskTests.cs" />
+    <Compile Include="Application\ScatterPlots\Tasks\SetViewExtentTaskTests.cs" />
     <Compile Include="Application\ScatterPlots\Tasks\UpdatePlotsTaskTests.cs" />
     <Compile Include="Domain\Filters\BooleanFilters\BooleanFilterTests.cs" />
     <Compile Include="Domain\Filters\DateTimeFilters\DateTimeFilterTests.cs" />

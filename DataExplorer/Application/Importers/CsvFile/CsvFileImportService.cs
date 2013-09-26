@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataExplorer.Application.Events;
+using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Importers.CsvFile.Events;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Converters;

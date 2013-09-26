@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using DataExplorer.Application.Events;
 using DataExplorer.Application.Filters;
 using DataExplorer.Application.Importers;
 using DataExplorer.Application.Importers.CsvFile;

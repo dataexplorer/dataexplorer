@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.Application;
-using DataExplorer.Application.Events;
+using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.FilterTrees;
 using DataExplorer.Application.FilterTrees.Tasks;
 using DataExplorer.Application.Filters;

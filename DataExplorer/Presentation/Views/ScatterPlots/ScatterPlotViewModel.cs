@@ -6,12 +6,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using DataExplorer.Application.ScatterPlots;
+using DataExplorer.Domain.Events;
+using DataExplorer.Domain.ScatterPlots;
 using DataExplorer.Presentation.Core;
 using DataExplorer.Presentation.Core.Geometry;
 
 namespace DataExplorer.Presentation.Views.ScatterPlots
 {
-    public class ScatterPlotViewModel : BaseViewModel, IScatterPlotViewModel
+    public class ScatterPlotViewModel 
+        : BaseViewModel, 
+        IScatterPlotViewModel,
+        IDomainHandler<ScatterPlotChangedEvent>
     {
         private readonly IScatterPlotService _scatterPlotService;
         private readonly IScatterPlotViewRenderer _renderer;
@@ -33,9 +38,6 @@ namespace DataExplorer.Presentation.Views.ScatterPlots
         {
             _scatterPlotService = scatterPlotService;
             _renderer = renderer;
-
-            // TODO: Should this be moved to an initialize method?
-            _scatterPlotService.ScatterPlotChanged += HandleScatterPlotChangedEvent;
         }
 
         private List<Circle> GetPlots()
@@ -60,14 +62,25 @@ namespace DataExplorer.Presentation.Views.ScatterPlots
             _scatterPlotService.SetViewExtent(newViewExtent);
         }
 
-        private void HandleScatterPlotChangedEvent(object source, EventArgs e)
+        public void Pan(Vector vector)
         {
-            OnPropertyChanged(() => Plots);
+            var viewExtent = _scatterPlotService.GetViewExtent();
+
+            var scale = (_controlSize.Width > _controlSize.Height)
+                ? _controlSize.Width / viewExtent.Width
+                : _controlSize.Height / viewExtent.Height;
+
+            var scaledX = vector.X / scale;
+            var scaledY = (vector.Y * -1) / scale;
+
+            var scaledVector = new Vector(scaledX, scaledY);
+
+            _scatterPlotService.Pan(scaledVector);
         }
 
-        public void Pan(Vector delta)
+        public void Handle(ScatterPlotChangedEvent args)
         {
-            Console.WriteLine("Pan (" + delta.X + "," + delta.Y + ")");
+            OnPropertyChanged(() => Plots);
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataExplorer.Application.Events;
+using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Filters;
 using DataExplorer.Application.Importers.CsvFile.Events;
 using DataExplorer.Application.ScatterPlots.Tasks;
@@ -13,15 +13,15 @@ using DataExplorer.Domain.ScatterPlots;
 
 namespace DataExplorer.Application.ScatterPlots
 {
-    public class ScatterPlotEventsService : 
-        IDomainHandler<ProjectOpenedEvent>,
+    public class ScatterPlotEventsService 
+        : IDomainHandler<ProjectOpenedEvent>,
         IDomainHandler<ProjectClosedEvent>,
         IDomainHandler<ScatterPlotLayoutChangedEvent>,
         IAppHandler<CsvFileImportedEvent>,
         IAppHandler<FilterChangedEvent>
     {
         private readonly IUpdatePlotsTask _updateTask;
-        
+
         public ScatterPlotEventsService(IUpdatePlotsTask updateTask)
         {
             _updateTask = updateTask;

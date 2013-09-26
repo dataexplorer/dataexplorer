@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using DataExplorer.Application.ScatterPlots;
+using DataExplorer.Application.ScatterPlots.Tasks;
 using DataExplorer.Domain.Events;
 using DataExplorer.Domain.Projects;
 using DataExplorer.Domain.Rows;
@@ -20,56 +21,59 @@ namespace DataExplorer.Tests.Application.ScatterPlots
     public class ScatterPlotServiceTests
     {
         private ScatterPlotService _service;
-        private Mock<IViewRepository> _mockViewRepository;
-        private Mock<IScatterPlotAdapter> _mockAdapter;
-        private ScatterPlot _scatterPlot;
+        private Mock<IGetViewExtentTask> _mockGetViewExtentTask;
+        private Mock<ISetViewExtentTask> _mockSetViewExtentTask;
+        private Mock<IGetPlotsTask> _mockGetPlotsTask;
+        private Mock<IPanTask> _mockPanTask;
+        private Rect _viewExtent;
+        private List<PlotDto> _plotDtos;
+        private PlotDto _plotDto;
 
         [SetUp]
         public void SetUp()
         {
-            _mockViewRepository = new Mock<IViewRepository>();
-            _mockAdapter = new Mock<IScatterPlotAdapter>();
-            _scatterPlot = new ScatterPlot();
+            _viewExtent = new Rect();
+            _plotDto = new PlotDto();
+            _plotDtos = new List<PlotDto> { _plotDto };
+            _mockGetViewExtentTask = new Mock<IGetViewExtentTask>();
+            _mockSetViewExtentTask = new Mock<ISetViewExtentTask>();
+            _mockGetPlotsTask = new Mock<IGetPlotsTask>();
+            _mockGetPlotsTask.Setup(p => p.GetPlots()).Returns(_plotDtos);
+            _mockPanTask = new Mock<IPanTask>();
             _service = new ScatterPlotService( 
-                _mockViewRepository.Object, 
-                _mockAdapter.Object);
+                _mockGetViewExtentTask.Object,
+                _mockSetViewExtentTask.Object,
+                _mockGetPlotsTask.Object,
+                _mockPanTask.Object);
         }
 
         [Test]
         public void TestGetViewExtentShouldGetViewExtent()
         {
-            _mockViewRepository.Setup(p => p.Get<ScatterPlot>()).Returns(_scatterPlot);
             var result = _service.GetViewExtent();
-            Assert.That(result, Is.EqualTo(_scatterPlot.GetViewExtent()));
+            Assert.That(result, Is.EqualTo(_viewExtent));
         }
 
         [Test]
         public void TestSetViewExtentShouldSetViewExtent()
         {
-            var viewExtent = new Rect();
-            _mockViewRepository.Setup(p => p.Get<ScatterPlot>()).Returns(_scatterPlot);
-            _service.SetViewExtent(viewExtent);
-            Assert.That(_scatterPlot.GetViewExtent(), Is.EqualTo(viewExtent));
+            _service.SetViewExtent(_viewExtent);
+            _mockSetViewExtentTask.Verify(p => p.SetViewExtent(_viewExtent), Times.Once());
         }
 
         [Test]
         public void TestGetShouldReturnScatterPlotToDto()
         {
-            var plotDtos = new List<PlotDto>();
-            _mockViewRepository.Setup(p => p.Get<ScatterPlot>()).Returns(_scatterPlot);
-            _mockAdapter.Setup(p => p.Adapt(_scatterPlot.GetPlots())).Returns(plotDtos);
-            var result = _service.GetPlots();
-            Assert.That(result, Is.EqualTo(plotDtos));
+            var results = _service.GetPlots();
+            Assert.That(results.Single(), Is.EqualTo(_plotDto));
         }
 
         [Test]
-        public void TestHandleScatterPlotChangedEventShouldRaiseScatterPlotChangedEvent()
+        public void TestPanShouldPan()
         {
-            var args = new ScatterPlotChangedEvent();
-            var wasHandled = false;
-            _service.ScatterPlotChanged += (source, eventArgs) => { wasHandled = true; };
-            _service.Handle(args);
-            Assert.That(wasHandled, Is.True);
+            var vector = new Vector();
+            _service.Pan(vector);
+            _mockPanTask.Verify(p => p.Pan(vector));
         }
     }
 }

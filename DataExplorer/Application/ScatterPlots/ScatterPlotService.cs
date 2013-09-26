@@ -4,59 +4,49 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using DataExplorer.Application.ScatterPlots;
-using DataExplorer.Domain.Events;
+using DataExplorer.Application.ScatterPlots.Tasks;
 using DataExplorer.Domain.ScatterPlots;
 using DataExplorer.Domain.Views;
 
 namespace DataExplorer.Application.ScatterPlots
 {
-    public class ScatterPlotService 
-        : IScatterPlotService, 
-        IDomainHandler<ScatterPlotChangedEvent>
+    public class ScatterPlotService : IScatterPlotService
     {
-        private readonly IViewRepository _viewRepository;
-        private readonly IScatterPlotAdapter _adapter;
-
-        public event ScatterPlotChangedEventHandler ScatterPlotChanged;
+        private readonly IGetViewExtentTask _getViewExtentTask;
+        private readonly ISetViewExtentTask _setViewExtentTask;
+        private readonly IGetPlotsTask _getPlotsTask;
+        private readonly IPanTask _panTask;
 
         public ScatterPlotService(
-            IViewRepository viewRepository,
-            IScatterPlotAdapter adapter)
+            IGetViewExtentTask getViewExtentTask,
+            ISetViewExtentTask setViewExtentTask,
+            IGetPlotsTask getPlotsTask, 
+            IPanTask panTask)
         {
-            _viewRepository = viewRepository;
-            _adapter = adapter;
+            _getViewExtentTask = getViewExtentTask;
+            _setViewExtentTask = setViewExtentTask;
+            _getPlotsTask = getPlotsTask;
+            _panTask = panTask;
         }
 
         public Rect GetViewExtent()
         {
-            var scatterPlot = _viewRepository.Get<ScatterPlot>();
-
-            return scatterPlot.GetViewExtent();
+            return _getViewExtentTask.GetViewExtent();
         }
 
         public void SetViewExtent(Rect viewExtent)
         {
-            var scatterPlot = _viewRepository.Get<ScatterPlot>();
-
-            scatterPlot.SetViewExtent(viewExtent);
+            _setViewExtentTask.SetViewExtent(viewExtent);
         }
 
         public List<PlotDto> GetPlots()
         {
-            var scatterPlot = _viewRepository.Get<ScatterPlot>();
-
-            var plots = scatterPlot.GetPlots();
-
-            var plotDtos = _adapter.Adapt(plots);
-
-            return plotDtos;
+            return _getPlotsTask.GetPlots();
         }
 
-        public void Handle(ScatterPlotChangedEvent args)
+        public void Pan(Vector vector)
         {
-            if (ScatterPlotChanged != null)
-                ScatterPlotChanged(this, EventArgs.Empty);
+            _panTask.Pan(vector);
         }
     }
 }

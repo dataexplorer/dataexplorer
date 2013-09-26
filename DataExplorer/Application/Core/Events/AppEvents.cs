@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataExplorer.Domain.Events;
 using Ninject;
 
-namespace DataExplorer.Application.Events
+namespace DataExplorer.Application.Core.Events
 {
     public class AppEvents
     {

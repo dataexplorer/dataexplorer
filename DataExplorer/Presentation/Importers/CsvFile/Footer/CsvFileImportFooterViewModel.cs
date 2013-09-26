@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 using System.Windows.Threading;
-using DataExplorer.Application.Events;
+using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Importers.CsvFile;
 using DataExplorer.Application.Importers.CsvFile.Events;
 using DataExplorer.Presentation.Core;
