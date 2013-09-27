@@ -8,6 +8,8 @@ namespace DataExplorer.Application.ScatterPlots
         Rect GetViewExtent();
         void SetViewExtent(Rect viewExtent);
         List<PlotDto> GetPlots();
+        void ZoomIn(Point center);
+        void ZoomOut(Point center);
         void Pan(Vector vector);
     }
 }

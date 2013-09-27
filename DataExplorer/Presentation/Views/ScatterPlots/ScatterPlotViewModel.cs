@@ -18,8 +18,9 @@ namespace DataExplorer.Presentation.Views.ScatterPlots
         IScatterPlotViewModel,
         IDomainHandler<ScatterPlotChangedEvent>
     {
-        private readonly IScatterPlotService _scatterPlotService;
+        private readonly IScatterPlotService _service;
         private readonly IScatterPlotViewRenderer _renderer;
+        private readonly IScatterPlotViewScaler _scaler;
         private Size _controlSize;
 
         public Size ControlSize
@@ -33,18 +34,20 @@ namespace DataExplorer.Presentation.Views.ScatterPlots
         }
 
         public ScatterPlotViewModel(
-            IScatterPlotService scatterPlotService, 
-            IScatterPlotViewRenderer renderer)
+            IScatterPlotService service, 
+            IScatterPlotViewRenderer renderer, 
+            IScatterPlotViewScaler scaler)
         {
-            _scatterPlotService = scatterPlotService;
+            _service = service;
             _renderer = renderer;
+            _scaler = scaler;
         }
 
         private List<Circle> GetPlots()
         {
-            var viewExtent = _scatterPlotService.GetViewExtent();
+            var viewExtent = _service.GetViewExtent();
 
-            var plots = _scatterPlotService.GetPlots();
+            var plots = _service.GetPlots();
 
             var circles = _renderer.RenderPlots(_controlSize, viewExtent, plots);
 
@@ -55,27 +58,38 @@ namespace DataExplorer.Presentation.Views.ScatterPlots
         {
             _controlSize = controlSize;
 
-            var viewExtent = _scatterPlotService.GetViewExtent();
+            var viewExtent = _service.GetViewExtent();
 
             var newViewExtent = _renderer.ResizeView(controlSize, viewExtent);
 
-            _scatterPlotService.SetViewExtent(newViewExtent);
+            _service.SetViewExtent(newViewExtent);
         }
 
-        public void Pan(Vector vector)
+        public void HandleZoomIn(Point center)
         {
-            var viewExtent = _scatterPlotService.GetViewExtent();
+            var viewExtent = _service.GetViewExtent();
 
-            var scale = (_controlSize.Width > _controlSize.Height)
-                ? _controlSize.Width / viewExtent.Width
-                : _controlSize.Height / viewExtent.Height;
+            var scaledCenter = _scaler.ScalePoint(center, _controlSize, viewExtent);
 
-            var scaledX = vector.X / scale;
-            var scaledY = (vector.Y * -1) / scale;
+            _service.ZoomIn(scaledCenter);
+        }
 
-            var scaledVector = new Vector(scaledX, scaledY);
+        public void HandleZoomOut(Point center)
+        {
+            var viewExtent = _service.GetViewExtent();
 
-            _scatterPlotService.Pan(scaledVector);
+            var scaledCenter = _scaler.ScalePoint(center, _controlSize, viewExtent);
+
+            _service.ZoomOut(scaledCenter);
+        }
+
+        public void HandlePan(Vector vector)
+        {
+            var viewExtent = _service.GetViewExtent();
+
+            var scaledVector = _scaler.ScaleVector(vector, _controlSize, viewExtent);
+
+            _service.Pan(scaledVector);
         }
 
         public void Handle(ScatterPlotChangedEvent args)

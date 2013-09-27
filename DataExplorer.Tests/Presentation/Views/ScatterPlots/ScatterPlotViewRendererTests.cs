@@ -139,5 +139,7 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots
             var result = _renderer.ResizeView(controlSize, viewExtent);
             Assert.That(result, Is.EqualTo(newExtent));
         }
+
+        
     }
 }

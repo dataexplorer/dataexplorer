@@ -66,6 +66,8 @@
     <Compile Include="Application\ScatterPlots\Tasks\PanTaskTests.cs" />
     <Compile Include="Application\ScatterPlots\Tasks\SetViewExtentTaskTests.cs" />
     <Compile Include="Application\ScatterPlots\Tasks\UpdatePlotsTaskTests.cs" />
+    <Compile Include="Application\ScatterPlots\Tasks\ZoomInTaskTests.cs" />
+    <Compile Include="Application\ScatterPlots\Tasks\ZoomOutTaskTests.cs" />
     <Compile Include="Domain\Filters\BooleanFilters\BooleanFilterTests.cs" />
     <Compile Include="Domain\Filters\DateTimeFilters\DateTimeFilterTests.cs" />
     <Compile Include="Domain\Filters\FloatFilters\FloatFilterTests.cs" />
@@ -182,6 +184,8 @@
     <Compile Include="Presentation\Views\ScatterPlots\Layouts\ScatterPlotLayoutViewModelTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Layouts\XAxisLayoutViewModelTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Layouts\YAxisLayoutViewModelTests.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\Scalers\PointScalerTests.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\Scalers\VectorScalerTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\ScatterPlotViewRendererTests.cs" />
     <Compile Include="Presentation\Core\Canvas\CanvasControlTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\ScatterPlotViewModelTests.cs" />
@@ -189,12 +193,14 @@
     <Compile Include="Presentation\Shell\MainMenu\FileMenu\FileMenuViewModelTests.cs" />
     <Compile Include="Presentation\Shell\MainMenu\MainMenuViewModelTests.cs" />
     <Compile Include="Presentation\Shell\MainWindow\MainWindowViewModelTests.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\ScatterPlotViewScalerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Application\Dialogs\" />
     <Folder Include="Common\" />
     <Folder Include="Presentation\Core\Canvas\Events\" />
+    <Folder Include="Presentation\Views\ScatterPlots\Renderers\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataExplorer\DataExplorer.csproj">

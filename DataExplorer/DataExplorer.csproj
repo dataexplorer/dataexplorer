@@ -87,9 +87,13 @@
     <Compile Include="Application\ScatterPlots\Tasks\IPanTask.cs" />
     <Compile Include="Application\ScatterPlots\Tasks\ISetViewExtentTask.cs" />
     <Compile Include="Application\ScatterPlots\Tasks\IUpdatePlotsTask.cs" />
+    <Compile Include="Application\ScatterPlots\Tasks\IZoomInTask.cs" />
+    <Compile Include="Application\ScatterPlots\Tasks\IZoomOutTask.cs" />
     <Compile Include="Application\ScatterPlots\Tasks\PanTask.cs" />
     <Compile Include="Application\ScatterPlots\Tasks\SetViewExtentTask.cs" />
     <Compile Include="Application\ScatterPlots\Tasks\UpdatePlotsTask.cs" />
+    <Compile Include="Application\ScatterPlots\Tasks\ZoomInTask.cs" />
+    <Compile Include="Application\ScatterPlots\Tasks\ZoomOutTask.cs" />
     <Compile Include="Domain\Filters\BooleanFilters\BooleanFilter.cs" />
     <Compile Include="Domain\Filters\DateTimeFilters\DateTimeFilter.cs" />
     <Compile Include="Domain\Filters\Filter.cs" />
@@ -430,6 +434,9 @@
     <Compile Include="Presentation\Core\Geometry\GeometryFactory.cs" />
     <Compile Include="Presentation\Core\Geometry\IGeometryCalculator.cs" />
     <Compile Include="Presentation\Core\Geometry\IGeometryFactory.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\IScatterPlotViewScaler.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\Scalers\IPointScaler.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\Scalers\IVectorScaler.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\IScatterPlotViewModel.cs" />
     <Compile Include="Presentation\Core\Canvas\ICanvasRenderer.cs" />
     <Compile Include="Presentation\Core\Canvas\CanvasControl.cs" />
@@ -449,6 +456,9 @@
       <DependentUpon>XAxisLayoutView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Presentation\Views\ScatterPlots\Layout\YAxisLayoutViewModel.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\Scalers\PointScaler.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\Scalers\VectorScaler.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\ScatterPlotViewScaler.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\ScatterPlotViewRenderer.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\ScatterPlotView.xaml.cs">
       <DependentUpon>ScatterPlotView.xaml</DependentUpon>
@@ -483,7 +493,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Presentation\Views\ScatterPlots\Renderers\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

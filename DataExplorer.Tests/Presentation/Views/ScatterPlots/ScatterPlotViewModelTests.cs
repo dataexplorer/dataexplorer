@@ -19,13 +19,18 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots
         private ScatterPlotViewModel _viewModel;
         private Mock<IScatterPlotService> _mockService;
         private Mock<IScatterPlotViewRenderer> _mockRenderer;
+        private Mock<IScatterPlotViewScaler> _mockScaler;
 
         [SetUp]
         public void SetUp()
         {
             _mockService = new Mock<IScatterPlotService>();
             _mockRenderer = new Mock<IScatterPlotViewRenderer>();
-            _viewModel = new ScatterPlotViewModel(_mockService.Object, _mockRenderer.Object);
+            _mockScaler = new Mock<IScatterPlotViewScaler>();
+            _viewModel = new ScatterPlotViewModel(
+                _mockService.Object, 
+                _mockRenderer.Object,
+                _mockScaler.Object);
         }
 
         [Test]
@@ -45,10 +50,10 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots
         {
             var controlSize = new Size(0, 0);
             var viewExtent = new Rect(-100, -100, 1200, 1200);
-            var dto = new PlotDto() { X = 1d, Y = 2d };
-            var dtos = new List<PlotDto>() { dto };
-            var circle = new Circle() { X = 1d, Y = 2d };
-            var circles = new List<Circle> { circle };
+            var dto = new PlotDto() {X = 1d, Y = 2d};
+            var dtos = new List<PlotDto>() {dto};
+            var circle = new Circle() {X = 1d, Y = 2d};
+            var circles = new List<Circle> {circle};
             _mockService.Setup(p => p.GetViewExtent()).Returns(viewExtent);
             _mockService.Setup(p => p.GetPlots()).Returns(dtos);
             _mockRenderer.Setup(p => p.RenderPlots(controlSize, viewExtent, dtos)).Returns(circles);
@@ -67,6 +72,34 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots
         }
 
         [Test]
+        public void TestZoomInShouldScaleZoomInValues()
+        {
+            var controlSize = new Size(100, 100);
+            var viewExtent = new Rect(0, 0, 1, 1);
+            var point = new Point(25, 50);
+            var scaledPoint = new Point(0.25, -0.50);
+            _viewModel.ControlSize = controlSize;
+            _mockService.Setup(p => p.GetViewExtent()).Returns(viewExtent);
+            _mockScaler.Setup(p => p.ScalePoint(point, controlSize, viewExtent)).Returns(scaledPoint);
+            _viewModel.HandleZoomIn(point);
+            _mockService.Verify(p => p.ZoomIn(scaledPoint));                  
+        }
+
+        [Test]
+        public void TestZoomOutShouldScaleZoomOutValues()
+        {
+            var controlSize = new Size(100, 100);
+            var viewExtent = new Rect(0, 0, 1, 1);
+            var point = new Point(25, 50);
+            var scaledPoint = new Point(0.25, -0.50);
+            _viewModel.ControlSize = controlSize;
+            _mockService.Setup(p => p.GetViewExtent()).Returns(viewExtent);
+            _mockScaler.Setup(p => p.ScalePoint(point, controlSize, viewExtent)).Returns(scaledPoint);
+            _viewModel.HandleZoomOut(point);
+            _mockService.Verify(p => p.ZoomOut(scaledPoint));   
+        }
+
+        [Test]
         public void TestPanShouldScalePanValues()
         {
             var controlSize = new Size(100, 100);
@@ -75,7 +108,8 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots
             var scaledVector = new Vector(0.25, -0.50);
             _viewModel.ControlSize = controlSize;
             _mockService.Setup(p => p.GetViewExtent()).Returns(viewExtent);
-            _viewModel.Pan(vector);
+            _mockScaler.Setup(p => p.ScaleVector(vector, controlSize, viewExtent)).Returns(scaledVector);
+            _viewModel.HandlePan(vector);
             _mockService.Verify(p => p.Pan(scaledVector));
         }
     }

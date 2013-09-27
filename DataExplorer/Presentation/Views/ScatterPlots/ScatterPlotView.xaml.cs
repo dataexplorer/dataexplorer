@@ -13,10 +13,22 @@ namespace DataExplorer.Presentation.Views.ScatterPlots
             InitializeComponent();
         }
 
+        private void HandleZoomIn(object sender, CanvasZoomInEventArg e)
+        {
+            var viewModel = ((ScatterPlotViewModel) DataContext);
+            viewModel.HandleZoomIn(e.Center);
+        }
+
+        private void HandleZoomOut(object sender, CanvasZoomOutEventArgs e)
+        {
+            var viewModel = ((ScatterPlotViewModel) DataContext);
+            viewModel.HandleZoomOut(e.Point);
+        }
+
         private void HandlePan(object sender, CanvasPanEventArgs e)
         {
             var viewModel = ((ScatterPlotViewModel) DataContext);
-            viewModel.Pan(e.Delta);
+            viewModel.HandlePan(e.Delta);
         }
     }
 }

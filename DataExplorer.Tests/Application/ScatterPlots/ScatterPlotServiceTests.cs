@@ -24,6 +24,8 @@ namespace DataExplorer.Tests.Application.ScatterPlots
         private Mock<IGetViewExtentTask> _mockGetViewExtentTask;
         private Mock<ISetViewExtentTask> _mockSetViewExtentTask;
         private Mock<IGetPlotsTask> _mockGetPlotsTask;
+        private Mock<IZoomInTask> _mockZoomInTask;
+        private Mock<IZoomOutTask> _mockZoomOutTask;
         private Mock<IPanTask> _mockPanTask;
         private Rect _viewExtent;
         private List<PlotDto> _plotDtos;
@@ -39,11 +41,15 @@ namespace DataExplorer.Tests.Application.ScatterPlots
             _mockSetViewExtentTask = new Mock<ISetViewExtentTask>();
             _mockGetPlotsTask = new Mock<IGetPlotsTask>();
             _mockGetPlotsTask.Setup(p => p.GetPlots()).Returns(_plotDtos);
+            _mockZoomInTask = new Mock<IZoomInTask>();
+            _mockZoomOutTask = new Mock<IZoomOutTask>();
             _mockPanTask = new Mock<IPanTask>();
             _service = new ScatterPlotService( 
                 _mockGetViewExtentTask.Object,
                 _mockSetViewExtentTask.Object,
                 _mockGetPlotsTask.Object,
+                _mockZoomInTask.Object,
+                _mockZoomOutTask.Object,
                 _mockPanTask.Object);
         }
 
@@ -66,6 +72,22 @@ namespace DataExplorer.Tests.Application.ScatterPlots
         {
             var results = _service.GetPlots();
             Assert.That(results.Single(), Is.EqualTo(_plotDto));
+        }
+
+        [Test]
+        public void TestZoomInShouldZoomIn()
+        {
+            var point = new Point();
+            _service.ZoomIn(point);
+            _mockZoomInTask.Verify(p => p.ZoomIn(point), Times.Once());
+        }
+
+        [Test]
+        public void TestZoomOutShouldZoomOut()
+        {
+            var point = new Point();
+            _service.ZoomOut(point);
+            _mockZoomOutTask.Verify(p => p.ZoomOut(point), Times.Once());
         }
 
         [Test]

@@ -13,6 +13,9 @@
     <Grid>
         <canvas:CanvasControl
             ControlSize="{Binding ControlSize, Mode=OneWayToSource}"
-            Plots="{Binding Plots}" Pan="HandlePan" />
+            Plots="{Binding Plots}" 
+            ZoomIn="HandleZoomIn"
+            ZoomOut="HandleZoomOut"
+            Pan="HandlePan" />
     </Grid>
 </UserControl>

@@ -145,6 +145,18 @@ namespace DataExplorer.Presentation.Core.Canvas
             _isMouseDown = false;
         }
 
+        protected override void OnMouseWheel(MouseWheelEventArgs e)
+        {
+            base.OnMouseWheel(e);
+
+            var center = Mouse.GetPosition(this);
+
+            if (e.Delta > 0)
+                OnZoomIn(new CanvasZoomInEventArg(center));
+            else
+                OnZoomOut(new CanvasZoomOutEventArgs(center));
+        }
+
         protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
         {
             base.OnRenderSizeChanged(sizeInfo);
