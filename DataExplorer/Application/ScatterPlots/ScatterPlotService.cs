@@ -12,57 +12,57 @@ namespace DataExplorer.Application.ScatterPlots
 {
     public class ScatterPlotService : IScatterPlotService
     {
-        private readonly IGetViewExtentTask _getViewExtentTask;
-        private readonly ISetViewExtentTask _setViewExtentTask;
-        private readonly IGetPlotsTask _getPlotsTask;
-        private readonly IZoomInTask _zoomInTask;
-        private readonly IZoomOutTask _zoomOutTask;
-        private readonly IPanTask _panTask;
+        private readonly IGetViewExtentQuery _getViewExtentQuery;
+        private readonly ISetViewExtentCommand _setViewExtentCommand;
+        private readonly IGetPlotsQuery _getPlotsQuery;
+        private readonly IZoomInCommand _zoomInCommand;
+        private readonly IZoomOutCommand _zoomOutCommand;
+        private readonly IPanCommand _panCommand;
 
         public ScatterPlotService(
-            IGetViewExtentTask getViewExtentTask,
-            ISetViewExtentTask setViewExtentTask,
-            IGetPlotsTask getPlotsTask, 
-            IZoomInTask zoomInTask,
-            IZoomOutTask zoomOutTask,
-            IPanTask panTask)
+            IGetViewExtentQuery getViewExtentQuery,
+            ISetViewExtentCommand setViewExtentCommand,
+            IGetPlotsQuery getPlotsQuery, 
+            IZoomInCommand zoomInCommand,
+            IZoomOutCommand zoomOutCommand,
+            IPanCommand panCommand)
         {
-            _getViewExtentTask = getViewExtentTask;
-            _setViewExtentTask = setViewExtentTask;
-            _getPlotsTask = getPlotsTask;
-            _zoomInTask = zoomInTask;
-            _zoomOutTask = zoomOutTask;
-            _panTask = panTask;
+            _getViewExtentQuery = getViewExtentQuery;
+            _setViewExtentCommand = setViewExtentCommand;
+            _getPlotsQuery = getPlotsQuery;
+            _zoomInCommand = zoomInCommand;
+            _zoomOutCommand = zoomOutCommand;
+            _panCommand = panCommand;
         }
 
         public Rect GetViewExtent()
         {
-            return _getViewExtentTask.GetViewExtent();
+            return _getViewExtentQuery.GetViewExtent();
         }
 
         public void SetViewExtent(Rect viewExtent)
         {
-            _setViewExtentTask.SetViewExtent(viewExtent);
+            _setViewExtentCommand.SetViewExtent(viewExtent);
         }
 
         public List<PlotDto> GetPlots()
         {
-            return _getPlotsTask.GetPlots();
+            return _getPlotsQuery.GetPlots();
         }
 
         public void ZoomIn(Point center)
         {
-            _zoomInTask.ZoomIn(center);
+            _zoomInCommand.ZoomIn(center);
         }
 
         public void ZoomOut(Point center)
         {
-            _zoomOutTask.ZoomOut(center);
+            _zoomOutCommand.ZoomOut(center);
         }
 
         public void Pan(Vector vector)
         {
-            _panTask.Pan(vector);
+            _panCommand.Pan(vector);
         }
     }
 }

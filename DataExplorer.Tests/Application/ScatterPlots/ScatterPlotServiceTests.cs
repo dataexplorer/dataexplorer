@@ -21,12 +21,12 @@ namespace DataExplorer.Tests.Application.ScatterPlots
     public class ScatterPlotServiceTests
     {
         private ScatterPlotService _service;
-        private Mock<IGetViewExtentTask> _mockGetViewExtentTask;
-        private Mock<ISetViewExtentTask> _mockSetViewExtentTask;
-        private Mock<IGetPlotsTask> _mockGetPlotsTask;
-        private Mock<IZoomInTask> _mockZoomInTask;
-        private Mock<IZoomOutTask> _mockZoomOutTask;
-        private Mock<IPanTask> _mockPanTask;
+        private Mock<IGetViewExtentQuery> _mockGetViewExtentTask;
+        private Mock<ISetViewExtentCommand> _mockSetViewExtentTask;
+        private Mock<IGetPlotsQuery> _mockGetPlotsTask;
+        private Mock<IZoomInCommand> _mockZoomInTask;
+        private Mock<IZoomOutCommand> _mockZoomOutTask;
+        private Mock<IPanCommand> _mockPanTask;
         private Rect _viewExtent;
         private List<PlotDto> _plotDtos;
         private PlotDto _plotDto;
@@ -37,13 +37,13 @@ namespace DataExplorer.Tests.Application.ScatterPlots
             _viewExtent = new Rect();
             _plotDto = new PlotDto();
             _plotDtos = new List<PlotDto> { _plotDto };
-            _mockGetViewExtentTask = new Mock<IGetViewExtentTask>();
-            _mockSetViewExtentTask = new Mock<ISetViewExtentTask>();
-            _mockGetPlotsTask = new Mock<IGetPlotsTask>();
+            _mockGetViewExtentTask = new Mock<IGetViewExtentQuery>();
+            _mockSetViewExtentTask = new Mock<ISetViewExtentCommand>();
+            _mockGetPlotsTask = new Mock<IGetPlotsQuery>();
             _mockGetPlotsTask.Setup(p => p.GetPlots()).Returns(_plotDtos);
-            _mockZoomInTask = new Mock<IZoomInTask>();
-            _mockZoomOutTask = new Mock<IZoomOutTask>();
-            _mockPanTask = new Mock<IPanTask>();
+            _mockZoomInTask = new Mock<IZoomInCommand>();
+            _mockZoomOutTask = new Mock<IZoomOutCommand>();
+            _mockPanTask = new Mock<IPanCommand>();
             _service = new ScatterPlotService( 
                 _mockGetViewExtentTask.Object,
                 _mockSetViewExtentTask.Object,

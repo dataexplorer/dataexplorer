@@ -16,14 +16,14 @@ namespace DataExplorer.Tests.Application.FilterTrees
     public class FilterTreeServiceTests
     {
         private FilterTreeService _service;
-        private Mock<IGetRootFilterTreeNodesTask> _mockGetRootsTasks;
-        private Mock<IHandleSelectedFilterTreeNodeChangedTask> _mockHandleTask;
+        private Mock<IGetRootFilterTreeNodesQuery> _mockGetRootsTasks;
+        private Mock<ISelectedFilterTreeNodeChangedEventHandler> _mockHandleTask;
 
         [SetUp]
         public void SetUp()
         {
-            _mockGetRootsTasks = new Mock<IGetRootFilterTreeNodesTask>();
-            _mockHandleTask = new Mock<IHandleSelectedFilterTreeNodeChangedTask>();
+            _mockGetRootsTasks = new Mock<IGetRootFilterTreeNodesQuery>();
+            _mockHandleTask = new Mock<ISelectedFilterTreeNodeChangedEventHandler>();
             _service = new FilterTreeService(
                 _mockGetRootsTasks.Object,
                 _mockHandleTask.Object);

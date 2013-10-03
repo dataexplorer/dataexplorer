@@ -20,36 +20,36 @@ namespace DataExplorer.Application.ScatterPlots
         IAppHandler<CsvFileImportedEvent>,
         IAppHandler<FilterChangedEvent>
     {
-        private readonly IUpdatePlotsTask _updateTask;
+        private readonly IUpdatePlotsCommand _updateCommand;
 
-        public ScatterPlotEventsService(IUpdatePlotsTask updateTask)
+        public ScatterPlotEventsService(IUpdatePlotsCommand updateCommand)
         {
-            _updateTask = updateTask;
+            _updateCommand = updateCommand;
         }
 
         public void Handle(ProjectOpenedEvent args)
         {
-            _updateTask.UpdatePlots();
+            _updateCommand.UpdatePlots();
         }
 
         public void Handle(ProjectClosedEvent args)
         {
-            _updateTask.UpdatePlots();
+            _updateCommand.UpdatePlots();
         }
 
         public void Handle(ScatterPlotLayoutChangedEvent args)
         {
-            _updateTask.UpdatePlots();
+            _updateCommand.UpdatePlots();
         }
 
         public void Handle(CsvFileImportedEvent args)
         {
-            _updateTask.UpdatePlots();
+            _updateCommand.UpdatePlots();
         }
 
         public void Handle(FilterChangedEvent args)
         {
-            _updateTask.UpdatePlots();
+            _updateCommand.UpdatePlots();
         }
     }
 }

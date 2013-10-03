@@ -24,12 +24,12 @@ namespace DataExplorer.Tests.Application.ScatterPlots
     public class ScatterPlotEventsServiceTests
     {
         private ScatterPlotEventsService _service;
-        private Mock<IUpdatePlotsTask> _mockTask;
+        private Mock<IUpdatePlotsCommand> _mockTask;
 
         [SetUp]
         public void SetUp()
         {
-            _mockTask = new Mock<IUpdatePlotsTask>();
+            _mockTask = new Mock<IUpdatePlotsCommand>();
             _service = new ScatterPlotEventsService(_mockTask.Object);
         }
 

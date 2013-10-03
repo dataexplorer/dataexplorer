@@ -13,25 +13,25 @@ namespace DataExplorer.Application.FilterTrees
         : IFilterTreeService, 
         IAppHandler<SelectedFilterTreeNodeChangedEvent>
     {
-        private readonly IGetRootFilterTreeNodesTask _getRootsTask;
-        private readonly IHandleSelectedFilterTreeNodeChangedTask _handleTask;
+        private readonly IGetRootFilterTreeNodesQuery _getRootsQuery;
+        private readonly ISelectedFilterTreeNodeChangedEventHandler _eventHandler;
 
         public FilterTreeService(
-            IGetRootFilterTreeNodesTask getRootsTask, 
-            IHandleSelectedFilterTreeNodeChangedTask handleTask)
+            IGetRootFilterTreeNodesQuery getRootsQuery, 
+            ISelectedFilterTreeNodeChangedEventHandler eventHandler)
         {
-            _getRootsTask = getRootsTask;
-            _handleTask = handleTask;
+            _getRootsQuery = getRootsQuery;
+            _eventHandler = eventHandler;
         }
 
         public IEnumerable<FilterTreeNode> GetRoots()
         {
-            return _getRootsTask.GetRoots();
+            return _getRootsQuery.GetRoots();
         }
 
         public void Handle(SelectedFilterTreeNodeChangedEvent args)
         {
-            _handleTask.Handle(args);
+            _eventHandler.Handle(args);
         }
     }
 }
