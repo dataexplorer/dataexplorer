@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataExplorer.Application.FilterTrees;
-using DataExplorer.Application.FilterTrees.Tasks;
+﻿using System.Collections.Generic;
+using DataExplorer.Application.FilterTrees.Queries;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.FilterTrees;
 using DataExplorer.Tests.Domain.Columns;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Application.FilterTrees.Tasks
+namespace DataExplorer.Tests.Application.FilterTrees.Queries
 {
     [TestFixture]
     public class GetRootFilterTreeNodesQueryTests

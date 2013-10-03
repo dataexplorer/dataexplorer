@@ -22,11 +22,11 @@ namespace DataExplorer.Domain.ScatterPlots
         public List<Plot> RenderPlots(List<Row> rows, ScatterPlotLayout layout)
         {
             var xAxisMap = layout.XAxisColumn != null 
-                ? _factory.CreateAxisMap(layout.XAxisColumn, 0d, 1000d) 
+                ? _factory.CreateAxisMap(layout.XAxisColumn, 0d, 1d) 
                 : null;
 
             var yAxisMap = layout.YAxisColumn != null
-                ? _factory.CreateAxisMap(layout.YAxisColumn, 0d, 1000d)
+                ? _factory.CreateAxisMap(layout.YAxisColumn, 0d, 1d)
                 : null;
             
             var plots = new List<Plot>();

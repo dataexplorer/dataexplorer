@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using DataExplorer.Presentation.Views.ScatterPlots.Calculations;
 using DataExplorer.Presentation.Views.ScatterPlots.Scalers;
 
 namespace DataExplorer.Presentation.Views.ScatterPlots

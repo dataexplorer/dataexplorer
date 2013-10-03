@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace DataExplorer.Application.ScatterPlots.Tasks
+namespace DataExplorer.Application.ScatterPlots.Queries
 {
     public interface IGetPlotsQuery
     {

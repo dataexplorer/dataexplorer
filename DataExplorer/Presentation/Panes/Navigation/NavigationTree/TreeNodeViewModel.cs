@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.FilterTrees;
+using DataExplorer.Application.FilterTrees.Events;
 using DataExplorer.Domain.FilterTrees;
 using DataExplorer.Presentation.Core;
 

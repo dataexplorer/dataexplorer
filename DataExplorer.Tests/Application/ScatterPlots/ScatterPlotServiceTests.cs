@@ -6,12 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using DataExplorer.Application.ScatterPlots;
-using DataExplorer.Application.ScatterPlots.Tasks;
-using DataExplorer.Domain.Events;
-using DataExplorer.Domain.Projects;
-using DataExplorer.Domain.Rows;
-using DataExplorer.Domain.ScatterPlots;
-using DataExplorer.Domain.Views;
+using DataExplorer.Application.ScatterPlots.Commands;
+using DataExplorer.Application.ScatterPlots.Queries;
 using Moq;
 using NUnit.Framework;
 
@@ -21,11 +17,12 @@ namespace DataExplorer.Tests.Application.ScatterPlots
     public class ScatterPlotServiceTests
     {
         private ScatterPlotService _service;
-        private Mock<IGetViewExtentQuery> _mockGetViewExtentTask;
-        private Mock<ISetViewExtentCommand> _mockSetViewExtentTask;
-        private Mock<IGetPlotsQuery> _mockGetPlotsTask;
-        private Mock<IZoomInCommand> _mockZoomInTask;
-        private Mock<IZoomOutCommand> _mockZoomOutTask;
+        private Mock<IGetViewExtentQuery> _mockGetViewExtentQuery;
+        private Mock<ISetViewExtentCommand> _mockSetViewExtentCommand;
+        private Mock<IGetPlotsQuery> _mockGetPlotsQuery;
+        private Mock<IZoomInCommand> _mockZoomInCommand;
+        private Mock<IZoomOutCommand> _mockZoomOutCommand;
+        private Mock<IZoomToFullExtentCommand> _mockZoomExtentCommand;
         private Mock<IPanCommand> _mockPanTask;
         private Rect _viewExtent;
         private List<PlotDto> _plotDtos;
@@ -37,19 +34,21 @@ namespace DataExplorer.Tests.Application.ScatterPlots
             _viewExtent = new Rect();
             _plotDto = new PlotDto();
             _plotDtos = new List<PlotDto> { _plotDto };
-            _mockGetViewExtentTask = new Mock<IGetViewExtentQuery>();
-            _mockSetViewExtentTask = new Mock<ISetViewExtentCommand>();
-            _mockGetPlotsTask = new Mock<IGetPlotsQuery>();
-            _mockGetPlotsTask.Setup(p => p.GetPlots()).Returns(_plotDtos);
-            _mockZoomInTask = new Mock<IZoomInCommand>();
-            _mockZoomOutTask = new Mock<IZoomOutCommand>();
+            _mockGetViewExtentQuery = new Mock<IGetViewExtentQuery>();
+            _mockSetViewExtentCommand = new Mock<ISetViewExtentCommand>();
+            _mockGetPlotsQuery = new Mock<IGetPlotsQuery>();
+            _mockGetPlotsQuery.Setup(p => p.GetPlots()).Returns(_plotDtos);
+            _mockZoomInCommand = new Mock<IZoomInCommand>();
+            _mockZoomOutCommand = new Mock<IZoomOutCommand>();
+            _mockZoomExtentCommand = new Mock<IZoomToFullExtentCommand>();
             _mockPanTask = new Mock<IPanCommand>();
             _service = new ScatterPlotService( 
-                _mockGetViewExtentTask.Object,
-                _mockSetViewExtentTask.Object,
-                _mockGetPlotsTask.Object,
-                _mockZoomInTask.Object,
-                _mockZoomOutTask.Object,
+                _mockGetViewExtentQuery.Object,
+                _mockSetViewExtentCommand.Object,
+                _mockGetPlotsQuery.Object,
+                _mockZoomInCommand.Object,
+                _mockZoomOutCommand.Object,
+                _mockZoomExtentCommand.Object,
                 _mockPanTask.Object);
         }
 
@@ -64,7 +63,7 @@ namespace DataExplorer.Tests.Application.ScatterPlots
         public void TestSetViewExtentShouldSetViewExtent()
         {
             _service.SetViewExtent(_viewExtent);
-            _mockSetViewExtentTask.Verify(p => p.SetViewExtent(_viewExtent), Times.Once());
+            _mockSetViewExtentCommand.Verify(p => p.SetViewExtent(_viewExtent), Times.Once());
         }
 
         [Test]
@@ -79,7 +78,7 @@ namespace DataExplorer.Tests.Application.ScatterPlots
         {
             var point = new Point();
             _service.ZoomIn(point);
-            _mockZoomInTask.Verify(p => p.ZoomIn(point), Times.Once());
+            _mockZoomInCommand.Verify(p => p.ZoomIn(point), Times.Once());
         }
 
         [Test]
@@ -87,7 +86,14 @@ namespace DataExplorer.Tests.Application.ScatterPlots
         {
             var point = new Point();
             _service.ZoomOut(point);
-            _mockZoomOutTask.Verify(p => p.ZoomOut(point), Times.Once());
+            _mockZoomOutCommand.Verify(p => p.ZoomOut(point), Times.Once());
+        }
+
+        [Test]
+        public void TestZoomToFullExtentShouldZoomToFullExtent()
+        {
+            _service.ZoomToFullExtent();
+            _mockZoomExtentCommand.Verify(p => p.Execute(), Times.Once());
         }
 
         [Test]

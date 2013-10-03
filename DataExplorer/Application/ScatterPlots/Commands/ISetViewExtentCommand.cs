@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace DataExplorer.Application.ScatterPlots.Tasks
+namespace DataExplorer.Application.ScatterPlots.Commands
 {
     public interface ISetViewExtentCommand
     {

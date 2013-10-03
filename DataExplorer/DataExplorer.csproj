@@ -80,6 +80,7 @@
     <Compile Include="Application\FilterTrees\Events\SelectedFilterTreeNodeChangedEventHandler.cs" />
     <Compile Include="Application\FilterTrees\Queries\IGetRootFilterTreeNodesQuery.cs" />
     <Compile Include="Application\FilterTrees\Events\ISelectedFilterTreeNodeChangedEventHandler.cs" />
+    <Compile Include="Application\ScatterPlots\Commands\IZoomToFullExtentCommand.cs" />
     <Compile Include="Application\ScatterPlots\Queries\GetPlotsQuery.cs" />
     <Compile Include="Application\ScatterPlots\Queries\GetViewExtentQuery.cs" />
     <Compile Include="Application\ScatterPlots\Queries\IGetPlotsQuery.cs" />
@@ -348,6 +349,8 @@
     <Compile Include="Presentation\Shell\MainMenu\FileMenu\IFileMenuViewModel.cs" />
     <Compile Include="Presentation\Shell\MainMenu\IMainMenuViewModel.cs" />
     <Compile Include="Presentation\Shell\MainMenu\MainMenuViewModel.cs" />
+    <Compile Include="Presentation\Shell\MainMenu\ViewMenu\IViewMenuViewModel.cs" />
+    <Compile Include="Presentation\Shell\MainMenu\ViewMenu\ViewMenuViewModel.cs" />
     <Compile Include="Presentation\Shell\MainWindow\IMainWindowViewModel.cs" />
     <Compile Include="Presentation\Shell\MainWindow\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

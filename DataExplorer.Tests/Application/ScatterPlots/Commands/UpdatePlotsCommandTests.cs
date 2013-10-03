@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows;
-using DataExplorer.Application.Filters;
-using DataExplorer.Application.ScatterPlots;
-using DataExplorer.Application.ScatterPlots.Tasks;
+using DataExplorer.Application.ScatterPlots.Commands;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Filters;
 using DataExplorer.Domain.Filters.BooleanFilters;
@@ -17,7 +11,7 @@ using DataExplorer.Tests.Domain.Columns;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Application.ScatterPlots.Tasks
+namespace DataExplorer.Tests.Application.ScatterPlots.Commands
 {
     [TestFixture]
     public class UpdatePlotsCommandTests

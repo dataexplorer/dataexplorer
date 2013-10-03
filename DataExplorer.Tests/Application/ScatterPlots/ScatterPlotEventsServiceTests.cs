@@ -9,7 +9,7 @@ using DataExplorer.Application.Importers;
 using DataExplorer.Application.Importers.CsvFile;
 using DataExplorer.Application.Importers.CsvFile.Events;
 using DataExplorer.Application.ScatterPlots;
-using DataExplorer.Application.ScatterPlots.Tasks;
+using DataExplorer.Application.ScatterPlots.Commands;
 using DataExplorer.Domain.Events;
 using DataExplorer.Domain.Projects;
 using DataExplorer.Domain.Rows;

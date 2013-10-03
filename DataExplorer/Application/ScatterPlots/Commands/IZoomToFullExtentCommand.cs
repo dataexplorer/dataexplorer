@@ -1,7 +1,7 @@
 ﻿namespace DataExplorer.Application.ScatterPlots.Commands
 {
-    public interface IUpdatePlotsCommand
+    public interface IZoomToFullExtentCommand
     {
-        void UpdatePlots();
+        void Execute();
     }
 }

@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataExplorer.Application.Application;
+﻿using DataExplorer.Application.Application;
 using DataExplorer.Application.Core.Events;
-using DataExplorer.Application.FilterTrees;
-using DataExplorer.Application.FilterTrees.Tasks;
+using DataExplorer.Application.FilterTrees.Events;
 using DataExplorer.Application.Filters;
 using DataExplorer.Domain.Filters;
 using DataExplorer.Tests.Application.Filters;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Application.FilterTrees.Tasks
+namespace DataExplorer.Tests.Application.FilterTrees.Events
 {
     [TestFixture]
     public class SelectedFilterTreeNodeChangedEventHandlerTests

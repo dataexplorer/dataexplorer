@@ -18,5 +18,8 @@
             <Separator />
             <MenuItem Header="Exit" Command="{Binding ExitCommand}" />
         </MenuItem>
+        <MenuItem Header="View" DataContext="{Binding ViewMenuViewModel}">
+            <MenuItem Header="Zoom to Full Extent" Command="{Binding ZoomToFullExtentCommand}" />
+        </MenuItem>
     </Menu>
 </UserControl>

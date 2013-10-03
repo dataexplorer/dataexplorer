@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DataExplorer.Application.Columns;
 using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Importers.CsvFile.Events;
+using DataExplorer.Application.ScatterPlots.Events;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Events;
 using DataExplorer.Domain.Projects;

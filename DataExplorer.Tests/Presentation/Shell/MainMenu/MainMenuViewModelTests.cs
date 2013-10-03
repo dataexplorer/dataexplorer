@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Presentation.Shell.MainMenu;
 using DataExplorer.Presentation.Shell.MainMenu.FileMenu;
+using DataExplorer.Presentation.Shell.MainMenu.ViewMenu;
 using Moq;
 using NUnit.Framework;
 
@@ -13,12 +14,32 @@ namespace DataExplorer.Tests.Presentation.Shell.MainMenu
     [TestFixture]
     public class MainMenuViewModelTests
     {
+        private MainMenuViewModel _mainMenuViewModel;
+        private Mock<IFileMenuViewModel> _mockFileMenuViewModel;
+        private Mock<IViewMenuViewModel> _mockViewMenuViewModel;
+
+        [SetUp]
+        public void SetUp()
+        {
+            _mockFileMenuViewModel = new Mock<IFileMenuViewModel>();
+            _mockViewMenuViewModel = new Mock<IViewMenuViewModel>();
+            _mainMenuViewModel = new MainMenuViewModel(
+                _mockFileMenuViewModel.Object,
+                _mockViewMenuViewModel.Object);
+        }
+
         [Test]
         public void TestGetFileMenuViewModelShouldReturnFileMenuViewModel()
         {
-            var mockFileMenuViewModel = new Mock<IFileMenuViewModel>();
-            var mainMenuViewModel = new MainMenuViewModel(mockFileMenuViewModel.Object);
-            Assert.That(mainMenuViewModel.FileMenuViewModel, Is.EqualTo(mockFileMenuViewModel.Object));
+            var result = _mainMenuViewModel.FileMenuViewModel;
+            Assert.That(result, Is.EqualTo(_mockFileMenuViewModel.Object));
+        }
+
+        [Test]
+        public void TestGetViewMenuViewModelShouldReturnViewModel()
+        {
+            var result = _mainMenuViewModel.ViewMenuViewModel;
+            Assert.That(result, Is.EqualTo(_mockViewMenuViewModel.Object));
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace DataExplorer.Application.FilterTrees.Tasks
+﻿namespace DataExplorer.Application.FilterTrees.Events
 {
     public interface ISelectedFilterTreeNodeChangedEventHandler
     {

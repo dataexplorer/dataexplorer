@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataExplorer.Application.FilterTrees;
+﻿using DataExplorer.Application.FilterTrees.Events;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Application.FilterTrees
+namespace DataExplorer.Tests.Application.FilterTrees.Events
 {
     [TestFixture]
     public class SelectedFilterTreeNodeChangedEventTests

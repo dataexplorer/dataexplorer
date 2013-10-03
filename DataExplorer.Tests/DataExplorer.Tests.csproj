@@ -61,6 +61,7 @@
     <Compile Include="Application\FilterTrees\Queries\GetRootFilterTreeNodesQueryTests.cs" />
     <Compile Include="Application\FilterTrees\Events\SelectedFilterTreeNodeChangedEventHandlerTests.cs" />
     <Compile Include="Application\FilterTrees\Events\SelectedFilterTreeNodeChangedEventTests.cs" />
+    <Compile Include="Application\ScatterPlots\Commands\ZoomToFullExtentCommandTests.cs" />
     <Compile Include="Application\ScatterPlots\Queries\GetScatterPlotsTaskTests.cs" />
     <Compile Include="Application\ScatterPlots\Queries\GetViewExtentTaskTests.cs" />
     <Compile Include="Application\ScatterPlots\Commands\PanCommandTests.cs" />
@@ -181,6 +182,7 @@
     <Compile Include="Presentation\Panes\Navigation\NavigationTree\TreeNodeViewModelTests.cs" />
     <Compile Include="Presentation\Panes\Navigation\StartMenu\StartMenuViewModelTests.cs" />
     <Compile Include="Presentation\Panes\Viewer\ViewerPaneViewModelTests.cs" />
+    <Compile Include="Presentation\Shell\MainMenu\ViewMenu\ViewMenuViewModelTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Layouts\ScatterPlotLayoutViewModelTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Layouts\XAxisLayoutViewModelTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Layouts\YAxisLayoutViewModelTests.cs" />

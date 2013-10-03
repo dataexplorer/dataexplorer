@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataExplorer.Application.Core.Events;
+﻿using DataExplorer.Application.Core.Events;
 using DataExplorer.Domain.FilterTrees;
 
-namespace DataExplorer.Application.FilterTrees
+namespace DataExplorer.Application.FilterTrees.Events
 {
     public class SelectedFilterTreeNodeChangedEvent : IAppEvent
     {

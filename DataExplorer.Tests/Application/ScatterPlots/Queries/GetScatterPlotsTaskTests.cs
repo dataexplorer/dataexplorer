@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DataExplorer.Application.ScatterPlots;
-using DataExplorer.Application.ScatterPlots.Tasks;
+using DataExplorer.Application.ScatterPlots.Queries;
 using DataExplorer.Domain.ScatterPlots;
 using DataExplorer.Domain.Views;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Application.ScatterPlots.Tasks
+namespace DataExplorer.Tests.Application.ScatterPlots.Queries
 {
     [TestFixture]
     public class GetScatterPlotsQueryTests

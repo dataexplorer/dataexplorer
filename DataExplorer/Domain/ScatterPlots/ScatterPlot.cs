@@ -17,7 +17,7 @@ namespace DataExplorer.Domain.ScatterPlots
 
         public ScatterPlot()
         {
-            _viewExtent = new Rect(-100, -100, 1200, 1200);
+            _viewExtent = new Rect(-0.1, -0.1, 1.2, 1.2);
             _plots = new List<Plot>();
             _layout = new ScatterPlotLayout();
         }
