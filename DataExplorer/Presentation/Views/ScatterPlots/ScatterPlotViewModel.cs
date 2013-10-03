@@ -5,10 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 using DataExplorer.Application.ScatterPlots;
 using DataExplorer.Domain.Events;
 using DataExplorer.Domain.ScatterPlots;
 using DataExplorer.Presentation.Core;
+using DataExplorer.Presentation.Core.Commands;
 using DataExplorer.Presentation.Core.Geometry;
 
 namespace DataExplorer.Presentation.Views.ScatterPlots
@@ -18,10 +20,16 @@ namespace DataExplorer.Presentation.Views.ScatterPlots
         IScatterPlotViewModel,
         IDomainHandler<ScatterPlotChangedEvent>
     {
+        private readonly IScatterPlotContextMenuViewModel _contextMenuViewModel;
         private readonly IScatterPlotService _service;
         private readonly IScatterPlotViewRenderer _renderer;
         private readonly IScatterPlotViewScaler _scaler;
         private Size _controlSize;
+
+        public IScatterPlotContextMenuViewModel ContextMenuViewModel
+        {
+            get { return _contextMenuViewModel; }
+        }
 
         public Size ControlSize
         {
@@ -32,12 +40,14 @@ namespace DataExplorer.Presentation.Views.ScatterPlots
         {
             get { return GetPlots(); }
         }
-
+        
         public ScatterPlotViewModel(
+            IScatterPlotContextMenuViewModel contextMenuViewModel,
             IScatterPlotService service, 
             IScatterPlotViewRenderer renderer, 
             IScatterPlotViewScaler scaler)
         {
+            _contextMenuViewModel = contextMenuViewModel;
             _service = service;
             _renderer = renderer;
             _scaler = scaler;

@@ -438,6 +438,7 @@
     <Compile Include="Presentation\Core\Geometry\GeometryFactory.cs" />
     <Compile Include="Presentation\Core\Geometry\IGeometryCalculator.cs" />
     <Compile Include="Presentation\Core\Geometry\IGeometryFactory.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\IScatterPlotContextMenuViewModel.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\IScatterPlotViewScaler.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Scalers\IPointScaler.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Scalers\IVectorScaler.cs" />
@@ -462,6 +463,7 @@
     <Compile Include="Presentation\Views\ScatterPlots\Layout\YAxisLayoutViewModel.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Scalers\PointScaler.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Scalers\VectorScaler.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\ScatterPlotContextMenuViewModel.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\ScatterPlotViewScaler.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\ScatterPlotViewRenderer.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\ScatterPlotView.xaml.cs">

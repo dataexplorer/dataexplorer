@@ -188,6 +188,7 @@
     <Compile Include="Presentation\Views\ScatterPlots\Layouts\YAxisLayoutViewModelTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Scalers\PointScalerTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Scalers\VectorScalerTests.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\ScatterPlotContextMenuViewModelTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\ScatterPlotViewRendererTests.cs" />
     <Compile Include="Presentation\Core\Canvas\CanvasControlTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\ScatterPlotViewModelTests.cs" />

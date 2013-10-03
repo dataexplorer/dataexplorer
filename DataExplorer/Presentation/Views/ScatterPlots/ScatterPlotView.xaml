@@ -16,6 +16,14 @@
             Plots="{Binding Plots}" 
             ZoomIn="HandleZoomIn"
             ZoomOut="HandleZoomOut"
-            Pan="HandlePan" />
+            Pan="HandlePan">
+            <canvas:CanvasControl.ContextMenu>
+                <ContextMenu DataContext="ContextMenuViewModel">
+                    <MenuItem 
+                        Header="Zoom to Full Extent" 
+                        Command="{Binding ZoomToFullExtentCommand}" />
+                </ContextMenu>
+            </canvas:CanvasControl.ContextMenu>
+        </canvas:CanvasControl>
     </Grid>
 </UserControl>
