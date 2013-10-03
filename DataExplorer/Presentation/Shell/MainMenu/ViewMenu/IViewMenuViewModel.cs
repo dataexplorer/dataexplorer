@@ -10,5 +10,6 @@ namespace DataExplorer.Presentation.Shell.MainMenu.ViewMenu
     public interface IViewMenuViewModel
     {
         ICommand ZoomToFullExtentCommand { get; }
+        ICommand ClearLayoutCommand { get; }
     }
 }

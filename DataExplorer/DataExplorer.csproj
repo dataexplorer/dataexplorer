@@ -72,6 +72,10 @@
     <Compile Include="Application\Application\ApplicationStateChangedEvent.cs" />
     <Compile Include="Application\Application\ApplicationStateService.cs" />
     <Compile Include="Application\Application\IApplicationStateService.cs" />
+    <Compile Include="Application\Columns\ColumnService.cs" />
+    <Compile Include="Application\Columns\IColumnService.cs" />
+    <Compile Include="Application\Columns\Queries\GetAllColumnsQuery.cs" />
+    <Compile Include="Application\Columns\Queries\IGetAllColumnsQuery.cs" />
     <Compile Include="Application\Filters\FilterChangedEvent.cs" />
     <Compile Include="Application\Filters\FilterService.cs" />
     <Compile Include="Application\FilterTrees\Events\SelectedFilterTreeNodeChangedEvent.cs" />
@@ -81,6 +85,16 @@
     <Compile Include="Application\FilterTrees\Queries\IGetRootFilterTreeNodesQuery.cs" />
     <Compile Include="Application\FilterTrees\Events\ISelectedFilterTreeNodeChangedEventHandler.cs" />
     <Compile Include="Application\ScatterPlots\Commands\IZoomToFullExtentCommand.cs" />
+    <Compile Include="Application\ScatterPlots\Layouts\Commands\ClearLayoutCommand.cs" />
+    <Compile Include="Application\ScatterPlots\Layouts\Commands\IClearLayoutCommand.cs" />
+    <Compile Include="Application\ScatterPlots\Layouts\Commands\ISetXColumnCommand.cs" />
+    <Compile Include="Application\ScatterPlots\Layouts\Commands\ISetYColumnCommand.cs" />
+    <Compile Include="Application\ScatterPlots\Layouts\Commands\SetXColumnCommand.cs" />
+    <Compile Include="Application\ScatterPlots\Layouts\Commands\SetYColumnCommand.cs" />
+    <Compile Include="Application\ScatterPlots\Layouts\Queries\GetXColumnQuery.cs" />
+    <Compile Include="Application\ScatterPlots\Layouts\Queries\GetYColumnQuery.cs" />
+    <Compile Include="Application\ScatterPlots\Layouts\Queries\IGetXColumnQuery.cs" />
+    <Compile Include="Application\ScatterPlots\Layouts\Queries\IGetYColumnQuery.cs" />
     <Compile Include="Application\ScatterPlots\Queries\GetPlotsQuery.cs" />
     <Compile Include="Application\ScatterPlots\Queries\GetViewExtentQuery.cs" />
     <Compile Include="Application\ScatterPlots\Queries\IGetPlotsQuery.cs" />

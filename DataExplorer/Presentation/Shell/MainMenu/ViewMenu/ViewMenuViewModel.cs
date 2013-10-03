@@ -12,24 +12,24 @@ namespace DataExplorer.Presentation.Shell.MainMenu.ViewMenu
     public class ViewMenuViewModel : IViewMenuViewModel
     {
         private readonly IScatterPlotService _scatterPlotService;
+        private readonly IScatterPlotLayoutService _layoutService;
 
-        private readonly DelegateCommand _zoomExtentCommand;
-
-        public ViewMenuViewModel(IScatterPlotService scatterPlotService)
+        public ViewMenuViewModel(
+            IScatterPlotService scatterPlotService, 
+            IScatterPlotLayoutService layoutService)
         {
             _scatterPlotService = scatterPlotService;
-
-            _zoomExtentCommand = new DelegateCommand(ZoomToFullExtent);
+            _layoutService = layoutService;
         }
 
         public ICommand ZoomToFullExtentCommand 
         {
-            get { return _zoomExtentCommand; }
+            get { return new DelegateCommand(p => _scatterPlotService.ZoomToFullExtent()); }
         }
 
-        private void ZoomToFullExtent(object obj)
+        public ICommand ClearLayoutCommand
         {
-            _scatterPlotService.ZoomToFullExtent();
+            get { return new DelegateCommand(p => _layoutService.ClearLayout()); }
         }
     }
 }

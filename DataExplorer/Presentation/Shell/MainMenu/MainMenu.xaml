@@ -20,6 +20,7 @@
         </MenuItem>
         <MenuItem Header="View" DataContext="{Binding ViewMenuViewModel}">
             <MenuItem Header="Zoom to Full Extent" Command="{Binding ZoomToFullExtentCommand}" />
+            <MenuItem Header="Clear Layout" Command="{Binding ClearLayoutCommand}" />
         </MenuItem>
     </Menu>
 </UserControl>

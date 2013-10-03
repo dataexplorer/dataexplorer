@@ -81,5 +81,26 @@ namespace DataExplorer.Tests.Domain.ScatterPlots
             Assert.That(wasRaised, Is.True);
             DomainEvents.ClearHandlers();
         }
+
+        [Test]
+        public void TestClearShouldClearLayout()
+        {
+            var column = new ColumnBuilder().Build();
+            _layout.XAxisColumn = column;
+            _layout.YAxisColumn = column;
+            _layout.Clear();
+            Assert.That(_layout.XAxisColumn, Is.Null);
+            Assert.That(_layout.YAxisColumn, Is.Null);
+        }
+
+        [Test]
+        public void TestClearShouldRaiseLayoutChangedEvent()
+        {
+            var wasRaised = false;
+            DomainEvents.Register<ScatterPlotLayoutChangedEvent>(p => { wasRaised = true; });
+            _layout.Clear();
+            Assert.That(wasRaised, Is.True);
+
+        }
     }
 }

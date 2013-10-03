@@ -3,21 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataExplorer.Application.Columns;
 using DataExplorer.Application.ScatterPlots;
+using DataExplorer.Domain.Events;
+using DataExplorer.Domain.ScatterPlots;
 using DataExplorer.Presentation.Core;
 using DataExplorer.Presentation.Core.Layout;
 
 namespace DataExplorer.Presentation.Views.ScatterPlots.Layout
 {
-    public class YAxisLayoutViewModel : BaseViewModel, IYAxisLayoutViewModel
+    public class YAxisLayoutViewModel 
+        : BaseViewModel, 
+        IYAxisLayoutViewModel,
+        IDomainHandler<ScatterPlotLayoutChangedEvent>
     {
-        private readonly IScatterPlotLayoutService _service;
+        private readonly IColumnService _columnService;
+        private readonly IScatterPlotLayoutService _layoutService;
+        private List<LayoutItemViewModel> _viewModels; 
 
-        public YAxisLayoutViewModel(IScatterPlotLayoutService service)
+        public YAxisLayoutViewModel(
+            IColumnService columnService,
+            IScatterPlotLayoutService layoutService)
         {
-            _service = service;
+            _columnService = columnService;
+            _layoutService = layoutService;
 
-            _service.LayoutColumnsChangedEvent += HandleLayoutColumnsChangeEvent;
+            _viewModels = new List<LayoutItemViewModel>();
+
+            _layoutService.LayoutColumnsChangedEvent += HandleLayoutColumnsChangeEvent;
         }
 
         public string Label
@@ -38,20 +51,23 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Layout
 
         private List<LayoutItemViewModel> GetColumnViewModels()
         {
-            var columns = _service.GetColumns();
+            var columns = _columnService.GetAllColumns();
 
-            var viewModels = columns
+            _viewModels = columns
                 .Select(p => new LayoutItemViewModel(p))
                 .ToList();
 
-            return viewModels;
+            return _viewModels;
         }
 
         private LayoutItemViewModel GetSelectedColumnViewModel()
         {
-            var column = _service.GetYColumn();
+            var columnDto = _layoutService.GetYColumn();
 
-            var viewModel = new LayoutItemViewModel(column);
+            if (columnDto == null)
+                return null;
+
+            var viewModel = new LayoutItemViewModel(columnDto);
 
             return viewModel;
         }
@@ -64,7 +80,12 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Layout
 
             var column = value.Column;
 
-            _service.SetYColumn(column);
+            _layoutService.SetYColumn(column);
+        }
+
+        public void Handle(ScatterPlotLayoutChangedEvent args)
+        {
+            OnPropertyChanged(() => SelectedColumn);
         }
 
         private void HandleLayoutColumnsChangeEvent(object source, EventArgs eventArgs)

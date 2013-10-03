@@ -5,15 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using DataExplorer.Application.Columns;
-using DataExplorer.Application.Importers;
-using DataExplorer.Application.Importers.CsvFile;
 using DataExplorer.Application.Importers.CsvFile.Events;
 using DataExplorer.Application.ScatterPlots;
+using DataExplorer.Application.ScatterPlots.Layouts.Commands;
+using DataExplorer.Application.ScatterPlots.Layouts.Queries;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Projects;
 using DataExplorer.Domain.ScatterPlots;
 using DataExplorer.Domain.Views;
-using DataExplorer.Persistence.Columns;
 using DataExplorer.Tests.Domain.Columns;
 using Moq;
 using NUnit.Framework;
@@ -24,84 +23,67 @@ namespace DataExplorer.Tests.Application.ScatterPlots
     public class ScatterPlotLayoutServiceTests
     {
         private ScatterPlotLayoutService _service;
-        private Mock<IViewRepository> _mockViewRepository;
-        private Mock<IColumnRepository> _mockColumnRepository;
-        private Mock<IColumnAdapter> _mockColumnAdapter;
+        private Mock<IGetXColumnQuery> _mockGetXColumnQuery;
+        private Mock<ISetXColumnCommand> _mockSetXColumnCommand;
+        private Mock<IGetYColumnQuery> _mockGetYColumnQuery;
+        private Mock<ISetYColumnCommand> _mockSetYColumnCommand;
+        private Mock<IClearLayoutCommand> _mockClearLayoutCommand;
+        private ColumnDto _columnDto;
 
         [SetUp]
         public void SetUp()
         {
-            _mockViewRepository = new Mock<IViewRepository>();
-            _mockColumnRepository = new Mock<IColumnRepository>();
-            _mockColumnAdapter = new Mock<IColumnAdapter>();
+            _columnDto = new ColumnDto();
+            _mockGetXColumnQuery = new Mock<IGetXColumnQuery>();
+            _mockSetXColumnCommand = new Mock<ISetXColumnCommand>();
+            _mockGetYColumnQuery = new Mock<IGetYColumnQuery>();
+            _mockSetYColumnCommand = new Mock<ISetYColumnCommand>();
+            _mockClearLayoutCommand = new Mock<IClearLayoutCommand>();
             _service = new ScatterPlotLayoutService(
-                _mockViewRepository.Object,
-                _mockColumnRepository.Object,
-                _mockColumnAdapter.Object);
-        }
-
-        [Test]
-        public void TestGetColumnsShouldReturnColumns()
-        {
-            var column = new ColumnBuilder().Build();
-            var columns = new List<Column> { column };
-            var columnDto = new ColumnDto { Index = column.Index };
-            _mockColumnRepository.Setup(p => p.GetAll()).Returns(columns);
-            _mockColumnAdapter.Setup(p => p.Adapt(column)).Returns(columnDto);
-            var result = _service.GetColumns();
-            Assert.That(result.Single().Index, Is.EqualTo(column.Index));
+                _mockGetXColumnQuery.Object,
+                _mockSetXColumnCommand.Object,
+                _mockGetYColumnQuery.Object,
+                _mockSetYColumnCommand.Object,
+                _mockClearLayoutCommand.Object);
         }
 
         [Test]
         public void TestGetXColumnShouldReturnXColumn()
         {
-            var column = new ColumnBuilder().Build();
-            var columnDto = new ColumnDto() { Index = column.Index };
-            var layout = new ScatterPlotLayout() { XAxisColumn = column };
-            var scatterPlot = new ScatterPlot(new Rect(), null, layout);
-            _mockViewRepository.Setup(p => p.Get<ScatterPlot>()).Returns(scatterPlot);
-            _mockColumnAdapter.Setup(p => p.Adapt(column)).Returns(columnDto);
+            _mockGetXColumnQuery.Setup(p => p.Query()).Returns(_columnDto);
             var result = _service.GetXColumn();
-            Assert.That(result.Index, Is.EqualTo(column.Index));
+            Assert.That(result, Is.EqualTo(_columnDto));
         }
 
         [Test]
         public void TestSetXColumnShouldSetXColumn()
         {
-            var column = new ColumnBuilder().Build();
-            var columnDto = new ColumnDto() { Id = 1 };
-            var layout = new ScatterPlotLayout();
-            var scatterPlot = new ScatterPlot(new Rect(), null, layout);
-            _mockColumnRepository.Setup(p => p.Get(1)).Returns(column);
-            _mockViewRepository.Setup(p => p.Get<ScatterPlot>()).Returns(scatterPlot);
-            _service.SetXColumn(columnDto);
-            Assert.That(layout.XAxisColumn, Is.EqualTo(column));
+            _service.SetXColumn(_columnDto);
+            _mockSetXColumnCommand.Verify(p => p.Execute(_columnDto), Times.Once());
         }
 
         [Test]
         public void TestGetYColumnShouldReturnYColumn()
         {
-            var column = new ColumnBuilder().Build();
-            var columnDto = new ColumnDto() { Index = column.Index };
-            var layout = new ScatterPlotLayout() { YAxisColumn = column };
-            var scatterPlot = new ScatterPlot(new Rect(), null, layout);
-            _mockViewRepository.Setup(p => p.Get<ScatterPlot>()).Returns(scatterPlot);
-            _mockColumnAdapter.Setup(p => p.Adapt(column)).Returns(columnDto);
+            var columnDto = new ColumnDto();
+            _mockGetYColumnQuery.Setup(p => p.Query()).Returns(columnDto);
             var result = _service.GetYColumn();
-            Assert.That(result.Index, Is.EqualTo(column.Index));
+            Assert.That(result, Is.EqualTo(columnDto));
         }
 
         [Test]
         public void TestSetYColumnShouldSetYColumn()
         {
-            var column = new ColumnBuilder().Build();
-            var columnDto = new ColumnDto() { Id = 1 };
-            var layout = new ScatterPlotLayout();
-            var scatterPlot = new ScatterPlot(new Rect(), null, layout);
-            _mockColumnRepository.Setup(p => p.Get(1)).Returns(column);
-            _mockViewRepository.Setup(p => p.Get<ScatterPlot>()).Returns(scatterPlot);
-            _service.SetYColumn(columnDto);
-            Assert.That(layout.YAxisColumn, Is.EqualTo(column));
+            _service.SetYColumn(_columnDto);
+            _mockSetYColumnCommand.Verify(p => p.Execute(_columnDto), Times.Once());
+
+        }
+
+        [Test]
+        public void TestClearLayoutShouldClearLayout()
+        {
+            _service.ClearLayout();
+            _mockClearLayoutCommand.Verify(p => p.Execute(), Times.Once());
         }
 
         [Test]

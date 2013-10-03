@@ -57,11 +57,17 @@
     <Compile Include="Application\Application\ApplicationServiceTests.cs" />
     <Compile Include="Application\Application\ApplicationStateServiceTests.cs" />
     <Compile Include="Application\Columns\ColumnAdapterTests.cs" />
+    <Compile Include="Application\Columns\ColumnServiceTests.cs" />
     <Compile Include="Application\Filters\FakeFilter.cs" />
     <Compile Include="Application\FilterTrees\Queries\GetRootFilterTreeNodesQueryTests.cs" />
     <Compile Include="Application\FilterTrees\Events\SelectedFilterTreeNodeChangedEventHandlerTests.cs" />
     <Compile Include="Application\FilterTrees\Events\SelectedFilterTreeNodeChangedEventTests.cs" />
     <Compile Include="Application\ScatterPlots\Commands\ZoomToFullExtentCommandTests.cs" />
+    <Compile Include="Application\ScatterPlots\Layouts\Commands\ClearLayoutCommandTests.cs" />
+    <Compile Include="Application\ScatterPlots\Layouts\Commands\SetXColumnCommandTests.cs" />
+    <Compile Include="Application\ScatterPlots\Layouts\Commands\SetYColumnCommandTests.cs" />
+    <Compile Include="Application\ScatterPlots\Layouts\Queries\GetXColumnQueryTests.cs" />
+    <Compile Include="Application\ScatterPlots\Layouts\Queries\GetYColumnQueryTests.cs" />
     <Compile Include="Application\ScatterPlots\Queries\GetScatterPlotsTaskTests.cs" />
     <Compile Include="Application\ScatterPlots\Queries\GetViewExtentTaskTests.cs" />
     <Compile Include="Application\ScatterPlots\Commands\PanCommandTests.cs" />

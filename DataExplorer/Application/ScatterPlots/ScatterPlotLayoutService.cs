@@ -7,12 +7,13 @@ using DataExplorer.Application.Columns;
 using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Importers.CsvFile.Events;
 using DataExplorer.Application.ScatterPlots.Events;
+using DataExplorer.Application.ScatterPlots.Layouts.Commands;
+using DataExplorer.Application.ScatterPlots.Layouts.Queries;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Events;
 using DataExplorer.Domain.Projects;
 using DataExplorer.Domain.ScatterPlots;
 using DataExplorer.Domain.Views;
-using DataExplorer.Persistence.Columns;
 
 namespace DataExplorer.Application.ScatterPlots
 {
@@ -22,79 +23,51 @@ namespace DataExplorer.Application.ScatterPlots
         IDomainHandler<ProjectClosedEvent>,
         IAppHandler<CsvFileImportedEvent>
     {
-        private readonly IViewRepository _viewRepository;
-        private readonly IColumnRepository _columnRepository;
-        private readonly IColumnAdapter _columnAdapter;
+        private readonly IGetXColumnQuery _getXColumnQuery;
+        private readonly ISetXColumnCommand _setXColumnCommand;
+        private readonly IGetYColumnQuery _getYColumnQuery;
+        private readonly ISetYColumnCommand _setYColumnCommand;
+        private readonly IClearLayoutCommand _clearLayoutCommand;
 
         public ScatterPlotLayoutService(
-            IViewRepository viewRepository, 
-            IColumnRepository columnRepository,
-            IColumnAdapter columnAdapter)
+            IGetXColumnQuery getXColumnQuery,
+            ISetXColumnCommand setXColumnCommand,
+            IGetYColumnQuery getYColumnQuery,
+            ISetYColumnCommand setYColumnCommand,
+            IClearLayoutCommand clearLayoutCommand)
         {
-            _viewRepository = viewRepository;
-            _columnRepository = columnRepository;
-            _columnAdapter = columnAdapter;
+            _getXColumnQuery = getXColumnQuery;
+            _setXColumnCommand = setXColumnCommand;
+            _getYColumnQuery = getYColumnQuery;
+            _setYColumnCommand = setYColumnCommand;
+            _clearLayoutCommand = clearLayoutCommand;
         }
 
         public event ScatterPlotLayoutColumnsChangedEvent LayoutColumnsChangedEvent;
 
-        public List<ColumnDto> GetColumns()
-        {
-            var columns = _columnRepository.GetAll();
-
-            var columnDtos = columns
-                .Select(p => _columnAdapter.Adapt(p))
-                .ToList();
-
-            return columnDtos;
-        }
-
         public ColumnDto GetXColumn()
         {
-            var scatterPlot = _viewRepository.Get<ScatterPlot>();
-
-            var layout = scatterPlot.GetLayout();
-
-            var column = layout.XAxisColumn;
-
-            var columnDto = _columnAdapter.Adapt(column);
-
-            return columnDto;
+            return _getXColumnQuery.Query();
         }
 
         public void SetXColumn(ColumnDto columnDto)
         {
-            var column = _columnRepository.Get(columnDto.Id);
-
-            var scatterPlot = _viewRepository.Get<ScatterPlot>();
-
-            var layout = scatterPlot.GetLayout();
-
-            layout.XAxisColumn = column;
+            _setXColumnCommand.Execute(columnDto);
         }
 
         public ColumnDto GetYColumn()
         {
-            var scatterPlot = _viewRepository.Get<ScatterPlot>();
-
-            var layout = scatterPlot.GetLayout();
-
-            var column = layout.YAxisColumn;
-
-            var columnDto = _columnAdapter.Adapt(column);
-
-            return columnDto;
+            return _getYColumnQuery.Query();
         }
 
         public void SetYColumn(ColumnDto columnDto)
         {
-            var column = _columnRepository.Get(columnDto.Id);
+            _setYColumnCommand.Execute(columnDto);
+        }
 
-            var scatterPlot = _viewRepository.Get<ScatterPlot>();
-
-            var layout = scatterPlot.GetLayout();
-
-            layout.YAxisColumn = column;
+        public void ClearLayout()
+        {
+            _clearLayoutCommand.Execute();
         }
 
         public void Handle(ProjectOpenedEvent args)

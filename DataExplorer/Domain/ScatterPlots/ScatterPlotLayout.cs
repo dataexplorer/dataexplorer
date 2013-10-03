@@ -32,5 +32,13 @@ namespace DataExplorer.Domain.ScatterPlots
                 DomainEvents.Raise(new ScatterPlotLayoutChangedEvent());
             }
         }
+
+        public void Clear()
+        {
+            _xAxisColumn = null;
+            _yAxisColumn = null;
+
+            DomainEvents.Raise(new ScatterPlotLayoutChangedEvent());
+        }
     }
 }
