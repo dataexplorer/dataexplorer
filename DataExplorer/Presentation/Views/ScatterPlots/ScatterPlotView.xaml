@@ -18,10 +18,13 @@
             ZoomOut="HandleZoomOut"
             Pan="HandlePan">
             <canvas:CanvasControl.ContextMenu>
-                <ContextMenu DataContext="ContextMenuViewModel">
+                <ContextMenu>
                     <MenuItem 
                         Header="Zoom to Full Extent" 
-                        Command="{Binding ZoomToFullExtentCommand}" />
+                        Command="{Binding ContextMenuViewModel.ZoomToFullExtentCommand}" />
+                    <MenuItem 
+                        Header="Clear Layout" 
+                        Command="{Binding ContextMenuViewModel.ClearLayoutCommand}" />
                 </ContextMenu>
             </canvas:CanvasControl.ContextMenu>
         </canvas:CanvasControl>

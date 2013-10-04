@@ -4,21 +4,23 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:navigation="clr-namespace:DataExplorer.Presentation.Panes.Navigation.NavigationTree"
     mc:Ignorable="d" 
     d:DesignHeight="300" 
     d:DesignWidth="300" 
-    d:DataContext="{d:DesignData NavigationTreeViewModel}">
+    d:DataContext="{d:DesignInstance navigation:NavigationTreeViewModel}">
     <Grid>
         <TreeView 
             x:Name="TreeView" 
             Grid.Row="1" 
             Grid.Column="0" 
-            ItemsSource="{Binding TreeNodeViewModels}" BorderBrush="{x:Null}">
+            ItemsSource="{Binding TreeNodeViewModels}" 
+            BorderBrush="{x:Null}">
             <TreeView.ItemContainerStyle>
                 <Style TargetType="{x:Type TreeViewItem}">
-                    <Setter 
+                    <!--<Setter 
                         Property="IsExpanded" 
-                        Value="{Binding IsExpanded, Mode=TwoWay}" />
+                        Value="{Binding IsExpanded, Mode=TwoWay}" />-->
                     <Setter 
                         Property="IsSelected" 
                         Value="{Binding IsSelected, Mode=TwoWay}" />

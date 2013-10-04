@@ -7,6 +7,7 @@ using DataExplorer.Presentation.Panes.Layout;
 using DataExplorer.Presentation.Panes.Navigation;
 using DataExplorer.Presentation.Panes.Viewer;
 using DataExplorer.Presentation.Shell.MainMenu;
+using DataExplorer.Presentation.Shell.StatusBar;
 
 namespace DataExplorer.Presentation.Shell.MainWindow
 {
@@ -16,17 +17,20 @@ namespace DataExplorer.Presentation.Shell.MainWindow
         private readonly INavigationPaneViewModel _navigationPaneViewModel;
         private readonly IViewerPaneViewModel _viewerPaneViewModel;
         private readonly ILayoutPaneViewModel _layoutPaneViewModel;
+        private readonly IStatusBarViewModel _statusBarViewModel;
 
         public MainWindowViewModel(
             IMainMenuViewModel mainMenuViewModel, 
             INavigationPaneViewModel navigationPaneViewModel,
             IViewerPaneViewModel viewerPaneViewModel,
-            ILayoutPaneViewModel layoutPaneViewModel)
+            ILayoutPaneViewModel layoutPaneViewModel, 
+            IStatusBarViewModel statusBarViewModel)
         {
             _mainMenuViewModel = mainMenuViewModel;
             _navigationPaneViewModel = navigationPaneViewModel;
             _viewerPaneViewModel = viewerPaneViewModel;
             _layoutPaneViewModel = layoutPaneViewModel;
+            _statusBarViewModel = statusBarViewModel;
         }
 
         public IMainMenuViewModel MainMenuViewModel
@@ -47,6 +51,11 @@ namespace DataExplorer.Presentation.Shell.MainWindow
         public ILayoutPaneViewModel LayoutPaneViewModel
         {
             get { return _layoutPaneViewModel; }
+        }
+
+        public IStatusBarViewModel StatusBarViewModel
+        {
+            get { return _statusBarViewModel; }
         }
     }
 }

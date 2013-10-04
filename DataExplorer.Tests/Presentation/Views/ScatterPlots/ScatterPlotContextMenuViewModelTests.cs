@@ -14,22 +14,33 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots
     public class ScatterPlotContextMenuViewModelTests
     {
         private ScatterPlotContextMenuViewModel _viewModel;
-        private Mock<IScatterPlotService> _mockService;
+        private Mock<IScatterPlotService> _mockScatterPlotService;
+        private Mock<IScatterPlotLayoutService> _mockLayoutService;
 
         [SetUp]
         public void SetUp()
         {
-            _mockService = new Mock<IScatterPlotService>();
+            _mockScatterPlotService = new Mock<IScatterPlotService>();
+
+            _mockLayoutService = new Mock<IScatterPlotLayoutService>();
 
             _viewModel = new ScatterPlotContextMenuViewModel(
-                _mockService.Object);
+                _mockScatterPlotService.Object,
+                _mockLayoutService.Object);
         }
 
         [Test]
         public void TestExecuteZoomToFullExtentShouldZoomToFullExtent()
         {
             _viewModel.ZoomToFullExtentCommand.Execute(null);
-            _mockService.Verify(p => p.ZoomToFullExtent(), Times.Once());
+            _mockScatterPlotService.Verify(p => p.ZoomToFullExtent(), Times.Once());
+        }
+
+        [Test]
+        public void TestExecuteClearLayoutShouldClearLayout()
+        {
+            _viewModel.ClearLayoutCommand.Execute(null);
+            _mockLayoutService.Verify(p => p.ClearLayout(), Times.Once());
         }
     }
 }

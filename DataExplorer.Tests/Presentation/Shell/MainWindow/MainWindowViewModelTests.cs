@@ -8,6 +8,7 @@ using DataExplorer.Presentation.Panes.Navigation;
 using DataExplorer.Presentation.Panes.Viewer;
 using DataExplorer.Presentation.Shell.MainMenu;
 using DataExplorer.Presentation.Shell.MainWindow;
+using DataExplorer.Presentation.Shell.StatusBar;
 using Moq;
 using NUnit.Framework;
 
@@ -21,6 +22,7 @@ namespace DataExplorer.Tests.Presentation.Shell.MainWindow
         private Mock<INavigationPaneViewModel> _mockNavigationPaneViewModel;
         private Mock<IViewerPaneViewModel> _mockViewerViewModel;
         private Mock<ILayoutPaneViewModel> _mockLayoutPaneViewModel;
+        private Mock<IStatusBarViewModel> _mockStatusBarViewModel;
 
         [SetUp]
         public void SetUp()
@@ -29,11 +31,13 @@ namespace DataExplorer.Tests.Presentation.Shell.MainWindow
             _mockMainMenuViewModel = new Mock<IMainMenuViewModel>();
             _mockNavigationPaneViewModel = new Mock<INavigationPaneViewModel>();
             _mockLayoutPaneViewModel = new Mock<ILayoutPaneViewModel>();
+            _mockStatusBarViewModel = new Mock<IStatusBarViewModel>();
             _viewModel = new MainWindowViewModel(
                 _mockMainMenuViewModel.Object,
                 _mockNavigationPaneViewModel.Object,
                 _mockViewerViewModel.Object,
-                _mockLayoutPaneViewModel.Object);
+                _mockLayoutPaneViewModel.Object,
+                _mockStatusBarViewModel.Object);
         }
 
         [Test]
@@ -62,6 +66,13 @@ namespace DataExplorer.Tests.Presentation.Shell.MainWindow
         {
             var result = _viewModel.LayoutPaneViewModel;
             Assert.That(result, Is.EqualTo(_mockLayoutPaneViewModel.Object));
+        }
+
+        [Test]
+        public void TestGetStatusBarViewModelShouldReturnStatusBarViewModel()
+        {
+            var result = _viewModel.StatusBarViewModel;
+            Assert.That(result, Is.EqualTo(_mockStatusBarViewModel.Object));
         }
     }
 }

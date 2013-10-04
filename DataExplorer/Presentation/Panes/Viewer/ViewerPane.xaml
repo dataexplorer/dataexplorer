@@ -8,9 +8,9 @@
     xmlns:scatterPlot="clr-namespace:DataExplorer.Presentation.Views.ScatterPlots"
     mc:Ignorable="d" 
     d:DesignHeight="400" 
-    d:DesignWidth="400" d:DataContext="{d:DesignInstance viewer:ViewerPaneViewModel}">
+    d:DesignWidth="400" 
+    d:DataContext="{d:DesignInstance viewer:ViewerPaneViewModel}">
     <Grid>
-        <TextBlock Text="{Binding Message}" />
         <scatterPlot:ScatterPlotView DataContext="{Binding ScatterPlotViewModel}" />
     </Grid>
 </UserControl>

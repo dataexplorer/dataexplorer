@@ -439,6 +439,7 @@
       <DependentUpon>PropertyPane.xaml</DependentUpon>
     </Compile>
     <Compile Include="Presentation\Shell\MainWindow\MainWindowViewModel.cs" />
+    <Compile Include="Presentation\Shell\StatusBar\IStatusBarViewModel.cs" />
     <Compile Include="Presentation\Shell\StatusBar\StatusBar.xaml.cs">
       <DependentUpon>StatusBar.xaml</DependentUpon>
     </Compile>
@@ -452,6 +453,7 @@
     <Compile Include="Presentation\Core\Geometry\GeometryFactory.cs" />
     <Compile Include="Presentation\Core\Geometry\IGeometryCalculator.cs" />
     <Compile Include="Presentation\Core\Geometry\IGeometryFactory.cs" />
+    <Compile Include="Presentation\Shell\StatusBar\StatusBarViewModel.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\IScatterPlotContextMenuViewModel.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\IScatterPlotViewScaler.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Scalers\IPointScaler.cs" />
