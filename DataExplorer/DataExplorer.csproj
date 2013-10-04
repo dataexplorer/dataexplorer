@@ -83,6 +83,15 @@
     <Compile Include="Application\FilterTrees\Events\SelectedFilterTreeNodeChangedEventHandler.cs" />
     <Compile Include="Application\FilterTrees\Queries\IGetRootFilterTreeNodesQuery.cs" />
     <Compile Include="Application\FilterTrees\Events\ISelectedFilterTreeNodeChangedEventHandler.cs" />
+    <Compile Include="Application\Importers\CsvFiles\Commands\IImportCsvFileSourceCommand.cs" />
+    <Compile Include="Application\Importers\CsvFiles\Commands\ImportCsvFileSourceCommand.cs" />
+    <Compile Include="Application\Importers\CsvFiles\Commands\IUpdateCsvFileSourceCommand.cs" />
+    <Compile Include="Application\Importers\CsvFiles\Commands\UpdateCsvFileSourceCommand.cs" />
+    <Compile Include="Application\Importers\CsvFiles\Queries\CanImportQuery.cs" />
+    <Compile Include="Application\Importers\CsvFiles\Queries\GetCsvFileSourceMapsQuery.cs" />
+    <Compile Include="Application\Importers\CsvFiles\Queries\GetCsvFileSourceQuery.cs" />
+    <Compile Include="Application\Importers\CsvFiles\Queries\ICanImportQuery.cs" />
+    <Compile Include="Application\Importers\CsvFiles\Queries\IGetCsvFileSourceMapsQuery.cs" />
     <Compile Include="Application\ScatterPlots\Commands\IZoomToFullExtentCommand.cs" />
     <Compile Include="Application\ScatterPlots\Layouts\Commands\ClearLayoutCommand.cs" />
     <Compile Include="Application\ScatterPlots\Layouts\Commands\IClearLayoutCommand.cs" />

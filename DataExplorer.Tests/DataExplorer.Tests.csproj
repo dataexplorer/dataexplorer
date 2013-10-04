@@ -62,6 +62,11 @@
     <Compile Include="Application\FilterTrees\Queries\GetRootFilterTreeNodesQueryTests.cs" />
     <Compile Include="Application\FilterTrees\Events\SelectedFilterTreeNodeChangedEventHandlerTests.cs" />
     <Compile Include="Application\FilterTrees\Events\SelectedFilterTreeNodeChangedEventTests.cs" />
+    <Compile Include="Application\Importers\CsvFile\Commands\ImportCsvFileSourceCommandTests.cs" />
+    <Compile Include="Application\Importers\CsvFile\Commands\UpdateCsvFileSourceCommandTests.cs" />
+    <Compile Include="Application\Importers\CsvFile\Queries\CanImportQueryTests.cs" />
+    <Compile Include="Application\Importers\CsvFile\Queries\GetCsvFileSourceMapsQueryTests.cs" />
+    <Compile Include="Application\Importers\CsvFile\Queries\GetCsvFileSourceQueryTests.cs" />
     <Compile Include="Application\ScatterPlots\Commands\ZoomToFullExtentCommandTests.cs" />
     <Compile Include="Application\ScatterPlots\Layouts\Commands\ClearLayoutCommandTests.cs" />
     <Compile Include="Application\ScatterPlots\Layouts\Commands\SetXColumnCommandTests.cs" />
@@ -110,7 +115,7 @@
     <Compile Include="Domain\FilterTrees\StringFilterTrees\StringFilterTreeLeafTests.cs" />
     <Compile Include="Domain\FilterTrees\StringFilterTrees\StringFilterTreeNodeTests.cs" />
     <Compile Include="Domain\FilterTrees\StringFilterTrees\StringFilterTreeRootTests.cs" />
-    <Compile Include="Application\Importers\CsvFile\CsvFileImportProgressChangedEventTests.cs" />
+    <Compile Include="Application\Importers\CsvFile\Events\CsvFileImportProgressChangedEventTests.cs" />
     <Compile Include="Application\Importers\CsvFile\CsvFileSourceAdapterTests.cs" />
     <Compile Include="Application\Web\WebServiceTests.cs" />
     <Compile Include="Domain\Converters\DataTypeConverterFactoryTests.cs" />

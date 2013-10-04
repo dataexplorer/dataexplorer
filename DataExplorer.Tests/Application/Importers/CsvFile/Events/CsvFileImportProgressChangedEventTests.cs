@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using DataExplorer.Application.Importers.CsvFiles.Events;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Application.Importers.CsvFile
+namespace DataExplorer.Tests.Application.Importers.CsvFile.Events
 {
     [TestFixture]
     public class CsvFileImportProgressChangedEventTests
