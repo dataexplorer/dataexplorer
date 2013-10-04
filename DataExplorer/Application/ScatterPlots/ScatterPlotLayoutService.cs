@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.Columns;
 using DataExplorer.Application.Core.Events;
-using DataExplorer.Application.Importers.CsvFile.Events;
+using DataExplorer.Application.Importers.CsvFiles.Events;
 using DataExplorer.Application.ScatterPlots.Events;
 using DataExplorer.Application.ScatterPlots.Layouts.Commands;
 using DataExplorer.Application.ScatterPlots.Layouts.Queries;

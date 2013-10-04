@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataExplorer.Application.Serialization;
 using DataExplorer.Domain.Events;
 using DataExplorer.Domain.Projects;
+using DataExplorer.Infrastructure.Serialization;
 using DataExplorer.Persistence;
 
 namespace DataExplorer.Application.Projects

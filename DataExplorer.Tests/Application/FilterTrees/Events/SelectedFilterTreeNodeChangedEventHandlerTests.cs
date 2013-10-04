@@ -2,6 +2,7 @@
 using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.FilterTrees.Events;
 using DataExplorer.Application.Filters;
+using DataExplorer.Application.Filters.Events;
 using DataExplorer.Domain.Filters;
 using DataExplorer.Tests.Application.Filters;
 using Moq;

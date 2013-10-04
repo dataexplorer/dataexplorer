@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Filters;
 using DataExplorer.Domain.Projects;
@@ -11,7 +9,7 @@ using DataExplorer.Domain.ScatterPlots;
 using DataExplorer.Domain.Sources;
 using DataExplorer.Domain.Views;
 
-namespace DataExplorer.Application.Serialization
+namespace DataExplorer.Infrastructure.Serialization
 {
     public class SerializationService : ISerializationService
     {

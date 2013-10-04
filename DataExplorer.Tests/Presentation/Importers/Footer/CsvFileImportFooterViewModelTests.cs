@@ -1,6 +1,6 @@
 ﻿using System;
-using DataExplorer.Application.Importers.CsvFile;
-using DataExplorer.Application.Importers.CsvFile.Events;
+using DataExplorer.Application.Importers.CsvFiles;
+using DataExplorer.Application.Importers.CsvFiles.Events;
 using DataExplorer.Presentation.Importers.CsvFile.Footer;
 using Moq;
 using NUnit.Framework;

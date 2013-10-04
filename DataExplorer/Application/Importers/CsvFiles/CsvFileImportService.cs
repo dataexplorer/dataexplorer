@@ -1,19 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DataExplorer.Application.Core.Events;
-using DataExplorer.Application.Importers.CsvFile.Events;
+using DataExplorer.Application.Importers.CsvFiles.Events;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Converters;
-using DataExplorer.Domain.Events;
 using DataExplorer.Domain.Rows;
 using DataExplorer.Domain.Sources;
 using DataExplorer.Domain.Sources.Maps;
+using DataExplorer.Infrastructure.Importers.CsvFile;
 using DataExplorer.Persistence;
 
-namespace DataExplorer.Application.Importers.CsvFile
+namespace DataExplorer.Application.Importers.CsvFiles
 {
     public class CsvFileImportService : ICsvFileImportService
     {

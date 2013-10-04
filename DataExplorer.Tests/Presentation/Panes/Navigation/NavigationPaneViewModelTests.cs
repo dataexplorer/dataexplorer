@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.Application;
+using DataExplorer.Application.Application.Events;
 using DataExplorer.Presentation.Panes.Navigation;
 using DataExplorer.Presentation.Panes.Navigation.NavigationTree;
 using DataExplorer.Presentation.Panes.Navigation.StartMenu;

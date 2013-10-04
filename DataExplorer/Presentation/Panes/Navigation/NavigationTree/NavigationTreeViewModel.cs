@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.FilterTrees;
-using DataExplorer.Application.Importers.CsvFile.Events;
+using DataExplorer.Application.Importers.CsvFiles.Events;
 using DataExplorer.Presentation.Core;
 
 namespace DataExplorer.Presentation.Panes.Navigation.NavigationTree

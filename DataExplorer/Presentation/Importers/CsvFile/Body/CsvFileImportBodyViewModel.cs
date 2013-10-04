@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.Core.Events;
-using DataExplorer.Application.Importers.CsvFile;
-using DataExplorer.Application.Importers.CsvFile.Events;
+using DataExplorer.Application.Importers.CsvFiles;
+using DataExplorer.Application.Importers.CsvFiles.Events;
 using DataExplorer.Presentation.Core;
 
 namespace DataExplorer.Presentation.Importers.CsvFile.Body

@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.VisualBasic.FileIO;
+﻿using Microsoft.VisualBasic.FileIO;
 
-namespace DataExplorer.Application.Importers.CsvFile
+namespace DataExplorer.Infrastructure.Importers.CsvFile
 {
     public class CsvFileParser : ICsvFileParser
     {

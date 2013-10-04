@@ -119,7 +119,7 @@
     <Compile Include="Domain\Converters\StringToDateTimeConverterTests.cs" />
     <Compile Include="Domain\Converters\StringToFloatConverterTests.cs" />
     <Compile Include="Domain\Converters\StringToIntegerConverterTest.cs" />
-    <Compile Include="Application\Importers\CsvFile\CsvFileAdapterTests.cs" />
+    <Compile Include="Infrastructure\Importers\CsvFiles\CsvFileDataAdapterTests.cs" />
     <Compile Include="Application\Importers\CsvFile\CsvFileImportServiceTests.cs" />
     <Compile Include="Application\Importers\DataTypeDetectorTests.cs" />
     <Compile Include="Domain\Predicates\BooleanPredicateTests.cs" />

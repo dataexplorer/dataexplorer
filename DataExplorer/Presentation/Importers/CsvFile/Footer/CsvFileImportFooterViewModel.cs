@@ -2,8 +2,8 @@
 using System.Windows.Input;
 using System.Windows.Threading;
 using DataExplorer.Application.Core.Events;
-using DataExplorer.Application.Importers.CsvFile;
-using DataExplorer.Application.Importers.CsvFile.Events;
+using DataExplorer.Application.Importers.CsvFiles;
+using DataExplorer.Application.Importers.CsvFiles.Events;
 using DataExplorer.Presentation.Core;
 using DataExplorer.Presentation.Core.Commands;
 using DataExplorer.Presentation.Core.Events;

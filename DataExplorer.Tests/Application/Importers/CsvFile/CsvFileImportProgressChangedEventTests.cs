@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataExplorer.Application.Importers.CsvFile;
-using DataExplorer.Application.Importers.CsvFile.Events;
+using DataExplorer.Application.Importers.CsvFiles.Events;
 using NUnit.Framework;
 
 namespace DataExplorer.Tests.Application.Importers.CsvFile

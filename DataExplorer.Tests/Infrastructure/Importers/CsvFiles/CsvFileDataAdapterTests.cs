@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using DataExplorer.Application.Importers;
-using DataExplorer.Application.Importers.CsvFile;
 using DataExplorer.Domain.Sources;
+using DataExplorer.Infrastructure.Importers.CsvFile;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Application.Importers.CsvFile
+namespace DataExplorer.Tests.Infrastructure.Importers.CsvFiles
 {
     [TestFixture]
-    public class CsvFileAdapterTests
+    public class CsvFileDataAdapterTests
     {
         private CsvFileDataAdapter _dataAdapter;
         private Mock<ICsvFile> _mockFile;

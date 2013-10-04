@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataExplorer.Domain.Columns;
+using DataExplorer.Application.Importers;
 using DataExplorer.Domain.Sources;
 
-namespace DataExplorer.Application.Importers.CsvFile
+namespace DataExplorer.Infrastructure.Importers.CsvFile
 {
     public class CsvFileDataAdapter : ICsvFileDataAdapter
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.FilterTrees;
-using DataExplorer.Application.Importers.CsvFile.Events;
+using DataExplorer.Application.Importers.CsvFiles.Events;
 using DataExplorer.Domain.FilterTrees;
 using DataExplorer.Presentation.Panes.Navigation.NavigationTree;
 using DataExplorer.Tests.Application.FilterTrees;

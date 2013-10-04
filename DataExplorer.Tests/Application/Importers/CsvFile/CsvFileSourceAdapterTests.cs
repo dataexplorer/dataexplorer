@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataExplorer.Application.Importers.CsvFile;
+using DataExplorer.Application.Importers.CsvFiles;
 using DataExplorer.Domain.Sources;
 using NUnit.Framework;
 
