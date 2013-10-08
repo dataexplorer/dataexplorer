@@ -30,6 +30,7 @@ namespace DataExplorer.Tests.Application.Importers.CsvFile.Commands
         private Mock<IRowRepository> _mockRowRepository;
         private Mock<IColumnRepository> _mockColumnRepository;
         private Mock<IDataContext> _mockDataContext;
+        private Mock<IEventBus> _mockEventBus;
         private CsvFileSource _source;
         private DataColumn _column;
         private List<DataColumn> _columns;
@@ -65,28 +66,29 @@ namespace DataExplorer.Tests.Application.Importers.CsvFile.Commands
             
             _mockDataContext = new Mock<IDataContext>();
 
+            _mockEventBus = new Mock<IEventBus>();
+
             _command = new ImportCsvFileSourceCommand(
                 _mockRepository.Object,
                 _mockDataAdapter.Object,
                 _mockFactory.Object,
                 _mockRowRepository.Object,
                 _mockColumnRepository.Object,
-                _mockDataContext.Object);
+                _mockDataContext.Object,
+                _mockEventBus.Object);
         }
 
         [TearDown]
         public void TearDown()
         {
-            AppEvents.ClearHandlers();
+            EventBus.ClearHandlers();
         }
         
         [Test]
         public void TestExecuteShouldRaiseImportingEvent()
         {
-            var wasImportingEventRaised = false;
-            AppEvents.Register<CsvFileImportingEvent>(p => { wasImportingEventRaised = true; });
             _command.Execute();
-            Assert.That(wasImportingEventRaised, Is.True);
+            _mockEventBus.Verify(p => p.Raise(It.IsAny<CsvFileImportingEvent>()));
         }
 
         [Test]
@@ -120,19 +122,15 @@ namespace DataExplorer.Tests.Application.Importers.CsvFile.Commands
         [Test]
         public void TestExecuteShouldRaiseProgressChangedEvent()
         {
-            var wasProgressChangedEventRaised = false;
-            AppEvents.Register<CsvFileImportProgressChangedEvent>(p => { wasProgressChangedEventRaised = true; });
             _command.Execute();
-            Assert.That(wasProgressChangedEventRaised, Is.True);
+            _mockEventBus.Verify(p => p.Raise(It.IsAny<CsvFileImportProgressChangedEvent>()));
         }
 
         [Test]
         public void TestExecuteShouldRaiseImportedEvent()
         {
-            var wasImportedEventRaised = false;
-            AppEvents.Register<CsvFileImportedEvent>(p => { wasImportedEventRaised = true; });
             _command.Execute();
-            Assert.That(wasImportedEventRaised, Is.True);
+            _mockEventBus.Verify(p => p.Raise(It.IsAny<CsvFileImportedEvent>()));
         }
     }
 }

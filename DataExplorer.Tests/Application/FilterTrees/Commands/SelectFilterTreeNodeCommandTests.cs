@@ -1,25 +1,25 @@
 ﻿using DataExplorer.Application.Application;
 using DataExplorer.Application.Core.Events;
-using DataExplorer.Application.FilterTrees.Events;
-using DataExplorer.Application.Filters;
+using DataExplorer.Application.FilterTrees.Commands;
 using DataExplorer.Application.Filters.Events;
+using DataExplorer.Application.Importers.CsvFiles.Events;
 using DataExplorer.Domain.Filters;
 using DataExplorer.Tests.Application.Filters;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Application.FilterTrees.Events
+namespace DataExplorer.Tests.Application.FilterTrees.Commands
 {
     [TestFixture]
     public class SelectedFilterTreeNodeChangedEventHandlerTests
     {
-        private SelectedFilterTreeNodeChangedEventHandler _eventHandler;
+        private SelectFilterTreeNodeCommand _command;
         private Mock<IFilterRepository> _mockRepository;
         private Mock<IApplicationStateService> _mockService;
+        private Mock<IEventBus> _mockEventBus;
         private FakeFilter _filter;
         private FakeFilter _previousFilter;
         private FakeFilterTreeNode _node;
-        private SelectedFilterTreeNodeChangedEvent _event;
 
         [SetUp]
         public void SetUp()
@@ -27,47 +27,46 @@ namespace DataExplorer.Tests.Application.FilterTrees.Events
             _filter = new FakeFilter();
             _previousFilter = new FakeFilter();
             _node = new FakeFilterTreeNode(_filter);
-            _event = new SelectedFilterTreeNodeChangedEvent(_node);
             
             _mockRepository = new Mock<IFilterRepository>();
             
             _mockService = new Mock<IApplicationStateService>();
             _mockService.Setup(p => p.SelectedFilter).Returns(_previousFilter);
+
+            _mockEventBus = new Mock<IEventBus>();
             
-            _eventHandler = new SelectedFilterTreeNodeChangedEventHandler(
+            _command = new SelectFilterTreeNodeCommand(
                 _mockRepository.Object,
-                _mockService.Object);
+                _mockService.Object,
+                _mockEventBus.Object);
         }
 
         [Test]
         public void TestHandlShouldRemovePreviousFilterInRepository()
         {
-            _eventHandler.Handle(_event);
+            _command.Execute(_node);
             _mockRepository.Verify(p => p.Remove(_previousFilter), Times.Once());
         }
 
         [Test]
         public void TestHandleShouldSetSelectedFilterInApplicationState()
         {
-            _eventHandler.Handle(_event);
+            _command.Execute(_node);
             _mockService.VerifySet(p => p.SelectedFilter = _filter, Times.Once());
         }
 
         [Test]
         public void TestHandleShouldAddFilterToRepository()
         {
-            _eventHandler.Handle(_event);
+            _command.Execute(_node);
             _mockRepository.Verify(p => p.Add(_filter));
         }
 
         [Test]
         public void TestHandleShouldRaiseFilterChangedEvent()
         {
-            var wasRaised = false;
-            AppEvents.Register<FilterChangedEvent>(p => { wasRaised = true; });
-            _eventHandler.Handle(_event);
-            Assert.That(wasRaised, Is.True);
-            AppEvents.ClearHandlers();
+            _command.Execute(_node);
+            _mockEventBus.Verify(p => p.Raise(It.IsAny<FilterChangedEvent>()));
         }
     }
 }

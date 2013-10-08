@@ -16,15 +16,18 @@ namespace DataExplorer.Application.Importers.CsvFiles.Commands
         private readonly ISourceRepository _repository;
         private readonly ICsvFileDataAdapter _dataAdapter;
         private readonly ISourceMapFactory _factory;
+        private readonly IEventBus _eventBus;
 
         public UpdateCsvFileSourceCommand(
             ISourceRepository repository, 
             ICsvFileDataAdapter dataAdapter, 
-            ISourceMapFactory factory)
+            ISourceMapFactory factory, 
+            IEventBus eventBus)
         {
             _repository = repository;
             _dataAdapter = dataAdapter;
             _factory = factory;
+            _eventBus = eventBus;
         }
 
         public void Execute(string filePath)
@@ -41,7 +44,7 @@ namespace DataExplorer.Application.Importers.CsvFiles.Commands
 
             source.SetMaps(maps);
 
-            AppEvents.Raise(new CsvFileSourceChangedEvent());
+            _eventBus.Raise(new CsvFileSourceChangedEvent());
         }
     }
 }

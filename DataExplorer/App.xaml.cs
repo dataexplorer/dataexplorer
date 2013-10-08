@@ -42,7 +42,7 @@ namespace DataExplorer
 
         private static void InitializeEvents()
         {
-            AppEvents.Kernel = _kernel;
+            EventBus.Kernel = _kernel;
             DomainEvents.Kernel = _kernel;
         }
         

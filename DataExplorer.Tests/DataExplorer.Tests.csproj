@@ -60,8 +60,7 @@
     <Compile Include="Application\Columns\ColumnServiceTests.cs" />
     <Compile Include="Application\Filters\FakeFilter.cs" />
     <Compile Include="Application\FilterTrees\Queries\GetRootFilterTreeNodesQueryTests.cs" />
-    <Compile Include="Application\FilterTrees\Events\SelectedFilterTreeNodeChangedEventHandlerTests.cs" />
-    <Compile Include="Application\FilterTrees\Events\SelectedFilterTreeNodeChangedEventTests.cs" />
+    <Compile Include="Application\FilterTrees\Commands\SelectFilterTreeNodeCommandTests.cs" />
     <Compile Include="Application\Importers\CsvFile\Commands\ImportCsvFileSourceCommandTests.cs" />
     <Compile Include="Application\Importers\CsvFile\Commands\UpdateCsvFileSourceCommandTests.cs" />
     <Compile Include="Application\Importers\CsvFile\Queries\CanImportQueryTests.cs" />

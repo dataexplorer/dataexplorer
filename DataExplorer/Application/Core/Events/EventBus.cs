@@ -5,7 +5,7 @@ using Ninject;
 
 namespace DataExplorer.Application.Core.Events
 {
-    public class AppEvents
+    public class EventBus : IEventBus
     {
         public static IKernel Kernel;
 
@@ -20,7 +20,7 @@ namespace DataExplorer.Application.Core.Events
             _handlers.Add(handler);
         }
 
-        public static void Raise<T>(T args) where T : IAppEvent
+        public void Raise<T>(T args) where T : IAppEvent
         {
             if (Kernel != null)
                 foreach (var handler in Kernel.GetAll<IAppHandler<T>>())

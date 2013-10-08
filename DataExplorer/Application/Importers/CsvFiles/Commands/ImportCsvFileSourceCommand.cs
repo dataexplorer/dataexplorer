@@ -23,14 +23,16 @@ namespace DataExplorer.Application.Importers.CsvFiles.Commands
         private readonly IRowRepository _rowRepository;
         private readonly IColumnRepository _columnRepository;
         private readonly IDataContext _dataContext;
+        private readonly IEventBus _eventBus;
 
         public ImportCsvFileSourceCommand(
-            ISourceRepository repository,
-            ICsvFileDataAdapter dataAdapter,
-            IDataTypeConverterFactory converterFactory,
-            IRowRepository rowRepository,
-            IColumnRepository columnRepository,
-            IDataContext dataContext)
+            ISourceRepository repository, 
+            ICsvFileDataAdapter dataAdapter, 
+            IDataTypeConverterFactory converterFactory, 
+            IRowRepository rowRepository, 
+            IColumnRepository columnRepository, 
+            IDataContext dataContext, 
+            IEventBus eventBus)
         {
             _repository = repository;
             _dataAdapter = dataAdapter;
@@ -38,11 +40,12 @@ namespace DataExplorer.Application.Importers.CsvFiles.Commands
             _rowRepository = rowRepository;
             _columnRepository = columnRepository;
             _dataContext = dataContext;
+            _eventBus = eventBus;
         }
 
         public void Execute()
         {
-            AppEvents.Raise(new CsvFileImportingEvent());
+            _eventBus.Raise(new CsvFileImportingEvent());
 
             var source = _repository.GetSource<CsvFileSource>();
 
@@ -72,7 +75,7 @@ namespace DataExplorer.Application.Importers.CsvFiles.Commands
 
                 var progress = (i + 1) / (double)dataTable.Rows.Count;
 
-                AppEvents.Raise(new CsvFileImportProgressChangedEvent(progress));
+                _eventBus.Raise(new CsvFileImportProgressChangedEvent(progress));
             }
 
             // TODO: Move into separate component
@@ -90,7 +93,7 @@ namespace DataExplorer.Application.Importers.CsvFiles.Commands
                 _columnRepository.Add(column);
             }
 
-            AppEvents.Raise(new CsvFileImportedEvent());
+            _eventBus.Raise(new CsvFileImportedEvent());
         }
     }
 }

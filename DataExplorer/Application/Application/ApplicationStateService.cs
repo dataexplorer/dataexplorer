@@ -17,15 +17,20 @@ namespace DataExplorer.Application.Application
         IAppHandler<CsvFileImportedEvent>
     {
         private readonly ApplicationState _state;
+        private readonly IEventBus _eventBus;
 
-        public ApplicationStateService(ApplicationState state)
+        public ApplicationStateService(
+            ApplicationState state,
+            IEventBus eventBus)
         {
             _state = state;
+            _eventBus = eventBus;
         }
 
         public ApplicationStateService()
         {
             _state = new ApplicationState();
+            _eventBus = new EventBus();
 
             _state.IsStartMenuVisible = true;
             _state.IsNavigationTreeVisible = false;
@@ -54,7 +59,7 @@ namespace DataExplorer.Application.Application
             _state.IsStartMenuVisible = false;
             _state.IsNavigationTreeVisible = false;
             
-            AppEvents.Raise(new ApplicationStateChangedEvent());
+            _eventBus.Raise(new ApplicationStateChangedEvent());
         }
 
         public void Handle(CsvFileImportedEvent args)
@@ -62,7 +67,7 @@ namespace DataExplorer.Application.Application
             _state.IsStartMenuVisible = false;
             _state.IsNavigationTreeVisible = true;
 
-            AppEvents.Raise(new ApplicationStateChangedEvent());
+            _eventBus.Raise(new ApplicationStateChangedEvent());
         }
     }
 }

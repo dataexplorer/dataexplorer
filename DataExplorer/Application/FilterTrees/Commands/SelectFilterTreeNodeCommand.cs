@@ -1,37 +1,40 @@
 ﻿using DataExplorer.Application.Application;
 using DataExplorer.Application.Core.Events;
-using DataExplorer.Application.Filters;
 using DataExplorer.Application.Filters.Events;
+using DataExplorer.Domain.FilterTrees;
 using DataExplorer.Domain.Filters;
 
-namespace DataExplorer.Application.FilterTrees.Events
+namespace DataExplorer.Application.FilterTrees.Commands
 {
-    public class SelectedFilterTreeNodeChangedEventHandler : ISelectedFilterTreeNodeChangedEventHandler
+    public class SelectFilterTreeNodeCommand : ISelectFilterTreeNodeCommand
     {
         private readonly IFilterRepository _repository;
         private readonly IApplicationStateService _service;
+        private readonly IEventBus _eventBus;
 
-        public SelectedFilterTreeNodeChangedEventHandler(
-            IFilterRepository repository,
-            IApplicationStateService service)
+        public SelectFilterTreeNodeCommand(
+            IFilterRepository repository, 
+            IApplicationStateService service, 
+            IEventBus eventBus)
         {
             _repository = repository;
             _service = service;
+            _eventBus = eventBus;
         }
 
-        public void Handle(SelectedFilterTreeNodeChangedEvent @event)
+        public void Execute(FilterTreeNode node)
         {
             var previousFilter = _service.SelectedFilter;
 
             _repository.Remove(previousFilter);
 
-            var filter = @event.Node.CreateFilter();
+            var filter = node.CreateFilter();
 
             _service.SelectedFilter = filter;
             
             _repository.Add(filter);
 
-            AppEvents.Raise(new FilterChangedEvent());
+            _eventBus.Raise(new FilterChangedEvent());
         }
     }
 }

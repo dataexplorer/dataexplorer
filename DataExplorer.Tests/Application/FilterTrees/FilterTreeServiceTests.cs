@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.FilterTrees;
-using DataExplorer.Application.FilterTrees.Events;
+using DataExplorer.Application.FilterTrees.Commands;
 using DataExplorer.Application.FilterTrees.Queries;
-using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.FilterTrees;
 using Moq;
 using NUnit.Framework;
@@ -18,16 +17,16 @@ namespace DataExplorer.Tests.Application.FilterTrees
     {
         private FilterTreeService _service;
         private Mock<IGetRootFilterTreeNodesQuery> _mockGetRootsTasks;
-        private Mock<ISelectedFilterTreeNodeChangedEventHandler> _mockHandleTask;
+        private Mock<ISelectFilterTreeNodeCommand> _mockSelectCommand;
 
         [SetUp]
         public void SetUp()
         {
             _mockGetRootsTasks = new Mock<IGetRootFilterTreeNodesQuery>();
-            _mockHandleTask = new Mock<ISelectedFilterTreeNodeChangedEventHandler>();
+            _mockSelectCommand = new Mock<ISelectFilterTreeNodeCommand>();
             _service = new FilterTreeService(
                 _mockGetRootsTasks.Object,
-                _mockHandleTask.Object);
+                _mockSelectCommand.Object);
         }
 
         [Test]
@@ -43,9 +42,9 @@ namespace DataExplorer.Tests.Application.FilterTrees
         [Test]
         public void TestHandleShouldHandleEvent()
         {
-            var @event = new SelectedFilterTreeNodeChangedEvent(null);
-            _service.Handle(@event);
-            _mockHandleTask.Verify(p => p.Handle(@event));
+            var node = new FakeFilterTreeNode();
+            _service.SelectFilterTreeNode(node);
+            _mockSelectCommand.Verify(p => p.Execute(node));
         }
     }
 }

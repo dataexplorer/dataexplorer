@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.FilterTrees;
-using DataExplorer.Application.FilterTrees.Events;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Presentation.Panes.Navigation.NavigationTree;
 using DataExplorer.Tests.Application.FilterTrees;
@@ -59,10 +58,8 @@ namespace DataExplorer.Tests.Presentation.Panes.Navigation.NavigationTree
         [Test]
         public void TestSetIsSelectedToTrueShouldRaiseEvent()
         {
-            var wasRaised = false;
-            AppEvents.Register<SelectedFilterTreeNodeChangedEvent>(p => { wasRaised = true; });
             _viewModel.IsSelected = true;
-            Assert.That(wasRaised, Is.True);
+            _mockService.Verify(p => p.SelectFilterTreeNode(_filterTreeNode), Times.Once());
         }
     }
 }

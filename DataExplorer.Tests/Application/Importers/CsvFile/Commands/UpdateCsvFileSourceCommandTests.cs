@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Importers.CsvFiles.Commands;
 using DataExplorer.Application.Importers.CsvFiles.Events;
-using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Sources;
 using DataExplorer.Domain.Sources.Maps;
 using DataExplorer.Infrastructure.Importers.CsvFile;
@@ -23,6 +22,7 @@ namespace DataExplorer.Tests.Application.Importers.CsvFile.Commands
         private Mock<ISourceRepository> _mockRepository;
         private Mock<ICsvFileDataAdapter> _mockDataAdapter;
         private Mock<ISourceMapFactory> _mockFactory;
+        private Mock<IEventBus> _mockEventBus;
         private CsvFileSource _source;
         private List<DataColumn> _dataColumns;
         private DataColumn _dataColumn;
@@ -49,10 +49,13 @@ namespace DataExplorer.Tests.Application.Importers.CsvFile.Commands
             _mockFactory = new Mock<ISourceMapFactory>();
             _mockFactory.Setup(p => p.Create(_dataColumn)).Returns(_map);
 
+            _mockEventBus = new Mock<IEventBus>();
+
             _command = new UpdateCsvFileSourceCommand(
                 _mockRepository.Object,
                 _mockDataAdapter.Object,
-                _mockFactory.Object);
+                _mockFactory.Object,
+                _mockEventBus.Object);
         }
 
         [Test]
@@ -72,11 +75,8 @@ namespace DataExplorer.Tests.Application.Importers.CsvFile.Commands
         [Test]
         public void TestExecuteShouldRaiseSourceChangedEvent()
         {
-            var wasRaised = false;
-            AppEvents.Register<CsvFileSourceChangedEvent>(p => { wasRaised = true; });
             _command.Execute(_filePath);
-            Assert.That(wasRaised, Is.True);
-            AppEvents.ClearHandlers();
+            _mockEventBus.Verify(p => p.Raise(It.IsAny<CsvFileSourceChangedEvent>()));
         }
     }
 }

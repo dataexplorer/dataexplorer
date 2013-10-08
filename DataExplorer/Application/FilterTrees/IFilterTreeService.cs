@@ -6,5 +6,6 @@ namespace DataExplorer.Application.FilterTrees
     public interface IFilterTreeService
     {
         IEnumerable<FilterTreeNode> GetRoots();
+        void SelectFilterTreeNode(FilterTreeNode filterTreeNode);
     }
 }

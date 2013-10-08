@@ -10,6 +10,7 @@ using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Importers.CsvFiles.Events;
 using DataExplorer.Tests.Application.FilterTrees;
 using DataExplorer.Tests.Application.Filters;
+using Moq;
 using NUnit.Framework;
 
 namespace DataExplorer.Tests.Application.Application
@@ -19,23 +20,18 @@ namespace DataExplorer.Tests.Application.Application
     {
         private ApplicationStateService _service;
         private ApplicationState _state;
+        private Mock<IEventBus> _mockEventBus;
         private FakeFilter _filter;
-        private bool _wasRaised;
 
         [SetUp]
         public void SetUp()
         {
-            _wasRaised = false;
             _filter = new FakeFilter();
-            AppEvents.Register<ApplicationStateChangedEvent>(e => { _wasRaised = true; });
             _state = new ApplicationState();
-            _service = new ApplicationStateService(_state);
-        }
-
-        [TearDown]
-        public void TearDown()
-        {
-            AppEvents.ClearHandlers();
+            _mockEventBus = new Mock<IEventBus>();
+            _service = new ApplicationStateService(
+                _state,
+                _mockEventBus.Object);
         }
 
         [Test]
@@ -91,7 +87,7 @@ namespace DataExplorer.Tests.Application.Application
         public void TestHandleCsvFileImportingEventShouldRaiseApplicationStateChangedEvent()
         {
             _service.Handle(new CsvFileImportingEvent());
-            Assert.That(_wasRaised, Is.True);
+            _mockEventBus.Verify(p => p.Raise(It.IsAny<ApplicationStateChangedEvent>()));
         }
 
         [Test]
@@ -106,7 +102,7 @@ namespace DataExplorer.Tests.Application.Application
         public void TestHandleCsvFileImportedEventShouldRaiseApplicationStateChangedEvent()
         {
             _service.Handle(new CsvFileImportedEvent());
-            Assert.That(_wasRaised, Is.True);
+            _mockEventBus.Verify(p => p.Raise(It.IsAny<ApplicationStateChangedEvent>()));
         }
     }
 }

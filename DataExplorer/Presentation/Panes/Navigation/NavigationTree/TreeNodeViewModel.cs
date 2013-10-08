@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.FilterTrees;
-using DataExplorer.Application.FilterTrees.Events;
 using DataExplorer.Domain.FilterTrees;
 using DataExplorer.Presentation.Core;
 
@@ -48,7 +46,8 @@ namespace DataExplorer.Presentation.Panes.Navigation.NavigationTree
             OnPropertyChanged(() => IsSelected);
 
             if (_isSelected)
-                AppEvents.Raise(new SelectedFilterTreeNodeChangedEvent(_filterTreeNode));
+                _service.SelectFilterTreeNode(_filterTreeNode);
+                //EventBus.Raise(new SelectedFilterTreeNodeChangedEvent(_filterTreeNode));
         }
 
         private IEnumerable<TreeNodeViewModel> GetChildren()
