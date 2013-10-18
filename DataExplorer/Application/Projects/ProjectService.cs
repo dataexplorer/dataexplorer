@@ -29,7 +29,6 @@ namespace DataExplorer.Application.Projects
 
             _dataContext.SetProject(project);
 
-            // TODO: Should this be moved down into the domain?
             DomainEvents.Raise(new ProjectOpenedEvent());
         }
 
@@ -37,7 +36,6 @@ namespace DataExplorer.Application.Projects
         {
             _dataContext.Clear();
 
-            // TODO: Should this be moved down into the domain?
             DomainEvents.Raise(new ProjectClosedEvent());
         }
     }
