@@ -1,6 +1,6 @@
 ﻿namespace DataExplorer.Application.Core.Events
 {
-    public interface IAppHandler<T> where T : IAppEvent 
+    public interface IEventHandler<T> where T : IEvent 
     {
         void Handle(T args);
     }

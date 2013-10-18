@@ -58,7 +58,7 @@ namespace DataExplorer.Tests.Application.ScatterPlots.Layouts.Commands
         public void TestExecuteShouldRaiseLayoutChangedEvent()
         {
             var wasRaised = false;
-            DomainEvents.Register<ScatterPlotLayoutChangedEvent>(p => { wasRaised = true; });
+            DomainEvents.Register<ScatterPlotLayoutColumnChangedEvent>(p => { wasRaised = true; });
             _command.Execute();
             Assert.That(wasRaised, Is.True);
             DomainEvents.ClearHandlers();

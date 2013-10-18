@@ -13,8 +13,8 @@ namespace DataExplorer.Application.Application
 {
     public class ApplicationStateService 
         : IApplicationStateService, 
-        IAppHandler<CsvFileImportingEvent>,
-        IAppHandler<CsvFileImportedEvent>
+        IEventHandler<CsvFileImportingEvent>,
+        IEventHandler<CsvFileImportedEvent>
     {
         private readonly ApplicationState _state;
         private readonly IEventBus _eventBus;

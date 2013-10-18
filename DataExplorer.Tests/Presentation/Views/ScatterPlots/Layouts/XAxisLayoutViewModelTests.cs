@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.Columns;
 using DataExplorer.Application.ScatterPlots;
+using DataExplorer.Application.ScatterPlots.Events;
 using DataExplorer.Domain.ScatterPlots;
 using DataExplorer.Presentation.Core.Layout;
 using DataExplorer.Presentation.Views.ScatterPlots.Layout;
@@ -72,21 +74,22 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.Layouts
         }
 
         [Test]
+        public void TestHandleLayoutChangedEventShouldRaiseProperyChangedEvents()
+        {
+            var eventArgs = new List<PropertyChangedEventArgs>();
+            _viewModel.PropertyChanged += (s, e) => eventArgs.Add(e);
+            _viewModel.Handle(new ScatterPlotLayoutChangedEvent());
+            Assert.That(eventArgs.Any(p => p.PropertyName == "SelectedColumn"));
+            Assert.That(eventArgs.Any(p => p.PropertyName == "Columns"));
+        }
+
+        [Test]
         public void TestHandleLayoutChangedEventShouldRaiseSelectedColumnPropertyChangedEvent()
         {
             var wasRaised = false;
             _viewModel.PropertyChanged += (s, e) => { wasRaised = true; };
-            _viewModel.Handle(new ScatterPlotLayoutChangedEvent());
+            _viewModel.Handle(new ScatterPlotLayoutColumnChangedEvent());
             Assert.That(wasRaised, Is.True);
-        }
-
-        [Test]
-        public void TestLayoutColumnsChangedEventShouldRaisePropertyChangedEvents()
-        {
-            var timesRaised = 0;
-            _viewModel.PropertyChanged += (s, e) => { timesRaised++; };
-            _mockLayoutService.Raise(p => p.LayoutColumnsChangedEvent += null, this, EventArgs.Empty);
-            Assert.That(timesRaised, Is.EqualTo(2));
         }
     }
 }

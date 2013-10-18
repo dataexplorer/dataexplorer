@@ -17,9 +17,9 @@ namespace DataExplorer.Application.ScatterPlots
     public class ScatterPlotEventsService 
         : IDomainHandler<ProjectOpenedEvent>,
         IDomainHandler<ProjectClosedEvent>,
-        IDomainHandler<ScatterPlotLayoutChangedEvent>,
-        IAppHandler<CsvFileImportedEvent>,
-        IAppHandler<FilterChangedEvent>
+        IDomainHandler<ScatterPlotLayoutColumnChangedEvent>,
+        IEventHandler<CsvFileImportedEvent>,
+        IEventHandler<FilterChangedEvent>
     {
         private readonly IUpdatePlotsCommand _updateCommand;
 
@@ -38,7 +38,7 @@ namespace DataExplorer.Application.ScatterPlots
             _updateCommand.UpdatePlots();
         }
 
-        public void Handle(ScatterPlotLayoutChangedEvent args)
+        public void Handle(ScatterPlotLayoutColumnChangedEvent args)
         {
             _updateCommand.UpdatePlots();
         }

@@ -93,6 +93,7 @@
     <Compile Include="Application\Importers\CsvFiles\Queries\ICanImportQuery.cs" />
     <Compile Include="Application\Importers\CsvFiles\Queries\IGetCsvFileSourceMapsQuery.cs" />
     <Compile Include="Application\ScatterPlots\Commands\IZoomToFullExtentCommand.cs" />
+    <Compile Include="Application\ScatterPlots\Events\ScatterPlotLayoutChangedEvent.cs" />
     <Compile Include="Application\ScatterPlots\Layouts\Commands\ClearLayoutCommand.cs" />
     <Compile Include="Application\ScatterPlots\Layouts\Commands\IClearLayoutCommand.cs" />
     <Compile Include="Application\ScatterPlots\Layouts\Commands\ISetXColumnCommand.cs" />
@@ -175,8 +176,8 @@
     <Compile Include="Application\Columns\IColumnAdapter.cs" />
     <Compile Include="Application\Columns\ColumnDto.cs" />
     <Compile Include="Application\Core\Events\EventBus.cs" />
-    <Compile Include="Application\Core\Events\IAppEvent.cs" />
-    <Compile Include="Application\Core\Events\IAppHandler.cs" />
+    <Compile Include="Application\Core\Events\IEvent.cs" />
+    <Compile Include="Application\Core\Events\IEventHandler.cs" />
     <Compile Include="Infrastructure\Importers\CsvFile\CsvFile.cs" />
     <Compile Include="Application\Importers\CsvFiles\CsvFileSourceAdapter.cs" />
     <Compile Include="Application\Importers\CsvFiles\CsvFileSourceDto.cs" />
@@ -241,9 +242,7 @@
     <Compile Include="Application\ScatterPlots\IScatterPlotService.cs" />
     <Compile Include="Application\ScatterPlots\PlotDto.cs" />
     <Compile Include="Application\ScatterPlots\ScatterPlotAdapter.cs" />
-    <Compile Include="Application\ScatterPlots\Events\ScatterPlotChangedEventHandler.cs" />
     <Compile Include="Application\ScatterPlots\ScatterPlotEventsService.cs" />
-    <Compile Include="Application\ScatterPlots\Events\ScatterPlotLayoutColumnsChangedEvent.cs" />
     <Compile Include="Application\ScatterPlots\ScatterPlotLayoutService.cs" />
     <Compile Include="Application\ScatterPlots\ScatterPlotService.cs" />
     <Compile Include="Infrastructure\Serialization\ISerializationService.cs" />
@@ -271,7 +270,7 @@
     <Compile Include="Domain\ScatterPlots\ScatterPlot.cs" />
     <Compile Include="Domain\ScatterPlots\ScatterPlotChangedEvent.cs" />
     <Compile Include="Domain\ScatterPlots\ScatterPlotLayout.cs" />
-    <Compile Include="Domain\ScatterPlots\ScatterPlotLayoutChangedEvent.cs" />
+    <Compile Include="Domain\ScatterPlots\ScatterPlotLayoutColumnChangedEvent.cs" />
     <Compile Include="Domain\ScatterPlots\ScatterPlotRenderer.cs" />
     <Compile Include="Domain\Views\IViewRepository.cs" />
     <Compile Include="Persistence\Columns\ColumnRepository.cs" />

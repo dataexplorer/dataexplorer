@@ -5,15 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using DataExplorer.Application.Columns;
+using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Importers.CsvFiles.Events;
 using DataExplorer.Application.ScatterPlots;
+using DataExplorer.Application.ScatterPlots.Events;
 using DataExplorer.Application.ScatterPlots.Layouts.Commands;
 using DataExplorer.Application.ScatterPlots.Layouts.Queries;
-using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Projects;
-using DataExplorer.Domain.ScatterPlots;
-using DataExplorer.Domain.Views;
-using DataExplorer.Tests.Domain.Columns;
 using Moq;
 using NUnit.Framework;
 
@@ -28,6 +26,7 @@ namespace DataExplorer.Tests.Application.ScatterPlots
         private Mock<IGetYColumnQuery> _mockGetYColumnQuery;
         private Mock<ISetYColumnCommand> _mockSetYColumnCommand;
         private Mock<IClearLayoutCommand> _mockClearLayoutCommand;
+        private Mock<IEventBus> _mockEventBus;
         private ColumnDto _columnDto;
 
         [SetUp]
@@ -39,12 +38,14 @@ namespace DataExplorer.Tests.Application.ScatterPlots
             _mockGetYColumnQuery = new Mock<IGetYColumnQuery>();
             _mockSetYColumnCommand = new Mock<ISetYColumnCommand>();
             _mockClearLayoutCommand = new Mock<IClearLayoutCommand>();
+            _mockEventBus = new Mock<IEventBus>();
             _service = new ScatterPlotLayoutService(
                 _mockGetXColumnQuery.Object,
                 _mockSetXColumnCommand.Object,
                 _mockGetYColumnQuery.Object,
                 _mockSetYColumnCommand.Object,
-                _mockClearLayoutCommand.Object);
+                _mockClearLayoutCommand.Object,
+                _mockEventBus.Object);
         }
 
         [Test]
@@ -90,30 +91,24 @@ namespace DataExplorer.Tests.Application.ScatterPlots
         public void TestHandleProjectOpenedShouldRaiseLayoutColumnsChangedEvent()
         {
             var args = new ProjectOpenedEvent();
-            var wasHandled = false;
-            _service.LayoutColumnsChangedEvent += (s, e) => { wasHandled = true; };
             _service.Handle(args);
-            Assert.That(wasHandled, Is.True);
+            _mockEventBus.Verify(p => p.Raise(It.IsAny<ScatterPlotLayoutChangedEvent>()));
         }
 
         [Test]
         public void TestHandleProjectClosedShouldRaiseLayoutColumnsChangedEvent()
         {
             var args = new ProjectClosedEvent();
-            var wasHandled = false;
-            _service.LayoutColumnsChangedEvent += (s, e) => { wasHandled = true; };
             _service.Handle(args);
-            Assert.That(wasHandled, Is.True);
+            _mockEventBus.Verify(p => p.Raise(It.IsAny<ScatterPlotLayoutChangedEvent>()));
         }
 
         [Test]
         public void TestHandleDataImportedEventShouldRaiseLayoutColumnsChangedEvent()
         {
             var args = new CsvFileImportedEvent();
-            var wasHandled = false;
-            _service.LayoutColumnsChangedEvent += (s, e) => { wasHandled = true; };
             _service.Handle(args);
-            Assert.That(wasHandled, Is.True);
+            _mockEventBus.Verify(p => p.Raise(It.IsAny<ScatterPlotLayoutChangedEvent>()));
         }
     }
 }

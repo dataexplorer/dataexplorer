@@ -13,7 +13,7 @@ namespace DataExplorer.Presentation.Importers.CsvFile.Header
     public class CsvFileImportHeaderViewModel :
         BaseViewModel,
         ICsvFileImportHeaderViewModel,
-        IAppHandler<CsvFileSourceChangedEvent>
+        IEventHandler<CsvFileSourceChangedEvent>
     {
         private const string FileFilter = "CSV documents|*.csv";
         private const string DefaultFileExtension = ".csv";

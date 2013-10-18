@@ -50,7 +50,7 @@ namespace DataExplorer.Tests.Domain.ScatterPlots
         {
             var column = new ColumnBuilder().Build();
             var wasRaised = false;
-            DomainEvents.Register<ScatterPlotLayoutChangedEvent>(p => { wasRaised = true; });
+            DomainEvents.Register<ScatterPlotLayoutColumnChangedEvent>(p => { wasRaised = true; });
             _layout.XAxisColumn = column;
             Assert.That(wasRaised, Is.True);
             DomainEvents.ClearHandlers();
@@ -76,7 +76,7 @@ namespace DataExplorer.Tests.Domain.ScatterPlots
         {
             var column = new ColumnBuilder().Build();
             var wasRaised = false;
-            DomainEvents.Register<ScatterPlotLayoutChangedEvent>(p => { wasRaised = true; });
+            DomainEvents.Register<ScatterPlotLayoutColumnChangedEvent>(p => { wasRaised = true; });
             _layout.YAxisColumn = column;
             Assert.That(wasRaised, Is.True);
             DomainEvents.ClearHandlers();
@@ -97,7 +97,7 @@ namespace DataExplorer.Tests.Domain.ScatterPlots
         public void TestClearShouldRaiseLayoutChangedEvent()
         {
             var wasRaised = false;
-            DomainEvents.Register<ScatterPlotLayoutChangedEvent>(p => { wasRaised = true; });
+            DomainEvents.Register<ScatterPlotLayoutColumnChangedEvent>(p => { wasRaised = true; });
             _layout.Clear();
             Assert.That(wasRaised, Is.True);
 

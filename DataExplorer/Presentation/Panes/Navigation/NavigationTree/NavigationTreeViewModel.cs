@@ -13,8 +13,8 @@ namespace DataExplorer.Presentation.Panes.Navigation.NavigationTree
     public class NavigationTreeViewModel 
         : BaseViewModel, 
         INavigationTreeViewModel,
-        IAppHandler<CsvFileImportingEvent>,
-        IAppHandler<CsvFileImportedEvent>
+        IEventHandler<CsvFileImportingEvent>,
+        IEventHandler<CsvFileImportedEvent>
     {
         private readonly IFilterTreeService _service;
 

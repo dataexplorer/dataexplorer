@@ -2,7 +2,7 @@
 
 namespace DataExplorer.Application.Importers.CsvFiles.Events
 {
-    public class CsvFileImportedEvent : IAppEvent
+    public class CsvFileImportedEvent : IEvent
     {
     }
 }

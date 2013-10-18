@@ -15,7 +15,7 @@ namespace DataExplorer.Presentation.Panes.Navigation
     public class NavigationPaneViewModel 
         : BaseViewModel,
         INavigationPaneViewModel,
-        IAppHandler<ApplicationStateChangedEvent>
+        IEventHandler<ApplicationStateChangedEvent>
     {
         private readonly IStartMenuViewModel _startMenuViewModel;
         private readonly INavigationTreeViewModel _navigationTreeViewModel;

@@ -13,10 +13,10 @@ namespace DataExplorer.Presentation.Importers.CsvFile.Footer
     public class CsvFileImportFooterViewModel : 
         BaseViewModel,
         ICsvFileImportFooterViewModel,
-        IAppHandler<CsvFileSourceChangedEvent>,
-        IAppHandler<CsvFileImportingEvent>,
-        IAppHandler<CsvFileImportedEvent>,
-        IAppHandler<CsvFileImportProgressChangedEvent>
+        IEventHandler<CsvFileSourceChangedEvent>,
+        IEventHandler<CsvFileImportingEvent>,
+        IEventHandler<CsvFileImportedEvent>,
+        IEventHandler<CsvFileImportProgressChangedEvent>
     {
         private readonly ICsvFileImportService _service;
         private readonly AsyncDelegateCommand _importCommand;

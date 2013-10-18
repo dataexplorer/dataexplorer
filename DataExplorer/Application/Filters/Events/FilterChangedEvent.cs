@@ -2,7 +2,7 @@
 
 namespace DataExplorer.Application.Filters.Events
 {
-    public class FilterChangedEvent : IAppEvent
+    public class FilterChangedEvent : IEvent
     {
     }
 }

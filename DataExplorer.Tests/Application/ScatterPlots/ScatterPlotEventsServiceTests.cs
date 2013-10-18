@@ -52,7 +52,7 @@ namespace DataExplorer.Tests.Application.ScatterPlots
         [Test]
         public void TestHandleScatterPlotLayoutChangedEventShouldUpdatePlots()
         {
-            var @event = new ScatterPlotLayoutChangedEvent();
+            var @event = new ScatterPlotLayoutColumnChangedEvent();
             _service.Handle(@event);
             _mockTask.Verify(p => p.UpdatePlots(), Times.Once());
         }

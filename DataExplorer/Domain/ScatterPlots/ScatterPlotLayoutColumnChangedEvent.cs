@@ -7,7 +7,7 @@ using DataExplorer.Domain.Events;
 
 namespace DataExplorer.Domain.ScatterPlots
 {
-    public class ScatterPlotLayoutChangedEvent : IDomainEvent
+    public class ScatterPlotLayoutColumnChangedEvent : IDomainEvent
     {
     }
 }

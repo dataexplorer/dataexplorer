@@ -5,14 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.Core.Events;
-using DataExplorer.Application.Importers.CsvFiles;
 using DataExplorer.Application.Importers.CsvFiles.Commands;
 using DataExplorer.Application.Importers.CsvFiles.Events;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Converters;
 using DataExplorer.Domain.Rows;
 using DataExplorer.Domain.Sources;
-using DataExplorer.Domain.Sources.Maps;
 using DataExplorer.Infrastructure.Importers.CsvFile;
 using DataExplorer.Persistence;
 using Moq;
@@ -76,12 +74,6 @@ namespace DataExplorer.Tests.Application.Importers.CsvFile.Commands
                 _mockColumnRepository.Object,
                 _mockDataContext.Object,
                 _mockEventBus.Object);
-        }
-
-        [TearDown]
-        public void TearDown()
-        {
-            EventBus.ClearHandlers();
         }
         
         [Test]

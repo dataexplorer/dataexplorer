@@ -9,11 +9,8 @@ using DataExplorer.Application.Importers.CsvFiles.Events;
 using DataExplorer.Application.ScatterPlots.Events;
 using DataExplorer.Application.ScatterPlots.Layouts.Commands;
 using DataExplorer.Application.ScatterPlots.Layouts.Queries;
-using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Events;
 using DataExplorer.Domain.Projects;
-using DataExplorer.Domain.ScatterPlots;
-using DataExplorer.Domain.Views;
 
 namespace DataExplorer.Application.ScatterPlots
 {
@@ -21,29 +18,30 @@ namespace DataExplorer.Application.ScatterPlots
         IScatterPlotLayoutService, 
         IDomainHandler<ProjectOpenedEvent>,
         IDomainHandler<ProjectClosedEvent>,
-        IAppHandler<CsvFileImportedEvent>
+        IEventHandler<CsvFileImportedEvent>
     {
         private readonly IGetXColumnQuery _getXColumnQuery;
         private readonly ISetXColumnCommand _setXColumnCommand;
         private readonly IGetYColumnQuery _getYColumnQuery;
         private readonly ISetYColumnCommand _setYColumnCommand;
         private readonly IClearLayoutCommand _clearLayoutCommand;
+        private readonly IEventBus _eventBus;
 
         public ScatterPlotLayoutService(
             IGetXColumnQuery getXColumnQuery,
             ISetXColumnCommand setXColumnCommand,
             IGetYColumnQuery getYColumnQuery,
             ISetYColumnCommand setYColumnCommand,
-            IClearLayoutCommand clearLayoutCommand)
+            IClearLayoutCommand clearLayoutCommand,
+            IEventBus eventBus)
         {
             _getXColumnQuery = getXColumnQuery;
             _setXColumnCommand = setXColumnCommand;
             _getYColumnQuery = getYColumnQuery;
             _setYColumnCommand = setYColumnCommand;
             _clearLayoutCommand = clearLayoutCommand;
+            _eventBus = eventBus;
         }
-
-        public event ScatterPlotLayoutColumnsChangedEvent LayoutColumnsChangedEvent;
 
         public ColumnDto GetXColumn()
         {
@@ -72,20 +70,17 @@ namespace DataExplorer.Application.ScatterPlots
 
         public void Handle(ProjectOpenedEvent args)
         {
-            if (LayoutColumnsChangedEvent != null)
-                LayoutColumnsChangedEvent(this, EventArgs.Empty);
+            _eventBus.Raise(new ScatterPlotLayoutChangedEvent());
         }
 
         public void Handle(ProjectClosedEvent args)
         {
-            if (LayoutColumnsChangedEvent != null)
-                LayoutColumnsChangedEvent(this, EventArgs.Empty);
+            _eventBus.Raise(new ScatterPlotLayoutChangedEvent());
         }
 
         public void Handle(CsvFileImportedEvent args)
         {
-            if (LayoutColumnsChangedEvent != null)
-                LayoutColumnsChangedEvent(this, EventArgs.Empty);
+            _eventBus.Raise(new ScatterPlotLayoutChangedEvent());
         }
     }
 }

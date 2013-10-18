@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.Columns;
+using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.ScatterPlots;
+using DataExplorer.Application.ScatterPlots.Events;
 using DataExplorer.Domain.Events;
 using DataExplorer.Domain.ScatterPlots;
 using DataExplorer.Presentation.Core;
@@ -15,11 +17,11 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Layout
     public class XAxisLayoutViewModel 
         : BaseViewModel, 
         IXAxisLayoutViewModel,
-        IDomainHandler<ScatterPlotLayoutChangedEvent>
+        IEventHandler<ScatterPlotLayoutChangedEvent>,
+        IDomainHandler<ScatterPlotLayoutColumnChangedEvent>
     {
         private readonly IColumnService _columnService;
         private readonly IScatterPlotLayoutService _layoutService;
-        private List<LayoutItemViewModel> _viewModels; 
 
         public XAxisLayoutViewModel(
             IColumnService columnService,
@@ -27,10 +29,6 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Layout
         {
             _columnService = columnService;
             _layoutService = layoutService;
-
-            _viewModels = new List<LayoutItemViewModel>();
-
-            _layoutService.LayoutColumnsChangedEvent += HandleLayoutColumnsChangeEvent;
         }
 
         public string Label
@@ -86,12 +84,12 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Layout
         public void Handle(ScatterPlotLayoutChangedEvent args)
         {
             OnPropertyChanged(() => SelectedColumn);
+            OnPropertyChanged(() => Columns);
         }
 
-        private void HandleLayoutColumnsChangeEvent(object source, EventArgs eventArgs)
+        public void Handle(ScatterPlotLayoutColumnChangedEvent args)
         {
             OnPropertyChanged(() => SelectedColumn);
-            OnPropertyChanged(() => Columns);
         }
     }
 }

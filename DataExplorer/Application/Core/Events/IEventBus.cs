@@ -8,6 +8,6 @@ namespace DataExplorer.Application.Core.Events
 {
     public interface IEventBus
     {
-        void Raise<T>(T args) where T : IAppEvent;
+        void Raise<T>(T args) where T : IEvent;
     }
 }

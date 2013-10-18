@@ -2,7 +2,7 @@
 
 namespace DataExplorer.Application.Application.Events
 {
-    public class ApplicationStateChangedEvent : IAppEvent
+    public class ApplicationStateChangedEvent : IEvent
     {
         public ApplicationStateChangedEvent()
         {

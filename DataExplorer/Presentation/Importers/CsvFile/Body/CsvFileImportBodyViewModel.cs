@@ -13,7 +13,7 @@ namespace DataExplorer.Presentation.Importers.CsvFile.Body
     public class CsvFileImportBodyViewModel : 
         BaseViewModel,
         ICsvFileImportBodyViewModel,
-        IAppHandler<CsvFileSourceChangedEvent>
+        IEventHandler<CsvFileSourceChangedEvent>
     {
         private readonly ICsvFileImportService _service;
 

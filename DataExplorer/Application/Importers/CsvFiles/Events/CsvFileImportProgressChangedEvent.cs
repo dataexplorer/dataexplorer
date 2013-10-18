@@ -2,7 +2,7 @@
 
 namespace DataExplorer.Application.Importers.CsvFiles.Events
 {
-    public class CsvFileImportProgressChangedEvent : IAppEvent
+    public class CsvFileImportProgressChangedEvent : IEvent
     {
         private readonly double _progress;
 

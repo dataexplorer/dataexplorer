@@ -19,7 +19,7 @@ namespace DataExplorer.Domain.ScatterPlots
             set
             {
                 _xAxisColumn = value;
-                DomainEvents.Raise(new ScatterPlotLayoutChangedEvent());
+                DomainEvents.Raise(new ScatterPlotLayoutColumnChangedEvent());
             }
         }
 
@@ -29,7 +29,7 @@ namespace DataExplorer.Domain.ScatterPlots
             set
             {
                 _yAxisColumn = value;
-                DomainEvents.Raise(new ScatterPlotLayoutChangedEvent());
+                DomainEvents.Raise(new ScatterPlotLayoutColumnChangedEvent());
             }
         }
 
@@ -38,7 +38,7 @@ namespace DataExplorer.Domain.ScatterPlots
             _xAxisColumn = null;
             _yAxisColumn = null;
 
-            DomainEvents.Raise(new ScatterPlotLayoutChangedEvent());
+            DomainEvents.Raise(new ScatterPlotLayoutColumnChangedEvent());
         }
     }
 }

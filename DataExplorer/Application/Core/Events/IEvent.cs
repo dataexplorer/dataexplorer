@@ -1,6 +1,6 @@
 ﻿namespace DataExplorer.Application.Core.Events
 {
-    public interface IAppEvent
+    public interface IEvent
     {
     }
 }
