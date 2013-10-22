@@ -5,13 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
-using DataExplorer.Presentation.Core.Geometry;
+using DataExplorer.Presentation.Core.Canvas.Items;
 
 namespace DataExplorer.Presentation.Core.Canvas
 {
     public interface ICanvasRenderer
     {
         Visual DrawBackground(double width, double height);
-        IEnumerable<Visual> DrawPlots(List<Circle> plots);
+
+        IEnumerable<Visual> DrawItems(List<ICanvasItem> plots);
     }
 }

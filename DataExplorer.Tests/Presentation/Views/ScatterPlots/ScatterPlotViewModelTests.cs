@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using DataExplorer.Application.ScatterPlots;
 using DataExplorer.Domain.ScatterPlots;
-using DataExplorer.Presentation.Core.Geometry;
+using DataExplorer.Presentation.Core.Canvas.Items;
 using DataExplorer.Presentation.Views.ScatterPlots;
 using Moq;
 using NUnit.Framework;
@@ -58,18 +58,17 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots
         }
 
         [Test]
-        public void TestGetPlotsShouldReturnPlotGeometry()
+        public void TestGetItemsShouldReturnItems()
         {
             var dto = new PlotDto() {X = 1d, Y = 2d};
             var dtos = new List<PlotDto>() {dto};
-            var circle = new Circle() {X = 1d, Y = 2d};
-            var circles = new List<Circle> {circle};
+            var circle = new CanvasCircle() {X = 1d, Y = 2d};
+            var circles = new List<CanvasCircle> {circle};
             _mockService.Setup(p => p.GetPlots()).Returns(dtos);
             _mockRenderer.Setup(p => p.RenderPlots(_controlSize, _viewExtent, dtos)).Returns(circles);
             _viewModel.ControlSize = _controlSize;
-            var results = _viewModel.Plots;
-            Assert.That(results.Single().X, Is.EqualTo(1d));
-            Assert.That(results.Single().Y, Is.EqualTo(2d));
+            var results = _viewModel.Items;
+            Assert.That(results.Single(), Is.EqualTo(circle));
         }
 
         [Test]

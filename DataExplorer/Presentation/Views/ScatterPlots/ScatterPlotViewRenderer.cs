@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 using DataExplorer.Application.ScatterPlots;
+using DataExplorer.Presentation.Core.Canvas.Items;
 using DataExplorer.Presentation.Core.Geometry;
 
 namespace DataExplorer.Presentation.Views.ScatterPlots
@@ -23,7 +24,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots
             _factory = factory;
         }
 
-        public List<Circle> RenderPlots(Size controlSize, Rect viewExtent, List<PlotDto> plots)
+        public List<CanvasCircle> RenderPlots(Size controlSize, Rect viewExtent, List<PlotDto> plots)
         {
             var resizedViewExtent = ResizeView(controlSize, viewExtent);
 
@@ -39,7 +40,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots
                 : controlSize.Height / viewExtent.Height;
         }
         
-        private Circle RenderPlot(Size controlSize, Rect viewExtent, double scale, PlotDto plot)
+        private CanvasCircle RenderPlot(Size controlSize, Rect viewExtent, double scale, PlotDto plot)
         {
             var extent = _calculator.CalculateExtent(controlSize, viewExtent, scale, new Point(plot.X, plot.Y));
 

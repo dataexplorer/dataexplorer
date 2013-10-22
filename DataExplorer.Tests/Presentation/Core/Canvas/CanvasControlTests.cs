@@ -5,7 +5,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using DataExplorer.Presentation.Core;
 using DataExplorer.Presentation.Core.Canvas;
-using DataExplorer.Presentation.Core.Geometry;
+using DataExplorer.Presentation.Core.Canvas.Items;
 using Moq;
 using NUnit.Framework;
 
@@ -51,9 +51,9 @@ namespace DataExplorer.Tests.Presentation.Core.Canvas
         [Test]
         public void TestSetPlotsShouldSetPlots()
         {
-            var plots = new List<Circle>();
-            _control.Plots = plots;
-            _mockPropertyService.Verify(p => p.SetValue(CanvasControl.PlotsProperty, plots));
+            var plots = new List<ICanvasItem>();
+            _control.Items = plots;
+            _mockPropertyService.Verify(p => p.SetValue(CanvasControl.ItemsProperty, plots));
         }
 
         [Test]
@@ -71,19 +71,19 @@ namespace DataExplorer.Tests.Presentation.Core.Canvas
         [Test]
         public void TestSetPlotsShouldRenderPlots()
         {
-            var plot = new Circle();
-            var plots = new List<Circle> { plot };
+            var plot = new CanvasCircle();
+            var plots = new List<ICanvasItem> { plot };
             var backgroundVisual = new FakeVisual();
             var plotVisual = new FakeVisual();
             var plotVisuals = new List<Visual> { plotVisual };
             var visuals = new List<Visual> { backgroundVisual, plotVisual };
-            var callback = CanvasControl.PlotsProperty.GetMetadata(_control).PropertyChangedCallback;
+            var callback = CanvasControl.ItemsProperty.GetMetadata(_control).PropertyChangedCallback;
             var callback2 = new Action(() => callback.Invoke(_control, new DependencyPropertyChangedEventArgs()));
-            _mockPropertyService.Setup(p => p.SetValue(CanvasControl.PlotsProperty, It.IsAny<object>())).Callback(callback2);
-            _mockPropertyService.Setup(p => p.GetValue(CanvasControl.PlotsProperty)).Returns(plots);
+            _mockPropertyService.Setup(p => p.SetValue(CanvasControl.ItemsProperty, It.IsAny<object>())).Callback(callback2);
+            _mockPropertyService.Setup(p => p.GetValue(CanvasControl.ItemsProperty)).Returns(plots);
             _mockRenderer.Setup(p => p.DrawBackground(0d, 0d)).Returns(backgroundVisual);
-            _mockRenderer.Setup(p => p.DrawPlots(plots)).Returns(plotVisuals);
-            _control.Plots = plots;
+            _mockRenderer.Setup(p => p.DrawItems(plots)).Returns(plotVisuals);
+            _control.Items = plots;
             _mockVisualService.Verify(p => p.Clear(), Times.Once());
             _mockVisualService.Verify(p => p.Add(visuals));
         }

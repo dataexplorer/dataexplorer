@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
-using DataExplorer.Presentation.Core;
 using DataExplorer.Presentation.Core.Canvas.Events;
-using DataExplorer.Presentation.Core.Canvas.Renderers;
-using DataExplorer.Presentation.Core.Geometry;
+using DataExplorer.Presentation.Core.Canvas.Items;
 
 namespace DataExplorer.Presentation.Core.Canvas
 {
@@ -29,11 +27,11 @@ namespace DataExplorer.Presentation.Core.Canvas
             typeof(CanvasControl),
             new PropertyMetadata());
 
-        public static readonly DependencyProperty PlotsProperty = DependencyProperty.Register(
-            "Plots",
-            typeof(List<Circle>),
+        public static readonly DependencyProperty ItemsProperty = DependencyProperty.Register(
+            "Items",
+            typeof(List<ICanvasItem>),
             typeof(CanvasControl),
-            new PropertyMetadata(new List<Circle>(), HandlePlotsChanged));
+            new PropertyMetadata(new List<ICanvasItem>(), HandleItemsChanged));
 
         private bool _isMouseDown;
         private Point _previousMousePosition;
@@ -44,17 +42,14 @@ namespace DataExplorer.Presentation.Core.Canvas
             set { _propertyService.SetValue(ControlSizeProperty, value); }
         }
 
-        public List<Circle> Plots
+        public List<ICanvasItem> Items
         {
-            set { _propertyService.SetValue(PlotsProperty, value); }
+            set { _propertyService.SetValue(ItemsProperty, value); }
         }
 
         public CanvasControl() : this(
             new DependencyPropertyService(),
-            new CanvasRenderer(
-                new CanvasBackgroundRenderer(), 
-                new CanvasPlotRenderer(
-                    new CanvasCirclePlotRenderer())),
+            new CanvasRenderer(),
             new VisualService())
         {
             // Default constructor necessary to declare control in XAML
@@ -75,7 +70,7 @@ namespace DataExplorer.Presentation.Core.Canvas
             _visualService.SetSource(this);
         }
 
-        private void DrawPlots()
+        private void Draw()
         {
             var visuals = new List<Visual>();
 
@@ -83,9 +78,9 @@ namespace DataExplorer.Presentation.Core.Canvas
 
             visuals.Add(backgroundVisual);
 
-            var plots = (List<Circle>) _propertyService.GetValue(PlotsProperty);
+            var plots = (List<ICanvasItem>) _propertyService.GetValue(ItemsProperty);
 
-            var plotVisuals = _renderer.DrawPlots(plots);
+            var plotVisuals = _renderer.DrawItems(plots);
 
             visuals.AddRange(plotVisuals);
 
@@ -105,9 +100,9 @@ namespace DataExplorer.Presentation.Core.Canvas
             return _visualService.GetVisual(index);
         }
 
-        private static void HandlePlotsChanged(DependencyObject source, DependencyPropertyChangedEventArgs e)
+        private static void HandleItemsChanged(DependencyObject source, DependencyPropertyChangedEventArgs e)
         {
-            ((CanvasControl) source).DrawPlots();
+            ((CanvasControl) source).Draw();
         }
 
         protected override void OnMouseDown(MouseButtonEventArgs e)

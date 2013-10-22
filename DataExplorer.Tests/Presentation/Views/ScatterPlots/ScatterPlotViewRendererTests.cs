@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using DataExplorer.Application.ScatterPlots;
+using DataExplorer.Presentation.Core.Canvas.Items;
 using DataExplorer.Presentation.Core.Geometry;
 using DataExplorer.Presentation.Views.ScatterPlots;
 using Moq;
@@ -66,7 +67,7 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots
             var viewExtent = new Rect();
             var plot = new PlotDto() { X = 1d, Y = 2d };
             var plots = new List<PlotDto> { plot };
-            var circle = new Circle();
+            var circle = new CanvasCircle();
             _mockFactory.Setup(p => p.CreateCircle(It.IsAny<Rect>())).Returns(circle);
             var results = _renderer.RenderPlots(controlSize, viewExtent, plots);
             Assert.That(results.Count, Is.EqualTo(1));

@@ -10,8 +10,7 @@ using DataExplorer.Application.ScatterPlots;
 using DataExplorer.Domain.Events;
 using DataExplorer.Domain.ScatterPlots;
 using DataExplorer.Presentation.Core;
-using DataExplorer.Presentation.Core.Commands;
-using DataExplorer.Presentation.Core.Geometry;
+using DataExplorer.Presentation.Core.Canvas.Items;
 
 namespace DataExplorer.Presentation.Views.ScatterPlots
 {
@@ -36,9 +35,9 @@ namespace DataExplorer.Presentation.Views.ScatterPlots
             set { SetControlSize(value); }
         }
 
-        public List<Circle> Plots
+        public List<ICanvasItem> Items
         {
-            get { return GetPlots(); }
+            get { return GetItems(); }
         }
         
         public ScatterPlotViewModel(
@@ -53,7 +52,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots
             _scaler = scaler;
         }
 
-        private List<Circle> GetPlots()
+        private List<ICanvasItem> GetItems()
         {
             var viewExtent = _service.GetViewExtent();
 
@@ -61,7 +60,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots
 
             var circles = _renderer.RenderPlots(_controlSize, viewExtent, plots);
 
-            return circles;
+            return circles.Cast<ICanvasItem>().ToList();
         }
 
         private void SetControlSize(Size controlSize)
@@ -104,7 +103,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots
 
         public void Handle(ScatterPlotChangedEvent args)
         {
-            OnPropertyChanged(() => Plots);
+            OnPropertyChanged(() => Items);
         }
     }
 }

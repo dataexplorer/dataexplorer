@@ -5,9 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using DataExplorer.Presentation.Core.Canvas;
-using DataExplorer.Presentation.Core.Canvas.Renderers;
-using DataExplorer.Presentation.Core.Geometry;
-using Moq;
+using DataExplorer.Presentation.Core.Canvas.Items;
 using NUnit.Framework;
 
 namespace DataExplorer.Tests.Presentation.Core.Canvas
@@ -16,42 +14,29 @@ namespace DataExplorer.Tests.Presentation.Core.Canvas
     public class CanvasRendererTests
     {
         private CanvasRenderer _canvasRenderer;
-        private Mock<ICanvasBackgroundRenderer> _mockBackgroundRenderer;
-        private Mock<ICanvasPlotRenderer> _mockPlotRenderer;
-        private List<Visual> _visuals;
-        private FakeVisual _visual;
-        private List<Circle> _plots;
-        private Circle _plot;
+        private List<ICanvasItem> _plots;
+        private CanvasCircle _plot;
 
         [SetUp]
         public void SetUp()
         {
-            _plot = new Circle();
-            _plots = new List<Circle> { _plot };
-            _visual = new FakeVisual();
-            _visuals = new List<Visual> { _visual };
-            _mockBackgroundRenderer = new Mock<ICanvasBackgroundRenderer>();
-            _mockPlotRenderer = new Mock<ICanvasPlotRenderer>();
-            _canvasRenderer = new CanvasRenderer(
-                _mockBackgroundRenderer.Object,
-                _mockPlotRenderer.Object);
+            _plot = new CanvasCircle();
+            _plots = new List<ICanvasItem> { _plot };
+            _canvasRenderer = new CanvasRenderer();
         }
 
         [Test]
         public void TestDrawBackgroundShouldDrawBackground()
         {
-            _visual = new FakeVisual();
-            _mockBackgroundRenderer.Setup(p => p.DrawBackground(1d, 2d)).Returns(_visual);
             var result = _canvasRenderer.DrawBackground(1d, 2d);
-            Assert.That(result, Is.EqualTo(_visual));
+            Assert.That(result, Is.TypeOf<DrawingVisual>());
         }
 
         [Test]
         public void TestDrawPlotsShouldDrawPlots()
         {
-            _mockPlotRenderer.Setup(p => p.DrawPlots(_plots)).Returns(_visuals);
-            var results = _canvasRenderer.DrawPlots(_plots);
-            Assert.That(results, Is.EqualTo(_visuals));
+            var results = _canvasRenderer.DrawItems(_plots);
+            Assert.That(results.Single(), Is.TypeOf<DrawingVisual>());
         }
     }
 }
