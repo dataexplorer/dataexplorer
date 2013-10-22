@@ -3,8 +3,6 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 using DataExplorer.Presentation.Core.Canvas.Items;
-using DataExplorer.Presentation.Core.Canvas.Renderers;
-using DataExplorer.Presentation.Core.Geometry;
 
 namespace DataExplorer.Presentation.Core.Canvas
 {
