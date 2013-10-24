@@ -11,6 +11,7 @@ using DataExplorer.Domain.Events;
 using DataExplorer.Domain.ScatterPlots;
 using DataExplorer.Presentation.Core;
 using DataExplorer.Presentation.Core.Canvas.Items;
+using DataExplorer.Presentation.Views.ScatterPlots.Renderers;
 
 namespace DataExplorer.Presentation.Views.ScatterPlots
 {
@@ -21,7 +22,9 @@ namespace DataExplorer.Presentation.Views.ScatterPlots
     {
         private readonly IScatterPlotContextMenuViewModel _contextMenuViewModel;
         private readonly IScatterPlotService _service;
+        private readonly IScatterPlotLayoutService _layoutService;
         private readonly IScatterPlotViewRenderer _renderer;
+        private readonly IViewResizer _resizer;
         private readonly IScatterPlotViewScaler _scaler;
         private Size _controlSize;
 
@@ -37,30 +40,53 @@ namespace DataExplorer.Presentation.Views.ScatterPlots
 
         public List<ICanvasItem> Items
         {
-            get { return GetItems(); }
+            get { return GetItems().ToList(); }
         }
         
         public ScatterPlotViewModel(
             IScatterPlotContextMenuViewModel contextMenuViewModel,
-            IScatterPlotService service, 
+            IScatterPlotService service,
+            IScatterPlotLayoutService layoutService,
             IScatterPlotViewRenderer renderer, 
+            IViewResizer resizer,
             IScatterPlotViewScaler scaler)
         {
             _contextMenuViewModel = contextMenuViewModel;
             _service = service;
+            _layoutService = layoutService;
             _renderer = renderer;
             _scaler = scaler;
+            _resizer = resizer;
         }
 
-        private List<ICanvasItem> GetItems()
+        private IEnumerable<ICanvasItem> GetItems()
         {
             var viewExtent = _service.GetViewExtent();
 
             var plots = _service.GetPlots();
 
-            var circles = _renderer.RenderPlots(_controlSize, viewExtent, plots);
+            var canvasPlots = _renderer.RenderPlots(_controlSize, viewExtent, plots);
 
-            return circles.Cast<ICanvasItem>().ToList();
+            foreach (var canvasPlot in canvasPlots)
+                yield return canvasPlot;
+
+            var xAxisColumn = _layoutService.GetXColumn();
+
+            var xAxisLabelName = xAxisColumn != null
+                ? xAxisColumn.Name
+                : string.Empty;
+
+            yield return _renderer.RenderXAxisLabel(_controlSize, xAxisLabelName);
+
+            var yAxisColumn = _layoutService.GetYColumn();
+
+            var yAxisLabelName = yAxisColumn != null
+                ? yAxisColumn.Name
+                : string.Empty;
+
+            yield return _renderer.RenderYAxisLabel(_controlSize, yAxisLabelName);
+
+
         }
 
         private void SetControlSize(Size controlSize)
@@ -69,7 +95,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots
 
             var viewExtent = _service.GetViewExtent();
 
-            var newViewExtent = _renderer.ResizeView(controlSize, viewExtent);
+            var newViewExtent = _resizer.ResizeView(controlSize, viewExtent);
 
             _service.SetViewExtent(newViewExtent);
         }

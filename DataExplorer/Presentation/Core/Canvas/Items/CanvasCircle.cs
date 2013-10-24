@@ -15,10 +15,13 @@ namespace DataExplorer.Presentation.Core.Canvas.Items
         {
             var visual = new DrawingVisual();
             
+            // TODO: Move default brush and pen to static fiels and intialize / freeze in static constructer
             var brush = new SolidColorBrush(Colors.LightBlue);
+            brush.Freeze();
 
             var pen = new Pen(Brushes.Black, 1);
-            
+            pen.Freeze();
+
             using (var context = visual.RenderOpen())
             {
                 context.DrawEllipse(brush, pen, new Point(this.X, this.Y), this.Radius, this.Radius);

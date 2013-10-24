@@ -4,68 +4,41 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Media;
 using DataExplorer.Application.ScatterPlots;
 using DataExplorer.Presentation.Core.Canvas.Items;
-using DataExplorer.Presentation.Core.Geometry;
+using DataExplorer.Presentation.Views.ScatterPlots.Renderers;
 
 namespace DataExplorer.Presentation.Views.ScatterPlots
 {
     public class ScatterPlotViewRenderer : IScatterPlotViewRenderer
     {
-        private readonly IGeometryCalculator _calculator;
-        private readonly IGeometryFactory _factory;
+        private readonly IScatterPlotPlotRenderer _plotRenderer;
+        private readonly IScatterPlotXAxisLabelRenderer _xAxisLabelRenderer;
+        private readonly IScatterPlotYAxisLabelRenderer _yAxisLabelRenderer;
 
         public ScatterPlotViewRenderer(
-            IGeometryCalculator calculator,
-            IGeometryFactory factory)
+            IScatterPlotPlotRenderer plotRenderer,
+            IScatterPlotXAxisLabelRenderer xAxisLabelRenderer, 
+            IScatterPlotYAxisLabelRenderer yAxisLabelRenderer)
         {
-            _calculator = calculator;
-            _factory = factory;
+            _plotRenderer = plotRenderer;
+            _xAxisLabelRenderer = xAxisLabelRenderer;
+            _yAxisLabelRenderer = yAxisLabelRenderer;
         }
 
         public List<CanvasCircle> RenderPlots(Size controlSize, Rect viewExtent, List<PlotDto> plots)
         {
-            var resizedViewExtent = ResizeView(controlSize, viewExtent);
-
-            var scale = ComputeScale(controlSize, resizedViewExtent);
-
-            return plots.Select(p => RenderPlot(controlSize, resizedViewExtent, scale, p)).ToList();
+            return _plotRenderer.RenderPlots(controlSize, viewExtent, plots);
         }
 
-        public double ComputeScale(Size controlSize, Rect viewExtent)
+        public CanvasXAxisLabel RenderXAxisLabel(Size controlSize, string labelText)
         {
-            return (controlSize.Width > controlSize.Height)
-                ? controlSize.Width / viewExtent.Width
-                : controlSize.Height / viewExtent.Height;
-        }
-        
-        private CanvasCircle RenderPlot(Size controlSize, Rect viewExtent, double scale, PlotDto plot)
-        {
-            var extent = _calculator.CalculateExtent(controlSize, viewExtent, scale, new Point(plot.X, plot.Y));
-
-            var circle = _factory.CreateCircle(extent);
-
-            return circle;
+            return _xAxisLabelRenderer.Render(controlSize, labelText);
         }
 
-        public Rect ResizeView(Size controlSize, Rect viewExtent)
+        public CanvasYAxisLabel RenderYAxisLabel(Size controlSize, string labelText)
         {
-            var aspectRatio = controlSize.Width / controlSize.Height;
-
-            var width = (aspectRatio > 1)
-                ? viewExtent.Height * aspectRatio
-                : viewExtent.Width;
-
-            var height = (aspectRatio < 1)
-                ? viewExtent.Width * (1 / aspectRatio)
-                : viewExtent.Height;
-
-            var left = viewExtent.Left - (width - viewExtent.Width) / 2;
-
-            var top = viewExtent.Top - (height - viewExtent.Height) / 2;
-
-            return new Rect(left, top, width, height);
+            return _yAxisLabelRenderer.Render(controlSize, labelText);
         }
     }
 }

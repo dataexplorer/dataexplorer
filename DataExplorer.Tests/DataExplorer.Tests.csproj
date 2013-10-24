@@ -45,6 +45,7 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -146,7 +147,8 @@
     <Compile Include="Presentation\Core\Canvas\CanvasRendererTests.cs" />
     <Compile Include="Presentation\Core\Canvas\Items\CanvasBackgroundTests.cs" />
     <Compile Include="Presentation\Core\Canvas\Items\CanvasCircleTests.cs" />
-    <Compile Include="Presentation\Core\Canvas\Items\CanvasLabelTests.cs" />
+    <Compile Include="Presentation\Core\Canvas\Items\CanvasXAxisLabelTests.cs" />
+    <Compile Include="Presentation\Core\Canvas\Items\CanvasYAxisLabelTests.cs" />
     <Compile Include="Presentation\Core\FriendlyDataTypeNameConverterTests.cs" />
     <Compile Include="Presentation\Dialogs\DialogServiceTests.cs" />
     <Compile Include="Application\Projects\ProjectServiceTests.cs" />
@@ -197,7 +199,12 @@
     <Compile Include="Presentation\Views\ScatterPlots\Layouts\ScatterPlotLayoutViewModelTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Layouts\XAxisLayoutViewModelTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Layouts\YAxisLayoutViewModelTests.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\Renderers\ScatterPlotYAxisLabelRendererTests.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\Renderers\ScatterPlotPlotRendererTests.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\Renderers\ScatterPlotXAxisLabelRendererTests.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\Renderers\ViewResizerTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Scalers\PointScalerTests.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\Scalers\ScaleComputerTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Scalers\VectorScalerTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\ScatterPlotContextMenuViewModelTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\ScatterPlotViewRendererTests.cs" />
@@ -214,7 +221,6 @@
     <Folder Include="Application\Dialogs\" />
     <Folder Include="Common\" />
     <Folder Include="Presentation\Core\Canvas\Events\" />
-    <Folder Include="Presentation\Views\ScatterPlots\Renderers\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataExplorer\DataExplorer.csproj">

@@ -5,14 +5,14 @@ using NUnit.Framework;
 namespace DataExplorer.Tests.Presentation.Core.Canvas.Items
 {
     [TestFixture]
-    public class CanvasLabelTests
+    public class CanvasYAxisLabelTests
     {
-        private CanvasLabel _label;
+        private CanvasYAxisLabel _label;
 
         [SetUp]
         public void SetUp()
         {
-            _label = new CanvasLabel();
+            _label = new CanvasYAxisLabel();
             _label.X = 0;
             _label.Y = 0;
             _label.Text = "Test";
@@ -51,6 +51,15 @@ namespace DataExplorer.Tests.Presentation.Core.Canvas.Items
             var glyphRun = (GlyphRunDrawing) drawing.Children[0];
             var brush = (SolidColorBrush )glyphRun.ForegroundBrush;
             Assert.That(brush.Color, Is.EqualTo(Colors.Black));
+        }
+
+        [Test]
+        public void TestDrawLabelShouldDrawTextAtNegative90DegreeAngle()
+        {
+            var result = _label.Draw();
+            var visual = (DrawingVisual) result;
+            var transform = (RotateTransform) visual.Transform;
+            Assert.That(transform.Angle, Is.EqualTo(-90));
         }
     }
 }
