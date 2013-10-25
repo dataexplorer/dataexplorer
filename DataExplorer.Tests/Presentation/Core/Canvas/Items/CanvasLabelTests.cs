@@ -5,14 +5,14 @@ using NUnit.Framework;
 namespace DataExplorer.Tests.Presentation.Core.Canvas.Items
 {
     [TestFixture]
-    public class CanvasYAxisLabelTests
+    public class CanvasLabelTests
     {
-        private CanvasYAxisLabel _label;
+        private CanvasLabel _label;
 
         [SetUp]
         public void SetUp()
         {
-            _label = new CanvasYAxisLabel();
+            _label = new CanvasLabel();
             _label.X = 0;
             _label.Y = 0;
             _label.Text = "Test";
@@ -49,13 +49,25 @@ namespace DataExplorer.Tests.Presentation.Core.Canvas.Items
             var visual = (DrawingVisual) result;
             var drawing = (DrawingGroup) visual.Drawing.Children[0];
             var glyphRun = (GlyphRunDrawing) drawing.Children[0];
-            var brush = (SolidColorBrush )glyphRun.ForegroundBrush;
+            var brush = (SolidColorBrush) glyphRun.ForegroundBrush;
             Assert.That(brush.Color, Is.EqualTo(Colors.Black));
         }
 
+        // TODO: Test X and Y positions with and without rotation
+
         [Test]
-        public void TestDrawLabelShouldDrawTextAtNegative90DegreeAngle()
+        public void TestDrawLabelShouldNotApplyRotateTranformIfNotRotated()
         {
+            _label.IsRotated = false;
+            var result = _label.Draw();
+            var visual = (DrawingVisual) result;
+            Assert.That(visual.Transform, Is.Null);
+        }
+
+        [Test]
+        public void TestDrawLabelShouldApplyRotateTransformIfRotated()
+        {
+            _label.IsRotated = true;
             var result = _label.Draw();
             var visual = (DrawingVisual) result;
             var transform = (RotateTransform) visual.Transform;

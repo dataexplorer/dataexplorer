@@ -8,11 +8,11 @@ using DataExplorer.Presentation.Core.Canvas.Items;
 
 namespace DataExplorer.Presentation.Views.ScatterPlots.Renderers
 {
-    public class ScatterPlotXAxisLabelRenderer : IScatterPlotXAxisLabelRenderer
+    public class ScatterPlotXAxisTitleRenderer : IScatterPlotXAxisTitleRenderer
     {
-        public CanvasXAxisLabel Render(Size controlSize, string text)
+        public CanvasLabel Render(Size controlSize, string text)
         {
-            var label = new CanvasXAxisLabel();
+            var label = new CanvasLabel();
             
             label.X = controlSize.Width / 2;
 

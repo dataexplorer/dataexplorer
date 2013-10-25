@@ -13,7 +13,7 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.Renderers
     [TestFixture]
     public class ScatterPlotXAxisLabelRendererTests
     {
-        private ScatterPlotXAxisLabelRenderer _renderer;
+        private ScatterPlotXAxisTitleRenderer _renderer;
         private Size _controlSize;
 
         [SetUp]
@@ -21,14 +21,14 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.Renderers
         {
             _controlSize = new Size(100d, 100d);
 
-            _renderer = new ScatterPlotXAxisLabelRenderer();
+            _renderer = new ScatterPlotXAxisTitleRenderer();
         }
 
         [Test]
         public void TestRenderReturnsLabel()
         {
             var result = _renderer.Render(_controlSize, "Test");
-            Assert.That(result, Is.TypeOf<CanvasXAxisLabel>());
+            Assert.That(result, Is.TypeOf<CanvasLabel>());
         }
 
         [Test]

@@ -3,8 +3,8 @@ using DataExplorer.Presentation.Core.Canvas.Items;
 
 namespace DataExplorer.Presentation.Views.ScatterPlots.Renderers
 {
-    public interface IScatterPlotXAxisLabelRenderer
+    public interface IScatterPlotXAxisTitleRenderer
     {
-        CanvasXAxisLabel Render(Size controlSize, string text);
+        CanvasLabel Render(Size controlSize, string text);
     }
 }

@@ -8,17 +8,19 @@ using DataExplorer.Presentation.Core.Canvas.Items;
 
 namespace DataExplorer.Presentation.Views.ScatterPlots.Renderers
 {
-    public class ScatterPlotYAxisLabelRenderer : IScatterPlotYAxisLabelRenderer
+    public class ScatterPlotYAxisTitleRenderer : IScatterPlotYAxisTitleRenderer
     {
-        public CanvasYAxisLabel Render(Size controlSize, string text)
+        public CanvasLabel Render(Size controlSize, string text)
         {
-            var label = new CanvasYAxisLabel();
+            var label = new CanvasLabel();
             
             label.X = 10;
 
             label.Y = controlSize.Height / 2;
 
             label.Text = text;
+
+            label.IsRotated = true;
 
             return label;
         }

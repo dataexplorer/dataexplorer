@@ -11,6 +11,7 @@ using DataExplorer.Domain.Events;
 using DataExplorer.Domain.ScatterPlots;
 using DataExplorer.Presentation.Core;
 using DataExplorer.Presentation.Core.Canvas.Items;
+using DataExplorer.Presentation.Views.ScatterPlots.Queries;
 using DataExplorer.Presentation.Views.ScatterPlots.Renderers;
 
 namespace DataExplorer.Presentation.Views.ScatterPlots
@@ -21,9 +22,8 @@ namespace DataExplorer.Presentation.Views.ScatterPlots
         IDomainHandler<ScatterPlotChangedEvent>
     {
         private readonly IScatterPlotContextMenuViewModel _contextMenuViewModel;
+        private readonly IGetScatterPlotItemsQuery _getItemsQuery;
         private readonly IScatterPlotService _service;
-        private readonly IScatterPlotLayoutService _layoutService;
-        private readonly IScatterPlotViewRenderer _renderer;
         private readonly IViewResizer _resizer;
         private readonly IScatterPlotViewScaler _scaler;
         private Size _controlSize;
@@ -45,48 +45,21 @@ namespace DataExplorer.Presentation.Views.ScatterPlots
         
         public ScatterPlotViewModel(
             IScatterPlotContextMenuViewModel contextMenuViewModel,
+            IGetScatterPlotItemsQuery getItemsQuery,
             IScatterPlotService service,
-            IScatterPlotLayoutService layoutService,
-            IScatterPlotViewRenderer renderer, 
             IViewResizer resizer,
             IScatterPlotViewScaler scaler)
         {
             _contextMenuViewModel = contextMenuViewModel;
+            _getItemsQuery = getItemsQuery;
             _service = service;
-            _layoutService = layoutService;
-            _renderer = renderer;
             _scaler = scaler;
             _resizer = resizer;
         }
 
         private IEnumerable<ICanvasItem> GetItems()
         {
-            var viewExtent = _service.GetViewExtent();
-
-            var plots = _service.GetPlots();
-
-            var canvasPlots = _renderer.RenderPlots(_controlSize, viewExtent, plots);
-
-            foreach (var canvasPlot in canvasPlots)
-                yield return canvasPlot;
-
-            var xAxisColumn = _layoutService.GetXColumn();
-
-            var xAxisLabelName = xAxisColumn != null
-                ? xAxisColumn.Name
-                : string.Empty;
-
-            yield return _renderer.RenderXAxisLabel(_controlSize, xAxisLabelName);
-
-            var yAxisColumn = _layoutService.GetYColumn();
-
-            var yAxisLabelName = yAxisColumn != null
-                ? yAxisColumn.Name
-                : string.Empty;
-
-            yield return _renderer.RenderYAxisLabel(_controlSize, yAxisLabelName);
-
-
+            return _getItemsQuery.Execute(_controlSize);
         }
 
         private void SetControlSize(Size controlSize)

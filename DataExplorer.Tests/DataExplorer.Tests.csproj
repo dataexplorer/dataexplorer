@@ -147,8 +147,8 @@
     <Compile Include="Presentation\Core\Canvas\CanvasRendererTests.cs" />
     <Compile Include="Presentation\Core\Canvas\Items\CanvasBackgroundTests.cs" />
     <Compile Include="Presentation\Core\Canvas\Items\CanvasCircleTests.cs" />
-    <Compile Include="Presentation\Core\Canvas\Items\CanvasXAxisLabelTests.cs" />
-    <Compile Include="Presentation\Core\Canvas\Items\CanvasYAxisLabelTests.cs" />
+    <Compile Include="Presentation\Core\Canvas\Items\CanvasLabelTests.cs" />
+    <Compile Include="Presentation\Core\Canvas\Items\CanvasLineTests.cs" />
     <Compile Include="Presentation\Core\FriendlyDataTypeNameConverterTests.cs" />
     <Compile Include="Presentation\Dialogs\DialogServiceTests.cs" />
     <Compile Include="Application\Projects\ProjectServiceTests.cs" />
@@ -199,6 +199,10 @@
     <Compile Include="Presentation\Views\ScatterPlots\Layouts\ScatterPlotLayoutViewModelTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Layouts\XAxisLayoutViewModelTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Layouts\YAxisLayoutViewModelTests.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\Queries\GetScatterPlotItemsQueryTests.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\Queries\GetScatterPlotPlotsQueryTests.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\Queries\GetScatterPlotXAxisTitleQueryTests.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\Queries\GetScatterPlotYAxisTitleQueryTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Renderers\ScatterPlotYAxisLabelRendererTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Renderers\ScatterPlotPlotRendererTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Renderers\ScatterPlotXAxisLabelRendererTests.cs" />
@@ -207,7 +211,6 @@
     <Compile Include="Presentation\Views\ScatterPlots\Scalers\ScaleComputerTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Scalers\VectorScalerTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\ScatterPlotContextMenuViewModelTests.cs" />
-    <Compile Include="Presentation\Views\ScatterPlots\ScatterPlotViewRendererTests.cs" />
     <Compile Include="Presentation\Core\Canvas\CanvasControlTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\ScatterPlotViewModelTests.cs" />
     <Compile Include="Presentation\Core\DelegateCommandTests.cs" />

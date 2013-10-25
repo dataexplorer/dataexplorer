@@ -9,6 +9,7 @@ using DataExplorer.Application.ScatterPlots;
 using DataExplorer.Domain.ScatterPlots;
 using DataExplorer.Presentation.Core.Canvas.Items;
 using DataExplorer.Presentation.Views.ScatterPlots;
+using DataExplorer.Presentation.Views.ScatterPlots.Queries;
 using DataExplorer.Presentation.Views.ScatterPlots.Renderers;
 using Moq;
 using NUnit.Framework;
@@ -20,39 +21,39 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots
     {
         private ScatterPlotViewModel _viewModel;
         private Mock<IScatterPlotContextMenuViewModel> _mockContextMenuViewModel;
+        private Mock<IGetScatterPlotItemsQuery> _mockGetItemsQuery;
         private Mock<IScatterPlotService> _mockService;
-        private Mock<IScatterPlotLayoutService> _mockLayoutService;
-        private Mock<IScatterPlotViewRenderer> _mockRenderer;
         private Mock<IViewResizer> _mockResizer;
         private Mock<IScatterPlotViewScaler> _mockScaler;
         private Size _controlSize;
         private Rect _viewExtent;
+        private List<ICanvasItem> _items;
+        private ICanvasItem _item;
 
         [SetUp]
         public void SetUp()
         {
             _controlSize = new Size(100, 100);
             _viewExtent = new Rect(0, 0, 1, 1);
-            
+            _item = new CanvasCircle();
+            _items = new List<ICanvasItem> { _item };
+
             _mockContextMenuViewModel = new Mock<IScatterPlotContextMenuViewModel>();
             
+            _mockGetItemsQuery = new Mock<IGetScatterPlotItemsQuery>();
+            _mockGetItemsQuery.Setup(p => p.Execute(It.IsAny<Size>())).Returns(_items);
+
             _mockService = new Mock<IScatterPlotService>();
             _mockService.Setup(p => p.GetViewExtent()).Returns(_viewExtent);
 
-            _mockLayoutService = new Mock<IScatterPlotLayoutService>();
-            _mockLayoutService.Setup(p => p.GetXColumn()).Returns(new ColumnDto());
-
-            _mockRenderer = new Mock<IScatterPlotViewRenderer>();
-            
             _mockResizer = new Mock<IViewResizer>();
 
             _mockScaler = new Mock<IScatterPlotViewScaler>();
             
             _viewModel = new ScatterPlotViewModel(
                 _mockContextMenuViewModel.Object,
+                _mockGetItemsQuery.Object,
                 _mockService.Object, 
-                _mockLayoutService.Object,
-                _mockRenderer.Object,
                 _mockResizer.Object,
                 _mockScaler.Object);
         }
@@ -71,15 +72,8 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots
         [Test]
         public void TestGetItemsShouldReturnItems()
         {
-            var dto = new PlotDto() {X = 1d, Y = 2d};
-            var dtos = new List<PlotDto>() {dto};
-            var circle = new CanvasCircle() {X = 1d, Y = 2d};
-            var circles = new List<CanvasCircle> {circle};
-            _mockService.Setup(p => p.GetPlots()).Returns(dtos);
-            _mockRenderer.Setup(p => p.RenderPlots(_controlSize, _viewExtent, dtos)).Returns(circles);
-            _viewModel.ControlSize = _controlSize;
             var results = _viewModel.Items;
-            Assert.That(results.Count(), Is.GreaterThan(0));
+            Assert.That(results.Single(), Is.EqualTo(_item));
         }
 
         [Test]
