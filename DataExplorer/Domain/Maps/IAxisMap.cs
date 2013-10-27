@@ -9,5 +9,7 @@ namespace DataExplorer.Domain.Maps
     public interface IAxisMap
     {
         double? Map(object value);
+
+        object MapInverse(double? value);
     }
 }

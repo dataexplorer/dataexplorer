@@ -22,7 +22,7 @@ namespace DataExplorer.Domain.Maps.AxisMaps
             _targetMin = targetMin;
             _targetMax = targetMax;
 
-            _sourceWidth = sourceMax - sourceMin;
+            _sourceWidth = (double) sourceMax - (double) sourceMin;
             _targetWidth = targetMax - targetMin;
         }
 
@@ -32,8 +32,28 @@ namespace DataExplorer.Domain.Maps.AxisMaps
                 return null;
 
             var width = (int) value - _sourceMin;
+
             var ratio = width / _sourceWidth;
+            
             return _targetMin + (ratio * _targetWidth);
+        }
+
+        public object MapInverse(double? value)
+        {
+            if (!value.HasValue)
+                return null;
+
+            var ratio = (double) value / _targetWidth;
+
+            var result = _sourceMin + (_sourceWidth * ratio);
+
+            if (result < int.MinValue)
+                return int.MinValue;
+
+            if (result > int.MaxValue)
+                return int.MaxValue;
+
+            return (int) result;
         }
     }
 }

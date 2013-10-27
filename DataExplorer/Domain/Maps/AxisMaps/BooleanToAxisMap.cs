@@ -26,5 +26,14 @@ namespace DataExplorer.Domain.Maps.AxisMaps
                 ? _targetMax 
                 : _targetMin;
         }
+
+        public object MapInverse(double? value)
+        {
+            if (!value.HasValue)
+                return null;
+
+            return value != _targetMin;
+
+        }
     }
 }

@@ -9,5 +9,10 @@ namespace DataExplorer.Tests.Application.Maps
         {
             return (double?) value;
         }
+
+        public object MapInverse(double? value)
+        {
+            return value;
+        }
     }
 }

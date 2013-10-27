@@ -8,7 +8,10 @@ namespace DataExplorer.Domain.Maps.AxisMaps
 {
     public class FloatToAxisMap : IAxisMap
     {
-        private const double ScaleFactor = 0.5;
+        // NOTE: Must half all incoming values to avoid overflow
+        // NOTE: since width from min to max is greater than 0 to max
+        private const double ScaleFactor = 0.5d;
+        private const double InverseScaleFactor = 2d;
 
         private readonly double _sourceMin;
         private readonly double _sourceMax;
@@ -34,8 +37,28 @@ namespace DataExplorer.Domain.Maps.AxisMaps
                 return null;
 
             var width = (double) value * ScaleFactor - _sourceMin * ScaleFactor;
+
             var ratio = width / _sourceWidth;
+            
             return _targetMin + (ratio * _targetWidth);
+        }
+
+        public object MapInverse(double? value)
+        {
+            if (!value.HasValue)
+                return null;
+
+            var ratio = (double) value / _targetWidth;
+
+            var result = _sourceMin + (_sourceWidth * InverseScaleFactor * ratio);
+
+            if (double.IsNegativeInfinity(result))
+                return double.MinValue;
+
+            if (double.IsPositiveInfinity(result))
+                return double.MaxValue;
+
+            return result;
         }
     }
 }

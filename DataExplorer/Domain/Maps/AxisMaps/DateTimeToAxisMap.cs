@@ -32,8 +32,28 @@ namespace DataExplorer.Domain.Maps.AxisMaps
                 return null;
 
             var width = ((DateTime) value).Ticks - _sourceMin;
+
             var ratio = width / _sourceWidth;
+            
             return _targetMin + (ratio * _targetWidth);
+        }
+
+        public object MapInverse(double? value)
+        {
+            if (!value.HasValue)
+                return null;
+
+            var ratio = value / _targetWidth;
+
+            var result = _sourceMin + (_sourceWidth * ratio);
+
+            if (result < DateTime.MinValue.Ticks)
+                return DateTime.MinValue;
+
+            if (result >= DateTime.MaxValue.Ticks)
+                return DateTime.MaxValue;
+
+            return new DateTime((long) result);
         }
     }
 }

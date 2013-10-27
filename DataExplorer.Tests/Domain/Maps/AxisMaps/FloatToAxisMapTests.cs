@@ -14,15 +14,45 @@ namespace DataExplorer.Tests.Domain.Maps.AxisMaps
     {
         [Test]
         [TestCase(null, null)]
-        [TestCase(0d, 0d)]
-        [TestCase(2.5d, 25d)]
-        [TestCase(5.0d, 50d)]
-        [TestCase(7.5d, 75d)]
-        [TestCase(10d, 100d)]
-        public void TestPositiveMapScenarios(double? value, double? expected)
+        [TestCase(-10d, 0d)]
+        [TestCase(-5d, 0.25d)]
+        [TestCase(0d, 0.5d)]
+        [TestCase(5d, 0.75d)]
+        [TestCase(10d, 1.0d)]
+        public void TestMapShouldReturnCorrectValues(double? value, double? expected)
         {
-            var map = new FloatToAxisMap(0d, 10d, 0d, 100d);
+            var map = new FloatToAxisMap(-10d, 10d, 0d, 1d);
             var result = map.Map(value);
+            Assert.That(result, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void TestMapInverseWithLessThanMinValue()
+        {
+            var map = new FloatToAxisMap(double.MinValue, double.MaxValue, 0d, 1d);
+            var result = map.MapInverse(-0.1d);
+            Assert.That(result, Is.EqualTo(double.MinValue));
+        }
+
+        [Test]
+        public void TestMapInverseWithGreaterThanMaxValue()
+        {
+            var map = new FloatToAxisMap(double.MinValue, double.MaxValue, 0d, 1d);
+            var result = map.MapInverse(1.1d);
+            Assert.That(result, Is.EqualTo(double.MaxValue));
+        }
+
+        [Test]
+        [TestCase(null, null)]
+        [TestCase(0.00d, -10d)]
+        [TestCase(0.25d, -5d)]
+        [TestCase(0.50d, 0d)]
+        [TestCase(0.75d, 5d)]
+        [TestCase(1.00d, 10.0d)]
+        public void TestMapInverseWithPositiveValues(double? value, double? expected)
+        {
+            var map = new FloatToAxisMap(-10d, 10d, 0d, 1d);
+            var result = map.MapInverse(value);
             Assert.That(result, Is.EqualTo(expected));
         }
     }
