@@ -11,8 +11,9 @@ using DataExplorer.Domain.Events;
 using DataExplorer.Domain.ScatterPlots;
 using DataExplorer.Presentation.Core;
 using DataExplorer.Presentation.Core.Canvas.Items;
+using DataExplorer.Presentation.Views.ScatterPlots.Commands;
 using DataExplorer.Presentation.Views.ScatterPlots.Queries;
-using DataExplorer.Presentation.Views.ScatterPlots.Renderers;
+using DataExplorer.Presentation.Views.ScatterPlots.Scalers;
 
 namespace DataExplorer.Presentation.Views.ScatterPlots
 {
@@ -23,9 +24,10 @@ namespace DataExplorer.Presentation.Views.ScatterPlots
     {
         private readonly IScatterPlotContextMenuViewModel _contextMenuViewModel;
         private readonly IGetScatterPlotItemsQuery _getItemsQuery;
-        private readonly IScatterPlotService _service;
-        private readonly IViewResizer _resizer;
-        private readonly IScatterPlotViewScaler _scaler;
+        private readonly IResizeScatterPlotViewExtentCommand _resizeCommand;
+        private readonly IZoomInScatterPlotCommand _zoomInCommand;
+        private readonly IZoomOutScatterPlotCommand _zoomOutCommand;
+        private readonly IPanScatterPlotCommand _panCommand;
         private Size _controlSize;
 
         public IScatterPlotContextMenuViewModel ContextMenuViewModel
@@ -35,7 +37,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots
 
         public Size ControlSize
         {
-            set { SetControlSize(value); }
+            set { HandleControlSizeChanged(value); }
         }
 
         public List<ICanvasItem> Items
@@ -46,15 +48,17 @@ namespace DataExplorer.Presentation.Views.ScatterPlots
         public ScatterPlotViewModel(
             IScatterPlotContextMenuViewModel contextMenuViewModel,
             IGetScatterPlotItemsQuery getItemsQuery,
-            IScatterPlotService service,
-            IViewResizer resizer,
-            IScatterPlotViewScaler scaler)
+            IResizeScatterPlotViewExtentCommand resizeCommand,
+            IZoomInScatterPlotCommand zoomInCommand,
+            IZoomOutScatterPlotCommand zoomOutCommand,
+            IPanScatterPlotCommand panCommand)
         {
             _contextMenuViewModel = contextMenuViewModel;
             _getItemsQuery = getItemsQuery;
-            _service = service;
-            _scaler = scaler;
-            _resizer = resizer;
+            _resizeCommand = resizeCommand;
+            _zoomInCommand = zoomInCommand;
+            _zoomOutCommand = zoomOutCommand;
+            _panCommand = panCommand;
         }
 
         private IEnumerable<ICanvasItem> GetItems()
@@ -62,42 +66,26 @@ namespace DataExplorer.Presentation.Views.ScatterPlots
             return _getItemsQuery.Execute(_controlSize);
         }
 
-        private void SetControlSize(Size controlSize)
+        private void HandleControlSizeChanged(Size controlSize)
         {
             _controlSize = controlSize;
 
-            var viewExtent = _service.GetViewExtent();
-
-            var newViewExtent = _resizer.ResizeView(controlSize, viewExtent);
-
-            _service.SetViewExtent(newViewExtent);
+            _resizeCommand.Execute(_controlSize);
         }
 
         public void HandleZoomIn(Point center)
         {
-            var viewExtent = _service.GetViewExtent();
-
-            var scaledCenter = _scaler.ScalePoint(center, _controlSize, viewExtent);
-
-            _service.ZoomIn(scaledCenter);
+            _zoomInCommand.Execute(center, _controlSize);
         }
 
         public void HandleZoomOut(Point center)
         {
-            var viewExtent = _service.GetViewExtent();
-
-            var scaledCenter = _scaler.ScalePoint(center, _controlSize, viewExtent);
-
-            _service.ZoomOut(scaledCenter);
+            _zoomOutCommand.Execute(center, _controlSize);
         }
 
         public void HandlePan(Vector vector)
         {
-            var viewExtent = _service.GetViewExtent();
-
-            var scaledVector = _scaler.ScaleVector(vector, _controlSize, viewExtent);
-
-            _service.Pan(scaledVector);
+            _panCommand.Execute(vector, _controlSize);
         }
 
         public void Handle(ScatterPlotChangedEvent args)

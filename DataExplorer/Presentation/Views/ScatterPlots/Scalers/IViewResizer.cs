@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace DataExplorer.Presentation.Views.ScatterPlots.Renderers
+namespace DataExplorer.Presentation.Views.ScatterPlots.Scalers
 {
     public interface IViewResizer
     {
