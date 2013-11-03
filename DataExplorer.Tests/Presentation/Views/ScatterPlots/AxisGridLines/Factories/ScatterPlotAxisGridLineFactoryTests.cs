@@ -26,15 +26,15 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.AxisGridLines.Facto
         private Mock<IIntegerAxisGridLineFactory> _mockIntegerFactory;
         private Mock<IStringAxisGridLineFactory> _mockStringFactory;
         private IAxisMap _axisMap;
-        private List<AxisLine> _gridLines;
-        private AxisLine _gridLine;
+        private List<AxisGridLine> _gridLines;
+        private AxisGridLine _gridGridLine;
 
         [SetUp]
         public void SetUp()
         {
             _axisMap = new FakeAxisMap();
-            _gridLine = new AxisLine();
-            _gridLines = new List<AxisLine> { _gridLine };
+            _gridGridLine = new AxisGridLine();
+            _gridLines = new List<AxisGridLine> { _gridGridLine };
 
             _mockBooleanFactory = new Mock<IBooleanAxisGridLineFactory>();
             _mockDateTimeFactory = new Mock<IDateTimeAxisGridLineFactory>();
@@ -53,47 +53,47 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.AxisGridLines.Facto
         [Test]
         public void TestCreateShouldReturnBooleanGridLines()
         {
-            _mockBooleanFactory.Setup(p => p.Create(_axisMap)).Returns(_gridLines);
-            var results = _factory.Create(typeof(Boolean), _axisMap, 0, 1);
-            Assert.That(results.Single(), Is.EqualTo(_gridLine));
+            _mockBooleanFactory.Setup(p => p.Create(_axisMap, 0d, 1d)).Returns(_gridLines);
+            var results = _factory.Create(typeof(Boolean), _axisMap, 0d, 1d);
+            Assert.That(results.Single(), Is.EqualTo(_gridGridLine));
         }
 
         [Test]
         public void TestCreateShouldReturnDateTimeGridLines()
         {
-            _mockDateTimeFactory.Setup(p => p.Create()).Returns(_gridLines);
-            var results = _factory.Create(typeof(DateTime), _axisMap, 0, 1);
-            Assert.That(results.Single(), Is.EqualTo(_gridLine));
+            _mockDateTimeFactory.Setup(p => p.Create(_axisMap, 0d, 1d)).Returns(_gridLines);
+            var results = _factory.Create(typeof(DateTime), _axisMap, 0d, 1d);
+            Assert.That(results.Single(), Is.EqualTo(_gridGridLine));
         }
 
         [Test]
         public void TestCreateShouldReturnFloatGridLines()
         {
             _mockFloatFactory.Setup(p => p.Create()).Returns(_gridLines);
-            var results = _factory.Create(typeof(Double), _axisMap, 0, 1);
-            Assert.That(results.Single(), Is.EqualTo(_gridLine));
+            var results = _factory.Create(typeof(Double), _axisMap, 0d, 1d);
+            Assert.That(results.Single(), Is.EqualTo(_gridGridLine));
         }
 
         [Test]
         public void TestCreateShouldReturnIntegerGridLines()
         {
             _mockIntegerFactory.Setup(p => p.Create()).Returns(_gridLines);
-            var results = _factory.Create(typeof(Int32), _axisMap, 0, 1);
-            Assert.That(results.Single(), Is.EqualTo(_gridLine));
+            var results = _factory.Create(typeof(Int32), _axisMap, 0d, 1d);
+            Assert.That(results.Single(), Is.EqualTo(_gridGridLine));
         }
 
         [Test]
         public void TestCreateShouldReturnStringGridLines()
         {
             _mockStringFactory.Setup(p => p.Create()).Returns(_gridLines);
-            var results = _factory.Create(typeof(String), _axisMap, 0, 1);
-            Assert.That(results.Single(), Is.EqualTo(_gridLine));
+            var results = _factory.Create(typeof(String), _axisMap, 0d, 1d);
+            Assert.That(results.Single(), Is.EqualTo(_gridGridLine));
         }
 
         [Test]
         public void TestCreateShouldReturnEmptyLinesIfNoMatchingType()
         {
-            var results = _factory.Create(typeof(object), _axisMap, 0, 1);
+            var results = _factory.Create(typeof(object), _axisMap, 0d, 1d);
             Assert.That(results, Is.Empty);
         }
     }

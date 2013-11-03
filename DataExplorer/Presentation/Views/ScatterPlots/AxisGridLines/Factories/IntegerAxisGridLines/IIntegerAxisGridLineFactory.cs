@@ -5,6 +5,6 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.AxisGridLines.Factories.I
 {
     public interface IIntegerAxisGridLineFactory
     {
-        IEnumerable<AxisLine> Create();
+        IEnumerable<AxisGridLine> Create();
     }
 }

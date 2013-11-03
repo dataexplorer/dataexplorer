@@ -23,14 +23,14 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.AxisGridLines.Facto
         [Test]
         public void TestCreateShouldReturnFalseGridLine()
         {
-            var results = _factory.Create(_map);
+            var results = _factory.Create(_map, 0d, 1d);
             Assert.That(results.First().Position, Is.EqualTo(0d));
         }
 
         [Test]
         public void TestCreateShouldReturnTrueGridLine()
         {
-            var results = _factory.Create(_map);
+            var results = _factory.Create(_map, 0d, 1d);
             Assert.That(results.Last().Position, Is.EqualTo(1d));
         }
     }

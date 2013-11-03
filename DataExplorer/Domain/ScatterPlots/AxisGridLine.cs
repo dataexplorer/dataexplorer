@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataExplorer.Domain.ScatterPlots
 {
-    public class AxisLine
+    public class AxisGridLine
     {
         public double Position;
     }

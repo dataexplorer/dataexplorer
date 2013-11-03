@@ -21,16 +21,16 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.AxisGridLines.Renderers
             _valueScaler = valueScaler;
         }
         
-        public IEnumerable<CanvasLine> Render(IEnumerable<AxisLine> axisLines, Rect viewExtent, Size controlSize)
+        public IEnumerable<CanvasLine> Render(IEnumerable<AxisGridLine> axisLines, Rect viewExtent, Size controlSize)
         {
             foreach (var axisLine in axisLines)
                 yield return RenderLine(axisLine, viewExtent, controlSize);
                    
         }
 
-        private CanvasLine RenderLine(AxisLine axisLine, Rect viewExtent, Size controlSize)
+        private CanvasLine RenderLine(AxisGridLine axisGridLine, Rect viewExtent, Size controlSize)
         {
-            var scaledPosition = _valueScaler.Scale(axisLine.Position, viewExtent.Left, viewExtent.Width, 0d, controlSize.Width);
+            var scaledPosition = _valueScaler.Scale(axisGridLine.Position, viewExtent.Left, viewExtent.Width, 0d, controlSize.Width);
 
             var canvasLine = new CanvasLine()
             {

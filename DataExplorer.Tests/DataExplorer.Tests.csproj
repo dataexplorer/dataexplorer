@@ -200,6 +200,11 @@
     <Compile Include="Presentation\Panes\Viewer\ViewerPaneViewModelTests.cs" />
     <Compile Include="Presentation\Shell\MainMenu\ViewMenu\ViewMenuViewModelTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\AxisGridLines\Factories\BooleanAxisGridLines\BooleanAxisGridLineFactoryTests.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\AxisGridLines\Factories\DateTimeAxisGridLines\DateTimeAxisGridLineFactoryTests.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\AxisGridLines\Factories\DateTimeAxisGridLines\DayAxisGridLineFactoryTests.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\AxisGridLines\Factories\DateTimeAxisGridLines\MinMaxDateTimeAxisGridLineFactoryTests.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\AxisGridLines\Factories\DateTimeAxisGridLines\SecondAxisGridLineFactoryTests.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\AxisGridLines\Factories\DateTimeAxisGridLines\YearAxisGridLineFactoryTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\AxisGridLines\Factories\ScatterPlotAxisGridLineFactoryTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\AxisGridLines\Renderers\AxisGridLineRendererTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Commands\PanScatterPlotCommandTests.cs" />

@@ -19,8 +19,8 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.AxisGridLines.Rende
         private Mock<IValueScaler> _mockScaler;
         private Rect _viewExtent;
         private Size _controlSize;
-        private List<AxisLine> _axisLines;
-        private AxisLine _axisLine;
+        private List<AxisGridLine> _axisLines;
+        private AxisGridLine _axisGridLine;
 
         [SetUp]
         public void SetUp()
@@ -28,8 +28,8 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.AxisGridLines.Rende
             _viewExtent = new Rect(0, 0, 10, 10);
             _controlSize = new Size(10, 20);
 
-            _axisLine = new AxisLine() { Position = 5d };
-            _axisLines = new List<AxisLine> { _axisLine };
+            _axisGridLine = new AxisGridLine() { Position = 5d };
+            _axisLines = new List<AxisGridLine> { _axisGridLine };
 
             _mockScaler = new Mock<IValueScaler>();
             _mockScaler.Setup(p => p.Scale(5d, 0, 10, 0, 10)).Returns(5);

@@ -6,7 +6,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.AxisGridLines.Factories.S
 {
     public class StringAxisGridLineFactory : IStringAxisGridLineFactory
     {
-        public IEnumerable<AxisLine> Create()
+        public IEnumerable<AxisGridLine> Create()
         {
             throw new NotImplementedException();
         }

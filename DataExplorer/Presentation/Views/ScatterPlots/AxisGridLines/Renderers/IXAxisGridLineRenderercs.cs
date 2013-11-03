@@ -11,6 +11,6 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.AxisGridLines.Renderers
 {
     public interface IXAxisGridLineRenderer
     {
-        IEnumerable<CanvasLine> Render(IEnumerable<AxisLine> axisLines, Rect viewExtent, Size controlSize);
+        IEnumerable<CanvasLine> Render(IEnumerable<AxisGridLine> axisLines, Rect viewExtent, Size controlSize);
     }
 }

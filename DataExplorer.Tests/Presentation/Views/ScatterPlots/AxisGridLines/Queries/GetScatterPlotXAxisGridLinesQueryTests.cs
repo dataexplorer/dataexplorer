@@ -29,8 +29,8 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.AxisGridLines.Queri
         private Rect _viewExtent;
         private ColumnDto _columnDto;
         private IAxisMap _axisMap;
-        private List<AxisLine> _axisLines;
-        private AxisLine _axisLine;
+        private List<AxisGridLine> _axisLines;
+        private AxisGridLine _axisGridLine;
         private List<CanvasLine> _canvasLines;
         private CanvasLine _canvasLine;
 
@@ -41,8 +41,8 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.AxisGridLines.Queri
             _viewExtent = new Rect();
             _columnDto = new ColumnDto() { Type = typeof(object) };
             _axisMap = new FakeAxisMap();
-            _axisLine = new AxisLine();
-            _axisLines = new List<AxisLine> { _axisLine };
+            _axisGridLine = new AxisGridLine();
+            _axisLines = new List<AxisGridLine> { _axisGridLine };
             _canvasLine = new CanvasLine();
             _canvasLines = new List<CanvasLine> { _canvasLine };
 

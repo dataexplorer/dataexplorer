@@ -173,7 +173,7 @@
     <Compile Include="Domain\Predicates\NullableStringPredicate.cs" />
     <Compile Include="Domain\Predicates\NullPredicate.cs" />
     <Compile Include="Domain\Predicates\StringPredicate.cs" />
-    <Compile Include="Domain\ScatterPlots\AxisLine.cs" />
+    <Compile Include="Domain\ScatterPlots\AxisGridLine.cs" />
     <Compile Include="Infrastructure\Application\ApplicationWrapper.cs" />
     <Compile Include="Application\Application\ApplicationService.cs" />
     <Compile Include="Infrastructure\Application\IApplication.cs" />
@@ -466,6 +466,14 @@
     <Compile Include="Presentation\Shell\StatusBar\StatusBarViewModel.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\AxisGridLines\Factories\BooleanAxisGridLines\BooleanAxisGridLineFactory.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\AxisGridLines\Factories\DateTimeAxisGridLines\DateTimeAxisGridLineFactory.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\AxisGridLines\Factories\DateTimeAxisGridLines\DayAxisGridLineFactory.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\AxisGridLines\Factories\DateTimeAxisGridLines\IDayAxisGridLineFactory.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\AxisGridLines\Factories\DateTimeAxisGridLines\IMinMaxDateTimeAxisGridLineFactory.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\AxisGridLines\Factories\DateTimeAxisGridLines\ISecondAxisGridLineFactory.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\AxisGridLines\Factories\DateTimeAxisGridLines\IYearAxisGridLineFactory.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\AxisGridLines\Factories\DateTimeAxisGridLines\MinMaxDateTimeAxisGridLineFactory.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\AxisGridLines\Factories\DateTimeAxisGridLines\SecondAxisGridLineFactory.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\AxisGridLines\Factories\DateTimeAxisGridLines\YearAxisGridLineFactory.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\AxisGridLines\Factories\FloatAxisGridLines\FloatAxisGridLineFactory.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\AxisGridLines\Factories\BooleanAxisGridLines\IBooleanAxisGridLineFactory.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\AxisGridLines\Factories\DateTimeAxisGridLines\IDateTimeAxisGridLineFactory.cs" />
