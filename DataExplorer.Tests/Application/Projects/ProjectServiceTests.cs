@@ -4,15 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.Projects;
-using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Events;
 using DataExplorer.Domain.Projects;
-using DataExplorer.Domain.Rows;
-using DataExplorer.Domain.ScatterPlots;
-using DataExplorer.Domain.Views;
 using DataExplorer.Infrastructure.Serialization;
 using DataExplorer.Persistence;
-using DataExplorer.Persistence.Columns;
 using Moq;
 using NUnit.Framework;
 

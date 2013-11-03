@@ -8,6 +8,7 @@ namespace DataExplorer.Domain.ScatterPlots
 {
     public class AxisGridLine
     {
+        public string LabelName;
         public double Position;
     }
 }

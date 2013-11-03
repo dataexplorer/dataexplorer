@@ -5,10 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using DataExplorer.Presentation.Core.Canvas.Items;
-using DataExplorer.Presentation.Views.ScatterPlots.AxisGridLines;
-using DataExplorer.Presentation.Views.ScatterPlots.AxisGridLines.Queries;
+using DataExplorer.Presentation.Views.ScatterPlots.AxisGrid.Labels.Queries;
+using DataExplorer.Presentation.Views.ScatterPlots.AxisGrid.Lines.Queries;
 using DataExplorer.Presentation.Views.ScatterPlots.AxisTitles.Queries;
-using DataExplorer.Presentation.Views.ScatterPlots.Plots;
 using DataExplorer.Presentation.Views.ScatterPlots.Plots.Queries;
 using DataExplorer.Presentation.Views.ScatterPlots.Queries;
 using Moq;
@@ -22,31 +21,36 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.Queries
         private GetScatterPlotItemsQuery _query;
         private Mock<IGetScatterPlotXAxisGridLinesQuery> _mockGetXGridLinesQuery;
         private Mock<IGetScatterPlotPlotsQuery> _mockGetPlotsQuery;
+        private Mock<IGetScatterPlotXAxisGridLabelsQuery> _mockGetXGridLabelsQuery;
         private Mock<IGetScatterPlotXAxisTitleQuery> _mockGetXAxisTitleQuery;
         private Mock<IGetScatterPlotYAxisTitleQuery> _mockGetYAxisTitleQuery;
         private Size _controlSize;
-        private List<CanvasLine> _xAxisGridLines;
-        private CanvasLine _xAxisGridLine;
+        private List<CanvasLine> _gridLines;
+        private CanvasLine _gridLine;
         private List<ICanvasItem> _plotItems;
         private ICanvasItem _plotItem;
-        private ICanvasItem _xAxisTitleItem;
-        private ICanvasItem _yAxisTitleItem;
+        private IEnumerable<CanvasLabel> _gridLabels;
+        private CanvasLabel _gridLabel;
+        private CanvasLabel _titleLabel;
 
         [SetUp]
         public void SetUp()
         {
             _controlSize = new Size();
-            _xAxisGridLine = new CanvasLine();
-            _xAxisGridLines = new List<CanvasLine> { _xAxisGridLine };
+            _gridLine = new CanvasLine();
+            _gridLines = new List<CanvasLine> { _gridLine };
             _plotItem = new CanvasCircle();
             _plotItems = new List<ICanvasItem> { _plotItem };
-            _xAxisTitleItem = new CanvasLabel();
-            _yAxisTitleItem = new CanvasLabel();
-
+            _gridLabel = new CanvasLabel();
+            _gridLabels = new List<CanvasLabel> { _gridLabel };
+            _titleLabel = new CanvasLabel();
+            
             _mockGetXGridLinesQuery = new Mock<IGetScatterPlotXAxisGridLinesQuery>();
 
             _mockGetPlotsQuery = new Mock<IGetScatterPlotPlotsQuery>();
             
+            _mockGetXGridLabelsQuery = new Mock<IGetScatterPlotXAxisGridLabelsQuery>();
+
             _mockGetXAxisTitleQuery = new Mock<IGetScatterPlotXAxisTitleQuery>();
             
             _mockGetYAxisTitleQuery = new Mock<IGetScatterPlotYAxisTitleQuery>();
@@ -54,6 +58,7 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.Queries
             _query = new GetScatterPlotItemsQuery(
                 _mockGetXGridLinesQuery.Object,
                 _mockGetPlotsQuery.Object,
+                _mockGetXGridLabelsQuery.Object,
                 _mockGetXAxisTitleQuery.Object,
                 _mockGetYAxisTitleQuery.Object);
         }
@@ -61,9 +66,9 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.Queries
         [Test]
         public void TestExecuteShouldReturnXAxisGridLines()
         {
-            _mockGetXGridLinesQuery.Setup(p => p.Execute(_controlSize)).Returns(_xAxisGridLines);
+            _mockGetXGridLinesQuery.Setup(p => p.Execute(_controlSize)).Returns(_gridLines);
             var results = _query.Execute(_controlSize);
-            Assert.That(results.Single(), Is.EqualTo(_xAxisGridLine));
+            Assert.That(results.Single(), Is.EqualTo(_gridLine));
         }
 
         [Test]
@@ -75,19 +80,27 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.Queries
         }
 
         [Test]
+        public void TestExecuteShouldReturnXAxisGridLabels()
+        {
+            _mockGetXGridLabelsQuery.Setup(p => p.Execute(_controlSize)).Returns(_gridLabels);
+            var results = _query.Execute(_controlSize);
+            Assert.That(results.Single(), Is.EqualTo(_gridLabel));
+        }
+
+        [Test]
         public void TestGetPlotItemsShouldXAxisTitleItem()
         {
-            _mockGetXAxisTitleQuery.Setup(p => p.Execute(_controlSize)).Returns(_xAxisTitleItem);
+            _mockGetXAxisTitleQuery.Setup(p => p.Execute(_controlSize)).Returns(_titleLabel);
             var results = _query.Execute(_controlSize);
-            Assert.That(results.Single(), Is.EqualTo(_xAxisTitleItem));
+            Assert.That(results.Single(), Is.EqualTo(_titleLabel));
         }
 
         [Test]
         public void TestGetPlotItemsShouldYAxisTitleItem()
         {
-            _mockGetYAxisTitleQuery.Setup(p => p.Execute(_controlSize)).Returns(_yAxisTitleItem);
+            _mockGetYAxisTitleQuery.Setup(p => p.Execute(_controlSize)).Returns(_titleLabel);
             var results = _query.Execute(_controlSize);
-            Assert.That(results.Single(), Is.EqualTo(_yAxisTitleItem));
+            Assert.That(results.Single(), Is.EqualTo(_titleLabel));
         }
     }
 }
