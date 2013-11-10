@@ -68,7 +68,7 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.AxisGrid.Factories
         [Test]
         public void TestCreateShouldReturnFloatGridLines()
         {
-            _mockFloatFactory.Setup(p => p.Create()).Returns(_gridLines);
+            _mockFloatFactory.Setup(p => p.Create(_axisMap, 0d, 1d)).Returns(_gridLines);
             var results = _factory.Create(typeof(Double), _axisMap, 0d, 1d);
             Assert.That(results.Single(), Is.EqualTo(_gridGridLine));
         }
@@ -76,7 +76,7 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.AxisGrid.Factories
         [Test]
         public void TestCreateShouldReturnIntegerGridLines()
         {
-            _mockIntegerFactory.Setup(p => p.Create()).Returns(_gridLines);
+            _mockIntegerFactory.Setup(p => p.Create(_axisMap, 0d, 1d)).Returns(_gridLines);
             var results = _factory.Create(typeof(Int32), _axisMap, 0d, 1d);
             Assert.That(results.Single(), Is.EqualTo(_gridGridLine));
         }

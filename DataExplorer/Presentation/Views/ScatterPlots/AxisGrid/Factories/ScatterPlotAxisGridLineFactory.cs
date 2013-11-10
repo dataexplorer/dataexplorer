@@ -41,10 +41,10 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.AxisGrid.Factories
                 return _dateTimeFactory.Create(map, lower, upper);
 
             if (type == typeof(Double))
-                return _floatFactory.Create();
+                return _floatFactory.Create(map, lower, upper);
 
             if (type == typeof(Int32))
-                return _integerFactory.Create();
+                return _integerFactory.Create(map, lower, upper);
 
             if (type == typeof(String))
                 return _stringFactory.Create();

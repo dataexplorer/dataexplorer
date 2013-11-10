@@ -50,7 +50,7 @@ namespace DataExplorer.Domain.Maps.AxisMaps
 
             var ratio = (double) value / _targetWidth;
 
-            var result = _sourceMin + (_sourceWidth * InverseScaleFactor * ratio);
+            var result = _sourceMin + ((_sourceWidth * ratio) * InverseScaleFactor);
 
             if (double.IsNegativeInfinity(result))
                 return double.MinValue;

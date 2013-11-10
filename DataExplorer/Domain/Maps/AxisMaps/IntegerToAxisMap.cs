@@ -31,7 +31,7 @@ namespace DataExplorer.Domain.Maps.AxisMaps
             if (value == null)
                 return null;
 
-            var width = (int) value - _sourceMin;
+            var width = (double) (int) value - _sourceMin;
 
             var ratio = width / _sourceWidth;
             

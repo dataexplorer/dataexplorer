@@ -205,6 +205,8 @@
     <Compile Include="Presentation\Views\ScatterPlots\AxisGrid\Factories\DateTimeAxisGridLines\MinMaxDateTimeAxisGridLineFactoryTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\AxisGrid\Factories\DateTimeAxisGridLines\SecondAxisGridLineFactoryTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\AxisGrid\Factories\DateTimeAxisGridLines\YearAxisGridLineFactoryTests.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\AxisGrid\Factories\FloatAxisGridLines\FloatAxisGridLineFactoryTests.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\AxisGrid\Factories\IntegerAxisGridLines\IntegerAxisGridLineFactoryTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\AxisGrid\Factories\ScatterPlotAxisGridLineFactoryTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\AxisGrid\Labels\Queries\GetScatterPlotXAxisGridLineLabelsQueryTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\AxisGrid\Lines\Renderers\XAxisGridLineRendererTests.cs" />
