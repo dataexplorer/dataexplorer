@@ -9,5 +9,7 @@ namespace DataExplorer.Application.Columns
     public interface IColumnService
     {
         List<ColumnDto> GetAllColumns();
+
+        IEnumerable<object> GetDistinctColumnValues(int columnId);
     }
 }

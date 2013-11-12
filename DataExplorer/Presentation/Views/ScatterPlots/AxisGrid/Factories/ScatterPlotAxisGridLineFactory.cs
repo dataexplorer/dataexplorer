@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using DataExplorer.Domain.Maps;
 using DataExplorer.Domain.ScatterPlots;
 using DataExplorer.Presentation.Views.ScatterPlots.AxisGrid.Factories.BooleanAxisGridLines;
@@ -32,7 +33,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.AxisGrid.Factories
             _stringFactory = stringFactory;
         }
 
-        public IEnumerable<AxisGridLine> Create(Type type, IAxisMap map, double lower, double upper)
+        public IEnumerable<AxisGridLine> Create(Type type, IAxisMap map, IEnumerable<object> values, double lower, double upper)
         {
             if (type == typeof(Boolean))
                 return _booleanFactory.Create(map, lower, upper);
@@ -47,7 +48,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.AxisGrid.Factories
                 return _integerFactory.Create(map, lower, upper);
 
             if (type == typeof(String))
-                return _stringFactory.Create();
+                return _stringFactory.Create(map, values.ToList(), lower, upper);
 
             return new List<AxisGridLine>();
         }

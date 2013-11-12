@@ -75,7 +75,9 @@
     <Compile Include="Application\Columns\ColumnService.cs" />
     <Compile Include="Application\Columns\IColumnService.cs" />
     <Compile Include="Application\Columns\Queries\GetAllColumnsQuery.cs" />
+    <Compile Include="Application\Columns\Queries\GetDistinctColumnValuesQuery.cs" />
     <Compile Include="Application\Columns\Queries\IGetAllColumnsQuery.cs" />
+    <Compile Include="Application\Columns\Queries\IGetDistinctColumnValuesQuery.cs" />
     <Compile Include="Application\Core\Events\IEventBus.cs" />
     <Compile Include="Application\Filters\Events\FilterChangedEvent.cs" />
     <Compile Include="Application\FilterTrees\Commands\ISelectFilterTreeNodeCommand.cs" />

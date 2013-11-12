@@ -10,15 +10,24 @@ namespace DataExplorer.Application.Columns
     public class ColumnService : IColumnService
     {
         private readonly IGetAllColumnsQuery _getAllColumnsQuery;
+        private readonly IGetDistinctColumnValuesQuery _getValuesQuery;
 
-        public ColumnService(IGetAllColumnsQuery getAllColumnsQuery)
+        public ColumnService(
+            IGetAllColumnsQuery getAllColumnsQuery,
+            IGetDistinctColumnValuesQuery getValuesQuery)
         {
             _getAllColumnsQuery = getAllColumnsQuery;
+            _getValuesQuery = getValuesQuery;
         }
 
         public List<ColumnDto> GetAllColumns()
         {
             return _getAllColumnsQuery.Query();
+        }
+
+        public IEnumerable<object> GetDistinctColumnValues(int columnId)
+        {
+            return _getValuesQuery.Execute(columnId);
         }
     }
 }

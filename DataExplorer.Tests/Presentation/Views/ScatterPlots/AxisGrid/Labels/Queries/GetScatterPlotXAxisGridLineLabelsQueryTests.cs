@@ -23,11 +23,13 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.AxisGrid.Labels.Que
         private Mock<IScatterPlotService> _mockScatterPlotService;
         private Mock<IScatterPlotLayoutService> _mockLayoutService;
         private Mock<IMapService> _mockMapService;
+        private Mock<IColumnService> _mockColumnService;
         private Mock<IScatterPlotAxisGridLineFactory> _mockFactory;
         private Mock<IXAxisGridLabelRenderer> _mockRenderer;
         private Size _controlSize;
         private Rect _viewExtent;
         private ColumnDto _columnDto;
+        private List<string> _values;
         private IAxisMap _axisMap;
         private List<AxisGridLine> _axisLines;
         private AxisGridLine _axisGridLine;
@@ -40,6 +42,7 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.AxisGrid.Labels.Que
             _controlSize = new Size();
             _viewExtent = new Rect();
             _columnDto = new ColumnDto() { Type = typeof(object) };
+            _values = new List<string>();
             _axisMap = new FakeAxisMap();
             _axisGridLine = new AxisGridLine();
             _axisLines = new List<AxisGridLine> { _axisGridLine };
@@ -52,11 +55,14 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.AxisGrid.Labels.Que
             _mockLayoutService = new Mock<IScatterPlotLayoutService>();
             _mockLayoutService.Setup(p => p.GetXColumn()).Returns(_columnDto);
 
+            _mockColumnService = new Mock<IColumnService>();
+            _mockColumnService.Setup(p => p.GetDistinctColumnValues(_columnDto.Id)).Returns(_values);
+
             _mockMapService = new Mock<IMapService>();
             _mockMapService.Setup(p => p.GetAxisMap(_columnDto, 0d, 1d)).Returns(_axisMap);
 
             _mockFactory = new Mock<IScatterPlotAxisGridLineFactory>();
-            _mockFactory.Setup(p => p.Create(typeof(object), _axisMap, _viewExtent.Left, _viewExtent.Right)).Returns(_axisLines);
+            _mockFactory.Setup(p => p.Create(typeof(object), _axisMap, _values, _viewExtent.Left, _viewExtent.Right)).Returns(_axisLines);
 
             _mockRenderer = new Mock<IXAxisGridLabelRenderer>();
             _mockRenderer.Setup(p => p.Render(_axisLines, _viewExtent, _controlSize)).Returns(_canvasLabels);
@@ -65,6 +71,7 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.AxisGrid.Labels.Que
                 _mockScatterPlotService.Object,
                 _mockLayoutService.Object,
                 _mockMapService.Object,
+                _mockColumnService.Object,
                 _mockFactory.Object,
                 _mockRenderer.Object);
         }

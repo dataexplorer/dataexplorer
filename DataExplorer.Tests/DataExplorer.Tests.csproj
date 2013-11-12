@@ -60,6 +60,7 @@
     <Compile Include="Application\Columns\ColumnAdapterTests.cs" />
     <Compile Include="Application\Columns\ColumnServiceTests.cs" />
     <Compile Include="Application\Columns\Queries\GetAllColumnsQueryTests.cs" />
+    <Compile Include="Application\Columns\Queries\GetDistinctColumnValuesQueryTests.cs" />
     <Compile Include="Application\Filters\FakeFilter.cs" />
     <Compile Include="Application\FilterTrees\Queries\GetRootFilterTreeNodesQueryTests.cs" />
     <Compile Include="Application\FilterTrees\Commands\SelectFilterTreeNodeCommandTests.cs" />
@@ -208,6 +209,7 @@
     <Compile Include="Presentation\Views\ScatterPlots\AxisGrid\Factories\FloatAxisGridLines\FloatAxisGridLineFactoryTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\AxisGrid\Factories\IntegerAxisGridLines\IntegerAxisGridLineFactoryTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\AxisGrid\Factories\ScatterPlotAxisGridLineFactoryTests.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\AxisGrid\Factories\StringAxisGridLines\StringAxisGridLineFactoryTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\AxisGrid\Labels\Queries\GetScatterPlotXAxisGridLineLabelsQueryTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\AxisGrid\Lines\Renderers\XAxisGridLineRendererTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\AxisGrid\Labels\Renderers\XAxisGridLabelRendererTests.cs" />

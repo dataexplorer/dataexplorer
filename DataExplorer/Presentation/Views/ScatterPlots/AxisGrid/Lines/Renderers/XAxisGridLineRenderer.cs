@@ -21,7 +21,6 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.AxisGrid.Lines.Renderers
         {
             foreach (var axisLine in axisLines)
                 yield return RenderLine(axisLine, viewExtent, controlSize);
-                   
         }
 
         private CanvasLine RenderLine(AxisGridLine axisGridLine, Rect viewExtent, Size controlSize)
