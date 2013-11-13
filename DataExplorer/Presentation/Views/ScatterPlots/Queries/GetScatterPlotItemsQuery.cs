@@ -16,23 +16,29 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Queries
     public class GetScatterPlotItemsQuery : IGetScatterPlotItemsQuery
     {
         private readonly IGetScatterPlotXAxisGridLinesQuery _getXAxisGridLinesQuery;
+        private readonly IGetScatterPlotYAxisGridLinesQuery _getYAxisGridLinesQuery;
         private readonly IGetScatterPlotPlotsQuery _getPlotsQuery;
-        private readonly IGetScatterPlotXAxisGridLabelsQuery _getXAxisGridlLabelsQuery;
+        private readonly IGetScatterPlotXAxisGridLabelsQuery _getXAxisGridLabelsQuery;
+        private readonly IGetScatterPlotYAxisGridLabelsQuery _getYAxisGridLabelsQuery;
         private readonly IGetScatterPlotXAxisTitleQuery _getXAxisTitleQuery;
         private readonly IGetScatterPlotYAxisTitleQuery _getYAxisTitleQuery;
 
         public GetScatterPlotItemsQuery(
             IGetScatterPlotXAxisGridLinesQuery getXAxisGridLinesQuery,
+            IGetScatterPlotYAxisGridLinesQuery getYAxisGridLinesQuery,
             IGetScatterPlotPlotsQuery getPlotsQuery,
-            IGetScatterPlotXAxisGridLabelsQuery getXAxisGridlLabelsQuery,
+            IGetScatterPlotXAxisGridLabelsQuery getXAxisGridLabelsQuery,
+            IGetScatterPlotYAxisGridLabelsQuery getYAxisGridLabelsQuery,
             IGetScatterPlotXAxisTitleQuery getXAxisTitleQuery,
             IGetScatterPlotYAxisTitleQuery getYAxisTitleQuery)
         {
             _getPlotsQuery = getPlotsQuery;
-            _getXAxisGridlLabelsQuery = getXAxisGridlLabelsQuery;
+            _getXAxisGridLabelsQuery = getXAxisGridLabelsQuery;
+            _getYAxisGridLabelsQuery = getYAxisGridLabelsQuery;
             _getXAxisTitleQuery = getXAxisTitleQuery;
             _getYAxisTitleQuery = getYAxisTitleQuery;
             _getXAxisGridLinesQuery = getXAxisGridLinesQuery;
+            _getYAxisGridLinesQuery = getYAxisGridLinesQuery;
         }
 
         public IEnumerable<ICanvasItem> Execute(Size controlSize)
@@ -42,15 +48,25 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Queries
             foreach (var xGridLine in xGridLines)
                 yield return xGridLine;
 
+            var yGridLines = _getYAxisGridLinesQuery.Execute(controlSize);
+
+            foreach (var yGridLine in yGridLines)
+                yield return yGridLine;
+
             var plotItems = _getPlotsQuery.Execute(controlSize);
 
             foreach (var canvasItem in plotItems)
                 yield return canvasItem;
 
-            var xAxisGridLabels = _getXAxisGridlLabelsQuery.Execute(controlSize);
+            var xAxisGridLabels = _getXAxisGridLabelsQuery.Execute(controlSize);
 
             foreach (var xAxisGridLabel in xAxisGridLabels)
                 yield return xAxisGridLabel;
+
+            var yAxisGridLabels = _getYAxisGridLabelsQuery.Execute(controlSize);
+
+            foreach (var yAxisGridLabel in yAxisGridLabels)
+                yield return yAxisGridLabel;
 
             var xAxisTitleItem = _getXAxisTitleQuery.Execute(controlSize);
 

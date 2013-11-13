@@ -211,6 +211,8 @@
     <Compile Include="Presentation\Views\ScatterPlots\AxisGrid\Factories\ScatterPlotAxisGridLineFactoryTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\AxisGrid\Factories\StringAxisGridLines\StringAxisGridLineFactoryTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\AxisGrid\Labels\Queries\GetScatterPlotXAxisGridLineLabelsQueryTests.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\AxisGrid\Labels\Queries\GetScatterPlotYAxisGridLineLabelsQueryTests.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\AxisGrid\Labels\Renderers\YAxisGridLabelRendererTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\AxisGrid\Lines\Renderers\XAxisGridLineRendererTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\AxisGrid\Labels\Renderers\XAxisGridLabelRendererTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Commands\PanScatterPlotCommandTests.cs" />

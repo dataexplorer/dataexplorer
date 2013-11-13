@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using DataExplorer.Domain.ScatterPlots;
 using DataExplorer.Presentation.Views.ScatterPlots.AxisGrid.Labels.Renderers;
@@ -10,9 +13,9 @@ using NUnit.Framework;
 namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.AxisGrid.Labels.Renderers
 {
     [TestFixture]
-    public class XAxisGridLineLabelRendererTests
+    public class YAxisGridLabelRendererTests
     {
-        private XAxisGridLabelRenderer _renderer;
+        private YAxisGridLabelRenderer _renderer;
         private Mock<IValueScaler> _mockScaler;
         private Rect _viewExtent;
         private Size _controlSize;
@@ -31,7 +34,7 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.AxisGrid.Labels.Ren
             _mockScaler = new Mock<IValueScaler>();
             _mockScaler.Setup(p => p.Scale(5d, 0, 10, 0, 10)).Returns(5);
 
-            _renderer = new XAxisGridLabelRenderer(
+            _renderer = new YAxisGridLabelRenderer(
                 _mockScaler.Object);
         }
 
@@ -41,8 +44,8 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.AxisGrid.Labels.Ren
             var results = _renderer.Render(_axisLines, _viewExtent, _controlSize);
             var canvasLabel = results.Single();
             Assert.That(canvasLabel.Text, Is.EqualTo("Test"));
-            Assert.That(canvasLabel.X, Is.EqualTo(5d));
-            Assert.That(canvasLabel.Y, Is.EqualTo(5d));
+            Assert.That(canvasLabel.X, Is.EqualTo(25d));
+            Assert.That(canvasLabel.Y, Is.EqualTo(20d));
         }
     }
 }

@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using DataExplorer.Domain.ScatterPlots;
 using DataExplorer.Presentation.Core.Canvas.Items;
@@ -6,13 +10,13 @@ using DataExplorer.Presentation.Views.ScatterPlots.Scalers;
 
 namespace DataExplorer.Presentation.Views.ScatterPlots.AxisGrid.Labels.Renderers
 {
-    public class XAxisGridLabelRenderer : IXAxisGridLabelRenderer
+    public class YAxisGridLabelRenderer : IYAxisGridLabelRenderer
     {
-        private const double MarginHeight = 15d;
+        private const double MarginWidth = 25d;
 
         private readonly IValueScaler _valueScaler;
 
-        public XAxisGridLabelRenderer(IValueScaler valueScaler)
+        public YAxisGridLabelRenderer(IValueScaler valueScaler)
         {
             _valueScaler = valueScaler;
         }
@@ -25,13 +29,15 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.AxisGrid.Labels.Renderers
 
         private CanvasLabel RenderLabel(AxisGridLine axisGridLine, Rect viewExtent, Size controlSize)
         {
-            var scaledPosition = _valueScaler.Scale(axisGridLine.Position, viewExtent.Left, viewExtent.Width, 0d, controlSize.Width);
+            var scaledPosition = _valueScaler.Scale(axisGridLine.Position, viewExtent.Top, viewExtent.Height, 0d, controlSize.Height);
 
             var canvasLine = new CanvasLabel()
             {
                 Text = axisGridLine.LabelName,
-                X = scaledPosition,
-                Y = controlSize.Height - MarginHeight
+                X = MarginWidth,
+                Y = controlSize.Height - scaledPosition,
+                IsRotated = true
+                
             };
 
             return canvasLine;

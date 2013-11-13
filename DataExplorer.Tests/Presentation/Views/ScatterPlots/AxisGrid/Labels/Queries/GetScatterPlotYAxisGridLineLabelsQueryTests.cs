@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using DataExplorer.Application.Columns;
 using DataExplorer.Application.Maps;
@@ -17,15 +20,15 @@ using NUnit.Framework;
 namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.AxisGrid.Labels.Queries
 {
     [TestFixture]
-    public class GetScatterPlotXAxisGridLineLabelsQueryTests
+    public class GetScatterPlotYAxisGridLineLabelsQueryTests
     {
-        private GetScatterPlotXAxisGridLabelsQuery _query;
+        private GetScatterPlotYAxisGridLabelsQuery _query;
         private Mock<IScatterPlotService> _mockScatterPlotService;
         private Mock<IScatterPlotLayoutService> _mockLayoutService;
         private Mock<IMapService> _mockMapService;
         private Mock<IColumnService> _mockColumnService;
         private Mock<IScatterPlotAxisGridLineFactory> _mockFactory;
-        private Mock<IXAxisGridLabelRenderer> _mockRenderer;
+        private Mock<IYAxisGridLabelRenderer> _mockRenderer;
         private Size _controlSize;
         private Rect _viewExtent;
         private ColumnDto _columnDto;
@@ -53,7 +56,7 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.AxisGrid.Labels.Que
             _mockScatterPlotService.Setup(p => p.GetViewExtent()).Returns(_viewExtent);
 
             _mockLayoutService = new Mock<IScatterPlotLayoutService>();
-            _mockLayoutService.Setup(p => p.GetXColumn()).Returns(_columnDto);
+            _mockLayoutService.Setup(p => p.GetYColumn()).Returns(_columnDto);
 
             _mockColumnService = new Mock<IColumnService>();
             _mockColumnService.Setup(p => p.GetDistinctColumnValues(_columnDto.Id)).Returns(_values);
@@ -64,10 +67,10 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.AxisGrid.Labels.Que
             _mockFactory = new Mock<IScatterPlotAxisGridLineFactory>();
             _mockFactory.Setup(p => p.Create(typeof(object), _axisMap, _values, _viewExtent.Left, _viewExtent.Right)).Returns(_axisLines);
 
-            _mockRenderer = new Mock<IXAxisGridLabelRenderer>();
+            _mockRenderer = new Mock<IYAxisGridLabelRenderer>();
             _mockRenderer.Setup(p => p.Render(_axisLines, _viewExtent, _controlSize)).Returns(_canvasLabels);
 
-            _query = new GetScatterPlotXAxisGridLabelsQuery(
+            _query = new GetScatterPlotYAxisGridLabelsQuery(
                 _mockScatterPlotService.Object,
                 _mockLayoutService.Object,
                 _mockMapService.Object,
@@ -79,7 +82,7 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.AxisGrid.Labels.Que
         [Test]
         public void TestExecuteShouldReturnEmptyListIfColumnDtoIsNull()
         {
-            _mockLayoutService.Setup(p => p.GetXColumn()).Returns((ColumnDto) null);
+            _mockLayoutService.Setup(p => p.GetYColumn()).Returns((ColumnDto)null);
             var results = _query.Execute(_controlSize);
             Assert.That(results, Is.Empty);
         }

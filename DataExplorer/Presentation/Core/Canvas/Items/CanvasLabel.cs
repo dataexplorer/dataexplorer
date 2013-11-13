@@ -33,9 +33,9 @@ namespace DataExplorer.Presentation.Core.Canvas.Items
                 double x = IsRotated 
                     ? this.X 
                     : this.X - (text.Width / 2);
-                
-                double y = IsRotated 
-                    ? this.Y - (text.Width / 2)
+
+                double y = IsRotated
+                    ? this.Y + (text.Width / 2)
                     : this.Y - text.Height - 10;
 
                 if (IsRotated)
