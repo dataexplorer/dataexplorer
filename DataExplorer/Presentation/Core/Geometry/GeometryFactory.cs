@@ -10,12 +10,15 @@ namespace DataExplorer.Presentation.Core.Geometry
 {
     public class GeometryFactory : IGeometryFactory
     {
-        public CanvasCircle CreateCircle(Rect shapeExtent)
+        public CanvasCircle CreateCircle(int id, Rect shapeExtent)
         {
-            var circle = new CanvasCircle();
-            circle.X = shapeExtent.X;
-            circle.Y = shapeExtent.Y;
-            circle.Radius = shapeExtent.Width / 2;
+            var circle = new CanvasCircle
+            {
+                Id = id,
+                X = shapeExtent.X,
+                Y = shapeExtent.Y,
+                Radius = shapeExtent.Width / 2
+            };
             return circle;
         }
     }

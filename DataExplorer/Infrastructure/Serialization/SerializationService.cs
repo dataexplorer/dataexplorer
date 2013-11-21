@@ -49,11 +49,11 @@ namespace DataExplorer.Infrastructure.Serialization
         private List<Row> GetRows()
         {
             // TODO: Remove this fake data
-            var row1 = new Row(new List<object>() { false, DateTime.Parse("1/1/0001"), 0d, 0, "Apple" });
-            var row2 = new Row(new List<object>() { false, DateTime.Parse("10/1/2500"), 0.25d, 250, "Elephant" });
-            var row3 = new Row(new List<object>() { false, DateTime.Parse("7/2/5000"), 0.5d, 500, "Monkey" });
-            var row4 = new Row(new List<object>() { false, DateTime.Parse("4/2/7500"), 0.75d, 750, "Tiger" });
-            var row5 = new Row(new List<object>() { true, DateTime.Parse("12/31/9999"), 1d, 1000, "Zebra" });
+            var row1 = new Row(1, new List<object>() { false, DateTime.Parse("1/1/0001"), 0d, 0, "Apple" });
+            var row2 = new Row(2, new List<object>() { false, DateTime.Parse("10/1/2500"), 0.25d, 250, "Elephant" });
+            var row3 = new Row(3, new List<object>() { false, DateTime.Parse("7/2/5000"), 0.5d, 500, "Monkey" });
+            var row4 = new Row(4, new List<object>() { false, DateTime.Parse("4/2/7500"), 0.75d, 750, "Tiger" });
+            var row5 = new Row(5, new List<object>() { true, DateTime.Parse("12/31/9999"), 1d, 1000, "Zebra" });
             var rows = new List<Row> { row1, row2, row3, row4, row5 };
             return rows;
         }

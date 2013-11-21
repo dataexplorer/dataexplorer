@@ -32,7 +32,7 @@ namespace DataExplorer.Tests.Persistence.Rows
         [Test]
         public void TestGetAllReturnsAllDataRows()
         {
-            var row = new Row();
+            var row = new RowBuilder().Build();
             _rows.Add(row);
             var result = _repository.GetAll();
             Assert.That(result.Single(), Is.EqualTo(_rows.Single()));

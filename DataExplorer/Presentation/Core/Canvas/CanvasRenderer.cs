@@ -16,7 +16,7 @@ namespace DataExplorer.Presentation.Core.Canvas
             return background.Draw();
         }
 
-        public IEnumerable<Visual> DrawItems(List<ICanvasItem> items)
+        public IEnumerable<Visual> DrawItems(List<CanvasItem> items)
         {
             return items.Select(p => p.Draw());
         }

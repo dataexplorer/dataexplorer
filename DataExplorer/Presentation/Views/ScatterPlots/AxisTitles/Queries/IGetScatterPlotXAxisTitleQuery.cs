@@ -5,6 +5,6 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.AxisTitles.Queries
 {
     public interface IGetScatterPlotXAxisTitleQuery
     {
-        ICanvasItem Execute(Size controlSize);
+        CanvasItem Execute(Size controlSize);
     }
 }

@@ -29,7 +29,7 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.Plots.Renderers
         {
             _controlSize = new Size();
             _viewExtent = new Rect();
-            _plot = new PlotDto() { X = 1d, Y = 2d };
+            _plot = new PlotDto() { Id = 1, X = 1d, Y = 2d };
             _plots = new List<PlotDto> { _plot };
             _circle = new CanvasCircle();
 
@@ -42,7 +42,7 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.Plots.Renderers
             _mockCalculator = new Mock<IGeometryCalculator>();
 
             _mockFactory = new Mock<IGeometryFactory>();
-            _mockFactory.Setup(p => p.CreateCircle(It.IsAny<Rect>())).Returns(_circle);
+            _mockFactory.Setup(p => p.CreateCircle(_plot.Id, It.IsAny<Rect>())).Returns(_circle);
 
             _renderer = new ScatterPlotPlotRenderer(
                 _mockResizer.Object,

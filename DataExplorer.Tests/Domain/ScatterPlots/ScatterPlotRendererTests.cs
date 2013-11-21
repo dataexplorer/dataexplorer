@@ -32,7 +32,7 @@ namespace DataExplorer.Tests.Domain.ScatterPlots
         [Test]
         public void TestRenderPlotsShouldRenderRowsIntoPlots()
         {
-            var row = new RowBuilder().WithFields(0.5d, 1d).Build();
+            var row = new RowBuilder().WithId(1).WithFields(0.5d, 1d).Build();
             var rows = new List<Row> { row };
             var layout = new ScatterPlotLayout();
             layout.XAxisColumn = new ColumnBuilder().WithIndex(0).Build();
@@ -41,6 +41,7 @@ namespace DataExplorer.Tests.Domain.ScatterPlots
             _mockMapFactory.Setup(p => p.CreateAxisMap(layout.XAxisColumn, 0d, 1d)).Returns(map);
             _mockMapFactory.Setup(p => p.CreateAxisMap(layout.YAxisColumn, 0d, 1d)).Returns(map);
             var results = _renderer.RenderPlots(rows, layout);
+            Assert.That(results.Single().Id, Is.EqualTo(1));
             Assert.That(results.Single().X, Is.EqualTo(0.5d));
             Assert.That(results.Single().Y, Is.EqualTo(1.0d));
         }

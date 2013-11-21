@@ -19,7 +19,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Plots.Queries
             _renderer = renderer;
         }
 
-        public IEnumerable<ICanvasItem> Execute(Size controlSize)
+        public IEnumerable<CanvasItem> Execute(Size controlSize)
         {
             var viewExtent = _service.GetViewExtent();
 

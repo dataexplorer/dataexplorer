@@ -9,16 +9,19 @@ using System.Windows.Media;
 
 namespace DataExplorer.Presentation.Core.Canvas.Items
 {
-    public class CanvasLabel : ICanvasItem
+    public class CanvasLabel : CanvasItem
     {
-        public double X;
-        public double Y;
-        public string Text;
-        public bool IsRotated;
+        public double X { get; set; }
 
-        public Visual Draw()
+        public double Y { get; set; }
+        
+        public string Text { get; set; }
+        
+        public bool IsRotated { get; set; }
+
+        public override VisualItem Draw()
         {
-            var visual = new DrawingVisual();
+            var visual = new VisualItem();
 
             using (var context = visual.RenderOpen())
             {

@@ -40,7 +40,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots
             set { HandleControlSizeChanged(value); }
         }
 
-        public List<ICanvasItem> Items
+        public List<CanvasItem> Items
         {
             get { return GetItems().ToList(); }
         }
@@ -61,7 +61,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots
             _panCommand = panCommand;
         }
 
-        private IEnumerable<ICanvasItem> GetItems()
+        private IEnumerable<CanvasItem> GetItems()
         {
             return _getItemsQuery.Execute(_controlSize);
         }

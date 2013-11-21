@@ -14,14 +14,14 @@ namespace DataExplorer.Tests.Presentation.Core.Canvas
     public class CanvasRendererTests
     {
         private CanvasRenderer _canvasRenderer;
-        private List<ICanvasItem> _plots;
+        private List<CanvasItem> _plots;
         private CanvasCircle _plot;
 
         [SetUp]
         public void SetUp()
         {
             _plot = new CanvasCircle();
-            _plots = new List<ICanvasItem> { _plot };
+            _plots = new List<CanvasItem> { _plot };
             _canvasRenderer = new CanvasRenderer();
         }
 
@@ -29,14 +29,14 @@ namespace DataExplorer.Tests.Presentation.Core.Canvas
         public void TestDrawBackgroundShouldDrawBackground()
         {
             var result = _canvasRenderer.DrawBackground(1d, 2d);
-            Assert.That(result, Is.TypeOf<DrawingVisual>());
+            Assert.That(result, Is.TypeOf<VisualItem>());
         }
 
         [Test]
         public void TestDrawPlotsShouldDrawPlots()
         {
             var results = _canvasRenderer.DrawItems(_plots);
-            Assert.That(results.Single(), Is.TypeOf<DrawingVisual>());
+            Assert.That(results.Single(), Is.TypeOf<VisualItem>());
         }
     }
 }

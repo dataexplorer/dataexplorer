@@ -105,7 +105,7 @@ namespace DataExplorer.Tests.Application.Importers.CsvFile.Commands
         }
 
         [Test]
-        public void TestExecuteShouldAddRoseToTheRepository()
+        public void TestExecuteShouldAddRowsToTheRepository()
         {
             _command.Execute();
             _mockRowRepository.Verify(p => p.Add(It.IsAny<Row>()), Times.Once());

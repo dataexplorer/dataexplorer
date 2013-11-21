@@ -29,8 +29,8 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.Queries
         private Size _controlSize;
         private List<CanvasLine> _gridLines;
         private CanvasLine _gridLine;
-        private List<ICanvasItem> _plotItems;
-        private ICanvasItem _plotItem;
+        private List<CanvasItem> _plotItems;
+        private CanvasItem _plotItem;
         private IEnumerable<CanvasLabel> _gridLabels;
         private CanvasLabel _gridLabel;
         private CanvasLabel _titleLabel;
@@ -42,7 +42,7 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.Queries
             _gridLine = new CanvasLine();
             _gridLines = new List<CanvasLine> { _gridLine };
             _plotItem = new CanvasCircle();
-            _plotItems = new List<ICanvasItem> { _plotItem };
+            _plotItems = new List<CanvasItem> { _plotItem };
             _gridLabel = new CanvasLabel();
             _gridLabels = new List<CanvasLabel> { _gridLabel };
             _titleLabel = new CanvasLabel();

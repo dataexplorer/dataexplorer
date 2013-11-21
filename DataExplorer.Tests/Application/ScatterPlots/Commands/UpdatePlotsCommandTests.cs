@@ -69,7 +69,7 @@ namespace DataExplorer.Tests.Application.ScatterPlots.Commands
         {
             var filter = new BooleanFilter(_column, true);
             _filters.Add(filter);
-            var row = new Row(new List<object>() { true });
+            var row = new Row(0, new List<object>() { true });
             _rows.Add(row);
             var plot = new Plot();
             _plots.Add(plot);
@@ -81,7 +81,7 @@ namespace DataExplorer.Tests.Application.ScatterPlots.Commands
         [Test]
         public void TestUpdatePlotsShouldExcludeRowsOutsideTheFilter()
         {
-            var row = new Row(new List<object>() { false });
+            var row = new Row(0, new List<object>() { false });
             _rows.Add(row);
             var filter = new BooleanFilter(_column, true);
             _filters.Add(filter);

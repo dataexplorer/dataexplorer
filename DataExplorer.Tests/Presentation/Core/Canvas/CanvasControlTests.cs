@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using DataExplorer.Presentation.Core;
 using DataExplorer.Presentation.Core.Canvas;
 using DataExplorer.Presentation.Core.Canvas.Items;
+using DataExplorer.Tests.Presentation.Core.Canvas.Items;
 using Moq;
 using NUnit.Framework;
 
@@ -18,10 +20,15 @@ namespace DataExplorer.Tests.Presentation.Core.Canvas
         private Mock<IDependencyPropertyService> _mockPropertyService;
         private Mock<ICanvasRenderer> _mockRenderer;
         private Mock<IVisualService> _mockVisualService;
+        private List<CanvasItem> _items;
+        private CanvasItem _item;
 
         [SetUp]
         public void SetUp()
         {
+            _item = new FakeCanvasItem();
+            _items = new List<CanvasItem> { _item };
+
             _mockPropertyService = new Mock<IDependencyPropertyService>();
             _mockRenderer = new Mock<ICanvasRenderer>();
             _mockVisualService = new Mock<IVisualService>();
@@ -49,11 +56,19 @@ namespace DataExplorer.Tests.Presentation.Core.Canvas
         }
 
         [Test]
-        public void TestSetPlotsShouldSetPlots()
+        public void TestSetItemsShouldSetItems()
         {
-            var plots = new List<ICanvasItem>();
-            _control.Items = plots;
-            _mockPropertyService.Verify(p => p.SetValue(CanvasControl.ItemsProperty, plots));
+            _control.Items = _items;
+            _mockPropertyService.Verify(p => p.SetValue(CanvasControl.ItemsProperty, _items));
+        }
+
+        [Test]
+        public void TestGetSelectedItemsShouldReturnSelectedItems()
+        {
+            _item.IsSelected = true;
+            _mockPropertyService.Setup(p => p.GetValue(CanvasControl.SelectedItemsProperty)).Returns(_items);
+            var results = _control.SelectedItems;
+            Assert.That(results.Single(), Is.EqualTo(_item));
         }
 
         [Test]
@@ -72,7 +87,7 @@ namespace DataExplorer.Tests.Presentation.Core.Canvas
         public void TestSetPlotsShouldRenderPlots()
         {
             var plot = new CanvasCircle();
-            var plots = new List<ICanvasItem> { plot };
+            var plots = new List<CanvasItem> { plot };
             var backgroundVisual = new FakeVisual();
             var plotVisual = new FakeVisual();
             var plotVisuals = new List<Visual> { plotVisual };
@@ -81,6 +96,7 @@ namespace DataExplorer.Tests.Presentation.Core.Canvas
             var callback2 = new Action(() => callback.Invoke(_control, new DependencyPropertyChangedEventArgs()));
             _mockPropertyService.Setup(p => p.SetValue(CanvasControl.ItemsProperty, It.IsAny<object>())).Callback(callback2);
             _mockPropertyService.Setup(p => p.GetValue(CanvasControl.ItemsProperty)).Returns(plots);
+            _mockPropertyService.Setup(p => p.GetValue(CanvasControl.SelectedItemsProperty)).Returns(new List<CanvasItem>());
             _mockRenderer.Setup(p => p.DrawBackground(0d, 0d)).Returns(backgroundVisual);
             _mockRenderer.Setup(p => p.DrawItems(plots)).Returns(plotVisuals);
             _control.Items = plots;
@@ -113,32 +129,6 @@ namespace DataExplorer.Tests.Presentation.Core.Canvas
             _mockPropertyService.Verify(p => p.SetValue(
                 It.IsAny<DependencyProperty>(), 
                 It.IsAny<Size>()));
-        }
-        
-        public class CanvasControlHarness : CanvasControl
-        {
-            public CanvasControlHarness(
-                IDependencyPropertyService propertyService,
-                ICanvasRenderer renderer,
-                IVisualService visualService)
-                : base(propertyService, renderer, visualService)
-            {
-            }
-
-            public int GetVisualChildrenCount()
-            {
-                return VisualChildrenCount;
-            }
-
-            public new Visual GetVisualChild(int index)
-            {
-                return base.GetVisualChild(index);
-            }
-
-            public new void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
-            {
-                base.OnRenderSizeChanged(sizeInfo);
-            }
         }
     }
 }

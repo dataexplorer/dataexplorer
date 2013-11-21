@@ -7,6 +7,6 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Plots.Renderers
 {
     public interface IScatterPlotPlotRenderer
     {
-        List<ICanvasItem> RenderPlots(Size controlSize, Rect viewExtent, List<PlotDto> plots);
+        List<CanvasItem> RenderPlots(Size controlSize, Rect viewExtent, List<PlotDto> plots);
     }
 }

@@ -66,14 +66,14 @@ namespace DataExplorer.Application.Importers.CsvFiles.Commands
             {
                 var dataRow = dataTable.Rows[i];
 
-                var row = new Row(dataColumns.Count);
+                var row = new Row(i + 1, dataColumns.Count);
 
                 for (int j = 0; j < dataColumns.Count; j++)
                     row[j] = converters[j].Convert(dataRow[j]);
 
                 _rowRepository.Add(row);
 
-                var progress = (i + 1) / (double)dataTable.Rows.Count;
+                var progress = (i + 1) / (double) dataTable.Rows.Count;
 
                 _eventBus.Raise(new CsvFileImportProgressChangedEvent(progress));
             }

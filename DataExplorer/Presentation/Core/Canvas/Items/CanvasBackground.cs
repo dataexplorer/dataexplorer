@@ -3,15 +3,15 @@ using System.Windows.Media;
 
 namespace DataExplorer.Presentation.Core.Canvas.Items
 {
-    public class CanvasBackground : ICanvasItem
+    public class CanvasBackground : CanvasItem
     {
-        public double Width;
+        public double Width { get; set; }
         
-        public double Height;
+        public double Height { get; set; }
 
-        public Visual Draw()
+        public override VisualItem Draw()
         {
-            var background = new DrawingVisual();
+            var background = new VisualItem();
             
             using (var context = background.RenderOpen())
             {

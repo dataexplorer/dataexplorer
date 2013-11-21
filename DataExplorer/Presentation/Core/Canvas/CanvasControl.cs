@@ -29,11 +29,18 @@ namespace DataExplorer.Presentation.Core.Canvas
 
         public static readonly DependencyProperty ItemsProperty = DependencyProperty.Register(
             "Items",
-            typeof(List<ICanvasItem>),
+            typeof(List<CanvasItem>),
             typeof(CanvasControl),
-            new PropertyMetadata(new List<ICanvasItem>(), HandleItemsChanged));
+            new PropertyMetadata(new List<CanvasItem>(), HandleItemsChanged));
+
+        public static readonly DependencyProperty SelectedItemsProperty = DependencyProperty.Register(
+            "SelectedItems",
+            typeof(List<CanvasItem>),
+            typeof(CanvasControl),
+            new PropertyMetadata(new List<CanvasItem>(), HandleItemsChanged));
 
         private bool _isMouseDown;
+
         private Point _previousMousePosition;
 
         public Size ControlSize
@@ -42,9 +49,14 @@ namespace DataExplorer.Presentation.Core.Canvas
             set { _propertyService.SetValue(ControlSizeProperty, value); }
         }
 
-        public List<ICanvasItem> Items
+        public List<CanvasItem> Items
         {
             set { _propertyService.SetValue(ItemsProperty, value); }
+        }
+
+        public List<CanvasItem> SelectedItems
+        {
+            get { return (List<CanvasItem>) _propertyService.GetValue(SelectedItemsProperty); }
         }
 
         public CanvasControl() : this(
@@ -78,9 +90,14 @@ namespace DataExplorer.Presentation.Core.Canvas
 
             visuals.Add(backgroundVisual);
 
-            var plots = (List<ICanvasItem>) _propertyService.GetValue(ItemsProperty);
+            var items = (List<CanvasItem>)_propertyService.GetValue(ItemsProperty);
 
-            var plotVisuals = _renderer.DrawItems(plots);
+            var selectedItems = (List<CanvasItem>) _propertyService.GetValue(SelectedItemsProperty);
+
+            foreach (var item in items)
+                item.IsSelected = selectedItems.Any(p => p.Id == item.Id);
+
+            var plotVisuals = _renderer.DrawItems(items);
 
             visuals.AddRange(plotVisuals);
 
@@ -88,8 +105,7 @@ namespace DataExplorer.Presentation.Core.Canvas
             
             _visualService.Add(visuals);
         }
-
-
+        
         protected override int VisualChildrenCount
         {
             get { return _visualService.GetVisualsCount(); }
@@ -111,6 +127,56 @@ namespace DataExplorer.Presentation.Core.Canvas
 
             _isMouseDown = true;
             _previousMousePosition = Mouse.GetPosition(this);
+
+            var location = e.GetPosition(this);
+            
+            var hitResult = VisualTreeHelper.HitTest(this, location);
+            
+            bool isHit = hitResult.VisualHit.GetType() == typeof(VisualItem) 
+                && ((VisualItem) hitResult.VisualHit).Id.HasValue;
+            
+            if (!isHit)
+                ClearSelectedItems();
+            else
+            {
+                if (e.ChangedButton != MouseButton.Right
+                    && ((Keyboard.Modifiers & ModifierKeys.Control) == 0))
+                    ClearSelectedItems();
+
+                var hitVisualItem = (VisualItem) hitResult.VisualHit;
+
+                var items = (List<CanvasItem>) GetValue(ItemsProperty);
+
+                var hitItem = items.First(p => p.Id == hitVisualItem.Id);
+
+                if (!hitItem.IsSelected)
+                    AddSelectedItem(hitItem);
+                else if (e.ChangedButton != MouseButton.Right)
+                    RemoveSelectedItem(hitItem);    
+            }
+
+            this.Draw();
+        }
+
+        private void ClearSelectedItems()
+        {
+            var selectedItems = (List<CanvasItem>) GetValue(SelectedItemsProperty);
+
+            selectedItems.Clear();
+        }
+
+        private void AddSelectedItem(CanvasItem item)
+        {
+            var selectedItems = (List<CanvasItem>) GetValue(SelectedItemsProperty);
+
+            selectedItems.Add(item);
+        }
+
+        private void RemoveSelectedItem(CanvasItem item)
+        {
+            var selectedItems = (List<CanvasItem>) GetValue(SelectedItemsProperty);
+
+            selectedItems.Remove(item);
         }
 
         protected override void OnMouseUp(MouseButtonEventArgs e)

@@ -3,24 +3,31 @@ using System.Windows.Media;
 
 namespace DataExplorer.Presentation.Core.Canvas.Items
 {
-    public class CanvasCircle : ICanvasItem
+    public class CanvasCircle : CanvasItem
     {
-        public double X;
+        public double X { get; set; }
         
-        public double Y;
+        public double Y { get; set; }
         
-        public double Radius;
+        public double Radius { get; set; }
 
-        public Visual Draw()
+        public override VisualItem Draw()
         {
-            var visual = new DrawingVisual();
-            
+            var visual = new VisualItem();
+
+            visual.Id = Id;
+
             // TODO: Move default brush and pen to static fiels and intialize / freeze in static constructer
             var brush = new SolidColorBrush(Colors.LightBlue);
             brush.Freeze();
 
-            var pen = new Pen(Brushes.Black, 1);
-            pen.Freeze();
+            var unselectedPen = new Pen(Brushes.Black, 1);
+            unselectedPen.Freeze();
+
+            var selectedPen = new Pen(Brushes.Blue, 2);
+            selectedPen.Freeze();
+
+            var pen = IsSelected ? selectedPen : unselectedPen;
 
             using (var context = visual.RenderOpen())
             {

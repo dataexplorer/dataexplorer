@@ -18,7 +18,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.AxisTitles.Queries
             _renderer = renderer;
         }
 
-        public ICanvasItem Execute(Size controlSize)
+        public CanvasItem Execute(Size controlSize)
         {
             var column = _service.GetYColumn();
 

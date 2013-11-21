@@ -8,18 +8,21 @@ using System.Windows.Media;
 
 namespace DataExplorer.Presentation.Core.Canvas.Items
 {
-    public class CanvasLine : ICanvasItem
+    public class CanvasLine : CanvasItem
     {
-        public double X1;
-        public double Y1;
-        public double X2;
-        public double Y2;
+        public double X1 { get; set; }
+
+        public double Y1 { get; set; }
+
+        public double X2 { get; set; }
         
-        public Visual Draw()
+        public double Y2 { get; set; }
+
+        public override VisualItem Draw()
         {
             var pen = new Pen(Brushes.LightGray, 1);
 
-            var visual = new DrawingVisual();
+            var visual = new VisualItem();
             
             using (var context = visual.RenderOpen())
             {

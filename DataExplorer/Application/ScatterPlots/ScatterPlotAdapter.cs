@@ -16,6 +16,7 @@ namespace DataExplorer.Application.ScatterPlots
             foreach (var plot in plots)
             {
                 var dto = new PlotDto();
+                dto.Id = plot.Id;
                 dto.X = plot.X;
                 dto.Y = plot.Y;
                 dtos.Add(dto);

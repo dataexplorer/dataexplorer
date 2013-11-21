@@ -235,9 +235,10 @@
     <Compile Include="Presentation\Core\Canvas\Items\CanvasBackground.cs" />
     <Compile Include="Presentation\Core\Canvas\Items\CanvasLabel.cs" />
     <Compile Include="Presentation\Core\Canvas\Items\CanvasLine.cs" />
+    <Compile Include="Presentation\Core\Canvas\Items\CanvasItem.cs" />
+    <Compile Include="Presentation\Core\Canvas\Items\VisualItem.cs" />
     <Compile Include="Presentation\Core\Commands\AsyncDelegateCommand.cs" />
     <Compile Include="Presentation\Core\Events\DialogClosedEvent.cs" />
-    <Compile Include="Presentation\Core\Canvas\Items\ICanvasItem.cs" />
     <Compile Include="Presentation\Dialogs\DialogService.cs" />
     <Compile Include="Presentation\Dialogs\IDialogService.cs" />
     <Compile Include="Application\Projects\IProjectService.cs" />
@@ -498,7 +499,7 @@
     <Compile Include="Presentation\Views\ScatterPlots\AxisGrid\Lines\Renderers\IXAxisGridLineRenderercs.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\AxisGrid\Labels\Renderers\XAxisGridLabelRenderer.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\AxisGrid\Lines\Renderers\IYAxisGridLineRenderer.cs" />
-    <Compile Include="Presentation\Views\ScatterPlots\AxisGrid\Lines\Renderers\XAxisGridLineRenderer.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\AxisGrid\Lines\Renderers\AxisGridLineRenderer.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\AxisGrid\Lines\Renderers\YAxisGridLineRenderer.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Commands\IPanScatterPlotCommand.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Commands\IResizeScatterPlotViewExtentCommand.cs" />

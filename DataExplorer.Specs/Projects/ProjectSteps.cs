@@ -9,6 +9,7 @@ using DataExplorer.Domain.ScatterPlots;
 using DataExplorer.Domain.Sources;
 using DataExplorer.Domain.Views;
 using DataExplorer.Tests.Domain.Columns;
+using DataExplorer.Tests.Domain.Rows;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -53,7 +54,7 @@ namespace DataExplorer.Specs.Projects
         [Given(@"the project has a row")]
         public void GivenTheProjectHasARow()
         {
-            var row = new Row();
+            var row = new RowBuilder().Build();
             var rows = new List<Row> { row };
             _context.Row = row;
             _context.Project.Rows = rows;

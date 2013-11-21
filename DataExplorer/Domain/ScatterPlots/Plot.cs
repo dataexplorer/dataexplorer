@@ -8,6 +8,7 @@ namespace DataExplorer.Domain.ScatterPlots
 {
     public class Plot
     {
+        public int Id;
         public double X;
         public double Y;
     }

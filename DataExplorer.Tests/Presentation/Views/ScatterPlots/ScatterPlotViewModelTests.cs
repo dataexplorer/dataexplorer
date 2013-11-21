@@ -28,15 +28,15 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots
         private Mock<IZoomOutScatterPlotCommand> _mockZoomOutCommand;
         private Mock<IPanScatterPlotCommand> _mockPanCommand;
         private Size _controlSize;
-        private List<ICanvasItem> _items;
-        private ICanvasItem _item;
+        private List<CanvasItem> _items;
+        private CanvasItem _item;
         
         [SetUp]
         public void SetUp()
         {
             _controlSize = new Size();
             _item = new CanvasCircle();
-            _items = new List<ICanvasItem> { _item };
+            _items = new List<CanvasItem> { _item };
 
             _mockContextMenuViewModel = new Mock<IScatterPlotContextMenuViewModel>();
             

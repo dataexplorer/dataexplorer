@@ -39,17 +39,30 @@ namespace DataExplorer.Tests.Presentation.Core.Canvas.Items
         }
 
         [Test]
-        public void TestDrawCircleShouldDrawOutline()
+        public void TestDrawCircleShouldDrawBlackOutline()
         {
             var result = _circle.Draw();
-            var visual = (DrawingVisual) result;
-            var drawing = (GeometryDrawing) visual.Drawing.Children[0];
-            var outline = (SolidColorBrush) drawing.Pen.Brush;
-            Assert.That(outline.Color, Is.EqualTo(Colors.Black));
+            AssertItemOutlineColor(result, Colors.Black);
         }
 
         [Test]
-        public void TestDrawCircleShouldDrawFill()
+        public void TestDrawCircleShouldDrawBlueOutlineIfSelected()
+        {
+            _circle.IsSelected = true;
+            var result = _circle.Draw();
+            AssertItemOutlineColor(result, Colors.Blue);
+        }
+
+        private static void AssertItemOutlineColor(VisualItem item, Color color)
+        {
+            var visual = (DrawingVisual) item;
+            var drawing = (GeometryDrawing) visual.Drawing.Children[0];
+            var outline = (SolidColorBrush) drawing.Pen.Brush;
+            Assert.That(outline.Color, Is.EqualTo(color));
+        }
+
+        [Test]
+        public void TestDrawCircleShouldDrawLightBlueFill()
         {
             var result = _circle.Draw();
             var visual = (DrawingVisual) result;

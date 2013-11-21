@@ -10,6 +10,6 @@ namespace DataExplorer.Presentation.Core.Geometry
 {
     public interface IGeometryFactory
     {
-        CanvasCircle CreateCircle(Rect shapeExtent);
+        CanvasCircle CreateCircle(int id, Rect shapeExtent);
     }
 }

@@ -27,7 +27,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Plots.Renderers
             _factory = factory;
         }
 
-        public List<ICanvasItem> RenderPlots(Size controlSize, Rect viewExtent, List<PlotDto> plots)
+        public List<CanvasItem> RenderPlots(Size controlSize, Rect viewExtent, List<PlotDto> plots)
         {
             var resizedViewExtent = _resizer.ResizeView(controlSize, viewExtent);
 
@@ -36,11 +36,11 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Plots.Renderers
             return plots.Select(p => RenderPlot(controlSize, resizedViewExtent, scale, p)).ToList();
         }
 
-        private ICanvasItem RenderPlot(Size controlSize, Rect viewExtent, double scale, PlotDto plot)
+        private CanvasItem RenderPlot(Size controlSize, Rect viewExtent, double scale, PlotDto plot)
         {
             var extent = _calculator.CalculateExtent(controlSize, viewExtent, scale, new Point(plot.X, plot.Y));
 
-            var circle = _factory.CreateCircle(extent);
+            var circle = _factory.CreateCircle(plot.Id, extent);
 
             return circle;
         }

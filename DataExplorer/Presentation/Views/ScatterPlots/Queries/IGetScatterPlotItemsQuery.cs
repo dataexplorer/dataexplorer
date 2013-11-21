@@ -6,6 +6,6 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Queries
 {
     public interface IGetScatterPlotItemsQuery
     {
-        IEnumerable<ICanvasItem> Execute(Size controlSize);
+        IEnumerable<CanvasItem> Execute(Size controlSize);
     }
 }

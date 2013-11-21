@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Domain.Rows;
+using DataExplorer.Tests.Domain.Rows;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -22,7 +23,7 @@ namespace DataExplorer.Specs.Rows
         [Given(@"a row")]
         public void GivenARow()
         {
-            var row = new Row();
+            var row = new RowBuilder().Build();
             _context.Row = row;
             _context.DataContext.Rows.Add(row);
         }

@@ -27,12 +27,13 @@ namespace DataExplorer.Tests.Application.ScatterPlots
         [Test]
         public void TestAdaptShouldAdaptScatterPlotToDto()
         {
-            var plot = new Plot() { X = 1, Y = 2 };
+            var plot = new Plot() { Id = 1, X = 2d, Y = 3d };
             var plots = new List<Plot> { plot };
             _mockScatterPlot.Setup(p => p.GetPlots()).Returns(plots);
             var dtos = _adapter.Adapt(_mockScatterPlot.Object.GetPlots());
-            Assert.That(dtos.Single().X, Is.EqualTo(1));
-            Assert.That(dtos.Single().Y, Is.EqualTo(2));
+            Assert.That(dtos.Single().Id, Is.EqualTo(1));
+            Assert.That(dtos.Single().X, Is.EqualTo(2d));
+            Assert.That(dtos.Single().Y, Is.EqualTo(3d));
         }
     }
 }

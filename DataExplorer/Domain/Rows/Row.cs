@@ -8,19 +8,29 @@ namespace DataExplorer.Domain.Rows
 {
     public class Row
     {
+        private readonly int _id;
         private readonly object[] _fields;
 
-        public Row()
-        { }
-
-        public Row(int fields)
+        public Row(int id)
         {
+            _id = id;
+        }
+
+        public Row(int id, int fields)
+        {
+            _id = id;
             _fields = new object[fields];
         }
 
-        public Row(List<object> fields)
+        public Row(int id, List<object> fields)
         {
+            _id = id;
             _fields = fields.ToArray();
+        }
+
+        public int Id
+        {
+            get { return _id; }
         }
 
         public object this[int columnIndex]

@@ -20,8 +20,8 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.Plots.Queries
         private Rect _viewExtent;
         private List<PlotDto> _plotDtos;
         private PlotDto _plotDto;
-        private List<ICanvasItem> _items;
-        private ICanvasItem _item;
+        private List<CanvasItem> _items;
+        private CanvasItem _item;
 
         [SetUp]
         public void SetUp()
@@ -31,7 +31,7 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.Plots.Queries
             _plotDtos = new List<PlotDto> { _plotDto };
             _plotDto = new PlotDto();
             _item = new CanvasCircle();
-            _items = new List<ICanvasItem> { _item };
+            _items = new List<CanvasItem> { _item };
 
             _mockService = new Mock<IScatterPlotService>();
             _mockService.Setup(p => p.GetViewExtent()).Returns(_viewExtent);

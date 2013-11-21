@@ -8,7 +8,6 @@ using DataExplorer.Presentation.Core.Canvas.Items;
 using DataExplorer.Presentation.Views.ScatterPlots.AxisGrid.Labels.Queries;
 using DataExplorer.Presentation.Views.ScatterPlots.AxisGrid.Lines.Queries;
 using DataExplorer.Presentation.Views.ScatterPlots.AxisTitles.Queries;
-using DataExplorer.Presentation.Views.ScatterPlots.Plots;
 using DataExplorer.Presentation.Views.ScatterPlots.Plots.Queries;
 
 namespace DataExplorer.Presentation.Views.ScatterPlots.Queries
@@ -41,7 +40,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Queries
             _getYAxisGridLinesQuery = getYAxisGridLinesQuery;
         }
 
-        public IEnumerable<ICanvasItem> Execute(Size controlSize)
+        public IEnumerable<CanvasItem> Execute(Size controlSize)
         {
             var xGridLines = _getXAxisGridLinesQuery.Execute(controlSize);
 

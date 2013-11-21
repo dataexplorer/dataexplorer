@@ -148,11 +148,13 @@
     <Compile Include="Domain\Sources\SourceMapTests.cs" />
     <Compile Include="Persistence\Filters\FilterRepositoryTests.cs" />
     <Compile Include="Persistence\Sources\SourceRepositoryTests.cs" />
+    <Compile Include="Presentation\Core\Canvas\CanvasControlTestHarness.cs" />
     <Compile Include="Presentation\Core\Canvas\CanvasRendererTests.cs" />
     <Compile Include="Presentation\Core\Canvas\Items\CanvasBackgroundTests.cs" />
     <Compile Include="Presentation\Core\Canvas\Items\CanvasCircleTests.cs" />
     <Compile Include="Presentation\Core\Canvas\Items\CanvasLabelTests.cs" />
     <Compile Include="Presentation\Core\Canvas\Items\CanvasLineTests.cs" />
+    <Compile Include="Presentation\Core\Canvas\Items\FakeCanvasItem.cs" />
     <Compile Include="Presentation\Core\FriendlyDataTypeNameConverterTests.cs" />
     <Compile Include="Presentation\Dialogs\DialogServiceTests.cs" />
     <Compile Include="Application\Projects\ProjectServiceTests.cs" />

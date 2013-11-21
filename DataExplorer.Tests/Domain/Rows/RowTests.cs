@@ -14,8 +14,7 @@ namespace DataExplorer.Tests.Domain.Rows
         [Test]
         public void TestIndexerShouldReturnFieldAtIndex()
         {
-            var fields = new List<object> { 1 };
-            var row = new Row(fields);
+            var row = new RowBuilder().WithField(1).Build();
             var result = row[0];
             Assert.That(result, Is.EqualTo(1));
         }

@@ -35,6 +35,8 @@ namespace DataExplorer.Domain.ScatterPlots
             {
                 var plot = new Plot();
 
+                plot.Id = row.Id;
+
                 plot.X = layout.XAxisColumn != null
                     ? xAxisMap.Map(row[layout.XAxisColumn.Index]) ?? 0.0
                     : 0.0;

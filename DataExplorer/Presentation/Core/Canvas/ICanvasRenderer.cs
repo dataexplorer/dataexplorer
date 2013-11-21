@@ -13,6 +13,6 @@ namespace DataExplorer.Presentation.Core.Canvas
     {
         Visual DrawBackground(double width, double height);
 
-        IEnumerable<Visual> DrawItems(List<ICanvasItem> plots);
+        IEnumerable<Visual> DrawItems(List<CanvasItem> items);
     }
 }
