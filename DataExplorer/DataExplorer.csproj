@@ -98,6 +98,7 @@
     <Compile Include="Application\Maps\MapService.cs" />
     <Compile Include="Application\Maps\Queries\GetAxisMapQuery.cs" />
     <Compile Include="Application\Maps\Queries\IGetAxisMapQuery.cs" />
+    <Compile Include="Application\Rows\IRowService.cs" />
     <Compile Include="Application\ScatterPlots\Commands\IZoomToFullExtentCommand.cs" />
     <Compile Include="Application\ScatterPlots\Events\ScatterPlotLayoutChangedEvent.cs" />
     <Compile Include="Application\ScatterPlots\Layouts\Commands\ClearLayoutCommand.cs" />
@@ -125,6 +126,7 @@
     <Compile Include="Application\ScatterPlots\Commands\ZoomInCommand.cs" />
     <Compile Include="Application\ScatterPlots\Commands\ZoomOutCommand.cs" />
     <Compile Include="Application\ScatterPlots\Commands\ZoomToFullExtentCommand.cs" />
+    <Compile Include="Application\Rows\RowService.cs" />
     <Compile Include="Domain\Filters\BooleanFilters\BooleanFilter.cs" />
     <Compile Include="Domain\Filters\DateTimeFilters\DateTimeFilter.cs" />
     <Compile Include="Domain\Filters\Filter.cs" />
@@ -239,6 +241,7 @@
     <Compile Include="Presentation\Core\Canvas\Items\VisualItem.cs" />
     <Compile Include="Presentation\Core\Commands\AsyncDelegateCommand.cs" />
     <Compile Include="Presentation\Core\Events\DialogClosedEvent.cs" />
+    <Compile Include="Presentation\Core\FastObservableCollection.cs" />
     <Compile Include="Presentation\Dialogs\DialogService.cs" />
     <Compile Include="Presentation\Dialogs\IDialogService.cs" />
     <Compile Include="Application\Projects\IProjectService.cs" />
@@ -503,19 +506,24 @@
     <Compile Include="Presentation\Views\ScatterPlots\AxisGrid\Lines\Renderers\YAxisGridLineRenderer.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Commands\IPanScatterPlotCommand.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Commands\IResizeScatterPlotViewExtentCommand.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\Commands\ISelectCommand.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Commands\IZoomInScatterPlotCommand.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Commands\IZoomOutScatterPlotCommand.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Commands\PanScatterPlotCommand.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Commands\ResizeScatterPlotViewExtentCommand.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\Commands\SelectCommand.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Commands\ZoomInScatterPlotCommand.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Commands\ZoomOutScatterPlotCommand.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\IScatterPlotContextMenuViewModel.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\IScatterPlotViewModelCommands.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\IScatterPlotViewModelQueries.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\IScatterPlotViewScaler.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Queries\GetScatterPlotItemsQuery.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Plots\Queries\GetScatterPlotPlotsQuery.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\AxisGrid\Lines\Queries\GetScatterPlotXAxisGridLinesQuery.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\AxisTitles\Queries\GetScatterPlotXAxisTitleQuery.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\AxisTitles\Queries\GetScatterPlotYAxisTitleQuery.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\Queries\GetSelectedItemsQuery.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Queries\IGetScatterPlotItemsQuery.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Plots\Queries\IGetScatterPlotPlotsQuery.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\AxisGrid\Lines\Queries\IGetScatterPlotXAxisGridLinesQuery.cs" />
@@ -525,6 +533,7 @@
     <Compile Include="Presentation\Views\ScatterPlots\AxisTitles\Renderers\ScatterPlotYAxisTitleRenderer.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Plots\Renderers\IScatterPlotPlotRenderer.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\AxisTitles\Renderers\IScatterPlotXAxisTitleRenderer.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\Queries\IGetSelectedItemsQuery.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Scalers\IValueScaler.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Scalers\IViewResizer.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Plots\Renderers\ScatterPlotPlotRenderer.cs" />
@@ -556,6 +565,8 @@
     <Compile Include="Presentation\Views\ScatterPlots\Scalers\ScaleComputer.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Scalers\VectorScaler.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\ScatterPlotContextMenuViewModel.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\ScatterPlotViewModelCommands.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\ScatterPlotViewModelQueries.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\ScatterPlotViewScaler.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\ScatterPlotView.xaml.cs">
       <DependentUpon>ScatterPlotView.xaml</DependentUpon>

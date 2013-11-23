@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -23,11 +25,10 @@ namespace DataExplorer.Presentation.Views.ScatterPlots
         IDomainHandler<ScatterPlotChangedEvent>
     {
         private readonly IScatterPlotContextMenuViewModel _contextMenuViewModel;
-        private readonly IGetScatterPlotItemsQuery _getItemsQuery;
-        private readonly IResizeScatterPlotViewExtentCommand _resizeCommand;
-        private readonly IZoomInScatterPlotCommand _zoomInCommand;
-        private readonly IZoomOutScatterPlotCommand _zoomOutCommand;
-        private readonly IPanScatterPlotCommand _panCommand;
+        private readonly IScatterPlotViewModelQueries _queries;
+        private readonly IScatterPlotViewModelCommands _commands;
+        private readonly FastObservableCollection<CanvasItem> _selectedItems; 
+
         private Size _controlSize;
 
         public IScatterPlotContextMenuViewModel ContextMenuViewModel
@@ -42,55 +43,58 @@ namespace DataExplorer.Presentation.Views.ScatterPlots
 
         public List<CanvasItem> Items
         {
-            get { return GetItems().ToList(); }
-        }
-        
-        public ScatterPlotViewModel(
-            IScatterPlotContextMenuViewModel contextMenuViewModel,
-            IGetScatterPlotItemsQuery getItemsQuery,
-            IResizeScatterPlotViewExtentCommand resizeCommand,
-            IZoomInScatterPlotCommand zoomInCommand,
-            IZoomOutScatterPlotCommand zoomOutCommand,
-            IPanScatterPlotCommand panCommand)
-        {
-            _contextMenuViewModel = contextMenuViewModel;
-            _getItemsQuery = getItemsQuery;
-            _resizeCommand = resizeCommand;
-            _zoomInCommand = zoomInCommand;
-            _zoomOutCommand = zoomOutCommand;
-            _panCommand = panCommand;
+            get { return _queries.GetItems(_controlSize).ToList(); }
         }
 
-        private IEnumerable<CanvasItem> GetItems()
+        public ICollection<CanvasItem> SelectedItems
         {
-            return _getItemsQuery.Execute(_controlSize);
+            get { return _selectedItems; }
+        }
+
+        public ScatterPlotViewModel(
+            IScatterPlotContextMenuViewModel contextMenuViewModel,
+            IScatterPlotViewModelQueries queries,
+            IScatterPlotViewModelCommands commands)
+        {
+            _contextMenuViewModel = contextMenuViewModel;
+            _queries = queries;
+            _commands = commands;
+
+            _selectedItems = new FastObservableCollection<CanvasItem>();
+
+            _selectedItems.CollectionChanged += HandleSelectedItemsChanged;
         }
 
         private void HandleControlSizeChanged(Size controlSize)
         {
             _controlSize = controlSize;
 
-            _resizeCommand.Execute(_controlSize);
+            _commands.Resize(_controlSize);
         }
 
         public void HandleZoomIn(Point center)
         {
-            _zoomInCommand.Execute(center, _controlSize);
+            _commands.ZoomIn(center, _controlSize);
         }
 
         public void HandleZoomOut(Point center)
         {
-            _zoomOutCommand.Execute(center, _controlSize);
+            _commands.ZoomOut(center, _controlSize);
         }
 
         public void HandlePan(Vector vector)
         {
-            _panCommand.Execute(vector, _controlSize);
+            _commands.Pan(vector, _controlSize);
         }
 
         public void Handle(ScatterPlotChangedEvent args)
         {
             OnPropertyChanged(() => Items);
+        }
+
+        private void HandleSelectedItemsChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            _commands.Select(_selectedItems.ToList());
         }
     }
 }

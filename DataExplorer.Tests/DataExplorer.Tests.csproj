@@ -85,6 +85,7 @@
     <Compile Include="Application\ScatterPlots\Commands\UpdatePlotsCommandTests.cs" />
     <Compile Include="Application\ScatterPlots\Commands\ZoomInTaskTests.cs" />
     <Compile Include="Application\ScatterPlots\Commands\ZoomOutTaskTests.cs" />
+    <Compile Include="Application\Rows\RowServiceTests.cs" />
     <Compile Include="Domain\Filters\BooleanFilters\BooleanFilterTests.cs" />
     <Compile Include="Domain\Filters\DateTimeFilters\DateTimeFilterTests.cs" />
     <Compile Include="Domain\Filters\FloatFilters\FloatFilterTests.cs" />
@@ -155,6 +156,7 @@
     <Compile Include="Presentation\Core\Canvas\Items\CanvasLabelTests.cs" />
     <Compile Include="Presentation\Core\Canvas\Items\CanvasLineTests.cs" />
     <Compile Include="Presentation\Core\Canvas\Items\FakeCanvasItem.cs" />
+    <Compile Include="Presentation\Core\FastObservableCollectionTests.cs" />
     <Compile Include="Presentation\Core\FriendlyDataTypeNameConverterTests.cs" />
     <Compile Include="Presentation\Dialogs\DialogServiceTests.cs" />
     <Compile Include="Application\Projects\ProjectServiceTests.cs" />
@@ -219,6 +221,7 @@
     <Compile Include="Presentation\Views\ScatterPlots\AxisGrid\Labels\Renderers\XAxisGridLabelRendererTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Commands\PanScatterPlotCommandTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Commands\ResizeScatterPlotViewExtentCommandTests.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\Commands\SelectCommandTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Commands\ZoomInScatterPlotCommandTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Commands\ZoomOutScatterPlotCommandTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Layouts\ScatterPlotLayoutViewModelTests.cs" />
@@ -232,6 +235,7 @@
     <Compile Include="Presentation\Views\ScatterPlots\AxisTitles\Renderers\ScatterPlotYAxisLabelRendererTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Plots\Renderers\ScatterPlotPlotRendererTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\AxisTitles\Renderers\ScatterPlotXAxisLabelRendererTests.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\Queries\GetSelectedItemsQueryTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Scalers\ValueScalerTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Scalers\ViewResizerTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\Scalers\PointScalerTests.cs" />
@@ -239,12 +243,14 @@
     <Compile Include="Presentation\Views\ScatterPlots\Scalers\VectorScalerTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\ScatterPlotContextMenuViewModelTests.cs" />
     <Compile Include="Presentation\Core\Canvas\CanvasControlTests.cs" />
+    <Compile Include="Presentation\Views\ScatterPlots\ScatterPlotViewModelCommandsTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\ScatterPlotViewModelTests.cs" />
     <Compile Include="Presentation\Core\DelegateCommandTests.cs" />
     <Compile Include="Presentation\Shell\MainMenu\FileMenu\FileMenuViewModelTests.cs" />
     <Compile Include="Presentation\Shell\MainMenu\MainMenuViewModelTests.cs" />
     <Compile Include="Presentation\Shell\MainWindow\MainWindowViewModelTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\ScatterPlotViewScalerTests.cs" />
+    <Compile Include="Presentation\Views\ScatterPlotViewModelQueriesTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

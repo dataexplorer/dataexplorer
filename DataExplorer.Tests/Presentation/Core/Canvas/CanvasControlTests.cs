@@ -63,12 +63,10 @@ namespace DataExplorer.Tests.Presentation.Core.Canvas
         }
 
         [Test]
-        public void TestGetSelectedItemsShouldReturnSelectedItems()
+        public void TestSetSelectedItemsShouldSetSelectedItems()
         {
-            _item.IsSelected = true;
-            _mockPropertyService.Setup(p => p.GetValue(CanvasControl.SelectedItemsProperty)).Returns(_items);
-            var results = _control.SelectedItems;
-            Assert.That(results.Single(), Is.EqualTo(_item));
+            _control.SelectedItems = _items;
+            _mockPropertyService.Verify(p => p.SetValue(CanvasControl.SelectedItemsProperty, _items));
         }
 
         [Test]

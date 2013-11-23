@@ -8,6 +8,7 @@ using DataExplorer.Application.Application.Events;
 using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Importers.CsvFiles.Events;
 using DataExplorer.Domain.Filters;
+using DataExplorer.Domain.Rows;
 
 namespace DataExplorer.Application.Application
 {
@@ -53,7 +54,13 @@ namespace DataExplorer.Application.Application
             get { return _state.SelectedFilter; }
             set { _state.SelectedFilter = value; }
         }
-        
+
+        public List<Row> SelectedRows
+        {
+            get { return _state.SelectedRows; }
+            set { _state.SelectedRows = value; }
+        }
+
         public void Handle(CsvFileImportingEvent args)
         {
             _state.IsStartMenuVisible = false;

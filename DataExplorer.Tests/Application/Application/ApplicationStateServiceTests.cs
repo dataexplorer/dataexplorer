@@ -8,8 +8,10 @@ using DataExplorer.Application.Application;
 using DataExplorer.Application.Application.Events;
 using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Importers.CsvFiles.Events;
+using DataExplorer.Domain.Rows;
 using DataExplorer.Tests.Application.FilterTrees;
 using DataExplorer.Tests.Application.Filters;
+using DataExplorer.Tests.Domain.Rows;
 using Moq;
 using NUnit.Framework;
 
@@ -73,6 +75,16 @@ namespace DataExplorer.Tests.Application.Application
         {
             _service.SelectedFilter = _filter;
             Assert.That(_state.SelectedFilter, Is.EqualTo(_filter));
+        }
+
+        [Test]
+        public void TestGetSetSelectedRowsShouldGetSetSelectedRows()
+        {
+            var row = new RowBuilder().Build();
+            var rows = new List<Row> { row };
+            _service.SelectedRows = rows;
+            var result = _service.SelectedRows;
+            Assert.That(result.Single(), Is.EqualTo(row));
         }
 
         [Test]

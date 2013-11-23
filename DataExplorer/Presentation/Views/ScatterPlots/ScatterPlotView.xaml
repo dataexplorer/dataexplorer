@@ -13,7 +13,8 @@
     <Grid>
         <canvas:CanvasControl
             ControlSize="{Binding ControlSize, Mode=OneWayToSource}"
-            Items="{Binding Items}" 
+            Items="{Binding Items}"
+            SelectedItems="{Binding SelectedItems}"
             ZoomIn="HandleZoomIn"
             ZoomOut="HandleZoomOut"
             Pan="HandlePan">

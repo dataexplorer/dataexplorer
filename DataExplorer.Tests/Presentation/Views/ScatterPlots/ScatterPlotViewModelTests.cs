@@ -7,6 +7,7 @@ using System.Windows;
 using DataExplorer.Application.Columns;
 using DataExplorer.Application.ScatterPlots;
 using DataExplorer.Domain.ScatterPlots;
+using DataExplorer.Presentation.Core;
 using DataExplorer.Presentation.Core.Canvas.Items;
 using DataExplorer.Presentation.Views.ScatterPlots;
 using DataExplorer.Presentation.Views.ScatterPlots.Commands;
@@ -22,11 +23,8 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots
     {
         private ScatterPlotViewModel _viewModel;
         private Mock<IScatterPlotContextMenuViewModel> _mockContextMenuViewModel;
-        private Mock<IGetScatterPlotItemsQuery> _mockGetItemsQuery;
-        private Mock<IResizeScatterPlotViewExtentCommand> _mockResizeCommand;
-        private Mock<IZoomInScatterPlotCommand> _mockZoomInCommand;
-        private Mock<IZoomOutScatterPlotCommand> _mockZoomOutCommand;
-        private Mock<IPanScatterPlotCommand> _mockPanCommand;
+        private Mock<IScatterPlotViewModelQueries> _mockQueries;
+        private Mock<IScatterPlotViewModelCommands> _mockCommands;
         private Size _controlSize;
         private List<CanvasItem> _items;
         private CanvasItem _item;
@@ -40,21 +38,16 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots
 
             _mockContextMenuViewModel = new Mock<IScatterPlotContextMenuViewModel>();
             
-            _mockGetItemsQuery = new Mock<IGetScatterPlotItemsQuery>();
-            _mockGetItemsQuery.Setup(p => p.Execute(It.IsAny<Size>())).Returns(_items);
+            _mockQueries = new Mock<IScatterPlotViewModelQueries>();
+            _mockQueries.Setup(p => p.GetItems(It.IsAny<Size>())).Returns(_items);
+            _mockQueries.Setup(p => p.GetSelectedItems(_items)).Returns(_items);
             
-            _mockResizeCommand = new Mock<IResizeScatterPlotViewExtentCommand>();
-            _mockZoomInCommand = new Mock<IZoomInScatterPlotCommand>();
-            _mockZoomOutCommand = new Mock<IZoomOutScatterPlotCommand>();
-            _mockPanCommand = new Mock<IPanScatterPlotCommand>();
-
+            _mockCommands = new Mock<IScatterPlotViewModelCommands>();
+            
             _viewModel = new ScatterPlotViewModel(
                 _mockContextMenuViewModel.Object,
-                _mockGetItemsQuery.Object,
-                _mockResizeCommand.Object,
-                _mockZoomInCommand.Object,
-                _mockZoomOutCommand.Object,
-                _mockPanCommand.Object);
+                _mockQueries.Object,
+                _mockCommands.Object);
         }
 
         [Test]
@@ -68,7 +61,7 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots
         public void TestSetControlSizeShouldResizeViewExtent()
         {
             _viewModel.ControlSize = _controlSize;
-            _mockResizeCommand.Verify(p => p.Execute(_controlSize), Times.Once());
+            _mockCommands.Verify(p => p.Resize(_controlSize), Times.Once());
         }
 
         [Test]
@@ -79,11 +72,26 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots
         }
 
         [Test]
+        public void TestGetSelectedItemsShouldReturnItems()
+        {
+            _viewModel.SelectedItems.Add(_item);
+            var results = _viewModel.SelectedItems;
+            Assert.That(results.Single(), Is.EqualTo(_item));
+        }
+
+        [Test]
+        public void TestSelectedItemsCollectionChangedShouldExecuteSelectCommand()
+        {
+            _viewModel.SelectedItems.Add(_item);
+            _mockCommands.Verify(p => p.Select(_items));
+        }
+        
+        [Test]
         public void TestZoomInShouldExecuteCommand()
         {
             var point = new Point();
             _viewModel.HandleZoomIn(point);
-            _mockZoomInCommand.Verify(p => p.Execute(point, _controlSize), Times.Once());
+            _mockCommands.Verify(p => p.ZoomIn(point, _controlSize), Times.Once());
         }
 
         [Test]
@@ -91,15 +99,15 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots
         {
             var point = new Point();
             _viewModel.HandleZoomOut(point);
-            _mockZoomOutCommand.Verify(p => p.Execute(point, _controlSize), Times.Once());
+            _mockCommands.Verify(p => p.ZoomOut(point, _controlSize), Times.Once());
         }
-        
+
         [Test]
         public void TestPanShouldScalePanValues()
         {
             var vector = new Vector();
             _viewModel.HandlePan(vector);
-            _mockPanCommand.Verify(p => p.Execute(vector, _controlSize), Times.Once());
+            _mockCommands.Verify(p => p.Pan(vector, _controlSize), Times.Once());
         }
 
         [Test]

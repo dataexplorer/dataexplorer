@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Domain.FilterTrees;
 using DataExplorer.Domain.Filters;
+using DataExplorer.Domain.Rows;
 
 namespace DataExplorer.Application.Application
 {
@@ -15,5 +16,7 @@ namespace DataExplorer.Application.Application
         public bool IsNavigationTreeVisible { get; set; }
 
         public Filter SelectedFilter { get; set; }
+
+        public List<Row> SelectedRows { get; set; }
     }
 }

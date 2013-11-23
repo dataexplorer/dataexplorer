@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,15 +30,15 @@ namespace DataExplorer.Presentation.Core.Canvas
 
         public static readonly DependencyProperty ItemsProperty = DependencyProperty.Register(
             "Items",
-            typeof(List<CanvasItem>),
+            typeof(IEnumerable<CanvasItem>),
             typeof(CanvasControl),
-            new PropertyMetadata(new List<CanvasItem>(), HandleItemsChanged));
+            new PropertyMetadata(HandleItemsChanged));
 
         public static readonly DependencyProperty SelectedItemsProperty = DependencyProperty.Register(
             "SelectedItems",
-            typeof(List<CanvasItem>),
+            typeof(ICollection<CanvasItem>),
             typeof(CanvasControl),
-            new PropertyMetadata(new List<CanvasItem>(), HandleItemsChanged));
+            new PropertyMetadata(HandleSelectedItemsChanged));
 
         private bool _isMouseDown;
 
@@ -49,14 +50,14 @@ namespace DataExplorer.Presentation.Core.Canvas
             set { _propertyService.SetValue(ControlSizeProperty, value); }
         }
 
-        public List<CanvasItem> Items
+        public IEnumerable<CanvasItem> Items
         {
             set { _propertyService.SetValue(ItemsProperty, value); }
         }
 
-        public List<CanvasItem> SelectedItems
+        public ICollection<CanvasItem> SelectedItems
         {
-            get { return (List<CanvasItem>) _propertyService.GetValue(SelectedItemsProperty); }
+            set { _propertyService.SetValue(SelectedItemsProperty, value); }
         }
 
         public CanvasControl() : this(
@@ -82,6 +83,16 @@ namespace DataExplorer.Presentation.Core.Canvas
             _visualService.SetSource(this);
         }
 
+        private List<CanvasItem> GetItems()
+        {
+            return (List<CanvasItem>)_propertyService.GetValue(ItemsProperty);
+        }
+
+        private ICollection<CanvasItem> GetSelectedItems()
+        {
+            return (ICollection<CanvasItem>) _propertyService.GetValue(SelectedItemsProperty); ;
+        }
+
         private void Draw()
         {
             var visuals = new List<Visual>();
@@ -90,12 +101,13 @@ namespace DataExplorer.Presentation.Core.Canvas
 
             visuals.Add(backgroundVisual);
 
-            var items = (List<CanvasItem>)_propertyService.GetValue(ItemsProperty);
+            var items = GetItems();
 
-            var selectedItems = (List<CanvasItem>) _propertyService.GetValue(SelectedItemsProperty);
+            var selectedItems = GetSelectedItems();
 
-            foreach (var item in items)
-                item.IsSelected = selectedItems.Any(p => p.Id == item.Id);
+            if (items != null && selectedItems != null )
+                foreach (var item in items)
+                    item.IsSelected = selectedItems.Any(p => p.Id == item.Id);
 
             var plotVisuals = _renderer.DrawItems(items);
 
@@ -105,7 +117,7 @@ namespace DataExplorer.Presentation.Core.Canvas
             
             _visualService.Add(visuals);
         }
-        
+
         protected override int VisualChildrenCount
         {
             get { return _visualService.GetVisualsCount(); }
@@ -119,6 +131,26 @@ namespace DataExplorer.Presentation.Core.Canvas
         private static void HandleItemsChanged(DependencyObject source, DependencyPropertyChangedEventArgs e)
         {
             ((CanvasControl) source).Draw();
+        }
+
+        private static void HandleSelectedItemsChanged(DependencyObject source, DependencyPropertyChangedEventArgs e)
+        {
+            var control = (CanvasControl) source;
+
+            var oldCollection = (INotifyCollectionChanged) e.OldValue;
+            if (oldCollection != null)
+                oldCollection.CollectionChanged -= control.HandleSelectedItemsCollectionChanged;
+
+            var newCollection = (INotifyCollectionChanged) e.NewValue;
+            if (newCollection != null)
+                newCollection.CollectionChanged += control.HandleSelectedItemsCollectionChanged;
+
+            ((CanvasControl) source).Draw();
+        }
+
+        private void HandleSelectedItemsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            this.Draw();
         }
 
         protected override void OnMouseDown(MouseButtonEventArgs e)
@@ -155,28 +187,22 @@ namespace DataExplorer.Presentation.Core.Canvas
                     RemoveSelectedItem(hitItem);    
             }
 
-            this.Draw();
+            //this.Draw();
         }
 
         private void ClearSelectedItems()
         {
-            var selectedItems = (List<CanvasItem>) GetValue(SelectedItemsProperty);
-
-            selectedItems.Clear();
+            GetSelectedItems().Clear();
         }
 
         private void AddSelectedItem(CanvasItem item)
         {
-            var selectedItems = (List<CanvasItem>) GetValue(SelectedItemsProperty);
-
-            selectedItems.Add(item);
+            GetSelectedItems().Add(item);
         }
 
         private void RemoveSelectedItem(CanvasItem item)
         {
-            var selectedItems = (List<CanvasItem>) GetValue(SelectedItemsProperty);
-
-            selectedItems.Remove(item);
+            GetSelectedItems().Remove(item);
         }
 
         protected override void OnMouseUp(MouseButtonEventArgs e)
@@ -223,6 +249,7 @@ namespace DataExplorer.Presentation.Core.Canvas
             base.OnRenderSizeChanged(sizeInfo);
 
             var size = new Size(ActualWidth, ActualHeight);
+
             _propertyService.SetValue(ControlSizeProperty, size);
         }
 
