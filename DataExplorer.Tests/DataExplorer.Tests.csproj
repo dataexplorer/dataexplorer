@@ -58,6 +58,8 @@
     <Compile Include="Application\Application\ApplicationServiceTests.cs" />
     <Compile Include="Application\Application\ApplicationStateServiceTests.cs" />
     <Compile Include="Application\Clipboard\ClipboardServiceTests.cs" />
+    <Compile Include="Application\Clipboard\Commands\CopyDataToClipboardCommandTests.cs" />
+    <Compile Include="Application\Clipboard\Queries\CanCopyDataToClipboardQueryTests.cs" />
     <Compile Include="Application\Columns\ColumnAdapterTests.cs" />
     <Compile Include="Application\Columns\ColumnServiceTests.cs" />
     <Compile Include="Application\Columns\Queries\GetAllColumnsQueryTests.cs" />

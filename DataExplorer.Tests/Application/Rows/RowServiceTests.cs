@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.Application;
+using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Rows;
 using DataExplorer.Domain.Rows;
 using DataExplorer.Tests.Domain.Rows;
@@ -19,6 +20,7 @@ namespace DataExplorer.Tests.Application.Rows
         private RowService _service;
         private Mock<IRowRepository> _mockRepository;
         private Mock<IApplicationStateService> _mockStateService;
+        private Mock<IEventBus> _mockEventBus;
         private List<Row> _rows;
         private Row _row;
 
@@ -34,9 +36,12 @@ namespace DataExplorer.Tests.Application.Rows
             _mockStateService = new Mock<IApplicationStateService>();
             _mockStateService.Setup(p => p.SelectedRows).Returns(_rows);
             
+            _mockEventBus = new Mock<IEventBus>();
+            
             _service = new RowService(
                 _mockRepository.Object,
-                _mockStateService.Object);
+                _mockStateService.Object,
+                _mockEventBus.Object);
         }
 
         [Test]
@@ -51,6 +56,13 @@ namespace DataExplorer.Tests.Application.Rows
         {
             _service.SetSelectedRows(_rows);
             _mockStateService.VerifySet(p => p.SelectedRows = _rows);
+        }
+
+        [Test]
+        public void TestSetSelectedRowsShouldRaiseSelectedRowsChangedEvent()
+        {
+            _service.SetSelectedRows(_rows);
+            _mockEventBus.Verify(p => p.Raise(It.IsAny<SelectedRowsChangedEvent>()), Times.Once());
         }
 
         [Test]

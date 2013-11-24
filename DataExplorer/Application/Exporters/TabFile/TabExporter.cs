@@ -29,9 +29,17 @@ namespace DataExplorer.Application.Exporters.TabFile
 
         private static string GetRowLine(Row row)
         {
-            var fields = row.Fields.Select(p => p.ToString());
+            var fields = row.Fields.Select(p => GetField(p));
 
             return string.Join("\t", fields);
+        }
+
+        private static string GetField(object field)
+        {
+            if (field == null)
+                return string.Empty;
+
+            return field.ToString();
         }
     }
 }

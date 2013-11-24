@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataExplorer.Application.Clipboard;
+using DataExplorer.Application.Rows;
 using DataExplorer.Application.ScatterPlots;
 using DataExplorer.Presentation.Views.ScatterPlots;
 using Moq;
@@ -14,19 +16,28 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots
     public class ScatterPlotContextMenuViewModelTests
     {
         private ScatterPlotContextMenuViewModel _viewModel;
+        private Mock<IClipboardService> _mockClipboardService;
         private Mock<IScatterPlotService> _mockScatterPlotService;
         private Mock<IScatterPlotLayoutService> _mockLayoutService;
 
         [SetUp]
         public void SetUp()
         {
+            _mockClipboardService = new Mock<IClipboardService>();
             _mockScatterPlotService = new Mock<IScatterPlotService>();
-
             _mockLayoutService = new Mock<IScatterPlotLayoutService>();
 
             _viewModel = new ScatterPlotContextMenuViewModel(
+                _mockClipboardService.Object,
                 _mockScatterPlotService.Object,
                 _mockLayoutService.Object);
+        }
+
+        [Test]
+        public void TestExecuteCopyCommandShouldCopyData()
+        {
+            _viewModel.CopyCommand.Execute(null);
+            _mockClipboardService.Verify(p => p.Copy());
         }
 
         [Test]
@@ -41,6 +52,15 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots
         {
             _viewModel.ClearLayoutCommand.Execute(null);
             _mockLayoutService.Verify(p => p.ClearLayout(), Times.Once());
+        }
+
+        [Test]
+        public void TestHandleSelectedRowsChangedShouldRaiseCanCopyChangedEvent()
+        {
+            var wasRaised = false;
+            _viewModel.CopyCommand.CanExecuteChanged += (s, e) => wasRaised = true;
+            _viewModel.Handle(new SelectedRowsChangedEvent());
+            Assert.That(wasRaised, Is.True);
         }
     }
 }

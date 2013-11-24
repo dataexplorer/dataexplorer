@@ -11,6 +11,11 @@ namespace DataExplorer.Application.Application
 {
     public class ApplicationState
     {
+        public ApplicationState()
+        {
+            SelectedRows = new List<Row>();
+        }
+
         public bool IsStartMenuVisible { get; set; }
 
         public bool IsNavigationTreeVisible { get; set; }

@@ -73,7 +73,11 @@
     <Compile Include="Application\Application\ApplicationStateService.cs" />
     <Compile Include="Application\Application\IApplicationStateService.cs" />
     <Compile Include="Application\Clipboard\ClipboardService.cs" />
+    <Compile Include="Application\Clipboard\Commands\CopyDataToClipboardCommand.cs" />
+    <Compile Include="Application\Clipboard\Commands\ICopyDataToClipboardCommand.cs" />
     <Compile Include="Application\Clipboard\IClipboardService.cs" />
+    <Compile Include="Application\Clipboard\Queries\CanCopyDataToClipboardQuery.cs" />
+    <Compile Include="Application\Clipboard\Queries\ICanCopyDataToClipboardQuery.cs" />
     <Compile Include="Application\Columns\ColumnService.cs" />
     <Compile Include="Application\Columns\IColumnService.cs" />
     <Compile Include="Application\Columns\Queries\GetAllColumnsQuery.cs" />
@@ -103,6 +107,7 @@
     <Compile Include="Application\Maps\Queries\GetAxisMapQuery.cs" />
     <Compile Include="Application\Maps\Queries\IGetAxisMapQuery.cs" />
     <Compile Include="Application\Rows\IRowService.cs" />
+    <Compile Include="Application\Rows\SelectedRowsChangedEvent.cs" />
     <Compile Include="Application\ScatterPlots\Commands\IZoomToFullExtentCommand.cs" />
     <Compile Include="Application\ScatterPlots\Events\ScatterPlotLayoutChangedEvent.cs" />
     <Compile Include="Application\ScatterPlots\Layouts\Commands\ClearLayoutCommand.cs" />

@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.Application;
 using DataExplorer.Application.Clipboard;
+using DataExplorer.Application.Clipboard.Commands;
+using DataExplorer.Application.Clipboard.Queries;
 using DataExplorer.Application.Exporters;
 using DataExplorer.Application.Exporters.TabFile;
 using DataExplorer.Domain.Columns;
@@ -19,44 +21,33 @@ namespace DataExplorer.Tests.Application.Clipboard
     public class ClipboardServiceTests
     {
         private ClipboardService _service;
-        private Mock<IColumnRepository> _mockColumnRepository;
-        private Mock<IApplicationStateService> _mockStateService;
-        private Mock<ITabExporter> _mockTabExporter;
-        private Mock<IClipboard> _mockClipboard;
-        private List<Column> _columns;
-        private List<Row> _rows;
-        private string _text;
+        private Mock<ICanCopyDataToClipboardQuery> _mockCanCopyDataQuery;
+        private Mock<ICopyDataToClipboardCommand> _mockCopyDataCommand;
 
         [SetUp]
         public void SetUp()
         {
-            _columns = new List<Column>();
-            _rows = new List<Row>();
-            _text = "Test";
-
-            _mockColumnRepository = new Mock<IColumnRepository>();
-            _mockColumnRepository.Setup(p => p.GetAll()).Returns(_columns);
-
-            _mockStateService = new Mock<IApplicationStateService>();
-            _mockStateService.Setup(p => p.SelectedRows).Returns(_rows);
-
-            _mockTabExporter = new Mock<ITabExporter>();
-            _mockTabExporter.Setup(p => p.Export(_columns, _rows)).Returns(_text);
-
-            _mockClipboard = new Mock<IClipboard>();
+            _mockCanCopyDataQuery = new Mock<ICanCopyDataToClipboardQuery>();
+            _mockCopyDataCommand = new Mock<ICopyDataToClipboardCommand>();
 
             _service = new ClipboardService(
-                _mockColumnRepository.Object,
-                _mockStateService.Object,
-                _mockTabExporter.Object,
-                _mockClipboard.Object);
+                _mockCanCopyDataQuery.Object,
+                _mockCopyDataCommand.Object);
+        }
+
+        [Test]
+        public void TestCanCopyShouldExecuteCanCopyDataToClipboardQuery()
+        {
+            _mockCanCopyDataQuery.Setup(p => p.Execute()).Returns(true);
+            var result = _service.CanCopy();
+            Assert.That(result, Is.True);
         }
 
         [Test]
         public void TestCopyShouldCopyDataToClipboard()
         {
             _service.Copy();
-            _mockClipboard.Verify(p => p.SetText(_text));
+            _mockCopyDataCommand.Verify(p => p.Execute(), Times.Once());
         }
     }
 }

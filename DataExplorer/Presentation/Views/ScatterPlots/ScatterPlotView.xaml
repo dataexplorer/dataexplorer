@@ -21,6 +21,10 @@
             <canvas:CanvasControl.ContextMenu>
                 <ContextMenu>
                     <MenuItem 
+                        Header="Copy" 
+                        Command="{Binding ContextMenuViewModel.CopyCommand}" />
+                    <Separator />
+                    <MenuItem 
                         Header="Zoom to Full Extent" 
                         Command="{Binding ContextMenuViewModel.ZoomToFullExtentCommand}" />
                     <MenuItem 

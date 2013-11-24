@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataExplorer.Application.Clipboard
+namespace DataExplorer.Application.Clipboard.Commands
 {
-    public interface IClipboardService
+    public interface ICopyDataToClipboardCommand
     {
-        bool CanCopy();
-
-        void Copy();
+        void Execute();
     }
 }
