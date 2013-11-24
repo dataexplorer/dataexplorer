@@ -72,6 +72,8 @@
     <Compile Include="Application\Application\Events\ApplicationStateChangedEvent.cs" />
     <Compile Include="Application\Application\ApplicationStateService.cs" />
     <Compile Include="Application\Application\IApplicationStateService.cs" />
+    <Compile Include="Application\Clipboard\ClipboardService.cs" />
+    <Compile Include="Application\Clipboard\IClipboardService.cs" />
     <Compile Include="Application\Columns\ColumnService.cs" />
     <Compile Include="Application\Columns\IColumnService.cs" />
     <Compile Include="Application\Columns\Queries\GetAllColumnsQuery.cs" />
@@ -79,6 +81,8 @@
     <Compile Include="Application\Columns\Queries\IGetAllColumnsQuery.cs" />
     <Compile Include="Application\Columns\Queries\IGetDistinctColumnValuesQuery.cs" />
     <Compile Include="Application\Core\Events\IEventBus.cs" />
+    <Compile Include="Application\Exporters\TabFile\ITabExporter.cs" />
+    <Compile Include="Application\Exporters\TabFile\TabExporter.cs" />
     <Compile Include="Application\Filters\Events\FilterChangedEvent.cs" />
     <Compile Include="Application\FilterTrees\Commands\ISelectFilterTreeNodeCommand.cs" />
     <Compile Include="Application\FilterTrees\FilterTreeService.cs" />
@@ -187,6 +191,8 @@
     <Compile Include="Application\Core\Events\EventBus.cs" />
     <Compile Include="Application\Core\Events\IEvent.cs" />
     <Compile Include="Application\Core\Events\IEventHandler.cs" />
+    <Compile Include="Infrastructure\Clipboard\ClipboardWrapper.cs" />
+    <Compile Include="Infrastructure\Clipboard\IClipboard.cs" />
     <Compile Include="Infrastructure\Importers\CsvFile\CsvFile.cs" />
     <Compile Include="Application\Importers\CsvFiles\CsvFileSourceAdapter.cs" />
     <Compile Include="Application\Importers\CsvFiles\CsvFileSourceDto.cs" />
@@ -374,6 +380,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Common\Injection\Container.cs" />
+    <Compile Include="Presentation\Shell\MainMenu\EditMenu\EditMenuViewModel.cs" />
+    <Compile Include="Presentation\Shell\MainMenu\EditMenu\IEditMenuViewModel.cs" />
     <Compile Include="Presentation\Shell\MainMenu\FileMenu\FileMenuViewModel.cs" />
     <Compile Include="Application\Application\IApplicationService.cs" />
     <Compile Include="Presentation\Shell\MainMenu\FileMenu\IFileMenuViewModel.cs" />

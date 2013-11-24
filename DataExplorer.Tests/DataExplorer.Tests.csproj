@@ -57,10 +57,12 @@
   <ItemGroup>
     <Compile Include="Application\Application\ApplicationServiceTests.cs" />
     <Compile Include="Application\Application\ApplicationStateServiceTests.cs" />
+    <Compile Include="Application\Clipboard\ClipboardServiceTests.cs" />
     <Compile Include="Application\Columns\ColumnAdapterTests.cs" />
     <Compile Include="Application\Columns\ColumnServiceTests.cs" />
     <Compile Include="Application\Columns\Queries\GetAllColumnsQueryTests.cs" />
     <Compile Include="Application\Columns\Queries\GetDistinctColumnValuesQueryTests.cs" />
+    <Compile Include="Application\Exporters\TabFile\TabExporterTests.cs" />
     <Compile Include="Application\Filters\FakeFilter.cs" />
     <Compile Include="Application\FilterTrees\Queries\GetRootFilterTreeNodesQueryTests.cs" />
     <Compile Include="Application\FilterTrees\Commands\SelectFilterTreeNodeCommandTests.cs" />
@@ -203,6 +205,7 @@
     <Compile Include="Presentation\Panes\Navigation\NavigationTree\TreeNodeViewModelTests.cs" />
     <Compile Include="Presentation\Panes\Navigation\StartMenu\StartMenuViewModelTests.cs" />
     <Compile Include="Presentation\Panes\Viewer\ViewerPaneViewModelTests.cs" />
+    <Compile Include="Presentation\Shell\MainMenu\EditMenu\EditMenuViewModelTests.cs" />
     <Compile Include="Presentation\Shell\MainMenu\ViewMenu\ViewMenuViewModelTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\AxisGrid\Factories\BooleanAxisGridLines\BooleanAxisGridLineFactoryTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\AxisGrid\Factories\DateTimeAxisGridLines\DateTimeAxisGridLineFactoryTests.cs" />

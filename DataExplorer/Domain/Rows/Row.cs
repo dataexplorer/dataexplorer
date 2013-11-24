@@ -33,6 +33,11 @@ namespace DataExplorer.Domain.Rows
             get { return _id; }
         }
 
+        public IEnumerable<object> Fields
+        {
+            get { return _fields; }
+        }
+        
         public object this[int columnIndex]
         {
             get { return _fields[columnIndex]; }
