@@ -59,6 +59,7 @@
     <Compile Include="Application\Application\ApplicationStateServiceTests.cs" />
     <Compile Include="Application\Clipboard\ClipboardServiceTests.cs" />
     <Compile Include="Application\Clipboard\Commands\CopyDataToClipboardCommandTests.cs" />
+    <Compile Include="Application\Clipboard\Commands\CopyImageToClipboardCommandTests.cs" />
     <Compile Include="Application\Clipboard\Queries\CanCopyDataToClipboardQueryTests.cs" />
     <Compile Include="Application\Columns\ColumnAdapterTests.cs" />
     <Compile Include="Application\Columns\ColumnServiceTests.cs" />
@@ -153,6 +154,8 @@
     <Compile Include="Domain\Sources\SourceMapTests.cs" />
     <Compile Include="Persistence\Filters\FilterRepositoryTests.cs" />
     <Compile Include="Persistence\Sources\SourceRepositoryTests.cs" />
+    <Compile Include="Presentation\Core\FakeControl.cs" />
+    <Compile Include="Presentation\Core\Services\CanvasToBitmapExporterTests.cs" />
     <Compile Include="Presentation\Core\Canvas\CanvasControlTestHarness.cs" />
     <Compile Include="Presentation\Core\Canvas\CanvasRendererTests.cs" />
     <Compile Include="Presentation\Core\Canvas\Items\CanvasBackgroundTests.cs" />
@@ -160,8 +163,10 @@
     <Compile Include="Presentation\Core\Canvas\Items\CanvasLabelTests.cs" />
     <Compile Include="Presentation\Core\Canvas\Items\CanvasLineTests.cs" />
     <Compile Include="Presentation\Core\Canvas\Items\FakeCanvasItem.cs" />
-    <Compile Include="Presentation\Core\FastObservableCollectionTests.cs" />
-    <Compile Include="Presentation\Core\FriendlyDataTypeNameConverterTests.cs" />
+    <Compile Include="Presentation\Core\Collections\FastObservableCollectionTests.cs" />
+    <Compile Include="Presentation\Core\Converters\FriendlyDataTypeNameConverterTests.cs" />
+    <Compile Include="Presentation\Core\Services\ControlFinderTests.cs" />
+    <Compile Include="Presentation\Core\Services\ControlToBitmapRendererTests.cs" />
     <Compile Include="Presentation\Dialogs\DialogServiceTests.cs" />
     <Compile Include="Application\Projects\ProjectServiceTests.cs" />
     <Compile Include="Application\ScatterPlots\ScatterPlotAdapterTests.cs" />
@@ -189,10 +194,10 @@
     <Compile Include="Persistence\Rows\RowRepositoryTests.cs" />
     <Compile Include="Persistence\Views\ViewRepositoryTests.cs" />
     <Compile Include="Presentation\Core\BaseViewModelTests.cs" />
-    <Compile Include="Presentation\Core\DependencyPropertyServiceTests.cs" />
+    <Compile Include="Presentation\Core\Services\DependencyPropertyServiceTests.cs" />
     <Compile Include="Presentation\Core\FakeVisual.cs" />
     <Compile Include="Presentation\Core\Layout\LayoutItemViewModelTests.cs" />
-    <Compile Include="Presentation\Core\VisualServiceTests.cs" />
+    <Compile Include="Presentation\Core\Services\VisualServiceTests.cs" />
     <Compile Include="Presentation\Core\Geometry\GeometryCalculatorTests.cs" />
     <Compile Include="Presentation\Core\Geometry\GeometryFactoryTests.cs" />
     <Compile Include="Presentation\Importers\Body\CsvFileImportBodyViewModelTests.cs" />
@@ -250,7 +255,7 @@
     <Compile Include="Presentation\Core\Canvas\CanvasControlTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\ScatterPlotViewModelCommandsTests.cs" />
     <Compile Include="Presentation\Views\ScatterPlots\ScatterPlotViewModelTests.cs" />
-    <Compile Include="Presentation\Core\DelegateCommandTests.cs" />
+    <Compile Include="Presentation\Core\Commands\DelegateCommandTests.cs" />
     <Compile Include="Presentation\Shell\MainMenu\FileMenu\FileMenuViewModelTests.cs" />
     <Compile Include="Presentation\Shell\MainMenu\MainMenuViewModelTests.cs" />
     <Compile Include="Presentation\Shell\MainWindow\MainWindowViewModelTests.cs" />

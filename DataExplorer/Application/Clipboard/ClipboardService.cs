@@ -13,13 +13,16 @@ namespace DataExplorer.Application.Clipboard
     {
         private readonly ICanCopyDataToClipboardQuery _canCopyDataQuery;
         private readonly ICopyDataToClipboardCommand _copyDataCommand;
+        private readonly ICopyImageToClipboardCommand _copyImageCommand;
 
         public ClipboardService(
             ICanCopyDataToClipboardQuery canCopyDataQuery,
-            ICopyDataToClipboardCommand copyDataCommand)
+            ICopyDataToClipboardCommand copyDataCommand,
+            ICopyImageToClipboardCommand copyImageCommand)
         {
             _canCopyDataQuery = canCopyDataQuery;
             _copyDataCommand = copyDataCommand;
+            _copyImageCommand = copyImageCommand;
         }
 
         public bool CanCopy()
@@ -30,6 +33,11 @@ namespace DataExplorer.Application.Clipboard
         public void Copy()
         {
             _copyDataCommand.Execute();
+        }
+
+        public void CopyImage()
+        {
+            _copyImageCommand.Execute();
         }
     }
 }

@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Windows;
 using System.Windows.Media;
 using DataExplorer.Presentation.Core.Canvas;
 
-namespace DataExplorer.Presentation.Core
+namespace DataExplorer.Presentation.Core.Services
 {
     public interface IVisualService
     {

@@ -33,6 +33,13 @@ namespace DataExplorer.Tests.Presentation.Shell.MainMenu.EditMenu
         }
 
         [Test]
+        public void TestExecuteCopyImageShouldCopyImage()
+        {
+            _viewModel.CopyImageCommand.Execute(null);
+            _mockClipboard.Verify(p => p.CopyImage(), Times.Once());
+        }
+
+        [Test]
         public void TestHandleSelectedRowsChangedShouldRaiseCanCopyChangedEvent()
         {
             var wasRaised = false;

@@ -7,6 +7,7 @@ using System.Windows.Media;
 using DataExplorer.Presentation.Core;
 using DataExplorer.Presentation.Core.Canvas;
 using DataExplorer.Presentation.Core.Canvas.Items;
+using DataExplorer.Presentation.Core.Services;
 using DataExplorer.Tests.Presentation.Core.Canvas.Items;
 using Moq;
 using NUnit.Framework;

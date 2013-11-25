@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataExplorer.Presentation.Core;
+﻿using System.Collections.Generic;
+using DataExplorer.Presentation.Core.Collections;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Presentation.Core
+namespace DataExplorer.Tests.Presentation.Core.Collections
 {
     [TestFixture]
     public class FastObservableCollectionTests

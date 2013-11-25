@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Media;
 using DataExplorer.Presentation.Core;
 using DataExplorer.Presentation.Core.Canvas;
+using DataExplorer.Presentation.Core.Services;
 
 namespace DataExplorer.Tests.Presentation.Core.Canvas
 {

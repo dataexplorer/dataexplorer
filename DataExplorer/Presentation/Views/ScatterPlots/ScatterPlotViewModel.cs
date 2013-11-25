@@ -13,6 +13,7 @@ using DataExplorer.Domain.Events;
 using DataExplorer.Domain.ScatterPlots;
 using DataExplorer.Presentation.Core;
 using DataExplorer.Presentation.Core.Canvas.Items;
+using DataExplorer.Presentation.Core.Collections;
 using DataExplorer.Presentation.Views.ScatterPlots.Commands;
 using DataExplorer.Presentation.Views.ScatterPlots.Queries;
 using DataExplorer.Presentation.Views.ScatterPlots.Scalers;

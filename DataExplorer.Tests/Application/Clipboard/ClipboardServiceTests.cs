@@ -23,16 +23,19 @@ namespace DataExplorer.Tests.Application.Clipboard
         private ClipboardService _service;
         private Mock<ICanCopyDataToClipboardQuery> _mockCanCopyDataQuery;
         private Mock<ICopyDataToClipboardCommand> _mockCopyDataCommand;
+        private Mock<ICopyImageToClipboardCommand> _mockCopyImageCommand;
 
         [SetUp]
         public void SetUp()
         {
             _mockCanCopyDataQuery = new Mock<ICanCopyDataToClipboardQuery>();
             _mockCopyDataCommand = new Mock<ICopyDataToClipboardCommand>();
+            _mockCopyImageCommand = new Mock<ICopyImageToClipboardCommand>();
 
             _service = new ClipboardService(
                 _mockCanCopyDataQuery.Object,
-                _mockCopyDataCommand.Object);
+                _mockCopyDataCommand.Object,
+                _mockCopyImageCommand.Object);
         }
 
         [Test]
@@ -48,6 +51,13 @@ namespace DataExplorer.Tests.Application.Clipboard
         {
             _service.Copy();
             _mockCopyDataCommand.Verify(p => p.Execute(), Times.Once());
+        }
+
+        [Test]
+        public void TestCopyImageShouldCopyImageToClipboard()
+        {
+            _service.CopyImage();
+            _mockCopyImageCommand.Verify(p => p.Execute(), Times.Once());
         }
     }
 }

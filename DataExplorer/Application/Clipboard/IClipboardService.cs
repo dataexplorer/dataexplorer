@@ -11,5 +11,7 @@ namespace DataExplorer.Application.Clipboard
         bool CanCopy();
 
         void Copy();
+        
+        void CopyImage();
     }
 }

@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using DataExplorer.Presentation.Core.Canvas.Events;
 using DataExplorer.Presentation.Core.Canvas.Items;
+using DataExplorer.Presentation.Core.Services;
 
 namespace DataExplorer.Presentation.Core.Canvas
 {

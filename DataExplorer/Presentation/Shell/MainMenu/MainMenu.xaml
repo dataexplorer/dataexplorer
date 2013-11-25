@@ -20,6 +20,7 @@
         </MenuItem>
         <MenuItem Header="Edit" DataContext="{Binding EditMenuViewModel}">
             <MenuItem Header="Copy" Command="{Binding CopyCommand}" />
+            <MenuItem Header="Copy Image" Command="{Binding CopyImageCommand}" />
         </MenuItem>
         <MenuItem Header="View" DataContext="{Binding ViewMenuViewModel}">
             <MenuItem Header="Zoom to Full Extent" Command="{Binding ZoomToFullExtentCommand}" />
