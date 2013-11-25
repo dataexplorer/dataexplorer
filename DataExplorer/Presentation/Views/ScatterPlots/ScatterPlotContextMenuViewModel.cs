@@ -20,6 +20,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots
         private readonly IScatterPlotService _scatterplotService;
         private readonly IScatterPlotLayoutService _layoutService;
         private readonly DelegateCommand _copyCommand;
+        private readonly DelegateCommand _copyImageCommand;
         private readonly DelegateCommand _zoomToFullExtentCommand;
         private readonly DelegateCommand _clearLayoutCommand;
 
@@ -36,6 +37,9 @@ namespace DataExplorer.Presentation.Views.ScatterPlots
                 p => _clipboardService.Copy(), 
                 p => _clipboardService.CanCopy());
 
+            _copyImageCommand = new DelegateCommand(
+                p => _clipboardService.CopyImage());
+
             _zoomToFullExtentCommand = new DelegateCommand(
                 p => _scatterplotService.ZoomToFullExtent());
 
@@ -46,6 +50,11 @@ namespace DataExplorer.Presentation.Views.ScatterPlots
         public ICommand CopyCommand
         {
             get { return _copyCommand; }
+        }
+
+        public ICommand CopyImageCommand
+        {
+            get { return _copyImageCommand; }
         }
 
         public ICommand ZoomToFullExtentCommand

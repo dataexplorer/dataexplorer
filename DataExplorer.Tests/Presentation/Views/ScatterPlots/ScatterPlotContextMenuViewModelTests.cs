@@ -41,6 +41,13 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots
         }
 
         [Test]
+        public void TestExecuteCopyImageCommandShouldCopyImage()
+        {
+            _viewModel.CopyImageCommand.Execute(null);
+            _mockClipboardService.Verify(p => p.CopyImage());
+        }
+
+        [Test]
         public void TestExecuteZoomToFullExtentShouldZoomToFullExtent()
         {
             _viewModel.ZoomToFullExtentCommand.Execute(null);
