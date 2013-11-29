@@ -11,11 +11,11 @@ namespace DataExplorer.Presentation.Views.ScatterPlots
 {
     public class ScatterPlotViewModelQueries : IScatterPlotViewModelQueries
     {
-        private readonly IGetScatterPlotItemsQuery _getItemsQuery;
+        private readonly IGetAllItemsQuery _getItemsQuery;
         private readonly IGetSelectedItemsQuery _getSelectedItemsQuery;
 
         public ScatterPlotViewModelQueries(
-            IGetScatterPlotItemsQuery getItemsQuery, 
+            IGetAllItemsQuery getItemsQuery, 
             IGetSelectedItemsQuery getSelectedItemsQuery)
         {
             _getItemsQuery = getItemsQuery;

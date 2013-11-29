@@ -13,7 +13,7 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.Plots.Renderers
     [TestFixture]
     public class ScatterPlotPlotRendererTests
     {
-        private ScatterPlotPlotRenderer _renderer;
+        private PlotRenderer _renderer;
         private Mock<IViewResizer> _mockResizer;
         private Mock<IScaleComputer> _mockComputer;
         private Mock<IGeometryCalculator> _mockCalculator;
@@ -44,7 +44,7 @@ namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.Plots.Renderers
             _mockFactory = new Mock<IGeometryFactory>();
             _mockFactory.Setup(p => p.CreateCircle(_plot.Id, It.IsAny<Rect>())).Returns(_circle);
 
-            _renderer = new ScatterPlotPlotRenderer(
+            _renderer = new PlotRenderer(
                 _mockResizer.Object,
                 _mockComputer.Object,
                 _mockCalculator.Object,

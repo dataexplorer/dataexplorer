@@ -17,7 +17,7 @@ namespace DataExplorer.Tests.Presentation.Views
     public class ScatterPlotViewModelQueriesTests
     {
         private ScatterPlotViewModelQueries _queries;
-        private Mock<IGetScatterPlotItemsQuery> _mockGetItemsQuery;
+        private Mock<IGetAllItemsQuery> _mockGetItemsQuery;
         private Mock<IGetSelectedItemsQuery> _mockGetSelectedItemsQuery;
         private FakeCanvasItem _item;
         private List<CanvasItem> _items;
@@ -30,7 +30,7 @@ namespace DataExplorer.Tests.Presentation.Views
             _items = new List<CanvasItem> { _item };
             _controlSize = new Size();
 
-            _mockGetItemsQuery = new Mock<IGetScatterPlotItemsQuery>();
+            _mockGetItemsQuery = new Mock<IGetAllItemsQuery>();
             _mockGetItemsQuery.Setup(p => p.Execute(_controlSize)).Returns(_items);
 
             _mockGetSelectedItemsQuery = new Mock<IGetSelectedItemsQuery>();
