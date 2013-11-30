@@ -34,7 +34,7 @@ namespace DataExplorer.Tests.Application.Rows
             _mockRepository.Setup(p => p.GetAll()).Returns(_rows);
 
             _mockStateService = new Mock<IApplicationStateService>();
-            _mockStateService.Setup(p => p.SelectedRows).Returns(_rows);
+            _mockStateService.Setup(p => p.GetSelectedRows()).Returns(_rows);
             
             _mockEventBus = new Mock<IEventBus>();
             
@@ -55,7 +55,7 @@ namespace DataExplorer.Tests.Application.Rows
         public void TestSetSelectedRowsShouldSelectRows()
         {
             _service.SetSelectedRows(_rows);
-            _mockStateService.VerifySet(p => p.SelectedRows = _rows);
+            _mockStateService.Verify(p => p.SetSelectedRows(_rows), Times.Once());
         }
 
         [Test]
@@ -70,7 +70,23 @@ namespace DataExplorer.Tests.Application.Rows
         {
             var results = _service.GetSelectedRows();
             Assert.That(results.Single(), Is.EqualTo(_row));
+        }
 
+        [Test]
+        public void TestGetSelectedRowShouldReturnNullIfNoSelectedRows()
+        {
+            _rows.Clear();
+            var result = _service.GetSelectedRow();
+            Assert.That(result, Is.Null);
+        }
+
+        [Test]
+        public void TestGetSelectedRowShouldReturnLastSelectedRow()
+        {
+            var lastRow = new RowBuilder().Build();
+            _rows.Add(lastRow);
+            var result = _service.GetSelectedRow();
+            Assert.That(result, Is.EqualTo(lastRow));
         }
     }
 }

@@ -10,12 +10,16 @@ namespace DataExplorer.Application.Application
 {
     public interface IApplicationStateService
     {
-        bool IsStartMenuVisible { get; }
+        bool GetIsStartMenuVisible();
 
-        bool IsNavigationTreeVisible { get; }
-        
-        Filter SelectedFilter { get; set; }
-        
-        List<Row> SelectedRows { get; set; }
+        bool GetIsNavigationTreeVisible();
+
+        Filter GetSelectedFilter();
+
+        void SetSelectedFilter(Filter filter);
+
+        List<Row> GetSelectedRows();
+
+        void SetSelectedRows(List<Row> rows);
     }
 }

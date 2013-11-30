@@ -33,14 +33,21 @@ namespace DataExplorer.Application.Rows
 
         public void SetSelectedRows(IEnumerable<Row> rows)
         {
-            _stateService.SelectedRows = rows.ToList();
+            _stateService.SetSelectedRows(rows.ToList());
 
             _eventBus.Raise(new SelectedRowsChangedEvent());
         }
 
         public IEnumerable<Row> GetSelectedRows()
         {
-            return _stateService.SelectedRows;
+            return _stateService.GetSelectedRows();
+        }
+
+        public Row GetSelectedRow()
+        {
+            return _stateService
+                .GetSelectedRows()
+                .LastOrDefault();
         }
     }
 }

@@ -86,7 +86,7 @@ namespace DataExplorer.Presentation.Core.Canvas
 
         private List<CanvasItem> GetItems()
         {
-            return (List<CanvasItem>)_propertyService.GetValue(ItemsProperty);
+            return (List<CanvasItem>) _propertyService.GetValue(ItemsProperty);
         }
 
         private ICollection<CanvasItem> GetSelectedItems()

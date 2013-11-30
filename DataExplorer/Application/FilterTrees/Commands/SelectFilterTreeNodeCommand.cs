@@ -24,13 +24,13 @@ namespace DataExplorer.Application.FilterTrees.Commands
 
         public void Execute(FilterTreeNode node)
         {
-            var previousFilter = _service.SelectedFilter;
+            var previousFilter = _service.GetSelectedFilter();
 
             _repository.Remove(previousFilter);
 
             var filter = node.CreateFilter();
 
-            _service.SelectedFilter = filter;
+            _service.SetSelectedFilter(filter);
             
             _repository.Add(filter);
 

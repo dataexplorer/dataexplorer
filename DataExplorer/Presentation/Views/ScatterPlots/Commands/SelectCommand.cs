@@ -19,10 +19,12 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Commands
 
         public void Execute(List<CanvasItem> items)
         {
-            var rows = _rowService.GetAll()
-                .Where(p => items.Any(q => q.Id == p.Id));
+            var rows = _rowService.GetAll();
 
-            _rowService.SetSelectedRows(rows);
+            var selectedRows = items
+                .Select(p => rows.First(q => q.Id == p.Id));
+
+            _rowService.SetSelectedRows(selectedRows);
         }
     }
 }

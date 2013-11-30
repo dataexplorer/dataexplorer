@@ -31,7 +31,7 @@ namespace DataExplorer.Tests.Application.FilterTrees.Commands
             _mockRepository = new Mock<IFilterRepository>();
             
             _mockService = new Mock<IApplicationStateService>();
-            _mockService.Setup(p => p.SelectedFilter).Returns(_previousFilter);
+            _mockService.Setup(p => p.GetSelectedFilter()).Returns(_previousFilter);
 
             _mockEventBus = new Mock<IEventBus>();
             
@@ -52,7 +52,7 @@ namespace DataExplorer.Tests.Application.FilterTrees.Commands
         public void TestHandleShouldSetSelectedFilterInApplicationState()
         {
             _command.Execute(_node);
-            _mockService.VerifySet(p => p.SelectedFilter = _filter, Times.Once());
+            _mockService.Verify(p => p.SetSelectedFilter(_filter), Times.Once());
         }
 
         [Test]

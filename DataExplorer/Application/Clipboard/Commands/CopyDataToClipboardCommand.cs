@@ -33,7 +33,7 @@ namespace DataExplorer.Application.Clipboard.Commands
         {
             var columns = _columnRepository.GetAll();
 
-            var rows = _stateService.SelectedRows;
+            var rows = _stateService.GetSelectedRows();
 
             var text = _exporter.Export(columns, rows);
 

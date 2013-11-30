@@ -9,10 +9,17 @@ namespace DataExplorer.Presentation.Panes.Navigation
     public interface INavigationPaneViewModel
     {
         bool IsStartMenuVisible { get; }
+
         IStartMenuViewModel StartMenuViewModel { get; }
+        
         bool IsNavigationTreeVisible { get; }
+        
         INavigationTreeViewModel NavigationTreeViewModel { get; }
-        void Handle(ApplicationStateChangedEvent args);
+        
+        void Handle(StartMenuVisibilityChangedEvent args);
+        
+        void Handle(NavigationTreeVisibilityChangedEvent args);
+        
         event PropertyChangedEventHandler PropertyChanged;
     }
 }

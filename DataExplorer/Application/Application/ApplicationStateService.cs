@@ -17,64 +17,72 @@ namespace DataExplorer.Application.Application
         IEventHandler<CsvFileImportingEvent>,
         IEventHandler<CsvFileImportedEvent>
     {
-        private readonly ApplicationState _state;
+        private readonly IApplicationState _state;
         private readonly IEventBus _eventBus;
 
         public ApplicationStateService(
-            ApplicationState state,
+            IApplicationState state,
             IEventBus eventBus)
         {
             _state = state;
             _eventBus = eventBus;
         }
 
-        public ApplicationStateService()
+        public bool GetIsStartMenuVisible()
         {
-            _state = new ApplicationState();
-            _eventBus = new EventBus();
-
-            _state.IsStartMenuVisible = true;
-            _state.IsNavigationTreeVisible = false;
-            _state.SelectedFilter = null;
+            return _state.IsStartMenuVisible;
         }
 
-        public bool IsStartMenuVisible
+        public void SetIsStartMenuVisible(bool isVisible)
         {
-            get { return _state.IsStartMenuVisible; }
-            //set { _state.IsStartMenuVisible = value; }
+            _state.IsStartMenuVisible = isVisible;
+            _eventBus.Raise(new StartMenuVisibilityChangedEvent());
         }
 
-        public bool IsNavigationTreeVisible
+        public bool GetIsNavigationTreeVisible()
         {
-            get { return _state.IsNavigationTreeVisible; }
+            return _state.IsNavigationTreeVisible;
         }
 
-        public Filter SelectedFilter
+        public void SetIsNavigationTreeVisible(bool isVisible)
         {
-            get { return _state.SelectedFilter; }
-            set { _state.SelectedFilter = value; }
+            _state.IsNavigationTreeVisible = isVisible;
+            _eventBus.Raise(new NavigationTreeVisibilityChangedEvent());
         }
 
-        public List<Row> SelectedRows
+        public Filter GetSelectedFilter()
         {
-            get { return _state.SelectedRows; }
-            set { _state.SelectedRows = value; }
+            return _state.SelectedFilter;
+        }
+
+        public void SetSelectedFilter(Filter filter)
+        {
+            _state.SelectedFilter = filter;
+        }
+
+        public List<Row> GetSelectedRows()
+        {
+             return _state.SelectedRows;
+        }
+
+        public void SetSelectedRows(List<Row> rows)
+        {
+            _state.SelectedRows = rows;
+            _eventBus.Raise(new SelectedRowsChangedEvent());
         }
 
         public void Handle(CsvFileImportingEvent args)
         {
-            _state.IsStartMenuVisible = false;
-            _state.IsNavigationTreeVisible = false;
-            
-            _eventBus.Raise(new ApplicationStateChangedEvent());
+            SetIsStartMenuVisible(false);
+            SetIsNavigationTreeVisible(false);
+            SetSelectedFilter(null);
+            SetSelectedRows(new List<Row>());
         }
 
         public void Handle(CsvFileImportedEvent args)
         {
-            _state.IsStartMenuVisible = false;
-            _state.IsNavigationTreeVisible = true;
-
-            _eventBus.Raise(new ApplicationStateChangedEvent());
+            SetIsStartMenuVisible(false);
+            SetIsNavigationTreeVisible(true);
         }
     }
 }

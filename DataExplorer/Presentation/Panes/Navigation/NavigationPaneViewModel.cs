@@ -15,7 +15,8 @@ namespace DataExplorer.Presentation.Panes.Navigation
     public class NavigationPaneViewModel 
         : BaseViewModel,
         INavigationPaneViewModel,
-        IEventHandler<ApplicationStateChangedEvent>
+        IEventHandler<StartMenuVisibilityChangedEvent>,
+        IEventHandler<NavigationTreeVisibilityChangedEvent>
     {
         private readonly IStartMenuViewModel _startMenuViewModel;
         private readonly INavigationTreeViewModel _navigationTreeViewModel;
@@ -33,7 +34,7 @@ namespace DataExplorer.Presentation.Panes.Navigation
 
         public bool IsStartMenuVisible
         {
-            get { return _stateService.IsStartMenuVisible; }
+            get { return _stateService.GetIsStartMenuVisible(); }
         }
 
         public IStartMenuViewModel StartMenuViewModel
@@ -43,7 +44,7 @@ namespace DataExplorer.Presentation.Panes.Navigation
 
         public bool IsNavigationTreeVisible
         {
-            get { return _stateService.IsNavigationTreeVisible; }
+            get { return _stateService.GetIsNavigationTreeVisible(); }
         }
 
         public INavigationTreeViewModel NavigationTreeViewModel
@@ -51,9 +52,13 @@ namespace DataExplorer.Presentation.Panes.Navigation
             get { return _navigationTreeViewModel; }
         }
 
-        public void Handle(ApplicationStateChangedEvent args)
+        public void Handle(StartMenuVisibilityChangedEvent args)
         {
             OnPropertyChanged(() => IsStartMenuVisible);
+        }
+
+        public void Handle(NavigationTreeVisibilityChangedEvent args)
+        {
             OnPropertyChanged(() => IsNavigationTreeVisible);
         }
     }

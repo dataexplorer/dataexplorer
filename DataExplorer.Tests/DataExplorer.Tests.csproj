@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="Application\Application\ApplicationServiceTests.cs" />
     <Compile Include="Application\Application\ApplicationStateServiceTests.cs" />
+    <Compile Include="Application\Application\ApplicationStateTests.cs" />
     <Compile Include="Application\Clipboard\ClipboardServiceTests.cs" />
     <Compile Include="Application\Clipboard\Commands\CopyDataToClipboardCommandTests.cs" />
     <Compile Include="Application\Clipboard\Commands\CopyImageToClipboardCommandTests.cs" />
@@ -211,6 +212,9 @@
     <Compile Include="Presentation\Panes\Navigation\NavigationTree\NavigationTreeViewModelTests.cs" />
     <Compile Include="Presentation\Panes\Navigation\NavigationTree\TreeNodeViewModelTests.cs" />
     <Compile Include="Presentation\Panes\Navigation\StartMenu\StartMenuViewModelTests.cs" />
+    <Compile Include="Presentation\Panes\Property\PropertyGridCellTemplateSelectorTests.cs" />
+    <Compile Include="Presentation\Panes\Property\PropertyPaneViewModelTests.cs" />
+    <Compile Include="Presentation\Panes\Property\PropertyViewModelTests.cs" />
     <Compile Include="Presentation\Panes\Viewer\ViewerPaneViewModelTests.cs" />
     <Compile Include="Presentation\Shell\MainMenu\EditMenu\EditMenuViewModelTests.cs" />
     <Compile Include="Presentation\Shell\MainMenu\ViewMenu\ViewMenuViewModelTests.cs" />

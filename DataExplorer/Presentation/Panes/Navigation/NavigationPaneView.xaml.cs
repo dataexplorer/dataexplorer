@@ -18,9 +18,9 @@ namespace DataExplorer.Presentation.Panes.Navigation
     /// <summary>
     /// Interaction logic for NavigationPane.xaml
     /// </summary>
-    public partial class NavigationPane : UserControl
+    public partial class NavigationPaneView : UserControl
     {
-        public NavigationPane()
+        public NavigationPaneView()
         {
             InitializeComponent();
         }

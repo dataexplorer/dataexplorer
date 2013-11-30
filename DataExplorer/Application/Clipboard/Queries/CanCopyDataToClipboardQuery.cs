@@ -18,7 +18,7 @@ namespace DataExplorer.Application.Clipboard.Queries
 
         public bool Execute()
         {
-            return _stateService.SelectedRows.Any();
+            return _stateService.GetSelectedRows().Any();
         }
     }
 }

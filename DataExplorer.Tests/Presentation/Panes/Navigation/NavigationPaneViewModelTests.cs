@@ -36,7 +36,7 @@ namespace DataExplorer.Tests.Presentation.Panes.Navigation
         [Test]
         public void TestIsStartMenuVisibleShouldReturnState()
         {
-            _mockApplicationStateService.Setup(p => p.IsStartMenuVisible).Returns(true);
+            _mockApplicationStateService.Setup(p => p.GetIsStartMenuVisible()).Returns(true);
             var result = _viewModel.IsStartMenuVisible;
             Assert.That(result, Is.True);
         }
@@ -51,7 +51,7 @@ namespace DataExplorer.Tests.Presentation.Panes.Navigation
         [Test]
         public void TestIsNavigationTreeVisibleShouldReturnState()
         {
-            _mockApplicationStateService.Setup(p => p.IsNavigationTreeVisible).Returns(true);
+            _mockApplicationStateService.Setup(p => p.GetIsNavigationTreeVisible()).Returns(true);
             var result = _viewModel.IsNavigationTreeVisible;
             Assert.That(result, Is.True);
         }
@@ -64,20 +64,20 @@ namespace DataExplorer.Tests.Presentation.Panes.Navigation
         }
 
         [Test]
-        public void TestHandleApplicationStateChangedEventShouldNotifyIsStartMenuVisiblePropertyChanged()
+        public void TestHandleStartMenuVisibilityChangedEventShouldNotifyIsStartMenuVisiblePropertyChanged()
         {
             var wasRaised = false;
             _viewModel.PropertyChanged += (s, e) => { if (e.PropertyName == "IsStartMenuVisible") wasRaised = true; };
-            _viewModel.Handle(new ApplicationStateChangedEvent());
+            _viewModel.Handle(new StartMenuVisibilityChangedEvent());
             Assert.That(wasRaised, Is.True);
         }
 
         [Test]
-        public void TestHandleApplicationStateChangedEventShouldNotifyIsNavigationTreeVisiblePropertyChanged()
+        public void TestHandleNavigationTreeVisibilityChangedEventShouldNotifyIsNavigationTreeVisiblePropertyChanged()
         {
             var wasRaised = false;
             _viewModel.PropertyChanged += (s, e) => { if (e.PropertyName == "IsNavigationTreeVisible") wasRaised = true; };
-            _viewModel.Handle(new ApplicationStateChangedEvent());
+            _viewModel.Handle(new NavigationTreeVisibilityChangedEvent());
             Assert.That(wasRaised, Is.True);
         }
     }

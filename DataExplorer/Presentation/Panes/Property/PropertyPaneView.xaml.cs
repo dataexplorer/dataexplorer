@@ -24,5 +24,14 @@ namespace DataExplorer.Presentation.Panes.Property
         {
             InitializeComponent();
         }
+
+        private void HandleLinkClick(object sender, RoutedEventArgs e)
+        {
+            var button = (Button) e.Source;
+
+            var viewModel = (IPropertyViewModel) button.DataContext;
+
+            viewModel.HandleLinkClick();
+        }
     }
 }

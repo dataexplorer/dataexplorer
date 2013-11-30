@@ -27,7 +27,7 @@ namespace DataExplorer.Tests.Application.Clipboard.Queries
             _rows = new List<Row> { _row };
          
             _mockService = new Mock<IApplicationStateService>();
-            _mockService.Setup(p => p.SelectedRows).Returns(_rows);
+            _mockService.Setup(p => p.GetSelectedRows()).Returns(_rows);
 
             _query = new CanCopyDataToClipboardQuery(
                 _mockService.Object);

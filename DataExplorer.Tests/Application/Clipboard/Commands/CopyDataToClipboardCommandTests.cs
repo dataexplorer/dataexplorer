@@ -38,7 +38,7 @@ namespace DataExplorer.Tests.Application.Clipboard.Commands
             _mockColumnRepository.Setup(p => p.GetAll()).Returns(_columns);
 
             _mockStateService = new Mock<IApplicationStateService>();
-            _mockStateService.Setup(p => p.SelectedRows).Returns(_rows);
+            _mockStateService.Setup(p => p.GetSelectedRows()).Returns(_rows);
 
             _mockTabExporter = new Mock<ITabExporter>();
             _mockTabExporter.Setup(p => p.Export(_columns, _rows)).Returns(_text);

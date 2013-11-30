@@ -10,5 +10,7 @@ namespace DataExplorer.Application.Rows
         void SetSelectedRows(IEnumerable<Row> rows);
 
         IEnumerable<Row> GetSelectedRows();
+
+        Row GetSelectedRow();
     }
 }

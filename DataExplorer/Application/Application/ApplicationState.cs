@@ -9,10 +9,13 @@ using DataExplorer.Domain.Rows;
 
 namespace DataExplorer.Application.Application
 {
-    public class ApplicationState
+    public class ApplicationState : IApplicationState
     {
         public ApplicationState()
         {
+            // TODO: See if I can infer this value to avoid setting default state
+            IsStartMenuVisible = true;
+
             SelectedRows = new List<Row>();
         }
 

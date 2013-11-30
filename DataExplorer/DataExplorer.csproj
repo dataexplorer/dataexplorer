@@ -34,8 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>
-    </StartupObject>
+    <StartupObject>DataExplorer.App</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.JScript" />
@@ -69,8 +68,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Application\Application\ApplicationState.cs" />
-    <Compile Include="Application\Application\Events\ApplicationStateChangedEvent.cs" />
+    <Compile Include="Application\Application\Events\NavigationTreeVisibilityChangedEvent.cs" />
+    <Compile Include="Application\Application\Events\StartMenuVisibilityChangedEvent.cs" />
     <Compile Include="Application\Application\ApplicationStateService.cs" />
+    <Compile Include="Application\Application\Events\SelectedRowsChangedEvent.cs" />
+    <Compile Include="Application\Application\IApplicationState.cs" />
     <Compile Include="Application\Application\IApplicationStateService.cs" />
     <Compile Include="Application\Clipboard\ClipboardService.cs" />
     <Compile Include="Application\Clipboard\Commands\CopyDataToClipboardCommand.cs" />
@@ -358,9 +360,18 @@
       <DependentUpon>StartMenuView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Presentation\Panes\Navigation\StartMenu\StartMenuViewModel.cs" />
+    <Compile Include="Presentation\Panes\Property\IPropertyPaneViewModel.cs" />
+    <Compile Include="Presentation\Panes\Property\IPropertyViewModel.cs" />
+    <Compile Include="Presentation\Panes\Property\PropertyGridCellTemplateSelector.cs" />
+    <Compile Include="Presentation\Panes\Property\PropertyPaneViewModel.cs" />
+    <Compile Include="Presentation\Panes\Property\PropertyViewModel.cs" />
     <Compile Include="Presentation\Panes\Viewer\IViewerPaneViewModel.cs" />
     <Compile Include="Presentation\Panes\Viewer\ViewerPaneViewModel.cs" />
     <Page Include="Presentation\Core\LinkButtonStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Presentation\Core\Resources\LinkButtonStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -427,11 +438,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Presentation\Panes\Navigation\NavigationPane.xaml">
+    <Page Include="Presentation\Panes\Navigation\NavigationPaneView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Presentation\Panes\Property\PropertyPane.xaml">
+    <Page Include="Presentation\Panes\Property\PropertyPaneView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -473,11 +484,11 @@
     <Compile Include="Presentation\Shell\MainMenu\MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Presentation\Panes\Navigation\NavigationPane.xaml.cs">
-      <DependentUpon>NavigationPane.xaml</DependentUpon>
+    <Compile Include="Presentation\Panes\Navigation\NavigationPaneView.xaml.cs">
+      <DependentUpon>NavigationPaneView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Presentation\Panes\Property\PropertyPane.xaml.cs">
-      <DependentUpon>PropertyPane.xaml</DependentUpon>
+    <Compile Include="Presentation\Panes\Property\PropertyPaneView.xaml.cs">
+      <DependentUpon>PropertyPaneView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Presentation\Shell\MainWindow\MainWindowViewModel.cs" />
     <Compile Include="Presentation\Shell\StatusBar\IStatusBarViewModel.cs" />
