@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.Projects;
+using DataExplorer.Application.Projects.Commands;
 using DataExplorer.Domain.Events;
 using DataExplorer.Domain.Projects;
-using DataExplorer.Infrastructure.Serialization;
 using DataExplorer.Persistence;
 using Moq;
 using NUnit.Framework;
@@ -17,54 +17,42 @@ namespace DataExplorer.Tests.Application.Projects
     public class ProjectServiceTests
     {
         private ProjectService _service;
-        private Mock<ISerializationService> _mockSerializationService;
-        private Mock<IDataContext> _mockDataContext;
-        private Project _project;
+        private Mock<IOpenProjectCommand> _mockOpenCommand;
+        private Mock<ISaveProjectCommand> _mockSaveCommand;
+        private Mock<ICloseProjectCommand> _mockCloseCommand;
         
         [SetUp]
         public void SetUp()
         {
-            _project = new Project();
-            _mockSerializationService = new Mock<ISerializationService>();
-            _mockDataContext = new Mock<IDataContext>();
-            _mockSerializationService.Setup(p => p.GetProject()).Returns(_project);
+            _mockOpenCommand = new Mock<IOpenProjectCommand>();
+            _mockSaveCommand = new Mock<ISaveProjectCommand>();
+            _mockCloseCommand = new Mock<ICloseProjectCommand>();
+
             _service = new ProjectService(
-                _mockSerializationService.Object,
-                _mockDataContext.Object);
+                _mockOpenCommand.Object,
+                _mockSaveCommand.Object,
+                _mockCloseCommand.Object);
         }
 
         [Test]
-        public void TestOpenProjectShouldSetTheProjectOnTheDataContext()
+        public void TestOpenShouldExecuteOpenCommand()
         {
             _service.OpenProject();
-            _mockDataContext.Verify(p => p.SetProject(_project), Times.Once());
-        }
-        
-        [Test]
-        public void TestOpenProjectShouldRaiseProjectOpenedEvent()
-        {
-            var wasProjectOpened = false;
-            DomainEvents.Register<ProjectOpenedEvent>(p => wasProjectOpened = true);
-            _service.OpenProject();
-            Assert.That(wasProjectOpened, Is.True);
-            DomainEvents.ClearHandlers();
+            _mockOpenCommand.Verify(p => p.Execute(), Times.Once());
         }
 
         [Test]
-        public void TestCloseProjectShouldClearTheDataContext()
+        public void TestSaveShouldExecuteSaveCommand()
         {
-            _service.CloseProject();
-            _mockDataContext.Verify(p => p.Clear(), Times.Once());
+            _service.SaveProject();
+            _mockSaveCommand.Verify(p => p.Execute(), Times.Once());
         }
 
         [Test]
-        public void TestCloseProjectShouldRaiseProjectClosedEvent()
+        public void TestCloseShouldExecuteCloseCommand()
         {
-            var wasProjectClosed = false;
-            DomainEvents.Register<ProjectClosedEvent>(p => wasProjectClosed = true);
             _service.CloseProject();
-            Assert.That(wasProjectClosed, Is.True);
-            DomainEvents.ClearHandlers();
+            _mockCloseCommand.Verify(p => p.Execute(), Times.Once());
         }
     }
 }

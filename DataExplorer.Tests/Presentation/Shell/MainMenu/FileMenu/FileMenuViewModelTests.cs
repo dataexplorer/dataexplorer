@@ -49,10 +49,10 @@ namespace DataExplorer.Tests.Presentation.Shell.MainMenu.FileMenu
         }
 
         [Test]
-        public void TestImportCommandShouldOpenImportDialog()
+        public void TestSaveCommandShouldSaveProject()
         {
-            _viewModel.ImportCommand.Execute(null);
-            _mockDialogService.Verify(p => p.ShowImportDialog(), Times.Once());
+            _viewModel.SaveCommand.Execute(null);
+            _mockProjectService.Verify(p => p.SaveProject(), Times.Once());
         }
 
         [Test]
@@ -60,6 +60,13 @@ namespace DataExplorer.Tests.Presentation.Shell.MainMenu.FileMenu
         {
             _viewModel.CloseCommand.Execute(null);
             _mockProjectService.Verify(p => p.CloseProject(), Times.Once());
+        }
+
+        [Test]
+        public void TestImportCommandShouldOpenImportDialog()
+        {
+            _viewModel.ImportCommand.Execute(null);
+            _mockDialogService.Verify(p => p.ShowImportDialog(), Times.Once());
         }
     }
 }

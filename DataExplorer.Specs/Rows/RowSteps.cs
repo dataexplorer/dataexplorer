@@ -28,14 +28,14 @@ namespace DataExplorer.Specs.Rows
             _context.DataContext.Rows.Add(row);
         }
 
-        [Then(@"the row is added to the repository")]
-        public void ThenTheRowIsAddedToTheRepository()
+        [Then(@"the row should be added to the repository")]
+        public void ThenTheRowShouldBeAddedToTheRepository()
         {
             Assert.That(_context.DataContext.Rows.Any(p => p == _context.Row), Is.True);
         }
 
-        [Then(@"the row is removed from the repository")]
-        public void ThenTheRowIsRemovedFromTheRepository()
+        [Then(@"the row should be removed from the repository")]
+        public void ThenTheRowShouldBeRemovedFromTheRepository()
         {
             Assert.That(_context.DataContext.Rows.Any(p => p == _context.Row), Is.False);
         }

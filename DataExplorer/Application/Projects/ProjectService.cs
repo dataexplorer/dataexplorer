@@ -3,40 +3,42 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataExplorer.Application.Projects.Commands;
 using DataExplorer.Domain.Events;
 using DataExplorer.Domain.Projects;
-using DataExplorer.Infrastructure.Serialization;
 using DataExplorer.Persistence;
 
 namespace DataExplorer.Application.Projects
 {
     public class ProjectService : IProjectService
     {
-        private readonly ISerializationService _serializationService;
-        private readonly IDataContext _dataContext;
-        
+        private readonly IOpenProjectCommand _openCommand;
+        private readonly ISaveProjectCommand _saveCommand;
+        private readonly ICloseProjectCommand _closeCommand;
+
         public ProjectService(
-            ISerializationService serializationService,
-            IDataContext dataContext)
+            IOpenProjectCommand openCommand, 
+            ISaveProjectCommand saveCommand, 
+            ICloseProjectCommand closeCommand)
         {
-            _serializationService = serializationService;
-            _dataContext = dataContext;
+            _openCommand = openCommand;
+            _saveCommand = saveCommand;
+            _closeCommand = closeCommand;
         }
 
         public void OpenProject()
         {
-            var project = _serializationService.GetProject();
+            _openCommand.Execute();
+        }
 
-            _dataContext.SetProject(project);
-
-            DomainEvents.Raise(new ProjectOpenedEvent());
+        public void SaveProject()
+        {
+            _saveCommand.Execute();
         }
 
         public void CloseProject()
         {
-            _dataContext.Clear();
-
-            DomainEvents.Raise(new ProjectClosedEvent());
+            _closeCommand.Execute();
         }
     }
 }

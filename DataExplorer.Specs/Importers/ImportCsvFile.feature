@@ -10,5 +10,5 @@ Scenario: Import a CSV File
 	And the CSV file contains a column
 	And the CSV file contains a row
 	When I import the CSV file source
-	Then the CSV file column is added to the repository
-	And the CSV file row is added to the repository
+	Then the CSV file column should be added to the repository
+	And the CSV file row should be added to the repository

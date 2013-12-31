@@ -28,14 +28,14 @@ namespace DataExplorer.Specs.Columns
             _context.DataContext.Columns.Add(column);
         }
 
-        [Then(@"the column is added to the repository")]
-        public void ThenTheColumnIsAddedToTheRepository()
+        [Then(@"the column should be added to the repository")]
+        public void ThenTheColumnShouldBeAddedToTheRepository()
         {
             Assert.That(_context.DataContext.Columns.Any(p => p == _context.Column), Is.True);
         }
 
-        [Then(@"the column is removed from the repository")]
-        public void ThenTheColumnIsRemovedFromTheRepository()
+        [Then(@"the column should be removed from the repository")]
+        public void ThenTheColumnShouldBeRemovedFromTheRepository()
         {
             Assert.That(_context.DataContext.Columns.Any(p => p == _context.Column), Is.False);
         }

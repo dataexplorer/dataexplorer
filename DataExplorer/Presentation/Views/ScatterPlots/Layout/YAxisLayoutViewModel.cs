@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.Columns;
 using DataExplorer.Application.Core.Events;
-using DataExplorer.Application.ScatterPlots;
-using DataExplorer.Application.ScatterPlots.Events;
+using DataExplorer.Application.Views.ScatterPlots;
+using DataExplorer.Application.Views.ScatterPlots.Events;
 using DataExplorer.Domain.Events;
-using DataExplorer.Domain.ScatterPlots;
+using DataExplorer.Domain.Views.ScatterPlots;
 using DataExplorer.Presentation.Core;
 using DataExplorer.Presentation.Core.Layout;
 

@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 using DataExplorer.Application.Columns;
-using DataExplorer.Application.ScatterPlots;
+using DataExplorer.Application.Views.ScatterPlots;
 using DataExplorer.Presentation.Core.Canvas.Items;
 using DataExplorer.Presentation.Views.ScatterPlots.Titles.Queries;
 using DataExplorer.Presentation.Views.ScatterPlots.Titles.Renderers;

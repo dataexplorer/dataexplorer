@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.FilterTrees;
 using DataExplorer.Domain.Filters;
-using DataExplorer.Tests.Application.Filters;
+using DataExplorer.Tests.Domain.Filters;
 
 namespace DataExplorer.Tests.Application.FilterTrees
 {

@@ -10,7 +10,7 @@ using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Importers.CsvFiles.Events;
 using DataExplorer.Domain.Rows;
 using DataExplorer.Tests.Application.FilterTrees;
-using DataExplorer.Tests.Application.Filters;
+using DataExplorer.Tests.Domain.Filters;
 using DataExplorer.Tests.Domain.Rows;
 using Moq;
 using NUnit.Framework;

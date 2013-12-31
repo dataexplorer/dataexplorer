@@ -9,6 +9,9 @@ namespace DataExplorer.Application.Projects
     public interface IProjectService
     {
         void OpenProject();
+
+        void SaveProject();
+        
         void CloseProject();
     }
 }

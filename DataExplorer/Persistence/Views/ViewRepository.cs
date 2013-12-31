@@ -1,5 +1,4 @@
 ﻿using System;
-using DataExplorer.Domain.ScatterPlots;
 using DataExplorer.Domain.Views;
 
 namespace DataExplorer.Persistence.Views

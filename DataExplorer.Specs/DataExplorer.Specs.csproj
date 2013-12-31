@@ -63,6 +63,7 @@
     <Compile Include="BeforeScenario.cs" />
     <Compile Include="Columns\ColumnSteps.cs" />
     <Compile Include="Context.cs" />
+    <Compile Include="Filters\FilterSteps.cs" />
     <Compile Include="Importers\FakeCsvFile.cs" />
     <Compile Include="Importers\CsvFileImporterSteps.cs" />
     <Compile Include="Importers\ImportCsvFile.feature.cs">

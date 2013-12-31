@@ -7,7 +7,7 @@ using System.Windows.Input;
 using DataExplorer.Application.Clipboard;
 using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Rows;
-using DataExplorer.Application.ScatterPlots;
+using DataExplorer.Application.Views.ScatterPlots;
 using DataExplorer.Presentation.Core.Commands;
 
 namespace DataExplorer.Presentation.Views.ScatterPlots

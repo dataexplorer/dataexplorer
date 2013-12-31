@@ -5,14 +5,17 @@
 
 @mytag
 Scenario: Open a Project
-	Given a project
-	And the project has a CSV file source
-	And the project has a column
-	And the project has a row
-	And the project has a scatterplot view
+	Given a project file
+	And the project file has a source
+	And the project file has a column
+	And the project file has a row
+	And the project file has a filter
+	And the project file has a view
+	And I select the project file to open
 	When I open the project
-	Then the CSV file source is added to the repository
-	Then the column is added to the repository
-	Then the row is added to the repository
-	Then the view is added to the repository
+	Then the source should be added to the repository
+	Then the column should be added to the repository
+	Then the row should be added to the repository
+	Then the filter should be added to the repository
+	Then the view should be added to the repository
 	

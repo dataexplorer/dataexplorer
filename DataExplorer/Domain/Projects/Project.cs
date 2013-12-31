@@ -21,6 +21,6 @@ namespace DataExplorer.Domain.Projects
 
         public List<Filter> Filters { get; set; } 
 
-        public List<IView> DataViews  { get; set; }
+        public List<IView> Views  { get; set; }
     }
 }

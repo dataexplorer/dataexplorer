@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
-using DataExplorer.Domain.ScatterPlots;
+using DataExplorer.Domain.Views.ScatterPlots;
 using DataExplorer.Presentation.Views.ScatterPlots.Grid.Lines.Renderers;
 using DataExplorer.Presentation.Views.ScatterPlots.Scalers;
 using Moq;

@@ -10,11 +10,16 @@ namespace DataExplorer.Domain.Filters
 {
     public abstract class Filter
     {
-        protected Column _column;
+        protected readonly Column _column;
 
         protected Filter(Column column)
         {
             _column = column;
+        }
+
+        public Column Column
+        {
+            get { return _column; }
         }
 
         public abstract Func<Row, bool> CreatePredicate();

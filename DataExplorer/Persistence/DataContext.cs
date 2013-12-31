@@ -7,7 +7,6 @@ using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Filters;
 using DataExplorer.Domain.Projects;
 using DataExplorer.Domain.Rows;
-using DataExplorer.Domain.ScatterPlots;
 using DataExplorer.Domain.Sources;
 using DataExplorer.Domain.Views;
 
@@ -55,13 +54,25 @@ namespace DataExplorer.Persistence
             _views = new Dictionary<Type, IView>();
         }
 
+        public Project GetProject()
+        {
+            return new Project()
+            {
+                Sources = _sources.Values.ToList(),
+                Columns = _columns.ToList(),
+                Rows = _rows.ToList(),
+                Filters = _filters.ToList(),
+                Views = _views.Values.ToList()
+            };
+        }
+
         public void SetProject(Project project)
         {
             _sources = project.Sources.ToDictionary(p => p.GetType());
             _columns = project.Columns;
             _rows = project.Rows;
             _filters = project.Filters;
-            _views = project.DataViews.ToDictionary(p => p.GetType());
+            _views = project.Views.ToDictionary(p => p.GetType());
         }
 
         public void Clear()

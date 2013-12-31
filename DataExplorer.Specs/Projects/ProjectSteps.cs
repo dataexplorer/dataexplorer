@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml.Linq;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Projects;
 using DataExplorer.Domain.Rows;
-using DataExplorer.Domain.ScatterPlots;
 using DataExplorer.Domain.Sources;
 using DataExplorer.Domain.Views;
+using DataExplorer.Domain.Views.ScatterPlots;
 using DataExplorer.Tests.Domain.Columns;
 using DataExplorer.Tests.Domain.Rows;
 using NUnit.Framework;
@@ -25,50 +26,71 @@ namespace DataExplorer.Specs.Projects
             _context = context;
         }
 
-        [Given(@"a project")]
+        [Given(@"a project file")]
         public void GivenAProject()
         {
-            var project = new Project();
-            _context.Project = project;
-            _context.MockSerializationService.Setup(p => p.GetProject()).Returns(project);
+            _context.XProject = new XElement("Project");
+
+            _context.MockXmlFileService.Setup(p => p.Load(@"C:\Project.xml"))
+                .Returns(_context.XProject);
         }
 
-        [Given(@"the project has a CSV file source")]
+        [Given(@"the project file has a source")]
         public void GivenTheProjectHasACSVFileSource()
         {
-            var source = new CsvFileSource();
-            var sources = new List<ISource> { source };
-            _context.CsvFileSource = source;
-            _context.Project.Sources = sources;
+            var xSource = new XElement("sources", 
+                new XElement("csv-file-source"),
+                    new XElement("file-path", @"C:\Data.csv"));
+
+            _context.XProject.Add(xSource);
         }
 
-        [Given(@"the project has a column")]
+        [Given(@"the project file has a column")]
         public void GivenTheProjectHasAColumn()
         {
-            var column = new ColumnBuilder().Build();
-            var columns = new List<Column> { column };
-            _context.Column = column;
-            _context.Project.Columns = columns;
+            var xColumn = new XElement("columns",
+                new XElement("column",
+                    new XElement("id", 1),
+                    new XElement("index", 0),
+                    new XElement("name", "Column 1"),
+                    new XElement("type", "System.Object")));
+            
+            _context.XProject.Add(xColumn);
         }
 
-        [Given(@"the project has a row")]
+        [Given(@"the project file has a row")]
         public void GivenTheProjectHasARow()
         {
-            var row = new RowBuilder().Build();
-            var rows = new List<Row> { row };
-            _context.Row = row;
-            _context.Project.Rows = rows;
+            var xRow = new XElement("rows",
+                new XElement("row",
+                    new XElement("id", 1),
+                    new XElement("fields")));
+
+            _context.XProject.Add(xRow);
         }
 
-        [Given(@"the project has a scatterplot view")]
+        [Given(@"the project file has a filter")]
+        public void GivenTheProjectFileHasAFilter()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [Given(@"the project file has a view")]
         public void GivenTheProjectHasAScatterplotView()
         {
-            var scatterPlot = new ScatterPlot();
-            var views = new List<IView> { scatterPlot };
-            _context.ScatterPlot = scatterPlot;
-            _context.Project.DataViews = views;
+            var xView = new XElement("views",
+                new XElement("scatter-plot"));
+
+            _context.XProject.Add(xView);
         }
 
+        [Given(@"I select the project file to open")]
+        public void GivenISelectTheProjectFileToOpen()
+        {
+            _context.MockDialogService.Setup(p => p.ShowOpenDialog())
+                .Returns(@"C:\Project.xml");
+        }
+        
         [When(@"I open the project")]
         public void WhenIOpenTheProject()
         {

@@ -10,8 +10,11 @@ namespace DataExplorer.Presentation.Dialogs
     public interface IDialog
     {
         object DataContext { get; set; }
+
         Window Owner { get; set; }
+        
         WindowStartupLocation WindowStartupLocation { get; set; }
+        
         bool? ShowDialog();
     }
 }

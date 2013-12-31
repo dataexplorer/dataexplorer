@@ -4,7 +4,7 @@ using DataExplorer.Application.FilterTrees.Commands;
 using DataExplorer.Application.Filters.Events;
 using DataExplorer.Application.Importers.CsvFiles.Events;
 using DataExplorer.Domain.Filters;
-using DataExplorer.Tests.Application.Filters;
+using DataExplorer.Tests.Domain.Filters;
 using Moq;
 using NUnit.Framework;
 

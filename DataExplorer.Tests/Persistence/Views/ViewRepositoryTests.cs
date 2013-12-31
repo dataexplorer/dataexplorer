@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using DataExplorer.Domain.ScatterPlots;
 using DataExplorer.Domain.Views;
+using DataExplorer.Domain.Views.ScatterPlots;
 using DataExplorer.Persistence;
 using DataExplorer.Persistence.Views;
 using Moq;

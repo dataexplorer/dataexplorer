@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using DataExplorer.Application.ScatterPlots;
+using DataExplorer.Application.Views.ScatterPlots;
 using DataExplorer.Presentation.Core.Commands;
 
 namespace DataExplorer.Presentation.Shell.MainMenu.ViewMenu

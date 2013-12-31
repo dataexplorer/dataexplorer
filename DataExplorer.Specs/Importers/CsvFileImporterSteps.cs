@@ -53,14 +53,14 @@ namespace DataExplorer.Specs.Importers
             _context.CsvFileImportViewModel.FooterViewModel.ImportCommand.Execute(null);
         }
 
-        [Then(@"the CSV file column is added to the repository")]
-        public void ThenTheCSVFileColumnIsAddedToTheRepository()
+        [Then(@"the CSV file column should be added to the repository")]
+        public void ThenTheCSVFileColumnShouldBeAddedToTheRepository()
         {
             _context.DataContext.Columns.Any(p => p.Name == "Column 1");
         }
 
-        [Then(@"the CSV file row is added to the repository")]
-        public void ThenTheCSVFileRowIsAddedToTheRepository()
+        [Then(@"the CSV file row should be added to the repository")]
+        public void ThenTheCSVFileRowShouldBeAddedToTheRepository()
         {
             _context.DataContext.Rows.Any(p => p[0].ToString() == "Field 1");
         }

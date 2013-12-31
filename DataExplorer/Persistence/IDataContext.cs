@@ -24,8 +24,10 @@ namespace DataExplorer.Persistence
 
         Dictionary<Type, IView> Views { get; }
 
+        Project GetProject();
+
         void SetProject(Project project);
-        
+
         void Clear();
     }
 }

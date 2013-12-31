@@ -22,7 +22,7 @@ namespace DataExplorer.Domain.Rows
             _fields = new object[fields];
         }
 
-        public Row(int id, List<object> fields)
+        public Row(int id, IEnumerable<object> fields)
         {
             _id = id;
             _fields = fields.ToArray();

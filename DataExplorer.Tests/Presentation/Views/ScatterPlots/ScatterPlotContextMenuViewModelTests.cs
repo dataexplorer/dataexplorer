@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.Clipboard;
 using DataExplorer.Application.Rows;
-using DataExplorer.Application.ScatterPlots;
+using DataExplorer.Application.Views.ScatterPlots;
 using DataExplorer.Presentation.Views.ScatterPlots;
 using Moq;
 using NUnit.Framework;

@@ -27,14 +27,14 @@ namespace DataExplorer.Specs.Sources
         }
 
 
-        [Then(@"the CSV file source is added to the repository")]
-        public void ThenTheCSVFileSourceIsAddedToTheRepository()
+        [Then(@"the source should be added to the repository")]
+        public void ThenTheSourceShouldBeAddedToTheRepository()
         {
             Assert.That(_context.DataContext.Sources.ContainsValue(_context.CsvFileSource), Is.True);
         }
 
-        [Then(@"the CSV file source is removed from the repository")]
-        public void ThenTheCSVFileSourceIsRemovedFromTheRepository()
+        [Then(@"the source should be removed from the repository")]
+        public void ThenTheSourceShouldBeRemovedFromTheRepository()
         {
             Assert.That(_context.DataContext.Sources.ContainsValue(_context.CsvFileSource), Is.False);
         }

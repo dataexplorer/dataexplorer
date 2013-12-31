@@ -1,5 +1,5 @@
 ﻿using System;
-using DataExplorer.Domain.ScatterPlots;
+using DataExplorer.Domain.Views.ScatterPlots;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -23,13 +23,13 @@ namespace DataExplorer.Specs.ScatterPlots
             _context.DataContext.Views.Add(scatterPlot.GetType(), scatterPlot);
         }
 
-        [Then(@"the view is added to the repository")]
+        [Then(@"the view should be added to the repository")]
         public void ThenTheViewIsAddedToTheRepository()
         {
             Assert.That(_context.DataContext.Sources.ContainsValue(_context.CsvFileSource), Is.True);
         }
 
-        [Then(@"the scatterplot view is removed from the repository")]
+        [Then(@"the scatterplot view should be removed from the repository")]
         public void ThenTheScatterplotViewIsRemovedFromTheRepository()
         {
             Assert.That(_context.DataContext.Sources.ContainsValue(_context.CsvFileSource), Is.False);

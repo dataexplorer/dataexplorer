@@ -1,6 +1,7 @@
 ﻿using DataExplorer.Application.Importers.CsvFiles;
 using DataExplorer.Application.Importers.CsvFiles.Events;
 using DataExplorer.Presentation.Dialogs;
+using DataExplorer.Presentation.Dialogs.Open;
 using DataExplorer.Presentation.Importers.CsvFile.Header;
 using Moq;
 using NUnit.Framework;

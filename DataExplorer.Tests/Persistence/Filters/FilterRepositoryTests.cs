@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using DataExplorer.Domain.Filters;
 using DataExplorer.Persistence;
 using DataExplorer.Persistence.Filters;
-using DataExplorer.Tests.Application.Filters;
+using DataExplorer.Tests.Domain.Filters;
 using Moq;
 using NUnit.Framework;
 

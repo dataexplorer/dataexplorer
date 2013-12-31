@@ -2,7 +2,7 @@
 using System.Windows;
 using DataExplorer.Application.Columns;
 using DataExplorer.Application.Maps;
-using DataExplorer.Application.ScatterPlots;
+using DataExplorer.Application.Views.ScatterPlots;
 using DataExplorer.Presentation.Core.Canvas.Items;
 using DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories;
 using DataExplorer.Presentation.Views.ScatterPlots.Grid.Labels.Renderers;
