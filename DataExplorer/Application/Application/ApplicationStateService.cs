@@ -7,6 +7,7 @@ using DataExplorer.Application.Application;
 using DataExplorer.Application.Application.Events;
 using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Importers.CsvFiles.Events;
+using DataExplorer.Application.Projects.Events;
 using DataExplorer.Domain.Filters;
 using DataExplorer.Domain.Rows;
 
@@ -15,7 +16,9 @@ namespace DataExplorer.Application.Application
     public class ApplicationStateService 
         : IApplicationStateService, 
         IEventHandler<CsvFileImportingEvent>,
-        IEventHandler<CsvFileImportedEvent>
+        IEventHandler<CsvFileImportedEvent>,
+        IEventHandler<ProjectOpeningEvent>,
+        IEventHandler<ProjectOpenedEvent>
     {
         private readonly IApplicationState _state;
         private readonly IEventBus _eventBus;
@@ -81,7 +84,19 @@ namespace DataExplorer.Application.Application
 
         public void Handle(CsvFileImportedEvent args)
         {
+            SetIsNavigationTreeVisible(true);
+        }
+
+        public void Handle(ProjectOpeningEvent args)
+        {
             SetIsStartMenuVisible(false);
+            SetIsNavigationTreeVisible(false);
+            SetSelectedFilter(null);
+            SetSelectedRows(new List<Row>());
+        }
+
+        public void Handle(ProjectOpenedEvent args)
+        {
             SetIsNavigationTreeVisible(true);
         }
     }

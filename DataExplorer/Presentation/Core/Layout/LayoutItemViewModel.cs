@@ -35,5 +35,15 @@ namespace DataExplorer.Presentation.Core.Layout
 
             return _column.Id == other._column.Id;
         }
+
+        protected bool Equals(LayoutItemViewModel other)
+        {
+            return Equals(_column, other._column);
+        }
+
+        public override int GetHashCode()
+        {
+            return (_column != null ? _column.GetHashCode() : 0);
+        }
     }
 }

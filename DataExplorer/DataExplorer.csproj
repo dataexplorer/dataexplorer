@@ -87,6 +87,7 @@
     <Compile Include="Application\Projects\Commands\SaveProjectCommand.cs" />
     <Compile Include="Application\Projects\Events\ProjectClosedEvent.cs" />
     <Compile Include="Application\Projects\Events\ProjectOpenedEvent.cs" />
+    <Compile Include="Application\Projects\Events\ProjectOpeningEvent.cs" />
     <Compile Include="Application\Projects\Events\ProjectSavedEvent.cs" />
     <Compile Include="Infrastructure\Serializers\Columns\ColumnDataTypeSerializer.cs" />
     <Compile Include="Infrastructure\Serializers\Columns\ColumnSerializer.cs" />

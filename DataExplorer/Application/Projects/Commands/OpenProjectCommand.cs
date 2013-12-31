@@ -41,6 +41,8 @@ namespace DataExplorer.Application.Projects.Commands
             if (filePath == null)
                 return;
 
+            _eventBus.Raise(new ProjectOpeningEvent());
+
             var xProject = _xmlFileService.Load(filePath);
 
             var project = _projectSerializer.Deserialize(xProject);
