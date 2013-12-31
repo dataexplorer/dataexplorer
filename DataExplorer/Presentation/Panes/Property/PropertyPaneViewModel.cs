@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DataExplorer.Application.Columns;
 using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Importers.CsvFiles.Events;
+using DataExplorer.Application.Projects.Events;
 using DataExplorer.Application.Rows;
 using DataExplorer.Infrastructure.Process;
 using DataExplorer.Presentation.Core;
@@ -15,7 +16,9 @@ namespace DataExplorer.Presentation.Panes.Property
     public class PropertyPaneViewModel 
         : BaseViewModel,
         IPropertyPaneViewModel,
-        IEventHandler<SelectedRowsChangedEvent>
+        IEventHandler<SelectedRowsChangedEvent>,
+        IEventHandler<CsvFileImportingEvent>,
+        IEventHandler<ProjectOpeningEvent>
     {
         private readonly IColumnService _columnService;
         private readonly IRowService _rowService;
@@ -62,6 +65,16 @@ namespace DataExplorer.Presentation.Panes.Property
         }
 
         public void Handle(SelectedRowsChangedEvent args)
+        {
+            OnPropertyChanged(() => Properties);
+        }
+
+        public void Handle(CsvFileImportingEvent args)
+        {
+            OnPropertyChanged(() => Properties);
+        }
+
+        public void Handle(ProjectOpeningEvent args)
         {
             OnPropertyChanged(() => Properties);
         }

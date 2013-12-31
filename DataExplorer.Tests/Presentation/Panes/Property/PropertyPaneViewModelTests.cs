@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.Columns;
+using DataExplorer.Application.Core.Events;
+using DataExplorer.Application.Importers.CsvFiles.Events;
 using DataExplorer.Application.Rows;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Rows;
@@ -66,9 +68,26 @@ namespace DataExplorer.Tests.Presentation.Panes.Property
         [Test]
         public void TestHandleSelectedRowsChangedShouldFirePropertiesChangedEvent()
         {
+            AssertPropertiesChangedEventWasRaised(() => _viewModel.Handle(new SelectedRowsChangedEvent()));
+        }
+
+        [Test]
+        public void TestHandleCsvFileImportingShouldFirePropertiesChangedEvent()
+        {
+            AssertPropertiesChangedEventWasRaised(() => _viewModel.Handle(new CsvFileImportingEvent()));
+        }
+
+        [Test]
+        public void TestHandleProjectOpeningShouldFirePropertiesChangedEvent()
+        {
+            AssertPropertiesChangedEventWasRaised(() => _viewModel.Handle(new SelectedRowsChangedEvent()));
+        }
+
+        private void AssertPropertiesChangedEventWasRaised(Action action)
+        {
             var wasRaised = false;
             _viewModel.PropertyChanged += (s, e) => { wasRaised = e.PropertyName == "Properties"; };
-            _viewModel.Handle(new SelectedRowsChangedEvent());
+            action.Invoke();
             Assert.That(wasRaised, Is.True);
         }
     }
