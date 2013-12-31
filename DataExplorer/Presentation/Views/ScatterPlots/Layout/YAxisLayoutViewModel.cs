@@ -86,8 +86,8 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Layout
 
         public void Handle(ScatterPlotLayoutChangedEvent args)
         {
-            OnPropertyChanged(() => SelectedColumn);
             OnPropertyChanged(() => Columns);
+            OnPropertyChanged(() => SelectedColumn);
         }
 
         public void Handle(ScatterPlotLayoutColumnChangedEvent args)

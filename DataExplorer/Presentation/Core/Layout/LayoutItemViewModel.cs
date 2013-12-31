@@ -25,5 +25,15 @@ namespace DataExplorer.Presentation.Core.Layout
         {
             _column = column;
         }
+
+        public override bool Equals(object obj)
+        {
+            if (!(obj is LayoutItemViewModel))
+                return false;
+
+            var other = (LayoutItemViewModel) obj;
+
+            return _column.Id == other._column.Id;
+        }
     }
 }

@@ -22,7 +22,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Layout
     {
         private readonly IColumnService _columnService;
         private readonly IScatterPlotLayoutService _layoutService;
-
+        
         public XAxisLayoutViewModel(
             IColumnService columnService,
             IScatterPlotLayoutService layoutService)
@@ -83,8 +83,8 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Layout
 
         public void Handle(ScatterPlotLayoutChangedEvent args)
         {
-            OnPropertyChanged(() => SelectedColumn);
             OnPropertyChanged(() => Columns);
+            OnPropertyChanged(() => SelectedColumn);
         }
 
         public void Handle(ScatterPlotLayoutColumnChangedEvent args)
