@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.FilterTrees;
 using DataExplorer.Application.Importers.CsvFiles.Events;
+using DataExplorer.Application.Projects.Events;
 using DataExplorer.Presentation.Core;
 
 namespace DataExplorer.Presentation.Panes.Navigation.NavigationTree
@@ -14,7 +15,9 @@ namespace DataExplorer.Presentation.Panes.Navigation.NavigationTree
         : BaseViewModel, 
         INavigationTreeViewModel,
         IEventHandler<CsvFileImportingEvent>,
-        IEventHandler<CsvFileImportedEvent>
+        IEventHandler<CsvFileImportedEvent>,
+        IEventHandler<ProjectOpeningEvent>,
+        IEventHandler<ProjectOpenedEvent>
     {
         private readonly IFilterTreeService _service;
 
@@ -33,12 +36,32 @@ namespace DataExplorer.Presentation.Panes.Navigation.NavigationTree
 
         public void Handle(CsvFileImportingEvent args)
         {
-            _treeNodeViewModels.Clear();
-            
-            OnPropertyChanged(() => TreeNodeViewModels);
+            ClearViewModels();
         }
 
         public void Handle(CsvFileImportedEvent args)
+        {
+            RefreshViewModels();
+        }
+
+        public void Handle(ProjectOpeningEvent args)
+        {
+            ClearViewModels();
+        }
+
+        public void Handle(ProjectOpenedEvent args)
+        {
+            RefreshViewModels();
+        }
+
+        private void ClearViewModels()
+        {
+            _treeNodeViewModels.Clear();
+
+            OnPropertyChanged(() => TreeNodeViewModels);
+        }
+
+        private void RefreshViewModels()
         {
             var filterTreeNodes = _service.GetRoots();
 
