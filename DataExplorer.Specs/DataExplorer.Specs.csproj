@@ -141,6 +141,10 @@
       <Project>{5ED07FF9-5744-4D10-A11A-68814BFAED99}</Project>
       <Name>Infrastructure</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Persistence\Persistence.csproj">
+      <Project>{584fda23-56ad-4162-b3d5-916cf61d4dbf}</Project>
+      <Name>Persistence</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Presentation\Presentation.csproj">
       <Project>{6F7F63AA-CD79-43C8-96A1-350FD98E3B83}</Project>
       <Name>Presentation</Name>

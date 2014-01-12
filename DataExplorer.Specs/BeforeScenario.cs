@@ -36,8 +36,8 @@ namespace DataExplorer.Specs
         {
             // TODO: Eliminate this duplication
             var kernel = new StandardKernel();
-            kernel.Load(Assembly.GetAssembly(typeof(MainWindowViewModel)));
-            kernel.Bind(p => p.From(Assembly.GetAssembly(typeof(MainWindowViewModel)))
+            kernel.Load("DataExplorer*.dll");
+            kernel.Bind(p => p.FromAssembliesMatching("DataExplorer*.dll")
                 .SelectAllClasses()
                 .BindAllInterfaces()
                 .Configure(c => c.InSingletonScope()));
@@ -58,7 +58,6 @@ namespace DataExplorer.Specs
 
             _context.MockCsvFileParser = new Mock<ICsvFileParser>();
             kernel.Rebind<ICsvFileParser>().ToConstant(_context.MockCsvFileParser.Object);
-
 
             _context.MainWindowViewModel = kernel.Get<MainWindowViewModel>();
             _context.FileMenuViewModel = kernel.Get<IFileMenuViewModel>();
