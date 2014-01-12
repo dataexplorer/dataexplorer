@@ -31,7 +31,7 @@ namespace DataExplorer.Specs
         public ICsvFileImportViewModel CsvFileImportViewModel;
         public IFileMenuViewModel FileMenuViewModel;
 
-        public Mock<IApplicationService> MockApplicationService;
+        public Mock<IApplication> MockApplication;
         public Mock<IDialogService> MockDialogService;
         public Mock<IXmlFileService> MockXmlFileService;
         public Mock<ICsvFileParser> MockCsvFileParser;

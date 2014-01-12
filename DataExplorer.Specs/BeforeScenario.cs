@@ -6,6 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application;
 using DataExplorer.Application.Application;
+using DataExplorer.Application.Core.Commands;
+using DataExplorer.Application.Core.Events;
+using DataExplorer.Application.Core.Queries;
 using DataExplorer.Infrastructure.Importers.CsvFile;
 using DataExplorer.Infrastructure.Serializers;
 using DataExplorer.Infrastructure.XmlFiles;
@@ -47,8 +50,8 @@ namespace DataExplorer.Specs
                 .BindAllInterfaces()
                 .Configure(c => c.InSingletonScope()));
 
-            _context.MockApplicationService = new Mock<IApplicationService>();
-            kernel.Rebind<IApplicationService>().ToConstant(_context.MockApplicationService.Object);
+            _context.MockApplication = new Mock<IApplication>();
+            kernel.Rebind<IApplication>().ToConstant(_context.MockApplication.Object);
 
             _context.MockDialogService = new Mock<IDialogService>();
             kernel.Rebind<IDialogService>().ToConstant(_context.MockDialogService.Object);
@@ -64,6 +67,10 @@ namespace DataExplorer.Specs
             _context.CsvFileImportViewModel = kernel.Get<ICsvFileImportViewModel>();
 
             _context.DataContext = kernel.Get<IDataContext>();
+
+            CommandBus.Kernel = kernel;
+            QueryBus.Kernel = kernel;
+            EventBus.Kernel = kernel;
         }
     }
 }

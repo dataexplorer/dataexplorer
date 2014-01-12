@@ -6,7 +6,9 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
+using DataExplorer.Application.Core.Commands;
 using DataExplorer.Application.Core.Events;
+using DataExplorer.Application.Core.Queries;
 using DataExplorer.Domain.Events;
 using DataExplorer.Presentation.Shell.MainWindow;
 using Ninject;
@@ -25,7 +27,7 @@ namespace DataExplorer
         {
             InitializeDependencyInjection();
 
-            InitializeEvents();
+            InitializeBuses();
 
             InitializeShell();
         }
@@ -40,8 +42,10 @@ namespace DataExplorer
                 .Configure(c => c.InSingletonScope()));
         }
 
-        private static void InitializeEvents()
+        private static void InitializeBuses()
         {
+            CommandBus.Kernel = _kernel;
+            QueryBus.Kernel = _kernel;
             EventBus.Kernel = _kernel;
             DomainEvents.Kernel = _kernel;
         }

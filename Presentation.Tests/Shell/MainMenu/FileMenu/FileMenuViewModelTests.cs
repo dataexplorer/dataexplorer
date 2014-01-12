@@ -1,5 +1,6 @@
 ﻿using DataExplorer.Application;
-using DataExplorer.Application.Application;
+using DataExplorer.Application.Application.Commands;
+using DataExplorer.Application.Core.Commands;
 using DataExplorer.Application.Projects;
 using DataExplorer.Presentation.Shell.MainMenu.FileMenu;
 using Moq;
@@ -11,27 +12,20 @@ namespace DataExplorer.Presentation.Tests.Shell.MainMenu.FileMenu
     public class FileMenuViewModelTests
     {
         private FileMenuViewModel _viewModel;
-        private Mock<IApplicationService> _mockFileService;
+        private Mock<ICommandBus> _mockCommandBus;
         private Mock<IProjectService> _mockProjectService;
         private Mock<IDialogService> _mockDialogService;
 
         [SetUp]
         public void SetUp()
         {
-            _mockFileService = new Mock<IApplicationService>();
+            _mockCommandBus = new Mock<ICommandBus>();
             _mockProjectService = new Mock<IProjectService>();
             _mockDialogService = new Mock<IDialogService>();
             _viewModel = new FileMenuViewModel(
-                _mockFileService.Object, 
+                _mockCommandBus.Object, 
                 _mockProjectService.Object, 
                 _mockDialogService.Object);
-        }
-
-        [Test]
-        public void TestExitCommandShouldExit()
-        {
-            _viewModel.ExitCommand.Execute(null);
-            _mockFileService.Verify(p => p.Exit(), Times.Once());
         }
 
         [Test]
@@ -61,6 +55,13 @@ namespace DataExplorer.Presentation.Tests.Shell.MainMenu.FileMenu
         {
             _viewModel.ImportCommand.Execute(null);
             _mockDialogService.Verify(p => p.ShowImportDialog(), Times.Once());
+        }
+
+        [Test]
+        public void TestExitCommandShouldExit()
+        {
+            _viewModel.ExitCommand.Execute(null);
+            _mockCommandBus.Verify(p => p.Execute(It.IsAny<ExitCommand>()), Times.Once());
         }
     }
 }

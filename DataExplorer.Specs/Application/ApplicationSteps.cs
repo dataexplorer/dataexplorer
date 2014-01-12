@@ -26,7 +26,7 @@ namespace DataExplorer.Specs.Application
         [Then(@"the application should shut down")]
         public void ThenTheApplicationShouldShutDown()
         {
-            _context.MockApplicationService.Verify(p => p.Exit(), Times.Once());
+            _context.MockApplication.Verify(p => p.ShutDown(), Times.Once());
         }
 
     }

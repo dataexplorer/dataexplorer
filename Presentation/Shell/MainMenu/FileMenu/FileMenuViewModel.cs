@@ -1,15 +1,16 @@
-using System.Windows.Input;
 using DataExplorer.Application;
 using DataExplorer.Application.Application;
+using DataExplorer.Application.Application.Commands;
+using DataExplorer.Application.Core.Commands;
 using DataExplorer.Application.Projects;
 using DataExplorer.Presentation.Core.Commands;
-using DataExplorer.Presentation.Dialogs;
+using ICommand = System.Windows.Input.ICommand;
 
 namespace DataExplorer.Presentation.Shell.MainMenu.FileMenu
 {
     public class FileMenuViewModel : IFileMenuViewModel
     {
-        private readonly IApplicationService _applicationService;
+        private readonly ICommandBus _commandBus;
         private readonly IProjectService _projectService;
         private readonly IDialogService _dialogService;
 
@@ -20,11 +21,11 @@ namespace DataExplorer.Presentation.Shell.MainMenu.FileMenu
         private readonly ICommand _exitCommand;
 
         public FileMenuViewModel(
-            IApplicationService applicationService,
+            ICommandBus commandBus,
             IProjectService projectService,
             IDialogService dialogService)
         {
-            _applicationService = applicationService;
+            _commandBus = commandBus;
             _projectService = projectService;
             _dialogService = dialogService;
 
@@ -82,7 +83,7 @@ namespace DataExplorer.Presentation.Shell.MainMenu.FileMenu
 
         private void Exit(object parameter)
         {
-            _applicationService.Exit();
+            _commandBus.Execute(new ExitCommand());
         }
     }
 }

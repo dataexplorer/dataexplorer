@@ -55,6 +55,7 @@
     <Compile Include="Application\ApplicationServiceTests.cs" />
     <Compile Include="Application\ApplicationStateServiceTests.cs" />
     <Compile Include="Application\ApplicationStateTests.cs" />
+    <Compile Include="Application\Commands\ExitCommandHandlerTests.cs" />
     <Compile Include="Clipboard\ClipboardServiceTests.cs" />
     <Compile Include="Clipboard\Commands\CopyDataToClipboardCommandTests.cs" />
     <Compile Include="Clipboard\Commands\CopyImageToClipboardCommandTests.cs" />

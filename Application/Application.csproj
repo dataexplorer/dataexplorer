@@ -50,6 +50,8 @@
     <Compile Include="Application\ApplicationService.cs" />
     <Compile Include="Application\ApplicationState.cs" />
     <Compile Include="Application\ApplicationStateService.cs" />
+    <Compile Include="Application\Commands\ExitCommand.cs" />
+    <Compile Include="Application\Commands\ExitCommandHandler.cs" />
     <Compile Include="Application\Events\NavigationTreeVisibilityChangedEvent.cs" />
     <Compile Include="Application\Events\SelectedRowsChangedEvent.cs" />
     <Compile Include="Application\Events\StartMenuVisibilityChangedEvent.cs" />
