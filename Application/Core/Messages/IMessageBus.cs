@@ -11,10 +11,10 @@ namespace DataExplorer.Application.Core.Messages
 {
     public interface IMessageBus
     {
-        TResult Execute<TQuery, TResult>(TQuery query) where TQuery : IQuery<TResult>;
+        void Execute(ICommand command);
 
-        void Execute<T>(T command) where T : ICommand;
+        T Execute<T>(IQuery<T> query);
 
-        void Raise<T>(T @event) where T : IEvent;
+        void Raise(IEvent @event);
     }
 }

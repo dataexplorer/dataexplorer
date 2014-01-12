@@ -1,5 +1,5 @@
 ﻿using System.Windows.Media.Imaging;
-using DataExplorer.Application.Clipboard.Commands;
+using DataExplorer.Application.Clipboard;
 using DataExplorer.Presentation.Core.Canvas;
 
 namespace DataExplorer.Presentation.Core.Services

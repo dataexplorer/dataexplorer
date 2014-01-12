@@ -10,9 +10,9 @@ using NUnit.Framework;
 namespace DataExplorer.Application.Tests.Clipboard.Commands
 {
     [TestFixture]
-    public class CopyDataToClipboardCommandTests
+    public class CopyDataToClipboardCommandHandlerTests
     {
-        private CopyDataToClipboardCommand _service;
+        private CopyDataToClipboardCommandHandler _handler;
         private Mock<IColumnRepository> _mockColumnRepository;
         private Mock<IApplicationStateService> _mockStateService;
         private Mock<ITabExporter> _mockTabExporter;
@@ -39,7 +39,7 @@ namespace DataExplorer.Application.Tests.Clipboard.Commands
 
             _mockClipboard = new Mock<IClipboard>();
 
-            _service = new CopyDataToClipboardCommand(
+            _handler = new CopyDataToClipboardCommandHandler(
                 _mockColumnRepository.Object,
                 _mockStateService.Object,
                 _mockTabExporter.Object,
@@ -49,7 +49,7 @@ namespace DataExplorer.Application.Tests.Clipboard.Commands
         [Test]
         public void TestCopyShouldCopyDataToClipboard()
         {
-            _service.Execute();
+            _handler.Execute(new CopyDataToClipboardCommand());
             _mockClipboard.Verify(p => p.SetText(_text));
         }
     }

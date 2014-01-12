@@ -13,31 +13,31 @@ namespace DataExplorer.Specs.Rows
     [Binding]
     public class RowSteps
     {
-        private readonly Context _context;
+        private readonly AppContext _appContext;
 
-        public RowSteps(Context context)
+        public RowSteps(AppContext appContext)
         {
-            _context = context;
+            _appContext = appContext;
         }
 
         [Given(@"a row")]
         public void GivenARow()
         {
             var row = new RowBuilder().Build();
-            _context.Row = row;
-            _context.DataContext.Rows.Add(row);
+            _appContext.Row = row;
+            _appContext.DataContext.Rows.Add(row);
         }
 
         [Then(@"the row should be added to the repository")]
         public void ThenTheRowShouldBeAddedToTheRepository()
         {
-            Assert.That(_context.DataContext.Rows.Any(p => p == _context.Row), Is.True);
+            Assert.That(_appContext.DataContext.Rows.Any(p => p == _appContext.Row), Is.True);
         }
 
         [Then(@"the row should be removed from the repository")]
         public void ThenTheRowShouldBeRemovedFromTheRepository()
         {
-            Assert.That(_context.DataContext.Rows.Any(p => p == _context.Row), Is.False);
+            Assert.That(_appContext.DataContext.Rows.Any(p => p == _appContext.Row), Is.False);
         }
     }
 }

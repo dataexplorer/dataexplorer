@@ -56,10 +56,9 @@
     <Compile Include="Application\ApplicationStateServiceTests.cs" />
     <Compile Include="Application\ApplicationStateTests.cs" />
     <Compile Include="Application\Commands\ExitCommandHandlerTests.cs" />
-    <Compile Include="Clipboard\ClipboardServiceTests.cs" />
-    <Compile Include="Clipboard\Commands\CopyDataToClipboardCommandTests.cs" />
+    <Compile Include="Clipboard\Commands\CopyDataToClipboardCommandHandlerTests.cs" />
     <Compile Include="Clipboard\Commands\CopyImageToClipboardCommandTests.cs" />
-    <Compile Include="Clipboard\Queries\CanCopyDataToClipboardQueryTests.cs" />
+    <Compile Include="Clipboard\Queries\CanCopyDataToClipboardQueryHandlerTests.cs" />
     <Compile Include="Columns\ColumnAdapterTests.cs" />
     <Compile Include="Columns\ColumnServiceTests.cs" />
     <Compile Include="Columns\Queries\GetAllColumnsQueryTests.cs" />

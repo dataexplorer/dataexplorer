@@ -1,4 +1,6 @@
 ﻿using DataExplorer.Application.Clipboard;
+using DataExplorer.Application.Clipboard.Commands;
+using DataExplorer.Application.Core.Messages;
 using DataExplorer.Application.Rows;
 using DataExplorer.Presentation.Shell.MainMenu.EditMenu;
 using Moq;
@@ -10,28 +12,28 @@ namespace DataExplorer.Presentation.Tests.Shell.MainMenu.EditMenu
     public class EditMenuViewModelTests
     {
         private EditMenuViewModel _viewModel;
-        private Mock<IClipboardService> _mockClipboard;
+        private Mock<IMessageBus> _mockMessageBus;
 
         [SetUp]
         public void SetUp()
         {
-            _mockClipboard = new Mock<IClipboardService>();
+            _mockMessageBus = new Mock<IMessageBus>();
 
-            _viewModel = new EditMenuViewModel(_mockClipboard.Object);
+            _viewModel = new EditMenuViewModel(_mockMessageBus.Object);
         }
 
         [Test]
         public void TestExecuteCopyCommandShouldCopy()
         {
             _viewModel.CopyCommand.Execute(null);
-            _mockClipboard.Verify(p => p.Copy(), Times.Once());
+            _mockMessageBus.Verify(p => p.Execute(It.IsAny<CopyDataToClipboardCommand>()), Times.Once());
         }
 
         [Test]
         public void TestExecuteCopyImageShouldCopyImage()
         {
             _viewModel.CopyImageCommand.Execute(null);
-            _mockClipboard.Verify(p => p.CopyImage(), Times.Once());
+            _mockMessageBus.Verify(p => p.Execute(It.IsAny<CopyImageToClipboardCommand>()), Times.Once());
         }
 
         [Test]

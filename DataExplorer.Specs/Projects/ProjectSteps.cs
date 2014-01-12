@@ -17,20 +17,20 @@ namespace DataExplorer.Specs.Projects
     [Binding]
     public class ProjectSteps
     {
-        private readonly Context _context;
+        private readonly AppContext _appContext;
 
-        public ProjectSteps(Context context)
+        public ProjectSteps(AppContext appContext)
         {
-            _context = context;
+            _appContext = appContext;
         }
 
         [Given(@"a project file")]
         public void GivenAProject()
         {
-            _context.XProject = new XElement("Project");
+            _appContext.XProject = new XElement("Project");
 
-            _context.MockXmlFileService.Setup(p => p.Load(@"C:\Project.xml"))
-                .Returns(_context.XProject);
+            _appContext.MockXmlFileService.Setup(p => p.Load(@"C:\Project.xml"))
+                .Returns(_appContext.XProject);
         }
 
         [Given(@"the project file has a source")]
@@ -40,7 +40,7 @@ namespace DataExplorer.Specs.Projects
                 new XElement("csv-file-source"),
                     new XElement("file-path", @"C:\Data.csv"));
 
-            _context.XProject.Add(xSource);
+            _appContext.XProject.Add(xSource);
         }
 
         [Given(@"the project file has a column")]
@@ -53,7 +53,7 @@ namespace DataExplorer.Specs.Projects
                     new XElement("name", "Column 1"),
                     new XElement("type", "System.Object")));
             
-            _context.XProject.Add(xColumn);
+            _appContext.XProject.Add(xColumn);
         }
 
         [Given(@"the project file has a row")]
@@ -64,7 +64,7 @@ namespace DataExplorer.Specs.Projects
                     new XElement("id", 1),
                     new XElement("fields")));
 
-            _context.XProject.Add(xRow);
+            _appContext.XProject.Add(xRow);
         }
 
         [Given(@"the project file has a filter")]
@@ -79,26 +79,26 @@ namespace DataExplorer.Specs.Projects
             var xView = new XElement("views",
                 new XElement("scatter-plot"));
 
-            _context.XProject.Add(xView);
+            _appContext.XProject.Add(xView);
         }
 
         [Given(@"I select the project file to open")]
         public void GivenISelectTheProjectFileToOpen()
         {
-            _context.MockDialogService.Setup(p => p.ShowOpenDialog())
+            _appContext.MockDialogService.Setup(p => p.ShowOpenDialog())
                 .Returns(@"C:\Project.xml");
         }
         
         [When(@"I open the project")]
         public void WhenIOpenTheProject()
         {
-            _context.FileMenuViewModel.OpenCommand.Execute(null);
+            _appContext.FileMenuViewModel.OpenCommand.Execute(null);
         }
 
         [When(@"I close the project")]
         public void WhenICloseTheProject()
         {
-            _context.FileMenuViewModel.CloseCommand.Execute(null);
+            _appContext.FileMenuViewModel.CloseCommand.Execute(null);
         }
     }
 }

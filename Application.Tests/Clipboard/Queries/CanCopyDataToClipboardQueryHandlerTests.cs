@@ -9,9 +9,9 @@ using NUnit.Framework;
 namespace DataExplorer.Application.Tests.Clipboard.Queries
 {
     [TestFixture]
-    public class CanCopyDataToClipboardQueryTests
+    public class CanCopyDataToClipboardQueryHandlerTests
     {
-        private CanCopyDataToClipboardQuery _query;
+        private CanCopyDataToClipboardQueryHandler _handler;
         private Mock<IApplicationStateService> _mockService;
         private List<Row> _rows;
         private Row _row;
@@ -25,14 +25,14 @@ namespace DataExplorer.Application.Tests.Clipboard.Queries
             _mockService = new Mock<IApplicationStateService>();
             _mockService.Setup(p => p.GetSelectedRows()).Returns(_rows);
 
-            _query = new CanCopyDataToClipboardQuery(
+            _handler = new CanCopyDataToClipboardQueryHandler(
                 _mockService.Object);
         }
 
         [Test]
         public void TestExecuteShouldReturnTrueIfRowsAreSelected()
         {
-            var result = _query.Execute();
+            var result = _handler.Execute(new CanCopyDataToClipboardQuery());
             Assert.That(result, Is.True);
         }
 
@@ -40,7 +40,7 @@ namespace DataExplorer.Application.Tests.Clipboard.Queries
         public void TestExecuteShouldReturnFalseIfNoRowsAreSelected()
         {
             _rows.Clear();
-            var result = _query.Execute();
+            var result = _handler.Execute(new CanCopyDataToClipboardQuery());
             Assert.That(result, Is.False);
         }
     }

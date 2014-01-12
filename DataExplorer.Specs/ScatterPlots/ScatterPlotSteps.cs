@@ -8,31 +8,31 @@ namespace DataExplorer.Specs.ScatterPlots
     [Binding]
     public class ScatterPlotSteps
     {
-        private readonly Context _context;
+        private readonly AppContext _appContext;
 
-        public ScatterPlotSteps(Context context)
+        public ScatterPlotSteps(AppContext appContext)
         {
-            _context = context;
+            _appContext = appContext;
         }
 
         [Given(@"a scatterplot view")]
         public void GivenAScatterplotView()
         {
             var scatterPlot = new ScatterPlot();
-            _context.ScatterPlot = scatterPlot;
-            _context.DataContext.Views.Add(scatterPlot.GetType(), scatterPlot);
+            _appContext.ScatterPlot = scatterPlot;
+            _appContext.DataContext.Views.Add(scatterPlot.GetType(), scatterPlot);
         }
 
         [Then(@"the view should be added to the repository")]
         public void ThenTheViewIsAddedToTheRepository()
         {
-            Assert.That(_context.DataContext.Sources.ContainsValue(_context.CsvFileSource), Is.True);
+            Assert.That(_appContext.DataContext.Sources.ContainsValue(_appContext.CsvFileSource), Is.True);
         }
 
         [Then(@"the scatterplot view should be removed from the repository")]
         public void ThenTheScatterplotViewIsRemovedFromTheRepository()
         {
-            Assert.That(_context.DataContext.Sources.ContainsValue(_context.CsvFileSource), Is.False);
+            Assert.That(_appContext.DataContext.Sources.ContainsValue(_appContext.CsvFileSource), Is.False);
         }
 
         [Given(@"the following data set:")]

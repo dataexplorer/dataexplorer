@@ -1,4 +1,5 @@
-﻿using DataExplorer.Application.Clipboard;
+﻿using DataExplorer.Application.Clipboard.Commands;
+using DataExplorer.Application.Core.Messages;
 using DataExplorer.Application.Rows;
 using DataExplorer.Application.Views.ScatterPlots;
 using DataExplorer.Presentation.Views.ScatterPlots;
@@ -11,19 +12,19 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots
     public class ScatterPlotContextMenuViewModelTests
     {
         private ScatterPlotContextMenuViewModel _viewModel;
-        private Mock<IClipboardService> _mockClipboardService;
+        private Mock<IMessageBus> _mockMessageBus;
         private Mock<IScatterPlotService> _mockScatterPlotService;
         private Mock<IScatterPlotLayoutService> _mockLayoutService;
 
         [SetUp]
         public void SetUp()
         {
-            _mockClipboardService = new Mock<IClipboardService>();
+            _mockMessageBus = new Mock<IMessageBus>();
             _mockScatterPlotService = new Mock<IScatterPlotService>();
             _mockLayoutService = new Mock<IScatterPlotLayoutService>();
 
             _viewModel = new ScatterPlotContextMenuViewModel(
-                _mockClipboardService.Object,
+                _mockMessageBus.Object,
                 _mockScatterPlotService.Object,
                 _mockLayoutService.Object);
         }
@@ -32,14 +33,14 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots
         public void TestExecuteCopyCommandShouldCopyData()
         {
             _viewModel.CopyCommand.Execute(null);
-            _mockClipboardService.Verify(p => p.Copy());
+            _mockMessageBus.Verify(p => p.Execute(It.IsAny<CopyDataToClipboardCommand>()));
         }
 
         [Test]
         public void TestExecuteCopyImageCommandShouldCopyImage()
         {
             _viewModel.CopyImageCommand.Execute(null);
-            _mockClipboardService.Verify(p => p.CopyImage());
+            _mockMessageBus.Verify(p => p.Execute(It.IsAny<CopyImageToClipboardCommand>()));
         }
 
         [Test]

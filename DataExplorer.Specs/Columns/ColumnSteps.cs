@@ -13,31 +13,31 @@ namespace DataExplorer.Specs.Columns
     [Binding]
     public class ColumnSteps
     {
-        private readonly Context _context;
+        private readonly AppContext _appContext;
 
-        public ColumnSteps(Context context)
+        public ColumnSteps(AppContext appContext)
         {
-            _context = context;
+            _appContext = appContext;
         }
 
         [Given(@"a column")]
         public void GivenAColumn()
         {
             var column = new ColumnBuilder().Build();
-            _context.Column = column;
-            _context.DataContext.Columns.Add(column);
+            _appContext.Column = column;
+            _appContext.DataContext.Columns.Add(column);
         }
 
         [Then(@"the column should be added to the repository")]
         public void ThenTheColumnShouldBeAddedToTheRepository()
         {
-            Assert.That(_context.DataContext.Columns.Any(p => p == _context.Column), Is.True);
+            Assert.That(_appContext.DataContext.Columns.Any(p => p == _appContext.Column), Is.True);
         }
 
         [Then(@"the column should be removed from the repository")]
         public void ThenTheColumnShouldBeRemovedFromTheRepository()
         {
-            Assert.That(_context.DataContext.Columns.Any(p => p == _context.Column), Is.False);
+            Assert.That(_appContext.DataContext.Columns.Any(p => p == _appContext.Column), Is.False);
         }
     }
 }

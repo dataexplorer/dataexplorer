@@ -62,7 +62,7 @@
     </Compile>
     <Compile Include="BeforeScenario.cs" />
     <Compile Include="Columns\ColumnSteps.cs" />
-    <Compile Include="Context.cs" />
+    <Compile Include="AppContext.cs" />
     <Compile Include="Filters\FilterSteps.cs" />
     <Compile Include="Importers\FakeCsvFile.cs" />
     <Compile Include="Importers\CsvFileImporterSteps.cs" />
@@ -150,6 +150,7 @@
       <Name>Presentation</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

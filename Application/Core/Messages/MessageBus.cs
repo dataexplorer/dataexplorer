@@ -9,7 +9,7 @@ using DataExplorer.Application.Core.Queries;
 
 namespace DataExplorer.Application.Core.Messages
 {
-    public class MessageBus
+    public class MessageBus : IMessageBus
     {
         private readonly ICommandBus _commandBus;
         private readonly IQueryBus _queryBus;

@@ -50,7 +50,7 @@ namespace DataExplorer.Application.Tests.Core.Messages
         public void TestExecuteShouldExecuteCommand()
         {
             _messageBus.Execute(_fakeCommand);
-            _mockCommandBus.Verify(p => p.Execute<ICommand>(_fakeCommand));
+            _mockCommandBus.Verify(p => p.Execute(_fakeCommand));
         }
 
         [Test]

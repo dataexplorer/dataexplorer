@@ -8,6 +8,6 @@ namespace DataExplorer.Application.Core.Commands
 {
     public interface ICommandBus
     {
-        void Execute<T>(T command) where T : ICommand;
+        void Execute(ICommand command);
     }
 }

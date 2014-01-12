@@ -10,23 +10,23 @@ namespace DataExplorer.Specs.Application
     [Binding]
     public class ApplicationSteps
     {
-        private readonly Context _context;
+        private readonly AppContext _appContext;
 
-        public ApplicationSteps(Context context)
+        public ApplicationSteps(AppContext appContext)
         {
-            _context = context;
+            _appContext = appContext;
         }
         
         [When(@"I exit the application")]
         public void WhenIExitTheApplication()
         {
-            _context.FileMenuViewModel.ExitCommand.Execute(null);
+            _appContext.FileMenuViewModel.ExitCommand.Execute(null);
         }
 
         [Then(@"the application should shut down")]
         public void ThenTheApplicationShouldShutDown()
         {
-            _context.MockApplication.Verify(p => p.ShutDown(), Times.Once());
+            _appContext.MockApplication.Verify(p => p.ShutDown(), Times.Once());
         }
 
     }

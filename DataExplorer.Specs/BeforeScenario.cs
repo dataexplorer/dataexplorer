@@ -27,11 +27,11 @@ namespace DataExplorer.Specs
     [Binding]
     public class BeforeScenario
     {
-        private readonly Context _context;
+        private readonly AppContext _appContext;
 
-        public BeforeScenario(Context context)
+        public BeforeScenario(AppContext appContext)
         {
-            _context = context;
+            _appContext = appContext;
         }
 
         [BeforeScenario]
@@ -44,29 +44,29 @@ namespace DataExplorer.Specs
                 .SelectAllClasses()
                 .BindAllInterfaces()
                 .Configure(c => c.InSingletonScope()));
-            kernel.Load(Assembly.GetAssembly(typeof(Context)));
+            kernel.Load(Assembly.GetAssembly(typeof(AppContext)));
             kernel.Bind(p => p.FromThisAssembly()
                 .SelectAllClasses()
                 .BindAllInterfaces()
                 .Configure(c => c.InSingletonScope()));
 
-            _context.MockApplication = new Mock<IApplication>();
-            kernel.Rebind<IApplication>().ToConstant(_context.MockApplication.Object);
+            _appContext.MockApplication = new Mock<IApplication>();
+            kernel.Rebind<IApplication>().ToConstant(_appContext.MockApplication.Object);
 
-            _context.MockDialogService = new Mock<IDialogService>();
-            kernel.Rebind<IDialogService>().ToConstant(_context.MockDialogService.Object);
+            _appContext.MockDialogService = new Mock<IDialogService>();
+            kernel.Rebind<IDialogService>().ToConstant(_appContext.MockDialogService.Object);
 
-            _context.MockXmlFileService = new Mock<IXmlFileService>();
-            kernel.Rebind<IXmlFileService>().ToConstant(_context.MockXmlFileService.Object);
+            _appContext.MockXmlFileService = new Mock<IXmlFileService>();
+            kernel.Rebind<IXmlFileService>().ToConstant(_appContext.MockXmlFileService.Object);
 
-            _context.MockCsvFileParser = new Mock<ICsvFileParser>();
-            kernel.Rebind<ICsvFileParser>().ToConstant(_context.MockCsvFileParser.Object);
+            _appContext.MockCsvFileParser = new Mock<ICsvFileParser>();
+            kernel.Rebind<ICsvFileParser>().ToConstant(_appContext.MockCsvFileParser.Object);
 
-            _context.MainWindowViewModel = kernel.Get<MainWindowViewModel>();
-            _context.FileMenuViewModel = kernel.Get<IFileMenuViewModel>();
-            _context.CsvFileImportViewModel = kernel.Get<ICsvFileImportViewModel>();
+            _appContext.MainWindowViewModel = kernel.Get<MainWindowViewModel>();
+            _appContext.FileMenuViewModel = kernel.Get<IFileMenuViewModel>();
+            _appContext.CsvFileImportViewModel = kernel.Get<ICsvFileImportViewModel>();
 
-            _context.DataContext = kernel.Get<IDataContext>();
+            _appContext.DataContext = kernel.Get<IDataContext>();
 
             CommandBus.Kernel = kernel;
             QueryBus.Kernel = kernel;

@@ -11,17 +11,17 @@ namespace DataExplorer.Specs.Filters
     [Binding]
     public class FilterSteps
     {
-        private readonly Context _context;
+        private readonly AppContext _appContext;
 
-        public FilterSteps(Context context)
+        public FilterSteps(AppContext appContext)
         {
-            _context = context;
+            _appContext = appContext;
         }
 
         [Then(@"the filter should be added to the repository")]
         public void ThenTheFilterShouldBeAddedToTheRepository()
         {
-            Assert.That(_context.DataContext.Filters.Any(p => p == _context.Filter), Is.True);
+            Assert.That(_appContext.DataContext.Filters.Any(p => p == _appContext.Filter), Is.True);
         }
 
     }

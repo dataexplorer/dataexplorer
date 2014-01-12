@@ -11,32 +11,32 @@ namespace DataExplorer.Specs.Importers
     [Binding]
     public class CsvFileImporterSteps
     {
-        private readonly Context _context;
+        private readonly AppContext _appContext;
 
-        public CsvFileImporterSteps(Context context)
+        public CsvFileImporterSteps(AppContext appContext)
         {
-            _context = context;
+            _appContext = appContext;
         }
 
         [Given(@"a CSV file")]
         public void GivenACSVFile()
         {
-            _context.FakeCsvFile = new FakeCsvFile();
-            _context.MockCsvFileParser.Setup(p => p.OpenFile(It.IsAny<string>()))
-                .Callback(() => _context.FakeCsvFile.Open());
-            _context.MockCsvFileParser.Setup(p => p.CloseFile())
-                .Callback(() => _context.FakeCsvFile.Close());
-            _context.MockCsvFileParser.Setup(p => p.ReadFields())
-                .Returns(() => _context.FakeCsvFile.GetRow());
-            _context.MockCsvFileParser.Setup(p => p.IsEndOfFile())
-                .Returns(() => _context.FakeCsvFile.IsEndOfFile());
+            _appContext.FakeCsvFile = new FakeCsvFile();
+            _appContext.MockCsvFileParser.Setup(p => p.OpenFile(It.IsAny<string>()))
+                .Callback(() => _appContext.FakeCsvFile.Open());
+            _appContext.MockCsvFileParser.Setup(p => p.CloseFile())
+                .Callback(() => _appContext.FakeCsvFile.Close());
+            _appContext.MockCsvFileParser.Setup(p => p.ReadFields())
+                .Returns(() => _appContext.FakeCsvFile.GetRow());
+            _appContext.MockCsvFileParser.Setup(p => p.IsEndOfFile())
+                .Returns(() => _appContext.FakeCsvFile.IsEndOfFile());
         }
 
         [Given(@"the CSV file contains a column")]
         public void GivenTheCSVFileContainsAColumn()
         {
             var headerRow = new string[] { "Column 1" };
-            _context.FakeCsvFile.AddRow(headerRow);
+            _appContext.FakeCsvFile.AddRow(headerRow);
 
         }
 
@@ -44,25 +44,25 @@ namespace DataExplorer.Specs.Importers
         public void GivenTheCSVFileContainsARow()
         {
             var dataRow = new string[] { "Field 1" };
-            _context.FakeCsvFile.AddRow(dataRow);
+            _appContext.FakeCsvFile.AddRow(dataRow);
         }
 
         [When(@"I import the CSV file source")]
         public void WhenIImportTheCSVFileSource()
         {
-            _context.CsvFileImportViewModel.FooterViewModel.ImportCommand.Execute(null);
+            _appContext.CsvFileImportViewModel.FooterViewModel.ImportCommand.Execute(null);
         }
 
         [Then(@"the CSV file column should be added to the repository")]
         public void ThenTheCSVFileColumnShouldBeAddedToTheRepository()
         {
-            _context.DataContext.Columns.Any(p => p.Name == "Column 1");
+            _appContext.DataContext.Columns.Any(p => p.Name == "Column 1");
         }
 
         [Then(@"the CSV file row should be added to the repository")]
         public void ThenTheCSVFileRowShouldBeAddedToTheRepository()
         {
-            _context.DataContext.Rows.Any(p => p[0].ToString() == "Field 1");
+            _appContext.DataContext.Rows.Any(p => p[0].ToString() == "Field 1");
         }
     }
 }

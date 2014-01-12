@@ -13,10 +13,6 @@ using DataExplorer.Domain.Rows;
 using DataExplorer.Domain.Sources;
 using DataExplorer.Domain.Views.ScatterPlots;
 using DataExplorer.Infrastructure.Importers.CsvFile;
-using DataExplorer.Infrastructure.Serializers;
-using DataExplorer.Infrastructure.XmlFiles;
-using DataExplorer.Persistence;
-using DataExplorer.Presentation.Dialogs;
 using DataExplorer.Presentation.Importers.CsvFile;
 using DataExplorer.Presentation.Shell.MainMenu.FileMenu;
 using DataExplorer.Presentation.Shell.MainWindow;
@@ -25,7 +21,7 @@ using Moq;
 
 namespace DataExplorer.Specs
 {
-    public class Context
+    public class AppContext
     {
         public MainWindowViewModel MainWindowViewModel;
         public ICsvFileImportViewModel CsvFileImportViewModel;

@@ -11,32 +11,32 @@ namespace DataExplorer.Specs.Sources
     [Binding]
     public class SourceSteps
     {
-        private readonly Context _context;
+        private readonly AppContext _appContext;
 
-        public SourceSteps(Context context)
+        public SourceSteps(AppContext appContext)
         {
-            _context = context;
+            _appContext = appContext;
         }
 
         [Given(@"a CSV file source")]
         public void GivenACSVFileSource()
         {
             var source = new CsvFileSource();
-            _context.CsvFileSource = source;
-            _context.DataContext.Sources.Add(source.GetType(), source);
+            _appContext.CsvFileSource = source;
+            _appContext.DataContext.Sources.Add(source.GetType(), source);
         }
 
 
         [Then(@"the source should be added to the repository")]
         public void ThenTheSourceShouldBeAddedToTheRepository()
         {
-            Assert.That(_context.DataContext.Sources.ContainsValue(_context.CsvFileSource), Is.True);
+            Assert.That(_appContext.DataContext.Sources.ContainsValue(_appContext.CsvFileSource), Is.True);
         }
 
         [Then(@"the source should be removed from the repository")]
         public void ThenTheSourceShouldBeRemovedFromTheRepository()
         {
-            Assert.That(_context.DataContext.Sources.ContainsValue(_context.CsvFileSource), Is.False);
+            Assert.That(_appContext.DataContext.Sources.ContainsValue(_appContext.CsvFileSource), Is.False);
         }
     }
 }

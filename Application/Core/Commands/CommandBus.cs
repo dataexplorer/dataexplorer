@@ -11,11 +11,14 @@ namespace DataExplorer.Application.Core.Commands
     {
         public static IKernel Kernel;
 
-        public void Execute<T>(T command) where T : ICommand
+        public void Execute(ICommand command)
         {
-            var handler = Kernel.Get<ICommandHandler<T>>();
+            var handlerType = typeof (ICommandHandler<>)
+                .MakeGenericType(command.GetType());
 
-            handler.Execute(command);
+            dynamic handler = Kernel.Get(handlerType);
+
+            handler.Execute((dynamic) command);
         }
     }
 }

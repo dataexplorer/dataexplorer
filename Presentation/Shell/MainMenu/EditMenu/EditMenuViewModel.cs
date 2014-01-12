@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using DataExplorer.Application.Clipboard;
+using DataExplorer.Application.Clipboard.Commands;
+using DataExplorer.Application.Clipboard.Queries;
+using DataExplorer.Application.Core.Commands;
 using DataExplorer.Application.Core.Events;
+using DataExplorer.Application.Core.Messages;
 using DataExplorer.Application.Rows;
 using DataExplorer.Presentation.Core.Commands;
+using ICommand = System.Windows.Input.ICommand;
 
 namespace DataExplorer.Presentation.Shell.MainMenu.EditMenu
 {
@@ -15,20 +19,20 @@ namespace DataExplorer.Presentation.Shell.MainMenu.EditMenu
         : IEditMenuViewModel,
         IEventHandler<SelectedRowsChangedEvent>
     {
-        private readonly IClipboardService _clipboardService;
+        private readonly IMessageBus _messageBus;
         private readonly DelegateCommand _copyCommand;
         private readonly DelegateCommand _copyImageCommand;
 
-        public EditMenuViewModel(IClipboardService clipboardService)
+        public EditMenuViewModel(IMessageBus messageBus)
         {
-            _clipboardService = clipboardService;
+            _messageBus = messageBus;
 
             _copyCommand = new DelegateCommand(
-                p => _clipboardService.Copy(),
-                p => _clipboardService.CanCopy());
+                p => _messageBus.Execute(new CopyDataToClipboardCommand()),
+                p => _messageBus.Execute(new CanCopyDataToClipboardQuery()));
 
             _copyImageCommand = new DelegateCommand(
-                p => _clipboardService.CopyImage());
+                p => _messageBus.Execute(new CopyImageToClipboardCommand()));
         }
 
         public ICommand CopyCommand

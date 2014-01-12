@@ -3,22 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataExplorer.Application.Application;
+using DataExplorer.Application.Core.Queries;
 
 namespace DataExplorer.Application.Clipboard.Queries
 {
-    public class CanCopyDataToClipboardQuery : ICanCopyDataToClipboardQuery
+    public class CanCopyDataToClipboardQuery : IQuery<bool>
     {
-        private readonly IApplicationStateService _stateService;
-
-        public CanCopyDataToClipboardQuery(IApplicationStateService stateService)
-        {
-            _stateService = stateService;
-        }
-
-        public bool Execute()
-        {
-            return _stateService.GetSelectedRows().Any();
-        }
     }
 }
