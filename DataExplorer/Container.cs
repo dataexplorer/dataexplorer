@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Ninject.Modules;
 
-namespace DataExplorer.Common.Injection
+namespace DataExplorer
 {
     public class Container : NinjectModule
     {

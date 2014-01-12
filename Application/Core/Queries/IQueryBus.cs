@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataExplorer.Application.Core.Events
+namespace DataExplorer.Application.Core.Queries
 {
-    public interface IEventBus
+    public interface IQueryBus
     {
-        void Raise<T>(T @event) where T : IEvent;
+        TResult Execute<TResult>(IQuery<TResult> query);
     }
 }

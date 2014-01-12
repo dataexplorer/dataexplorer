@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataExplorer.Application.Core.Events
+namespace DataExplorer.Application.Core.Commands
 {
-    public interface IEventBus
+    public interface ICommand
     {
-        void Raise<T>(T @event) where T : IEvent;
     }
 }

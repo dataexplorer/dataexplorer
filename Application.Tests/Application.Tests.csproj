@@ -33,6 +33,10 @@
     <Reference Include="Moq">
       <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject, Version=3.0.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Ninject.3.0.1.10\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
     </Reference>
@@ -59,6 +63,16 @@
     <Compile Include="Columns\ColumnServiceTests.cs" />
     <Compile Include="Columns\Queries\GetAllColumnsQueryTests.cs" />
     <Compile Include="Columns\Queries\GetDistinctColumnValuesQueryTests.cs" />
+    <Compile Include="Core\Commands\CommandBusTests.cs" />
+    <Compile Include="Core\Commands\FakeCommand.cs" />
+    <Compile Include="Core\Commands\FakeCommandHandler.cs" />
+    <Compile Include="Core\Events\EventBusTests.cs" />
+    <Compile Include="Core\Events\FakeEvent.cs" />
+    <Compile Include="Core\Events\FakeEventHandler.cs" />
+    <Compile Include="Core\Messages\MessageBusTests.cs" />
+    <Compile Include="Core\Queries\FakeQuery.cs" />
+    <Compile Include="Core\Queries\FakeQueryHandler.cs" />
+    <Compile Include="Core\Queries\QueryBusTests.cs" />
     <Compile Include="Exporters\TabFile\TabExporterTests.cs" />
     <Compile Include="FilterTrees\Commands\SelectFilterTreeNodeCommandTests.cs" />
     <Compile Include="FilterTrees\FilterTreeServiceTests.cs" />

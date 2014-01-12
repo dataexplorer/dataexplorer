@@ -75,10 +75,20 @@
     <Compile Include="Columns\Queries\GetDistinctColumnValuesQuery.cs" />
     <Compile Include="Columns\Queries\IGetAllColumnsQuery.cs" />
     <Compile Include="Columns\Queries\IGetDistinctColumnValuesQuery.cs" />
+    <Compile Include="Core\Commands\CommandBus.cs" />
+    <Compile Include="Core\Commands\ICommand.cs" />
+    <Compile Include="Core\Commands\ICommandBus.cs" />
+    <Compile Include="Core\Commands\ICommandHandler.cs" />
     <Compile Include="Core\Events\EventBus.cs" />
     <Compile Include="Core\Events\IEvent.cs" />
     <Compile Include="Core\Events\IEventBus.cs" />
     <Compile Include="Core\Events\IEventHandler.cs" />
+    <Compile Include="Core\Messages\IMessageBus.cs" />
+    <Compile Include="Core\Messages\MessageBus.cs" />
+    <Compile Include="Core\Queries\IQuery.cs" />
+    <Compile Include="Core\Queries\IQueryBus.cs" />
+    <Compile Include="Core\Queries\IQueryHandler.cs" />
+    <Compile Include="Core\Queries\QueryBus.cs" />
     <Compile Include="Exporters\TabFile\ITabExporter.cs" />
     <Compile Include="Exporters\TabFile\TabExporter.cs" />
     <Compile Include="Filters\Events\FilterChangedEvent.cs" />
@@ -182,6 +192,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

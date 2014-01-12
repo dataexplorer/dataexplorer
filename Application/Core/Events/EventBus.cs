@@ -9,11 +9,12 @@ namespace DataExplorer.Application.Core.Events
     {
         public static IKernel Kernel;
 
-        public void Raise<T>(T args) where T : IEvent
+        public void Raise<T>(T @event) where T : IEvent
         {
-            if (Kernel != null)
-                foreach (var handler in Kernel.GetAll<IEventHandler<T>>())
-                    handler.Handle(args);
+            var handlers = Kernel.GetAll<IEventHandler<T>>();
+
+            foreach (var handler in handlers)
+                handler.Handle(@event);
         }
     }
 }
