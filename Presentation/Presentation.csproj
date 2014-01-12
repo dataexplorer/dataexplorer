@@ -1,0 +1,426 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6F7F63AA-CD79-43C8-96A1-350FD98E3B83}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DataExplorer.Presentation</RootNamespace>
+    <AssemblyName>DataExplorer.Presentation</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.AvalonDock">
+      <HintPath>..\packages\AvalonDock.2.0.2000\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero">
+      <HintPath>..\packages\AvalonDock.2.0.2000\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Expression">
+      <HintPath>..\packages\AvalonDock.2.0.2000\lib\net40\Xceed.Wpf.AvalonDock.Themes.Expression.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro">
+      <HintPath>..\packages\AvalonDock.2.0.2000\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010">
+      <HintPath>..\packages\AvalonDock.2.0.2000\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\BaseViewModel.cs" />
+    <Compile Include="Core\Canvas\CanvasControl.cs" />
+    <Compile Include="Core\Canvas\CanvasRenderer.cs" />
+    <Compile Include="Core\Canvas\Events\CanvasPanEvent.cs" />
+    <Compile Include="Core\Canvas\Events\CanvasPanEventArgs.cs" />
+    <Compile Include="Core\Canvas\Events\CanvasZoomInEvent.cs" />
+    <Compile Include="Core\Canvas\Events\CanvasZoomInEventArg.cs" />
+    <Compile Include="Core\Canvas\Events\CanvasZoomOutEvent.cs" />
+    <Compile Include="Core\Canvas\Events\CanvasZoomOutEventArgs.cs" />
+    <Compile Include="Core\Canvas\ICanvasRenderer.cs" />
+    <Compile Include="Core\Canvas\Items\CanvasBackground.cs" />
+    <Compile Include="Core\Canvas\Items\CanvasCircle.cs" />
+    <Compile Include="Core\Canvas\Items\CanvasItem.cs" />
+    <Compile Include="Core\Canvas\Items\CanvasLabel.cs" />
+    <Compile Include="Core\Canvas\Items\CanvasLine.cs" />
+    <Compile Include="Core\Canvas\Items\VisualItem.cs" />
+    <Compile Include="Core\Collections\FastObservableCollection.cs" />
+    <Compile Include="Core\Commands\AsyncDelegateCommand.cs" />
+    <Compile Include="Core\Commands\DelegateCommand.cs" />
+    <Compile Include="Core\Converters\FriendlyDataTypeNameConverter.cs" />
+    <Compile Include="Core\Events\DialogClosedEvent.cs" />
+    <Compile Include="Core\Geometry\GeometryCalculator.cs" />
+    <Compile Include="Core\Geometry\GeometryFactory.cs" />
+    <Compile Include="Core\Geometry\IGeometryCalculator.cs" />
+    <Compile Include="Core\Geometry\IGeometryFactory.cs" />
+    <Compile Include="Core\Layout\LayoutItemViewModel.cs" />
+    <Compile Include="Core\Services\CanvasToBitmapExporter.cs" />
+    <Compile Include="Core\Services\ControlFinder.cs" />
+    <Compile Include="Core\Services\ControlToBitmapRenderer.cs" />
+    <Compile Include="Core\Services\DependencyPropertyService.cs" />
+    <Compile Include="Core\Services\IControlFinder.cs" />
+    <Compile Include="Core\Services\IControlToBitmapRenderer.cs" />
+    <Compile Include="Core\Services\IDependencyPropertyService.cs" />
+    <Compile Include="Core\Services\IVisualService.cs" />
+    <Compile Include="Core\Services\IVisualTreeHelper.cs" />
+    <Compile Include="Core\Services\IWindowService.cs" />
+    <Compile Include="Core\Services\VisualService.cs" />
+    <Compile Include="Core\Services\VisualTreeHelperWrapper.cs" />
+    <Compile Include="Core\Services\WindowService.cs" />
+    <Compile Include="Dialogs\DialogFactory.cs" />
+    <Compile Include="Dialogs\DialogService.cs" />
+    <Compile Include="Dialogs\IDialog.cs" />
+    <Compile Include="Dialogs\IDialogFactory.cs" />
+    <Compile Include="Dialogs\Open\IOpenFileDialog.cs" />
+    <Compile Include="Dialogs\Open\OpenFileDialogWrapper.cs" />
+    <Compile Include="Dialogs\Save\ISaveFileDialog.cs" />
+    <Compile Include="Dialogs\Save\SaveFileDialogWrapper.cs" />
+    <Compile Include="Importers\CsvFile\Body\CsvFileImportBodyView.xaml.cs">
+      <DependentUpon>CsvFileImportBodyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Importers\CsvFile\Body\CsvFileImportBodyViewModel.cs" />
+    <Compile Include="Importers\CsvFile\Body\ICsvFileImportBodyViewModel.cs" />
+    <Compile Include="Importers\CsvFile\Body\SourceMapViewModel.cs" />
+    <Compile Include="Importers\CsvFile\CsvFileImportDialog.xaml.cs">
+      <DependentUpon>CsvFileImportDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Importers\CsvFile\CsvFileImportViewModel.cs" />
+    <Compile Include="Importers\CsvFile\Footer\CsvFileImportFooterView.xaml.cs">
+      <DependentUpon>CsvFileImportFooterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Importers\CsvFile\Footer\CsvFileImportFooterViewModel.cs" />
+    <Compile Include="Importers\CsvFile\Footer\ICsvFileImportFooterViewModel.cs" />
+    <Compile Include="Importers\CsvFile\Header\CsvFileImportHeaderView.xaml.cs">
+      <DependentUpon>CsvFileImportHeaderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Importers\CsvFile\Header\CsvFileImportHeaderViewModel.cs" />
+    <Compile Include="Importers\CsvFile\Header\ICsvFileImportHeaderViewModel.cs" />
+    <Compile Include="Importers\CsvFile\ICsvFileImportViewModel.cs" />
+    <Compile Include="Panes\Filter\FilterPaneView.xaml.cs">
+      <DependentUpon>FilterPaneView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\Layout\ILayoutPaneViewModel.cs" />
+    <Compile Include="Panes\Layout\LayoutPaneView.xaml.cs">
+      <DependentUpon>LayoutPaneView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\Layout\LayoutPaneViewModel.cs" />
+    <Compile Include="Panes\Legend\LegendPane.xaml.cs">
+      <DependentUpon>LegendPane.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\Navigation\INavigationPaneViewModel.cs" />
+    <Compile Include="Panes\Navigation\NavigationPaneView.xaml.cs">
+      <DependentUpon>NavigationPaneView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\Navigation\NavigationPaneViewModel.cs" />
+    <Compile Include="Panes\Navigation\NavigationTree\INavigationTreeViewModel.cs" />
+    <Compile Include="Panes\Navigation\NavigationTree\NavigationTreeView.xaml.cs">
+      <DependentUpon>NavigationTreeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\Navigation\NavigationTree\NavigationTreeViewModel.cs" />
+    <Compile Include="Panes\Navigation\NavigationTree\TreeNodeViewModel.cs" />
+    <Compile Include="Panes\Navigation\StartMenu\IStartMenuViewModel.cs" />
+    <Compile Include="Panes\Navigation\StartMenu\StartMenuView.xaml.cs">
+      <DependentUpon>StartMenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\Navigation\StartMenu\StartMenuViewModel.cs" />
+    <Compile Include="Panes\Property\IPropertyPaneViewModel.cs" />
+    <Compile Include="Panes\Property\IPropertyViewModel.cs" />
+    <Compile Include="Panes\Property\PropertyGridCellTemplateSelector.cs" />
+    <Compile Include="Panes\Property\PropertyPaneView.xaml.cs">
+      <DependentUpon>PropertyPaneView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\Property\PropertyPaneViewModel.cs" />
+    <Compile Include="Panes\Property\PropertyViewModel.cs" />
+    <Compile Include="Panes\Viewer\IViewerPaneViewModel.cs" />
+    <Compile Include="Panes\Viewer\ViewerPane.xaml.cs">
+      <DependentUpon>ViewerPane.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\Viewer\ViewerPaneViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Shell\MainMenu\EditMenu\EditMenuViewModel.cs" />
+    <Compile Include="Shell\MainMenu\EditMenu\IEditMenuViewModel.cs" />
+    <Compile Include="Shell\MainMenu\FileMenu\FileMenuViewModel.cs" />
+    <Compile Include="Shell\MainMenu\FileMenu\IFileMenuViewModel.cs" />
+    <Compile Include="Shell\MainMenu\IMainMenuViewModel.cs" />
+    <Compile Include="Shell\MainMenu\MainMenu.xaml.cs">
+      <DependentUpon>MainMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Shell\MainMenu\MainMenuViewModel.cs" />
+    <Compile Include="Shell\MainMenu\ViewMenu\IViewMenuViewModel.cs" />
+    <Compile Include="Shell\MainMenu\ViewMenu\ViewMenuViewModel.cs" />
+    <Compile Include="Shell\MainWindow\IMainWindowViewModel.cs" />
+    <Compile Include="Shell\MainWindow\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Shell\MainWindow\MainWindowViewModel.cs" />
+    <Compile Include="Shell\StatusBar\IStatusBarViewModel.cs" />
+    <Compile Include="Shell\StatusBar\StatusBar.xaml.cs">
+      <DependentUpon>StatusBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Shell\StatusBar\StatusBarViewModel.cs" />
+    <Compile Include="Views\ScatterPlots\Commands\IPanScatterPlotCommand.cs" />
+    <Compile Include="Views\ScatterPlots\Commands\IResizeScatterPlotViewExtentCommand.cs" />
+    <Compile Include="Views\ScatterPlots\Commands\ISelectCommand.cs" />
+    <Compile Include="Views\ScatterPlots\Commands\IZoomInScatterPlotCommand.cs" />
+    <Compile Include="Views\ScatterPlots\Commands\IZoomOutScatterPlotCommand.cs" />
+    <Compile Include="Views\ScatterPlots\Commands\PanScatterPlotCommand.cs" />
+    <Compile Include="Views\ScatterPlots\Commands\ResizeScatterPlotViewExtentCommand.cs" />
+    <Compile Include="Views\ScatterPlots\Commands\SelectCommand.cs" />
+    <Compile Include="Views\ScatterPlots\Commands\ZoomInScatterPlotCommand.cs" />
+    <Compile Include="Views\ScatterPlots\Commands\ZoomOutScatterPlotCommand.cs" />
+    <Compile Include="Views\ScatterPlots\Grid\Factories\BooleanGridLines\BooleanGridLineFactory.cs" />
+    <Compile Include="Views\ScatterPlots\Grid\Factories\BooleanGridLines\IBooleanGridLineFactory.cs" />
+    <Compile Include="Views\ScatterPlots\Grid\Factories\DateTimeGridLines\DateTimeGridLineFactory.cs" />
+    <Compile Include="Views\ScatterPlots\Grid\Factories\DateTimeGridLines\DayAxisGridLineFactory.cs" />
+    <Compile Include="Views\ScatterPlots\Grid\Factories\DateTimeGridLines\IDateTimeGridLineFactory.cs" />
+    <Compile Include="Views\ScatterPlots\Grid\Factories\DateTimeGridLines\IDayAxisGridLineFactory.cs" />
+    <Compile Include="Views\ScatterPlots\Grid\Factories\DateTimeGridLines\IMinMaxDateTimeAxisGridLineFactory.cs" />
+    <Compile Include="Views\ScatterPlots\Grid\Factories\DateTimeGridLines\ISecondAxisGridLineFactory.cs" />
+    <Compile Include="Views\ScatterPlots\Grid\Factories\DateTimeGridLines\IYearAxisGridLineFactory.cs" />
+    <Compile Include="Views\ScatterPlots\Grid\Factories\DateTimeGridLines\MinMaxDateTimeAxisGridLineFactory.cs" />
+    <Compile Include="Views\ScatterPlots\Grid\Factories\DateTimeGridLines\SecondAxisGridLineFactory.cs" />
+    <Compile Include="Views\ScatterPlots\Grid\Factories\DateTimeGridLines\YearAxisGridLineFactory.cs" />
+    <Compile Include="Views\ScatterPlots\Grid\Factories\FloatGridLines\FloatGridLineFactory.cs" />
+    <Compile Include="Views\ScatterPlots\Grid\Factories\FloatGridLines\IFloatGridLineFactory.cs" />
+    <Compile Include="Views\ScatterPlots\Grid\Factories\GridLineFactory.cs" />
+    <Compile Include="Views\ScatterPlots\Grid\Factories\IGridLineFactory.cs" />
+    <Compile Include="Views\ScatterPlots\Grid\Factories\IntegerGridLines\IIntegerGridLineFactory.cs" />
+    <Compile Include="Views\ScatterPlots\Grid\Factories\IntegerGridLines\IntegerGridLineFactory.cs" />
+    <Compile Include="Views\ScatterPlots\Grid\Factories\StringGridLines\IStringGridLineFactory.cs" />
+    <Compile Include="Views\ScatterPlots\Grid\Factories\StringGridLines\StringGridLineFactory.cs" />
+    <Compile Include="Views\ScatterPlots\Grid\GridQueries.cs" />
+    <Compile Include="Views\ScatterPlots\Grid\IGridQueries.cs" />
+    <Compile Include="Views\ScatterPlots\Grid\Labels\Queries\GetXAxisGridLabelsQuery.cs" />
+    <Compile Include="Views\ScatterPlots\Grid\Labels\Queries\GetYAxisGridLabelsQuery.cs" />
+    <Compile Include="Views\ScatterPlots\Grid\Labels\Queries\IGetXAxisGridLabelsQuery.cs" />
+    <Compile Include="Views\ScatterPlots\Grid\Labels\Queries\IGetYAxisGridLabelsQuery.cs" />
+    <Compile Include="Views\ScatterPlots\Grid\Labels\Renderers\IXAxisGridLabelRenderer.cs" />
+    <Compile Include="Views\ScatterPlots\Grid\Labels\Renderers\IYAxisGridLabelRenderer.cs" />
+    <Compile Include="Views\ScatterPlots\Grid\Labels\Renderers\XAxisGridLabelRenderer.cs" />
+    <Compile Include="Views\ScatterPlots\Grid\Labels\Renderers\YAxisGridLabelRenderer.cs" />
+    <Compile Include="Views\ScatterPlots\Grid\Lines\Queries\GetXAxisGridLinesQuery.cs" />
+    <Compile Include="Views\ScatterPlots\Grid\Lines\Queries\GetYAxisGridLinesQuery.cs" />
+    <Compile Include="Views\ScatterPlots\Grid\Lines\Queries\IGetXAxisGridLinesQuery.cs" />
+    <Compile Include="Views\ScatterPlots\Grid\Lines\Queries\IGetYAxisGridLinesQuery.cs" />
+    <Compile Include="Views\ScatterPlots\Grid\Lines\Renderers\AxisGridLineRenderer.cs" />
+    <Compile Include="Views\ScatterPlots\Grid\Lines\Renderers\IXAxisGridLineRenderercs.cs" />
+    <Compile Include="Views\ScatterPlots\Grid\Lines\Renderers\IYAxisGridLineRenderer.cs" />
+    <Compile Include="Views\ScatterPlots\Grid\Lines\Renderers\YAxisGridLineRenderer.cs" />
+    <Compile Include="Views\ScatterPlots\IScatterPlotContextMenuViewModel.cs" />
+    <Compile Include="Views\ScatterPlots\IScatterPlotViewModel.cs" />
+    <Compile Include="Views\ScatterPlots\IScatterPlotViewModelCommands.cs" />
+    <Compile Include="Views\ScatterPlots\IScatterPlotViewModelQueries.cs" />
+    <Compile Include="Views\ScatterPlots\IScatterPlotViewScaler.cs" />
+    <Compile Include="Views\ScatterPlots\Layout\IScatterPlotLayoutViewModel.cs" />
+    <Compile Include="Views\ScatterPlots\Layout\IXAxisLayoutViewModel.cs" />
+    <Compile Include="Views\ScatterPlots\Layout\IYAxisLayoutViewModel.cs" />
+    <Compile Include="Views\ScatterPlots\Layout\ScatterPlotLayoutView.xaml.cs">
+      <DependentUpon>ScatterPlotLayoutView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ScatterPlots\Layout\ScatterPlotLayoutViewModel.cs" />
+    <Compile Include="Views\ScatterPlots\Layout\XAxisLayoutView.xaml.cs">
+      <DependentUpon>XAxisLayoutView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ScatterPlots\Layout\XAxisLayoutViewModel.cs" />
+    <Compile Include="Views\ScatterPlots\Layout\YAxisLayoutView.xaml.cs">
+      <DependentUpon>YAxisLayoutView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ScatterPlots\Layout\YAxisLayoutViewModel.cs" />
+    <Compile Include="Views\ScatterPlots\Plots\Queries\GetPlotsQuery.cs" />
+    <Compile Include="Views\ScatterPlots\Plots\Queries\IGetPlotsQuery.cs" />
+    <Compile Include="Views\ScatterPlots\Plots\Renderers\IPlotRenderer.cs" />
+    <Compile Include="Views\ScatterPlots\Plots\Renderers\PlotRenderer.cs" />
+    <Compile Include="Views\ScatterPlots\Queries\GetAllItemsQuery.cs" />
+    <Compile Include="Views\ScatterPlots\Queries\GetSelectedItemsQuery.cs" />
+    <Compile Include="Views\ScatterPlots\Queries\IGetAllItemsQuery.cs" />
+    <Compile Include="Views\ScatterPlots\Queries\IGetSelectedItemsQuery.cs" />
+    <Compile Include="Views\ScatterPlots\Scalers\IPointScaler.cs" />
+    <Compile Include="Views\ScatterPlots\Scalers\IScaleComputer.cs" />
+    <Compile Include="Views\ScatterPlots\Scalers\IValueScaler.cs" />
+    <Compile Include="Views\ScatterPlots\Scalers\IVectorScaler.cs" />
+    <Compile Include="Views\ScatterPlots\Scalers\IViewResizer.cs" />
+    <Compile Include="Views\ScatterPlots\Scalers\PointScaler.cs" />
+    <Compile Include="Views\ScatterPlots\Scalers\ScaleComputer.cs" />
+    <Compile Include="Views\ScatterPlots\Scalers\ValueScaler.cs" />
+    <Compile Include="Views\ScatterPlots\Scalers\VectorScaler.cs" />
+    <Compile Include="Views\ScatterPlots\Scalers\ViewResizer.cs" />
+    <Compile Include="Views\ScatterPlots\ScatterPlotContextMenuViewModel.cs" />
+    <Compile Include="Views\ScatterPlots\ScatterPlotView.xaml.cs">
+      <DependentUpon>ScatterPlotView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ScatterPlots\ScatterPlotViewModel.cs" />
+    <Compile Include="Views\ScatterPlots\ScatterPlotViewModelCommands.cs" />
+    <Compile Include="Views\ScatterPlots\ScatterPlotViewModelQueries.cs" />
+    <Compile Include="Views\ScatterPlots\ScatterPlotViewScaler.cs" />
+    <Compile Include="Views\ScatterPlots\Titles\ITitleQueries.cs" />
+    <Compile Include="Views\ScatterPlots\Titles\Queries\GetXAxisTitleQuery.cs" />
+    <Compile Include="Views\ScatterPlots\Titles\Queries\GetYAxisTitleQuery.cs" />
+    <Compile Include="Views\ScatterPlots\Titles\Queries\IGetXAxisTitleQuery.cs" />
+    <Compile Include="Views\ScatterPlots\Titles\Queries\IGetYAxisTitleQuery.cs" />
+    <Compile Include="Views\ScatterPlots\Titles\Renderers\IXAxisTitleRenderer.cs" />
+    <Compile Include="Views\ScatterPlots\Titles\Renderers\IYAxisTitleRenderer.cs" />
+    <Compile Include="Views\ScatterPlots\Titles\Renderers\XAxisTitleRenderer.cs" />
+    <Compile Include="Views\ScatterPlots\Titles\Renderers\YAxisTitleRenderer.cs" />
+    <Compile Include="Views\ScatterPlots\Titles\TitleQueries.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Core\LinkButtonStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Resource>
+    <Page Include="Core\Resources\LinkButtonStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Importers\CsvFile\Body\CsvFileImportBodyView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Importers\CsvFile\CsvFileImportDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Importers\CsvFile\Footer\CsvFileImportFooterView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Importers\CsvFile\Header\CsvFileImportHeaderView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Panes\Filter\FilterPaneView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Panes\Layout\LayoutPaneView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Panes\Legend\LegendPane.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Panes\Navigation\NavigationPaneView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Panes\Navigation\NavigationTree\NavigationTreeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Panes\Navigation\StartMenu\StartMenuView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Panes\Property\PropertyPaneView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Panes\Viewer\ViewerPane.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Shell\MainMenu\MainMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Shell\MainWindow\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Shell\StatusBar\StatusBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ScatterPlots\Layout\ScatterPlotLayoutView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ScatterPlots\Layout\XAxisLayoutView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ScatterPlots\Layout\YAxisLayoutView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ScatterPlots\ScatterPlotView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Application\Application.csproj">
+      <Project>{200FBF1D-6C64-4C72-AF74-3342F445926E}</Project>
+      <Name>Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{4858D2C5-83F5-48CC-B778-242AEAC698EF}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

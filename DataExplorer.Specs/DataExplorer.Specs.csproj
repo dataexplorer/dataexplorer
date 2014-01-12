@@ -117,6 +117,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Application\Application.csproj">
+      <Project>{200FBF1D-6C64-4C72-AF74-3342F445926E}</Project>
+      <Name>Application</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataExplorer.Tests\DataExplorer.Tests.csproj">
       <Project>{F9B0B78A-6B93-4C45-8EDC-85E643886786}</Project>
       <Name>DataExplorer.Tests</Name>
@@ -124,6 +128,22 @@
     <ProjectReference Include="..\DataExplorer\DataExplorer.csproj">
       <Project>{D0D6A590-7F96-43FB-B748-2E1A0D762DB0}</Project>
       <Name>DataExplorer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Domain.Tests\Domain.Tests.csproj">
+      <Project>{2DFCF1B7-F7BD-4D58-B134-2A7639E20903}</Project>
+      <Name>Domain.Tests</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{4858d2c5-83f5-48cc-b778-242aeac698ef}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
+      <Project>{5ED07FF9-5744-4D10-A11A-68814BFAED99}</Project>
+      <Name>Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Presentation\Presentation.csproj">
+      <Project>{6F7F63AA-CD79-43C8-96A1-350FD98E3B83}</Project>
+      <Name>Presentation</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

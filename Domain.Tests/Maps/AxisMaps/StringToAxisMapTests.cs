@@ -1,0 +1,46 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using DataExplorer.Domain.Maps.AxisMaps;
+using NUnit.Framework;
+
+namespace DataExplorer.Tests.Domain.Maps.AxisMaps
+{
+    [TestFixture]
+    public class StringToAxisMapTests
+    {
+        [Test]
+        [TestCase(null, null)]
+        [TestCase("Apple", 0d)]
+        [TestCase("Elephant", 0.25d)]
+        [TestCase("Monkey", 0.50d)]
+        [TestCase("Tiger", 0.75d)]
+        [TestCase("Zebra", 1.00d)]
+        public void TestMapShouldReturnCorrectValues(string value, double? expected)
+        {
+            var strings = new List<string> { "Apple", "Elephant", "Monkey", "Tiger", "Zebra" };
+            var map = new StringToAxisMap(strings, 0d, 1d);
+            var result = map.Map(value);
+            Assert.That(result, Is.EqualTo(expected));
+        }
+
+        [Test]
+        [TestCase(null, null)]
+        [TestCase(-0.1d, "Apple")]
+        [TestCase(0d, "Apple")]
+        [TestCase(0.25d, "Elephant")]
+        [TestCase(0.50d, "Monkey")]
+        [TestCase(0.75d, "Tiger")]
+        [TestCase(1.00d, "Zebra")]
+        [TestCase(1.1d, "Zebra")]
+        public void TestMapInverseShouldReturnCorrectValues(double? value, string expected)
+        {
+            var strings = new List<string> { "Apple", "Elephant", "Monkey", "Tiger", "Zebra" };
+            var map = new StringToAxisMap(strings, 0d, 1d);
+            var result = map.MapInverse(value);
+            Assert.That(result, Is.EqualTo(expected));
+        }
+    }
+}

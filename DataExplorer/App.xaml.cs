@@ -33,8 +33,8 @@ namespace DataExplorer
         private static void InitializeDependencyInjection()
         {
             _kernel = new StandardKernel();
-            _kernel.Load(Assembly.GetCallingAssembly());
-            _kernel.Bind(p => p.FromThisAssembly()
+            _kernel.Load("DataExplorer*.dll");
+            _kernel.Bind(p => p.FromAssembliesMatching(new []{ "DataExplorer*.dll" })
                 .SelectAllClasses()
                 .BindAllInterfaces()
                 .Configure(c => c.InSingletonScope()));

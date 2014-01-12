@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{200FBF1D-6C64-4C72-AF74-3342F445926E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DataExplorer.Application</RootNamespace>
+    <AssemblyName>DataExplorer.Application</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.3.0.1.10\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Application\ApplicationService.cs" />
+    <Compile Include="Application\ApplicationState.cs" />
+    <Compile Include="Application\ApplicationStateService.cs" />
+    <Compile Include="Application\Events\NavigationTreeVisibilityChangedEvent.cs" />
+    <Compile Include="Application\Events\SelectedRowsChangedEvent.cs" />
+    <Compile Include="Application\Events\StartMenuVisibilityChangedEvent.cs" />
+    <Compile Include="Application\IApplication.cs" />
+    <Compile Include="Application\IApplicationService.cs" />
+    <Compile Include="Application\IApplicationState.cs" />
+    <Compile Include="Application\IApplicationStateService.cs" />
+    <Compile Include="Clipboard\ClipboardService.cs" />
+    <Compile Include="Clipboard\Commands\CopyDataToClipboardCommand.cs" />
+    <Compile Include="Clipboard\Commands\CopyImageToClipboardCommand.cs" />
+    <Compile Include="Clipboard\Commands\ICanvasToBitmapExporter.cs" />
+    <Compile Include="Clipboard\Commands\ICopyDataToClipboardCommand.cs" />
+    <Compile Include="Clipboard\Commands\ICopyImageToClipboardCommand.cs" />
+    <Compile Include="Clipboard\IClipboardService.cs" />
+    <Compile Include="Clipboard\Queries\CanCopyDataToClipboardQuery.cs" />
+    <Compile Include="Clipboard\Queries\ICanCopyDataToClipboardQuery.cs" />
+    <Compile Include="Columns\ColumnAdapter.cs" />
+    <Compile Include="Columns\ColumnDto.cs" />
+    <Compile Include="Columns\ColumnService.cs" />
+    <Compile Include="Columns\IColumnAdapter.cs" />
+    <Compile Include="Columns\IColumnService.cs" />
+    <Compile Include="Columns\Queries\GetAllColumnsQuery.cs" />
+    <Compile Include="Columns\Queries\GetDistinctColumnValuesQuery.cs" />
+    <Compile Include="Columns\Queries\IGetAllColumnsQuery.cs" />
+    <Compile Include="Columns\Queries\IGetDistinctColumnValuesQuery.cs" />
+    <Compile Include="Core\Events\EventBus.cs" />
+    <Compile Include="Core\Events\IEvent.cs" />
+    <Compile Include="Core\Events\IEventBus.cs" />
+    <Compile Include="Core\Events\IEventHandler.cs" />
+    <Compile Include="Exporters\TabFile\ITabExporter.cs" />
+    <Compile Include="Exporters\TabFile\TabExporter.cs" />
+    <Compile Include="Filters\Events\FilterChangedEvent.cs" />
+    <Compile Include="FilterTrees\Commands\ISelectFilterTreeNodeCommand.cs" />
+    <Compile Include="FilterTrees\Commands\SelectFilterTreeNodeCommand.cs" />
+    <Compile Include="FilterTrees\FilterTreeService.cs" />
+    <Compile Include="FilterTrees\IFilterTreeService.cs" />
+    <Compile Include="FilterTrees\Queries\GetRootFilterTreeNodesQuery.cs" />
+    <Compile Include="FilterTrees\Queries\IGetRootFilterTreeNodesQuery.cs" />
+    <Compile Include="IClipboard.cs" />
+    <Compile Include="ICsvFileDataAdapter.cs" />
+    <Compile Include="IDataContext.cs" />
+    <Compile Include="IDialogService.cs" />
+    <Compile Include="Importers\CsvFiles\Commands\IImportCsvFileSourceCommand.cs" />
+    <Compile Include="Importers\CsvFiles\Commands\ImportCsvFileSourceCommand.cs" />
+    <Compile Include="Importers\CsvFiles\Commands\IUpdateCsvFileSourceCommand.cs" />
+    <Compile Include="Importers\CsvFiles\Commands\UpdateCsvFileSourceCommand.cs" />
+    <Compile Include="Importers\CsvFiles\CsvFileImportService.cs" />
+    <Compile Include="Importers\CsvFiles\CsvFileSourceAdapter.cs" />
+    <Compile Include="Importers\CsvFiles\CsvFileSourceDto.cs" />
+    <Compile Include="Importers\CsvFiles\Events\CsvFileImportedEvent.cs" />
+    <Compile Include="Importers\CsvFiles\Events\CsvFileImportingEvent.cs" />
+    <Compile Include="Importers\CsvFiles\Events\CsvFileImportProgressChangedEvent.cs" />
+    <Compile Include="Importers\CsvFiles\Events\CsvFileSourceChangedEvent.cs" />
+    <Compile Include="Importers\CsvFiles\ICsvFileImportService.cs" />
+    <Compile Include="Importers\CsvFiles\ICsvFileSourceAdapter.cs" />
+    <Compile Include="Importers\CsvFiles\Queries\CanImportQuery.cs" />
+    <Compile Include="Importers\CsvFiles\Queries\GetCsvFileSourceMapsQuery.cs" />
+    <Compile Include="Importers\CsvFiles\Queries\GetCsvFileSourceQuery.cs" />
+    <Compile Include="Importers\CsvFiles\Queries\ICanImportQuery.cs" />
+    <Compile Include="Importers\CsvFiles\Queries\IGetCsvFileSourceMapsQuery.cs" />
+    <Compile Include="Importers\DataTypeDetector.cs" />
+    <Compile Include="Importers\IDataTypeDetector.cs" />
+    <Compile Include="IProcess.cs" />
+    <Compile Include="IXmlFileService.cs" />
+    <Compile Include="Maps\IMapService.cs" />
+    <Compile Include="Maps\MapService.cs" />
+    <Compile Include="Maps\Queries\GetAxisMapQuery.cs" />
+    <Compile Include="Maps\Queries\IGetAxisMapQuery.cs" />
+    <Compile Include="Projects\Commands\CloseProjectCommand.cs" />
+    <Compile Include="Projects\Commands\ICloseProjectCommand.cs" />
+    <Compile Include="Projects\Commands\IOpenProjectCommand.cs" />
+    <Compile Include="Projects\Commands\ISaveProjectCommand.cs" />
+    <Compile Include="Projects\Commands\OpenProjectCommand.cs" />
+    <Compile Include="Projects\Commands\SaveProjectCommand.cs" />
+    <Compile Include="Projects\Events\ProjectClosedEvent.cs" />
+    <Compile Include="Projects\Events\ProjectOpenedEvent.cs" />
+    <Compile Include="Projects\Events\ProjectOpeningEvent.cs" />
+    <Compile Include="Projects\Events\ProjectSavedEvent.cs" />
+    <Compile Include="Projects\IProjectSerializer.cs" />
+    <Compile Include="Projects\IProjectService.cs" />
+    <Compile Include="Projects\ProjectService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rows\IRowService.cs" />
+    <Compile Include="Rows\RowService.cs" />
+    <Compile Include="Rows\SelectedRowsChangedEvent.cs" />
+    <Compile Include="Views\ScatterPlots\Commands\IPanCommand.cs" />
+    <Compile Include="Views\ScatterPlots\Commands\ISetViewExtentCommand.cs" />
+    <Compile Include="Views\ScatterPlots\Commands\IUpdatePlotsCommand.cs" />
+    <Compile Include="Views\ScatterPlots\Commands\IZoomInCommand.cs" />
+    <Compile Include="Views\ScatterPlots\Commands\IZoomOutCommand.cs" />
+    <Compile Include="Views\ScatterPlots\Commands\IZoomToFullExtentCommand.cs" />
+    <Compile Include="Views\ScatterPlots\Commands\PanCommand.cs" />
+    <Compile Include="Views\ScatterPlots\Commands\SetViewExtentCommand.cs" />
+    <Compile Include="Views\ScatterPlots\Commands\UpdatePlotsCommand.cs" />
+    <Compile Include="Views\ScatterPlots\Commands\ZoomInCommand.cs" />
+    <Compile Include="Views\ScatterPlots\Commands\ZoomOutCommand.cs" />
+    <Compile Include="Views\ScatterPlots\Commands\ZoomToFullExtentCommand.cs" />
+    <Compile Include="Views\ScatterPlots\Events\ScatterPlotLayoutChangedEvent.cs" />
+    <Compile Include="Views\ScatterPlots\IScatterPlotAdapter.cs" />
+    <Compile Include="Views\ScatterPlots\IScatterPlotLayoutService.cs" />
+    <Compile Include="Views\ScatterPlots\IScatterPlotService.cs" />
+    <Compile Include="Views\ScatterPlots\Layouts\Commands\ClearLayoutCommand.cs" />
+    <Compile Include="Views\ScatterPlots\Layouts\Commands\IClearLayoutCommand.cs" />
+    <Compile Include="Views\ScatterPlots\Layouts\Commands\ISetXColumnCommand.cs" />
+    <Compile Include="Views\ScatterPlots\Layouts\Commands\ISetYColumnCommand.cs" />
+    <Compile Include="Views\ScatterPlots\Layouts\Commands\SetXColumnCommand.cs" />
+    <Compile Include="Views\ScatterPlots\Layouts\Commands\SetYColumnCommand.cs" />
+    <Compile Include="Views\ScatterPlots\Layouts\Queries\GetXColumnQuery.cs" />
+    <Compile Include="Views\ScatterPlots\Layouts\Queries\GetYColumnQuery.cs" />
+    <Compile Include="Views\ScatterPlots\Layouts\Queries\IGetXColumnQuery.cs" />
+    <Compile Include="Views\ScatterPlots\Layouts\Queries\IGetYColumnQuery.cs" />
+    <Compile Include="Views\ScatterPlots\PlotDto.cs" />
+    <Compile Include="Views\ScatterPlots\Queries\GetPlotsQuery.cs" />
+    <Compile Include="Views\ScatterPlots\Queries\GetViewExtentQuery.cs" />
+    <Compile Include="Views\ScatterPlots\Queries\IGetPlotsQuery.cs" />
+    <Compile Include="Views\ScatterPlots\Queries\IGetViewExtentQuery.cs" />
+    <Compile Include="Views\ScatterPlots\ScatterPlotAdapter.cs" />
+    <Compile Include="Views\ScatterPlots\ScatterPlotEventsService.cs" />
+    <Compile Include="Views\ScatterPlots\ScatterPlotLayoutService.cs" />
+    <Compile Include="Views\ScatterPlots\ScatterPlotService.cs" />
+    <Compile Include="Web\IWebService.cs" />
+    <Compile Include="Web\WebService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{4858d2c5-83f5-48cc-b778-242aeac698ef}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

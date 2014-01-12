@@ -1,0 +1,75 @@
+﻿<Window 
+    xmlns:Property="clr-namespace:DataExplorer.Presentation.Panes.Property"  
+    xmlns:Navigation="clr-namespace:DataExplorer.Presentation.Panes.Navigation"  
+    x:Class="DataExplorer.Presentation.Shell.MainWindow.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:avalonDock="clr-namespace:Xceed.Wpf.AvalonDock;assembly=Xceed.Wpf.AvalonDock"
+    xmlns:panes="clr-namespace:DataExplorer.Presentation.Panes.Filter"
+    xmlns:layout="clr-namespace:DataExplorer.Presentation.Panes.Layout"
+    xmlns:legend="clr-namespace:DataExplorer.Presentation.Panes.Legend"
+    xmlns:statusBar="clr-namespace:DataExplorer.Presentation.Shell.StatusBar"
+    xmlns:mainMenu="clr-namespace:DataExplorer.Presentation.Shell.MainMenu"
+    xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock"
+    xmlns:viewer="clr-namespace:DataExplorer.Presentation.Panes.Viewer"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mainWindow="clr-namespace:DataExplorer.Presentation.Shell.MainWindow" mc:Ignorable="d"
+    Title="Data Explorer"
+    Height="768"
+    Width="1024" 
+    d:DataContext="{d:DesignInstance mainWindow:MainWindowViewModel}">
+    <Window.Resources>
+        <ResourceDictionary>
+            <BooleanToVisibilityConverter x:Key="VisibilityConverter" />
+        </ResourceDictionary>
+    </Window.Resources>
+    <DockPanel>
+        <mainMenu:MainMenu DockPanel.Dock="Top" DataContext="{Binding MainMenuViewModel}" />
+        <statusBar:StatusBar DockPanel.Dock="Bottom" DataContext="{Binding StatusBarViewModel}" />
+        <Grid DockPanel.Dock="Top">
+            <avalonDock:DockingManager>
+                <xcad:LayoutRoot>
+                    <xcad:LayoutPanel Orientation="Horizontal">
+                        <xcad:LayoutAnchorablePane DockWidth="192">
+                            <xcad:LayoutAnchorable Title="Navigation">
+                                 <Navigation:NavigationPaneView Visibility="Visible"
+                                     DataContext="{Binding NavigationPaneViewModel}"/>
+                            </xcad:LayoutAnchorable>
+                        </xcad:LayoutAnchorablePane>
+                        <xcad:LayoutDocumentPane ShowHeader="False">
+                            <xcad:LayoutDocument Title="ScatterPlot">
+                                <viewer:ViewerPane
+                                    DataContext="{Binding ViewerPaneViewModel}" />
+                            </xcad:LayoutDocument>
+                        </xcad:LayoutDocumentPane>
+                        <xcad:LayoutAnchorablePaneGroup Orientation="Vertical" DockWidth="192">
+                            <xcad:LayoutAnchorablePane>
+                                <xcad:LayoutAnchorable Title="Filters">
+                                    <TextBlock>Pane 3</TextBlock>
+                                </xcad:LayoutAnchorable>
+                            </xcad:LayoutAnchorablePane>
+                            <xcad:LayoutAnchorablePane>
+                                <xcad:LayoutAnchorable Title="Layout">
+                                    <layout:LayoutPaneView 
+                                        DataContext="{Binding LayoutPaneViewModel}" />
+                                </xcad:LayoutAnchorable>
+                            </xcad:LayoutAnchorablePane>
+                            <xcad:LayoutAnchorablePane>
+                                <xcad:LayoutAnchorable Title="Legend">
+                                    <TextBlock>Pane 5</TextBlock>
+                                </xcad:LayoutAnchorable>
+                            </xcad:LayoutAnchorablePane>
+                            <xcad:LayoutAnchorablePane>
+                                <xcad:LayoutAnchorable Title="Properties">
+                                    <Property:PropertyPane 
+                                        DataContext="{Binding PropertyPaneViewModel}" />
+                                </xcad:LayoutAnchorable>
+                            </xcad:LayoutAnchorablePane>
+                        </xcad:LayoutAnchorablePaneGroup>
+                    </xcad:LayoutPanel>
+                </xcad:LayoutRoot>
+            </avalonDock:DockingManager>
+        </Grid>
+    </DockPanel>
+</Window>

@@ -1,0 +1,32 @@
+﻿<Window x:Class="DataExplorer.Presentation.Importers.CsvFile.ImportCsvFileDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:csvFile="clr-namespace:DataExplorer.Presentation.Importers.CsvFile"
+        xmlns:body="clr-namespace:DataExplorer.Presentation.Importers.CsvFile.Body"
+        xmlns:header="clr-namespace:DataExplorer.Presentation.Importers.CsvFile.Header"
+        xmlns:footer="clr-namespace:DataExplorer.Presentation.Importers.CsvFile.Footer"
+        mc:Ignorable="d"
+        Title="Import CSV File" 
+        Height="600"
+        Width="600"
+        d:DataContext="{d:DesignInstance csvFile:CsvFileImportViewModel }">
+
+    <Grid Margin="11">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <header:CsvFileImportHeaderView 
+            Grid.Row="0"
+            DataContext="{Binding HeaderViewModel}"/>
+        <body:CsvFileImportBodyView 
+            Grid.Row="1" 
+            DataContext="{Binding BodyViewModel}" />
+        <footer:CsvFileImportFooterView 
+            Grid.Row="2"
+            DataContext="{Binding FooterViewModel}"/>
+    </Grid>
+</Window>
