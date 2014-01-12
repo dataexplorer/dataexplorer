@@ -9,7 +9,7 @@ using DataExplorer.Application.Views.ScatterPlots.Layouts.Queries;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Application.Views.ScatterPlots
+namespace DataExplorer.Application.Tests.Views.ScatterPlots
 {
     [TestFixture]
     public class ScatterPlotLayoutServiceTests

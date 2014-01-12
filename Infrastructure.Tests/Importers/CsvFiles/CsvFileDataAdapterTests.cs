@@ -7,7 +7,7 @@ using DataExplorer.Infrastructure.Importers.CsvFile;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Infrastructure.Importers.CsvFiles
+namespace DataExplorer.Infrastructure.Tests.Importers.CsvFiles
 {
     [TestFixture]
     public class CsvFileDataAdapterTests

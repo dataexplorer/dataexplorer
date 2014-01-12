@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
 using DataExplorer.Domain.Columns;
+using DataExplorer.Domain.Tests.Columns;
 using DataExplorer.Domain.Views.ScatterPlots;
 using DataExplorer.Infrastructure.Serializers.Properties;
 using DataExplorer.Infrastructure.Serializers.Views.ScatterPlots;
-using DataExplorer.Tests.Domain.Columns;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Infrastructure.Serializers.Views.ScatterPlots
+namespace DataExplorer.Infrastructure.Tests.Serializers.Views.ScatterPlots
 {
     [TestFixture]
     public class ScatterPlotLayoutSerializerTests

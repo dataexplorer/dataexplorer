@@ -7,7 +7,6 @@ using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Projects.Events;
 using DataExplorer.Domain.Events;
 using DataExplorer.Domain.Projects;
-using DataExplorer.Persistence;
 
 namespace DataExplorer.Application.Projects.Commands
 {

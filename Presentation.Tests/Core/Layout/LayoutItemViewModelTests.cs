@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataExplorer.Application.Columns;
-using DataExplorer.Domain.Columns;
+﻿using DataExplorer.Application.Columns;
 using DataExplorer.Presentation.Core.Layout;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Presentation.Core.Layout
+namespace DataExplorer.Presentation.Tests.Core.Layout
 {
     [TestFixture]
     public class LayoutItemViewModelTests

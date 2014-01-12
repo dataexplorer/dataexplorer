@@ -2,7 +2,7 @@
 using DataExplorer.Presentation.Core.Geometry;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Presentation.Core.Geometry
+namespace DataExplorer.Presentation.Tests.Core.Geometry
 {
     [TestFixture]
     public class GeometryCalculatorTests

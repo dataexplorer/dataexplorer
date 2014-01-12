@@ -6,7 +6,7 @@ using DataExplorer.Presentation.Core.Services;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Presentation.Core.Services
+namespace DataExplorer.Presentation.Tests.Core.Services
 {
     [TestFixture]
     public class CanvasToBitmapExporterTests

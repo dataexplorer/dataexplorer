@@ -1,4 +1,4 @@
-﻿namespace DataExplorer.Presentation.Dialogs
+﻿namespace DataExplorer.Application
 {
     public interface IDialogService
     {

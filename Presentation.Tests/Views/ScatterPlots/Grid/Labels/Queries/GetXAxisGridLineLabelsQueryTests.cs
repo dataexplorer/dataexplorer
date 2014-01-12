@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows;
 using DataExplorer.Application.Columns;
 using DataExplorer.Application.Maps;
+using DataExplorer.Application.Tests.Maps;
 using DataExplorer.Application.Views.ScatterPlots;
 using DataExplorer.Domain.Maps;
 using DataExplorer.Domain.Views.ScatterPlots;
@@ -10,11 +11,10 @@ using DataExplorer.Presentation.Core.Canvas.Items;
 using DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories;
 using DataExplorer.Presentation.Views.ScatterPlots.Grid.Labels.Queries;
 using DataExplorer.Presentation.Views.ScatterPlots.Grid.Labels.Renderers;
-using DataExplorer.Tests.Application.Maps;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.Grid.Labels.Queries
+namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Grid.Labels.Queries
 {
     [TestFixture]
     public class GetXAxisGridLineLabelsQueryTests

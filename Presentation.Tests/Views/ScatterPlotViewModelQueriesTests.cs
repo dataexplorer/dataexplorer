@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using DataExplorer.Presentation.Core.Canvas.Items;
+using DataExplorer.Presentation.Tests.Core.Canvas.Items;
 using DataExplorer.Presentation.Views.ScatterPlots;
 using DataExplorer.Presentation.Views.ScatterPlots.Queries;
-using DataExplorer.Tests.Presentation.Core.Canvas.Items;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Presentation.Views
+namespace DataExplorer.Presentation.Tests.Views
 {
     [TestFixture]
     public class ScatterPlotViewModelQueriesTests

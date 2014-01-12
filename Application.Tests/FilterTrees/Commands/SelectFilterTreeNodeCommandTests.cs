@@ -1,14 +1,14 @@
 ﻿using DataExplorer.Application.Application;
 using DataExplorer.Application.Core.Events;
-using DataExplorer.Application.FilterTrees.Commands;
 using DataExplorer.Application.Filters.Events;
-using DataExplorer.Application.Importers.CsvFiles.Events;
+using DataExplorer.Application.FilterTrees.Commands;
 using DataExplorer.Domain.Filters;
-using DataExplorer.Tests.Domain.Filters;
+using DataExplorer.Domain.Tests.Filters;
+using DataExplorer.Domain.Tests.FilterTrees;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Application.FilterTrees.Commands
+namespace DataExplorer.Application.Tests.FilterTrees.Commands
 {
     [TestFixture]
     public class SelectedFilterTreeNodeChangedEventHandlerTests

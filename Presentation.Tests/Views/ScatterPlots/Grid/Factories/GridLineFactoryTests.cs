@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DataExplorer.Application.Tests.Maps;
 using DataExplorer.Domain.Maps;
 using DataExplorer.Domain.Views.ScatterPlots;
 using DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories;
@@ -9,11 +10,10 @@ using DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories.DateTimeGridLi
 using DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories.FloatGridLines;
 using DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories.IntegerGridLines;
 using DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories.StringGridLines;
-using DataExplorer.Tests.Application.Maps;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.Grid.Factories
+namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Grid.Factories
 {
     [TestFixture]
     public class AxisGridLineFactoryTests

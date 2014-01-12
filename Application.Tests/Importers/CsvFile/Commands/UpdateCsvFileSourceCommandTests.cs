@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Importers.CsvFiles.Commands;
 using DataExplorer.Application.Importers.CsvFiles.Events;
 using DataExplorer.Domain.Sources;
 using DataExplorer.Domain.Sources.Maps;
-using DataExplorer.Infrastructure.Importers.CsvFile;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Application.Importers.CsvFile.Commands
+namespace DataExplorer.Application.Tests.Importers.CsvFile.Commands
 {
     [TestFixture]
     public class UpdateCsvFileSourceCommandTests

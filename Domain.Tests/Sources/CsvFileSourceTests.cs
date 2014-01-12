@@ -3,7 +3,7 @@ using DataExplorer.Domain.Sources;
 using DataExplorer.Domain.Sources.Maps;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Domain.Sources
+namespace DataExplorer.Domain.Tests.Sources
 {
     [TestFixture]
     public class CsvFileSourceTests

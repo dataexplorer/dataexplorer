@@ -5,10 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Projects.Events;
-using DataExplorer.Infrastructure.Serializers;
-using DataExplorer.Infrastructure.XmlFiles;
-using DataExplorer.Persistence;
-using DataExplorer.Presentation.Dialogs;
 
 namespace DataExplorer.Application.Projects.Commands
 {

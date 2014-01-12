@@ -2,7 +2,7 @@
 using System.Data;
 using DataExplorer.Domain.Sources;
 
-namespace DataExplorer.Infrastructure.Importers.CsvFile
+namespace DataExplorer.Application
 {
     public interface ICsvFileDataAdapter
     {

@@ -1,19 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Filters.DateTimeFilters;
+using DataExplorer.Domain.Tests.Columns;
 using DataExplorer.Infrastructure.Serializers.Filters.DateTimeFilters;
 using DataExplorer.Infrastructure.Serializers.Properties;
-using DataExplorer.Tests.Domain.Columns;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Infrastructure.Serializers.Filters.DateTimeFilters
+namespace DataExplorer.Infrastructure.Tests.Serializers.Filters.DateTimeFilters
 {
     [TestFixture]
     public class DateTimeFilterSerializerTests

@@ -6,7 +6,7 @@ using DataExplorer.Domain.Views.ScatterPlots;
 using DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories.DateTimeGridLines;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.Grid.Factories.DateTimeGridLines
+namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Grid.Factories.DateTimeGridLines
 {
     [TestFixture]
     public class SecondAxisGridLineFactoryTests

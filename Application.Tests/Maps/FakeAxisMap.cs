@@ -1,7 +1,6 @@
-﻿using System;
-using DataExplorer.Domain.Maps;
+﻿using DataExplorer.Domain.Maps;
 
-namespace DataExplorer.Tests.Application.Maps
+namespace DataExplorer.Application.Tests.Maps
 {
     public class FakeAxisMap : IAxisMap
     {

@@ -3,13 +3,13 @@ using System.Linq;
 using DataExplorer.Domain.Maps;
 using DataExplorer.Domain.Maps.AxisMaps;
 using DataExplorer.Domain.Rows;
+using DataExplorer.Domain.Tests.Columns;
+using DataExplorer.Domain.Tests.Rows;
 using DataExplorer.Domain.Views.ScatterPlots;
-using DataExplorer.Tests.Domain.Columns;
-using DataExplorer.Tests.Domain.Rows;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Domain.Views.ScatterPlots
+namespace DataExplorer.Domain.Tests.Views.ScatterPlots
 {
     [TestFixture]
     public class ScatterPlotRendererTests

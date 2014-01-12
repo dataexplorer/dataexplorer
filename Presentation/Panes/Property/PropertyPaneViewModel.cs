@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataExplorer.Application;
 using DataExplorer.Application.Columns;
 using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Importers.CsvFiles.Events;
 using DataExplorer.Application.Projects.Events;
 using DataExplorer.Application.Rows;
-using DataExplorer.Infrastructure.Process;
 using DataExplorer.Presentation.Core;
 
 namespace DataExplorer.Presentation.Panes.Property

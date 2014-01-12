@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data;
 using DataExplorer.Domain.Sources.Maps;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Domain.Sources.Maps
+namespace DataExplorer.Domain.Tests.Sources.Maps
 {
     [TestFixture]
     public class SourceMapFactoryTests

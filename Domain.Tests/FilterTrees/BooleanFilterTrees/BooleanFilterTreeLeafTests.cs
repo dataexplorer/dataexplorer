@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataExplorer.Domain.Columns;
-using DataExplorer.Domain.FilterTrees.BooleanFilterTrees;
-using DataExplorer.Domain.Filters;
+﻿using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Filters.BooleanFilters;
-using DataExplorer.Tests.Domain.Columns;
+using DataExplorer.Domain.FilterTrees.BooleanFilterTrees;
+using DataExplorer.Domain.Tests.Columns;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Domain.FilterTrees.BooleanFilterTrees
+namespace DataExplorer.Domain.Tests.FilterTrees.BooleanFilterTrees
 {
     [TestFixture]
     public class BooleanFilterTreeLeafTests

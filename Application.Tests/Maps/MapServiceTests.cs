@@ -1,16 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataExplorer.Application.Columns;
+﻿using DataExplorer.Application.Columns;
 using DataExplorer.Application.Maps;
 using DataExplorer.Application.Maps.Queries;
 using DataExplorer.Domain.Maps;
-using DataExplorer.Domain.Maps.AxisMaps;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Application.Maps
+namespace DataExplorer.Application.Tests.Maps
 {
     [TestFixture]
     public class MapServiceTests

@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using DataExplorer.Domain.Rows;
 
-namespace DataExplorer.Tests.Domain.Rows
+namespace DataExplorer.Domain.Tests.Rows
 {
     public class RowBuilder
     {

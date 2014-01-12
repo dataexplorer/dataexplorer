@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataExplorer.Application.Importers.CsvFiles;
+﻿using DataExplorer.Application.Importers.CsvFiles;
 using DataExplorer.Application.Importers.CsvFiles.Queries;
 using DataExplorer.Domain.Sources;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Application.Importers.CsvFile.Queries
+namespace DataExplorer.Application.Tests.Importers.CsvFile.Queries
 {
     [TestFixture]
     public class GetCsvFileSourceQueryTests

@@ -5,13 +5,13 @@ using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Filters;
 using DataExplorer.Domain.Filters.BooleanFilters;
 using DataExplorer.Domain.Rows;
+using DataExplorer.Domain.Tests.Columns;
 using DataExplorer.Domain.Views;
 using DataExplorer.Domain.Views.ScatterPlots;
-using DataExplorer.Tests.Domain.Columns;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Application.Views.ScatterPlots.Commands
+namespace DataExplorer.Application.Tests.Views.ScatterPlots.Commands
 {
     [TestFixture]
     public class UpdatePlotsCommandTests

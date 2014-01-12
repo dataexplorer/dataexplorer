@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataExplorer.Application.Importers.CsvFiles.Events;
+﻿using DataExplorer.Application.Importers.CsvFiles.Events;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Application.Importers.CsvFile.Events
+namespace DataExplorer.Application.Tests.Importers.CsvFile.Events
 {
     [TestFixture]
     public class CsvFileImportProgressChangedEventTests

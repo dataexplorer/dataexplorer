@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Media.Imaging;
+﻿using System.Windows.Media.Imaging;
 using DataExplorer.Application.Clipboard.Commands;
-using DataExplorer.Infrastructure.Clipboard;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Application.Clipboard.Commands
+namespace DataExplorer.Application.Tests.Clipboard.Commands
 {
     [TestFixture]
     public class CopyImageToClipboardCommandTests

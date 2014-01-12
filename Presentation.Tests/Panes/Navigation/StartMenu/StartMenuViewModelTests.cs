@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DataExplorer.Application;
 using DataExplorer.Application.Projects;
 using DataExplorer.Application.Web;
-using DataExplorer.Presentation.Dialogs;
 using DataExplorer.Presentation.Panes.Navigation.StartMenu;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Presentation.Panes.Navigation.StartMenu
+namespace DataExplorer.Presentation.Tests.Panes.Navigation.StartMenu
 {
     [TestFixture]
     public class StartMenuViewModelTests

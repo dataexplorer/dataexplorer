@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Filters.BooleanFilters;
+using DataExplorer.Domain.Tests.Columns;
 using DataExplorer.Infrastructure.Serializers.Filters.BooleanFilters;
 using DataExplorer.Infrastructure.Serializers.Properties;
-using DataExplorer.Tests.Domain.Columns;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Infrastructure.Serializers.Filters.BooleanFilters
+namespace DataExplorer.Infrastructure.Tests.Serializers.Filters.BooleanFilters
 {
     [TestFixture]
     public class BooleanFilterSerializerTests

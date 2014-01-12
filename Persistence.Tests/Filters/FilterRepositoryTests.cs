@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using DataExplorer.Application;
 using DataExplorer.Domain.Filters;
-using DataExplorer.Persistence;
+using DataExplorer.Domain.Tests.Filters;
 using DataExplorer.Persistence.Filters;
-using DataExplorer.Tests.Domain.Filters;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Persistence.Filters
+namespace DataExplorer.Persistence.Tests.Filters
 {
     [TestFixture]
     public class FilterRepositoryTests

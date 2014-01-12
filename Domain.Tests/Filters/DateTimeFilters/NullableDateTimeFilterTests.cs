@@ -1,10 +1,10 @@
 ﻿using System;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Filters.DateTimeFilters;
-using DataExplorer.Tests.Domain.Columns;
+using DataExplorer.Domain.Tests.Columns;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Domain.Filters.DateTimeFilters
+namespace DataExplorer.Domain.Tests.Filters.DateTimeFilters
 {
     [TestFixture]
     public class NullableDateTimeFilterTests

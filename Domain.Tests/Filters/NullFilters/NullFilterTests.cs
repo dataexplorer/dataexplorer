@@ -1,9 +1,9 @@
 ﻿using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Filters.NullFilters;
-using DataExplorer.Tests.Domain.Columns;
+using DataExplorer.Domain.Tests.Columns;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Domain.Filters.NullFilters
+namespace DataExplorer.Domain.Tests.Filters.NullFilters
 {
     [TestFixture]
     public class NullFilterTests

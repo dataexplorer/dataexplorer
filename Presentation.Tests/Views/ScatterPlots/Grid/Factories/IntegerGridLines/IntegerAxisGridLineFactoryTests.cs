@@ -3,7 +3,7 @@ using DataExplorer.Domain.Maps.AxisMaps;
 using DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories.IntegerGridLines;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.Grid.Factories.IntegerGridLines
+namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Grid.Factories.IntegerGridLines
 {
     [TestFixture]
     public class IntegerAxisGridLineFactoryTests

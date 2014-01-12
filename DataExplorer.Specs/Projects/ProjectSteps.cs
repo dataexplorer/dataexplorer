@@ -9,8 +9,6 @@ using DataExplorer.Domain.Rows;
 using DataExplorer.Domain.Sources;
 using DataExplorer.Domain.Views;
 using DataExplorer.Domain.Views.ScatterPlots;
-using DataExplorer.Tests.Domain.Columns;
-using DataExplorer.Tests.Domain.Rows;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 

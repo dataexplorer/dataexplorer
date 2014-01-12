@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataExplorer.Application.Core.Events;
-using DataExplorer.Application.FilterTrees;
+﻿using DataExplorer.Application.FilterTrees;
 using DataExplorer.Domain.Columns;
+using DataExplorer.Domain.Tests.Columns;
+using DataExplorer.Domain.Tests.FilterTrees;
 using DataExplorer.Presentation.Panes.Navigation.NavigationTree;
-using DataExplorer.Tests.Application.FilterTrees;
-using DataExplorer.Tests.Domain.Columns;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Presentation.Panes.Navigation.NavigationTree
+namespace DataExplorer.Presentation.Tests.Panes.Navigation.NavigationTree
 {
     [TestFixture]
     public class TreeNodeViewModelTests

@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
 using DataExplorer.Domain.Sources;
-using DataExplorer.Infrastructure.Serializers;
+using DataExplorer.Domain.Tests.Sources;
 using DataExplorer.Infrastructure.Serializers.Sources;
-using DataExplorer.Tests.Domain.Sources;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Infrastructure.Serializers.Sources
+namespace DataExplorer.Infrastructure.Tests.Serializers.Sources
 {
     [TestFixture]
     public class SourceSetSerializerTests

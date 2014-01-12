@@ -10,8 +10,6 @@ using DataExplorer.Domain.Converters;
 using DataExplorer.Domain.Rows;
 using DataExplorer.Domain.Sources;
 using DataExplorer.Domain.Sources.Maps;
-using DataExplorer.Infrastructure.Importers.CsvFile;
-using DataExplorer.Persistence;
 
 namespace DataExplorer.Application.Importers.CsvFiles.Commands
 {

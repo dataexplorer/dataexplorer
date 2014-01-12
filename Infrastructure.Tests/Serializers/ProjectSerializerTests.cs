@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Filters;
@@ -19,7 +16,7 @@ using DataExplorer.Infrastructure.Serializers.Views;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Infrastructure.Serializers
+namespace DataExplorer.Infrastructure.Tests.Serializers
 {
     [TestFixture]
     public class ProjectSerializerTests

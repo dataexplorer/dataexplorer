@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Domain.Columns;
-using DataExplorer.Tests.Domain.Columns;
+using DataExplorer.Domain.Tests.Columns;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using DataExplorer.Domain.Columns;
-using DataExplorer.Domain.FilterTrees;
 using DataExplorer.Domain.Filters;
-using DataExplorer.Tests.Domain.Filters;
+using DataExplorer.Domain.FilterTrees;
+using DataExplorer.Domain.Tests.Filters;
 
-namespace DataExplorer.Tests.Application.FilterTrees
+namespace DataExplorer.Domain.Tests.FilterTrees
 {
     public class FakeFilterTreeNode : FilterTreeNode
     {

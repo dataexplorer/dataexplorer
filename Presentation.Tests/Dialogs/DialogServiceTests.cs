@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using DataExplorer.Application.Application;
 using DataExplorer.Presentation.Dialogs;
 using DataExplorer.Presentation.Dialogs.Open;
@@ -12,7 +7,7 @@ using DataExplorer.Presentation.Importers.CsvFile;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Presentation.Dialogs
+namespace DataExplorer.Presentation.Tests.Dialogs
 {
     [TestFixture, RequiresSTA]
     public class DialogServiceTests

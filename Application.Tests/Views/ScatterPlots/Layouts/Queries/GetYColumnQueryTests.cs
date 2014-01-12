@@ -2,13 +2,13 @@
 using DataExplorer.Application.Columns;
 using DataExplorer.Application.Views.ScatterPlots.Layouts.Queries;
 using DataExplorer.Domain.Columns;
+using DataExplorer.Domain.Tests.Columns;
 using DataExplorer.Domain.Views;
 using DataExplorer.Domain.Views.ScatterPlots;
-using DataExplorer.Tests.Domain.Columns;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Application.Views.ScatterPlots.Layouts.Queries
+namespace DataExplorer.Application.Tests.Views.ScatterPlots.Layouts.Queries
 {
     [TestFixture]
     public class GetYColumnQueryTests

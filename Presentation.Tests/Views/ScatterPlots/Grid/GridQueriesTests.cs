@@ -8,7 +8,7 @@ using DataExplorer.Presentation.Views.ScatterPlots.Grid.Lines.Queries;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.Grid
+namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Grid
 {
     [TestFixture]
     public class GridQueriesTests

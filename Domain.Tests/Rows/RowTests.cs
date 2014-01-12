@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataExplorer.Domain.Rows;
+﻿using System.Linq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Domain.Rows
+namespace DataExplorer.Domain.Tests.Rows
 {
     [TestFixture]
     public class RowTests

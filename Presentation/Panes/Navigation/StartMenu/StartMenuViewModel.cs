@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using DataExplorer.Application;
 using DataExplorer.Application.Projects;
 using DataExplorer.Application.Web;
 using DataExplorer.Presentation.Core;

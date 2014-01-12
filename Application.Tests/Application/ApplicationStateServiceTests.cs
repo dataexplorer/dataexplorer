@@ -1,22 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataExplorer.Application;
 using DataExplorer.Application.Application;
 using DataExplorer.Application.Application.Events;
 using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Importers.CsvFiles.Events;
 using DataExplorer.Application.Projects.Events;
 using DataExplorer.Domain.Rows;
-using DataExplorer.Tests.Application.FilterTrees;
-using DataExplorer.Tests.Domain.Filters;
-using DataExplorer.Tests.Domain.Rows;
+using DataExplorer.Domain.Tests.Filters;
+using DataExplorer.Domain.Tests.Rows;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Application.Application
+namespace DataExplorer.Application.Tests.Application
 {
     [TestFixture]
     public class ApplicationStateServiceTests

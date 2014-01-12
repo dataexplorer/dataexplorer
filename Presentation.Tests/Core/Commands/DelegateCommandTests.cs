@@ -4,7 +4,7 @@ using DataExplorer.Presentation.Core.Commands;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Presentation.Core.Commands
+namespace DataExplorer.Presentation.Tests.Core.Commands
 {
     [TestFixture]
     public class DelegateCommandTests

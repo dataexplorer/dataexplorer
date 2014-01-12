@@ -1,9 +1,9 @@
 ﻿using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Filters.IntegerFilters;
-using DataExplorer.Tests.Domain.Columns;
+using DataExplorer.Domain.Tests.Columns;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Domain.Filters.IntegerFilters
+namespace DataExplorer.Domain.Tests.Filters.IntegerFilters
 {
     [TestFixture]
     public class NullableIntegerFilterTests

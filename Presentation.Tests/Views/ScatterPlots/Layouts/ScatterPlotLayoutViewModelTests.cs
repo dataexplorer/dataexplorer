@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataExplorer.Presentation.Views.ScatterPlots.Layout;
+﻿using DataExplorer.Presentation.Views.ScatterPlots.Layout;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.Layouts
+namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Layouts
 {
     [TestFixture]
     public class ScatterPlotLayoutViewModelTests

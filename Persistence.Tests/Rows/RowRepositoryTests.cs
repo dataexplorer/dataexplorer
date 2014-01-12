@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using DataExplorer.Application;
 using DataExplorer.Domain.Rows;
-using DataExplorer.Persistence;
+using DataExplorer.Domain.Tests.Rows;
 using DataExplorer.Persistence.Rows;
-using DataExplorer.Tests.Domain.Rows;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Persistence.Rows
+namespace DataExplorer.Persistence.Tests.Rows
 {
     [TestFixture]
     public class RowRepositoryTests

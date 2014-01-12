@@ -6,7 +6,7 @@ using DataExplorer.Presentation.Importers.CsvFile.Header;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Presentation.Importers.Header
+namespace DataExplorer.Presentation.Tests.Importers.Header
 {
     [TestFixture]
     public class CsvFileImportHeaderViewModelTests

@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using DataExplorer.Domain.Columns;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Domain.Columns
+namespace DataExplorer.Domain.Tests.Columns
 {
     [TestFixture]
     public class ColumnTests

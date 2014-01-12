@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 using DataExplorer.Presentation.Core;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Presentation.Core
+namespace DataExplorer.Presentation.Tests.Core
 {
     [TestFixture]
     public class BaseViewModelTests

@@ -2,7 +2,7 @@
 using DataExplorer.Presentation.Core.Services;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Presentation.Core.Services
+namespace DataExplorer.Presentation.Tests.Core.Services
 {
     [TestFixture, RequiresSTA]
     public class DependencyPropertyServiceTests

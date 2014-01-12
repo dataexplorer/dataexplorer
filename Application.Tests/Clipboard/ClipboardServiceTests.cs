@@ -1,21 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataExplorer.Application.Application;
-using DataExplorer.Application.Clipboard;
+﻿using DataExplorer.Application.Clipboard;
 using DataExplorer.Application.Clipboard.Commands;
 using DataExplorer.Application.Clipboard.Queries;
-using DataExplorer.Application.Exporters;
-using DataExplorer.Application.Exporters.TabFile;
-using DataExplorer.Domain.Columns;
-using DataExplorer.Domain.Rows;
-using DataExplorer.Infrastructure.Clipboard;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Application.Clipboard
+namespace DataExplorer.Application.Tests.Clipboard
 {
     [TestFixture]
     public class ClipboardServiceTests

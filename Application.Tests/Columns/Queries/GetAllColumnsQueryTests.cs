@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DataExplorer.Application.Columns;
 using DataExplorer.Application.Columns.Queries;
 using DataExplorer.Domain.Columns;
-using DataExplorer.Tests.Domain.Columns;
+using DataExplorer.Domain.Tests.Columns;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Application.Columns.Queries
+namespace DataExplorer.Application.Tests.Columns.Queries
 {
     [TestFixture]
     public class GetAllColumnsQueryTests

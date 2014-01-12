@@ -8,7 +8,7 @@ using DataExplorer.Presentation.Views.ScatterPlots.Scalers;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.Plots.Renderers
+namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Plots.Renderers
 {
     [TestFixture]
     public class ScatterPlotPlotRendererTests

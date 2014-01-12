@@ -2,7 +2,7 @@
 using DataExplorer.Presentation.Core.Converters;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Presentation.Core.Converters
+namespace DataExplorer.Presentation.Tests.Core.Converters
 {
     [TestFixture]
     public class FriendlyDataTypeNameConverterTests

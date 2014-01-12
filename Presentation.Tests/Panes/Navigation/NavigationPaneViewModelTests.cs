@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataExplorer.Application.Application;
+﻿using DataExplorer.Application.Application;
 using DataExplorer.Application.Application.Events;
 using DataExplorer.Presentation.Panes.Navigation;
 using DataExplorer.Presentation.Panes.Navigation.NavigationTree;
@@ -11,7 +6,7 @@ using DataExplorer.Presentation.Panes.Navigation.StartMenu;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Presentation.Panes.Navigation
+namespace DataExplorer.Presentation.Tests.Panes.Navigation
 {
     [TestFixture]
     public class NavigationPaneViewModelTests

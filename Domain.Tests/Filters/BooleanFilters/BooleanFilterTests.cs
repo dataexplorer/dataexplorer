@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Filters.BooleanFilters;
-using DataExplorer.Tests.Domain.Columns;
+using DataExplorer.Domain.Tests.Columns;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Domain.Filters.BooleanFilters
+namespace DataExplorer.Domain.Tests.Filters.BooleanFilters
 {
     [TestFixture]
     public class BooleanFilterTests

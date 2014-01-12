@@ -7,7 +7,7 @@ using DataExplorer.Presentation.Views.ScatterPlots.Titles.Renderers;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.Titles.Queries
+namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Titles.Queries
 {
     [TestFixture]
     public class GetXAxisTitleQueryTests

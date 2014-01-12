@@ -5,7 +5,7 @@ using DataExplorer.Domain.Views.ScatterPlots;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Application.Views.ScatterPlots
+namespace DataExplorer.Application.Tests.Views.ScatterPlots
 {
     [TestFixture]
     public class ScatterPlotAdapterTests

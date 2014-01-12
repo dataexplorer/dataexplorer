@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using DataExplorer.Application;
 using DataExplorer.Domain.Rows;
 
 namespace DataExplorer.Persistence.Rows

@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using DataExplorer.Application;
 using DataExplorer.Domain.Views;
 using DataExplorer.Domain.Views.ScatterPlots;
-using DataExplorer.Persistence;
 using DataExplorer.Persistence.Views;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Persistence.Views
+namespace DataExplorer.Persistence.Tests.Views
 {
     [TestFixture]
     public class ViewRepositoryTests

@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataExplorer.Application.Views.ScatterPlots;
+﻿using DataExplorer.Application.Views.ScatterPlots;
 using DataExplorer.Presentation.Shell.MainMenu.ViewMenu;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Presentation.Shell.MainMenu.ViewMenu
+namespace DataExplorer.Presentation.Tests.Shell.MainMenu.ViewMenu
 {
     [TestFixture]
     public class ViewMenuViewModelTests

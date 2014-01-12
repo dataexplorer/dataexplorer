@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataExplorer.Application.Web;
-using DataExplorer.Infrastructure.Process;
+﻿using DataExplorer.Application.Web;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Application.Web
+namespace DataExplorer.Application.Tests.Web
 {
     [TestFixture]
     public class WebServiceTests

@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using DataExplorer.Application.Application;
 using DataExplorer.Application.Exporters.TabFile;
 using DataExplorer.Domain.Columns;
-using DataExplorer.Infrastructure.Clipboard;
 
 namespace DataExplorer.Application.Clipboard.Commands
 {

@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using DataExplorer.Presentation.Core.Canvas.Items;
 using DataExplorer.Presentation.Views.ScatterPlots.Grid;
@@ -11,9 +8,8 @@ using DataExplorer.Presentation.Views.ScatterPlots.Queries;
 using DataExplorer.Presentation.Views.ScatterPlots.Titles;
 using Moq;
 using NUnit.Framework;
-using IGetPlotsQuery = DataExplorer.Presentation.Views.ScatterPlots.Plots.Queries.IGetPlotsQuery;
 
-namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.Queries
+namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Queries
 {
     [TestFixture]
     public class GetAllItemsQueryTests

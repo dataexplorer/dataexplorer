@@ -1,9 +1,9 @@
 ﻿using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Filters.StringFilters;
-using DataExplorer.Tests.Domain.Columns;
+using DataExplorer.Domain.Tests.Columns;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Domain.Filters.StringFilters
+namespace DataExplorer.Domain.Tests.Filters.StringFilters
 {
     [TestFixture]
     public class StringFilterTests

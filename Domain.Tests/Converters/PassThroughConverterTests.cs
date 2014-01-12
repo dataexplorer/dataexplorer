@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataExplorer.Domain.Converters;
+﻿using DataExplorer.Domain.Converters;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Domain.Converters
+namespace DataExplorer.Domain.Tests.Converters
 {
     [TestFixture]
     public class PassThroughConverterTests

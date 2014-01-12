@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataExplorer.Presentation.Importers.CsvFile;
+﻿using DataExplorer.Presentation.Importers.CsvFile;
 using DataExplorer.Presentation.Importers.CsvFile.Body;
 using DataExplorer.Presentation.Importers.CsvFile.Footer;
 using DataExplorer.Presentation.Importers.CsvFile.Header;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Presentation.Importers
+namespace DataExplorer.Presentation.Tests.Importers
 {
     [TestFixture]
     public class CsvFileImportViewModelTests

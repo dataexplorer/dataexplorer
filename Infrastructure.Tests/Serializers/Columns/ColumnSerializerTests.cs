@@ -1,19 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Rows;
-using DataExplorer.Infrastructure.Serializers;
+using DataExplorer.Domain.Tests.Columns;
 using DataExplorer.Infrastructure.Serializers.Columns;
 using DataExplorer.Infrastructure.Serializers.Properties;
-using DataExplorer.Tests.Domain.Columns;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Infrastructure.Serializers.Columns
+namespace DataExplorer.Infrastructure.Tests.Serializers.Columns
 {
     [TestFixture]
     public class ColumnSerializerTests

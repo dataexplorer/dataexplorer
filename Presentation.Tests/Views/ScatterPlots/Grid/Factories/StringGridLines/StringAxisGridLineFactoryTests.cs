@@ -4,7 +4,7 @@ using DataExplorer.Domain.Maps.AxisMaps;
 using DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories.StringGridLines;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.Grid.Factories.StringGridLines
+namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Grid.Factories.StringGridLines
 {
     [TestFixture]
     public class StringAxisGridLineFactoryTests

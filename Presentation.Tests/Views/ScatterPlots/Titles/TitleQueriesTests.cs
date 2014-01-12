@@ -5,7 +5,7 @@ using DataExplorer.Presentation.Views.ScatterPlots.Titles.Queries;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.Titles
+namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Titles
 {
     public class TitleQueriesTests
     {

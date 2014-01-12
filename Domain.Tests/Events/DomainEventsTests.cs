@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataExplorer.Domain.Events;
-using NUnit.Framework;
+﻿using DataExplorer.Domain.Events;
 using Ninject;
+using NUnit.Framework;
 
-namespace DataExplorer.Tests.Domain.Events
+namespace DataExplorer.Domain.Tests.Events
 {
     [TestFixture]
     public class DomainEventsTests

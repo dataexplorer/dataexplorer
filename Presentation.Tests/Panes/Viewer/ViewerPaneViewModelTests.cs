@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataExplorer.Presentation.Panes.Viewer;
+﻿using DataExplorer.Presentation.Panes.Viewer;
 using DataExplorer.Presentation.Views.ScatterPlots;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Presentation.Panes.Viewer
+namespace DataExplorer.Presentation.Tests.Panes.Viewer
 {
     [TestFixture]
     public class ViewerPaneViewModelTests

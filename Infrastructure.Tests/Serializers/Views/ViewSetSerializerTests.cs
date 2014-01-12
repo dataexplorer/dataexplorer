@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
 using DataExplorer.Domain.Columns;
+using DataExplorer.Domain.Tests.Views;
 using DataExplorer.Domain.Views;
-using DataExplorer.Infrastructure.Serializers;
 using DataExplorer.Infrastructure.Serializers.Views;
-using DataExplorer.Tests.Domain.Views;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Infrastructure.Serializers.Views
+namespace DataExplorer.Infrastructure.Tests.Serializers.Views
 {
     [TestFixture]
     public class ViewSetSerializerTests

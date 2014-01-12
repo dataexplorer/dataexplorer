@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Predicates;
 using DataExplorer.Domain.Rows;
-using DataExplorer.Tests.Domain.Columns;
-using DataExplorer.Tests.Domain.Rows;
+using DataExplorer.Domain.Tests.Columns;
+using DataExplorer.Domain.Tests.Rows;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Domain.Predicates
+namespace DataExplorer.Domain.Tests.Predicates
 {
     public class IntegerPredicateTests
     {

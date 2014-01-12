@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using DataExplorer.Presentation.Panes.Property;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Presentation.Panes.Property
+namespace DataExplorer.Presentation.Tests.Panes.Property
 {
     [TestFixture]
     public class PropertyGridCellTemplateSelectorTests

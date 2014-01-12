@@ -1,13 +1,11 @@
 ﻿using System.Linq;
-using DataExplorer.Domain.Columns;
+using DataExplorer.Domain.Filters.IntegerFilters;
 using DataExplorer.Domain.FilterTrees.IntegerFilterTrees;
 using DataExplorer.Domain.FilterTrees.NullFilterTrees;
-using DataExplorer.Domain.Filters;
-using DataExplorer.Domain.Filters.IntegerFilters;
-using DataExplorer.Tests.Domain.Columns;
+using DataExplorer.Domain.Tests.Columns;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Domain.FilterTrees.IntegerFilterTrees
+namespace DataExplorer.Domain.Tests.FilterTrees.IntegerFilterTrees
 {
     [TestFixture]
     public class IntegerFilterTreeRootTests

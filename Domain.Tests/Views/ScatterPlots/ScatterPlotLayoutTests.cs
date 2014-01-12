@@ -1,10 +1,10 @@
 ﻿using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Events;
+using DataExplorer.Domain.Tests.Columns;
 using DataExplorer.Domain.Views.ScatterPlots;
-using DataExplorer.Tests.Domain.Columns;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Domain.Views.ScatterPlots
+namespace DataExplorer.Domain.Tests.Views.ScatterPlots
 {
     [TestFixture]
     public class ScatterPlotLayoutTests

@@ -7,7 +7,7 @@ using DataExplorer.Presentation.Views.ScatterPlots.Scalers;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.Grid.Lines.Renderers
+namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Grid.Lines.Renderers
 {
     public class XAxisGridLineRendererTests
     {

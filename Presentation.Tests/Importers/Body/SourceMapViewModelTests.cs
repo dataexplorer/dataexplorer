@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DataExplorer.Domain.Sources.Maps;
 using DataExplorer.Presentation.Importers.CsvFile.Body;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Presentation.Importers.Body
+namespace DataExplorer.Presentation.Tests.Importers.Body
 {
     [TestFixture]
     public class SourceMapViewModelTests

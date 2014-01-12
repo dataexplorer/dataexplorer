@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataExplorer.Application.Core.Events;
+﻿using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Projects.Commands;
 using DataExplorer.Application.Projects.Events;
-using DataExplorer.Domain.Events;
-using DataExplorer.Domain.Projects;
-using DataExplorer.Persistence;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Application.Projects.Commands
+namespace DataExplorer.Application.Tests.Projects.Commands
 {
     [TestFixture]
     public class CloseProjectCommandTests

@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataExplorer.Presentation.Panes.Layout;
+﻿using DataExplorer.Presentation.Panes.Layout;
 using DataExplorer.Presentation.Views.ScatterPlots.Layout;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Presentation.Panes.Layout
+namespace DataExplorer.Presentation.Tests.Panes.Layout
 {
     [TestFixture]
     public class LayoutPaneViewModelTests

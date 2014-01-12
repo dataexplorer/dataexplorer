@@ -4,7 +4,7 @@ using DataExplorer.Domain.Maps.AxisMaps;
 using DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories.BooleanGridLines;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.Grid.Factories.BooleanGridLines
+namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Grid.Factories.BooleanGridLines
 {
     [TestFixture]
     public class BooleanAxisGridLineFactoryTests

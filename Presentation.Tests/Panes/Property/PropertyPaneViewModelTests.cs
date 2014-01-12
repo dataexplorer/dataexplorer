@@ -1,19 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using DataExplorer.Application;
 using DataExplorer.Application.Columns;
 using DataExplorer.Application.Importers.CsvFiles.Events;
 using DataExplorer.Application.Rows;
 using DataExplorer.Domain.Rows;
-using DataExplorer.Infrastructure.Process;
+using DataExplorer.Domain.Tests.Rows;
 using DataExplorer.Presentation.Panes.Property;
-using DataExplorer.Tests.Domain.Rows;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Presentation.Panes.Property
+namespace DataExplorer.Presentation.Tests.Panes.Property
 {
     [TestFixture]
     public class PropertyPaneViewModelTests

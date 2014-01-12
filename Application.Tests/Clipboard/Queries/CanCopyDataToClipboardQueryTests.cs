@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using DataExplorer.Application.Application;
 using DataExplorer.Application.Clipboard.Queries;
 using DataExplorer.Domain.Rows;
-using DataExplorer.Tests.Domain.Rows;
+using DataExplorer.Domain.Tests.Rows;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Application.Clipboard.Queries
+namespace DataExplorer.Application.Tests.Clipboard.Queries
 {
     [TestFixture]
     public class CanCopyDataToClipboardQueryTests

@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using DataExplorer.Application.Views.ScatterPlots;
 using DataExplorer.Presentation.Views.ScatterPlots.Commands;
 using DataExplorer.Presentation.Views.ScatterPlots.Scalers;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.Commands
+namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Commands
 {
     [TestFixture]
     public class ZoomOutScatterPlotCommandTests

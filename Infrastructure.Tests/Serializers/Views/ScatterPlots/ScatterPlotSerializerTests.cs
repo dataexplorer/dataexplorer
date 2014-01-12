@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Xml.Linq;
 using DataExplorer.Domain.Columns;
@@ -12,7 +9,7 @@ using DataExplorer.Infrastructure.Serializers.Views.ScatterPlots;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Infrastructure.Serializers.Views.ScatterPlots
+namespace DataExplorer.Infrastructure.Tests.Serializers.Views.ScatterPlots
 {
     [TestFixture]
     public class ScatterPlotSerializerTests

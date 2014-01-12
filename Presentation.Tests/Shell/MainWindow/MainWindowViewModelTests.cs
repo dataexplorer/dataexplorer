@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataExplorer.Presentation.Panes.Layout;
+﻿using DataExplorer.Presentation.Panes.Layout;
 using DataExplorer.Presentation.Panes.Navigation;
 using DataExplorer.Presentation.Panes.Property;
 using DataExplorer.Presentation.Panes.Viewer;
@@ -13,7 +8,7 @@ using DataExplorer.Presentation.Shell.StatusBar;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Presentation.Shell.MainWindow
+namespace DataExplorer.Presentation.Tests.Shell.MainWindow
 {
     [TestFixture]
     public class MainWindowViewModelTests

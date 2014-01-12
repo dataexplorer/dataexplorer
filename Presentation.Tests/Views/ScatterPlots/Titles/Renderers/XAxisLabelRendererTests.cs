@@ -3,7 +3,7 @@ using DataExplorer.Presentation.Core.Canvas.Items;
 using DataExplorer.Presentation.Views.ScatterPlots.Titles.Renderers;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.Titles.Renderers
+namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Titles.Renderers
 {
     [TestFixture]
     public class XAxisLabelRendererTests

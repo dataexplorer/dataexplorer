@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataExplorer.Domain.Events;
+﻿using DataExplorer.Domain.Events;
 
-namespace DataExplorer.Tests.Domain.Events
+namespace DataExplorer.Domain.Tests.Events
 {
     public class FakeDomainEventDomainHandler : IDomainHandler<FakeDomainEvent>
     {

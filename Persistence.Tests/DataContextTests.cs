@@ -1,23 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Filters;
 using DataExplorer.Domain.Projects;
 using DataExplorer.Domain.Rows;
 using DataExplorer.Domain.Sources;
+using DataExplorer.Domain.Tests.Columns;
+using DataExplorer.Domain.Tests.Filters;
+using DataExplorer.Domain.Tests.Rows;
+using DataExplorer.Domain.Tests.Sources;
+using DataExplorer.Domain.Tests.Views;
 using DataExplorer.Domain.Views;
-using DataExplorer.Persistence;
-using DataExplorer.Tests.Domain.Columns;
-using DataExplorer.Tests.Domain.Filters;
-using DataExplorer.Tests.Domain.Rows;
-using DataExplorer.Tests.Domain.Sources;
-using DataExplorer.Tests.Domain.Views;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Persistence
+namespace DataExplorer.Persistence.Tests
 {
     [TestFixture]
     public class DataContextTests

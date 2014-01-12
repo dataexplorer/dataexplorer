@@ -2,7 +2,7 @@
 using DataExplorer.Presentation.Core.Canvas.Items;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Presentation.Core.Canvas.Items
+namespace DataExplorer.Presentation.Tests.Core.Canvas.Items
 {
     [TestFixture]
     public class CanvasLabelTests

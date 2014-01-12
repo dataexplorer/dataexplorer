@@ -3,7 +3,7 @@ using DataExplorer.Domain.Maps.AxisMaps;
 using DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories.FloatGridLines;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.Grid.Factories.FloatGridLines
+namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Grid.Factories.FloatGridLines
 {
     [TestFixture]
     public class FloatAxisGridLineFactoryTests

@@ -2,11 +2,12 @@
 using DataExplorer.Application.FilterTrees.Queries;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.FilterTrees;
-using DataExplorer.Tests.Domain.Columns;
+using DataExplorer.Domain.Tests.Columns;
+using DataExplorer.Domain.Tests.FilterTrees;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Application.FilterTrees.Queries
+namespace DataExplorer.Application.Tests.FilterTrees.Queries
 {
     [TestFixture]
     public class GetRootFilterTreeNodesQueryTests

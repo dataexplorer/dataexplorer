@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Xml.Linq;
 using DataExplorer.Domain.Sources;
 using DataExplorer.Infrastructure.Serializers.Properties;
@@ -10,7 +6,7 @@ using DataExplorer.Infrastructure.Serializers.Sources;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Infrastructure.Serializers.Sources
+namespace DataExplorer.Infrastructure.Tests.Serializers.Sources
 {
     [TestFixture]
     public class SourceSerializerTests

@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using DataExplorer.Presentation.Views.ScatterPlots.Scalers;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.Scalers
+namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Scalers
 {
     [TestFixture]
     public class ScaleComputerTests

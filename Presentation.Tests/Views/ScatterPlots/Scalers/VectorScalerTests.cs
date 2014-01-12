@@ -2,7 +2,7 @@
 using DataExplorer.Presentation.Views.ScatterPlots.Scalers;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Presentation.Views.ScatterPlots.Scalers
+namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Scalers
 {
     [TestFixture]
     public class VectorScalerTests

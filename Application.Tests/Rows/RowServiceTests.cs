@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DataExplorer.Application.Application;
 using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Rows;
 using DataExplorer.Domain.Rows;
-using DataExplorer.Tests.Domain.Rows;
+using DataExplorer.Domain.Tests.Rows;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Application.Rows
+namespace DataExplorer.Application.Tests.Rows
 {
     [TestFixture]
     public class RowServiceTests

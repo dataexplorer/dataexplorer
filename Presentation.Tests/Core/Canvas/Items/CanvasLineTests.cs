@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Media;
+﻿using System.Windows.Media;
 using DataExplorer.Presentation.Core.Canvas.Items;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Presentation.Core.Canvas.Items
+namespace DataExplorer.Presentation.Tests.Core.Canvas.Items
 {
     [TestFixture]
     public class CanvasLineTests

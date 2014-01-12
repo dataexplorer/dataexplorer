@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using DataExplorer.Presentation.Core;
 using DataExplorer.Presentation.Core.Services;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Presentation.Core.Services
+namespace DataExplorer.Presentation.Tests.Core.Services
 {
     [TestFixture]
     public class ControlFinderTests

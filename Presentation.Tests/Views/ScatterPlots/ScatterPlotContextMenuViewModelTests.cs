@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataExplorer.Application.Clipboard;
+﻿using DataExplorer.Application.Clipboard;
 using DataExplorer.Application.Rows;
 using DataExplorer.Application.Views.ScatterPlots;
 using DataExplorer.Presentation.Views.ScatterPlots;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Presentation.Views.ScatterPlots
+namespace DataExplorer.Presentation.Tests.Views.ScatterPlots
 {
     [TestFixture]
     public class ScatterPlotContextMenuViewModelTests

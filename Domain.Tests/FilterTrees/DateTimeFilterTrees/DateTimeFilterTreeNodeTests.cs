@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DataExplorer.Domain.Columns;
+using DataExplorer.Domain.Filters.DateTimeFilters;
 using DataExplorer.Domain.FilterTrees;
 using DataExplorer.Domain.FilterTrees.DateTimeFilterTrees;
-using DataExplorer.Domain.Filters;
-using DataExplorer.Domain.Filters.DateTimeFilters;
-using DataExplorer.Tests.Domain.Columns;
+using DataExplorer.Domain.Tests.Columns;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Domain.FilterTrees.DateTimeFilterTrees
+namespace DataExplorer.Domain.Tests.FilterTrees.DateTimeFilterTrees
 {
     [TestFixture]
     public class DateTimeFilterTreeNodeTests

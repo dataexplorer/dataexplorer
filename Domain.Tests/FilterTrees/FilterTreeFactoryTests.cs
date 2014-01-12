@@ -1,15 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using DataExplorer.Domain.FilterTrees;
 using DataExplorer.Domain.FilterTrees.BooleanFilterTrees;
 using DataExplorer.Domain.FilterTrees.DateTimeFilterTrees;
 using DataExplorer.Domain.FilterTrees.FloatFilterTrees;
 using DataExplorer.Domain.FilterTrees.IntegerFilterTrees;
 using DataExplorer.Domain.FilterTrees.StringFilterTrees;
-using DataExplorer.Tests.Domain.Columns;
+using DataExplorer.Domain.Tests.Columns;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Domain.FilterTrees
+namespace DataExplorer.Domain.Tests.FilterTrees
 {
     [TestFixture]
     public class FilterTreeFactoryTests

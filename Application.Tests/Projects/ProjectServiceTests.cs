@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataExplorer.Application.Projects;
+﻿using DataExplorer.Application.Projects;
 using DataExplorer.Application.Projects.Commands;
-using DataExplorer.Domain.Events;
-using DataExplorer.Domain.Projects;
-using DataExplorer.Persistence;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Application.Projects
+namespace DataExplorer.Application.Tests.Projects
 {
     [TestFixture]
     public class ProjectServiceTests

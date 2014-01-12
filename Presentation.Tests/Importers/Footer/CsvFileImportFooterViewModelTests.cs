@@ -1,11 +1,10 @@
-﻿using System;
-using DataExplorer.Application.Importers.CsvFiles;
+﻿using DataExplorer.Application.Importers.CsvFiles;
 using DataExplorer.Application.Importers.CsvFiles.Events;
 using DataExplorer.Presentation.Importers.CsvFile.Footer;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Presentation.Importers.Footer
+namespace DataExplorer.Presentation.Tests.Importers.Footer
 {
     [TestFixture]
     public class CsvFileImportFooterViewModelTests

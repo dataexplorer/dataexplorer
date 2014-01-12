@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataExplorer.Application;
+﻿using DataExplorer.Application;
 using DataExplorer.Application.Application;
 using DataExplorer.Application.Projects;
-using DataExplorer.Presentation.Dialogs;
 using DataExplorer.Presentation.Shell.MainMenu.FileMenu;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Presentation.Shell.MainMenu.FileMenu
+namespace DataExplorer.Presentation.Tests.Shell.MainMenu.FileMenu
 {
     [TestFixture]
     public class FileMenuViewModelTests

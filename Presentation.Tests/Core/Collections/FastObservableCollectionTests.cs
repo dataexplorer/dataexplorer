@@ -2,7 +2,7 @@
 using DataExplorer.Presentation.Core.Collections;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Presentation.Core.Collections
+namespace DataExplorer.Presentation.Tests.Core.Collections
 {
     [TestFixture]
     public class FastObservableCollectionTests

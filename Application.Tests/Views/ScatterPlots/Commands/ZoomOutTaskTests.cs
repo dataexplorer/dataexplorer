@@ -5,7 +5,7 @@ using DataExplorer.Domain.Views.ScatterPlots;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Application.Views.ScatterPlots.Commands
+namespace DataExplorer.Application.Tests.Views.ScatterPlots.Commands
 {
     [TestFixture]
     public class ZoomOutCommandTests

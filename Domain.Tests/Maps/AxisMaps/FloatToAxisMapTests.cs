@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataExplorer.Domain.Maps;
-using DataExplorer.Domain.Maps.AxisMaps;
+﻿using DataExplorer.Domain.Maps.AxisMaps;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Domain.Maps.AxisMaps
+namespace DataExplorer.Domain.Tests.Maps.AxisMaps
 {
     [TestFixture]
     public class FloatToAxisMapTests

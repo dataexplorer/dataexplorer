@@ -2,7 +2,7 @@
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Application.Application
+namespace DataExplorer.Application.Tests.Application
 {
     [TestFixture]
     public class ApplicationServiceTests

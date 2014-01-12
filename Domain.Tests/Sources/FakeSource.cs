@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataExplorer.Domain.Sources;
+﻿using DataExplorer.Domain.Sources;
 
-namespace DataExplorer.Tests.Domain.Sources
+namespace DataExplorer.Domain.Tests.Sources
 {
     public class FakeSource : ISource
     {

@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using DataExplorer.Application;
 using DataExplorer.Domain.Columns;
-using DataExplorer.Persistence;
+using DataExplorer.Domain.Tests.Columns;
 using DataExplorer.Persistence.Columns;
-using DataExplorer.Tests.Domain.Columns;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Persistence.Columns
+namespace DataExplorer.Persistence.Tests.Columns
 {
     [TestFixture]
     public class ColumnRepositoryTests

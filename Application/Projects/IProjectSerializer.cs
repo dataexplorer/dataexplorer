@@ -1,7 +1,7 @@
 ﻿using System.Xml.Linq;
 using DataExplorer.Domain.Projects;
 
-namespace DataExplorer.Infrastructure.Serializers
+namespace DataExplorer.Application.Projects
 {
     public interface IProjectSerializer
     {

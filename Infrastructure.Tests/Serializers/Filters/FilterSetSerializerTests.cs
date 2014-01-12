@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Filters;
-using DataExplorer.Infrastructure.Serializers;
+using DataExplorer.Domain.Tests.Filters;
 using DataExplorer.Infrastructure.Serializers.Filters;
-using DataExplorer.Tests.Domain.Filters;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Infrastructure.Serializers.Filters
+namespace DataExplorer.Infrastructure.Tests.Serializers.Filters
 {
     [TestFixture]
     public class FilterSetSerializerTests

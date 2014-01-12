@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DataExplorer.Application.Columns;
 using DataExplorer.Application.Columns.Queries;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Application.Columns
+namespace DataExplorer.Application.Tests.Columns
 {
     [TestFixture]
     public class ColumnServiceTests

@@ -1,4 +1,5 @@
 ﻿using System;
+using DataExplorer.Application;
 using DataExplorer.Domain.Views;
 
 namespace DataExplorer.Persistence.Views

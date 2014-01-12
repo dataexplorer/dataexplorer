@@ -7,7 +7,6 @@ using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Importers.CsvFiles.Events;
 using DataExplorer.Domain.Sources;
 using DataExplorer.Domain.Sources.Maps;
-using DataExplorer.Infrastructure.Importers.CsvFile;
 
 namespace DataExplorer.Application.Importers.CsvFiles.Commands
 {

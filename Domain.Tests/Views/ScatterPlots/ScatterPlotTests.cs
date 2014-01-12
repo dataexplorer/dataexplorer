@@ -4,7 +4,7 @@ using DataExplorer.Domain.Events;
 using DataExplorer.Domain.Views.ScatterPlots;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Domain.Views.ScatterPlots
+namespace DataExplorer.Domain.Tests.Views.ScatterPlots
 {
     [TestFixture]
     public class ScatterPlotTests

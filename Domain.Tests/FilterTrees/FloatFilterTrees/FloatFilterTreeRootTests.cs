@@ -1,13 +1,12 @@
 ﻿using System.Linq;
 using DataExplorer.Domain.Columns;
+using DataExplorer.Domain.Filters.FloatFilters;
 using DataExplorer.Domain.FilterTrees.FloatFilterTrees;
 using DataExplorer.Domain.FilterTrees.NullFilterTrees;
-using DataExplorer.Domain.Filters;
-using DataExplorer.Domain.Filters.FloatFilters;
-using DataExplorer.Tests.Domain.Columns;
+using DataExplorer.Domain.Tests.Columns;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Domain.FilterTrees.FloatFilterTrees
+namespace DataExplorer.Domain.Tests.FilterTrees.FloatFilterTrees
 {
     [TestFixture]
     public class FloatFilterTreeRootTests

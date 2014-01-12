@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataExplorer.Application.Clipboard;
+﻿using DataExplorer.Application.Clipboard;
 using DataExplorer.Application.Rows;
 using DataExplorer.Presentation.Shell.MainMenu.EditMenu;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Presentation.Shell.MainMenu.EditMenu
+namespace DataExplorer.Presentation.Tests.Shell.MainMenu.EditMenu
 {
     [TestFixture]
     public class EditMenuViewModelTests

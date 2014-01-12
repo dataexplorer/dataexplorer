@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using DataExplorer.Application.FilterTrees;
 using DataExplorer.Application.FilterTrees.Commands;
 using DataExplorer.Application.FilterTrees.Queries;
 using DataExplorer.Domain.FilterTrees;
+using DataExplorer.Domain.Tests.FilterTrees;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Application.FilterTrees
+namespace DataExplorer.Application.Tests.FilterTrees
 {
     [TestFixture]
     public class FilterTreeServiceTests

@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using DataExplorer.Application.Projects.Commands;
 using DataExplorer.Domain.Events;
 using DataExplorer.Domain.Projects;
-using DataExplorer.Persistence;
 
 namespace DataExplorer.Application.Projects
 {

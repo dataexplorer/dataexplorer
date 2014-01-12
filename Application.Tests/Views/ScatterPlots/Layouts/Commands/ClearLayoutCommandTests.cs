@@ -1,13 +1,13 @@
 ﻿using System.Windows;
 using DataExplorer.Application.Views.ScatterPlots.Layouts.Commands;
 using DataExplorer.Domain.Events;
+using DataExplorer.Domain.Tests.Columns;
 using DataExplorer.Domain.Views;
 using DataExplorer.Domain.Views.ScatterPlots;
-using DataExplorer.Tests.Domain.Columns;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Application.Views.ScatterPlots.Layouts.Commands
+namespace DataExplorer.Application.Tests.Views.ScatterPlots.Layouts.Commands
 {
     [TestFixture]
     public class ClearLayoutCommandTests

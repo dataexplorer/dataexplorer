@@ -7,7 +7,7 @@ using DataExplorer.Domain.Views.ScatterPlots;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Tests.Application.Views.ScatterPlots.Queries
+namespace DataExplorer.Application.Tests.Views.ScatterPlots.Queries
 {
     [TestFixture]
     public class GetScatterPlotsQueryTests
