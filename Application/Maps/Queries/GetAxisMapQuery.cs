@@ -4,31 +4,37 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.Columns;
-using DataExplorer.Domain.Columns;
+using DataExplorer.Application.Core.Queries;
 using DataExplorer.Domain.Maps;
 
 namespace DataExplorer.Application.Maps.Queries
 {
-    public class GetAxisMapQuery : IGetAxisMapQuery
+    public class GetAxisMapQuery : IQuery<IAxisMap>
     {
-        private readonly IColumnRepository _repository;
-        private readonly IMapFactory _factory;
+        private readonly int _columnId;
+        private readonly double _targetMin;
+        private readonly double _targetMax;
 
-        public GetAxisMapQuery(
-            IColumnRepository repository, 
-            IMapFactory factory)
+        public GetAxisMapQuery(int columnId, double targetMin, double targetMax)
         {
-            _repository = repository;
-            _factory = factory;
+            _columnId = columnId;
+            _targetMin = targetMin;
+            _targetMax = targetMax;
         }
-        
-        public IAxisMap Execute(ColumnDto columnDto, double targetMin, double targetMax)
+
+        public int ColumnId
         {
-            var column = _repository.Get(columnDto.Id);
+            get { return _columnId; }
+        }
 
-            var map = _factory.CreateAxisMap(column, targetMin, targetMax);
+        public double TargetMin
+        {
+            get { return _targetMin; }
+        }
 
-            return map;
+        public double TargetMax
+        {
+            get { return _targetMax; }
         }
     }
 }

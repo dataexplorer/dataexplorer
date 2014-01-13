@@ -9,9 +9,9 @@ using NUnit.Framework;
 namespace DataExplorer.Application.Tests.Maps.Queries
 {
     [TestFixture]
-    public class GetAxisMapQueryTests
+    public class GetAxisMapQueryHandlerTests
     {
-        private GetAxisMapQuery _query;
+        private GetAxisMapQueryHandler _handler;
         private Mock<IColumnRepository> _mockRepository;
         private Mock<IMapFactory> _mockFactory;
         private Column _column;
@@ -31,7 +31,7 @@ namespace DataExplorer.Application.Tests.Maps.Queries
             _mockFactory = new Mock<IMapFactory>();
             _mockFactory.Setup(p => p.CreateAxisMap(_column, 0d, 1d)).Returns(_axisMap);
 
-            _query = new GetAxisMapQuery(
+            _handler = new GetAxisMapQueryHandler(
                 _mockRepository.Object,
                 _mockFactory.Object);
         }
@@ -39,7 +39,7 @@ namespace DataExplorer.Application.Tests.Maps.Queries
         [Test]
         public void TestExecuteShouldReturnMap()
         {
-            var result = _query.Execute(_columnDto, 0d, 1d);
+            var result = _handler.Execute(new GetAxisMapQuery(_columnDto.Id, 0d, 1d));
             Assert.That(result, Is.EqualTo(_axisMap));
         }
     }

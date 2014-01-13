@@ -84,8 +84,7 @@
     <Compile Include="Importers\CsvFile\Queries\GetCsvFileSourceQueryHandlerTests.cs" />
     <Compile Include="Importers\DataTypeDetectorTests.cs" />
     <Compile Include="Maps\FakeAxisMap.cs" />
-    <Compile Include="Maps\MapServiceTests.cs" />
-    <Compile Include="Maps\Queries\GetAxisMapQueryTests.cs" />
+    <Compile Include="Maps\Queries\GetAxisMapQueryHandlerTests.cs" />
     <Compile Include="Projects\Commands\CloseProjectCommandTests.cs" />
     <Compile Include="Projects\Commands\OpenProjectCommandTests.cs" />
     <Compile Include="Projects\Commands\SaveProjectCommandTests.cs" />

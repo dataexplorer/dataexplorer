@@ -124,9 +124,8 @@
     <Compile Include="Importers\IDataTypeDetector.cs" />
     <Compile Include="IProcess.cs" />
     <Compile Include="IXmlFileService.cs" />
-    <Compile Include="Maps\IMapService.cs" />
-    <Compile Include="Maps\MapService.cs" />
     <Compile Include="Maps\Queries\GetAxisMapQuery.cs" />
+    <Compile Include="Maps\Queries\GetAxisMapQueryHandler.cs" />
     <Compile Include="Maps\Queries\IGetAxisMapQuery.cs" />
     <Compile Include="Projects\Commands\CloseProjectCommand.cs" />
     <Compile Include="Projects\Commands\ICloseProjectCommand.cs" />
