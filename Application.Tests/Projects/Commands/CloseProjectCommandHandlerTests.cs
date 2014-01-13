@@ -7,9 +7,9 @@ using NUnit.Framework;
 namespace DataExplorer.Application.Tests.Projects.Commands
 {
     [TestFixture]
-    public class CloseProjectCommandTests
+    public class CloseProjectCommandHandlerTests
     {
-        private CloseProjectCommand _command;
+        private CloseProjectCommandHandler _handler;
         private Mock<IDataContext> _mockDataContext;
         private Mock<IEventBus> _mockEventBus;
 
@@ -20,7 +20,7 @@ namespace DataExplorer.Application.Tests.Projects.Commands
 
             _mockEventBus = new Mock<IEventBus>();
 
-            _command = new CloseProjectCommand(
+            _handler = new CloseProjectCommandHandler(
                 _mockDataContext.Object,
                 _mockEventBus.Object);
         }
@@ -28,14 +28,14 @@ namespace DataExplorer.Application.Tests.Projects.Commands
         [Test]
         public void TestExecuteShouldClearDataContext()
         {
-            _command.Execute();
+            _handler.Execute(new CloseProjectCommand());
             _mockDataContext.Verify(p => p.Clear(), Times.Once());
         }
 
         [Test]
         public void TestExecuteShouldRaiseProjectClosedCommand()
         {
-            _command.Execute();
+            _handler.Execute(new CloseProjectCommand());
             _mockEventBus.Verify(p => p.Raise(It.IsAny<ProjectClosedEvent>()), Times.Once());
         }
     }

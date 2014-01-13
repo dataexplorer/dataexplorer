@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using DataExplorer.Application;
-using DataExplorer.Application.Projects;
+using DataExplorer.Application.Core.Commands;
+using DataExplorer.Application.Projects.Commands;
 using DataExplorer.Application.Web;
 using DataExplorer.Presentation.Core;
 using DataExplorer.Presentation.Core.Commands;
-using DataExplorer.Presentation.Dialogs;
+using ICommand = System.Windows.Input.ICommand;
 
 namespace DataExplorer.Presentation.Panes.Navigation.StartMenu
 {
     public class StartMenuViewModel : BaseViewModel, IStartMenuViewModel
     {
-        private readonly IProjectService _projectService;
+        private readonly ICommandBus _commandBus;
         private readonly IDialogService _dialogService;
         private readonly IWebService _webService;
 
@@ -39,11 +39,11 @@ namespace DataExplorer.Presentation.Panes.Navigation.StartMenu
         }
 
         public StartMenuViewModel(
-            IProjectService projectService,
+            ICommandBus commandBus,
             IDialogService dialogService,
             IWebService webService)
         {
-            _projectService = projectService;
+            _commandBus = commandBus;
             _dialogService = dialogService;
             _webService = webService;
 
@@ -54,7 +54,7 @@ namespace DataExplorer.Presentation.Panes.Navigation.StartMenu
 
         private void Open(object obj)
         {
-            _projectService.OpenProject();
+            _commandBus.Execute(new OpenProjectCommand());
         }
 
         private void Import(object obj)

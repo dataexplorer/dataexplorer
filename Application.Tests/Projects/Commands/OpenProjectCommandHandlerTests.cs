@@ -10,9 +10,9 @@ using NUnit.Framework;
 namespace DataExplorer.Application.Tests.Projects.Commands
 {
     [TestFixture]
-    public class OpenProjectCommandTests
+    public class OpenProjectCommandHandlerTests
     {
-        private OpenProjectCommand _command;
+        private OpenProjectCommandHandler _handler;
         private Mock<IDialogService> _mockDialogService;
         private Mock<IXmlFileService> _mockXmlFileService;
         private Mock<IProjectSerializer> _mockSerializer;
@@ -42,7 +42,7 @@ namespace DataExplorer.Application.Tests.Projects.Commands
             
             _mockEventBus = new Mock<IEventBus>();
 
-            _command = new OpenProjectCommand(
+            _handler = new OpenProjectCommandHandler(
                 _mockDialogService.Object,
                 _mockXmlFileService.Object,
                 _mockSerializer.Object,
@@ -54,7 +54,7 @@ namespace DataExplorer.Application.Tests.Projects.Commands
         public void TestOpenProjectShouldReturnNoFileIsSelected()
         {
             _mockDialogService.Setup(p => p.ShowOpenDialog()).Returns((string) null);
-            _command.Execute();
+            _handler.Execute(new OpenProjectCommand());
             _mockDataContext.Verify(p => p.SetProject(_project), Times.Never());
             _mockEventBus.Verify(p => p.Raise(It.IsAny<ProjectOpenedEvent>()), Times.Never());
         }
@@ -62,14 +62,14 @@ namespace DataExplorer.Application.Tests.Projects.Commands
         [Test]
         public void TestOpenProjectShouldSetTheProjectOnTheDataContext()
         {
-            _command.Execute();
+            _handler.Execute(new OpenProjectCommand());
             _mockDataContext.Verify(p => p.SetProject(_project), Times.Once());
         }
 
         [Test]
         public void TestOpenProjectShouldRaiseProjectOpenedEvent()
         {
-            _command.Execute();
+            _handler.Execute(new OpenProjectCommand());
             _mockEventBus.Verify(p => p.Raise(It.IsAny<ProjectOpenedEvent>()), Times.Once());
         }
     }

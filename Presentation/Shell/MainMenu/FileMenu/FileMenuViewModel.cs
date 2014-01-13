@@ -3,6 +3,7 @@ using DataExplorer.Application.Application;
 using DataExplorer.Application.Application.Commands;
 using DataExplorer.Application.Core.Commands;
 using DataExplorer.Application.Projects;
+using DataExplorer.Application.Projects.Commands;
 using DataExplorer.Presentation.Core.Commands;
 using ICommand = System.Windows.Input.ICommand;
 
@@ -11,7 +12,6 @@ namespace DataExplorer.Presentation.Shell.MainMenu.FileMenu
     public class FileMenuViewModel : IFileMenuViewModel
     {
         private readonly ICommandBus _commandBus;
-        private readonly IProjectService _projectService;
         private readonly IDialogService _dialogService;
 
         private readonly ICommand _openCommand;
@@ -22,11 +22,9 @@ namespace DataExplorer.Presentation.Shell.MainMenu.FileMenu
 
         public FileMenuViewModel(
             ICommandBus commandBus,
-            IProjectService projectService,
             IDialogService dialogService)
         {
             _commandBus = commandBus;
-            _projectService = projectService;
             _dialogService = dialogService;
 
             _openCommand = new DelegateCommand(Open);
@@ -63,17 +61,17 @@ namespace DataExplorer.Presentation.Shell.MainMenu.FileMenu
 
         private void Open(object parameter)
         {
-            _projectService.OpenProject();
+            _commandBus.Execute(new OpenProjectCommand());
         }
 
         private void Save(object obj)
         {
-            _projectService.SaveProject();
+            _commandBus.Execute(new SaveProjectCommand());
         }
 
         private void Close(object parameter)
         {
-            _projectService.CloseProject();
+            _commandBus.Execute(new CloseProjectCommand());
         }
 
         private void Import(object parameter)

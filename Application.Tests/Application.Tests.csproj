@@ -85,10 +85,9 @@
     <Compile Include="Importers\DataTypeDetectorTests.cs" />
     <Compile Include="Maps\FakeAxisMap.cs" />
     <Compile Include="Maps\Queries\GetAxisMapQueryHandlerTests.cs" />
-    <Compile Include="Projects\Commands\CloseProjectCommandTests.cs" />
-    <Compile Include="Projects\Commands\OpenProjectCommandTests.cs" />
-    <Compile Include="Projects\Commands\SaveProjectCommandTests.cs" />
-    <Compile Include="Projects\ProjectServiceTests.cs" />
+    <Compile Include="Projects\Commands\CloseProjectCommandHandlerTests.cs" />
+    <Compile Include="Projects\Commands\OpenProjectCommandHandlerTests.cs" />
+    <Compile Include="Projects\Commands\SaveProjectCommandHandlerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rows\RowServiceTests.cs" />
     <Compile Include="Views\ScatterPlots\Commands\PanCommandTests.cs" />

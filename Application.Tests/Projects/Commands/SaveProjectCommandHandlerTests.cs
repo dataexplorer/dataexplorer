@@ -10,9 +10,9 @@ using NUnit.Framework;
 namespace DataExplorer.Application.Tests.Projects.Commands
 {
     [TestFixture]
-    public class SaveProjectCommandTests
+    public class SaveProjectCommandHandlerTests
     {
-        private SaveProjectCommand _command;
+        private SaveProjectCommandHandler _handler;
         private Mock<IDialogService> _mockDialogService;
         private Mock<IDataContext> _mockDataContext;
         private Mock<IProjectSerializer> _mockSerializer;
@@ -42,7 +42,7 @@ namespace DataExplorer.Application.Tests.Projects.Commands
 
             _mockEventBus = new Mock<IEventBus>();
 
-            _command = new SaveProjectCommand(
+            _handler = new SaveProjectCommandHandler(
                 _mockDialogService.Object,
                 _mockDataContext.Object,
                 _mockSerializer.Object,
@@ -54,7 +54,7 @@ namespace DataExplorer.Application.Tests.Projects.Commands
         public void TestExecuteShouldReturnIfNoFileIsSelected()
         {
             _mockDialogService.Setup(p => p.ShowSaveDialog()).Returns((string) null);
-            _command.Execute();
+            _handler.Execute(new SaveProjectCommand());
             _mockFileService.Verify(p => p.Save(_xProject, _filePath), Times.Never());
             _mockEventBus.Verify(p => p.Raise(It.IsAny<ProjectSavedEvent>()), Times.Never());
         }
@@ -62,14 +62,14 @@ namespace DataExplorer.Application.Tests.Projects.Commands
         [Test]
         public void TestExecuteShouldSaveSerializedProject()
         {
-            _command.Execute();
+            _handler.Execute(new SaveProjectCommand());
             _mockFileService.Verify(p => p.Save(_xProject, _filePath), Times.Once());
         }
 
         [Test]
         public void TestExecuteShouldRaiseProjectSavedEvent()
         {
-            _command.Execute();
+            _handler.Execute(new SaveProjectCommand());
             _mockEventBus.Verify(p => p.Raise(It.IsAny<ProjectSavedEvent>()), Times.Once());
         }
     }

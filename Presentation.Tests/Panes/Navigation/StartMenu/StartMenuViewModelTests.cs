@@ -1,5 +1,7 @@
 ﻿using DataExplorer.Application;
+using DataExplorer.Application.Core.Commands;
 using DataExplorer.Application.Projects;
+using DataExplorer.Application.Projects.Commands;
 using DataExplorer.Application.Web;
 using DataExplorer.Presentation.Panes.Navigation.StartMenu;
 using Moq;
@@ -11,18 +13,18 @@ namespace DataExplorer.Presentation.Tests.Panes.Navigation.StartMenu
     public class StartMenuViewModelTests
     {
         private StartMenuViewModel _viewModel;
-        private Mock<IProjectService> _mockProjectService;
+        private Mock<ICommandBus> _mockCommandBus;
         private Mock<IDialogService> _mockDialogService;
         private Mock<IWebService> _mockWebService;
 
         [SetUp]
         public void SetUp()
         {
-            _mockProjectService = new Mock<IProjectService>();
+            _mockCommandBus = new Mock<ICommandBus>();
             _mockDialogService = new Mock<IDialogService>();
             _mockWebService = new Mock<IWebService>();
             _viewModel = new StartMenuViewModel(
-                _mockProjectService.Object,
+                _mockCommandBus.Object,
                 _mockDialogService.Object,
                 _mockWebService.Object);
         }
@@ -31,7 +33,8 @@ namespace DataExplorer.Presentation.Tests.Panes.Navigation.StartMenu
         public void TestOpenShouldOpenProject()
         {
             _viewModel.OpenCommand.Execute(null);
-            _mockProjectService.Verify(p => p.OpenProject(), Times.Once());
+            _mockCommandBus.Verify(p => p.Execute(It.IsAny<OpenProjectCommand>()), 
+                Times.Once());
         }
 
         [Test]
