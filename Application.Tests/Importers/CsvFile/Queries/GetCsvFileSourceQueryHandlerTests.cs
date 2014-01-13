@@ -7,9 +7,9 @@ using NUnit.Framework;
 namespace DataExplorer.Application.Tests.Importers.CsvFile.Queries
 {
     [TestFixture]
-    public class GetCsvFileSourceQueryTests
+    public class GetCsvFileSourceQueryHandlerTests
     {
-        private GetCsvFileSourceQuery _query;
+        private GetCsvFileSourceQueryHandler _handler;
         private Mock<ISourceRepository> _mockRepository;
         private Mock<ICsvFileSourceAdapter> _mockAdapter;
         private CsvFileSource _source;
@@ -27,7 +27,7 @@ namespace DataExplorer.Application.Tests.Importers.CsvFile.Queries
             _mockRepository = new Mock<ISourceRepository>();
             _mockRepository.Setup(p => p.GetSource<CsvFileSource>()).Returns(_source);
 
-            _query = new GetCsvFileSourceQuery(
+            _handler = new GetCsvFileSourceQueryHandler(
                 _mockRepository.Object, 
                 _mockAdapter.Object);
         }
@@ -36,7 +36,7 @@ namespace DataExplorer.Application.Tests.Importers.CsvFile.Queries
         public void TestQueryShouldReturnSourceDto()
         {
             _sourceDto.FilePath = @"C:\Test.xml";
-            var result = _query.Query();
+            var result = _handler.Execute(new GetCsvFileSourceQuery());
             Assert.That(result.FilePath, Is.EqualTo(@"C:\Test.xml"));
         }
     }

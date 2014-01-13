@@ -1,5 +1,9 @@
-﻿using DataExplorer.Application.Importers.CsvFiles;
+﻿using DataExplorer.Application.Core.Messages;
+using DataExplorer.Application.Importers.CsvFiles;
+using DataExplorer.Application.Importers.CsvFiles.Commands;
 using DataExplorer.Application.Importers.CsvFiles.Events;
+using DataExplorer.Application.Importers.CsvFiles.Queries;
+using DataExplorer.Presentation.Importers.CsvFile;
 using DataExplorer.Presentation.Importers.CsvFile.Footer;
 using Moq;
 using NUnit.Framework;
@@ -10,20 +14,21 @@ namespace DataExplorer.Presentation.Tests.Importers.Footer
     public class CsvFileImportFooterViewModelTests
     {
         private CsvFileImportFooterViewModel _viewModel;
-        private Mock<ICsvFileImportService> _mockService;
+        private Mock<IMessageBus> _mockMessageBus;
 
         [SetUp]
         public void SetUp()
         {
-            _mockService = new Mock<ICsvFileImportService>();
+            _mockMessageBus = new Mock<IMessageBus>();
             _viewModel = new CsvFileImportFooterViewModel(
-                _mockService.Object);
+                _mockMessageBus.Object);
         }
 
         [Test]
         public void TestCanImportShouldReturnIfImportState()
         {
-            _mockService.Setup(p => p.CanImport()).Returns(true);
+            _mockMessageBus.Setup(p => p.Execute(It.IsAny<CanImportQuery>()))
+                .Returns(true);
             var result = _viewModel.ImportCommand.CanExecute(null);
             Assert.That(result, Is.True);
         }
@@ -32,7 +37,9 @@ namespace DataExplorer.Presentation.Tests.Importers.Footer
         public void TestImportShouldImportData()
         {
             _viewModel.ImportCommand.Execute(null);
-            _mockService.Verify(p => p.Import(), Times.Once());
+            _mockMessageBus.Verify(p => p.Execute(
+                    It.IsAny<ImportCsvFileSourceCommand>()), 
+                Times.Once());
         }
 
         [Test]

@@ -13,9 +13,9 @@ using NUnit.Framework;
 namespace DataExplorer.Application.Tests.Importers.CsvFile.Commands
 {
     [TestFixture]
-    public class ImportCsvFileSourceCommandTests
+    public class ImportCsvFileSourceCommandHandlerTests
     {
-        private ImportCsvFileSourceCommand _command;
+        private ImportCsvFileSourceCommandHandler _handler;
         private Mock<ICsvFileDataAdapter> _mockDataAdapter;
         private Mock<IDataTypeConverterFactory> _mockFactory;
         private Mock<ISourceRepository> _mockRepository;
@@ -60,7 +60,7 @@ namespace DataExplorer.Application.Tests.Importers.CsvFile.Commands
 
             _mockEventBus = new Mock<IEventBus>();
 
-            _command = new ImportCsvFileSourceCommand(
+            _handler = new ImportCsvFileSourceCommandHandler(
                 _mockRepository.Object,
                 _mockDataAdapter.Object,
                 _mockFactory.Object,
@@ -73,49 +73,49 @@ namespace DataExplorer.Application.Tests.Importers.CsvFile.Commands
         [Test]
         public void TestExecuteShouldRaiseImportingEvent()
         {
-            _command.Execute();
+            _handler.Execute(new ImportCsvFileSourceCommand());
             _mockEventBus.Verify(p => p.Raise(It.IsAny<CsvFileImportingEvent>()));
         }
 
         [Test]
         public void TestExecuteShouldClearDataContext()
         {
-            _command.Execute();
+            _handler.Execute(new ImportCsvFileSourceCommand());
             _mockDataContext.Verify(p => p.Clear(), Times.Once());
         }
 
         [Test]
         public void TestExecuteShouldSetSource()
         {
-            _command.Execute();
+            _handler.Execute(new ImportCsvFileSourceCommand());
             _mockRepository.Verify(p => p.SetSource(_source), Times.Once());
         }
 
         [Test]
         public void TestExecuteShouldAddColumnsToRepository()
         {
-            _command.Execute();
+            _handler.Execute(new ImportCsvFileSourceCommand());
             _mockColumnRepository.Verify(p => p.Add(It.IsAny<Column>()), Times.Once());
         }
 
         [Test]
         public void TestExecuteShouldAddRowsToTheRepository()
         {
-            _command.Execute();
+            _handler.Execute(new ImportCsvFileSourceCommand());
             _mockRowRepository.Verify(p => p.Add(It.IsAny<Row>()), Times.Once());
         }
 
         [Test]
         public void TestExecuteShouldRaiseProgressChangedEvent()
         {
-            _command.Execute();
+            _handler.Execute(new ImportCsvFileSourceCommand());
             _mockEventBus.Verify(p => p.Raise(It.IsAny<CsvFileImportProgressChangedEvent>()));
         }
 
         [Test]
         public void TestExecuteShouldRaiseImportedEvent()
         {
-            _command.Execute();
+            _handler.Execute(new ImportCsvFileSourceCommand());
             _mockEventBus.Verify(p => p.Raise(It.IsAny<CsvFileImportedEvent>()));
         }
     }

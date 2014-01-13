@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.Core.Events;
-using DataExplorer.Application.Importers.CsvFiles;
+using DataExplorer.Application.Core.Queries;
 using DataExplorer.Application.Importers.CsvFiles.Events;
+using DataExplorer.Application.Importers.CsvFiles.Queries;
 using DataExplorer.Presentation.Core;
 
 namespace DataExplorer.Presentation.Importers.CsvFile.Body
@@ -15,11 +16,11 @@ namespace DataExplorer.Presentation.Importers.CsvFile.Body
         ICsvFileImportBodyViewModel,
         IEventHandler<CsvFileSourceChangedEvent>
     {
-        private readonly ICsvFileImportService _service;
+        private readonly IQueryBus _queryBus;
 
-        public CsvFileImportBodyViewModel(ICsvFileImportService service)
+        public CsvFileImportBodyViewModel(IQueryBus queryBus)
         {
-            _service = service;
+            _queryBus = queryBus;
         }
 
         public List<SourceMapViewModel> MapViewModels
@@ -29,7 +30,7 @@ namespace DataExplorer.Presentation.Importers.CsvFile.Body
 
         private List<SourceMapViewModel> GetMapViewModels()
         {
-            return _service.GetMaps()
+            return _queryBus.Execute(new GetCsvFileSourceMapsQuery())
                 .Select(p => new SourceMapViewModel(p))
                 .ToList();
         }

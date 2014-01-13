@@ -1,5 +1,8 @@
-﻿using DataExplorer.Application.Importers.CsvFiles;
+﻿using DataExplorer.Application.Core.Messages;
+using DataExplorer.Application.Importers.CsvFiles;
+using DataExplorer.Application.Importers.CsvFiles.Commands;
 using DataExplorer.Application.Importers.CsvFiles.Events;
+using DataExplorer.Application.Importers.CsvFiles.Queries;
 using DataExplorer.Presentation.Dialogs;
 using DataExplorer.Presentation.Dialogs.Open;
 using DataExplorer.Presentation.Importers.CsvFile.Header;
@@ -12,14 +15,14 @@ namespace DataExplorer.Presentation.Tests.Importers.Header
     public class CsvFileImportHeaderViewModelTests
     {
         private CsvFileImportHeaderViewModel _viewModel;
-        private Mock<ICsvFileImportService> _mockService;
+        private Mock<IMessageBus> _mockService;
         private Mock<IDialogFactory> _mockFactory;
         private Mock<IOpenFileDialog> _mockDialog;
 
         [SetUp]
         public void SetUp()
         {
-            _mockService = new Mock<ICsvFileImportService>();
+            _mockService = new Mock<IMessageBus>();
             _mockDialog = new Mock<IOpenFileDialog>();
             _mockFactory = new Mock<IDialogFactory>();
             _viewModel = new CsvFileImportHeaderViewModel(
@@ -31,31 +34,12 @@ namespace DataExplorer.Presentation.Tests.Importers.Header
         public void TestGetFilePathShouldReturnFilePath()
         {
             var sourceDto = new CsvFileSourceDto() {FilePath = @"C:\Test.csv" };
-            _mockService.Setup(p => p.GetSource()).Returns(sourceDto);
+            _mockService.Setup(p => p.Execute(It.IsAny<GetCsvFileSourceQuery>()))
+                .Returns(sourceDto);
             var result = _viewModel.FilePath;
             Assert.That(result, Is.EqualTo(@"C:\Test.csv"));
         }
-
-        //[Test]
-        //public void TestSetFilePathShouldSetFilePath()
-        //{
-        //    var sourceDto = new CsvFileSourceDto();
-        //    _mockService.Setup(p => p.GetSource()).Returns(sourceDto);
-        //    _viewModel.FilePath = @"C:\Test.csv";
-        //    var result = _viewModel.FilePath;
-        //    Assert.That(result, Is.EqualTo(@"C:\Test.csv"));
-        //}
-
-        //[Test]
-        //public void TestSetFilePathShouldUpdateSource()
-        //{
-        //    var sourceDto = new CsvFileSourceDto();
-        //    _mockService.Setup(p => p.GetSource()).Returns(sourceDto);
-        //    _viewModel.FilePath = @"C:\Test.csv";
-        //    var result = _viewModel.FilePath;
-        //    Assert.That(result, Is.EqualTo(@"C:\Test.csv"));
-        //}
-
+       
         [Test]
         public void TestBrowseShouldShowOpenFileDialog()
         {
@@ -73,7 +57,9 @@ namespace DataExplorer.Presentation.Tests.Importers.Header
             _mockDialog.Setup(p => p.ShowDialog()).Returns(true);
             _mockDialog.Setup(p => p.GetFilePath()).Returns(@"C:\Test.csv");
             _viewModel.BrowseCommand.Execute(null);
-            _mockService.Verify(p => p.UpdateSource(@"C:\Test.csv"));
+            _mockService.Verify(p => p.Execute(
+                    It.Is<UpdateCsvFileSourceCommand>(q => q.FilePath == @"C:\Test.csv")), 
+                Times.Once());
         }
 
         [Test]

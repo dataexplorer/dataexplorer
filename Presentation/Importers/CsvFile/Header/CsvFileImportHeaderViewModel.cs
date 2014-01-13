@@ -1,12 +1,16 @@
 ﻿using System.ComponentModel;
 using System.Threading.Tasks;
-using System.Windows.Input;
+using DataExplorer.Application.Core.Commands;
 using DataExplorer.Application.Core.Events;
+using DataExplorer.Application.Core.Messages;
 using DataExplorer.Application.Importers.CsvFiles;
+using DataExplorer.Application.Importers.CsvFiles.Commands;
 using DataExplorer.Application.Importers.CsvFiles.Events;
+using DataExplorer.Application.Importers.CsvFiles.Queries;
 using DataExplorer.Presentation.Core;
 using DataExplorer.Presentation.Core.Commands;
 using DataExplorer.Presentation.Dialogs;
+using ICommand = System.Windows.Input.ICommand;
 
 namespace DataExplorer.Presentation.Importers.CsvFile.Header
 {
@@ -18,13 +22,13 @@ namespace DataExplorer.Presentation.Importers.CsvFile.Header
         private const string FileFilter = "CSV documents|*.csv";
         private const string DefaultFileExtension = ".csv";
 
-        private readonly ICsvFileImportService _service;
+        private readonly IMessageBus _messageBus;
         private readonly IDialogFactory _dialogFactory;
         private readonly DelegateCommand _browseCommand;
         
         public string FilePath
         {
-            get { return _service.GetSource().FilePath; }
+            get { return _messageBus.Execute(new GetCsvFileSourceQuery()).FilePath; }
         }
 
         public ICommand BrowseCommand
@@ -33,10 +37,10 @@ namespace DataExplorer.Presentation.Importers.CsvFile.Header
         }
 
         public CsvFileImportHeaderViewModel(
-            ICsvFileImportService service,
+            IMessageBus messageBus,
             IDialogFactory dialogFactory)
         {
-            _service = service;
+            _messageBus = messageBus;
             _dialogFactory = dialogFactory;
             _browseCommand = new DelegateCommand(Browse);
         }
@@ -51,7 +55,7 @@ namespace DataExplorer.Presentation.Importers.CsvFile.Header
             var result = dialog.ShowDialog();
             
             if (result == true)
-                _service.UpdateSource(dialog.GetFilePath());
+                _messageBus.Execute(new UpdateCsvFileSourceCommand(dialog.GetFilePath()));
         }
         
         public void Handle(CsvFileSourceChangedEvent args)

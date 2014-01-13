@@ -8,9 +8,9 @@ using NUnit.Framework;
 namespace DataExplorer.Application.Tests.Importers.CsvFile.Queries
 {
     [TestFixture]
-    public class GetCsvFileSourceMapsQueryTests
+    public class GetCsvFileSourceMapsQueryHandlerTests
     {
-        private GetCsvFileSourceMapsQuery _query;
+        private GetCsvFileSourceMapsQueryHandler _handler;
         private Mock<ISourceRepository> _mockRepository;
         private CsvFileSource _source;
         private SourceMap _map;
@@ -26,14 +26,14 @@ namespace DataExplorer.Application.Tests.Importers.CsvFile.Queries
             _mockRepository = new Mock<ISourceRepository>();
             _mockRepository.Setup(p => p.GetSource<CsvFileSource>()).Returns(_source);
 
-            _query = new GetCsvFileSourceMapsQuery(_mockRepository.Object);
+            _handler = new GetCsvFileSourceMapsQueryHandler(_mockRepository.Object);
         }
 
         [Test]
         public void TestGetMapsShouldReturnMaps()
         {
             _source.SetMaps(_maps);
-            var result = _query.Query();
+            var result = _handler.Execute(new GetCsvFileSourceMapsQuery());
             Assert.That(result, Contains.Item(_map));
         }
     }

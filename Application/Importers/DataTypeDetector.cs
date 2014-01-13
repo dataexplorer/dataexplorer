@@ -11,7 +11,7 @@ namespace DataExplorer.Application.Importers
     {
         public Type Detect(IEnumerable<string> values)
         {
-           if (IsBoolean(values))
+            if (IsBoolean(values))
                 return typeof(Boolean);
 
             if (IsDateTime(values))

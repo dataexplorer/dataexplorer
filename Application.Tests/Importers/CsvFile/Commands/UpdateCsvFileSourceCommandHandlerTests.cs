@@ -11,9 +11,9 @@ using NUnit.Framework;
 namespace DataExplorer.Application.Tests.Importers.CsvFile.Commands
 {
     [TestFixture]
-    public class UpdateCsvFileSourceCommandTests
+    public class UpdateCsvFileSourceCommandHandlerTests
     {
-        private UpdateCsvFileSourceCommand _command;
+        private UpdateCsvFileSourceCommandHandler _handler;
         private Mock<ISourceRepository> _mockRepository;
         private Mock<ICsvFileDataAdapter> _mockDataAdapter;
         private Mock<ISourceMapFactory> _mockFactory;
@@ -46,7 +46,7 @@ namespace DataExplorer.Application.Tests.Importers.CsvFile.Commands
 
             _mockEventBus = new Mock<IEventBus>();
 
-            _command = new UpdateCsvFileSourceCommand(
+            _handler = new UpdateCsvFileSourceCommandHandler(
                 _mockRepository.Object,
                 _mockDataAdapter.Object,
                 _mockFactory.Object,
@@ -56,21 +56,21 @@ namespace DataExplorer.Application.Tests.Importers.CsvFile.Commands
         [Test]
         public void TestUpdateSourceShouldUpdateSourceFilePath()
         {
-            _command.Execute(_filePath);
+            _handler.Execute(new UpdateCsvFileSourceCommand(_filePath));
             Assert.That(_source.FilePath, Is.EqualTo(_filePath));
         }
 
         [Test]
         public void TestExecuteShouldUpdateSourceMaps()
         {
-            _command.Execute(_filePath);
+            _handler.Execute(new UpdateCsvFileSourceCommand(_filePath));
             Assert.That(_source.GetMaps(), Is.EqualTo(_maps));
         }
 
         [Test]
         public void TestExecuteShouldRaiseSourceChangedEvent()
         {
-            _command.Execute(_filePath);
+            _handler.Execute(new UpdateCsvFileSourceCommand(_filePath));
             _mockEventBus.Verify(p => p.Raise(It.IsAny<CsvFileSourceChangedEvent>()));
         }
     }

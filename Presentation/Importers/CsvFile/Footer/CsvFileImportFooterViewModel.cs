@@ -2,8 +2,11 @@
 using System.Windows.Input;
 using System.Windows.Threading;
 using DataExplorer.Application.Core.Events;
+using DataExplorer.Application.Core.Messages;
 using DataExplorer.Application.Importers.CsvFiles;
+using DataExplorer.Application.Importers.CsvFiles.Commands;
 using DataExplorer.Application.Importers.CsvFiles.Events;
+using DataExplorer.Application.Importers.CsvFiles.Queries;
 using DataExplorer.Presentation.Core;
 using DataExplorer.Presentation.Core.Commands;
 using DataExplorer.Presentation.Core.Events;
@@ -18,7 +21,7 @@ namespace DataExplorer.Presentation.Importers.CsvFile.Footer
         IEventHandler<CsvFileImportedEvent>,
         IEventHandler<CsvFileImportProgressChangedEvent>
     {
-        private readonly ICsvFileImportService _service;
+        private readonly IMessageBus _messageBus;
         private readonly AsyncDelegateCommand _importCommand;
         private readonly DelegateCommand _cancelCommand;
 
@@ -47,9 +50,9 @@ namespace DataExplorer.Presentation.Importers.CsvFile.Footer
             get { return _progress; }
         }
 
-        public CsvFileImportFooterViewModel(ICsvFileImportService service)
+        public CsvFileImportFooterViewModel(IMessageBus messageBus)
         {
-            _service = service;
+            _messageBus = messageBus;
             _importCommand = new AsyncDelegateCommand(Import, CanImport);
             _cancelCommand = new DelegateCommand(Cancel);
 
@@ -59,12 +62,12 @@ namespace DataExplorer.Presentation.Importers.CsvFile.Footer
 
         private bool CanImport(object parameter)
         {
-            return _service.CanImport();
+            return _messageBus.Execute(new CanImportQuery());
         }
 
         private void Import(object obj)
         {
-            _service.Import();
+            _messageBus.Execute(new ImportCsvFileSourceCommand());
         }
 
         private void Cancel(object obj)

@@ -6,9 +6,9 @@ using NUnit.Framework;
 namespace DataExplorer.Application.Tests.Importers.CsvFile.Queries
 {
     [TestFixture]
-    public class CanImportQueryTests
+    public class CanImportQueryHandlerTests
     {
-        private CanImportQuery _query;
+        private CanImportQueryHandler _handler;
         private Mock<ISourceRepository> _mockRepository;
         private CsvFileSource _source;
 
@@ -20,14 +20,14 @@ namespace DataExplorer.Application.Tests.Importers.CsvFile.Queries
             _mockRepository = new Mock<ISourceRepository>();
             _mockRepository.Setup(p => p.GetSource<CsvFileSource>()).Returns(_source);
             
-            _query = new CanImportQuery(_mockRepository.Object);
+            _handler = new CanImportQueryHandler(_mockRepository.Object);
         }
 
         [Test]
         public void TestCanImportShouldReturnTrueIfFilePathExists()
         {
             _source.FilePath = @"C:\Test.csv";
-            var result = _query.Query();
+            var result = _handler.Execute(new CanImportQuery());
             Assert.That(result, Is.True);
         }
 
@@ -36,7 +36,7 @@ namespace DataExplorer.Application.Tests.Importers.CsvFile.Queries
         {
             _source.FilePath = null;
             _mockRepository.Setup(p => p.GetSource<CsvFileSource>()).Returns(_source);
-            var result = _query.Query();
+            var result = _handler.Execute(new CanImportQuery());
             Assert.That(result, Is.False);
         }
 
@@ -45,7 +45,7 @@ namespace DataExplorer.Application.Tests.Importers.CsvFile.Queries
         {
             _source.FilePath = string.Empty;
             _mockRepository.Setup(p => p.GetSource<CsvFileSource>()).Returns(_source);
-            var result = _query.Query();
+            var result = _handler.Execute(new CanImportQuery());
             Assert.That(result, Is.False);
         }
     }
