@@ -9,12 +9,15 @@ namespace DataExplorer.Application.Core.Events
     {
         public static IKernel Kernel;
 
-        public void Raise<T>(T @event) where T : IEvent
+        public void Raise(IEvent @event)
         {
-            var handlers = Kernel.GetAll<IEventHandler<T>>();
+            var handlerType = typeof(IEventHandler<>)
+                .MakeGenericType(@event.GetType());
+
+            dynamic handlers = Kernel.GetAll(handlerType);
 
             foreach (var handler in handlers)
-                handler.Handle(@event);
+                handler.Handle((dynamic) @event);
         }
     }
 }

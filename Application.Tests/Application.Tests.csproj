@@ -89,7 +89,10 @@
     <Compile Include="Projects\Commands\OpenProjectCommandHandlerTests.cs" />
     <Compile Include="Projects\Commands\SaveProjectCommandHandlerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Rows\RowServiceTests.cs" />
+    <Compile Include="Rows\Commands\SetSelectedRowsCommandHandlerTests.cs" />
+    <Compile Include="Rows\Queries\GetAllRowsQueryHandlerTests.cs" />
+    <Compile Include="Rows\Queries\GetLastSelectedRowQueryHandlerTests.cs" />
+    <Compile Include="Rows\Queries\GetSelectedRowsQueryHandlerTests.cs" />
     <Compile Include="Views\ScatterPlots\Commands\PanCommandTests.cs" />
     <Compile Include="Views\ScatterPlots\Commands\SetViewExtentCommandTests.cs" />
     <Compile Include="Views\ScatterPlots\Commands\UpdatePlotsCommandTests.cs" />

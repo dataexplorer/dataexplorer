@@ -3,28 +3,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataExplorer.Application.Rows;
+using DataExplorer.Application.Core.Messages;
+using DataExplorer.Application.Rows.Commands;
+using DataExplorer.Application.Rows.Queries;
 using DataExplorer.Presentation.Core.Canvas.Items;
 
 namespace DataExplorer.Presentation.Views.ScatterPlots.Commands
 {
     public class SelectCommand : ISelectCommand
     {
-        private readonly IRowService _rowService;
+        private readonly IMessageBus _commandBus;
 
-        public SelectCommand(IRowService rowService)
+        public SelectCommand(IMessageBus commandBus)
         {
-            _rowService = rowService;
+            _commandBus = commandBus;
         }
 
         public void Execute(List<CanvasItem> items)
         {
-            var rows = _rowService.GetAll();
+            var rows = _commandBus.Execute(new GetAllRowsQuery());
 
             var selectedRows = items
-                .Select(p => rows.First(q => q.Id == p.Id));
+                .Select(p => rows.First(q => q.Id == p.Id))
+                .ToList();
 
-            _rowService.SetSelectedRows(selectedRows);
+            _commandBus.Execute(new SetSelectedRowsCommand(selectedRows));
         }
     }
 }

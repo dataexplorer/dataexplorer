@@ -143,7 +143,6 @@ namespace DataExplorer.Application.Tests.Application
         {
             _service.Handle(new CsvFileImportingEvent());
             _mockState.VerifySet(p => p.SelectedRows = new List<Row>(), Times.Once());
-            _mockEventBus.Verify(p => p.Raise(It.IsAny<SelectedRowsChangedEvent>()));
         }
         
         [Test]
@@ -182,7 +181,6 @@ namespace DataExplorer.Application.Tests.Application
         {
             _service.Handle(new ProjectOpeningEvent());
             _mockState.VerifySet(p => p.SelectedRows = new List<Row>(), Times.Once());
-            _mockEventBus.Verify(p => p.Raise(It.IsAny<SelectedRowsChangedEvent>()));
         }
 
         [Test]

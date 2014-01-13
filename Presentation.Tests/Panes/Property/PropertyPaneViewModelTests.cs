@@ -7,6 +7,8 @@ using DataExplorer.Application.Columns.Queries;
 using DataExplorer.Application.Core.Queries;
 using DataExplorer.Application.Importers.CsvFiles.Events;
 using DataExplorer.Application.Rows;
+using DataExplorer.Application.Rows.Events;
+using DataExplorer.Application.Rows.Queries;
 using DataExplorer.Domain.Rows;
 using DataExplorer.Domain.Tests.Rows;
 using DataExplorer.Presentation.Panes.Property;
@@ -19,8 +21,7 @@ namespace DataExplorer.Presentation.Tests.Panes.Property
     public class PropertyPaneViewModelTests
     {
         private PropertyPaneViewModel _viewModel;
-        private Mock<IQueryBus> _mockColumnService;
-        private Mock<IRowService> _mockRowService;
+        private Mock<IQueryBus> _mockQueryBus;
         private Mock<IProcess> _mockProcess;
         private List<ColumnDto> _columns;
         private ColumnDto _column;
@@ -33,24 +34,24 @@ namespace DataExplorer.Presentation.Tests.Panes.Property
             _columns = new List<ColumnDto> { _column };
             _row = new RowBuilder().WithField("Field 1").Build();
 
-            _mockColumnService = new Mock<IQueryBus>();
-            _mockColumnService.Setup(p => p.Execute(It.IsAny<GetAllColumnsQuery>())).Returns(_columns);
-
-            _mockRowService = new Mock<IRowService>();
-            _mockRowService.Setup(p => p.GetSelectedRow()).Returns(_row);
+            _mockQueryBus = new Mock<IQueryBus>();
+            _mockQueryBus.Setup(p => p.Execute(It.IsAny<GetAllColumnsQuery>()))
+                .Returns(_columns);
+            _mockQueryBus.Setup(p => p.Execute(It.IsAny<GetLastSelectedRowQuery>()))
+                .Returns(_row);
 
             _mockProcess = new Mock<IProcess>();
 
             _viewModel = new PropertyPaneViewModel(
-                _mockColumnService.Object,
-                _mockRowService.Object,
+                _mockQueryBus.Object,
                 _mockProcess.Object);
         }
 
         [Test]
         public void TestPropertiesShouldReturnEmptyIfNoSelectedRow()
         {
-            _mockRowService.Setup(p => p.GetSelectedRow()).Returns((Row) null);
+            _mockQueryBus.Setup(p => p.Execute(It.IsAny<GetLastSelectedRowQuery>()))
+                .Returns((Row) null);
             var results = _viewModel.Properties;
             Assert.That(results, Is.Empty);
         }

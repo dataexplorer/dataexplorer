@@ -10,6 +10,7 @@ using DataExplorer.Application.Core.Commands;
 using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Core.Messages;
 using DataExplorer.Application.Rows;
+using DataExplorer.Application.Rows.Events;
 using DataExplorer.Presentation.Core.Commands;
 using ICommand = System.Windows.Input.ICommand;
 

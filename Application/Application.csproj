@@ -53,7 +53,6 @@
     <Compile Include="Application\Commands\ExitCommand.cs" />
     <Compile Include="Application\Commands\ExitCommandHandler.cs" />
     <Compile Include="Application\Events\NavigationTreeVisibilityChangedEvent.cs" />
-    <Compile Include="Application\Events\SelectedRowsChangedEvent.cs" />
     <Compile Include="Application\Events\StartMenuVisibilityChangedEvent.cs" />
     <Compile Include="Application\IApplication.cs" />
     <Compile Include="Application\IApplicationService.cs" />
@@ -141,9 +140,15 @@
     <Compile Include="Projects\Events\ProjectSavedEvent.cs" />
     <Compile Include="Projects\IProjectSerializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Rows\IRowService.cs" />
-    <Compile Include="Rows\RowService.cs" />
-    <Compile Include="Rows\SelectedRowsChangedEvent.cs" />
+    <Compile Include="Rows\Commands\SetSelectedRowsCommand.cs" />
+    <Compile Include="Rows\Commands\SetSelectedRowsCommandHandler.cs" />
+    <Compile Include="Rows\Queries\GetAllRowsQuery.cs" />
+    <Compile Include="Rows\Queries\GetAllRowsQueryHandler.cs" />
+    <Compile Include="Rows\Queries\GetLastSelectedRowQuery.cs" />
+    <Compile Include="Rows\Queries\GetLastSelectedRowQueryHandler.cs" />
+    <Compile Include="Rows\Queries\GetSelectedRowsQuery.cs" />
+    <Compile Include="Rows\Queries\GetSelectedRowsQueryHandler.cs" />
+    <Compile Include="Rows\Events\SelectedRowsChangedEvent.cs" />
     <Compile Include="Views\ScatterPlots\Commands\IPanCommand.cs" />
     <Compile Include="Views\ScatterPlots\Commands\ISetViewExtentCommand.cs" />
     <Compile Include="Views\ScatterPlots\Commands\IUpdatePlotsCommand.cs" />

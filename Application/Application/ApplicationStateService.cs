@@ -71,7 +71,6 @@ namespace DataExplorer.Application.Application
         public void SetSelectedRows(List<Row> rows)
         {
             _state.SelectedRows = rows;
-            _eventBus.Raise(new SelectedRowsChangedEvent());
         }
 
         public void Handle(CsvFileImportingEvent args)

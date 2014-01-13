@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using DataExplorer.Application.Core.Queries;
 using DataExplorer.Application.Rows;
+using DataExplorer.Application.Rows.Queries;
 using DataExplorer.Domain.Rows;
 using DataExplorer.Domain.Tests.Rows;
 using DataExplorer.Presentation.Core.Canvas.Items;
@@ -15,7 +17,7 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Queries
     public class GetSelectedItemsQueryTests
     {
         private GetSelectedItemsQuery _query;
-        private Mock<IRowService> _mockRowService;
+        private Mock<IQueryBus> _mockRowService;
         private List<Row> _rows;
         private Row _row;
         private List<CanvasItem> _items;
@@ -29,8 +31,9 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Queries
             _item = new FakeCanvasItem() { Id = 1 };
             _items = new List<CanvasItem> { _item };
 
-            _mockRowService = new Mock<IRowService>();
-            _mockRowService.Setup(p => p.GetSelectedRows()).Returns(_rows);
+            _mockRowService = new Mock<IQueryBus>();
+            _mockRowService.Setup(p => p.Execute(It.IsAny<GetSelectedRowsQuery>()))
+                .Returns(_rows);
 
             _query = new GetSelectedItemsQuery(_mockRowService.Object);
         }

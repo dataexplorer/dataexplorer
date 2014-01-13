@@ -10,6 +10,8 @@ using DataExplorer.Application.Core.Queries;
 using DataExplorer.Application.Importers.CsvFiles.Events;
 using DataExplorer.Application.Projects.Events;
 using DataExplorer.Application.Rows;
+using DataExplorer.Application.Rows.Events;
+using DataExplorer.Application.Rows.Queries;
 using DataExplorer.Presentation.Core;
 
 namespace DataExplorer.Presentation.Panes.Property
@@ -22,16 +24,13 @@ namespace DataExplorer.Presentation.Panes.Property
         IEventHandler<ProjectOpeningEvent>
     {
         private readonly IQueryBus _queryBus;
-        private readonly IRowService _rowService;
         private readonly IProcess _process;
 
         public PropertyPaneViewModel(
             IQueryBus queryBus, 
-            IRowService rowService, 
             IProcess process)
         {
             _queryBus = queryBus;
-            _rowService = rowService;
             _process = process;
         }
 
@@ -39,7 +38,7 @@ namespace DataExplorer.Presentation.Panes.Property
         {
             get
             {
-                var row = _rowService.GetSelectedRow();
+                var row = _queryBus.Execute(new GetLastSelectedRowQuery());
 
                 if (row == null)
                     return new List<PropertyViewModel>();

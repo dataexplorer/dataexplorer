@@ -2,6 +2,7 @@
 using DataExplorer.Application.Clipboard.Commands;
 using DataExplorer.Application.Core.Messages;
 using DataExplorer.Application.Rows;
+using DataExplorer.Application.Rows.Events;
 using DataExplorer.Presentation.Shell.MainMenu.EditMenu;
 using Moq;
 using NUnit.Framework;

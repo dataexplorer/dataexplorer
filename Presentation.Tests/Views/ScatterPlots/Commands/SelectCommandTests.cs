@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
-using DataExplorer.Application.Rows;
+using System.Linq;
+using DataExplorer.Application.Core.Messages;
+using DataExplorer.Application.Rows.Commands;
+using DataExplorer.Application.Rows.Queries;
 using DataExplorer.Domain.Rows;
 using DataExplorer.Domain.Tests.Rows;
 using DataExplorer.Presentation.Core.Canvas.Items;
@@ -14,7 +17,7 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Commands
     public class SelectCommandTests
     {
         private SelectCommand _command;
-        private Mock<IRowService> _mockService;
+        private Mock<IMessageBus> _mockMessageBus;
         private List<CanvasItem> _items;
         private CanvasItem _item;
         private List<Row> _rows;
@@ -28,18 +31,20 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Commands
             _row = new RowBuilder().WithId(1).Build();
             _rows = new List<Row> { _row };
 
-            _mockService = new Mock<IRowService>();
-            _mockService.Setup(p => p.GetAll()).Returns(_rows);
+            _mockMessageBus = new Mock<IMessageBus>();
+            _mockMessageBus.Setup(p => p.Execute(It.IsAny<GetAllRowsQuery>()))
+                .Returns(_rows);
 
             _command = new SelectCommand(
-                _mockService.Object);
+                _mockMessageBus.Object);
         }
 
         [Test]
         public void TestExecuteShouldSetSelectedRows()
         {
             _command.Execute(_items);
-            _mockService.Verify(p => p.SetSelectedRows(_rows));
+            _mockMessageBus.Verify(p => p.Execute(
+                It.Is<SetSelectedRowsCommand>(q => q.Rows.Single() == _row)), Times.Once());
         }
     }
 }

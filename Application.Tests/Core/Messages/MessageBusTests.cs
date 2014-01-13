@@ -64,7 +64,7 @@ namespace DataExplorer.Application.Tests.Core.Messages
         public void TestRaiseShouldRaiseEvent()
         {
             _messageBus.Raise(_fakeEvent);
-            _mockEventBus.Verify(p => p.Raise<IEvent>(_fakeEvent));
+            _mockEventBus.Verify(p => p.Raise(_fakeEvent));
         }
     }
 }
