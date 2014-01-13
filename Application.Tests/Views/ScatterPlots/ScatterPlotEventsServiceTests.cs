@@ -1,4 +1,5 @@
-﻿using DataExplorer.Application.Filters.Events;
+﻿using DataExplorer.Application.Core.Commands;
+using DataExplorer.Application.Filters.Events;
 using DataExplorer.Application.Importers.CsvFiles.Events;
 using DataExplorer.Application.Projects.Events;
 using DataExplorer.Application.Views.ScatterPlots;
@@ -13,12 +14,12 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots
     public class ScatterPlotEventsServiceTests
     {
         private ScatterPlotEventsService _service;
-        private Mock<IUpdatePlotsCommand> _mockTask;
+        private Mock<ICommandBus> _mockTask;
 
         [SetUp]
         public void SetUp()
         {
-            _mockTask = new Mock<IUpdatePlotsCommand>();
+            _mockTask = new Mock<ICommandBus>();
             _service = new ScatterPlotEventsService(_mockTask.Object);
         }
 
@@ -27,7 +28,8 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots
         {
             var @event = new ProjectOpenedEvent();
             _service.Handle(@event);
-            _mockTask.Verify(p => p.UpdatePlots(), Times.Once());
+            _mockTask.Verify(p => p.Execute(It.IsAny<UpdatePlotsCommand>()),
+                Times.Once());
         }
 
         [Test]
@@ -35,7 +37,8 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots
         {
             var @event = new ProjectClosedEvent();
             _service.Handle(@event);
-            _mockTask.Verify(p => p.UpdatePlots(), Times.Once());
+            _mockTask.Verify(p => p.Execute(It.IsAny<UpdatePlotsCommand>()),
+                Times.Once());
         }
 
         [Test]
@@ -43,7 +46,8 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots
         {
             var @event = new ScatterPlotLayoutColumnChangedEvent();
             _service.Handle(@event);
-            _mockTask.Verify(p => p.UpdatePlots(), Times.Once());
+            _mockTask.Verify(p => p.Execute(It.IsAny<UpdatePlotsCommand>()),
+                Times.Once());
         }
 
         [Test]
@@ -51,7 +55,8 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots
         {
             var @event = new CsvFileImportedEvent();
             _service.Handle(@event);
-            _mockTask.Verify(p => p.UpdatePlots(), Times.Once());
+            _mockTask.Verify(p => p.Execute(It.IsAny<UpdatePlotsCommand>()),
+                Times.Once());
         }
 
         [Test]
@@ -59,7 +64,8 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots
         {
             var @event = new FilterChangedEvent();
             _service.Handle(@event);
-            _mockTask.Verify(p => p.UpdatePlots(), Times.Once());
+            _mockTask.Verify(p => p.Execute(It.IsAny<UpdatePlotsCommand>()),
+                Times.Once());
         }
     }
 }

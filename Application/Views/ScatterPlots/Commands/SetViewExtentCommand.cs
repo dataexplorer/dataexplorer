@@ -1,23 +1,25 @@
-﻿using System.Windows;
-using DataExplorer.Domain.Views;
-using DataExplorer.Domain.Views.ScatterPlots;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using DataExplorer.Application.Core.Commands;
 
 namespace DataExplorer.Application.Views.ScatterPlots.Commands
 {
-    public class SetViewExtentCommand : ISetViewExtentCommand
+    public class SetViewExtentCommand : ICommand
     {
-        private readonly IViewRepository _repository;
+        private readonly Rect _viewExtent;
 
-        public SetViewExtentCommand(IViewRepository repository)
+        public SetViewExtentCommand(Rect viewExtent)
         {
-            _repository = repository;
+            _viewExtent = viewExtent;
         }
 
-        public void SetViewExtent(Rect viewExtent)
+        public Rect ViewExtent
         {
-            var scatterPlot = _repository.Get<ScatterPlot>();
-
-            scatterPlot.SetViewExtent(viewExtent);
+            get { return _viewExtent; }
         }
     }
 }

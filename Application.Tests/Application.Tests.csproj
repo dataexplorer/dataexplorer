@@ -93,12 +93,12 @@
     <Compile Include="Rows\Queries\GetAllRowsQueryHandlerTests.cs" />
     <Compile Include="Rows\Queries\GetLastSelectedRowQueryHandlerTests.cs" />
     <Compile Include="Rows\Queries\GetSelectedRowsQueryHandlerTests.cs" />
-    <Compile Include="Views\ScatterPlots\Commands\PanCommandTests.cs" />
-    <Compile Include="Views\ScatterPlots\Commands\SetViewExtentCommandTests.cs" />
-    <Compile Include="Views\ScatterPlots\Commands\UpdatePlotsCommandTests.cs" />
+    <Compile Include="Views\ScatterPlots\Commands\PanCommandHandlerTests.cs" />
+    <Compile Include="Views\ScatterPlots\Commands\SetViewExtentCommandHandlerTests.cs" />
+    <Compile Include="Views\ScatterPlots\Commands\UpdatePlotsCommandHandlerTests.cs" />
     <Compile Include="Views\ScatterPlots\Commands\ZoomInTaskTests.cs" />
     <Compile Include="Views\ScatterPlots\Commands\ZoomOutTaskTests.cs" />
-    <Compile Include="Views\ScatterPlots\Commands\ZoomToFullExtentCommandTests.cs" />
+    <Compile Include="Views\ScatterPlots\Commands\ZoomToFullExtentCommandHandlerTests.cs" />
     <Compile Include="Views\ScatterPlots\Layouts\Commands\ClearLayoutCommandTests.cs" />
     <Compile Include="Views\ScatterPlots\Layouts\Commands\SetXColumnCommandTests.cs" />
     <Compile Include="Views\ScatterPlots\Layouts\Commands\SetYColumnCommandTests.cs" />
@@ -109,7 +109,6 @@
     <Compile Include="Views\ScatterPlots\ScatterPlotAdapterTests.cs" />
     <Compile Include="Views\ScatterPlots\ScatterPlotEventsServiceTests.cs" />
     <Compile Include="Views\ScatterPlots\ScatterPlotLayoutServiceTests.cs" />
-    <Compile Include="Views\ScatterPlots\ScatterPlotServiceTests.cs" />
     <Compile Include="Web\OpenDownloadDataPageCommandHandlerTests.cs" />
   </ItemGroup>
   <ItemGroup>

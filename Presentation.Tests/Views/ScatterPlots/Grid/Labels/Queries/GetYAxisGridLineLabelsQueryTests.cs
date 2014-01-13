@@ -8,6 +8,7 @@ using DataExplorer.Application.Maps;
 using DataExplorer.Application.Maps.Queries;
 using DataExplorer.Application.Tests.Maps;
 using DataExplorer.Application.Views.ScatterPlots;
+using DataExplorer.Application.Views.ScatterPlots.Queries;
 using DataExplorer.Domain.Maps;
 using DataExplorer.Domain.Views.ScatterPlots;
 using DataExplorer.Presentation.Core.Canvas.Items;
@@ -23,7 +24,7 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Grid.Labels.Queries
     public class GetYAxisGridLineLabelsQueryTests
     {
         private GetYAxisGridLabelsQuery _query;
-        private Mock<IScatterPlotService> _mockScatterPlotService;
+        private Mock<IQueryBus> _mockScatterPlotService;
         private Mock<IScatterPlotLayoutService> _mockLayoutService;
         private Mock<IQueryBus> _mockQueryBus;
         private Mock<IGridLineFactory> _mockFactory;
@@ -61,8 +62,9 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Grid.Labels.Queries
                     && q.TargetMax == 1d)))
                 .Returns(_axisMap);
 
-            _mockScatterPlotService = new Mock<IScatterPlotService>();
-            _mockScatterPlotService.Setup(p => p.GetViewExtent()).Returns(_viewExtent);
+            _mockScatterPlotService = new Mock<IQueryBus>();
+            _mockScatterPlotService.Setup(p => p.Execute(It.IsAny<GetViewExtentQuery>()))
+                .Returns(_viewExtent);
 
             _mockLayoutService = new Mock<IScatterPlotLayoutService>();
             _mockLayoutService.Setup(p => p.GetYColumn()).Returns(_columnDto);
@@ -75,7 +77,6 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Grid.Labels.Queries
 
             _query = new GetYAxisGridLabelsQuery(
                 _mockQueryBus.Object,
-                _mockScatterPlotService.Object,
                 _mockLayoutService.Object,
                 _mockFactory.Object,
                 _mockRenderer.Object);

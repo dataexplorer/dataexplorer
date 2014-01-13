@@ -1,4 +1,5 @@
-﻿using DataExplorer.Application.Core.Events;
+﻿using DataExplorer.Application.Core.Commands;
+using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Filters.Events;
 using DataExplorer.Application.Importers.CsvFiles.Events;
 using DataExplorer.Application.Projects.Events;
@@ -15,36 +16,36 @@ namespace DataExplorer.Application.Views.ScatterPlots
         IEventHandler<CsvFileImportedEvent>,
         IEventHandler<FilterChangedEvent>
     {
-        private readonly IUpdatePlotsCommand _updateCommand;
+        private readonly ICommandBus _commandBus;
 
-        public ScatterPlotEventsService(IUpdatePlotsCommand updateCommand)
+        public ScatterPlotEventsService(ICommandBus commandBus)
         {
-            _updateCommand = updateCommand;
+            _commandBus = commandBus;
         }
 
         public void Handle(ProjectOpenedEvent args)
         {
-            _updateCommand.UpdatePlots();
+            _commandBus.Execute(new UpdatePlotsCommand());
         }
 
         public void Handle(ProjectClosedEvent args)
         {
-            _updateCommand.UpdatePlots();
+            _commandBus.Execute(new UpdatePlotsCommand());
         }
 
         public void Handle(ScatterPlotLayoutColumnChangedEvent args)
         {
-            _updateCommand.UpdatePlots();
+            _commandBus.Execute(new UpdatePlotsCommand());
         }
 
         public void Handle(CsvFileImportedEvent args)
         {
-            _updateCommand.UpdatePlots();
+            _commandBus.Execute(new UpdatePlotsCommand());
         }
 
         public void Handle(FilterChangedEvent args)
         {
-            _updateCommand.UpdatePlots();
+            _commandBus.Execute(new UpdatePlotsCommand());
         }
     }
 }

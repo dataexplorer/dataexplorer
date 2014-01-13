@@ -1,4 +1,6 @@
-﻿using DataExplorer.Application.Views.ScatterPlots;
+﻿using DataExplorer.Application.Core.Commands;
+using DataExplorer.Application.Views.ScatterPlots;
+using DataExplorer.Application.Views.ScatterPlots.Commands;
 using DataExplorer.Presentation.Shell.MainMenu.ViewMenu;
 using Moq;
 using NUnit.Framework;
@@ -9,16 +11,16 @@ namespace DataExplorer.Presentation.Tests.Shell.MainMenu.ViewMenu
     public class ViewMenuViewModelTests
     {
         private ViewMenuViewModel _viewModel;
-        private Mock<IScatterPlotService> _mockScatterPlotService;
+        private Mock<ICommandBus> _mockCommandBus;
         private Mock<IScatterPlotLayoutService> _mockLayoutService;
 
         [SetUp]
         public void SetUp()
         {
-            _mockScatterPlotService = new Mock<IScatterPlotService>();
+            _mockCommandBus = new Mock<ICommandBus>();
             _mockLayoutService = new Mock<IScatterPlotLayoutService>();
             _viewModel = new ViewMenuViewModel(
-                _mockScatterPlotService.Object,
+                _mockCommandBus.Object,
                 _mockLayoutService.Object);
         }
 
@@ -26,7 +28,8 @@ namespace DataExplorer.Presentation.Tests.Shell.MainMenu.ViewMenu
         public void TestZoomToFullExtentShouldZoomToFullExtent()
         {
             _viewModel.ZoomToFullExtentCommand.Execute(null);
-            _mockScatterPlotService.Verify(p => p.ZoomToFullExtent(), Times.Once());
+            _mockCommandBus.Verify(p => p.Execute(It.IsAny<ZoomToFullExtentCommand>()),
+                Times.Once());
         }
 
         [Test]

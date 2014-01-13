@@ -9,11 +9,11 @@ using NUnit.Framework;
 namespace DataExplorer.Application.Tests.Views.ScatterPlots.Commands
 {
     [TestFixture]
-    public class ZoomToFullExtentCommandTests
+    public class ZoomToFullExtentCommandHandlerTests
     {
         private const double Tolerance = 0.000001;
 
-        private ZoomToFullExtentCommand _command;
+        private ZoomToFullExtentCommandHandler _handler;
         private Mock<IViewRepository> _mockRepository;
         private ScatterPlot _scatterPlot;
 
@@ -25,7 +25,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Commands
             _mockRepository = new Mock<IViewRepository>();
             _mockRepository.Setup(p => p.Get<ScatterPlot>()).Returns(_scatterPlot);
             
-            _command = new ZoomToFullExtentCommand(_mockRepository.Object);
+            _handler = new ZoomToFullExtentCommandHandler(_mockRepository.Object);
         }
 
         [Test]
@@ -33,7 +33,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Commands
         {
             var squareViewExtent = new Rect(0d, 0d, 1d, 1d);
             _scatterPlot.SetViewExtent(squareViewExtent);
-            _command.Execute();
+            _handler.Execute(new ZoomToFullExtentCommand());
             var viewExtent = _scatterPlot.GetViewExtent();
             Assert.That(viewExtent.X, Is.EqualTo(-0.1d).Within(Tolerance));
             Assert.That(viewExtent.Y, Is.EqualTo(-0.1d).Within(Tolerance));
@@ -46,7 +46,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Commands
         {
             var wideViewExtent = new Rect(0d, 0d, 2d, 1d);
             _scatterPlot.SetViewExtent(wideViewExtent);
-            _command.Execute();
+            _handler.Execute(new ZoomToFullExtentCommand());
             var viewExtent = _scatterPlot.GetViewExtent();
             Assert.That(viewExtent.X, Is.EqualTo(-0.7d).Within(Tolerance));
             Assert.That(viewExtent.Y, Is.EqualTo(-0.1d).Within(Tolerance));
@@ -59,7 +59,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Commands
         {
             var wideViewExtent = new Rect(0d, 0d, 1d, 2d);
             _scatterPlot.SetViewExtent(wideViewExtent);
-            _command.Execute();
+            _handler.Execute(new ZoomToFullExtentCommand());
             var viewExtent = _scatterPlot.GetViewExtent();
             Assert.That(viewExtent.X, Is.EqualTo(-0.1d).Within(Tolerance));
             Assert.That(viewExtent.Y, Is.EqualTo(-0.7d).Within(Tolerance));
@@ -72,7 +72,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Commands
         {
             var wasRaised = false;
             DomainEvents.Register<ScatterPlotChangedEvent>(p => { wasRaised = true; });
-            _command.Execute();
+            _handler.Execute(new ZoomToFullExtentCommand());
             Assert.That(wasRaised, Is.True);
             DomainEvents.ClearHandlers();
         }

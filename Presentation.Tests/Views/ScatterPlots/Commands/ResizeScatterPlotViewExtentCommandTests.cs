@@ -1,5 +1,8 @@
 ﻿using System.Windows;
+using DataExplorer.Application.Core.Messages;
 using DataExplorer.Application.Views.ScatterPlots;
+using DataExplorer.Application.Views.ScatterPlots.Commands;
+using DataExplorer.Application.Views.ScatterPlots.Queries;
 using DataExplorer.Presentation.Views.ScatterPlots.Commands;
 using DataExplorer.Presentation.Views.ScatterPlots.Scalers;
 using Moq;
@@ -11,7 +14,7 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Commands
     public class ResizeScatterPlotViewExtentCommandTests
     {
         private ResizeScatterPlotViewExtentCommand _command;
-        private Mock<IScatterPlotService> _mockService;
+        private Mock<IMessageBus> _mockService;
         private Mock<IViewResizer> _mockResizer;
         private Size _controlSize;
         private Rect _viewExtent;
@@ -24,11 +27,13 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Commands
             _viewExtent = new Rect();
             _newViewExtent = new Rect();
 
-            _mockService = new Mock<IScatterPlotService>();
-            _mockService.Setup(p => p.GetViewExtent()).Returns(_viewExtent);
+            _mockService = new Mock<IMessageBus>();
+            _mockService.Setup(p => p.Execute(It.IsAny<GetViewExtentQuery>()))
+                .Returns(_viewExtent);
 
             _mockResizer = new Mock<IViewResizer>();
-            _mockResizer.Setup(p => p.ResizeView(_controlSize, _viewExtent)).Returns(_newViewExtent);
+            _mockResizer.Setup(p => p.ResizeView(_controlSize, _viewExtent))
+                .Returns(_newViewExtent);
 
             _command = new ResizeScatterPlotViewExtentCommand(
                 _mockService.Object,
@@ -39,7 +44,8 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Commands
         public void TestExecuteShouldResizeViewExtent()
         {
             _command.Execute(_controlSize);
-            _mockService.Verify(p => p.SetViewExtent(_newViewExtent), Times.Once());
+            _mockService.Verify(p => p.Execute(It.Is<SetViewExtentCommand>(q => q.ViewExtent == _newViewExtent)),
+                Times.Once());
         }
 
     }

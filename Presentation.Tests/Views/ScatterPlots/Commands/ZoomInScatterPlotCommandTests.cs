@@ -1,5 +1,9 @@
 ﻿using System.Windows;
+using DataExplorer.Application.Core.Commands;
+using DataExplorer.Application.Core.Messages;
 using DataExplorer.Application.Views.ScatterPlots;
+using DataExplorer.Application.Views.ScatterPlots.Commands;
+using DataExplorer.Application.Views.ScatterPlots.Queries;
 using DataExplorer.Presentation.Views.ScatterPlots.Commands;
 using DataExplorer.Presentation.Views.ScatterPlots.Scalers;
 using Moq;
@@ -11,7 +15,7 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Commands
     public class ZoomInScatterPlotCommandTests
     {
         private ZoomInScatterPlotCommand _command;
-        private Mock<IScatterPlotService> _mockService;
+        private Mock<IMessageBus> _mockService;
         private Mock<IPointScaler> _mockScaler;
         private Rect _viewExtent;
         private Size _controlSize;
@@ -26,11 +30,13 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Commands
             _sourcePoint = new Point();
             _targetPoint = new Point();
 
-            _mockService = new Mock<IScatterPlotService>();
-            _mockService.Setup(p => p.GetViewExtent()).Returns(_viewExtent);
+            _mockService = new Mock<IMessageBus>();
+            _mockService.Setup(p => p.Execute(It.IsAny<GetViewExtentQuery>()))
+                .Returns(_viewExtent);
 
             _mockScaler = new Mock<IPointScaler>();
-            _mockScaler.Setup(p => p.ScalePoint(_sourcePoint, _controlSize, _viewExtent)).Returns(_targetPoint);
+            _mockScaler.Setup(p => p.ScalePoint(_sourcePoint, _controlSize, _viewExtent))
+                .Returns(_targetPoint);
 
             _command = new ZoomInScatterPlotCommand(
                 _mockService.Object,
@@ -41,7 +47,8 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Commands
         public void TestExecuteShouldZoomIn()
         {
             _command.Execute(_sourcePoint, _controlSize);
-            _mockService.Verify(p => p.ZoomIn(_sourcePoint), Times.Once());
+            _mockService.Verify(p => p.Execute(It.Is<ZoomInCommand>(q => q.Center == _sourcePoint)), 
+                Times.Once());
         }
     }
 }

@@ -10,9 +10,9 @@ using NUnit.Framework;
 namespace DataExplorer.Application.Tests.Views.ScatterPlots.Queries
 {
     [TestFixture]
-    public class GetScatterPlotsQueryTests
+    public class GetScatterPlotsQueryHandlerTests
     {
-        private GetPlotsQuery _query;
+        private GetPlotsQueryHandler _handler;
         private Mock<IViewRepository> _mockRepository;
         private Mock<IScatterPlotAdapter> _mockAdapter;
         private ScatterPlot _scatterPlot;
@@ -30,11 +30,14 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Queries
             _plotDtos = new List<PlotDto> { _plotDto };
             _scatterPlot = new ScatterPlot();
             _scatterPlot.SetPlots(_plots);
+
             _mockRepository = new Mock<IViewRepository>();
             _mockRepository.Setup(p => p.Get<ScatterPlot>()).Returns(_scatterPlot);
+            
             _mockAdapter = new Mock<IScatterPlotAdapter>();
             _mockAdapter.Setup(p => p.Adapt(_plots)).Returns(_plotDtos);
-            _query = new GetPlotsQuery(
+            
+            _handler = new GetPlotsQueryHandler(
                 _mockRepository.Object,
                 _mockAdapter.Object);
         }
@@ -42,7 +45,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Queries
         [Test]
         public void TestGetPlotsShouldReturnPlots()
         {
-            var results = _query.GetPlots();
+            var results = _handler.Execute(new GetPlotsQuery());
             Assert.That(results.Single(), Is.EqualTo(_plotDto));
         }
     }

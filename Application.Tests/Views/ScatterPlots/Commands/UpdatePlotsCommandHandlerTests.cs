@@ -14,9 +14,9 @@ using NUnit.Framework;
 namespace DataExplorer.Application.Tests.Views.ScatterPlots.Commands
 {
     [TestFixture]
-    public class UpdatePlotsCommandTests
+    public class UpdatePlotsCommandHandlerTests
     {
-        private UpdatePlotsCommand _command;
+        private UpdatePlotsCommandHandler _handler;
         private Mock<IFilterRepository> _mockFilterRepository;
         private Mock<IRowRepository> _mockDataRepository;
         private Mock<IViewRepository> _mockViewRepository;
@@ -50,7 +50,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Commands
             _mockRenderer = new Mock<IScatterPlotRenderer>();
             _mockRenderer.Setup(p => p.RenderPlots(new List<Row>(), _layout)).Returns(new List<Plot>());
             
-            _command = new UpdatePlotsCommand(
+            _handler = new UpdatePlotsCommandHandler(
                 _mockFilterRepository.Object,
                 _mockDataRepository.Object,
                 _mockViewRepository.Object,
@@ -60,7 +60,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Commands
         [Test]
         public void TestUpdatePlotsShouldUpdatePlots()
         {
-            _command.UpdatePlots();
+            _handler.Execute(new UpdatePlotsCommand());
             Assert.That(_scatterPlot.GetPlots(), Is.EqualTo(_plots));
         }
 
@@ -74,7 +74,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Commands
             var plot = new Plot();
             _plots.Add(plot);
             _mockRenderer.Setup(p => p.RenderPlots(_rows, _layout)).Returns(_plots);
-            _command.UpdatePlots();
+            _handler.Execute(new UpdatePlotsCommand());
             Assert.That(_scatterPlot.GetPlots().Count, Is.EqualTo(1));
         }
 
@@ -85,7 +85,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Commands
             _rows.Add(row);
             var filter = new BooleanFilter(_column, true);
             _filters.Add(filter);
-            _command.UpdatePlots();
+            _handler.Execute(new UpdatePlotsCommand());
             Assert.That(_scatterPlot.GetPlots().Count, Is.EqualTo(0));
         }
     }

@@ -8,9 +8,9 @@ using NUnit.Framework;
 namespace DataExplorer.Application.Tests.Views.ScatterPlots.Commands
 {
     [TestFixture]
-    public class SetViewExtentCommandTests
+    public class SetViewExtentCommandHandlerTests
     {
-        private SetViewExtentCommand _command;
+        private SetViewExtentCommandHandler _handler;
         private Mock<IViewRepository> _mockRepository;
         private ScatterPlot _scatterPlot;
         private Rect _viewExtent;
@@ -22,13 +22,13 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Commands
             _scatterPlot = new ScatterPlot();
             _mockRepository = new Mock<IViewRepository>();
             _mockRepository.Setup(p => p.Get<ScatterPlot>()).Returns(_scatterPlot);
-            _command = new SetViewExtentCommand(_mockRepository.Object);
+            _handler = new SetViewExtentCommandHandler(_mockRepository.Object);
         }
 
         [Test]
         public void TestSetViewExtentShouldSetViewExtent()
         {
-            _command.SetViewExtent(_viewExtent);
+            _handler.Execute(new SetViewExtentCommand(_viewExtent));
             Assert.That(_scatterPlot.GetViewExtent(), Is.EqualTo(_viewExtent));
         }
     }

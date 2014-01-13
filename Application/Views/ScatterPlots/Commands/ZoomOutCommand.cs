@@ -1,40 +1,25 @@
-﻿using System.Windows;
-using DataExplorer.Domain.Events;
-using DataExplorer.Domain.Views;
-using DataExplorer.Domain.Views.ScatterPlots;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using DataExplorer.Application.Core.Commands;
 
 namespace DataExplorer.Application.Views.ScatterPlots.Commands
 {
-    public class ZoomOutCommand : IZoomOutCommand
+    public class ZoomOutCommand : ICommand
     {
-        private const double ZoomOutFactor = 0.11;
+        private readonly Point _center;
 
-        private readonly IViewRepository _repository;
-
-        public ZoomOutCommand(IViewRepository repository)
+        public ZoomOutCommand(Point center)
         {
-            _repository = repository;
+            _center = center;
         }
 
-        public void ZoomOut(Point center)
+        public Point Center
         {
-            var scatterPlot = _repository.Get<ScatterPlot>();
-
-            var viewExtent = scatterPlot.GetViewExtent();
-
-            var x = viewExtent.X - (center.X * ZoomOutFactor) - (viewExtent.Width * ZoomOutFactor) / 2;
-
-            var y = viewExtent.Y - (center.Y * ZoomOutFactor) - (viewExtent.Height * ZoomOutFactor) / 2;
-
-            var width = viewExtent.Width + viewExtent.Width * ZoomOutFactor;
-
-            var height = viewExtent.Height + viewExtent.Height * ZoomOutFactor;
-
-            var zoomedViewExtent = new Rect(x, y, width, height);
-
-            scatterPlot.SetViewExtent(zoomedViewExtent);
-
-            DomainEvents.Raise(new ScatterPlotChangedEvent());
+            get { return _center; }
         }
     }
 }

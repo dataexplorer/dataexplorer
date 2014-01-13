@@ -1,32 +1,25 @@
-﻿using System.Windows;
-using DataExplorer.Domain.Events;
-using DataExplorer.Domain.Views;
-using DataExplorer.Domain.Views.ScatterPlots;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using DataExplorer.Application.Core.Commands;
 
 namespace DataExplorer.Application.Views.ScatterPlots.Commands
 {
-    public class PanCommand : IPanCommand
+    public class PanCommand : ICommand
     {
-        private readonly IViewRepository _repository;
+        private readonly Vector _vector;
 
-        public PanCommand(IViewRepository repository)
+        public PanCommand(Vector vector)
         {
-            _repository = repository;
+            _vector = vector;
         }
 
-        public void Pan(Vector vector)
+        public Vector Vector
         {
-            var scatterPlot = _repository.Get<ScatterPlot>();
-
-            var viewExtent = scatterPlot.GetViewExtent();
-
-            viewExtent.X += vector.X;
-
-            viewExtent.Y += vector.Y;
-
-            scatterPlot.SetViewExtent(viewExtent);
-
-            DomainEvents.Raise(new ScatterPlotChangedEvent());
+            get { return _vector; }
         }
     }
 }

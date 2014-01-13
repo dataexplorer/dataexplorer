@@ -8,6 +8,7 @@ using DataExplorer.Application.Maps;
 using DataExplorer.Application.Maps.Queries;
 using DataExplorer.Application.Tests.Maps;
 using DataExplorer.Application.Views.ScatterPlots;
+using DataExplorer.Application.Views.ScatterPlots.Queries;
 using DataExplorer.Domain.Maps;
 using DataExplorer.Domain.Views.ScatterPlots;
 using DataExplorer.Presentation.Core.Canvas.Items;
@@ -24,7 +25,6 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Grid.Lines.Queries
     {
         private GetXAxisGridLinesQuery _query;
         private Mock<IQueryBus> _mockQueryBus;
-        private Mock<IScatterPlotService> _mockScatterPlotService;
         private Mock<IScatterPlotLayoutService> _mockLayoutService;
         private Mock<IGridLineFactory> _mockFactory;
         private Mock<IXAxisGridLineRenderer> _mockRenderer;
@@ -51,9 +51,6 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Grid.Lines.Queries
             _canvasLine = new CanvasLine();
             _canvasLines = new List<CanvasLine> { _canvasLine };
 
-            _mockScatterPlotService = new Mock<IScatterPlotService>();
-            _mockScatterPlotService.Setup(p => p.GetViewExtent()).Returns(_viewExtent);
-
             _mockLayoutService = new Mock<IScatterPlotLayoutService>();
             _mockLayoutService.Setup(p => p.GetXColumn()).Returns(_columnDto);
 
@@ -66,6 +63,8 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Grid.Lines.Queries
                     && q.TargetMin == 0d
                     && q.TargetMax == 1d)))
                 .Returns(_axisMap);
+            _mockQueryBus.Setup(p => p.Execute(It.IsAny<GetViewExtentQuery>()))
+                .Returns(_viewExtent);
 
             _mockFactory = new Mock<IGridLineFactory>();
             _mockFactory.Setup(p => p.Create(typeof(object), _axisMap, _values, _viewExtent.Left, _viewExtent.Right)).Returns(_axisLines);
@@ -75,7 +74,6 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Grid.Lines.Queries
 
             _query = new GetXAxisGridLinesQuery(
                 _mockQueryBus.Object,
-                _mockScatterPlotService.Object,
                 _mockLayoutService.Object,
                 _mockFactory.Object,
                 _mockRenderer.Object);

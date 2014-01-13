@@ -8,9 +8,9 @@ using NUnit.Framework;
 namespace DataExplorer.Application.Tests.Views.ScatterPlots.Commands
 {
     [TestFixture]
-    public class ZoomOutCommandTests
+    public class ZoomOutCommandHandlerTests
     {
-        private ZoomOutCommand _command;
+        private ZoomOutCommandHandler _handler;
         private Mock<IViewRepository> _mockRepository;
         private ScatterPlot _scatterPlot;
         private Rect _viewExtent;
@@ -22,15 +22,17 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Commands
             _point = new Point(50d, 50d);
             _viewExtent = new Rect(0, 0, 100, 100);
             _scatterPlot = new ScatterPlot(null, _viewExtent, null);
+            
             _mockRepository = new Mock<IViewRepository>();
             _mockRepository.Setup(p => p.Get<ScatterPlot>()).Returns(_scatterPlot);
-            _command = new ZoomOutCommand(_mockRepository.Object);
+
+            _handler = new ZoomOutCommandHandler(_mockRepository.Object);
         }
 
         [Test]
         public void TestZoomOutShouldZoomOutByZoomFactor()
         {
-            _command.ZoomOut(_point);
+            _handler.Execute(new ZoomOutCommand(_point));
             var viewExtent = _scatterPlot.GetViewExtent();
             Assert.That(viewExtent.X, Is.EqualTo(-11));
             Assert.That(viewExtent.Y, Is.EqualTo(-11));

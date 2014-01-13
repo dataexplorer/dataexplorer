@@ -6,6 +6,7 @@ using DataExplorer.Application.Core.Queries;
 using DataExplorer.Application.Maps;
 using DataExplorer.Application.Maps.Queries;
 using DataExplorer.Application.Views.ScatterPlots;
+using DataExplorer.Application.Views.ScatterPlots.Queries;
 using DataExplorer.Presentation.Core.Canvas.Items;
 using DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories;
 using DataExplorer.Presentation.Views.ScatterPlots.Grid.Labels.Renderers;
@@ -15,14 +16,12 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Grid.Labels.Queries
     public class GetXAxisGridLabelsQuery : IGetXAxisGridLabelsQuery
     {
         private readonly IQueryBus _queryBus;
-        private readonly IScatterPlotService _scatterPlotService;
         private readonly IScatterPlotLayoutService _layoutService;
         private readonly IGridLineFactory _factory;
         private readonly IXAxisGridLabelRenderer _renderer;
 
         public GetXAxisGridLabelsQuery(
             IQueryBus queryBus, 
-            IScatterPlotService scatterPlotService, 
             IScatterPlotLayoutService layoutService, 
             IGridLineFactory factory, 
             IXAxisGridLabelRenderer renderer)
@@ -31,12 +30,11 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Grid.Labels.Queries
             _layoutService = layoutService;
             _factory = factory;
             _renderer = renderer;
-            _scatterPlotService = scatterPlotService;
         }
 
         public IEnumerable<CanvasLabel> Execute(Size controlSize)
         {
-            var viewExtent = _scatterPlotService.GetViewExtent();
+            var viewExtent = _queryBus.Execute(new GetViewExtentQuery());
 
             var columnDto = _layoutService.GetXColumn();
 

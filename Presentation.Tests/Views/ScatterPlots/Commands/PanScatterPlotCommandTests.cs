@@ -1,5 +1,8 @@
 ﻿using System.Windows;
+using DataExplorer.Application.Core.Messages;
 using DataExplorer.Application.Views.ScatterPlots;
+using DataExplorer.Application.Views.ScatterPlots.Commands;
+using DataExplorer.Application.Views.ScatterPlots.Queries;
 using DataExplorer.Presentation.Views.ScatterPlots.Commands;
 using DataExplorer.Presentation.Views.ScatterPlots.Scalers;
 using Moq;
@@ -11,7 +14,7 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Commands
     public class PanScatterPlotCommandTests
     {
         private PanScatterPlotCommand _command;
-        private Mock<IScatterPlotService> _mockService;
+        private Mock<IMessageBus> _mockService;
         private Mock<IVectorScaler> _mockScaler;
         private Rect _viewExtent;
         private Size _controlSize;
@@ -26,11 +29,13 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Commands
             _sourceVector = new Vector();
             _targetVector = new Vector();
 
-            _mockService = new Mock<IScatterPlotService>();
-            _mockService.Setup(p => p.GetViewExtent()).Returns(_viewExtent);
+            _mockService = new Mock<IMessageBus>();
+            _mockService.Setup(p => p.Execute(It.IsAny<GetViewExtentQuery>()))
+                .Returns(_viewExtent);
 
             _mockScaler = new Mock<IVectorScaler>();
-            _mockScaler.Setup(p => p.ScaleVector(_sourceVector, _controlSize, _viewExtent)).Returns(_targetVector);
+            _mockScaler.Setup(p => p.ScaleVector(_sourceVector, _controlSize, _viewExtent))
+                .Returns(_targetVector);
             
             _command = new PanScatterPlotCommand(
                 _mockService.Object,
@@ -41,7 +46,8 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Commands
         public void TestExecuteShouldPan()
         {
             _command.Execute(_sourceVector, _controlSize);
-            _mockService.Verify(p => p.Pan(_targetVector), Times.Once());
+            _mockService.Verify(p => p.Execute(It.Is<PanCommand>(q => q.Vector == _targetVector)),
+                Times.Once());
             
         }
     }

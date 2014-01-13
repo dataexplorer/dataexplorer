@@ -9,9 +9,9 @@ using NUnit.Framework;
 namespace DataExplorer.Application.Tests.Views.ScatterPlots.Commands
 {
     [TestFixture]
-    public class PanCommandTests
+    public class PanCommandHandlerTests
     {
-        private PanCommand _command;
+        private PanCommandHandler _handler;
         private Mock<IViewRepository> _mockRepository;
         private ScatterPlot _scatterPlot;
         private Rect _viewExtent;
@@ -25,13 +25,13 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Commands
             _scatterPlot = new ScatterPlot(null, _viewExtent, null);
             _mockRepository = new Mock<IViewRepository>();
             _mockRepository.Setup(p => p.Get<ScatterPlot>()).Returns(_scatterPlot);
-            _command = new PanCommand(_mockRepository.Object);
+            _handler = new PanCommandHandler(_mockRepository.Object);
         }
 
         [Test]
         public void TestPanShouldPan()
         {
-            _command.Pan(_vector);
+            _handler.Execute(new PanCommand(_vector));
             var newViewExtent = _scatterPlot.GetViewExtent();
             Assert.That(newViewExtent.X, Is.EqualTo(0.25));
             Assert.That(newViewExtent.Y, Is.EqualTo(0.5));
@@ -42,7 +42,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Commands
         {
             var wasRaised = false;
             DomainEvents.Register<ScatterPlotChangedEvent>(p => { wasRaised = true; });
-            _command.Pan(_vector);
+            _handler.Execute(new PanCommand(_vector));
             Assert.That(wasRaised, Is.True);
             DomainEvents.ClearHandlers();
         }

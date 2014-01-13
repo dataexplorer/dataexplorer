@@ -3,6 +3,7 @@ using DataExplorer.Application.Core.Messages;
 using DataExplorer.Application.Rows;
 using DataExplorer.Application.Rows.Events;
 using DataExplorer.Application.Views.ScatterPlots;
+using DataExplorer.Application.Views.ScatterPlots.Commands;
 using DataExplorer.Presentation.Views.ScatterPlots;
 using Moq;
 using NUnit.Framework;
@@ -14,19 +15,16 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots
     {
         private ScatterPlotContextMenuViewModel _viewModel;
         private Mock<IMessageBus> _mockMessageBus;
-        private Mock<IScatterPlotService> _mockScatterPlotService;
         private Mock<IScatterPlotLayoutService> _mockLayoutService;
 
         [SetUp]
         public void SetUp()
         {
             _mockMessageBus = new Mock<IMessageBus>();
-            _mockScatterPlotService = new Mock<IScatterPlotService>();
             _mockLayoutService = new Mock<IScatterPlotLayoutService>();
 
             _viewModel = new ScatterPlotContextMenuViewModel(
                 _mockMessageBus.Object,
-                _mockScatterPlotService.Object,
                 _mockLayoutService.Object);
         }
 
@@ -48,7 +46,7 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots
         public void TestExecuteZoomToFullExtentShouldZoomToFullExtent()
         {
             _viewModel.ZoomToFullExtentCommand.Execute(null);
-            _mockScatterPlotService.Verify(p => p.ZoomToFullExtent(), Times.Once());
+            _mockMessageBus.Verify(p => p.Execute(It.IsAny<ZoomToFullExtentCommand>()));
         }
 
         [Test]

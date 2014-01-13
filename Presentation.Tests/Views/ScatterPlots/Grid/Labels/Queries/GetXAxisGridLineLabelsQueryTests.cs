@@ -8,6 +8,7 @@ using DataExplorer.Application.Maps;
 using DataExplorer.Application.Maps.Queries;
 using DataExplorer.Application.Tests.Maps;
 using DataExplorer.Application.Views.ScatterPlots;
+using DataExplorer.Application.Views.ScatterPlots.Queries;
 using DataExplorer.Domain.Maps;
 using DataExplorer.Domain.Views.ScatterPlots;
 using DataExplorer.Presentation.Core.Canvas.Items;
@@ -23,7 +24,6 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Grid.Labels.Queries
     public class GetXAxisGridLineLabelsQueryTests
     {
         private GetXAxisGridLabelsQuery _query;
-        private Mock<IScatterPlotService> _mockScatterPlotService;
         private Mock<IScatterPlotLayoutService> _mockLayoutService;
         private Mock<IQueryBus> _mockQueryBus;
         private Mock<IGridLineFactory> _mockFactory;
@@ -51,9 +51,6 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Grid.Labels.Queries
             _canvasLabel = new CanvasLabel();
             _canvasLabels = new List<CanvasLabel> { _canvasLabel };
 
-            _mockScatterPlotService = new Mock<IScatterPlotService>();
-            _mockScatterPlotService.Setup(p => p.GetViewExtent()).Returns(_viewExtent);
-
             _mockLayoutService = new Mock<IScatterPlotLayoutService>();
             _mockLayoutService.Setup(p => p.GetXColumn()).Returns(_columnDto);
 
@@ -66,6 +63,8 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Grid.Labels.Queries
                         && q.TargetMin == 0d 
                         && q.TargetMax == 1d)))
                 .Returns(_axisMap);
+            _mockQueryBus.Setup(p => p.Execute(It.IsAny<GetViewExtentQuery>()))
+                .Returns(_viewExtent);
 
             _mockFactory = new Mock<IGridLineFactory>();
             _mockFactory.Setup(p => p.Create(typeof(object), _axisMap, _values, _viewExtent.Left, _viewExtent.Right)).Returns(_axisLines);
@@ -75,7 +74,6 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Grid.Labels.Queries
 
             _query = new GetXAxisGridLabelsQuery(
                 _mockQueryBus.Object,
-                _mockScatterPlotService.Object,
                 _mockLayoutService.Object,
                 _mockFactory.Object,
                 _mockRenderer.Object);

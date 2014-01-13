@@ -4,31 +4,33 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using DataExplorer.Application.Views.ScatterPlots;
+using DataExplorer.Application.Core.Messages;
+using DataExplorer.Application.Views.ScatterPlots.Commands;
+using DataExplorer.Application.Views.ScatterPlots.Queries;
 using DataExplorer.Presentation.Views.ScatterPlots.Scalers;
 
 namespace DataExplorer.Presentation.Views.ScatterPlots.Commands
 {
     public class ResizeScatterPlotViewExtentCommand : IResizeScatterPlotViewExtentCommand
     {
-        private readonly IScatterPlotService _service;
+        private readonly IMessageBus _messageBus;
         private readonly IViewResizer _resizer;
 
         public ResizeScatterPlotViewExtentCommand(
-            IScatterPlotService service, 
+            IMessageBus messageBus, 
             IViewResizer resizer)
         {
-            _service = service;
+            _messageBus = messageBus;
             _resizer = resizer;
         }
 
         public void Execute(Size controlSize)
         {
-            var viewExtent = _service.GetViewExtent();
+            var viewExtent = _messageBus.Execute(new GetViewExtentQuery());
 
             var newViewExtent = _resizer.ResizeView(controlSize, viewExtent);
 
-            _service.SetViewExtent(newViewExtent);
+            _messageBus.Execute(new SetViewExtentCommand(newViewExtent));
         }
     }
 }

@@ -1,23 +1,14 @@
-﻿using System.Windows;
-using DataExplorer.Domain.Views;
-using DataExplorer.Domain.Views.ScatterPlots;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using DataExplorer.Application.Core.Queries;
 
 namespace DataExplorer.Application.Views.ScatterPlots.Queries
 {
-    public class GetViewExtentQuery : IGetViewExtentQuery
+    public class GetViewExtentQuery : IQuery<Rect>
     {
-        private readonly IViewRepository _repository;
-
-        public GetViewExtentQuery(IViewRepository repository)
-        {
-            _repository = repository;
-        }
-
-        public Rect GetViewExtent()
-        {
-            var scatterPlot = _repository.Get<ScatterPlot>();
-
-            return scatterPlot.GetViewExtent();
-        }
     }
 }
