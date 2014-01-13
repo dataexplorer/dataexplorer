@@ -2,6 +2,8 @@
 using System.Linq;
 using System.Windows;
 using DataExplorer.Application.Columns;
+using DataExplorer.Application.Columns.Queries;
+using DataExplorer.Application.Core.Queries;
 using DataExplorer.Application.Maps;
 using DataExplorer.Application.Tests.Maps;
 using DataExplorer.Application.Views.ScatterPlots;
@@ -20,10 +22,10 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Grid.Lines.Queries
     public class GetXAxisGridLinesQueryTests
     {
         private GetXAxisGridLinesQuery _query;
+        private Mock<IQueryBus> _mockQueryBus;
         private Mock<IScatterPlotService> _mockScatterPlotService;
         private Mock<IScatterPlotLayoutService> _mockLayoutService;
         private Mock<IMapService> _mockMapService;
-        private Mock<IColumnService> _mockColumnService;
         private Mock<IGridLineFactory> _mockFactory;
         private Mock<IXAxisGridLineRenderer> _mockRenderer;
         private Size _controlSize;
@@ -58,8 +60,10 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Grid.Lines.Queries
             _mockMapService = new Mock<IMapService>();
             _mockMapService.Setup(p => p.GetAxisMap(_columnDto, 0d, 1d)).Returns(_axisMap);
 
-            _mockColumnService = new Mock<IColumnService>();
-            _mockColumnService.Setup(p => p.GetDistinctColumnValues(_columnDto.Id)).Returns(_values);
+            _mockQueryBus = new Mock<IQueryBus>();
+            _mockQueryBus.Setup(p => p.Execute(
+                    It.Is<GetDistinctColumnValuesQuery>(q => q.Id == _columnDto.Id)))
+                .Returns(_values);
 
             _mockFactory = new Mock<IGridLineFactory>();
             _mockFactory.Setup(p => p.Create(typeof(object), _axisMap, _values, _viewExtent.Left, _viewExtent.Right)).Returns(_axisLines);
@@ -68,10 +72,10 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Grid.Lines.Queries
             _mockRenderer.Setup(p => p.Render(_axisLines, _viewExtent, _controlSize)).Returns(_canvasLines);
 
             _query = new GetXAxisGridLinesQuery(
+                _mockQueryBus.Object,
                 _mockScatterPlotService.Object,
                 _mockLayoutService.Object,
                 _mockMapService.Object,
-                _mockColumnService.Object,
                 _mockFactory.Object,
                 _mockRenderer.Object);
         }

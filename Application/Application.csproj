@@ -69,13 +69,11 @@
     <Compile Include="Clipboard\Queries\ICanCopyDataToClipboardQuery.cs" />
     <Compile Include="Columns\ColumnAdapter.cs" />
     <Compile Include="Columns\ColumnDto.cs" />
-    <Compile Include="Columns\ColumnService.cs" />
     <Compile Include="Columns\IColumnAdapter.cs" />
-    <Compile Include="Columns\IColumnService.cs" />
     <Compile Include="Columns\Queries\GetAllColumnsQuery.cs" />
+    <Compile Include="Columns\Queries\GetAllColumnsQueryHandler.cs" />
     <Compile Include="Columns\Queries\GetDistinctColumnValuesQuery.cs" />
-    <Compile Include="Columns\Queries\IGetAllColumnsQuery.cs" />
-    <Compile Include="Columns\Queries\IGetDistinctColumnValuesQuery.cs" />
+    <Compile Include="Columns\Queries\GetDistinctColumnValuesQueryHandler.cs" />
     <Compile Include="Core\Commands\CommandBus.cs" />
     <Compile Include="Core\Commands\ICommand.cs" />
     <Compile Include="Core\Commands\ICommandBus.cs" />
@@ -86,6 +84,7 @@
     <Compile Include="Core\Events\IEventHandler.cs" />
     <Compile Include="Core\Messages\IMessageBus.cs" />
     <Compile Include="Core\Messages\MessageBus.cs" />
+    <Compile Include="Core\Queries\EntityIdQuery.cs" />
     <Compile Include="Core\Queries\IQuery.cs" />
     <Compile Include="Core\Queries\IQueryBus.cs" />
     <Compile Include="Core\Queries\IQueryHandler.cs" />

@@ -3,26 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataExplorer.Domain.Columns;
+using DataExplorer.Application.Core.Queries;
 
 namespace DataExplorer.Application.Columns.Queries
 {
-    public class GetDistinctColumnValuesQuery : IGetDistinctColumnValuesQuery
+    public class GetDistinctColumnValuesQuery : EntityIdQuery<List<object>>
     {
-        private readonly IColumnRepository _repository;
-
-        public GetDistinctColumnValuesQuery(IColumnRepository repository)
+        public GetDistinctColumnValuesQuery(int id) : base(id)
         {
-            _repository = repository;
-        }
-
-        public IEnumerable<object> Execute(int id)
-        {
-            var column = _repository.Get(id);
-
-            var values = column.Values.Distinct();
-
-            return values;
         }
     }
 }

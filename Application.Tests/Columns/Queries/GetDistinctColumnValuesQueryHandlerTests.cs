@@ -8,9 +8,9 @@ using NUnit.Framework;
 namespace DataExplorer.Application.Tests.Columns.Queries
 {
     [TestFixture]
-    public class GetDistinctColumnValuesQueryTests
+    public class GetDistinctColumnValuesQueryHandlerTests
     {
-        private GetDistinctColumnValuesQuery _query;
+        private GetDistinctColumnValuesQueryHandler _handler;
         private Mock<IColumnRepository> _mockRepository;
         private Column _column;
         private object _value;
@@ -24,14 +24,14 @@ namespace DataExplorer.Application.Tests.Columns.Queries
             _mockRepository = new Mock<IColumnRepository>();
             _mockRepository.Setup(p => p.Get(_column.Id)).Returns(_column);
 
-            _query = new GetDistinctColumnValuesQuery(
+            _handler = new GetDistinctColumnValuesQueryHandler(
                 _mockRepository.Object);
         }
 
         [Test]
         public void TestExecuteShouldReturnDistinctColumnValues()
         {
-            var results = _query.Execute(_column.Id);
+            var results = _handler.Execute(new GetDistinctColumnValuesQuery(_column.Id));
             Assert.That(results.Single(), Is.EqualTo(_value));
         }
     }

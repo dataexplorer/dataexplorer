@@ -2,6 +2,8 @@
 using System.Linq;
 using System.Windows;
 using DataExplorer.Application.Columns;
+using DataExplorer.Application.Columns.Queries;
+using DataExplorer.Application.Core.Queries;
 using DataExplorer.Application.Maps;
 using DataExplorer.Application.Tests.Maps;
 using DataExplorer.Application.Views.ScatterPlots;
@@ -23,13 +25,13 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Grid.Labels.Queries
         private Mock<IScatterPlotService> _mockScatterPlotService;
         private Mock<IScatterPlotLayoutService> _mockLayoutService;
         private Mock<IMapService> _mockMapService;
-        private Mock<IColumnService> _mockColumnService;
+        private Mock<IQueryBus> _mockQueryBus;
         private Mock<IGridLineFactory> _mockFactory;
         private Mock<IXAxisGridLabelRenderer> _mockRenderer;
         private Size _controlSize;
         private Rect _viewExtent;
         private ColumnDto _columnDto;
-        private List<string> _values;
+        private List<object> _values;
         private IAxisMap _axisMap;
         private List<AxisGridLine> _axisLines;
         private AxisGridLine _axisGridLine;
@@ -42,7 +44,7 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Grid.Labels.Queries
             _controlSize = new Size();
             _viewExtent = new Rect();
             _columnDto = new ColumnDto() { Type = typeof(object) };
-            _values = new List<string>();
+            _values = new List<object>();
             _axisMap = new FakeAxisMap();
             _axisGridLine = new AxisGridLine();
             _axisLines = new List<AxisGridLine> { _axisGridLine };
@@ -55,8 +57,10 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Grid.Labels.Queries
             _mockLayoutService = new Mock<IScatterPlotLayoutService>();
             _mockLayoutService.Setup(p => p.GetXColumn()).Returns(_columnDto);
 
-            _mockColumnService = new Mock<IColumnService>();
-            _mockColumnService.Setup(p => p.GetDistinctColumnValues(_columnDto.Id)).Returns(_values);
+            _mockQueryBus = new Mock<IQueryBus>();
+            _mockQueryBus.Setup(p => p.Execute(
+                    It.Is<GetDistinctColumnValuesQuery>(q => q.Id == _columnDto.Id)))
+                .Returns(_values);
 
             _mockMapService = new Mock<IMapService>();
             _mockMapService.Setup(p => p.GetAxisMap(_columnDto, 0d, 1d)).Returns(_axisMap);
@@ -68,10 +72,10 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Grid.Labels.Queries
             _mockRenderer.Setup(p => p.Render(_axisLines, _viewExtent, _controlSize)).Returns(_canvasLabels);
 
             _query = new GetXAxisGridLabelsQuery(
+                _mockQueryBus.Object,
                 _mockScatterPlotService.Object,
                 _mockLayoutService.Object,
                 _mockMapService.Object,
-                _mockColumnService.Object,
                 _mockFactory.Object,
                 _mockRenderer.Object);
         }

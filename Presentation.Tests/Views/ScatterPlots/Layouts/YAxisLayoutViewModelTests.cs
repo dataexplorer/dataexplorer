@@ -2,6 +2,8 @@
 using System.ComponentModel;
 using System.Linq;
 using DataExplorer.Application.Columns;
+using DataExplorer.Application.Columns.Queries;
+using DataExplorer.Application.Core.Queries;
 using DataExplorer.Application.Views.ScatterPlots;
 using DataExplorer.Application.Views.ScatterPlots.Events;
 using DataExplorer.Domain.Views.ScatterPlots;
@@ -16,16 +18,16 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Layouts
     public class YAxisLayoutViewModelTests
     {
         private YAxisLayoutViewModel _viewModel;
-        private Mock<IColumnService> _mockColumnService;
+        private Mock<IQueryBus> _mockQueryBus;
         private Mock<IScatterPlotLayoutService> _mockLayoutService;
 
         [SetUp]
         public void SetUp()
         {
-            _mockColumnService = new Mock<IColumnService>();
+            _mockQueryBus = new Mock<IQueryBus>();
             _mockLayoutService = new Mock<IScatterPlotLayoutService>();
             _viewModel = new YAxisLayoutViewModel(
-                _mockColumnService.Object,
+                _mockQueryBus.Object,
                 _mockLayoutService.Object);
         }
 
@@ -40,7 +42,7 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Layouts
         {
             var columnDto = new ColumnDto() { Name = "Test" };
             var columnDtos = new List<ColumnDto> { columnDto };
-            _mockColumnService.Setup(p => p.GetAllColumns()).Returns(columnDtos);
+            _mockQueryBus.Setup(p => p.Execute(It.IsAny<GetAllColumnsQuery>())).Returns(columnDtos);
             var result = _viewModel.Columns;
             Assert.That(result.Single().Name, Is.EqualTo(columnDto.Name));
         }

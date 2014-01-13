@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application;
-using DataExplorer.Application.Columns;
+using DataExplorer.Application.Columns.Queries;
 using DataExplorer.Application.Core.Events;
+using DataExplorer.Application.Core.Queries;
 using DataExplorer.Application.Importers.CsvFiles.Events;
 using DataExplorer.Application.Projects.Events;
 using DataExplorer.Application.Rows;
@@ -20,16 +21,16 @@ namespace DataExplorer.Presentation.Panes.Property
         IEventHandler<CsvFileImportingEvent>,
         IEventHandler<ProjectOpeningEvent>
     {
-        private readonly IColumnService _columnService;
+        private readonly IQueryBus _queryBus;
         private readonly IRowService _rowService;
         private readonly IProcess _process;
 
         public PropertyPaneViewModel(
-            IColumnService columnService, 
+            IQueryBus queryBus, 
             IRowService rowService, 
             IProcess process)
         {
-            _columnService = columnService;
+            _queryBus = queryBus;
             _rowService = rowService;
             _process = process;
         }
@@ -45,7 +46,7 @@ namespace DataExplorer.Presentation.Panes.Property
 
                 var fields = row.Fields.ToList();
 
-                var columns = _columnService.GetAllColumns();
+                var columns = _queryBus.Execute(new GetAllColumnsQuery());
 
                 return columns.Select(p => new PropertyViewModel(
                     p.Name,

@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.Columns;
+using DataExplorer.Application.Columns.Queries;
 using DataExplorer.Application.Core.Events;
+using DataExplorer.Application.Core.Queries;
 using DataExplorer.Application.Views.ScatterPlots;
 using DataExplorer.Application.Views.ScatterPlots.Events;
 using DataExplorer.Domain.Events;
@@ -20,14 +22,14 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Layout
         IEventHandler<ScatterPlotLayoutChangedEvent>,
         IDomainHandler<ScatterPlotLayoutColumnChangedEvent>
     {
-        private readonly IColumnService _columnService;
+        private readonly IQueryBus _queryBus;
         private readonly IScatterPlotLayoutService _layoutService;
         
         public XAxisLayoutViewModel(
-            IColumnService columnService,
+            IQueryBus queryBus,
             IScatterPlotLayoutService layoutService)
         {
-            _columnService = columnService;
+            _queryBus = queryBus;
             _layoutService = layoutService;
         }
 
@@ -49,7 +51,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Layout
 
         private List<LayoutItemViewModel> GetColumnViewModels()
         {
-            var columns = _columnService.GetAllColumns();
+            var columns = _queryBus.Execute(new GetAllColumnsQuery());
 
             var viewModels = columns
                 .Select(p => new LayoutItemViewModel(p))

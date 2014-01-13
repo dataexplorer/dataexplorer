@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 using DataExplorer.Application.Columns;
+using DataExplorer.Application.Columns.Queries;
+using DataExplorer.Application.Core.Queries;
 using DataExplorer.Application.Maps;
 using DataExplorer.Application.Views.ScatterPlots;
 using DataExplorer.Presentation.Core.Canvas.Items;
@@ -11,24 +13,24 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Grid.Labels.Queries
 {
     public class GetYAxisGridLabelsQuery : IGetYAxisGridLabelsQuery
     {
+        private readonly IQueryBus _queryBus;
         private readonly IScatterPlotService _scatterPlotService;
         private readonly IScatterPlotLayoutService _layoutService;
         private readonly IMapService _mapService;
-        private readonly IColumnService _columnService;
         private readonly IGridLineFactory _factory;
         private readonly IYAxisGridLabelRenderer _renderer;
 
         public GetYAxisGridLabelsQuery(
+            IQueryBus queryBus,
             IScatterPlotService scatterPlotService, 
             IScatterPlotLayoutService layoutService, 
             IMapService mapService, 
-            IColumnService columnService,
             IGridLineFactory factory, 
             IYAxisGridLabelRenderer renderer)
         {
+            _queryBus = queryBus;
             _layoutService = layoutService;
             _mapService = mapService;
-            _columnService = columnService;
             _factory = factory;
             _renderer = renderer;
             _scatterPlotService = scatterPlotService;
@@ -45,7 +47,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Grid.Labels.Queries
 
             var map = _mapService.GetAxisMap(columnDto, 0d, 1d);
 
-            var values = _columnService.GetDistinctColumnValues(columnDto.Id);
+            var values = _queryBus.Execute(new GetDistinctColumnValuesQuery(columnDto.Id));
 
             var axisLines = _factory.Create(columnDto.Type, map, values, viewExtent.Top, viewExtent.Bottom);
 

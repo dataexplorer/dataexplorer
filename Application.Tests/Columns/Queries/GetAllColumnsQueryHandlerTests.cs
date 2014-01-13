@@ -10,9 +10,9 @@ using NUnit.Framework;
 namespace DataExplorer.Application.Tests.Columns.Queries
 {
     [TestFixture]
-    public class GetAllColumnsQueryTests
+    public class GetAllColumnsQueryHandlerTests
     {
-        private GetAllColumnsQuery _query;
+        private GetAllColumnsQueryHandler _handler;
         private Mock<IColumnRepository> _mockRepository;
         private Mock<IColumnAdapter> _mockAdapter;
         private List<Column> _columns;
@@ -32,7 +32,7 @@ namespace DataExplorer.Application.Tests.Columns.Queries
             _mockAdapter = new Mock<IColumnAdapter>();
             _mockAdapter.Setup(p => p.Adapt(_column)).Returns(_columnDto);
 
-            _query = new GetAllColumnsQuery(
+            _handler = new GetAllColumnsQueryHandler(
                 _mockRepository.Object,
                 _mockAdapter.Object);
         }
@@ -40,7 +40,7 @@ namespace DataExplorer.Application.Tests.Columns.Queries
         [Test]
         public void TestQueryShouldReturnAllColumns()
         {
-            var result = _query.Query();
+            var result = _handler.Execute(new GetAllColumnsQuery());
             Assert.That(result.Single(), Is.EqualTo(_columnDto));
         }
     }

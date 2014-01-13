@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using DataExplorer.Application;
 using DataExplorer.Application.Columns;
+using DataExplorer.Application.Columns.Queries;
+using DataExplorer.Application.Core.Queries;
 using DataExplorer.Application.Importers.CsvFiles.Events;
 using DataExplorer.Application.Rows;
 using DataExplorer.Domain.Rows;
@@ -17,7 +19,7 @@ namespace DataExplorer.Presentation.Tests.Panes.Property
     public class PropertyPaneViewModelTests
     {
         private PropertyPaneViewModel _viewModel;
-        private Mock<IColumnService> _mockColumnService;
+        private Mock<IQueryBus> _mockColumnService;
         private Mock<IRowService> _mockRowService;
         private Mock<IProcess> _mockProcess;
         private List<ColumnDto> _columns;
@@ -31,8 +33,8 @@ namespace DataExplorer.Presentation.Tests.Panes.Property
             _columns = new List<ColumnDto> { _column };
             _row = new RowBuilder().WithField("Field 1").Build();
 
-            _mockColumnService = new Mock<IColumnService>();
-            _mockColumnService.Setup(p => p.GetAllColumns()).Returns(_columns);
+            _mockColumnService = new Mock<IQueryBus>();
+            _mockColumnService.Setup(p => p.Execute(It.IsAny<GetAllColumnsQuery>())).Returns(_columns);
 
             _mockRowService = new Mock<IRowService>();
             _mockRowService.Setup(p => p.GetSelectedRow()).Returns(_row);
