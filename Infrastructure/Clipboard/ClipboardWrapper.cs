@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 using DataExplorer.Application;
+using DataExplorer.Application.Clipboard;
 
 namespace DataExplorer.Infrastructure.Clipboard
 {

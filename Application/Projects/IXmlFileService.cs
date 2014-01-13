@@ -1,6 +1,6 @@
 ﻿using System.Xml.Linq;
 
-namespace DataExplorer.Application
+namespace DataExplorer.Application.Projects
 {
     public interface IXmlFileService
     {

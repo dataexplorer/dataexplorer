@@ -3,6 +3,7 @@ using System.Data;
 using System.Linq;
 using DataExplorer.Application;
 using DataExplorer.Application.Importers;
+using DataExplorer.Application.Importers.CsvFiles;
 using DataExplorer.Domain.Sources;
 
 namespace DataExplorer.Infrastructure.Importers.CsvFile

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using DataExplorer.Application;
+using DataExplorer.Application.Projects;
 
 namespace DataExplorer.Infrastructure.XmlFiles
 {

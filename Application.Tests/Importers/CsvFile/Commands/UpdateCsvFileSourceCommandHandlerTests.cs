@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using DataExplorer.Application.Core.Events;
+using DataExplorer.Application.Importers.CsvFiles;
 using DataExplorer.Application.Importers.CsvFiles.Commands;
 using DataExplorer.Application.Importers.CsvFiles.Events;
 using DataExplorer.Domain.Sources;

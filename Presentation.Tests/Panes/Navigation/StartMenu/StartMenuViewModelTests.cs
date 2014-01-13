@@ -3,6 +3,7 @@ using DataExplorer.Application.Core.Commands;
 using DataExplorer.Application.Projects;
 using DataExplorer.Application.Projects.Commands;
 using DataExplorer.Application.Web;
+using DataExplorer.Application.Web.Commands;
 using DataExplorer.Presentation.Panes.Navigation.StartMenu;
 using Moq;
 using NUnit.Framework;
@@ -15,18 +16,16 @@ namespace DataExplorer.Presentation.Tests.Panes.Navigation.StartMenu
         private StartMenuViewModel _viewModel;
         private Mock<ICommandBus> _mockCommandBus;
         private Mock<IDialogService> _mockDialogService;
-        private Mock<IWebService> _mockWebService;
-
+        
         [SetUp]
         public void SetUp()
         {
             _mockCommandBus = new Mock<ICommandBus>();
             _mockDialogService = new Mock<IDialogService>();
-            _mockWebService = new Mock<IWebService>();
+
             _viewModel = new StartMenuViewModel(
                 _mockCommandBus.Object,
-                _mockDialogService.Object,
-                _mockWebService.Object);
+                _mockDialogService.Object);
         }
 
         [Test]
@@ -48,7 +47,8 @@ namespace DataExplorer.Presentation.Tests.Panes.Navigation.StartMenu
         public void TestDownloadShouldDownload()
         {
             _viewModel.DownloadDataCommand.Execute(null);
-            _mockWebService.Verify(p => p.LaunchDownloadDataPage());
+            _mockCommandBus.Verify(p => p.Execute(It.IsAny<OpenDownloadDataPageCommand>()),
+    Times.Once());
         }
     }
 }

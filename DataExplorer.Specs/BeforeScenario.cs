@@ -9,6 +9,7 @@ using DataExplorer.Application.Application;
 using DataExplorer.Application.Core.Commands;
 using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Core.Queries;
+using DataExplorer.Application.Projects;
 using DataExplorer.Infrastructure.Importers.CsvFile;
 using DataExplorer.Infrastructure.Serializers;
 using DataExplorer.Infrastructure.XmlFiles;

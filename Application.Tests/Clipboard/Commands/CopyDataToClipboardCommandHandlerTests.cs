@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using DataExplorer.Application.Application;
+using DataExplorer.Application.Clipboard;
 using DataExplorer.Application.Clipboard.Commands;
 using DataExplorer.Application.Exporters.TabFile;
 using DataExplorer.Domain.Columns;

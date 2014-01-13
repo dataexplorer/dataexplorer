@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using DataExplorer.Application;
 using DataExplorer.Application.Core.Commands;
 using DataExplorer.Application.Projects.Commands;
-using DataExplorer.Application.Web;
+using DataExplorer.Application.Web.Commands;
 using DataExplorer.Presentation.Core;
 using DataExplorer.Presentation.Core.Commands;
 using ICommand = System.Windows.Input.ICommand;
@@ -17,7 +17,6 @@ namespace DataExplorer.Presentation.Panes.Navigation.StartMenu
     {
         private readonly ICommandBus _commandBus;
         private readonly IDialogService _dialogService;
-        private readonly IWebService _webService;
 
         private readonly DelegateCommand _openCommand;
         private readonly DelegateCommand _importCommand;
@@ -40,13 +39,11 @@ namespace DataExplorer.Presentation.Panes.Navigation.StartMenu
 
         public StartMenuViewModel(
             ICommandBus commandBus,
-            IDialogService dialogService,
-            IWebService webService)
+            IDialogService dialogService)
         {
             _commandBus = commandBus;
             _dialogService = dialogService;
-            _webService = webService;
-
+            
             _openCommand = new DelegateCommand(Open);
             _importCommand = new DelegateCommand(Import);
             _downloadDataCommand = new DelegateCommand(Download);
@@ -64,7 +61,7 @@ namespace DataExplorer.Presentation.Panes.Navigation.StartMenu
 
         private void Download(object obj)
         {
-            _webService.LaunchDownloadDataPage();
+            _commandBus.Execute(new OpenDownloadDataPageCommand());
         }
     }
 }

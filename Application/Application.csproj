@@ -98,8 +98,8 @@
     <Compile Include="FilterTrees\Queries\GetRootFilterTreeNodesQuery.cs" />
     <Compile Include="FilterTrees\Queries\GetRootFilterTreeNodesQueryHandler.cs" />
     <Compile Include="FilterTrees\Queries\IGetRootFilterTreeNodesQuery.cs" />
-    <Compile Include="IClipboard.cs" />
-    <Compile Include="ICsvFileDataAdapter.cs" />
+    <Compile Include="Clipboard\IClipboard.cs" />
+    <Compile Include="Importers\CsvFiles\ICsvFileDataAdapter.cs" />
     <Compile Include="IDataContext.cs" />
     <Compile Include="IDialogService.cs" />
     <Compile Include="Importers\CsvFiles\Commands\ImportCsvFileSourceCommand.cs" />
@@ -122,7 +122,7 @@
     <Compile Include="Importers\DataTypeDetector.cs" />
     <Compile Include="Importers\IDataTypeDetector.cs" />
     <Compile Include="IProcess.cs" />
-    <Compile Include="IXmlFileService.cs" />
+    <Compile Include="Projects\IXmlFileService.cs" />
     <Compile Include="Maps\Queries\GetAxisMapQuery.cs" />
     <Compile Include="Maps\Queries\GetAxisMapQueryHandler.cs" />
     <Compile Include="Projects\Commands\CloseProjectCommand.cs" />
@@ -184,8 +184,8 @@
     <Compile Include="Views\ScatterPlots\ScatterPlotEventsService.cs" />
     <Compile Include="Views\ScatterPlots\ScatterPlotLayoutService.cs" />
     <Compile Include="Views\ScatterPlots\ScatterPlotService.cs" />
-    <Compile Include="Web\IWebService.cs" />
-    <Compile Include="Web\WebService.cs" />
+    <Compile Include="Web\Commands\OpenDownloadDataPageCommand.cs" />
+    <Compile Include="Web\Commands\OpenDownloadDataPageCommandHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj">

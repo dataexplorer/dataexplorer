@@ -1,6 +1,6 @@
 ﻿using System.Windows.Media.Imaging;
 
-namespace DataExplorer.Application
+namespace DataExplorer.Application.Clipboard
 {
     public interface IClipboard
     {
