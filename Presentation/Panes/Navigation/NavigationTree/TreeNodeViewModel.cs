@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataExplorer.Application.FilterTrees;
+using DataExplorer.Application.Core.Messages;
+using DataExplorer.Application.FilterTrees.Commands;
 using DataExplorer.Domain.FilterTrees;
 using DataExplorer.Presentation.Core;
 
@@ -12,15 +13,15 @@ namespace DataExplorer.Presentation.Panes.Navigation.NavigationTree
     public class TreeNodeViewModel : BaseViewModel
     {
         private readonly FilterTreeNode _filterTreeNode;
-        private readonly IFilterTreeService _service;
+        private readonly IMessageBus _messageBus;
         private bool _isSelected;
 
         public TreeNodeViewModel(
-            FilterTreeNode filterTreeNode, 
-            IFilterTreeService service)
+            FilterTreeNode filterTreeNode,
+            IMessageBus messageBus)
         {
             _filterTreeNode = filterTreeNode;
-            _service = service;
+            _messageBus = messageBus;
         }
 
         public string Name
@@ -46,8 +47,7 @@ namespace DataExplorer.Presentation.Panes.Navigation.NavigationTree
             OnPropertyChanged(() => IsSelected);
 
             if (_isSelected)
-                _service.SelectFilterTreeNode(_filterTreeNode);
-                //EventBus.Raise(new SelectedFilterTreeNodeChangedEvent(_filterTreeNode));
+                _messageBus.Execute(new SelectFilterTreeNodeCommand(_filterTreeNode));
         }
 
         private IEnumerable<TreeNodeViewModel> GetChildren()
@@ -55,7 +55,7 @@ namespace DataExplorer.Presentation.Panes.Navigation.NavigationTree
             var filterTreeNodes = _filterTreeNode.CreateChildren();
 
             var viewModels = filterTreeNodes
-                .Select(p => new TreeNodeViewModel(p, _service));
+                .Select(p => new TreeNodeViewModel(p, _messageBus));
 
             return viewModels;
         }

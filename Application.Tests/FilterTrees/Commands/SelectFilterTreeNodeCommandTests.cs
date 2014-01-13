@@ -11,9 +11,9 @@ using NUnit.Framework;
 namespace DataExplorer.Application.Tests.FilterTrees.Commands
 {
     [TestFixture]
-    public class SelectedFilterTreeNodeChangedEventHandlerTests
+    public class SelectFilterTreeNodeCommandHandlerTests
     {
-        private SelectFilterTreeNodeCommand _command;
+        private SelectFilterTreeNodeCommandHandler _handler;
         private Mock<IFilterRepository> _mockRepository;
         private Mock<IApplicationStateService> _mockService;
         private Mock<IEventBus> _mockEventBus;
@@ -35,7 +35,7 @@ namespace DataExplorer.Application.Tests.FilterTrees.Commands
 
             _mockEventBus = new Mock<IEventBus>();
             
-            _command = new SelectFilterTreeNodeCommand(
+            _handler = new SelectFilterTreeNodeCommandHandler(
                 _mockRepository.Object,
                 _mockService.Object,
                 _mockEventBus.Object);
@@ -44,28 +44,28 @@ namespace DataExplorer.Application.Tests.FilterTrees.Commands
         [Test]
         public void TestHandlShouldRemovePreviousFilterInRepository()
         {
-            _command.Execute(_node);
+            _handler.Execute(new SelectFilterTreeNodeCommand(_node));
             _mockRepository.Verify(p => p.Remove(_previousFilter), Times.Once());
         }
 
         [Test]
         public void TestHandleShouldSetSelectedFilterInApplicationState()
         {
-            _command.Execute(_node);
+            _handler.Execute(new SelectFilterTreeNodeCommand(_node));
             _mockService.Verify(p => p.SetSelectedFilter(_filter), Times.Once());
         }
 
         [Test]
         public void TestHandleShouldAddFilterToRepository()
         {
-            _command.Execute(_node);
+            _handler.Execute(new SelectFilterTreeNodeCommand(_node));
             _mockRepository.Verify(p => p.Add(_filter));
         }
 
         [Test]
         public void TestHandleShouldRaiseFilterChangedEvent()
         {
-            _command.Execute(_node);
+            _handler.Execute(new SelectFilterTreeNodeCommand(_node));
             _mockEventBus.Verify(p => p.Raise(It.IsAny<FilterChangedEvent>()));
         }
     }

@@ -10,9 +10,9 @@ using NUnit.Framework;
 namespace DataExplorer.Application.Tests.FilterTrees.Queries
 {
     [TestFixture]
-    public class GetRootFilterTreeNodesQueryTests
+    public class GetRootFilterTreeNodesQueryHandlerTests
     {
-        private GetRootFilterTreeNodesQuery _query;
+        private GetRootFilterTreeNodesQueryHandler _handler;
         private Mock<IColumnRepository> _mockRepository;
         private Mock<IFilterTreeNodeFactory> _mockFactory;
         private Column _column;
@@ -25,11 +25,14 @@ namespace DataExplorer.Application.Tests.FilterTrees.Queries
             _column = new ColumnBuilder().Build();
             _columns = new List<Column> { _column };
             _value = new FakeFilterTreeNode();
+
             _mockRepository = new Mock<IColumnRepository>();
             _mockRepository.Setup(p => p.GetAll()).Returns(_columns);
+
             _mockFactory = new Mock<IFilterTreeNodeFactory>();
             _mockFactory.Setup(p => p.CreateRoot(_column)).Returns(_value);
-            _query = new GetRootFilterTreeNodesQuery(
+            
+            _handler = new GetRootFilterTreeNodesQueryHandler(
                 _mockRepository.Object,
                 _mockFactory.Object);
         }
@@ -37,7 +40,7 @@ namespace DataExplorer.Application.Tests.FilterTrees.Queries
         [Test]
         public void TestGetRootFilterTreeNodesShouldReturnNodes()
         {
-            var result = _query.GetRoots();
+            var result = _handler.Execute(new GetRootFilterTreeNodesQuery());
             Assert.That(result, Contains.Item(_value));
         }
     }

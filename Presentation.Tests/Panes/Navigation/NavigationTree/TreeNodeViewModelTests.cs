@@ -1,4 +1,6 @@
-﻿using DataExplorer.Application.FilterTrees;
+﻿using DataExplorer.Application.Core.Messages;
+using DataExplorer.Application.FilterTrees;
+using DataExplorer.Application.FilterTrees.Commands;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Tests.Columns;
 using DataExplorer.Domain.Tests.FilterTrees;
@@ -13,7 +15,7 @@ namespace DataExplorer.Presentation.Tests.Panes.Navigation.NavigationTree
     {
         private TreeNodeViewModel _viewModel;
         private FakeFilterTreeNode _filterTreeNode;
-        private Mock<IFilterTreeService> _mockService;
+        private Mock<IMessageBus> _mockService;
         private Column _column;
 
         [SetUp]
@@ -21,7 +23,7 @@ namespace DataExplorer.Presentation.Tests.Panes.Navigation.NavigationTree
         {
             _column = new ColumnBuilder().Build();
             _filterTreeNode = new FakeFilterTreeNode("Test", _column);
-            _mockService = new Mock<IFilterTreeService>();
+            _mockService = new Mock<IMessageBus>();
             _viewModel = new TreeNodeViewModel(
                 _filterTreeNode,
                 _mockService.Object);
@@ -53,7 +55,9 @@ namespace DataExplorer.Presentation.Tests.Panes.Navigation.NavigationTree
         public void TestSetIsSelectedToTrueShouldRaiseEvent()
         {
             _viewModel.IsSelected = true;
-            _mockService.Verify(p => p.SelectFilterTreeNode(_filterTreeNode), Times.Once());
+            _mockService.Verify(p => p.Execute(
+                    It.Is<SelectFilterTreeNodeCommand>(q => q.Entity == _filterTreeNode)), 
+                Times.Once());
         }
     }
 }

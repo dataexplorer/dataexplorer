@@ -75,6 +75,7 @@
     <Compile Include="Columns\Queries\GetDistinctColumnValuesQuery.cs" />
     <Compile Include="Columns\Queries\GetDistinctColumnValuesQueryHandler.cs" />
     <Compile Include="Core\Commands\CommandBus.cs" />
+    <Compile Include="Core\Commands\EntityCommand.cs" />
     <Compile Include="Core\Commands\ICommand.cs" />
     <Compile Include="Core\Commands\ICommandBus.cs" />
     <Compile Include="Core\Commands\ICommandHandler.cs" />
@@ -94,9 +95,9 @@
     <Compile Include="Filters\Events\FilterChangedEvent.cs" />
     <Compile Include="FilterTrees\Commands\ISelectFilterTreeNodeCommand.cs" />
     <Compile Include="FilterTrees\Commands\SelectFilterTreeNodeCommand.cs" />
-    <Compile Include="FilterTrees\FilterTreeService.cs" />
-    <Compile Include="FilterTrees\IFilterTreeService.cs" />
+    <Compile Include="FilterTrees\Commands\SelectFilterTreeNodeCommandHandler.cs" />
     <Compile Include="FilterTrees\Queries\GetRootFilterTreeNodesQuery.cs" />
+    <Compile Include="FilterTrees\Queries\GetRootFilterTreeNodesQueryHandler.cs" />
     <Compile Include="FilterTrees\Queries\IGetRootFilterTreeNodesQuery.cs" />
     <Compile Include="IClipboard.cs" />
     <Compile Include="ICsvFileDataAdapter.cs" />

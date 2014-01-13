@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using DataExplorer.Application.Core.Messages;
 using DataExplorer.Application.FilterTrees;
+using DataExplorer.Application.FilterTrees.Queries;
 using DataExplorer.Application.Importers.CsvFiles.Events;
 using DataExplorer.Application.Projects.Events;
 using DataExplorer.Domain.FilterTrees;
@@ -15,8 +17,8 @@ namespace DataExplorer.Presentation.Tests.Panes.Navigation.NavigationTree
     public class NavigationTreeViewModelTests
     {
         private NavigationTreeViewModel _viewModel;
-        private Mock<IFilterTreeService> _service;
-        private bool _wasTreeNodeViewModelChangedRaised = false;
+        private Mock<IMessageBus> _service;
+        private bool _wasTreeNodeViewModelChangedRaised;
         private FakeFilterTreeNode _fakeFilterTreeNode;
         private List<FilterTreeNode> _filterTreeNodes;
 
@@ -25,9 +27,10 @@ namespace DataExplorer.Presentation.Tests.Panes.Navigation.NavigationTree
         {
             _fakeFilterTreeNode = new FakeFilterTreeNode();
             _filterTreeNodes = new List<FilterTreeNode> { _fakeFilterTreeNode };
-           
-            _service = new Mock<IFilterTreeService>();
-            _service.Setup(p => p.GetRoots()).Returns(_filterTreeNodes);
+
+            _service = new Mock<IMessageBus>();
+            _service.Setup(p => p.Execute(It.IsAny<GetRootFilterTreeNodesQuery>()))
+                .Returns(_filterTreeNodes);
 
             _viewModel = new NavigationTreeViewModel(_service.Object);
             _viewModel.PropertyChanged += (s, e) =>

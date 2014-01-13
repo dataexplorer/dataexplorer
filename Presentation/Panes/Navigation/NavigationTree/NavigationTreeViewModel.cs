@@ -4,7 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.Core.Events;
+using DataExplorer.Application.Core.Messages;
+using DataExplorer.Application.Core.Queries;
 using DataExplorer.Application.FilterTrees;
+using DataExplorer.Application.FilterTrees.Queries;
 using DataExplorer.Application.Importers.CsvFiles.Events;
 using DataExplorer.Application.Projects.Events;
 using DataExplorer.Presentation.Core;
@@ -19,7 +22,7 @@ namespace DataExplorer.Presentation.Panes.Navigation.NavigationTree
         IEventHandler<ProjectOpeningEvent>,
         IEventHandler<ProjectOpenedEvent>
     {
-        private readonly IFilterTreeService _service;
+        private readonly IMessageBus _messageBus;
 
         private List<TreeNodeViewModel> _treeNodeViewModels;
 
@@ -28,9 +31,9 @@ namespace DataExplorer.Presentation.Panes.Navigation.NavigationTree
             get { return _treeNodeViewModels; }
         }
 
-        public NavigationTreeViewModel(IFilterTreeService service)
+        public NavigationTreeViewModel(IMessageBus messageBus)
         {
-            _service = service;
+            _messageBus = messageBus;
             _treeNodeViewModels = new List<TreeNodeViewModel>();
         }
 
@@ -63,10 +66,10 @@ namespace DataExplorer.Presentation.Panes.Navigation.NavigationTree
 
         private void RefreshViewModels()
         {
-            var filterTreeNodes = _service.GetRoots();
+            var filterTreeNodes = _messageBus.Execute(new GetRootFilterTreeNodesQuery());
 
             _treeNodeViewModels = filterTreeNodes
-                .Select(p => new TreeNodeViewModel(p, _service))
+                .Select(p => new TreeNodeViewModel(p, _messageBus))
                 .ToList();
 
             OnPropertyChanged(() => TreeNodeViewModels);
