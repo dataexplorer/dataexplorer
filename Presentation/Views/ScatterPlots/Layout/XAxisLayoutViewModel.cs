@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 using DataExplorer.Application.Columns;
 using DataExplorer.Application.Columns.Queries;
 using DataExplorer.Application.Core.Events;
+using DataExplorer.Application.Core.Messages;
 using DataExplorer.Application.Core.Queries;
 using DataExplorer.Application.Views.ScatterPlots;
 using DataExplorer.Application.Views.ScatterPlots.Events;
+using DataExplorer.Application.Views.ScatterPlots.Layouts.Commands;
+using DataExplorer.Application.Views.ScatterPlots.Layouts.Queries;
 using DataExplorer.Domain.Events;
 using DataExplorer.Domain.Views.ScatterPlots;
 using DataExplorer.Presentation.Core;
@@ -22,15 +25,11 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Layout
         IEventHandler<ScatterPlotLayoutChangedEvent>,
         IDomainHandler<ScatterPlotLayoutColumnChangedEvent>
     {
-        private readonly IQueryBus _queryBus;
-        private readonly IScatterPlotLayoutService _layoutService;
+        private readonly IMessageBus _messageBus;
         
-        public XAxisLayoutViewModel(
-            IQueryBus queryBus,
-            IScatterPlotLayoutService layoutService)
+        public XAxisLayoutViewModel(IMessageBus messageBus)
         {
-            _queryBus = queryBus;
-            _layoutService = layoutService;
+            _messageBus = messageBus;
         }
 
         public string Label
@@ -51,7 +50,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Layout
 
         private List<LayoutItemViewModel> GetColumnViewModels()
         {
-            var columns = _queryBus.Execute(new GetAllColumnsQuery());
+            var columns = _messageBus.Execute(new GetAllColumnsQuery());
 
             var viewModels = columns
                 .Select(p => new LayoutItemViewModel(p))
@@ -62,7 +61,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Layout
 
         private LayoutItemViewModel GetSelectedColumnViewModel()
         {
-            var columnDto = _layoutService.GetXColumn();
+            var columnDto = _messageBus.Execute(new GetXColumnQuery());
 
             if (columnDto == null)
                 return null;
@@ -80,7 +79,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Layout
 
             var column = value.Column;
 
-            _layoutService.SetXColumn(column);
+            _messageBus.Execute(new SetXColumnCommand(column.Id));
         }
 
         public void Handle(ScatterPlotLayoutChangedEvent args)

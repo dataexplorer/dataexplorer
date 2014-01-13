@@ -1,5 +1,7 @@
 ﻿using System.Windows;
+using DataExplorer.Application.Core.Queries;
 using DataExplorer.Application.Views.ScatterPlots;
+using DataExplorer.Application.Views.ScatterPlots.Layouts.Queries;
 using DataExplorer.Presentation.Core.Canvas.Items;
 using DataExplorer.Presentation.Views.ScatterPlots.Titles.Renderers;
 
@@ -7,20 +9,20 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Titles.Queries
 {
     public class GetXAxisTitleQuery : IGetXAxisTitleQuery
     {
-        private readonly IScatterPlotLayoutService _service;
+        private readonly IQueryBus _queryBus;
         private readonly IXAxisTitleRenderer _renderer;
 
         public GetXAxisTitleQuery(
-            IScatterPlotLayoutService service, 
+            IQueryBus queryBus, 
             IXAxisTitleRenderer renderer)
         {
-            _service = service;
+            _queryBus = queryBus;
             _renderer = renderer;
         }
 
         public CanvasLabel Execute(Size controlSize)
         {
-            var column = _service.GetXColumn();
+            var column = _queryBus.Execute(new GetXColumnQuery());
 
             var text = column != null
                 ? column.Name

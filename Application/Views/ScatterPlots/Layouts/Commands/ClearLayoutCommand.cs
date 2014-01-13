@@ -1,24 +1,13 @@
-﻿using DataExplorer.Domain.Views;
-using DataExplorer.Domain.Views.ScatterPlots;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using DataExplorer.Application.Core.Commands;
 
 namespace DataExplorer.Application.Views.ScatterPlots.Layouts.Commands
 {
-    public class ClearLayoutCommand : IClearLayoutCommand
+    public class ClearLayoutCommand : ICommand
     {
-        private readonly IViewRepository _repository;
-
-        public ClearLayoutCommand(IViewRepository repository)
-        {
-            _repository = repository;
-        }
-
-        public void Execute()
-        {
-            var scatterPlot = _repository.Get<ScatterPlot>();
-
-            var layout = scatterPlot.GetLayout();
-
-            layout.Clear();
-        }
     }
 }

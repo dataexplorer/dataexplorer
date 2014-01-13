@@ -4,6 +4,7 @@ using DataExplorer.Application.Columns.Queries;
 using DataExplorer.Application.Core.Queries;
 using DataExplorer.Application.Maps.Queries;
 using DataExplorer.Application.Views.ScatterPlots;
+using DataExplorer.Application.Views.ScatterPlots.Layouts.Queries;
 using DataExplorer.Application.Views.ScatterPlots.Queries;
 using DataExplorer.Presentation.Core.Canvas.Items;
 using DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories;
@@ -14,18 +15,15 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Grid.Lines.Queries
     public class GetXAxisGridLinesQuery : IGetXAxisGridLinesQuery
     {
         private readonly IQueryBus _queryBus;
-        private readonly IScatterPlotLayoutService _layoutService;
         private readonly IGridLineFactory _factory;
         private readonly IXAxisGridLineRenderer _renderer;
 
         public GetXAxisGridLinesQuery(
             IQueryBus queryBus,
-            IScatterPlotLayoutService layoutService, 
             IGridLineFactory factory, 
             IXAxisGridLineRenderer renderer)
         {
             _queryBus = queryBus;
-            _layoutService = layoutService;
             _factory = factory;
             _renderer = renderer;
         }
@@ -34,7 +32,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Grid.Lines.Queries
         {
             var viewExtent = _queryBus.Execute(new GetViewExtentQuery());
 
-            var columnDto = _layoutService.GetXColumn();
+            var columnDto = _queryBus.Execute(new GetXColumnQuery());
 
             if (columnDto == null)
                 return new List<CanvasLine>();

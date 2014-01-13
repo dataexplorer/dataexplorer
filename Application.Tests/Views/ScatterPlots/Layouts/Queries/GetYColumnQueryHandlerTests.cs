@@ -11,9 +11,9 @@ using NUnit.Framework;
 namespace DataExplorer.Application.Tests.Views.ScatterPlots.Layouts.Queries
 {
     [TestFixture]
-    public class GetYColumnQueryTests
+    public class GetYColumnQueryHandlerTests
     {
-        private GetYColumnQuery _query;
+        private GetYColumnQueryHandler _handler;
         private Mock<IViewRepository> _mockRepository;
         private Mock<IColumnAdapter> _mockAdapter;
         private ScatterPlot _scatterPlot;
@@ -35,7 +35,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Layouts.Queries
             _mockAdapter = new Mock<IColumnAdapter>();
             _mockAdapter.Setup(p => p.Adapt(_column)).Returns(_columnDto);
 
-            _query = new GetYColumnQuery(
+            _handler = new GetYColumnQueryHandler(
                 _mockRepository.Object,
                 _mockAdapter.Object);
         }
@@ -43,7 +43,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Layouts.Queries
         [Test]
         public void TestQueryShouldReturnColumnDto()
         {
-            var result = _query.Query();
+            var result = _handler.Execute(new GetYColumnQuery());
             Assert.That(result, Is.EqualTo(_columnDto));
         }
     }

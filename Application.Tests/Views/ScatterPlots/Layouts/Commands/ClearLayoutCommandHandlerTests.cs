@@ -10,9 +10,9 @@ using NUnit.Framework;
 namespace DataExplorer.Application.Tests.Views.ScatterPlots.Layouts.Commands
 {
     [TestFixture]
-    public class ClearLayoutCommandTests
+    public class ClearLayoutCommandHandlerTests
     {
-        private ClearLayoutCommand _command;
+        private ClearLayoutCommandHandler _handler;
         private Mock<IViewRepository> _mockRepository;
         private ScatterPlot _scatterPlot;
         private ScatterPlotLayout _layout;
@@ -31,20 +31,20 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Layouts.Commands
             _mockRepository = new Mock<IViewRepository>();
             _mockRepository.Setup(p => p.Get<ScatterPlot>()).Returns(_scatterPlot);
 
-            _command = new ClearLayoutCommand(_mockRepository.Object);
+            _handler = new ClearLayoutCommandHandler(_mockRepository.Object);
         }
 
         [Test]
         public void TestExecuteShouldClearXAxis()
         {
-            _command.Execute();
+            _handler.Execute(new ClearLayoutCommand());
             Assert.That(_layout.XAxisColumn, Is.Null);
         }
 
         [Test]
         public void TestExecuteShouldClearYAxis()
         {
-            _command.Execute();
+            _handler.Execute(new ClearLayoutCommand());
             Assert.That(_layout.YAxisColumn, Is.Null);
         }
 
@@ -53,7 +53,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Layouts.Commands
         {
             var wasRaised = false;
             DomainEvents.Register<ScatterPlotLayoutColumnChangedEvent>(p => { wasRaised = true; });
-            _command.Execute();
+            _handler.Execute(new ClearLayoutCommand());
             Assert.That(wasRaised, Is.True);
             DomainEvents.ClearHandlers();
         }

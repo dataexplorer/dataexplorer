@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DataExplorer.Application.Core.Commands;
 using DataExplorer.Application.Views.ScatterPlots;
 using DataExplorer.Application.Views.ScatterPlots.Commands;
+using DataExplorer.Application.Views.ScatterPlots.Layouts.Commands;
 using DataExplorer.Presentation.Core.Commands;
 using ICommand = System.Windows.Input.ICommand;
 
@@ -14,14 +15,10 @@ namespace DataExplorer.Presentation.Shell.MainMenu.ViewMenu
     public class ViewMenuViewModel : IViewMenuViewModel
     {
         private readonly ICommandBus _commandBus;
-        private readonly IScatterPlotLayoutService _layoutService;
-
-        public ViewMenuViewModel(
-            ICommandBus commandBus, 
-            IScatterPlotLayoutService layoutService)
+        
+        public ViewMenuViewModel(ICommandBus commandBus)
         {
             _commandBus = commandBus;
-            _layoutService = layoutService;
         }
 
         public ICommand ZoomToFullExtentCommand 
@@ -31,7 +28,7 @@ namespace DataExplorer.Presentation.Shell.MainMenu.ViewMenu
 
         public ICommand ClearLayoutCommand
         {
-            get { return new DelegateCommand(p => _layoutService.ClearLayout()); }
+            get { return new DelegateCommand(p => _commandBus.Execute(new ClearLayoutCommand())); }
         }
     }
 }

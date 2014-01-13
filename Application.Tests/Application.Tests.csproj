@@ -99,11 +99,11 @@
     <Compile Include="Views\ScatterPlots\Commands\ZoomInTaskTests.cs" />
     <Compile Include="Views\ScatterPlots\Commands\ZoomOutTaskTests.cs" />
     <Compile Include="Views\ScatterPlots\Commands\ZoomToFullExtentCommandHandlerTests.cs" />
-    <Compile Include="Views\ScatterPlots\Layouts\Commands\ClearLayoutCommandTests.cs" />
-    <Compile Include="Views\ScatterPlots\Layouts\Commands\SetXColumnCommandTests.cs" />
-    <Compile Include="Views\ScatterPlots\Layouts\Commands\SetYColumnCommandTests.cs" />
-    <Compile Include="Views\ScatterPlots\Layouts\Queries\GetXColumnQueryTests.cs" />
-    <Compile Include="Views\ScatterPlots\Layouts\Queries\GetYColumnQueryTests.cs" />
+    <Compile Include="Views\ScatterPlots\Layouts\Commands\ClearLayoutCommandHandlerTests.cs" />
+    <Compile Include="Views\ScatterPlots\Layouts\Commands\SetXColumnCommandHandlerTests.cs" />
+    <Compile Include="Views\ScatterPlots\Layouts\Commands\SetYColumnCommandHandlerTests.cs" />
+    <Compile Include="Views\ScatterPlots\Layouts\Queries\GetXColumnQueryHandlerTests.cs" />
+    <Compile Include="Views\ScatterPlots\Layouts\Queries\GetYColumnQueryHandlerTests.cs" />
     <Compile Include="Views\ScatterPlots\Queries\GetScatterPlotsTaskTests.cs" />
     <Compile Include="Views\ScatterPlots\Queries\GetViewExtentTaskTests.cs" />
     <Compile Include="Views\ScatterPlots\ScatterPlotAdapterTests.cs" />

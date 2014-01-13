@@ -13,6 +13,7 @@ using DataExplorer.Application.Rows;
 using DataExplorer.Application.Rows.Events;
 using DataExplorer.Application.Views.ScatterPlots;
 using DataExplorer.Application.Views.ScatterPlots.Commands;
+using DataExplorer.Application.Views.ScatterPlots.Layouts.Commands;
 using DataExplorer.Presentation.Core.Commands;
 
 namespace DataExplorer.Presentation.Views.ScatterPlots
@@ -22,18 +23,14 @@ namespace DataExplorer.Presentation.Views.ScatterPlots
         IEventHandler<SelectedRowsChangedEvent>
     {
         private readonly IMessageBus _messageBus;
-        private readonly IScatterPlotLayoutService _layoutService;
         private readonly DelegateCommand _copyCommand;
         private readonly DelegateCommand _copyImageCommand;
         private readonly DelegateCommand _zoomToFullExtentCommand;
         private readonly DelegateCommand _clearLayoutCommand;
 
-        public ScatterPlotContextMenuViewModel(
-            IMessageBus messageBus,
-            IScatterPlotLayoutService layoutService)
+        public ScatterPlotContextMenuViewModel(IMessageBus messageBus)
         {
             _messageBus = messageBus;
-            _layoutService = layoutService;
 
             _copyCommand = new DelegateCommand(
                 p => _messageBus.Execute(new CopyDataToClipboardCommand()), 
@@ -46,7 +43,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots
                 p => _messageBus.Execute(new ZoomToFullExtentCommand()));
 
             _clearLayoutCommand = new DelegateCommand(
-                p => _layoutService.ClearLayout());
+                p => _messageBus.Execute(new ClearLayoutCommand()));
         }
 
         public ICommand CopyCommand

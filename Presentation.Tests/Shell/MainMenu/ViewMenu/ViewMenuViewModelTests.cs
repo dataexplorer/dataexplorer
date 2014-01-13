@@ -1,6 +1,7 @@
 ﻿using DataExplorer.Application.Core.Commands;
 using DataExplorer.Application.Views.ScatterPlots;
 using DataExplorer.Application.Views.ScatterPlots.Commands;
+using DataExplorer.Application.Views.ScatterPlots.Layouts.Commands;
 using DataExplorer.Presentation.Shell.MainMenu.ViewMenu;
 using Moq;
 using NUnit.Framework;
@@ -12,16 +13,13 @@ namespace DataExplorer.Presentation.Tests.Shell.MainMenu.ViewMenu
     {
         private ViewMenuViewModel _viewModel;
         private Mock<ICommandBus> _mockCommandBus;
-        private Mock<IScatterPlotLayoutService> _mockLayoutService;
-
+        
         [SetUp]
         public void SetUp()
         {
             _mockCommandBus = new Mock<ICommandBus>();
-            _mockLayoutService = new Mock<IScatterPlotLayoutService>();
-            _viewModel = new ViewMenuViewModel(
-                _mockCommandBus.Object,
-                _mockLayoutService.Object);
+
+            _viewModel = new ViewMenuViewModel(_mockCommandBus.Object);
         }
 
         [Test]
@@ -36,7 +34,8 @@ namespace DataExplorer.Presentation.Tests.Shell.MainMenu.ViewMenu
         public void TestClearLayoutShouldClearLayout()
         {
             _viewModel.ClearLayoutCommand.Execute(null);
-            _mockLayoutService.Verify(p => p.ClearLayout(), Times.Once());
+            _mockCommandBus.Verify(p => p.Execute(It.IsAny<ClearLayoutCommand>()),
+                Times.Once());
         }
     }
 }

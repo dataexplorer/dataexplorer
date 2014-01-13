@@ -75,6 +75,7 @@
     <Compile Include="Columns\Queries\GetDistinctColumnValuesQueryHandler.cs" />
     <Compile Include="Core\Commands\CommandBus.cs" />
     <Compile Include="Core\Commands\EntityCommand.cs" />
+    <Compile Include="Core\Commands\EntityIdCommand.cs" />
     <Compile Include="Core\Commands\ICommand.cs" />
     <Compile Include="Core\Commands\ICommandBus.cs" />
     <Compile Include="Core\Commands\ICommandHandler.cs" />
@@ -163,17 +164,16 @@
     <Compile Include="Views\ScatterPlots\Commands\ZoomToFullExtentCommandHandler.cs" />
     <Compile Include="Views\ScatterPlots\Events\ScatterPlotLayoutChangedEvent.cs" />
     <Compile Include="Views\ScatterPlots\IScatterPlotAdapter.cs" />
-    <Compile Include="Views\ScatterPlots\IScatterPlotLayoutService.cs" />
     <Compile Include="Views\ScatterPlots\Layouts\Commands\ClearLayoutCommand.cs" />
-    <Compile Include="Views\ScatterPlots\Layouts\Commands\IClearLayoutCommand.cs" />
-    <Compile Include="Views\ScatterPlots\Layouts\Commands\ISetXColumnCommand.cs" />
-    <Compile Include="Views\ScatterPlots\Layouts\Commands\ISetYColumnCommand.cs" />
+    <Compile Include="Views\ScatterPlots\Layouts\Commands\ClearLayoutCommandHandler.cs" />
     <Compile Include="Views\ScatterPlots\Layouts\Commands\SetXColumnCommand.cs" />
+    <Compile Include="Views\ScatterPlots\Layouts\Commands\SetXColumnCommandHandler.cs" />
     <Compile Include="Views\ScatterPlots\Layouts\Commands\SetYColumnCommand.cs" />
+    <Compile Include="Views\ScatterPlots\Layouts\Commands\SetYColumnCommandHandler.cs" />
     <Compile Include="Views\ScatterPlots\Layouts\Queries\GetXColumnQuery.cs" />
+    <Compile Include="Views\ScatterPlots\Layouts\Queries\GetXColumnQueryHandler.cs" />
     <Compile Include="Views\ScatterPlots\Layouts\Queries\GetYColumnQuery.cs" />
-    <Compile Include="Views\ScatterPlots\Layouts\Queries\IGetXColumnQuery.cs" />
-    <Compile Include="Views\ScatterPlots\Layouts\Queries\IGetYColumnQuery.cs" />
+    <Compile Include="Views\ScatterPlots\Layouts\Queries\GetYColumnQueryHandler.cs" />
     <Compile Include="Views\ScatterPlots\PlotDto.cs" />
     <Compile Include="Views\ScatterPlots\Queries\GetPlotsQuery.cs" />
     <Compile Include="Views\ScatterPlots\Queries\GetPlotsQueryHandler.cs" />
@@ -181,7 +181,7 @@
     <Compile Include="Views\ScatterPlots\Queries\GetViewExtentQueryHandler.cs" />
     <Compile Include="Views\ScatterPlots\ScatterPlotAdapter.cs" />
     <Compile Include="Views\ScatterPlots\ScatterPlotEventsService.cs" />
-    <Compile Include="Views\ScatterPlots\ScatterPlotLayoutService.cs" />
+    <Compile Include="Views\ScatterPlots\ScatterPlotLayoutEventService.cs" />
     <Compile Include="Web\Commands\OpenDownloadDataPageCommand.cs" />
     <Compile Include="Web\Commands\OpenDownloadDataPageCommandHandler.cs" />
   </ItemGroup>

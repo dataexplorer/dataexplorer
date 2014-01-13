@@ -3,9 +3,12 @@ using System.ComponentModel;
 using System.Linq;
 using DataExplorer.Application.Columns;
 using DataExplorer.Application.Columns.Queries;
+using DataExplorer.Application.Core.Messages;
 using DataExplorer.Application.Core.Queries;
 using DataExplorer.Application.Views.ScatterPlots;
 using DataExplorer.Application.Views.ScatterPlots.Events;
+using DataExplorer.Application.Views.ScatterPlots.Layouts.Commands;
+using DataExplorer.Application.Views.ScatterPlots.Layouts.Queries;
 using DataExplorer.Domain.Views.ScatterPlots;
 using DataExplorer.Presentation.Core.Layout;
 using DataExplorer.Presentation.Views.ScatterPlots.Layout;
@@ -18,18 +21,14 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Layouts
     public class XAxisLayoutViewModelTests
     {
         private XAxisLayoutViewModel _viewModel;
-        private Mock<IQueryBus> _mockQueryService;
-        private Mock<IScatterPlotLayoutService> _mockLayoutService;
-
+        private Mock<IMessageBus> _mockMessageBus;
+        
         [SetUp]
         public void SetUp()
         {
-            _mockQueryService = new Mock<IQueryBus>();
-            _mockLayoutService = new Mock<IScatterPlotLayoutService>();
+            _mockMessageBus = new Mock<IMessageBus>();
 
-            _viewModel = new XAxisLayoutViewModel(
-                _mockQueryService.Object,
-                _mockLayoutService.Object);
+            _viewModel = new XAxisLayoutViewModel(_mockMessageBus.Object);
         }
 
         [Test]
@@ -43,7 +42,7 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Layouts
         {
             var columnDto = new ColumnDto() { Name = "Test" };
             var columnDtos = new List<ColumnDto> { columnDto };
-            _mockQueryService.Setup(p => p.Execute(It.IsAny<GetAllColumnsQuery>()))
+            _mockMessageBus.Setup(p => p.Execute(It.IsAny<GetAllColumnsQuery>()))
                 .Returns(columnDtos);
             var result = _viewModel.Columns;
             Assert.That(result.Single().Name, Is.EqualTo(columnDto.Name));
@@ -53,7 +52,8 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Layouts
         public void TestGetSelectedColumnhouldReturnSelectedColumn()
         {
             var columnDto = new ColumnDto() { Name = "Test" };
-            _mockLayoutService.Setup(p => p.GetXColumn()).Returns(columnDto);
+            _mockMessageBus.Setup(p => p.Execute(It.IsAny<GetXColumnQuery>()))
+                .Returns(columnDto);
             var result = _viewModel.SelectedColumn;
             Assert.That(result.Name, Is.EqualTo(columnDto.Name));
         }
@@ -62,16 +62,16 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Layouts
         public void TestSetSelectedColumnShouldReturnIfNull()
         {
             _viewModel.SelectedColumn = null;
-            _mockLayoutService.Verify(p => p.SetXColumn(It.IsAny<ColumnDto>()), Times.Never());
+            _mockMessageBus.Verify(p => p.Execute(It.IsAny<SetXColumnCommand>()), Times.Never());
         }
 
         [Test]
         public void TestSetSelectedColumnShouldSetSelectedColumn()
         {
-            var columnDto = new ColumnDto() { Name = "Test" };
+            var columnDto = new ColumnDto() { Id = 1 };
             var viewModel = new LayoutItemViewModel(columnDto);
             _viewModel.SelectedColumn = viewModel;
-            _mockLayoutService.Verify(p => p.SetXColumn(columnDto), Times.Once());
+            _mockMessageBus.Verify(p => p.Execute(It.Is<SetXColumnCommand>(q => q.Id == 1)), Times.Once());
         }
 
         [Test]

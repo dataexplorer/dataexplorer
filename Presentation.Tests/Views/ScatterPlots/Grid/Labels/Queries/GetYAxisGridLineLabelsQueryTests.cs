@@ -8,6 +8,7 @@ using DataExplorer.Application.Maps;
 using DataExplorer.Application.Maps.Queries;
 using DataExplorer.Application.Tests.Maps;
 using DataExplorer.Application.Views.ScatterPlots;
+using DataExplorer.Application.Views.ScatterPlots.Layouts.Queries;
 using DataExplorer.Application.Views.ScatterPlots.Queries;
 using DataExplorer.Domain.Maps;
 using DataExplorer.Domain.Views.ScatterPlots;
@@ -25,7 +26,6 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Grid.Labels.Queries
     {
         private GetYAxisGridLabelsQuery _query;
         private Mock<IQueryBus> _mockScatterPlotService;
-        private Mock<IScatterPlotLayoutService> _mockLayoutService;
         private Mock<IQueryBus> _mockQueryBus;
         private Mock<IGridLineFactory> _mockFactory;
         private Mock<IYAxisGridLabelRenderer> _mockRenderer;
@@ -65,9 +65,8 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Grid.Labels.Queries
             _mockScatterPlotService = new Mock<IQueryBus>();
             _mockScatterPlotService.Setup(p => p.Execute(It.IsAny<GetViewExtentQuery>()))
                 .Returns(_viewExtent);
-
-            _mockLayoutService = new Mock<IScatterPlotLayoutService>();
-            _mockLayoutService.Setup(p => p.GetYColumn()).Returns(_columnDto);
+            _mockQueryBus.Setup(p => p.Execute(It.IsAny<GetYColumnQuery>()))
+                .Returns(_columnDto);
 
             _mockFactory = new Mock<IGridLineFactory>();
             _mockFactory.Setup(p => p.Create(typeof(object), _axisMap, _values, _viewExtent.Left, _viewExtent.Right)).Returns(_axisLines);
@@ -77,7 +76,6 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Grid.Labels.Queries
 
             _query = new GetYAxisGridLabelsQuery(
                 _mockQueryBus.Object,
-                _mockLayoutService.Object,
                 _mockFactory.Object,
                 _mockRenderer.Object);
         }
@@ -85,7 +83,8 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Grid.Labels.Queries
         [Test]
         public void TestExecuteShouldReturnEmptyListIfColumnDtoIsNull()
         {
-            _mockLayoutService.Setup(p => p.GetYColumn()).Returns((ColumnDto) null);
+            _mockQueryBus.Setup(p => p.Execute(It.IsAny<GetYColumnQuery>()))
+                .Returns((ColumnDto)null);
             var results = _query.Execute(_controlSize);
             Assert.That(results, Is.Empty);
         }

@@ -8,6 +8,7 @@ using DataExplorer.Application.Maps;
 using DataExplorer.Application.Maps.Queries;
 using DataExplorer.Application.Tests.Maps;
 using DataExplorer.Application.Views.ScatterPlots;
+using DataExplorer.Application.Views.ScatterPlots.Layouts.Queries;
 using DataExplorer.Application.Views.ScatterPlots.Queries;
 using DataExplorer.Domain.Maps;
 using DataExplorer.Domain.Views.ScatterPlots;
@@ -25,7 +26,6 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Grid.Lines.Queries
     {
         private GetXAxisGridLinesQuery _query;
         private Mock<IQueryBus> _mockQueryBus;
-        private Mock<IScatterPlotLayoutService> _mockLayoutService;
         private Mock<IGridLineFactory> _mockFactory;
         private Mock<IXAxisGridLineRenderer> _mockRenderer;
         private Size _controlSize;
@@ -51,9 +51,6 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Grid.Lines.Queries
             _canvasLine = new CanvasLine();
             _canvasLines = new List<CanvasLine> { _canvasLine };
 
-            _mockLayoutService = new Mock<IScatterPlotLayoutService>();
-            _mockLayoutService.Setup(p => p.GetXColumn()).Returns(_columnDto);
-
             _mockQueryBus = new Mock<IQueryBus>();
             _mockQueryBus.Setup(p => p.Execute(
                 It.Is<GetDistinctColumnValuesQuery>(q => q.Id == _columnDto.Id)))
@@ -65,6 +62,8 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Grid.Lines.Queries
                 .Returns(_axisMap);
             _mockQueryBus.Setup(p => p.Execute(It.IsAny<GetViewExtentQuery>()))
                 .Returns(_viewExtent);
+            _mockQueryBus.Setup(p => p.Execute(It.IsAny<GetXColumnQuery>()))
+                .Returns(_columnDto);
 
             _mockFactory = new Mock<IGridLineFactory>();
             _mockFactory.Setup(p => p.Create(typeof(object), _axisMap, _values, _viewExtent.Left, _viewExtent.Right)).Returns(_axisLines);
@@ -74,7 +73,6 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Grid.Lines.Queries
 
             _query = new GetXAxisGridLinesQuery(
                 _mockQueryBus.Object,
-                _mockLayoutService.Object,
                 _mockFactory.Object,
                 _mockRenderer.Object);
         }
@@ -82,7 +80,8 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Grid.Lines.Queries
         [Test]
         public void TestExecuteShouldReturnEmptyListIfColumnDtoIsNull()
         {
-            _mockLayoutService.Setup(p => p.GetXColumn()).Returns((ColumnDto) null);
+            _mockQueryBus.Setup(p => p.Execute(It.IsAny<GetXColumnQuery>()))
+                .Returns((ColumnDto)null);
             var results = _query.Execute(_controlSize);
             Assert.That(results, Is.Empty);
         }

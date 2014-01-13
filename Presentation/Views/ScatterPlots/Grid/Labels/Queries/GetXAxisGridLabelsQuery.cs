@@ -6,6 +6,7 @@ using DataExplorer.Application.Core.Queries;
 using DataExplorer.Application.Maps;
 using DataExplorer.Application.Maps.Queries;
 using DataExplorer.Application.Views.ScatterPlots;
+using DataExplorer.Application.Views.ScatterPlots.Layouts.Queries;
 using DataExplorer.Application.Views.ScatterPlots.Queries;
 using DataExplorer.Presentation.Core.Canvas.Items;
 using DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories;
@@ -16,18 +17,15 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Grid.Labels.Queries
     public class GetXAxisGridLabelsQuery : IGetXAxisGridLabelsQuery
     {
         private readonly IQueryBus _queryBus;
-        private readonly IScatterPlotLayoutService _layoutService;
         private readonly IGridLineFactory _factory;
         private readonly IXAxisGridLabelRenderer _renderer;
 
         public GetXAxisGridLabelsQuery(
             IQueryBus queryBus, 
-            IScatterPlotLayoutService layoutService, 
             IGridLineFactory factory, 
             IXAxisGridLabelRenderer renderer)
         {
             _queryBus = queryBus;
-            _layoutService = layoutService;
             _factory = factory;
             _renderer = renderer;
         }
@@ -36,7 +34,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Grid.Labels.Queries
         {
             var viewExtent = _queryBus.Execute(new GetViewExtentQuery());
 
-            var columnDto = _layoutService.GetXColumn();
+            var columnDto = _queryBus.Execute(new GetXColumnQuery());
 
             if (columnDto == null)
                 return new List<CanvasLabel>();

@@ -11,9 +11,9 @@ using NUnit.Framework;
 namespace DataExplorer.Application.Tests.Views.ScatterPlots.Layouts.Commands
 {
     [TestFixture]
-    public class SetXColumnCommandTests
+    public class SetYColumnCommandHandlerTests
     {
-        private SetXColumnCommand _command;
+        private SetYColumnCommandHandler _handler;
         private Mock<IColumnRepository> _mockColumnRepository;
         private Mock<IViewRepository> _mockRepository;
         private ScatterPlot _scatterPlot;
@@ -35,16 +35,16 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Layouts.Commands
             _mockRepository = new Mock<IViewRepository>();
             _mockRepository.Setup(p => p.Get<ScatterPlot>()).Returns(_scatterPlot);
 
-            _command = new SetXColumnCommand(
+            _handler = new SetYColumnCommandHandler(
                 _mockColumnRepository.Object,
                 _mockRepository.Object);
         }
 
         [Test]
-        public void TestSetXColumnShouldSetXColumn()
+        public void TestSetYColumnShouldSetYColumn()
         {
-            _command.Execute(_columnDto);
-            Assert.That(_layout.XAxisColumn, Is.EqualTo(_column));
+            _handler.Execute(new SetYColumnCommand(_columnDto.Id));
+            Assert.That(_layout.YAxisColumn, Is.EqualTo(_column));
         }
     }
 }
