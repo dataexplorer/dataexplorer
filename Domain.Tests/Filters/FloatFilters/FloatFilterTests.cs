@@ -38,13 +38,6 @@ namespace DataExplorer.Domain.Tests.Filters.FloatFilters
         }
 
         [Test]
-        public void TestGetIncludeNullsShouldReturnValue()
-        {
-            var result = _filter.IncludeNull;
-            Assert.That(result, Is.True);
-        }
-
-        [Test]
         public void TestCreatePredicateShouldReturnPredicate()
         {
             var result = _filter.CreatePredicate();

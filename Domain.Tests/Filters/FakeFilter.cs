@@ -11,8 +11,8 @@ namespace DataExplorer.Domain.Tests.Filters
         {
         }
 
-        public FakeFilter(Column column)
-            : base(column, false)
+        public FakeFilter(Column column, bool includeNull)
+            : base(column, includeNull)
         {
         }
 

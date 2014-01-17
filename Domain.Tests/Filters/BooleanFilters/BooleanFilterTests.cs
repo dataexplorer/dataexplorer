@@ -33,13 +33,6 @@ namespace DataExplorer.Domain.Tests.Filters.BooleanFilters
         }
 
         [Test]
-        public void TestIncludeNull()
-        {
-            _filter = new BooleanFilter(_column, false, true, false);
-            Assert.That(_filter.IncludeFalse, Is.True);
-        }
-
-        [Test]
         public void TestCreatePredicateShouldReturnBooleanPredicate()
         {
             _filter = new BooleanFilter(_column, true, true, false);

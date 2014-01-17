@@ -40,13 +40,6 @@ namespace DataExplorer.Domain.Tests.Filters.DateTimeFilters
         }
 
         [Test]
-        public void TestGetIncludeNullsShouldReturnValue()
-        {
-            var result = _filter.IncludeNull;
-            Assert.That(result, Is.True);
-        }
-
-        [Test]
         public void TestCreatePredicateShouldReturnBooleanPredicate()
         {
             var result = _filter.CreatePredicate();

@@ -16,7 +16,7 @@ namespace DataExplorer.Domain.Tests.Filters
         {
             _column = new ColumnBuilder().Build();
 
-            _filter = new FakeFilter(_column);
+            _filter = new FakeFilter(_column, true);
         }
 
         [Test]
@@ -24,6 +24,13 @@ namespace DataExplorer.Domain.Tests.Filters
         {
             var result = _filter.Column;
             Assert.That(result, Is.EqualTo(_column));
+        }
+
+        [Test]
+        public void TestGetIncludeNullShouldReturnValue()
+        {
+            var result = _filter.IncludeNull;
+            Assert.That(result, Is.True);
         }
     }
 }
