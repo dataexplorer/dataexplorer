@@ -15,14 +15,11 @@ namespace DataExplorer.Infrastructure.Tests.Serializers.Views.ScatterPlots
     public class ScatterPlotLayoutSerializerTests
     {
         private ScatterPlotLayoutSerializer _serializer;
-        private Mock<IPropertySerializer> _mockPropertySerializer;
         private ScatterPlotLayout _layout;
         private List<Column> _columns; 
         private Column _xAxisColumn;
         private Column _yAxisColumn;
         private XElement _xLayout;
-        private XElement _xXAxisColumnId;
-        private XElement _xYAxisColumnId;
 
         [SetUp]
         public void SetUp()
@@ -38,18 +35,12 @@ namespace DataExplorer.Infrastructure.Tests.Serializers.Views.ScatterPlots
                 YAxisColumn = _yAxisColumn
             };
 
-            _xLayout = new XElement("layout");
-            _xXAxisColumnId = new XElement("x-axis-column-id", 1);
-            _xYAxisColumnId = new XElement("y-axis-column-id", 2);
-            _xLayout.Add(_xXAxisColumnId, _xYAxisColumnId);
-
-            _mockPropertySerializer = new Mock<IPropertySerializer>();
-            _mockPropertySerializer.Setup(p => p.Serialize<int?>("x-axis-column-id", 1)).Returns(_xXAxisColumnId);
-            _mockPropertySerializer.Setup(p => p.Serialize<int?>("y-axis-column-id", 2)).Returns(_xYAxisColumnId);
-            _mockPropertySerializer.Setup(p => p.Deserialize<int?>(_xXAxisColumnId)).Returns(1);
-            _mockPropertySerializer.Setup(p => p.Deserialize<int?>(_xYAxisColumnId)).Returns(2);
-            
-            _serializer = new ScatterPlotLayoutSerializer(_mockPropertySerializer.Object);
+            _xLayout = new XElement("layout",
+                new XElement("x-axis-column-id", 1),
+                new XElement("y-axis-column-id", 2));
+           
+            _serializer = new ScatterPlotLayoutSerializer(
+                new PropertySerializer());
         }
 
         [Test]

@@ -17,15 +17,11 @@ namespace DataExplorer.Infrastructure.Tests.Serializers.Rows
     public class RowSerializerTests
     {
         private RowSerializer _serializer;
-        private Mock<IPropertySerializer> _mockPropertySerializer;
         private Column _column;
         private List<Column> _columns;
         private List<Type> _dataTypes; 
         private Row _row;
         private XElement _xRow;
-        private XElement _xId;
-        private XElement _xFields;
-        private XElement _xField;
 
         [SetUp]
         public void SetUp()
@@ -41,20 +37,13 @@ namespace DataExplorer.Infrastructure.Tests.Serializers.Rows
                 .WithField("Field 1")
                 .Build();
 
-            _xRow = new XElement("row");
-            _xId = new XElement("id", _row.Id);
-            _xField = new XElement("column-1", "Field 1");
-            _xFields = new XElement("fields");
+            _xRow = new XElement("row",
+                new XElement("id", _row.Id),
+                new XElement("fields",
+                    new XElement("column-1", "Field 1")));
 
-            _xFields.Add(_xField);
-            _xRow.Add(new object[] { _xId, _xFields });
-
-            _mockPropertySerializer = new Mock<IPropertySerializer>();
-            _mockPropertySerializer.Setup(p => p.Serialize("id", _row.Id)).Returns(_xId);
-            _mockPropertySerializer.Setup(p => p.Serialize("column-1", _row.Fields.First())).Returns(_xField);
-            _mockPropertySerializer.Setup(p => p.Deserialize<int>(_xId)).Returns(_row.Id);
-            _mockPropertySerializer.Setup(p => p.Deserialize(_xField, _column.Type)).Returns(_row.Fields.First());
-            _serializer = new RowSerializer(_mockPropertySerializer.Object);
+            _serializer = new RowSerializer(
+                new PropertySerializer());
         }
 
         [Test]
