@@ -11,14 +11,16 @@ namespace DataExplorer.Domain.Tests.Filters.FloatFilters
         private Column _column;
         private double _lowerValue;
         private double _upperValue;
+        private bool _includeNull;
 
         [SetUp]
         public void SetUp()
         {
             _lowerValue = double.MinValue;
             _upperValue = double.MaxValue;
+            _includeNull = true;
             _column = new ColumnBuilder().Build();
-            _filter = new FloatFilter(_column, _lowerValue, _upperValue);
+            _filter = new FloatFilter(_column, _lowerValue, _upperValue, _includeNull);
         }
 
         [Test]
@@ -36,7 +38,21 @@ namespace DataExplorer.Domain.Tests.Filters.FloatFilters
         }
 
         [Test]
+        public void TestGetIncludeNullsShouldReturnValue()
+        {
+            var result = _filter.IncludeNull;
+            Assert.That(result, Is.True);
+        }
+
+        [Test]
         public void TestCreatePredicateShouldReturnPredicate()
+        {
+            var result = _filter.CreatePredicate();
+            Assert.That(result, Is.Not.Null);
+        }
+
+        [Test]
+        public void TestCreatePredicateShouldReturnNullableBooleanPredicate()
         {
             var result = _filter.CreatePredicate();
             Assert.That(result, Is.Not.Null);

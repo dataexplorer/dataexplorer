@@ -89,7 +89,7 @@ namespace DataExplorer.Infrastructure.Tests.Serializers.Filters
         [Test]
         public void TestSerializeShouldSerializeFloatFilters()
         {
-            var filter = new FloatFilter(_column, double.MinValue, double.MaxValue);
+            var filter = new FloatFilter(_column, double.MinValue, double.MaxValue, true);
             var xFilter = new XElement("float-filter");
             _mockFloatSerializer.Setup(p => p.Serialize(filter)).Returns(xFilter);
             var result = _serializer.Serialize(filter);
@@ -150,7 +150,7 @@ namespace DataExplorer.Infrastructure.Tests.Serializers.Filters
         public void TestDeserializeShouldDeserializeFloatFilters()
         {
             var xFilter = new XElement("float-filter");
-            var filter = new FloatFilter(_column, 0d, 1d);
+            var filter = new FloatFilter(_column, 0d, 1d, true);
             _mockFloatSerializer.Setup(p => p.Deserialize(xFilter, _columns)).Returns(filter);
             var result = _serializer.Deserialize(xFilter, _columns);
             Assert.That(result, Is.EqualTo(filter));

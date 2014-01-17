@@ -60,7 +60,6 @@
     <Compile Include="Filters\DateTimeFilters\DateTimeFilter.cs" />
     <Compile Include="Filters\Filter.cs" />
     <Compile Include="Filters\FloatFilters\FloatFilter.cs" />
-    <Compile Include="Filters\FloatFilters\NullableFloatFilter.cs" />
     <Compile Include="Filters\IFilterRepository.cs" />
     <Compile Include="Filters\IntegerFilters\IntegerFilter.cs" />
     <Compile Include="Filters\IntegerFilters\NullableIntegerFilter.cs" />

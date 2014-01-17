@@ -27,12 +27,13 @@ namespace DataExplorer.Infrastructure.Tests.Serializers.Filters.FloatFilters
             _column = new ColumnBuilder().WithId(1).Build();
             _columns = new List<Column> { _column };
 
-            _filter = new FloatFilter(_column, 0d, 1d);
+            _filter = new FloatFilter(_column, 0d, 1d, true);
 
             _xFilter = new XElement("float-filter",
                 new XElement("column-id", 1),
                 new XElement("lower-value", 0d),
-                new XElement("upper-value", 1d));
+                new XElement("upper-value", 1d),
+                new XElement("include-null", true));
 
             _serializer = new FloatFilterSerializer(
                 new PropertySerializer());

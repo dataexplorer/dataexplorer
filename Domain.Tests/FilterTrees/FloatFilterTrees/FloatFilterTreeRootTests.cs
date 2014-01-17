@@ -48,10 +48,10 @@ namespace DataExplorer.Domain.Tests.FilterTrees.FloatFilterTrees
                 .WithValue(double.MaxValue)
                 .WithNulls().Build();
             var root = new FloatFilterTreeRoot(string.Empty, column);
-            var result = (NullableFloatFilter) root.CreateFilter();
+            var result = (FloatFilter) root.CreateFilter();
             Assert.That(result.LowerValue, Is.EqualTo(double.MinValue));
             Assert.That(result.UpperValue, Is.EqualTo(double.MaxValue));
-            Assert.That(result.IncludeNulls, Is.True);
+            Assert.That(result.IncludeNull, Is.True);
         }
 
         [Test]
@@ -62,8 +62,10 @@ namespace DataExplorer.Domain.Tests.FilterTrees.FloatFilterTrees
                 .WithValue(double.MaxValue)
                 .Build();
             var root = new FloatFilterTreeRoot(string.Empty, column);
-            var result = root.CreateFilter();
-            Assert.That(result is FloatFilter);
+            var result = (FloatFilter) root.CreateFilter();
+            Assert.That(result.LowerValue, Is.EqualTo(double.MinValue));
+            Assert.That(result.UpperValue, Is.EqualTo(double.MaxValue));
+            Assert.That(result.IncludeNull, Is.False);
         }
     }
 }

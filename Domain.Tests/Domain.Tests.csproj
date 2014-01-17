@@ -65,7 +65,6 @@
     <Compile Include="Filters\FakeFilter.cs" />
     <Compile Include="Filters\FilterTests.cs" />
     <Compile Include="Filters\FloatFilters\FloatFilterTests.cs" />
-    <Compile Include="Filters\FloatFilters\NullableFloatFilterTests.cs" />
     <Compile Include="Filters\IntegerFilters\IntegerFilterTests.cs" />
     <Compile Include="Filters\IntegerFilters\NullableIntegerFilterTests.cs" />
     <Compile Include="Filters\NullFilters\NullFilterTests.cs" />

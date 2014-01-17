@@ -27,7 +27,7 @@ namespace DataExplorer.Domain.FilterTrees.FloatFilterTrees
         public override Filter CreateFilter()
         {
             return _column.HasNulls
-                ? new NullableFloatFilter(_column, _lower, _upper, true)
+                ? new FloatFilter(_column, _lower, _upper, _column.HasNulls)
                 : base.CreateFilter();
         }
     }
