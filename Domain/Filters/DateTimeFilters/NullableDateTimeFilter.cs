@@ -14,8 +14,7 @@ namespace DataExplorer.Domain.Filters.DateTimeFilters
         {
             _includeNulls = includeNulls;
         }
-
-
+        
         public bool IncludeNulls
         {
             get { return _includeNulls; }

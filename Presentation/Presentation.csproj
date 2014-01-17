@@ -45,20 +45,25 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="Xceed.Wpf.AvalonDock">
-      <HintPath>..\packages\AvalonDock.2.0.2000\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=2.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\AvalonDock\Xceed.Wpf.AvalonDock.dll</HintPath>
     </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero">
-      <HintPath>..\packages\AvalonDock.2.0.2000\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=2.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\AvalonDock\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
     </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Expression">
-      <HintPath>..\packages\AvalonDock.2.0.2000\lib\net40\Xceed.Wpf.AvalonDock.Themes.Expression.dll</HintPath>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Expression, Version=2.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\AvalonDock\Xceed.Wpf.AvalonDock.Themes.Expression.dll</HintPath>
     </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro">
-      <HintPath>..\packages\AvalonDock.2.0.2000\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=2.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\AvalonDock\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
     </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010">
-      <HintPath>..\packages\AvalonDock.2.0.2000\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=2.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\AvalonDock\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -130,9 +135,14 @@
     <Compile Include="Importers\CsvFile\Header\CsvFileImportHeaderViewModel.cs" />
     <Compile Include="Importers\CsvFile\Header\ICsvFileImportHeaderViewModel.cs" />
     <Compile Include="Importers\CsvFile\ICsvFileImportViewModel.cs" />
+    <Compile Include="Panes\Filter\BooleanFilters\BooleanFilterView.xaml.cs">
+      <DependentUpon>BooleanFilterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\Filter\BooleanFilters\BooleanFilterViewModel.cs" />
     <Compile Include="Panes\Filter\FilterPaneView.xaml.cs">
       <DependentUpon>FilterPaneView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Panes\Filter\FilterPaneViewModel.cs" />
     <Compile Include="Panes\Layout\ILayoutPaneViewModel.cs" />
     <Compile Include="Panes\Layout\LayoutPaneView.xaml.cs">
       <DependentUpon>LayoutPaneView.xaml</DependentUpon>
@@ -312,7 +322,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -343,6 +352,10 @@
     <Page Include="Importers\CsvFile\Header\CsvFileImportHeaderView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Panes\Filter\BooleanFilters\BooleanFilterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Panes\Filter\FilterPaneView.xaml">
       <Generator>MSBuild:Compile</Generator>

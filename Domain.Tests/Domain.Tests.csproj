@@ -108,6 +108,7 @@
     <Compile Include="Predicates\DateTimePredicateTests.cs" />
     <Compile Include="Predicates\FloatPredicateTests.cs" />
     <Compile Include="Predicates\IntegerPredicateTests.cs" />
+    <Compile Include="Predicates\NullableBooleanPredicateTests.cs" />
     <Compile Include="Predicates\NullableDateTimePredicateTests.cs" />
     <Compile Include="Predicates\NullableFloatPredicateTests.cs" />
     <Compile Include="Predicates\NullableIntegerPredicateTests.cs" />

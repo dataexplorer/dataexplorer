@@ -31,7 +31,7 @@ namespace DataExplorer.Domain.FilterTrees.BooleanFilterTrees
 
         public override Filter CreateFilter()
         {
-            return new BooleanFilter(_column, _value);
+            return new BooleanFilter(_column, _value, !_value, false);
         }
     }
 }

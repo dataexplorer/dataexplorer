@@ -35,11 +35,7 @@ namespace DataExplorer.Domain.FilterTrees.BooleanFilterTrees
 
         public override Filter CreateFilter()
         {
-            var values = new List<bool?>();
-            values.Add(null);
-            values.Add(true);
-            values.Add(false);
-            return new BooleanFilter(_column, values);
+            return new BooleanFilter(_column, true, true, _column.HasNulls);
         }
     }
 }

@@ -10,9 +10,10 @@ namespace DataExplorer.Domain.Predicates
 {
     public class BooleanPredicate
     {
-        public Func<Row, bool> Create(Column column, List<bool?> values)
+        public Func<Row, bool> Create(Column column, bool isTrue, bool isFalse)
         {
-            return p => values.Contains(((bool?) p[column.Index]));
+            return p => isTrue && ((bool) p[column.Index])
+                || isFalse && !((bool) p[column.Index]);
         }
     }
 }

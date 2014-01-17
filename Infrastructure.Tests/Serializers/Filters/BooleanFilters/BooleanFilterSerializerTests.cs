@@ -21,7 +21,9 @@ namespace DataExplorer.Infrastructure.Tests.Serializers.Filters.BooleanFilters
         private Column _column;
         private XElement _xFilter;
         private XElement _xColumnId;
-        private XElement _xValues;
+        private XElement _xIncludeTrue;
+        private XElement _xIncludeFalse;
+        private XElement _xIncludeNull;
 
         [SetUp]
         public void SetUp()
@@ -29,22 +31,32 @@ namespace DataExplorer.Infrastructure.Tests.Serializers.Filters.BooleanFilters
             _column = new ColumnBuilder().WithId(1).Build();
             _columns = new List<Column> { _column };
 
-            _filter = new BooleanFilter(_column, true);
+            _filter = new BooleanFilter(_column, true, true, true);
 
             _xFilter = new XElement("boolean-filter");
             _xColumnId = new XElement("column-id", 1);
-            _xValues = new XElement("values", new List<bool?> { true });
-            _xFilter.Add(_xColumnId, _xValues);
+            _xIncludeTrue = new XElement("include-true", true);
+            _xIncludeFalse = new XElement("include-false", true);
+            _xIncludeNull = new XElement("include-null", true);
+            _xFilter.Add(_xColumnId, _xIncludeTrue, _xIncludeFalse, _xIncludeNull);
 
             _mockPropertySerializer = new Mock<IPropertySerializer>();
             _mockPropertySerializer.Setup(p => p.Serialize("column-id", 1))
                 .Returns(new XElement("column-id", 1));
-            _mockPropertySerializer.Setup(p => p.SerializeList("values", It.IsAny<List<bool?>>()))
-                .Returns(new XElement("values", new List<bool?> { true }));
+            _mockPropertySerializer.Setup(p => p.Serialize("include-true", true))
+                .Returns(new XElement("include-true", true));
+            _mockPropertySerializer.Setup(p => p.Serialize("include-false", true))
+                .Returns(new XElement("include-false", true));
+            _mockPropertySerializer.Setup(p => p.Serialize("include-null", true))
+                .Returns(new XElement("include-null", true));
             _mockPropertySerializer.Setup(p => p.Deserialize<int>(_xColumnId))
                 .Returns(1);
-            _mockPropertySerializer.Setup(p => p.DeserializeList<bool?>(_xValues))
-                .Returns(new List<bool?> { true });
+            _mockPropertySerializer.Setup(p => p.Deserialize<bool>(_xIncludeTrue))
+                .Returns(true);
+            _mockPropertySerializer.Setup(p => p.Deserialize<bool>(_xIncludeFalse))
+                .Returns(true);
+            _mockPropertySerializer.Setup(p => p.Deserialize<bool>(_xIncludeNull))
+                .Returns(true);
             
             _serializer = new BooleanFilterSerializer(
                 _mockPropertySerializer.Object);
@@ -61,7 +73,9 @@ namespace DataExplorer.Infrastructure.Tests.Serializers.Filters.BooleanFilters
         public void TestSerializeShouldSerializeValues()
         {
             var result = _serializer.Serialize(_filter);
-            AssertList(result, "values", "true");
+            AssertValue(result, "include-true", "true");
+            AssertValue(result, "include-false", "true");
+            AssertValue(result, "include-null", "true");
         }
 
         [Test]
@@ -75,7 +89,9 @@ namespace DataExplorer.Infrastructure.Tests.Serializers.Filters.BooleanFilters
         public void TestDeserializeShouldDeserializeValues()
         {
             var result = _serializer.Deserialize(_xFilter, _columns);
-            Assert.That(result.Values.Single(), Is.EqualTo(true));
+            Assert.That(result.IncludeTrue, Is.True);
+            Assert.That(result.IncludeFalse, Is.True);
+            Assert.That(result.IncludeNull, Is.True);
         }
 
         private void AssertValue(XElement result, string name, string value)

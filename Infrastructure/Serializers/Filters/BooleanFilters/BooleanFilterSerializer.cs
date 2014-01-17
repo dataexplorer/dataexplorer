@@ -15,7 +15,9 @@ namespace DataExplorer.Infrastructure.Serializers.Filters.BooleanFilters
     {
         private const string FilterTag = "boolean-filter";
         private const string ColumnIdTag = "column-id";
-        private const string ValuesTag = "values";
+        private const string IncludeTrueTag = "include-true";
+        private const string IncludeFalseTag = "include-false";
+        private const string IncludeNullTag = "include-null";
 
         private readonly IPropertySerializer _propertySerializer;
 
@@ -30,8 +32,12 @@ namespace DataExplorer.Infrastructure.Serializers.Filters.BooleanFilters
 
             AddProperty(xFilter, ColumnIdTag, filter.Column.Id);
 
-            AddList(xFilter, ValuesTag, filter.Values);
+            AddProperty(xFilter, IncludeTrueTag, filter.IncludeTrue);
 
+            AddProperty(xFilter, IncludeFalseTag, filter.IncludeFalse);
+
+            AddProperty(xFilter, IncludeNullTag, filter.IncludeNull);
+            
             return xFilter;
         }
 
@@ -42,22 +48,19 @@ namespace DataExplorer.Infrastructure.Serializers.Filters.BooleanFilters
             xElement.Add(xProperty);
         }
 
-        private void AddList<T>(XElement xElement, string name, List<T> values)
-        {
-            var xList = _propertySerializer.SerializeList(name, values);
-
-            xElement.Add(xList);
-        }
-
         public BooleanFilter Deserialize(XElement xFilter, IEnumerable<Column> columns)
         {
             var id = DeserializeProperty<int>(xFilter, ColumnIdTag);
 
             var column = columns.First(p => p.Id == id);
 
-            var values = DeserializeList<bool?>(xFilter, ValuesTag);
+            var includeTrue = DeserializeProperty<bool>(xFilter, IncludeTrueTag);
 
-            return new BooleanFilter(column, values);
+            var includeFalse = DeserializeProperty<bool>(xFilter, IncludeFalseTag);
+
+            var includeNull = DeserializeProperty<bool>(xFilter, IncludeNullTag);
+            
+            return new BooleanFilter(column, includeTrue, includeFalse, includeNull);
         }
 
         private T DeserializeProperty<T>(XElement xColumn, string name)
@@ -66,16 +69,6 @@ namespace DataExplorer.Infrastructure.Serializers.Filters.BooleanFilters
                 .First(p => p.Name == name);
 
             var value = _propertySerializer.Deserialize<T>(xProperty);
-
-            return value;
-        }
-
-        private List<T> DeserializeList<T>(XElement xColumn, string name)
-        {
-            var xProperty = xColumn.Elements()
-                .First(p => p.Name == name);
-
-            var value = _propertySerializer.DeserializeList<T>(xProperty);
 
             return value;
         }

@@ -37,7 +37,8 @@ namespace DataExplorer.Domain.Tests.FilterTrees.BooleanFilterTrees
         {
             _leaf = new BooleanFilterTreeLeaf(string.Empty, _column, true);
             var result = (BooleanFilter) _leaf.CreateFilter();
-            Assert.That(result.Values.Contains(true));
+            Assert.That(result.IncludeTrue, Is.True);
+            Assert.That(result.IncludeFalse, Is.False);
         }
     }
 }

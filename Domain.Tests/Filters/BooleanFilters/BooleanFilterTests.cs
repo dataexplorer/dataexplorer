@@ -19,40 +19,32 @@ namespace DataExplorer.Domain.Tests.Filters.BooleanFilters
         }
 
         [Test]
-        public void TestDefaultConstructorShouldSetValues()
+        public void TestIncludeTrue()
         {
-            var values = new List<bool?> { true };
-            _filter = new BooleanFilter(_column, values);
-            Assert.That(_filter.Values, Has.Member(true));
+            _filter = new BooleanFilter(_column, true, false, false);
+            Assert.That(_filter.IncludeTrue, Is.True);
         }
 
         [Test]
-        public void TestValueShouldReturnFalseIfNullIsIncluded()
+        public void TestIncludeFalse()
         {
-            var filter = new BooleanFilter(_column, (bool?) null);
-            Assert.That(filter.Values.Contains(null));
+            _filter = new BooleanFilter(_column, false, true, false);
+            Assert.That(_filter.IncludeFalse, Is.True);
         }
 
         [Test]
-        public void TestValueShouldReturnFalseIfFalseIsIncluded()
+        public void TestIncludeNull()
         {
-            _filter = new BooleanFilter(_column, false);
-            Assert.That(_filter.Values.Contains(false));
-        }
-
-        [Test]
-        public void TestValueShouldReturnTrueIfTrueIsIncluded()
-        {
-            _filter = new BooleanFilter(_column, true);
-            Assert.That(_filter.Values.Contains(true));
+            _filter = new BooleanFilter(_column, false, true, false);
+            Assert.That(_filter.IncludeFalse, Is.True);
         }
 
         [Test]
         public void TestCreatePredicateShouldReturnBooleanPredicate()
         {
-            _filter = new BooleanFilter(_column, false);
+            _filter = new BooleanFilter(_column, true, true, false);
             var result = _filter.CreatePredicate();
-            Assert.That(result != null);
+            Assert.That(result, Is.Not.Null);
         }
     }
 }

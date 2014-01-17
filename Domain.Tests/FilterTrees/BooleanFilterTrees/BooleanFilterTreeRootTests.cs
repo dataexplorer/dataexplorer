@@ -48,12 +48,11 @@ namespace DataExplorer.Domain.Tests.FilterTrees.BooleanFilterTrees
         [Test]
         public void TestCreateFilterShouldReturnFilter()
         {
-            var column = new ColumnBuilder().WithNulls().Build();
+            var column = new ColumnBuilder().Build();
             var node = new BooleanFilterTreeRoot(string.Empty, column);
             var result = (BooleanFilter) node.CreateFilter();
-            Assert.That(result.Values, Has.Member(null));
-            Assert.That(result.Values, Has.Member(false));
-            Assert.That(result.Values, Has.Member(true));
+            Assert.That(result.IncludeTrue, Is.True);
+            Assert.That(result.IncludeFalse, Is.True);
         }
     }
 }

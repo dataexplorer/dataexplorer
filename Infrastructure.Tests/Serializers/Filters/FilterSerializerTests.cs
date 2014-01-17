@@ -69,7 +69,7 @@ namespace DataExplorer.Infrastructure.Tests.Serializers.Filters
         [Test]
         public void TestSerializeShouldSerializeBooleanFilters()
         {
-            var filter = new BooleanFilter(_column, true);
+            var filter = new BooleanFilter(_column, true, true, true);
             var xFilter = new XElement("boolean-filter");
             _mockBooleanSerializer.Setup(p => p.Serialize(filter)).Returns(xFilter);
             var result = _serializer.Serialize(filter);
@@ -130,7 +130,7 @@ namespace DataExplorer.Infrastructure.Tests.Serializers.Filters
         public void TestDeserializeShouldDeserializeBooleanFilters()
         {
             var xFilter = new XElement("boolean-filter");
-            var filter = new BooleanFilter(_column, true);
+            var filter = new BooleanFilter(_column, true, true, true);
             _mockBooleanSerializer.Setup(p => p.Deserialize(xFilter, _columns)).Returns(filter);
             var result = _serializer.Deserialize(xFilter, _columns);
             Assert.That(result, Is.EqualTo(filter));

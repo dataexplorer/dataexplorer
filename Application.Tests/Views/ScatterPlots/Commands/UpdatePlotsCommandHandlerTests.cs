@@ -67,7 +67,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Commands
         [Test]
         public void TestUpdatePlotsShouldIncludeRowsInsideTheFilter()
         {
-            var filter = new BooleanFilter(_column, true);
+            var filter = new BooleanFilter(_column, true, false, false);
             _filters.Add(filter);
             var row = new Row(0, new List<object>() { true });
             _rows.Add(row);
@@ -83,7 +83,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Commands
         {
             var row = new Row(0, new List<object>() { false });
             _rows.Add(row);
-            var filter = new BooleanFilter(_column, true);
+            var filter = new BooleanFilter(_column, true, false, false);
             _filters.Add(filter);
             _handler.Execute(new UpdatePlotsCommand());
             Assert.That(_scatterPlot.GetPlots().Count, Is.EqualTo(0));

@@ -8,28 +8,38 @@ namespace DataExplorer.Domain.Filters.BooleanFilters
 {
     public class BooleanFilter : Filter
     {
-        private readonly List<bool?> _values;
+        private bool _includeTrue;
+        private bool _includeFalse;
+        private bool _includeNull;
 
-        public BooleanFilter(Column column, List<bool?> values)
+        public BooleanFilter(Column column, bool includeTrue, bool includeFalse, bool includeNull)
             : base(column)
         {
-            _values = values;
+            _includeTrue = includeTrue;
+            _includeFalse = includeFalse;
+            _includeNull = includeNull;
         }
 
-        public BooleanFilter(Column column, bool? value)
-            : base(column)
+        public bool IncludeTrue
         {
-            _values = new List<bool?> { value };
+            get { return _includeTrue; }
         }
 
-        public List<bool?> Values
+        public bool IncludeFalse
         {
-            get { return _values; }
+            get { return _includeFalse; }
+        }
+
+        public bool IncludeNull
+        {
+            get { return _includeNull; }
         }
 
         public override Func<Row, bool> CreatePredicate()
         {
-            return new BooleanPredicate().Create(_column, _values);
+            return _column.HasNulls 
+                ? new NullableBooleanPredicate().Create(_column, _includeTrue, _includeFalse, _includeNull) 
+                : new BooleanPredicate().Create(_column, _includeTrue, _includeFalse);
         }
     }
 }
