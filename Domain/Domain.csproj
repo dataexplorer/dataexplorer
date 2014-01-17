@@ -58,7 +58,6 @@
     <Compile Include="Events\IDomainHandler.cs" />
     <Compile Include="Filters\BooleanFilters\BooleanFilter.cs" />
     <Compile Include="Filters\DateTimeFilters\DateTimeFilter.cs" />
-    <Compile Include="Filters\DateTimeFilters\NullableDateTimeFilter.cs" />
     <Compile Include="Filters\Filter.cs" />
     <Compile Include="Filters\FloatFilters\FloatFilter.cs" />
     <Compile Include="Filters\FloatFilters\NullableFloatFilter.cs" />

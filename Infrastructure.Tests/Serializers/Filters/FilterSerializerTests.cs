@@ -79,7 +79,7 @@ namespace DataExplorer.Infrastructure.Tests.Serializers.Filters
         [Test]
         public void TestSerializeShouldSerializeDateTimeFilters()
         {
-            var filter = new DateTimeFilter(_column, DateTime.MinValue, DateTime.MaxValue);
+            var filter = new DateTimeFilter(_column, DateTime.MinValue, DateTime.MaxValue, true);
             var xFilter = new XElement("datetime-filter");
             _mockDateTimeSerializer.Setup(p => p.Serialize(filter)).Returns(xFilter);
             var result = _serializer.Serialize(filter);
@@ -140,7 +140,7 @@ namespace DataExplorer.Infrastructure.Tests.Serializers.Filters
         public void TestDeserializeShouldDeserializeDateTimeFilters()
         {
             var xFilter = new XElement("datetime-filter");
-            var filter = new DateTimeFilter(_column, DateTime.MinValue, DateTime.MaxValue);
+            var filter = new DateTimeFilter(_column, DateTime.MinValue, DateTime.MaxValue, true);
             _mockDateTimeSerializer.Setup(p => p.Deserialize(xFilter, _columns)).Returns(filter);
             var result = _serializer.Deserialize(xFilter, _columns);
             Assert.That(result, Is.EqualTo(filter));

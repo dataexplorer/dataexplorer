@@ -23,7 +23,7 @@ namespace DataExplorer.Domain.FilterTrees.DateTimeFilterTrees
 
         public override Filter CreateFilter()
         {
-            return new DateTimeFilter(_column, _lower, _upper);
+            return new DateTimeFilter(_column, _lower, _upper, false);
         }
     }
 }

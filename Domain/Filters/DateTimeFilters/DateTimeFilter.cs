@@ -9,12 +9,14 @@ namespace DataExplorer.Domain.Filters.DateTimeFilters
     {
         protected readonly DateTime _lowerValue;
         protected readonly DateTime _upperValue;
+        private readonly bool _includeNull;
 
-        public DateTimeFilter(Column column, DateTime lowerValue, DateTime upperValue) 
+        public DateTimeFilter(Column column, DateTime lowerValue, DateTime upperValue, bool includeNull) 
             : base(column)
         {
             _lowerValue = lowerValue;
             _upperValue = upperValue;
+            _includeNull = includeNull;
         }
 
         public DateTime LowerValue
@@ -27,10 +29,16 @@ namespace DataExplorer.Domain.Filters.DateTimeFilters
             get { return _upperValue; }
         }
 
+        public bool IncludeNull
+        {
+            get { return _includeNull; }
+        }
+
         public override Func<Row, bool> CreatePredicate()
         {
-            return new DateTimePredicate()
-                .Create(_column, _lowerValue, _upperValue);
+            return _column.HasNulls 
+                ? new NullableDateTimePredicate().Create(_column, _lowerValue, _upperValue, _includeNull)
+                : new DateTimePredicate().Create(_column, _lowerValue, _upperValue);
         }
     }
 }

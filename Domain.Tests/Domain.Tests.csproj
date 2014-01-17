@@ -62,7 +62,6 @@
     <Compile Include="Events\FakeDomainEventDomainHandler.cs" />
     <Compile Include="Filters\BooleanFilters\BooleanFilterTests.cs" />
     <Compile Include="Filters\DateTimeFilters\DateTimeFilterTests.cs" />
-    <Compile Include="Filters\DateTimeFilters\NullableDateTimeFilterTests.cs" />
     <Compile Include="Filters\FakeFilter.cs" />
     <Compile Include="Filters\FilterTests.cs" />
     <Compile Include="Filters\FloatFilters\FloatFilterTests.cs" />

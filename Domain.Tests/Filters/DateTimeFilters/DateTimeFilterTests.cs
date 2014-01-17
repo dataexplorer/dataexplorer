@@ -13,14 +13,16 @@ namespace DataExplorer.Domain.Tests.Filters.DateTimeFilters
         private Column _column;
         private DateTime _lowerValue;
         private DateTime _upperValue;
+        private bool _includeNull;
 
         [SetUp]
         public void SetUp()
         {
             _lowerValue = DateTime.MinValue;
             _upperValue = DateTime.MaxValue;
+            _includeNull = true;
             _column = new ColumnBuilder().Build();
-            _filter = new DateTimeFilter(_column, _lowerValue, _upperValue);
+            _filter = new DateTimeFilter(_column, _lowerValue, _upperValue, _includeNull);
         }
 
         [Test]
@@ -38,8 +40,24 @@ namespace DataExplorer.Domain.Tests.Filters.DateTimeFilters
         }
 
         [Test]
-        public void TestCreatePredicateShouldReturnPredicate()
+        public void TestGetIncludeNullsShouldReturnValue()
         {
+            var result = _filter.IncludeNull;
+            Assert.That(result, Is.True);
+        }
+
+        [Test]
+        public void TestCreatePredicateShouldReturnBooleanPredicate()
+        {
+            var result = _filter.CreatePredicate();
+            Assert.That(result, Is.Not.Null);
+        }
+
+        [Test]
+        public void TestCreatePredicateShouldReturnNullableBooleanPredicate()
+        {
+            var column = new ColumnBuilder().WithNulls().Build();
+            _filter = new DateTimeFilter(column, _lowerValue, _upperValue, true);
             var result = _filter.CreatePredicate();
             Assert.That(result, Is.Not.Null);
         }

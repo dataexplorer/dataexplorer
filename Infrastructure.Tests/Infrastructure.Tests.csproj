@@ -62,6 +62,7 @@
     <Compile Include="Serializers\Properties\PropertySerializerTests.cs" />
     <Compile Include="Serializers\Rows\RowSerializerTests.cs" />
     <Compile Include="Serializers\Rows\RowSetSerializerTests.cs" />
+    <Compile Include="Serializers\SerializerTests.cs" />
     <Compile Include="Serializers\Sources\SourceSerializerTests.cs" />
     <Compile Include="Serializers\Sources\SourceSetSerializerTests.cs" />
     <Compile Include="Serializers\Views\ScatterPlots\ScatterPlotLayoutSerializerTests.cs" />

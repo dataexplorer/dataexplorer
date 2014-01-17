@@ -10,13 +10,13 @@ namespace DataExplorer.Domain.Predicates
 {
     public class NullableDateTimePredicate
     {
-        public Func<Row, bool> Create(Column column, DateTime lowerValue, DateTime upperValue, bool includeNulls)
+        public Func<Row, bool> Create(Column column, DateTime lowerValue, DateTime upperValue, bool includeNull)
         {
             var dateTimePredicate = new DateTimePredicate()
                 .Create(column, lowerValue, upperValue);
 
             return p => (((DateTime?) p[column.Index]) == null 
-                    && includeNulls)
+                    && includeNull)
                 || dateTimePredicate(p);
         }
     }

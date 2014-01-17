@@ -113,9 +113,7 @@ namespace DataExplorer.Domain.FilterTrees.DateTimeFilterTrees
 
         public override Filter CreateFilter()
         {
-            return _column.HasNulls
-                ? new NullableDateTimeFilter(_column, _lower, _upper, true)
-                : base.CreateFilter();
+            return new DateTimeFilter(_column, _lower, _upper, _column.HasNulls);
         }
     }
 }

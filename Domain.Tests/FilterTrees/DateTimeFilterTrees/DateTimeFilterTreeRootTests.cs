@@ -102,10 +102,10 @@ namespace DataExplorer.Domain.Tests.FilterTrees.DateTimeFilterTrees
                 .WithValue(DateTime.MaxValue)
                 .WithNulls().Build();
             var root = new DateTimeFilterTreeRoot(string.Empty, column);
-            var result = (NullableDateTimeFilter) root.CreateFilter();
+            var result = (DateTimeFilter) root.CreateFilter();
             Assert.That(result.LowerValue, Is.EqualTo(DateTime.MinValue));
             Assert.That(result.UpperValue, Is.EqualTo(DateTime.MaxValue));
-            Assert.That(result.IncludeNulls, Is.True);
+            Assert.That(result.IncludeNull, Is.True);
         }
 
         [Test]
