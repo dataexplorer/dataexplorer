@@ -1,0 +1,11 @@
+﻿<NUnitProject>
+  <Settings activeconfig="Debug" />
+  <Config name="Debug" binpathtype="Auto">
+    <assembly path="Application.Tests\bin\Debug\DataExplorer.Application.Tests.dll" />
+    <assembly path="Domain.Tests\bin\Debug\DataExplorer.Domain.Tests.dll" />
+    <assembly path="Infrastructure.Tests\bin\Debug\DataExplorer.Infrastructure.Tests.dll" />
+    <assembly path="Persistence.Tests\bin\Debug\DataExplorer.Persistence.Tests.dll" />
+    <assembly path="Presentation.Tests\bin\Debug\DataExplorer.Presentation.Tests.dll" />
+  </Config>
+  <Config name="Release" binpathtype="Auto" />
+</NUnitProject>
