@@ -37,7 +37,7 @@ namespace DataExplorer.Domain.FilterTrees.StringFilterTrees
 
         public override Filter CreateFilter()
         {
-            return new StringFilter(_column, _value);
+            return new StringFilter(_column, _value, false);
         }
 
         private bool ShouldCreateLeaves(List<string> values)

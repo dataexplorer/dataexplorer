@@ -43,9 +43,9 @@ namespace DataExplorer.Domain.Tests.FilterTrees.StringFilterTrees
                 .WithNulls()
                 .Build();
             var root = new StringFilterTreeRoot(string.Empty, column);
-            var result = (NullableStringFilter) root.CreateFilter();
+            var result = (StringFilter) root.CreateFilter();
             Assert.That(result.Value, Is.EqualTo(string.Empty));
-            Assert.That(result.IncludeNulls, Is.True);
+            Assert.That(result.IncludeNull, Is.True);
         }
 
         [Test]

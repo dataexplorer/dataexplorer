@@ -35,7 +35,7 @@ namespace DataExplorer.Domain.FilterTrees.IntegerFilterTrees
 
         public override Filter CreateFilter()
         {
-            return new IntegerFilter(_column, _lower, _upper);
+            return new IntegerFilter(_column, _lower, _upper, false);
         }
 
         private IEnumerable<FilterTreeNode> CreateLeaves(IEnumerable<int> values)

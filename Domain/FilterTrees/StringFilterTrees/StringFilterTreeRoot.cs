@@ -31,7 +31,7 @@ namespace DataExplorer.Domain.FilterTrees.StringFilterTrees
         public override Filter CreateFilter()
         {
             return _column.HasNulls 
-                ? new NullableStringFilter(_column, _value, true)
+                ? new StringFilter(_column, _value, _column.HasNulls)
                 : base.CreateFilter();
         }
     }

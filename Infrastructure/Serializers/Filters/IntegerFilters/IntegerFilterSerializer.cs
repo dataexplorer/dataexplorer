@@ -16,6 +16,7 @@ namespace DataExplorer.Infrastructure.Serializers.Filters.IntegerFilters
         private const string ColumnIdTag = "column-id";
         private const string LowerValueTag = "lower-value";
         private const string UpperValueTag = "upper-value";
+        private const string IncludeNullTag = "include-null";
 
         private readonly IPropertySerializer _propertySerializer;
 
@@ -33,6 +34,8 @@ namespace DataExplorer.Infrastructure.Serializers.Filters.IntegerFilters
             AddProperty(xFilter, LowerValueTag, filter.LowerValue);
 
             AddProperty(xFilter, UpperValueTag, filter.UpperValue);
+
+            AddProperty(xFilter, IncludeNullTag, filter.IncludeNull);
 
             return xFilter;
         }
@@ -54,7 +57,9 @@ namespace DataExplorer.Infrastructure.Serializers.Filters.IntegerFilters
 
             var upperValue = DeserializeProperty<int>(xFilter, UpperValueTag);
 
-            return new IntegerFilter(column, lowerValue, upperValue);
+            var includeNull = DeserializeProperty<bool>(xFilter, IncludeNullTag);
+
+            return new IntegerFilter(column, lowerValue, upperValue, includeNull);
         }
 
         private T DeserializeProperty<T>(XElement xColumn, string name)

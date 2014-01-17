@@ -10,8 +10,8 @@ namespace DataExplorer.Domain.Filters.IntegerFilters
         protected readonly int _lowerValue;
         protected readonly int _upperValue;
 
-        public IntegerFilter(Column column, int lowerValue, int upperValue)
-            : base(column)
+        public IntegerFilter(Column column, int lowerValue, int upperValue, bool includeNull)
+            : base(column, includeNull)
         {
             _lowerValue = lowerValue;
             _upperValue = upperValue;

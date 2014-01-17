@@ -18,7 +18,7 @@ namespace DataExplorer.Domain.Tests.Filters.IntegerFilters
             _lowerValue = int.MinValue;
             _upperValue = int.MaxValue;
             _column = new ColumnBuilder().Build();
-            _filter = new IntegerFilter(_column, _lowerValue, _upperValue);
+            _filter = new IntegerFilter(_column, _lowerValue, _upperValue, false);
         }
 
         [Test]

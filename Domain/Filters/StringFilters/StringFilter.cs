@@ -9,8 +9,8 @@ namespace DataExplorer.Domain.Filters.StringFilters
     {
         protected readonly string _value;
         
-        public StringFilter(Column column, string value)
-            : base(column)
+        public StringFilter(Column column, string value, bool includeNull)
+            : base(column, includeNull)
         {
             _value = value;
         }

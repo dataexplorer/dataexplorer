@@ -62,9 +62,7 @@
     <Compile Include="Filters\FloatFilters\FloatFilter.cs" />
     <Compile Include="Filters\IFilterRepository.cs" />
     <Compile Include="Filters\IntegerFilters\IntegerFilter.cs" />
-    <Compile Include="Filters\IntegerFilters\NullableIntegerFilter.cs" />
     <Compile Include="Filters\NullFilters\NullFilter.cs" />
-    <Compile Include="Filters\StringFilters\NullableStringFilter.cs" />
     <Compile Include="Filters\StringFilters\StringFilter.cs" />
     <Compile Include="FilterTrees\BooleanFilterTrees\BooleanFilterTreeLeaf.cs" />
     <Compile Include="FilterTrees\BooleanFilterTrees\BooleanFilterTreeNode.cs" />

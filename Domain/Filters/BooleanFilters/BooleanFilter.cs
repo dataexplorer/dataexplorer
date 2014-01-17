@@ -10,14 +10,12 @@ namespace DataExplorer.Domain.Filters.BooleanFilters
     {
         private bool _includeTrue;
         private bool _includeFalse;
-        private bool _includeNull;
-
+        
         public BooleanFilter(Column column, bool includeTrue, bool includeFalse, bool includeNull)
-            : base(column)
+            : base(column, includeNull)
         {
             _includeTrue = includeTrue;
             _includeFalse = includeFalse;
-            _includeNull = includeNull;
         }
 
         public bool IncludeTrue
@@ -29,12 +27,7 @@ namespace DataExplorer.Domain.Filters.BooleanFilters
         {
             get { return _includeFalse; }
         }
-
-        public bool IncludeNull
-        {
-            get { return _includeNull; }
-        }
-
+        
         public override Func<Row, bool> CreatePredicate()
         {
             return _column.HasNulls 

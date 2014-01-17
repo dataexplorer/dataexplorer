@@ -17,7 +17,7 @@ namespace DataExplorer.Domain.Tests.Filters.StringFilters
         {
             _value = "Test";
             _column = new ColumnBuilder().Build();
-            _filter = new StringFilter(_column, _value);
+            _filter = new StringFilter(_column, _value, false);
         }
 
         [Test]

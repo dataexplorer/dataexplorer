@@ -27,12 +27,13 @@ namespace DataExplorer.Infrastructure.Tests.Serializers.Filters.IntegerFilters
             _column = new ColumnBuilder().WithId(1).Build();
             _columns = new List<Column> { _column };
 
-            _filter = new IntegerFilter(_column, Int32.MinValue, Int32.MaxValue);
+            _filter = new IntegerFilter(_column, Int32.MinValue, Int32.MaxValue, true);
 
             _xFilter = new XElement("integer-filter",
                 new XElement("column-id", 1),
                 new XElement("lower-value", Int32.MinValue),
-                new XElement("upper-value", Int32.MaxValue));
+                new XElement("upper-value", Int32.MaxValue),
+                new XElement("include-null", true));
 
             _serializer = new IntegerFilterSerializer(
                 new PropertySerializer());
@@ -45,6 +46,7 @@ namespace DataExplorer.Infrastructure.Tests.Serializers.Filters.IntegerFilters
             AssertValue(result, "column-id", "1");
             AssertValue(result, "lower-value", Int32.MinValue.ToString());
             AssertValue(result, "upper-value", Int32.MaxValue.ToString());
+            AssertValue(result, "include-null", "true");
         }
         
         [Test]
@@ -54,6 +56,7 @@ namespace DataExplorer.Infrastructure.Tests.Serializers.Filters.IntegerFilters
             Assert.That(result.Column, Is.EqualTo(_column));
             Assert.That(result.LowerValue, Is.EqualTo(Int32.MinValue));
             Assert.That(result.UpperValue, Is.EqualTo(Int32.MaxValue));
+            Assert.That(result.IncludeNull, Is.True);
         }
     }
 }

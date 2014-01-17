@@ -44,10 +44,10 @@ namespace DataExplorer.Domain.Tests.FilterTrees.IntegerFilterTrees
                 .WithValue(int.MaxValue)
                 .WithNulls().Build();
             var root = new IntegerFilterTreeRoot(string.Empty, column);
-            var result = (NullableIntegerFilter)root.CreateFilter();
+            var result = (IntegerFilter) root.CreateFilter();
             Assert.That(result.LowerValue, Is.EqualTo(int.MinValue));
             Assert.That(result.UpperValue, Is.EqualTo(int.MaxValue));
-            Assert.That(result.IncludeNulls, Is.True);
+            Assert.That(result.IncludeNull, Is.True);
         }
 
         [Test]
@@ -58,8 +58,10 @@ namespace DataExplorer.Domain.Tests.FilterTrees.IntegerFilterTrees
                 .WithValue(int.MaxValue)
                 .Build();
             var root = new IntegerFilterTreeRoot(string.Empty, column);
-            var result = root.CreateFilter();
-            Assert.That(result is IntegerFilter);
+            var result = (IntegerFilter) root.CreateFilter();
+            Assert.That(result.LowerValue, Is.EqualTo(int.MinValue));
+            Assert.That(result.UpperValue, Is.EqualTo(int.MaxValue));
+            Assert.That(result.IncludeNull, Is.False);
         }
     }
 }

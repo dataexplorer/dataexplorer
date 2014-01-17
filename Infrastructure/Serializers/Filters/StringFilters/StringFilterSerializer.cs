@@ -15,6 +15,7 @@ namespace DataExplorer.Infrastructure.Serializers.Filters.StringFilters
         private const string FilterTag = "integer-filter";
         private const string ColumnIdTag = "column-id";
         private const string ValueTag = "value";
+        private const string IncludeNullTag = "include-null";
         
         private readonly IPropertySerializer _propertySerializer;
 
@@ -30,6 +31,8 @@ namespace DataExplorer.Infrastructure.Serializers.Filters.StringFilters
             AddProperty(xFilter, ColumnIdTag, filter.Column.Id);
 
             AddProperty(xFilter, ValueTag, filter.Value);
+
+            AddProperty(xFilter, IncludeNullTag, filter.IncludeNull);
             
             return xFilter;
         }
@@ -49,7 +52,9 @@ namespace DataExplorer.Infrastructure.Serializers.Filters.StringFilters
 
             var value = DeserializeProperty<string>(xFilter, ValueTag);
 
-            return new StringFilter(column, value);
+            var includeNull = DeserializeProperty<bool>(xFilter, IncludeNullTag);
+
+            return new StringFilter(column, value, includeNull);
         }
 
         private T DeserializeProperty<T>(XElement xColumn, string name)

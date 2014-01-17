@@ -9,14 +9,12 @@ namespace DataExplorer.Domain.Filters.FloatFilters
     {
         protected readonly double _lowerValue;
         protected readonly double _upperValue;
-        private readonly bool _includeNull;
         
         public FloatFilter(Column column, double lowerValue, double upperValue, bool includeNull)
-            : base(column)
+            : base(column, includeNull)
         {
             _lowerValue = lowerValue;
             _upperValue = upperValue;
-            _includeNull = includeNull;
         }
 
         public double LowerValue
@@ -27,11 +25,6 @@ namespace DataExplorer.Domain.Filters.FloatFilters
         public double UpperValue
         {
             get { return _upperValue; }
-        }
-
-        public bool IncludeNull
-        {
-            get { return _includeNull; }
         }
 
         public override Func<Row, bool> CreatePredicate()

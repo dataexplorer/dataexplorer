@@ -99,7 +99,7 @@ namespace DataExplorer.Infrastructure.Tests.Serializers.Filters
         [Test]
         public void TestSerializeShouldSerializeIntegerFilters()
         {
-            var filter = new IntegerFilter(_column, int.MinValue, int.MaxValue);
+            var filter = new IntegerFilter(_column, int.MinValue, int.MaxValue, true);
             var xFilter = new XElement("integer-filter");
             _mockIntegerSerializer.Setup(p => p.Serialize(filter)).Returns(xFilter);
             var result = _serializer.Serialize(filter);
@@ -109,7 +109,7 @@ namespace DataExplorer.Infrastructure.Tests.Serializers.Filters
         [Test]
         public void TestSerializeShouldSerializeStringFilters()
         {
-            var filter = new StringFilter(_column, string.Empty);
+            var filter = new StringFilter(_column, string.Empty, true);
             var xFilter = new XElement("string-filter");
             _mockStringSerializer.Setup(p => p.Serialize(filter)).Returns(xFilter);
             var result = _serializer.Serialize(filter);
@@ -160,7 +160,7 @@ namespace DataExplorer.Infrastructure.Tests.Serializers.Filters
         public void TestDeserializeShouldDeserializeIntegerFilters()
         {
             var xFilter = new XElement("integer-filter");
-            var filter = new IntegerFilter(_column, 0, 1);
+            var filter = new IntegerFilter(_column, 0, 1, true);
             _mockIntegerSerializer.Setup(p => p.Deserialize(xFilter, _columns)).Returns(filter);
             var result = _serializer.Deserialize(xFilter, _columns);
             Assert.That(result, Is.EqualTo(filter));
@@ -170,7 +170,7 @@ namespace DataExplorer.Infrastructure.Tests.Serializers.Filters
         public void TestDeserializeShouldDeserializeStringFilters()
         {
             var xFilter = new XElement("string-filter");
-            var filter = new StringFilter(_column, string.Empty);
+            var filter = new StringFilter(_column, string.Empty, true);
             _mockStringSerializer.Setup(p => p.Deserialize(xFilter, _columns)).Returns(filter);
             var result = _serializer.Deserialize(xFilter, _columns);
             Assert.That(result, Is.EqualTo(filter));

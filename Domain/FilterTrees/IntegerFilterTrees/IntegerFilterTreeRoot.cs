@@ -27,7 +27,7 @@ namespace DataExplorer.Domain.FilterTrees.IntegerFilterTrees
         public override Filter CreateFilter()
         {
             return _column.HasNulls
-                ? new NullableIntegerFilter(_column, _lower, _upper, true)
+                ? new IntegerFilter(_column, _lower, _upper, _column.HasNulls)
                 : base.CreateFilter();
         }
     }

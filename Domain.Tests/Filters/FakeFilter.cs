@@ -7,12 +7,12 @@ namespace DataExplorer.Domain.Tests.Filters
 {
     public class FakeFilter : Filter
     {
-        public FakeFilter() : base(null)
+        public FakeFilter() : base(null, false)
         {
         }
 
         public FakeFilter(Column column)
-            : base(column)
+            : base(column, false)
         {
         }
 

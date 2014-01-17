@@ -6,7 +6,7 @@ namespace DataExplorer.Domain.Filters.NullFilters
 {
     public class NullFilter : Filter
     {
-        public NullFilter(Column column) : base(column)
+        public NullFilter(Column column) : base(column, true)
         {
         }
 

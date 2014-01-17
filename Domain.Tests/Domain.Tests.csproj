@@ -66,9 +66,7 @@
     <Compile Include="Filters\FilterTests.cs" />
     <Compile Include="Filters\FloatFilters\FloatFilterTests.cs" />
     <Compile Include="Filters\IntegerFilters\IntegerFilterTests.cs" />
-    <Compile Include="Filters\IntegerFilters\NullableIntegerFilterTests.cs" />
     <Compile Include="Filters\NullFilters\NullFilterTests.cs" />
-    <Compile Include="Filters\StringFilters\NullableStringFilterTests.cs" />
     <Compile Include="Filters\StringFilters\StringFilterTests.cs" />
     <Compile Include="FilterTrees\BooleanFilterTrees\BooleanFilterTreeLeafTests.cs" />
     <Compile Include="FilterTrees\BooleanFilterTrees\BooleanFilterTreeRootTests.cs" />

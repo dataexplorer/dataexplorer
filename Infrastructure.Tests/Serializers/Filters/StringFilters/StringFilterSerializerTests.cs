@@ -26,11 +26,12 @@ namespace DataExplorer.Infrastructure.Tests.Serializers.Filters.StringFilters
             _column = new ColumnBuilder().WithId(1).Build();
             _columns = new List<Column> { _column };
 
-            _filter = new StringFilter(_column, "test");
+            _filter = new StringFilter(_column, "test", true);
 
             _xFilter = new XElement("integer-filter",
                 new XElement("column-id", 1),
-                new XElement("value", "test"));
+                new XElement("value", "test"),
+                new XElement("include-null", true));
             
             _serializer = new StringFilterSerializer(
                 new PropertySerializer());
@@ -42,6 +43,7 @@ namespace DataExplorer.Infrastructure.Tests.Serializers.Filters.StringFilters
             var result = _serializer.Serialize(_filter);
             AssertValue(result, "column-id", "1");
             AssertValue(result, "value", "test");
+            AssertValue(result, "include-null", "true");
         }
 
         [Test]
@@ -50,6 +52,7 @@ namespace DataExplorer.Infrastructure.Tests.Serializers.Filters.StringFilters
             var result = _serializer.Deserialize(_xFilter, _columns);
             Assert.That(result.Column, Is.EqualTo(_column));
             Assert.That(result.Value, Is.EqualTo("test"));
+            Assert.That(result.IncludeNull, Is.True);
         }
     }
 }
