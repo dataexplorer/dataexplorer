@@ -12,15 +12,13 @@ using NUnit.Framework;
 namespace DataExplorer.Infrastructure.Tests.Serializers.Filters.NullFilters
 {
     [TestFixture]
-    public class NullFilterSerializerTests
+    public class NullFilterSerializerTests : SerializerTests
     {
         private NullFilterSerializer _serializer;
-        private Mock<IPropertySerializer> _mockPropertySerializer;
         private NullFilter _filter;
         private List<Column> _columns;
         private Column _column;
         private XElement _xFilter;
-        private XElement _xColumnId;
 
         [SetUp]
         public void SetUp()
@@ -29,15 +27,11 @@ namespace DataExplorer.Infrastructure.Tests.Serializers.Filters.NullFilters
             _columns = new List<Column> { _column };
             _filter = new NullFilter(_column);
 
-            _xFilter = new XElement("null-filter");
-            _xColumnId = new XElement("column-id", _column.Id);
-            _xFilter.Add(_xColumnId);
-
-            _mockPropertySerializer = new Mock<IPropertySerializer>();
-            _mockPropertySerializer.Setup(p => p.Serialize("column-id", _column.Id)).Returns(_xColumnId);
-            _mockPropertySerializer.Setup(p => p.Deserialize<int>(_xColumnId)).Returns(_column.Id);
-
-            _serializer = new NullFilterSerializer(_mockPropertySerializer.Object);
+            _xFilter = new XElement("null-filter",
+                new XElement("column-id", _column.Id));
+            
+            _serializer = new NullFilterSerializer(
+                new PropertySerializer());
         }
 
         [Test]
@@ -51,8 +45,7 @@ namespace DataExplorer.Infrastructure.Tests.Serializers.Filters.NullFilters
         public void TestSerializeShouldSerializeColumnId()
         {
             var result = _serializer.Serialize(_filter);
-            var columnId = result.Elements().First(p => p.Name.LocalName == "column-id");
-            Assert.That(columnId.Value, Is.EqualTo(_column.Id.ToString()));
+            AssertValue(result, "column-id", "1");
         }
 
         [Test]

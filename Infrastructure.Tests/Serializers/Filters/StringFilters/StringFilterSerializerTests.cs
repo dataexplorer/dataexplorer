@@ -12,16 +12,13 @@ using NUnit.Framework;
 namespace DataExplorer.Infrastructure.Tests.Serializers.Filters.StringFilters
 {
     [TestFixture]
-    public class StringFilterSerializerTests
+    public class StringFilterSerializerTests : SerializerTests
     {
         private StringFilterSerializer _serializer;
-        private Mock<IPropertySerializer> _mockPropertySerializer;
         private StringFilter _filter;
         private List<Column> _columns;
         private Column _column;
         private XElement _xFilter;
-        private XElement _xColumnId;
-        private XElement _xValue;
         
         [SetUp]
         public void SetUp()
@@ -31,23 +28,12 @@ namespace DataExplorer.Infrastructure.Tests.Serializers.Filters.StringFilters
 
             _filter = new StringFilter(_column, "test");
 
-            _xFilter = new XElement("integer-filter");
-            _xColumnId = new XElement("column-id", 1);
-            _xValue = new XElement("value", "test");
-            _xFilter.Add(_xColumnId, _xValue);
-
-            _mockPropertySerializer = new Mock<IPropertySerializer>();
-            _mockPropertySerializer.Setup(p => p.Serialize("column-id", 1))
-                .Returns(new XElement("column-id", 1));
-            _mockPropertySerializer.Setup(p => p.Serialize("value", "test"))
-                .Returns(new XElement("value", "test"));
-            _mockPropertySerializer.Setup(p => p.Deserialize<int>(_xColumnId))
-                .Returns(1);
-            _mockPropertySerializer.Setup(p => p.Deserialize<string>(_xValue))
-                .Returns("test");
-
+            _xFilter = new XElement("integer-filter",
+                new XElement("column-id", 1),
+                new XElement("value", "test"));
+            
             _serializer = new StringFilterSerializer(
-                _mockPropertySerializer.Object);
+                new PropertySerializer());
         }
 
         [Test]
@@ -55,19 +41,7 @@ namespace DataExplorer.Infrastructure.Tests.Serializers.Filters.StringFilters
         {
             var result = _serializer.Serialize(_filter);
             AssertValue(result, "column-id", "1");
-        }
-
-        [Test]
-        public void TestSerializeShouldSerializeValue()
-        {
-            var result = _serializer.Serialize(_filter);
             AssertValue(result, "value", "test");
-        }
-        
-        private void AssertValue(XElement result, string name, string value)
-        {
-            Assert.That(result.Elements().First(p => p.Name.LocalName == name).Value,
-                Is.EqualTo(value));
         }
 
         [Test]
@@ -75,12 +49,6 @@ namespace DataExplorer.Infrastructure.Tests.Serializers.Filters.StringFilters
         {
             var result = _serializer.Deserialize(_xFilter, _columns);
             Assert.That(result.Column, Is.EqualTo(_column));
-        }
-
-        [Test]
-        public void TestDeserializeShouldDeserializeValue()
-        {
-            var result = _serializer.Deserialize(_xFilter, _columns);
             Assert.That(result.Value, Is.EqualTo("test"));
         }
     }
