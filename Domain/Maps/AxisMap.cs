@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace DataExplorer.Domain.Maps
 {
-    public interface IAxisMap
+    public abstract class AxisMap
     {
-        double? Map(object value);
+        public abstract double? Map(object value);
 
-        object MapInverse(double? value);
+        public abstract object MapInverse(double? value);
     }
 }

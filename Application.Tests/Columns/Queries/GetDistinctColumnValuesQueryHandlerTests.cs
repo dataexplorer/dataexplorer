@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using DataExplorer.Application.Columns;
 using DataExplorer.Application.Columns.Queries;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Tests.Columns;

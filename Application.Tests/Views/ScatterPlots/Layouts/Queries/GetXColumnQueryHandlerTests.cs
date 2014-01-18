@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using DataExplorer.Application.Columns;
+using DataExplorer.Application.Views;
 using DataExplorer.Application.Views.ScatterPlots.Layouts.Queries;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Tests.Columns;

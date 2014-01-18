@@ -4,7 +4,6 @@ using System.Linq;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.FilterTrees.NullFilterTrees;
 using DataExplorer.Domain.Filters;
-using DataExplorer.Domain.Filters.DateTimeFilters;
 
 namespace DataExplorer.Domain.FilterTrees.DateTimeFilterTrees
 {

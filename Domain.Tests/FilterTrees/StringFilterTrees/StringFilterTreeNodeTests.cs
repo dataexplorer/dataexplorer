@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using DataExplorer.Domain.Filters.StringFilters;
+using DataExplorer.Domain.Filters;
 using DataExplorer.Domain.FilterTrees.StringFilterTrees;
 using DataExplorer.Domain.Tests.Columns;
 using NUnit.Framework;

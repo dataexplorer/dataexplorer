@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using DataExplorer.Application.Views;
 using DataExplorer.Application.Views.ScatterPlots.Queries;
 using DataExplorer.Domain.Views;
 using DataExplorer.Domain.Views.ScatterPlots;

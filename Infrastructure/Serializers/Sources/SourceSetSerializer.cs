@@ -19,7 +19,7 @@ namespace DataExplorer.Infrastructure.Serializers.Sources
             _sourceSerializer = sourceSerializer;
         }
 
-        public XElement Serialize(IEnumerable<ISource> sources)
+        public XElement Serialize(IEnumerable<Source> sources)
         {
             var xSources = new XElement(SourcesTag);
 
@@ -33,9 +33,9 @@ namespace DataExplorer.Infrastructure.Serializers.Sources
             return xSources;
         }
 
-        public IEnumerable<ISource> Deserialize(XElement xSources)
+        public IEnumerable<Source> Deserialize(XElement xSources)
         {
-            var sources = new List<ISource>();
+            var sources = new List<Source>();
 
             foreach (var xSource in xSources.Elements())
             {

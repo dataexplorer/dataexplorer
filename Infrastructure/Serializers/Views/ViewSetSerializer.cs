@@ -20,7 +20,7 @@ namespace DataExplorer.Infrastructure.Serializers.Views
             _viewSerializer = viewSerializer;
         }
 
-        public XElement Serialize(IEnumerable<IView> views)
+        public XElement Serialize(IEnumerable<View> views)
         {
             var xViews = new XElement(ViewsTag);
 
@@ -34,9 +34,9 @@ namespace DataExplorer.Infrastructure.Serializers.Views
             return xViews;
         }
 
-        public IEnumerable<IView> Deserialize(XElement xViews, IEnumerable<Column> columns)
+        public IEnumerable<View> Deserialize(XElement xViews, IEnumerable<Column> columns)
         {
-            var views = new List<IView>();
+            var views = new List<View>();
 
             foreach (var xView in xViews.Elements())
             {

@@ -5,6 +5,7 @@ using DataExplorer.Application.Projects.Events;
 using DataExplorer.Application.Views.ScatterPlots;
 using DataExplorer.Application.Views.ScatterPlots.Commands;
 using DataExplorer.Domain.Views.ScatterPlots;
+using DataExplorer.Domain.Views.ScatterPlots.Events;
 using Moq;
 using NUnit.Framework;
 

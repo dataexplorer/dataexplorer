@@ -1,5 +1,6 @@
 ﻿using DataExplorer.Application.Application;
 using DataExplorer.Application.Core.Events;
+using DataExplorer.Application.Filters;
 using DataExplorer.Application.Filters.Events;
 using DataExplorer.Application.FilterTrees.Commands;
 using DataExplorer.Domain.Filters;

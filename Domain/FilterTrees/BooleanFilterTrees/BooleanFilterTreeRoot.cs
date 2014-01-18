@@ -2,7 +2,6 @@
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.FilterTrees.NullFilterTrees;
 using DataExplorer.Domain.Filters;
-using DataExplorer.Domain.Filters.BooleanFilters;
 
 namespace DataExplorer.Domain.FilterTrees.BooleanFilterTrees
 {

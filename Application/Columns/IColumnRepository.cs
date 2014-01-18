@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using DataExplorer.Domain.Columns;
 
-namespace DataExplorer.Domain.Columns
+namespace DataExplorer.Application.Columns
 {
     public interface IColumnRepository
     {

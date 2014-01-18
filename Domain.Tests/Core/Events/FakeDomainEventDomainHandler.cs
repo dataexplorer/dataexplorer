@@ -1,6 +1,6 @@
-﻿using DataExplorer.Domain.Events;
+﻿using DataExplorer.Domain.Core.Events;
 
-namespace DataExplorer.Domain.Tests.Events
+namespace DataExplorer.Domain.Tests.Core.Events
 {
     public class FakeDomainEventDomainHandler : IDomainHandler<FakeDomainEvent>
     {

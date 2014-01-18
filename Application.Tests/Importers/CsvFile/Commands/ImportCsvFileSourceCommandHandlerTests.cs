@@ -1,9 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Data;
+using DataExplorer.Application.Columns;
 using DataExplorer.Application.Core.Events;
+using DataExplorer.Application.Importers;
 using DataExplorer.Application.Importers.CsvFiles;
 using DataExplorer.Application.Importers.CsvFiles.Commands;
 using DataExplorer.Application.Importers.CsvFiles.Events;
+using DataExplorer.Application.Rows;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Converters;
 using DataExplorer.Domain.Rows;

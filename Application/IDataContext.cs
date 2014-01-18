@@ -11,7 +11,7 @@ namespace DataExplorer.Application
 {
     public interface IDataContext
     {
-        Dictionary<Type, ISource> Sources { get; }
+        Dictionary<Type, Source> Sources { get; }
         
         List<Column> Columns { get; }
 
@@ -19,7 +19,7 @@ namespace DataExplorer.Application
 
         List<Filter> Filters { get; }
 
-        Dictionary<Type, IView> Views { get; }
+        Dictionary<Type, View> Views { get; }
 
         Project GetProject();
 

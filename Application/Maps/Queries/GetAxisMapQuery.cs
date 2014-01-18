@@ -9,7 +9,7 @@ using DataExplorer.Domain.Maps;
 
 namespace DataExplorer.Application.Maps.Queries
 {
-    public class GetAxisMapQuery : IQuery<IAxisMap>
+    public class GetAxisMapQuery : IQuery<AxisMap>
     {
         private readonly int _columnId;
         private readonly double _targetMin;

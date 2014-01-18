@@ -2,7 +2,7 @@
 
 namespace DataExplorer.Domain.Tests.Views
 {
-    public class FakeView : IView
+    public class FakeView : View
     {
     }
 }

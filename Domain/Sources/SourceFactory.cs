@@ -8,7 +8,7 @@ namespace DataExplorer.Domain.Sources
 {
     public class SourceFactory : ISourceFactory
     {
-        public T Create<T>() where T : ISource, new()
+        public T Create<T>() where T : Source, new()
         {
             return new T();
         }

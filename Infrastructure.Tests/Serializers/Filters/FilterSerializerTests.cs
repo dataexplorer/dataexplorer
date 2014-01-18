@@ -2,12 +2,7 @@
 using System.Collections.Generic;
 using System.Xml.Linq;
 using DataExplorer.Domain.Columns;
-using DataExplorer.Domain.Filters.BooleanFilters;
-using DataExplorer.Domain.Filters.DateTimeFilters;
-using DataExplorer.Domain.Filters.FloatFilters;
-using DataExplorer.Domain.Filters.IntegerFilters;
-using DataExplorer.Domain.Filters.NullFilters;
-using DataExplorer.Domain.Filters.StringFilters;
+using DataExplorer.Domain.Filters;
 using DataExplorer.Domain.Tests.Columns;
 using DataExplorer.Infrastructure.Serializers.Filters;
 using DataExplorer.Infrastructure.Serializers.Filters.BooleanFilters;

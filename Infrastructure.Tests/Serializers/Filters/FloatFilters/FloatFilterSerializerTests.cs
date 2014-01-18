@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 using DataExplorer.Domain.Columns;
-using DataExplorer.Domain.Filters.FloatFilters;
+using DataExplorer.Domain.Filters;
 using DataExplorer.Domain.Tests.Columns;
 using DataExplorer.Infrastructure.Serializers.Filters.FloatFilters;
 using DataExplorer.Infrastructure.Serializers.Properties;

@@ -6,6 +6,6 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories.StringGrid
 {
     public interface IStringGridLineFactory
     {
-        IEnumerable<AxisGridLine> Create(IAxisMap map, List<object> values, double lower, double upper);
+        IEnumerable<AxisGridLine> Create(AxisMap map, List<object> values, double lower, double upper);
     }
 }

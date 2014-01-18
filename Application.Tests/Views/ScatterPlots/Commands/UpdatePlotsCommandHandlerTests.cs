@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
+using DataExplorer.Application.Filters;
+using DataExplorer.Application.Rows;
+using DataExplorer.Application.Views;
 using DataExplorer.Application.Views.ScatterPlots.Commands;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Filters;
-using DataExplorer.Domain.Filters.BooleanFilters;
 using DataExplorer.Domain.Rows;
 using DataExplorer.Domain.Tests.Columns;
 using DataExplorer.Domain.Views;

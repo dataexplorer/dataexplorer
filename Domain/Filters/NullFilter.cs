@@ -2,7 +2,7 @@
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Rows;
 
-namespace DataExplorer.Domain.Filters.NullFilters
+namespace DataExplorer.Domain.Filters
 {
     public class NullFilter : Filter
     {

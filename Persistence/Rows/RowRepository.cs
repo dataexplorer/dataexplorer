@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using DataExplorer.Application;
+using DataExplorer.Application.Rows;
 using DataExplorer.Domain.Rows;
 
 namespace DataExplorer.Persistence.Rows

@@ -7,7 +7,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories.DateTimeGr
 {
     public class DayAxisGridLineFactory : IDayAxisGridLineFactory
     {
-        public IEnumerable<AxisGridLine> CreateQuarters(IAxisMap map, DateTime lower, DateTime upper)
+        public IEnumerable<AxisGridLine> CreateQuarters(AxisMap map, DateTime lower, DateTime upper)
         {
             var startDate = GetFirstDayOfQuarter(lower);
 
@@ -17,7 +17,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories.DateTimeGr
                 yield return CreateAxisGridLine(map, date);
         }
 
-        public IEnumerable<AxisGridLine> CreateMonths(IAxisMap map, DateTime lower, DateTime upper)
+        public IEnumerable<AxisGridLine> CreateMonths(AxisMap map, DateTime lower, DateTime upper)
         {
             var startDate = new DateTime(lower.Year, lower.Month, 1);
 
@@ -27,7 +27,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories.DateTimeGr
                 yield return CreateAxisGridLine(map, date);
         }
 
-        public IEnumerable<AxisGridLine> CreateWeeks(IAxisMap map, DateTime lower, DateTime upper)
+        public IEnumerable<AxisGridLine> CreateWeeks(AxisMap map, DateTime lower, DateTime upper)
         {
             var startDate = GetFirstDayOfWeek(lower).Date;
 
@@ -37,7 +37,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories.DateTimeGr
                 yield return CreateAxisGridLine(map, date);
         }
 
-        public IEnumerable<AxisGridLine> CreateDays(IAxisMap map, DateTime lower, DateTime upper)
+        public IEnumerable<AxisGridLine> CreateDays(AxisMap map, DateTime lower, DateTime upper)
         {
             var startDate = new DateTime(lower.Year, lower.Month, lower.Day);
 
@@ -70,7 +70,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories.DateTimeGr
         }
 
         // TODO: This is duplicated across multiple classes... must refactor
-        private static AxisGridLine CreateAxisGridLine(IAxisMap map, DateTime value)
+        private static AxisGridLine CreateAxisGridLine(AxisMap map, DateTime value)
         {
             var position = map.Map(value);
 

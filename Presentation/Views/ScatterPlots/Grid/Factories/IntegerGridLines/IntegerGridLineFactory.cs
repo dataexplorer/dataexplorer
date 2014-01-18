@@ -6,7 +6,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories.IntegerGri
 {
     public class IntegerGridLineFactory : IIntegerGridLineFactory
     {
-        public IEnumerable<AxisGridLine> Create(IAxisMap map, double lower, double upper)
+        public IEnumerable<AxisGridLine> Create(AxisMap map, double lower, double upper)
         {
             var lowerInt = (int) map.MapInverse(lower);
 
@@ -39,7 +39,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories.IntegerGri
                 yield return CreateAxisGridLine(map, (int) i);
         }
 
-        private AxisGridLine CreateAxisGridLine(IAxisMap map, int value)
+        private AxisGridLine CreateAxisGridLine(AxisMap map, int value)
         {
             var line = new AxisGridLine()
             {
@@ -50,7 +50,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories.IntegerGri
             return line;
         }
 
-        private double GetPosition(IAxisMap map, int value)
+        private double GetPosition(AxisMap map, int value)
         {
             return map.Map(value).GetValueOrDefault();
         }

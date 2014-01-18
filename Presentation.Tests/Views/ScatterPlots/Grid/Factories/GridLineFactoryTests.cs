@@ -25,7 +25,7 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Grid.Factories
         private Mock<IIntegerGridLineFactory> _mockIntegerFactory;
         private Mock<IStringGridLineFactory> _mockStringFactory;
         private List<object> _sourceValues;
-        private IAxisMap _axisMap;
+        private AxisMap _axisMap;
         private List<AxisGridLine> _gridLines;
         private AxisGridLine _gridGridLine;
 

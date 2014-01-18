@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using DataExplorer.Domain.Columns;
-using DataExplorer.Domain.Filters.FloatFilters;
+using DataExplorer.Domain.Filters;
 using DataExplorer.Domain.FilterTrees.FloatFilterTrees;
 using DataExplorer.Domain.FilterTrees.NullFilterTrees;
 using DataExplorer.Domain.Tests.Columns;

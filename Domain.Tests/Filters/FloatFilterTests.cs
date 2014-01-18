@@ -1,24 +1,26 @@
 ﻿using DataExplorer.Domain.Columns;
-using DataExplorer.Domain.Filters.IntegerFilters;
+using DataExplorer.Domain.Filters;
 using DataExplorer.Domain.Tests.Columns;
 using NUnit.Framework;
 
-namespace DataExplorer.Domain.Tests.Filters.IntegerFilters
+namespace DataExplorer.Domain.Tests.Filters
 {
-    public class IntegerFilterTests
+    public class FloatFilterTests
     {
-        private IntegerFilter _filter;
+        private FloatFilter _filter;
         private Column _column;
-        private int _lowerValue;
-        private int _upperValue;
+        private double _lowerValue;
+        private double _upperValue;
+        private bool _includeNull;
 
         [SetUp]
         public void SetUp()
         {
-            _lowerValue = int.MinValue;
-            _upperValue = int.MaxValue;
+            _lowerValue = double.MinValue;
+            _upperValue = double.MaxValue;
+            _includeNull = true;
             _column = new ColumnBuilder().Build();
-            _filter = new IntegerFilter(_column, _lowerValue, _upperValue, false);
+            _filter = new FloatFilter(_column, _lowerValue, _upperValue, _includeNull);
         }
 
         [Test]
@@ -37,6 +39,13 @@ namespace DataExplorer.Domain.Tests.Filters.IntegerFilters
 
         [Test]
         public void TestCreatePredicateShouldReturnPredicate()
+        {
+            var result = _filter.CreatePredicate();
+            Assert.That(result, Is.Not.Null);
+        }
+
+        [Test]
+        public void TestCreatePredicateShouldReturnNullableBooleanPredicate()
         {
             var result = _filter.CreatePredicate();
             Assert.That(result, Is.Not.Null);

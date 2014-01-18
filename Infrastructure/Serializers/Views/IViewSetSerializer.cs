@@ -11,8 +11,8 @@ namespace DataExplorer.Infrastructure.Serializers.Views
 {
     public interface IViewSetSerializer
     {
-        XElement Serialize(IEnumerable<IView> views);
+        XElement Serialize(IEnumerable<View> views);
 
-        IEnumerable<IView> Deserialize(XElement xViews, IEnumerable<Column> columns);
+        IEnumerable<View> Deserialize(XElement xViews, IEnumerable<Column> columns);
     }
 }

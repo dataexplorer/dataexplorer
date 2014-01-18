@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.Application;
+using DataExplorer.Application.Columns;
 using DataExplorer.Application.Core.Commands;
 using DataExplorer.Application.Exporters.TabFile;
 using DataExplorer.Domain.Columns;

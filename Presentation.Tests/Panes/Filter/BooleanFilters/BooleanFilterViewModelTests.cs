@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataExplorer.Domain.Filters.BooleanFilters;
+using DataExplorer.Domain.Filters;
 using DataExplorer.Presentation.Panes.Filter.BooleanFilters;
 using NUnit.Framework;
 
-namespace DataExplorer.Presentation.Tests.Panes.Filter
+namespace DataExplorer.Presentation.Tests.Panes.Filter.BooleanFilters
 {
     [TestFixture]
     public class BooleanFilterViewModelTests

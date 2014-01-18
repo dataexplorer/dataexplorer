@@ -14,8 +14,8 @@ namespace DataExplorer.Infrastructure.Tests.Serializers.Sources
     {
         private SourceSetSerializer _serializer;
         private Mock<ISourceSerializer> _mockSourceSerializer;
-        private List<ISource> _sources;
-        private ISource _source;
+        private List<Source> _sources;
+        private Source _source;
         private XElement _xSources;
         private XElement _xSource;
 
@@ -23,7 +23,7 @@ namespace DataExplorer.Infrastructure.Tests.Serializers.Sources
         public void SetUp()
         {
             _source = new FakeSource();
-            _sources = new List<ISource> { _source };
+            _sources = new List<Source> { _source };
             _xSource = new XElement("source");
             _xSources = new XElement("sources");
             _xSources.Add(_xSource);

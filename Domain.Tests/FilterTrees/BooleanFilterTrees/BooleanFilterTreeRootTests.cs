@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using DataExplorer.Domain.Filters.BooleanFilters;
+using DataExplorer.Domain.Filters;
 using DataExplorer.Domain.FilterTrees.BooleanFilterTrees;
 using DataExplorer.Domain.Tests.Columns;
 using NUnit.Framework;

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using DataExplorer.Domain.Columns;
-using DataExplorer.Domain.Filters.IntegerFilters;
+using DataExplorer.Domain.Filters;
 
 namespace DataExplorer.Infrastructure.Serializers.Filters.IntegerFilters
 {

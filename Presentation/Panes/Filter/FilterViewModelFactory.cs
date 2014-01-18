@@ -1,5 +1,5 @@
 ﻿using System;
-using DataExplorer.Domain.Filters.BooleanFilters;
+using DataExplorer.Domain.Filters;
 using DataExplorer.Presentation.Panes.Filter.BooleanFilters;
 
 namespace DataExplorer.Presentation.Panes.Filter

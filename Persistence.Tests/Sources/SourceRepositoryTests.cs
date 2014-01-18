@@ -13,12 +13,12 @@ namespace DataExplorer.Persistence.Tests.Sources
     {
         private SourceRepository _repository;
         private Mock<IDataContext> _mockContext;
-        private Dictionary<Type, ISource> _sources;
+        private Dictionary<Type, Source> _sources;
             
         [SetUp]
         public void SetUp()
         {
-            _sources = new Dictionary<Type, ISource>();
+            _sources = new Dictionary<Type, Source>();
             _mockContext = new Mock<IDataContext>();
             _mockContext.Setup(p => p.Sources).Returns(_sources); 
             _repository = new SourceRepository(_mockContext.Object);

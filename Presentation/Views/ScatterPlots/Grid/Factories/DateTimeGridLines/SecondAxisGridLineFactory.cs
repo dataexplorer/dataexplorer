@@ -7,7 +7,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories.DateTimeGr
 {
     public class SecondAxisGridLineFactory : ISecondAxisGridLineFactory
     {
-        public IEnumerable<AxisGridLine> CreateFourHours(IAxisMap map, DateTime lower, DateTime upper)
+        public IEnumerable<AxisGridLine> CreateFourHours(AxisMap map, DateTime lower, DateTime upper)
         {
             var startTime = lower.Date;
 
@@ -17,7 +17,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories.DateTimeGr
                 yield return CreateAxisGridLine(map, date);
         }
 
-        public IEnumerable<AxisGridLine> CreateHours(IAxisMap map, DateTime lower, DateTime upper)
+        public IEnumerable<AxisGridLine> CreateHours(AxisMap map, DateTime lower, DateTime upper)
         {
             var startTime = lower.Date.AddHours(lower.Hour);
 
@@ -27,7 +27,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories.DateTimeGr
                 yield return CreateAxisGridLine(map, date);
         }
 
-        public IEnumerable<AxisGridLine> CreateTenMinutes(IAxisMap map, DateTime lower, DateTime upper)
+        public IEnumerable<AxisGridLine> CreateTenMinutes(AxisMap map, DateTime lower, DateTime upper)
         {
             var startTime = lower.Date.AddHours(lower.Hour);
 
@@ -37,7 +37,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories.DateTimeGr
                 yield return CreateAxisGridLine(map, date);
         }
 
-        public IEnumerable<AxisGridLine> CreateMinutes(IAxisMap map, DateTime lower, DateTime upper)
+        public IEnumerable<AxisGridLine> CreateMinutes(AxisMap map, DateTime lower, DateTime upper)
         {
             var startTime = lower.Date
                 .AddHours(lower.Hour)
@@ -49,7 +49,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories.DateTimeGr
                 yield return CreateAxisGridLine(map, date);
         }
 
-        public IEnumerable<AxisGridLine> CreateTenSeconds(IAxisMap map, DateTime lower, DateTime upper)
+        public IEnumerable<AxisGridLine> CreateTenSeconds(AxisMap map, DateTime lower, DateTime upper)
         {
             var startTime = lower.Date
                 .AddHours(lower.Hour)
@@ -61,7 +61,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories.DateTimeGr
                 yield return CreateAxisGridLine(map, date);
         }
 
-        public IEnumerable<AxisGridLine> CreateSeconds(IAxisMap map, DateTime lower, DateTime upper)
+        public IEnumerable<AxisGridLine> CreateSeconds(AxisMap map, DateTime lower, DateTime upper)
         {
             var startTime = lower.Date
                 .AddHours(lower.Hour)
@@ -76,7 +76,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories.DateTimeGr
 
 
         // TODO: This is duplicated across multiple classes... must refactor
-        private static AxisGridLine CreateAxisGridLine(IAxisMap map, DateTime value)
+        private static AxisGridLine CreateAxisGridLine(AxisMap map, DateTime value)
         {
             var position = map.Map(value);
 

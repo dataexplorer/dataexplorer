@@ -55,13 +55,13 @@
     <Compile Include="Core\Events\DomainEvents.cs" />
     <Compile Include="Core\Events\IDomainEvent.cs" />
     <Compile Include="Core\Events\IDomainHandler.cs" />
-    <Compile Include="Filters\BooleanFilters\BooleanFilter.cs" />
-    <Compile Include="Filters\DateTimeFilters\DateTimeFilter.cs" />
+    <Compile Include="Filters\BooleanFilter.cs" />
+    <Compile Include="Filters\DateTimeFilter.cs" />
     <Compile Include="Filters\Filter.cs" />
-    <Compile Include="Filters\FloatFilters\FloatFilter.cs" />
-    <Compile Include="Filters\IntegerFilters\IntegerFilter.cs" />
-    <Compile Include="Filters\NullFilters\NullFilter.cs" />
-    <Compile Include="Filters\StringFilters\StringFilter.cs" />
+    <Compile Include="Filters\FloatFilter.cs" />
+    <Compile Include="Filters\IntegerFilter.cs" />
+    <Compile Include="Filters\NullFilter.cs" />
+    <Compile Include="Filters\StringFilter.cs" />
     <Compile Include="FilterTrees\BooleanFilterTrees\BooleanFilterTreeLeaf.cs" />
     <Compile Include="FilterTrees\BooleanFilterTrees\BooleanFilterTreeNode.cs" />
     <Compile Include="FilterTrees\BooleanFilterTrees\BooleanFilterTreeRoot.cs" />
@@ -94,7 +94,7 @@
     <Compile Include="Maps\AxisMaps\FloatToAxisMap.cs" />
     <Compile Include="Maps\AxisMaps\IntegerToAxisMap.cs" />
     <Compile Include="Maps\AxisMaps\StringToAxisMap.cs" />
-    <Compile Include="Maps\IAxisMap.cs" />
+    <Compile Include="Maps\AxisMap.cs" />
     <Compile Include="Maps\IMapFactory.cs" />
     <Compile Include="Maps\MapFactory.cs" />
     <Compile Include="Predicates\BooleanPredicate.cs" />
@@ -111,23 +111,23 @@
     <Compile Include="Projects\Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rows\Row.cs" />
-    <Compile Include="Sources\CsvFilePathChangedEvent.cs" />
+    <Compile Include="Sources\Events\CsvFilePathChangedEvent.cs" />
     <Compile Include="Sources\CsvFileSource.cs" />
-    <Compile Include="Sources\ISource.cs" />
+    <Compile Include="Sources\Source.cs" />
     <Compile Include="Sources\ISourceFactory.cs" />
     <Compile Include="Sources\Maps\ISourceMapFactory.cs" />
     <Compile Include="Sources\Maps\SourceMap.cs" />
     <Compile Include="Sources\Maps\SourceMapFactory.cs" />
     <Compile Include="Sources\SourceFactory.cs" />
-    <Compile Include="Views\IView.cs" />
+    <Compile Include="Views\View.cs" />
     <Compile Include="Views\ScatterPlots\AxisGridLine.cs" />
     <Compile Include="Views\ScatterPlots\IScatterPlot.cs" />
     <Compile Include="Views\ScatterPlots\IScatterPlotRenderer.cs" />
     <Compile Include="Views\ScatterPlots\Plot.cs" />
     <Compile Include="Views\ScatterPlots\ScatterPlot.cs" />
-    <Compile Include="Views\ScatterPlots\ScatterPlotChangedEvent.cs" />
+    <Compile Include="Views\ScatterPlots\Events\ScatterPlotChangedEvent.cs" />
     <Compile Include="Views\ScatterPlots\ScatterPlotLayout.cs" />
-    <Compile Include="Views\ScatterPlots\ScatterPlotLayoutColumnChangedEvent.cs" />
+    <Compile Include="Views\ScatterPlots\Events\ScatterPlotLayoutColumnChangedEvent.cs" />
     <Compile Include="Views\ScatterPlots\ScatterPlotRenderer.cs" />
   </ItemGroup>
   <ItemGroup>

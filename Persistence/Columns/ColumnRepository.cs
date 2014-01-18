@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application;
+using DataExplorer.Application.Columns;
 using DataExplorer.Domain.Columns;
 
 namespace DataExplorer.Persistence.Columns

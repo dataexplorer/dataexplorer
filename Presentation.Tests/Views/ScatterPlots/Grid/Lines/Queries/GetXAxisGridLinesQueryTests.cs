@@ -32,7 +32,7 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Grid.Lines.Queries
         private Rect _viewExtent;
         private ColumnDto _columnDto;
         private List<object> _values;
-        private IAxisMap _axisMap;
+        private AxisMap _axisMap;
         private List<AxisGridLine> _axisLines;
         private AxisGridLine _axisGridLine;
         private List<CanvasLine> _canvasLines;

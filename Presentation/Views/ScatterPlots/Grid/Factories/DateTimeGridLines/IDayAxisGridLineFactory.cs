@@ -7,12 +7,12 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories.DateTimeGr
 {
     public interface IDayAxisGridLineFactory
     {
-        IEnumerable<AxisGridLine> CreateQuarters(IAxisMap map, DateTime lower, DateTime upper);
+        IEnumerable<AxisGridLine> CreateQuarters(AxisMap map, DateTime lower, DateTime upper);
 
-        IEnumerable<AxisGridLine> CreateMonths(IAxisMap map, DateTime lower, DateTime upper);
+        IEnumerable<AxisGridLine> CreateMonths(AxisMap map, DateTime lower, DateTime upper);
 
-        IEnumerable<AxisGridLine> CreateWeeks(IAxisMap map, DateTime lower, DateTime upper);
+        IEnumerable<AxisGridLine> CreateWeeks(AxisMap map, DateTime lower, DateTime upper);
 
-        IEnumerable<AxisGridLine> CreateDays(IAxisMap map, DateTime lower, DateTime upper);
+        IEnumerable<AxisGridLine> CreateDays(AxisMap map, DateTime lower, DateTime upper);
     }
 }

@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
-using DataExplorer.Domain.Events;
+using DataExplorer.Domain.Core.Events;
+using DataExplorer.Domain.Views.ScatterPlots.Events;
 
 namespace DataExplorer.Domain.Views.ScatterPlots
 {
-    public class ScatterPlot : IScatterPlot
+    public class ScatterPlot : View, IScatterPlot
     {
         private Rect _viewExtent;
         private List<Plot> _plots;

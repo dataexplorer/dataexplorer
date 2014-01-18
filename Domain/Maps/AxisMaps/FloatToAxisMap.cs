@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataExplorer.Domain.Maps.AxisMaps
 {
-    public class FloatToAxisMap : IAxisMap
+    public class FloatToAxisMap : AxisMap
     {
         // NOTE: Must half all incoming values to avoid overflow
         // NOTE: since width from min to max is greater than 0 to max
@@ -31,7 +31,7 @@ namespace DataExplorer.Domain.Maps.AxisMaps
             _targetWidth = targetMax - targetMin;
         }
 
-        public double? Map(object value)
+        public override double? Map(object value)
         {
             if (value == null)
                 return null;
@@ -43,7 +43,7 @@ namespace DataExplorer.Domain.Maps.AxisMaps
             return _targetMin + (ratio * _targetWidth);
         }
 
-        public object MapInverse(double? value)
+        public override object MapInverse(double? value)
         {
             if (!value.HasValue)
                 return null;

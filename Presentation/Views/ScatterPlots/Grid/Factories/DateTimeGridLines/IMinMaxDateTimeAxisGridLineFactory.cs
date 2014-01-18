@@ -6,6 +6,6 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories.DateTimeGr
 {
     public interface IMinMaxDateTimeAxisGridLineFactory
     {
-        IEnumerable<AxisGridLine> Create(IAxisMap map);
+        IEnumerable<AxisGridLine> Create(AxisMap map);
     }
 }

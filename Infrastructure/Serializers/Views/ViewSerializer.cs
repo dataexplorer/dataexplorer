@@ -17,7 +17,7 @@ namespace DataExplorer.Infrastructure.Serializers.Views
             _scatterPlotSerializer = scatterPlotSerializer;
         }
 
-        public XElement Serialize(IView view)
+        public XElement Serialize(View view)
         {
             if (view is ScatterPlot)
                 return _scatterPlotSerializer.Serialize((ScatterPlot) view);
@@ -25,7 +25,7 @@ namespace DataExplorer.Infrastructure.Serializers.Views
             throw new ArgumentException("View cannot be serialized because view is not recognized.");
         }
 
-        public IView Deserialize(XElement xView, IEnumerable<Column> columns)
+        public View Deserialize(XElement xView, IEnumerable<Column> columns)
         {
             if (xView.Name.LocalName == "scatter-plot")
                 return _scatterPlotSerializer.Deserialize(xView, columns);

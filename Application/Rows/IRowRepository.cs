@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using DataExplorer.Domain.Rows;
 
-namespace DataExplorer.Domain.Rows
+namespace DataExplorer.Application.Rows
 {
     public interface IRowRepository
     {

@@ -14,12 +14,12 @@ namespace DataExplorer.Persistence.Tests.Views
     {
         private ViewRepository _repository;
         private Mock<IDataContext> _mockViewContext;
-        private Dictionary<Type, IView> _views;
+        private Dictionary<Type, View> _views;
 
         [SetUp]
         public void SetUp()
         {
-            _views = new Dictionary<Type, IView>();
+            _views = new Dictionary<Type, View>();
             _mockViewContext = new Mock<IDataContext>();
             _mockViewContext.Setup(p => p.Views).Returns(_views);
             _repository = new ViewRepository(_mockViewContext.Object);

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using DataExplorer.Domain.Filters.DateTimeFilters;
+using DataExplorer.Domain.Filters;
 using DataExplorer.Domain.FilterTrees.DateTimeFilterTrees;
 using DataExplorer.Domain.FilterTrees.NullFilterTrees;
 using DataExplorer.Domain.Tests.Columns;

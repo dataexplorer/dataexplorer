@@ -1,4 +1,5 @@
-﻿using DataExplorer.Application.Importers.CsvFiles.Queries;
+﻿using DataExplorer.Application.Importers;
+using DataExplorer.Application.Importers.CsvFiles.Queries;
 using DataExplorer.Domain.Sources;
 using Moq;
 using NUnit.Framework;

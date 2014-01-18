@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Filters;
-using DataExplorer.Domain.Filters.DateTimeFilters;
 
 namespace DataExplorer.Infrastructure.Serializers.Filters.DateTimeFilters
 {

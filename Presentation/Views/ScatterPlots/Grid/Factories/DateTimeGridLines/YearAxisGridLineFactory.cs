@@ -7,7 +7,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories.DateTimeGr
 {
     public class YearAxisGridLineFactory : IYearAxisGridLineFactory
     {
-        public IEnumerable<AxisGridLine> Create(IAxisMap map, DateTime lower, DateTime upper, int step)
+        public IEnumerable<AxisGridLine> Create(AxisMap map, DateTime lower, DateTime upper, int step)
         {
             var startYear = GetFirstYearOfGroup(lower, step);
 
@@ -37,7 +37,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories.DateTimeGr
         }
 
         // TODO: This is duplicated across multiple classes... must refactor
-        private static AxisGridLine CreateAxisGridLine(IAxisMap map, DateTime value)
+        private static AxisGridLine CreateAxisGridLine(AxisMap map, DateTime value)
         {
             var position = map.Map(value);
 

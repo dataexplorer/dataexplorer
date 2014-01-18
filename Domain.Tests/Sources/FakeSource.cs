@@ -2,7 +2,7 @@
 
 namespace DataExplorer.Domain.Tests.Sources
 {
-    public class FakeSource : ISource
+    public class FakeSource : Source
     {
     }
 }

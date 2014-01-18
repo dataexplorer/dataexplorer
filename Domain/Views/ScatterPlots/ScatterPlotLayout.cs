@@ -1,5 +1,6 @@
 ﻿using DataExplorer.Domain.Columns;
-using DataExplorer.Domain.Events;
+using DataExplorer.Domain.Core.Events;
+using DataExplorer.Domain.Views.ScatterPlots.Events;
 
 namespace DataExplorer.Domain.Views.ScatterPlots
 {

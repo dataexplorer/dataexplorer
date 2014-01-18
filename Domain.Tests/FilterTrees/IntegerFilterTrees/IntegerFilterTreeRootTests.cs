@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using DataExplorer.Domain.Filters.IntegerFilters;
+using DataExplorer.Domain.Filters;
 using DataExplorer.Domain.FilterTrees.IntegerFilterTrees;
 using DataExplorer.Domain.FilterTrees.NullFilterTrees;
 using DataExplorer.Domain.Tests.Columns;

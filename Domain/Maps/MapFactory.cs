@@ -10,7 +10,7 @@ namespace DataExplorer.Domain.Maps
 {
     public class MapFactory : IMapFactory
     {
-        public IAxisMap CreateAxisMap(Column column, double targetMin, double targetMax)
+        public AxisMap CreateAxisMap(Column column, double targetMin, double targetMax)
         {
             if (column.Type == typeof(Boolean))
                 return new BooleanToAxisMap(targetMin, targetMax);

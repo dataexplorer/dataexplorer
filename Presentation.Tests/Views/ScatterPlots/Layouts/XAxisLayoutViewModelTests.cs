@@ -10,6 +10,7 @@ using DataExplorer.Application.Views.ScatterPlots.Events;
 using DataExplorer.Application.Views.ScatterPlots.Layouts.Commands;
 using DataExplorer.Application.Views.ScatterPlots.Layouts.Queries;
 using DataExplorer.Domain.Views.ScatterPlots;
+using DataExplorer.Domain.Views.ScatterPlots.Events;
 using DataExplorer.Presentation.Core.Layout;
 using DataExplorer.Presentation.Views.ScatterPlots.Layout;
 using Moq;

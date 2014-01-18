@@ -18,7 +18,7 @@ namespace DataExplorer.Infrastructure.Serializers.Sources
             _propertySerializer = propertySerializer;
         }
 
-        public XElement Serialize(ISource source)
+        public XElement Serialize(Source source)
         {
             var xSource = new XElement(CsvFileSourceTag);
             
@@ -36,7 +36,7 @@ namespace DataExplorer.Infrastructure.Serializers.Sources
             xSource.Add(xFilePath);
         }
 
-        public ISource Deserialize(XElement xSource)
+        public Source Deserialize(XElement xSource)
         {
             var filePath = DeserializeProperty<string>(xSource, FilePathTag);
 

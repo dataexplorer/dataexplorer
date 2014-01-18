@@ -1,9 +1,11 @@
 ﻿using System.Windows;
+using DataExplorer.Application.Views;
 using DataExplorer.Application.Views.ScatterPlots.Layouts.Commands;
-using DataExplorer.Domain.Events;
+using DataExplorer.Domain.Core.Events;
 using DataExplorer.Domain.Tests.Columns;
 using DataExplorer.Domain.Views;
 using DataExplorer.Domain.Views.ScatterPlots;
+using DataExplorer.Domain.Views.ScatterPlots.Events;
 using Moq;
 using NUnit.Framework;
 

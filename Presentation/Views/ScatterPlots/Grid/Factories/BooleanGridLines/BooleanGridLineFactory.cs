@@ -6,14 +6,14 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories.BooleanGri
 {
     public class BooleanGridLineFactory : IBooleanGridLineFactory
     {
-        public IEnumerable<AxisGridLine> Create(IAxisMap map, double lower, double upper)
+        public IEnumerable<AxisGridLine> Create(AxisMap map, double lower, double upper)
         {
             yield return CreateAxisLine(map, false);
 
             yield return CreateAxisLine(map, true);
         }
 
-        private static AxisGridLine CreateAxisLine(IAxisMap map, bool value)
+        private static AxisGridLine CreateAxisLine(AxisMap map, bool value)
         {
             var location = map.Map(value);
 

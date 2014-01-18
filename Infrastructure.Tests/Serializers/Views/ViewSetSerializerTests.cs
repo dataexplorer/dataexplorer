@@ -15,8 +15,8 @@ namespace DataExplorer.Infrastructure.Tests.Serializers.Views
     {
         private ViewSetSerializer _serializer;
         private Mock<IViewSerializer> _mockViewSerializer;
-        private List<IView> _views;
-        private IView _view;
+        private List<View> _views;
+        private View _view;
         private XElement _xViews;
         private XElement _xView;
         private List<Column> _columns;
@@ -25,7 +25,7 @@ namespace DataExplorer.Infrastructure.Tests.Serializers.Views
         public void SetUp()
         {
             _view = new FakeView();
-            _views = new List<IView> { _view };
+            _views = new List<View> { _view };
             _columns = new List<Column>();
 
             _xView = new XElement("view");

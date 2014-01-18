@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
-using DataExplorer.Domain.Events;
+using DataExplorer.Domain.Core.Events;
 using DataExplorer.Domain.Views.ScatterPlots;
+using DataExplorer.Domain.Views.ScatterPlots.Events;
 using NUnit.Framework;
 
 namespace DataExplorer.Domain.Tests.Views.ScatterPlots

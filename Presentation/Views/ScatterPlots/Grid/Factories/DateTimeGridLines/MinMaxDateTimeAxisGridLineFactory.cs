@@ -7,14 +7,14 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories.DateTimeGr
 {
     public class MinMaxDateTimeAxisGridLineFactory : IMinMaxDateTimeAxisGridLineFactory
     {
-        public IEnumerable<AxisGridLine> Create(IAxisMap map)
+        public IEnumerable<AxisGridLine> Create(AxisMap map)
         {
             yield return CreateAxisGridLine(map, DateTime.MinValue, "0001");
             yield return CreateAxisGridLine(map, DateTime.MaxValue, "10000");
         }
 
         // TODO: This is duplicated across multiple classes... must refactor
-        private AxisGridLine CreateAxisGridLine(IAxisMap map, DateTime value, string label)
+        private AxisGridLine CreateAxisGridLine(AxisMap map, DateTime value, string label)
         {
             var position = map.Map(value);
 

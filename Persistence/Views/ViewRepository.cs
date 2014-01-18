@@ -1,5 +1,6 @@
 ﻿using System;
 using DataExplorer.Application;
+using DataExplorer.Application.Views;
 using DataExplorer.Domain.Views;
 
 namespace DataExplorer.Persistence.Views
@@ -13,7 +14,7 @@ namespace DataExplorer.Persistence.Views
             _viewContext = viewContext;
         }
 
-        public T Get<T>() where T : IView, new()
+        public T Get<T>() where T : View, new()
         {
             if (!_viewContext.Views.ContainsKey(typeof(T)))
             {
@@ -24,7 +25,7 @@ namespace DataExplorer.Persistence.Views
             return (T) _viewContext.Views[typeof(T)];
         }
 
-        public void Set<T>(T view) where T : IView
+        public void Set<T>(T view) where T : View
         {
             _viewContext.Views[typeof(T)] = view;
         }

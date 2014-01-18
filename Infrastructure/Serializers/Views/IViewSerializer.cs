@@ -7,8 +7,8 @@ namespace DataExplorer.Infrastructure.Serializers.Views
 {
     public interface IViewSerializer
     {
-        XElement Serialize(IView view);
+        XElement Serialize(View view);
 
-        IView Deserialize(XElement xView, IEnumerable<Column> columns);
+        View Deserialize(XElement xView, IEnumerable<Column> columns);
     }
 }

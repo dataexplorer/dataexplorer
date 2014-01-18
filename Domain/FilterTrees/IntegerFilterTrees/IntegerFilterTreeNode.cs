@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Filters;
-using DataExplorer.Domain.Filters.IntegerFilters;
 
 namespace DataExplorer.Domain.FilterTrees.IntegerFilterTrees
 {

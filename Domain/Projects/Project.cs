@@ -13,7 +13,7 @@ namespace DataExplorer.Domain.Projects
 {
     public class Project
     {
-        public List<ISource> Sources { get; set; }
+        public List<Source> Sources { get; set; }
 
         public List<Column> Columns { get; set; }
 
@@ -21,6 +21,6 @@ namespace DataExplorer.Domain.Projects
 
         public List<Filter> Filters { get; set; } 
 
-        public List<IView> Views  { get; set; }
+        public List<View> Views  { get; set; }
     }
 }

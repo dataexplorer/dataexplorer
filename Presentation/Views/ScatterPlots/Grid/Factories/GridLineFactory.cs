@@ -33,7 +33,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories
             _stringFactory = stringFactory;
         }
 
-        public IEnumerable<AxisGridLine> Create(Type type, IAxisMap map, IEnumerable<object> values, double lower, double upper)
+        public IEnumerable<AxisGridLine> Create(Type type, AxisMap map, IEnumerable<object> values, double lower, double upper)
         {
             if (type == typeof(Boolean))
                 return _booleanFactory.Create(map, lower, upper);

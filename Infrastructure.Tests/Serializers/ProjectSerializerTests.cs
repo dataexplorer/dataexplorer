@@ -29,12 +29,12 @@ namespace DataExplorer.Infrastructure.Tests.Serializers
         private Mock<IFilterSetSerializer> _mockFilterSerializer;
         private Mock<IViewSetSerializer> _mockViewSerializer;
         private Project _project;
-        private List<ISource> _sources;
+        private List<Source> _sources;
         private List<Type> _dataTypes;
         private List<Column> _columns;
         private List<Row> _rows;
         private List<Filter> _filters;
-        private List<IView> _views;
+        private List<View> _views;
         private XElement _xProject;
         private XElement _xSources;
         private XElement _xColumns;
@@ -45,12 +45,12 @@ namespace DataExplorer.Infrastructure.Tests.Serializers
         [SetUp]
         public void SetUp()
         {
-            _sources = new List<ISource>();
+            _sources = new List<Source>();
             _dataTypes = new List<Type>();
             _columns = new List<Column>();
             _rows = new List<Row>();
             _filters = new List<Filter>();
-            _views = new List<IView>();
+            _views = new List<View>();
 
             _project = new Project()
             {

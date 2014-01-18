@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application;
+using DataExplorer.Application.Filters;
 using DataExplorer.Domain.Filters;
 
 namespace DataExplorer.Persistence.Filters

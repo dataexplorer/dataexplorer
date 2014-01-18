@@ -7,6 +7,6 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories
 {
     public interface IGridLineFactory
     {
-        IEnumerable<AxisGridLine> Create(Type type, IAxisMap map, IEnumerable<object> values, double lower, double upper);
+        IEnumerable<AxisGridLine> Create(Type type, AxisMap map, IEnumerable<object> values, double lower, double upper);
     }
 }

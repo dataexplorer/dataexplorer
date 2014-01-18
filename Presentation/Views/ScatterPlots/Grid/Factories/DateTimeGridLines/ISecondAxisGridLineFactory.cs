@@ -7,17 +7,17 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories.DateTimeGr
 {
     public interface ISecondAxisGridLineFactory
     {
-        IEnumerable<AxisGridLine> CreateFourHours(IAxisMap map, DateTime lower, DateTime upper);
+        IEnumerable<AxisGridLine> CreateFourHours(AxisMap map, DateTime lower, DateTime upper);
 
-        IEnumerable<AxisGridLine> CreateHours(IAxisMap map, DateTime lower, DateTime upper);
+        IEnumerable<AxisGridLine> CreateHours(AxisMap map, DateTime lower, DateTime upper);
 
-        IEnumerable<AxisGridLine> CreateTenMinutes(IAxisMap map, DateTime lower, DateTime upper);
+        IEnumerable<AxisGridLine> CreateTenMinutes(AxisMap map, DateTime lower, DateTime upper);
 
-        IEnumerable<AxisGridLine> CreateMinutes(IAxisMap map, DateTime lower, DateTime upper);
+        IEnumerable<AxisGridLine> CreateMinutes(AxisMap map, DateTime lower, DateTime upper);
 
-        IEnumerable<AxisGridLine> CreateTenSeconds(IAxisMap map, DateTime lower, DateTime upper);
+        IEnumerable<AxisGridLine> CreateTenSeconds(AxisMap map, DateTime lower, DateTime upper);
 
-        IEnumerable<AxisGridLine> CreateSeconds(IAxisMap map, DateTime lower, DateTime upper);
+        IEnumerable<AxisGridLine> CreateSeconds(AxisMap map, DateTime lower, DateTime upper);
 
 
     }

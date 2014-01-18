@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using DataExplorer.Domain.Sources;
 
-namespace DataExplorer.Domain.Sources
+namespace DataExplorer.Application.Importers
 {
     public interface ISourceRepository
     {
-        T GetSource<T>() where T : ISource, new();
-        void SetSource<T>(T source) where T : ISource;
+        T GetSource<T>() where T : Source, new();
+        void SetSource<T>(T source) where T : Source;
     }
 }

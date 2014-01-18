@@ -121,11 +121,11 @@ namespace DataExplorer.Infrastructure.Serializers
         }
 
         private static Project CreateProject(
-            IEnumerable<ISource> sources, 
+            IEnumerable<Source> sources, 
             IEnumerable<Column> columns, 
             IEnumerable<Row> rows, 
             IEnumerable<Filter> filters,
-            IEnumerable<IView> views)
+            IEnumerable<View> views)
         {
             var project = new Project()
             {
@@ -138,7 +138,7 @@ namespace DataExplorer.Infrastructure.Serializers
             return project;
         }
 
-        private IEnumerable<ISource> DeserializeSources(XElement xProject)
+        private IEnumerable<Source> DeserializeSources(XElement xProject)
         {
             var xSources = xProject.Element(SourcesTag);
             
@@ -183,7 +183,7 @@ namespace DataExplorer.Infrastructure.Serializers
             return filters;
         }
 
-        private IEnumerable<IView> DeserializeViews(XElement xProject, IEnumerable<Column> columns)
+        private IEnumerable<View> DeserializeViews(XElement xProject, IEnumerable<Column> columns)
         {
             var xViews = xProject.Element(ViewsTag);
 

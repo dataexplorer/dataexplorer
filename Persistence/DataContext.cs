@@ -15,13 +15,13 @@ namespace DataExplorer.Persistence
 {
     public class DataContext : IDataContext
     {
-        private Dictionary<Type, ISource> _sources;
+        private Dictionary<Type, Source> _sources;
         private List<Column> _columns;
         private List<Row> _rows;
         private List<Filter> _filters; 
-        private Dictionary<Type, IView> _views; 
+        private Dictionary<Type, View> _views; 
 
-        public Dictionary<Type, ISource> Sources
+        public Dictionary<Type, Source> Sources
         {
             get { return _sources;  }
         }
@@ -41,18 +41,18 @@ namespace DataExplorer.Persistence
             get { return _filters; }
         }
 
-        public Dictionary<Type, IView> Views
+        public Dictionary<Type, View> Views
         {
             get { return _views; }
         }
 
         public DataContext()
         {
-            _sources = new Dictionary<Type, ISource>();
+            _sources = new Dictionary<Type, Source>();
             _columns = new List<Column>();
             _rows = new List<Row>();
             _filters = new List<Filter>();
-            _views = new Dictionary<Type, IView>();
+            _views = new Dictionary<Type, View>();
         }
 
         public Project GetProject()

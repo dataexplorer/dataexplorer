@@ -2,14 +2,14 @@
 
 namespace DataExplorer.Application.Tests.Maps
 {
-    public class FakeAxisMap : IAxisMap
+    public class FakeAxisMap : AxisMap
     {
-        public double? Map(object value)
+        public override double? Map(object value)
         {
             return (double?) value;
         }
 
-        public object MapInverse(double? value)
+        public override object MapInverse(double? value)
         {
             return value;
         }

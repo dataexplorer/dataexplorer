@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataExplorer.Domain.Maps.AxisMaps
 {
-    public class BooleanToAxisMap : IAxisMap
+    public class BooleanToAxisMap : AxisMap
     {
         private readonly double _targetMin;
         private readonly double _targetMax;
@@ -16,8 +16,8 @@ namespace DataExplorer.Domain.Maps.AxisMaps
             _targetMin = targetMin;
             _targetMax = targetMax;
         }
-        
-        public double? Map(object value)
+
+        public override double? Map(object value)
         {
             if (value == null)
                 return null;
@@ -27,7 +27,7 @@ namespace DataExplorer.Domain.Maps.AxisMaps
                 : _targetMin;
         }
 
-        public object MapInverse(double? value)
+        public override object MapInverse(double? value)
         {
             if (!value.HasValue)
                 return null;

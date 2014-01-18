@@ -11,7 +11,7 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Grid.Factories.Date
     public class MinMaxDateTimeAxisGridLineFactoryTests
     {
         private MinMaxDateTimeAxisGridLineFactory _factory;
-        private IAxisMap _map;
+        private AxisMap _map;
 
         [SetUp]
         public void SetUp()

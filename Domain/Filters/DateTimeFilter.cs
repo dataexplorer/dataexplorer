@@ -3,7 +3,7 @@ using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Predicates;
 using DataExplorer.Domain.Rows;
 
-namespace DataExplorer.Domain.Filters.DateTimeFilters
+namespace DataExplorer.Domain.Filters
 {
     public class DateTimeFilter : Filter
     {

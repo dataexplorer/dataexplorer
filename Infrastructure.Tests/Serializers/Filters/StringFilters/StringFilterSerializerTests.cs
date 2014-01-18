@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Xml.Linq;
 using DataExplorer.Domain.Columns;
-using DataExplorer.Domain.Filters.StringFilters;
+using DataExplorer.Domain.Filters;
 using DataExplorer.Domain.Tests.Columns;
 using DataExplorer.Infrastructure.Serializers.Filters.StringFilters;
 using DataExplorer.Infrastructure.Serializers.Properties;

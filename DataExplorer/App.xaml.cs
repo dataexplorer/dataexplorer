@@ -9,7 +9,7 @@ using System.Windows;
 using DataExplorer.Application.Core.Commands;
 using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Core.Queries;
-using DataExplorer.Domain.Events;
+using DataExplorer.Domain.Core.Events;
 using DataExplorer.Presentation.Shell.MainWindow;
 using Ninject;
 using Ninject.Extensions.Conventions;

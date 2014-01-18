@@ -40,7 +40,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories.DateTimeGr
             _secondFactory = secondFactory;
         }
 
-        public IEnumerable<AxisGridLine> Create(IAxisMap map, double lower, double upper)
+        public IEnumerable<AxisGridLine> Create(AxisMap map, double lower, double upper)
         {
             var lowerDateTime = (DateTime) map.MapInverse(lower);
 

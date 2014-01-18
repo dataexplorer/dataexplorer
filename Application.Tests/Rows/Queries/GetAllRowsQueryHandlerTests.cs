@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataExplorer.Application.Rows;
 using DataExplorer.Application.Rows.Queries;
 using DataExplorer.Domain.Rows;
 using DataExplorer.Domain.Tests.Rows;

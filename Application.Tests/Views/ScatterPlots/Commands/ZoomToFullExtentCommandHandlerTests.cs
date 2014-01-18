@@ -1,8 +1,10 @@
 ﻿using System.Windows;
+using DataExplorer.Application.Views;
 using DataExplorer.Application.Views.ScatterPlots.Commands;
-using DataExplorer.Domain.Events;
+using DataExplorer.Domain.Core.Events;
 using DataExplorer.Domain.Views;
 using DataExplorer.Domain.Views.ScatterPlots;
+using DataExplorer.Domain.Views.ScatterPlots.Events;
 using Moq;
 using NUnit.Framework;
 

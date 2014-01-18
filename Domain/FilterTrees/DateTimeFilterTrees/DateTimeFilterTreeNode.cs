@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Filters;
-using DataExplorer.Domain.Filters.DateTimeFilters;
 
 namespace DataExplorer.Domain.FilterTrees.DateTimeFilterTrees
 {

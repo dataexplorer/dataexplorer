@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataExplorer.Domain.Maps.AxisMaps
 {
-    public class StringToAxisMap : IAxisMap
+    public class StringToAxisMap : AxisMap
     {
         private readonly List<string> _sourceValues;
         private readonly int _sourceCount;
@@ -23,7 +23,7 @@ namespace DataExplorer.Domain.Maps.AxisMaps
             _targetWidth = targetMax - targetMin;
         }
 
-        public double? Map(object value)
+        public override double? Map(object value)
         {
             if (value == null)
                 return null;
@@ -35,7 +35,7 @@ namespace DataExplorer.Domain.Maps.AxisMaps
             return _targetMin + (ratio * _targetWidth);
         }
 
-        public object MapInverse(double? value)
+        public override object MapInverse(double? value)
         {
             if (!value.HasValue)
                 return null;

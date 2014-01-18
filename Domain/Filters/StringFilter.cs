@@ -3,7 +3,7 @@ using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Predicates;
 using DataExplorer.Domain.Rows;
 
-namespace DataExplorer.Domain.Filters.StringFilters
+namespace DataExplorer.Domain.Filters
 {
     public class StringFilter : Filter
     {

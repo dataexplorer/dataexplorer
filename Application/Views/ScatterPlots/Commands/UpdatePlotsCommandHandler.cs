@@ -1,5 +1,7 @@
 ﻿using System.Linq;
 using DataExplorer.Application.Core.Commands;
+using DataExplorer.Application.Filters;
+using DataExplorer.Application.Rows;
 using DataExplorer.Domain.Filters;
 using DataExplorer.Domain.Rows;
 using DataExplorer.Domain.Views;

@@ -10,7 +10,7 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Grid.Factories.Bool
     public class BooleanAxisGridLineFactoryTests
     {
         private BooleanGridLineFactory _factory;
-        private IAxisMap _map;
+        private AxisMap _map;
 
         [SetUp]
         public void SetUp()

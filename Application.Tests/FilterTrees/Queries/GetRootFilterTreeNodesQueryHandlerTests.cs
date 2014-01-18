@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using DataExplorer.Application.Columns;
 using DataExplorer.Application.FilterTrees.Queries;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.FilterTrees;

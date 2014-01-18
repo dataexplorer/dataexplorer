@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using DataExplorer.Domain.Columns;
-using DataExplorer.Domain.Filters.DateTimeFilters;
+using DataExplorer.Domain.Filters;
 using DataExplorer.Domain.FilterTrees;
 using DataExplorer.Domain.FilterTrees.DateTimeFilterTrees;
 using DataExplorer.Domain.Tests.Columns;

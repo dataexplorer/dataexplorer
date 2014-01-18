@@ -8,6 +8,6 @@ namespace DataExplorer.Domain.Sources
 {
     public interface ISourceFactory
     {
-        T Create<T>() where T : ISource, new();
+        T Create<T>() where T : Source, new();
     }
 }

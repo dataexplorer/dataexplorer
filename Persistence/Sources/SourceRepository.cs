@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application;
+using DataExplorer.Application.Importers;
 using DataExplorer.Domain.Sources;
 
 namespace DataExplorer.Persistence.Sources
@@ -17,7 +18,7 @@ namespace DataExplorer.Persistence.Sources
             _context = context;
         }
 
-        public T GetSource<T>() where T : ISource, new()
+        public T GetSource<T>() where T : Source, new()
         {
             if (!_context.Sources.ContainsKey(typeof(T)))
             {
@@ -28,7 +29,7 @@ namespace DataExplorer.Persistence.Sources
             return (T) _context.Sources[typeof(T)];
         }
 
-        public void SetSource<T>(T source) where T : ISource
+        public void SetSource<T>(T source) where T : Source
         {
             _context.Sources[typeof(T)] = source;
         }

@@ -37,11 +37,11 @@ namespace DataExplorer.Persistence.Tests
             
             _project = new Project()
             {
-                Sources = new List<ISource> { _source },
+                Sources = new List<Source> { _source },
                 Columns = new List<Column> { _column },
                 Rows = new List<Row> { _row },
                 Filters = new List<Filter> { _filter },
-                Views = new List<IView> { _view }
+                Views = new List<View> { _view }
             };
 
             _dataContext = new DataContext();

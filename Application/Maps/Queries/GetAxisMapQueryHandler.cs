@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataExplorer.Application.Columns;
 using DataExplorer.Application.Core.Queries;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Maps;
@@ -10,7 +11,7 @@ using DataExplorer.Domain.Maps;
 namespace DataExplorer.Application.Maps.Queries
 {
     public class GetAxisMapQueryHandler 
-        : IQueryHandler<GetAxisMapQuery, IAxisMap>
+        : IQueryHandler<GetAxisMapQuery, AxisMap>
     {
         private readonly IColumnRepository _repository;
         private readonly IMapFactory _factory;
@@ -23,7 +24,7 @@ namespace DataExplorer.Application.Maps.Queries
             _factory = factory;
         }
         
-        public IAxisMap Execute(GetAxisMapQuery query)
+        public AxisMap Execute(GetAxisMapQuery query)
         {
             var column = _repository.Get(query.ColumnId);
 

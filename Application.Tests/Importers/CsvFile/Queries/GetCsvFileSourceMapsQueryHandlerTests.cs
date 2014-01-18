@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using DataExplorer.Application.Importers;
 using DataExplorer.Application.Importers.CsvFiles.Queries;
 using DataExplorer.Domain.Sources;
 using DataExplorer.Domain.Sources.Maps;

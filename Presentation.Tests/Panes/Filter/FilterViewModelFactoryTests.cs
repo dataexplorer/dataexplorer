@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataExplorer.Domain.Filters.BooleanFilters;
+using DataExplorer.Domain.Filters;
 using DataExplorer.Presentation.Panes.Filter;
 using DataExplorer.Presentation.Panes.Filter.BooleanFilters;
 using NUnit.Framework;

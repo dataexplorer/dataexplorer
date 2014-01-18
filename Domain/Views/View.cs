@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataExplorer.Domain.Events;
 
-namespace DataExplorer.Domain.Sources
+namespace DataExplorer.Domain.Views
 {
-    public class CsvFilePathChangedEvent : IDomainEvent
+    public abstract class View
     {
     }
 }

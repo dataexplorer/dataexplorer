@@ -6,7 +6,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories.FloatGridL
 {
     public class FloatGridLineFactory : IFloatGridLineFactory
     {
-        public IEnumerable<AxisGridLine> Create(IAxisMap map, double lower, double upper)
+        public IEnumerable<AxisGridLine> Create(AxisMap map, double lower, double upper)
         {
             var lowerFloat = (double) map.MapInverse(lower) / 2;
 
@@ -41,7 +41,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories.FloatGridL
                 yield return CreateAxisGridLine(map, i * 2);
         }
 
-        private AxisGridLine CreateAxisGridLine(IAxisMap map,  double value)
+        private AxisGridLine CreateAxisGridLine(AxisMap map,  double value)
         {
             var line = new AxisGridLine()
             {
@@ -52,7 +52,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories.FloatGridL
             return line;
         }
 
-        private double GetPosition(IAxisMap map, double value)
+        private double GetPosition(AxisMap map, double value)
         {
             return map.Map(value).GetValueOrDefault();
         }

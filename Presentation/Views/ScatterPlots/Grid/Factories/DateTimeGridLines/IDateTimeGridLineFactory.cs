@@ -6,6 +6,6 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories.DateTimeGr
 {
     public interface IDateTimeGridLineFactory
     {
-        IEnumerable<AxisGridLine> Create(IAxisMap map, double lower, double upper);
+        IEnumerable<AxisGridLine> Create(AxisMap map, double lower, double upper);
     }
 }

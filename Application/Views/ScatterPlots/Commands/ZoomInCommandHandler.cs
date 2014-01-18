@@ -1,8 +1,9 @@
 ﻿using System.Windows;
 using DataExplorer.Application.Core.Commands;
-using DataExplorer.Domain.Events;
+using DataExplorer.Domain.Core.Events;
 using DataExplorer.Domain.Views;
 using DataExplorer.Domain.Views.ScatterPlots;
+using DataExplorer.Domain.Views.ScatterPlots.Events;
 
 namespace DataExplorer.Application.Views.ScatterPlots.Commands
 {

@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows;
 using DataExplorer.Domain.Views.ScatterPlots;
+using DataExplorer.Domain.Views.ScatterPlots.Events;
 using DataExplorer.Presentation.Core.Canvas.Items;
 using DataExplorer.Presentation.Views.ScatterPlots;
 using Moq;

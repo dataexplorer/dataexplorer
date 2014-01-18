@@ -9,6 +9,6 @@ namespace DataExplorer.Domain.Maps
 {
     public interface IMapFactory
     {
-        IAxisMap CreateAxisMap(Column column, double targetMin, double targetMax);
+        AxisMap CreateAxisMap(Column column, double targetMin, double targetMax);
     }
 }

@@ -1,8 +1,8 @@
-﻿using DataExplorer.Domain.Events;
+﻿using DataExplorer.Domain.Core.Events;
 using Ninject;
 using NUnit.Framework;
 
-namespace DataExplorer.Domain.Tests.Events
+namespace DataExplorer.Domain.Tests.Core.Events
 {
     [TestFixture]
     public class DomainEventsTests

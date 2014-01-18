@@ -10,8 +10,8 @@ namespace DataExplorer.Infrastructure.Serializers.Sources
 {
     public interface ISourceSetSerializer
     {
-        XElement Serialize(IEnumerable<ISource> sources);
+        XElement Serialize(IEnumerable<Source> sources);
 
-        IEnumerable<ISource> Deserialize(XElement xSources);
+        IEnumerable<Source> Deserialize(XElement xSources);
     }
 }

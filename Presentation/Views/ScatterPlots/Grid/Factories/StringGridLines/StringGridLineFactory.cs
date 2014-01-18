@@ -12,7 +12,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories.StringGrid
         private const char StartChar = (char) 32;
         private const char EndChar = (char) 96;
 
-        public IEnumerable<AxisGridLine> Create(IAxisMap map, List<object> values,  double lower, double upper)
+        public IEnumerable<AxisGridLine> Create(AxisMap map, List<object> values,  double lower, double upper)
         {
             var count = values
                 .Select(map.Map)
@@ -24,7 +24,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories.StringGrid
                 : CreateAlphaGridLines(map, values.Cast<string>().ToList(), lower, upper);
         }
 
-        private IEnumerable<AxisGridLine> CreateValueGridLines(IAxisMap map, List<object> values, double lower, double upper)
+        private IEnumerable<AxisGridLine> CreateValueGridLines(AxisMap map, List<object> values, double lower, double upper)
         {
             foreach (var value in values)
             {
@@ -35,7 +35,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories.StringGrid
             }
         }
 
-        private IEnumerable<AxisGridLine> CreateAlphaGridLines(IAxisMap map, List<string> values, double lower, double upper)
+        private IEnumerable<AxisGridLine> CreateAlphaGridLines(AxisMap map, List<string> values, double lower, double upper)
         {
             var lowerString = (string) map.MapInverse(lower);
 
