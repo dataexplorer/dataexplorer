@@ -57,9 +57,9 @@
     <Compile Include="Converters\StringToDateTimeConverterTests.cs" />
     <Compile Include="Converters\StringToFloatConverterTests.cs" />
     <Compile Include="Converters\StringToIntegerConverterTest.cs" />
-    <Compile Include="Events\DomainEventsTests.cs" />
-    <Compile Include="Events\FakeDomainEvent.cs" />
-    <Compile Include="Events\FakeDomainEventDomainHandler.cs" />
+    <Compile Include="Core\Events\DomainEventsTests.cs" />
+    <Compile Include="Core\Events\FakeDomainEvent.cs" />
+    <Compile Include="Core\Events\FakeDomainEventDomainHandler.cs" />
     <Compile Include="Filters\BooleanFilters\BooleanFilterTests.cs" />
     <Compile Include="Filters\DateTimeFilters\DateTimeFilterTests.cs" />
     <Compile Include="Filters\FakeFilter.cs" />

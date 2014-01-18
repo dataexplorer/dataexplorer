@@ -44,7 +44,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Columns\Column.cs" />
-    <Compile Include="Columns\IColumnRepository.cs" />
     <Compile Include="Converters\DataTypeConverterFactory.cs" />
     <Compile Include="Converters\IDataTypeConverter.cs" />
     <Compile Include="Converters\IDataTypeConverterFactory.cs" />
@@ -53,14 +52,13 @@
     <Compile Include="Converters\StringToDateTimeConverter.cs" />
     <Compile Include="Converters\StringToFloatConverter.cs" />
     <Compile Include="Converters\StringToIntegerConverter.cs" />
-    <Compile Include="Events\DomainEvents.cs" />
-    <Compile Include="Events\IDomainEvent.cs" />
-    <Compile Include="Events\IDomainHandler.cs" />
+    <Compile Include="Core\Events\DomainEvents.cs" />
+    <Compile Include="Core\Events\IDomainEvent.cs" />
+    <Compile Include="Core\Events\IDomainHandler.cs" />
     <Compile Include="Filters\BooleanFilters\BooleanFilter.cs" />
     <Compile Include="Filters\DateTimeFilters\DateTimeFilter.cs" />
     <Compile Include="Filters\Filter.cs" />
     <Compile Include="Filters\FloatFilters\FloatFilter.cs" />
-    <Compile Include="Filters\IFilterRepository.cs" />
     <Compile Include="Filters\IntegerFilters\IntegerFilter.cs" />
     <Compile Include="Filters\NullFilters\NullFilter.cs" />
     <Compile Include="Filters\StringFilters\StringFilter.cs" />
@@ -112,19 +110,16 @@
     <Compile Include="Predicates\StringPredicate.cs" />
     <Compile Include="Projects\Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Rows\IRowRepository.cs" />
     <Compile Include="Rows\Row.cs" />
     <Compile Include="Sources\CsvFilePathChangedEvent.cs" />
     <Compile Include="Sources\CsvFileSource.cs" />
     <Compile Include="Sources\ISource.cs" />
     <Compile Include="Sources\ISourceFactory.cs" />
-    <Compile Include="Sources\ISourceRepository.cs" />
     <Compile Include="Sources\Maps\ISourceMapFactory.cs" />
     <Compile Include="Sources\Maps\SourceMap.cs" />
     <Compile Include="Sources\Maps\SourceMapFactory.cs" />
     <Compile Include="Sources\SourceFactory.cs" />
     <Compile Include="Views\IView.cs" />
-    <Compile Include="Views\IViewRepository.cs" />
     <Compile Include="Views\ScatterPlots\AxisGridLine.cs" />
     <Compile Include="Views\ScatterPlots\IScatterPlot.cs" />
     <Compile Include="Views\ScatterPlots\IScatterPlotRenderer.cs" />
