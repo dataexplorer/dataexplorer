@@ -8,9 +8,9 @@ using DataExplorer.Domain.Filters;
 
 namespace DataExplorer.Application.Filters.Events
 {
-    public class FilterChangedEvent : FilterEvent
+    public class FilterRemovedEvent : FilterEvent
     {
-        public FilterChangedEvent(Filter filter) : base(filter)
+        public FilterRemovedEvent(Filter filter) : base(filter)
         {
         }
     }

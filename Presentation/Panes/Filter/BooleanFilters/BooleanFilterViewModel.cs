@@ -1,21 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DataExplorer.Domain.Filters.BooleanFilters;
 
 namespace DataExplorer.Presentation.Panes.Filter.BooleanFilters
 {
-    public class BooleanFilterViewModel
+    public class BooleanFilterViewModel : FilterViewModel
     {
         private readonly BooleanFilter _filter;
 
-        public BooleanFilterViewModel(BooleanFilter filter)
+        public BooleanFilterViewModel(BooleanFilter filter) : base(filter)
         {
             _filter = filter;
         }
 
+        public bool IncludeTrue
+        {
+            get { return _filter.IncludeTrue; }
+            set { _filter.IncludeTrue = value; }
+        }
 
+        public bool IncludeFalse
+        {
+            get { return _filter.IncludeFalse; }
+            set { _filter.IncludeFalse = value; }
+        }
     }
 }

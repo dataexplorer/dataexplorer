@@ -26,17 +26,22 @@ namespace DataExplorer.Application.FilterTrees.Commands
 
         public void Execute(SelectFilterTreeNodeCommand command)
         {
-            var previousFilter = _service.GetSelectedFilter();
+            var oldFilter = _service.GetSelectedFilter();
 
-            _repository.Remove(previousFilter);
+            if (oldFilter != null)
+            {
+                _repository.Remove(oldFilter);
 
-            var filter = command.Entity.CreateFilter();
+                _eventBus.Raise(new FilterRemovedEvent(oldFilter));
+            }
+            
+            var newFilter = command.Entity.CreateFilter();
 
-            _service.SetSelectedFilter(filter);
+            _service.SetSelectedFilter(newFilter);
 
-            _repository.Add(filter);
+            _repository.Add(newFilter);
 
-            _eventBus.Raise(new FilterChangedEvent());
+            _eventBus.Raise(new FilterAddedEvent(newFilter));
         }
     }
 }

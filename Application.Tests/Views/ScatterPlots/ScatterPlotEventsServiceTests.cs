@@ -60,9 +60,27 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots
         }
 
         [Test]
+        public void TestHandleFilterAddedEventShouldUpdatePlots()
+        {
+            var @event = new FilterAddedEvent(null);
+            _service.Handle(@event);
+            _mockTask.Verify(p => p.Execute(It.IsAny<UpdatePlotsCommand>()),
+                Times.Once());
+        }
+
+        [Test]
+        public void TestHandleFilterRemovedEventShouldUpdatePlots()
+        {
+            var @event = new FilterRemovedEvent(null);
+            _service.Handle(@event);
+            _mockTask.Verify(p => p.Execute(It.IsAny<UpdatePlotsCommand>()),
+                Times.Once());
+        }
+
+        [Test]
         public void TestHandleFilterChangedEventShouldUpdatePlots()
         {
-            var @event = new FilterChangedEvent();
+            var @event = new FilterChangedEvent(null);
             _service.Handle(@event);
             _mockTask.Verify(p => p.Execute(It.IsAny<UpdatePlotsCommand>()),
                 Times.Once());

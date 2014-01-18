@@ -5,6 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="64" d:DesignWidth="192">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
@@ -13,18 +16,22 @@
         <Label 
             Grid.Column="0"
             Content="equals" />
-        <ListBox 
+        <StackPanel
             Grid.Column="1"
-            Margin="5,0,0,0"
-            BorderThickness="0"
-            ItemsSource="{Binding FilterItems}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <CheckBox 
-                        IsChecked="{Binding IsSelected}" 
-                        Content="{Binding Label}" />
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+            Margin="5,5,0,0">
+            <CheckBox
+                Content="True"
+                IsChecked="{Binding IncludeTrue}" />
+            <CheckBox
+                Content="False"
+                Margin="0,2,0,0"
+                IsChecked="{Binding IncludeFalse}" />
+            <CheckBox
+                Content="Null"
+                Margin="0,2,0,0"
+                IsChecked="{Binding IncludeNull}"
+                Visibility="{Binding IsIncludeNullVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        </StackPanel>
+        
     </Grid>
 </UserControl>

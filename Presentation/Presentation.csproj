@@ -139,10 +139,18 @@
       <DependentUpon>BooleanFilterView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Panes\Filter\BooleanFilters\BooleanFilterViewModel.cs" />
+    <Compile Include="Panes\Filter\FilterView.xaml.cs">
+      <DependentUpon>FilterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\Filter\FilterDataTemplateSelector.cs" />
     <Compile Include="Panes\Filter\FilterPaneView.xaml.cs">
       <DependentUpon>FilterPaneView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Panes\Filter\FilterPaneViewModel.cs" />
+    <Compile Include="Panes\Filter\FilterViewModel.cs" />
+    <Compile Include="Panes\Filter\FilterViewModelFactory.cs" />
+    <Compile Include="Panes\Filter\IFilterPaneViewModel.cs" />
+    <Compile Include="Panes\Filter\IFilterViewModelFactory.cs" />
     <Compile Include="Panes\Layout\ILayoutPaneViewModel.cs" />
     <Compile Include="Panes\Layout\LayoutPaneView.xaml.cs">
       <DependentUpon>LayoutPaneView.xaml</DependentUpon>
@@ -354,6 +362,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Panes\Filter\BooleanFilters\BooleanFilterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panes\Filter\FilterView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

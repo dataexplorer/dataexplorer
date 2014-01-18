@@ -11,7 +11,7 @@ namespace DataExplorer.Domain.Filters
     public abstract class Filter
     {
         protected readonly Column _column;
-        protected readonly bool _includeNull;
+        protected bool _includeNull;
 
         protected Filter(Column column, bool includeNull)
         {
@@ -27,6 +27,7 @@ namespace DataExplorer.Domain.Filters
         public bool IncludeNull
         {
             get { return _includeNull; }
+            set { _includeNull = value; }
         }
 
         public abstract Func<Row, bool> CreatePredicate();

@@ -14,6 +14,8 @@ namespace DataExplorer.Application.Views.ScatterPlots
         IEventHandler<ProjectClosedEvent>,
         IDomainHandler<ScatterPlotLayoutColumnChangedEvent>,
         IEventHandler<CsvFileImportedEvent>,
+        IEventHandler<FilterAddedEvent>,
+        IEventHandler<FilterRemovedEvent>,
         IEventHandler<FilterChangedEvent>
     {
         private readonly ICommandBus _commandBus;
@@ -39,6 +41,16 @@ namespace DataExplorer.Application.Views.ScatterPlots
         }
 
         public void Handle(CsvFileImportedEvent args)
+        {
+            _commandBus.Execute(new UpdatePlotsCommand());
+        }
+
+        public void Handle(FilterAddedEvent args)
+        {
+            _commandBus.Execute(new UpdatePlotsCommand());
+        }
+
+        public void Handle(FilterRemovedEvent args)
         {
             _commandBus.Execute(new UpdatePlotsCommand());
         }

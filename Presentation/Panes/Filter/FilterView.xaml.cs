@@ -4,11 +4,11 @@ using System.Windows.Controls;
 namespace DataExplorer.Presentation.Panes.Filter
 {
     /// <summary>
-    /// Interaction logic for FilterPaneView.xaml
+    /// Interaction logic for FilterView.xaml
     /// </summary>
-    public partial class FilterPaneView : UserControl
+    public partial class FilterView : UserControl
     {
-        public FilterPaneView()
+        public FilterView()
         {
             InitializeComponent();
         }

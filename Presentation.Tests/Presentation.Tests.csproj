@@ -78,7 +78,10 @@
     <Compile Include="Importers\Footer\CsvFileImportFooterViewModelTests.cs" />
     <Compile Include="Importers\Header\CsvFileImportHeaderViewModelTests.cs" />
     <Compile Include="Panes\Filter\BooleanFilters\BooleanFilterViewModelTests.cs" />
-    <Compile Include="Panes\Filter\FilterPaneViewModel.cs" />
+    <Compile Include="Panes\Filter\FilterDataTemplateSelectorTests.cs" />
+    <Compile Include="Panes\Filter\FilterPaneViewModelTests.cs" />
+    <Compile Include="Panes\Filter\FilterViewModelFactoryTests.cs" />
+    <Compile Include="Panes\Filter\FilterViewModelTests.cs" />
     <Compile Include="Panes\Layout\LayoutPaneViewModelTests.cs" />
     <Compile Include="Panes\Navigation\NavigationPaneViewModelTests.cs" />
     <Compile Include="Panes\Navigation\NavigationTree\NavigationTreeViewModelTests.cs" />

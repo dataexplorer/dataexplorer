@@ -1,4 +1,5 @@
-﻿using DataExplorer.Presentation.Panes.Layout;
+﻿using DataExplorer.Presentation.Panes.Filter;
+using DataExplorer.Presentation.Panes.Layout;
 using DataExplorer.Presentation.Panes.Navigation;
 using DataExplorer.Presentation.Panes.Property;
 using DataExplorer.Presentation.Panes.Viewer;
@@ -17,6 +18,7 @@ namespace DataExplorer.Presentation.Tests.Shell.MainWindow
         private Mock<IMainMenuViewModel> _mockMainMenuViewModel;
         private Mock<INavigationPaneViewModel> _mockNavigationPaneViewModel;
         private Mock<IViewerPaneViewModel> _mockViewerViewModel;
+        private Mock<IFilterPaneViewModel> _mockFilterPaneViewModel;
         private Mock<ILayoutPaneViewModel> _mockLayoutPaneViewModel;
         private Mock<IPropertyPaneViewModel> _mockPropertyPaneViewModel;
         private Mock<IStatusBarViewModel> _mockStatusBarViewModel;
@@ -27,6 +29,7 @@ namespace DataExplorer.Presentation.Tests.Shell.MainWindow
             _mockViewerViewModel = new Mock<IViewerPaneViewModel>();
             _mockMainMenuViewModel = new Mock<IMainMenuViewModel>();
             _mockNavigationPaneViewModel = new Mock<INavigationPaneViewModel>();
+            _mockFilterPaneViewModel = new Mock<IFilterPaneViewModel>();
             _mockLayoutPaneViewModel = new Mock<ILayoutPaneViewModel>();
             _mockPropertyPaneViewModel = new Mock<IPropertyPaneViewModel>();
             _mockStatusBarViewModel = new Mock<IStatusBarViewModel>();
@@ -35,6 +38,7 @@ namespace DataExplorer.Presentation.Tests.Shell.MainWindow
                 _mockMainMenuViewModel.Object,
                 _mockNavigationPaneViewModel.Object,
                 _mockViewerViewModel.Object,
+                _mockFilterPaneViewModel.Object,
                 _mockLayoutPaneViewModel.Object,
                 _mockPropertyPaneViewModel.Object,
                 _mockStatusBarViewModel.Object);
@@ -59,6 +63,13 @@ namespace DataExplorer.Presentation.Tests.Shell.MainWindow
         {
             var result = _viewModel.ViewerPaneViewModel;
             Assert.That(result, Is.EqualTo(_mockViewerViewModel.Object));
+        }
+
+        [Test]
+        public void TestGetFilterPaneViewModelShouldReturnViewModel()
+        {
+            var result = _viewModel.FilterPaneViewModel;
+            Assert.That(result, Is.EqualTo(_mockFilterPaneViewModel.Object));
         }
 
         [Test]

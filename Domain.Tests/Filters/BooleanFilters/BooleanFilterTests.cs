@@ -16,26 +16,26 @@ namespace DataExplorer.Domain.Tests.Filters.BooleanFilters
         public void SetUp()
         {
             _column = new ColumnBuilder().Build();
+            _filter = new BooleanFilter(_column, false, false, false);
         }
 
         [Test]
         public void TestIncludeTrue()
         {
-            _filter = new BooleanFilter(_column, true, false, false);
+            _filter.IncludeTrue = true;
             Assert.That(_filter.IncludeTrue, Is.True);
         }
 
         [Test]
         public void TestIncludeFalse()
         {
-            _filter = new BooleanFilter(_column, false, true, false);
+            _filter.IncludeFalse = true;
             Assert.That(_filter.IncludeFalse, Is.True);
         }
 
         [Test]
         public void TestCreatePredicateShouldReturnBooleanPredicate()
         {
-            _filter = new BooleanFilter(_column, true, true, false);
             var result = _filter.CreatePredicate();
             Assert.That(result, Is.Not.Null);
         }

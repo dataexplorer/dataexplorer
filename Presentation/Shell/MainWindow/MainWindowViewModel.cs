@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataExplorer.Presentation.Panes.Filter;
 using DataExplorer.Presentation.Panes.Layout;
 using DataExplorer.Presentation.Panes.Navigation;
 using DataExplorer.Presentation.Panes.Property;
@@ -17,6 +18,7 @@ namespace DataExplorer.Presentation.Shell.MainWindow
         private readonly IMainMenuViewModel _mainMenuViewModel;
         private readonly INavigationPaneViewModel _navigationPaneViewModel;
         private readonly IViewerPaneViewModel _viewerPaneViewModel;
+        private readonly IFilterPaneViewModel _filterPaneViewModel;
         private readonly ILayoutPaneViewModel _layoutPaneViewModel;
         private readonly IPropertyPaneViewModel _propertyPaneViewModel;
         private readonly IStatusBarViewModel _statusBarViewModel;
@@ -25,6 +27,7 @@ namespace DataExplorer.Presentation.Shell.MainWindow
             IMainMenuViewModel mainMenuViewModel, 
             INavigationPaneViewModel navigationPaneViewModel,
             IViewerPaneViewModel viewerPaneViewModel,
+            IFilterPaneViewModel filterPaneViewModel,
             ILayoutPaneViewModel layoutPaneViewModel,
             IPropertyPaneViewModel propertyPaneViewModel,
             IStatusBarViewModel statusBarViewModel)
@@ -32,6 +35,7 @@ namespace DataExplorer.Presentation.Shell.MainWindow
             _mainMenuViewModel = mainMenuViewModel;
             _navigationPaneViewModel = navigationPaneViewModel;
             _viewerPaneViewModel = viewerPaneViewModel;
+            _filterPaneViewModel = filterPaneViewModel;
             _layoutPaneViewModel = layoutPaneViewModel;
             _propertyPaneViewModel = propertyPaneViewModel;
             _statusBarViewModel = statusBarViewModel;
@@ -50,6 +54,11 @@ namespace DataExplorer.Presentation.Shell.MainWindow
         public IViewerPaneViewModel ViewerPaneViewModel
         {
             get { return _viewerPaneViewModel; }
+        }
+
+        public IFilterPaneViewModel FilterPaneViewModel
+        {
+            get { return _filterPaneViewModel; }
         }
 
         public ILayoutPaneViewModel LayoutPaneViewModel

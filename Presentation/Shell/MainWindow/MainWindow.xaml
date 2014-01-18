@@ -46,7 +46,8 @@
                         <xcad:LayoutAnchorablePaneGroup Orientation="Vertical" DockWidth="192">
                             <xcad:LayoutAnchorablePane>
                                 <xcad:LayoutAnchorable Title="Filters">
-                                    <TextBlock>Pane 3</TextBlock>
+                                    <panes:FilterPaneView 
+                                        DataContext="{Binding FilterPaneViewModel}" />
                                 </xcad:LayoutAnchorable>
                             </xcad:LayoutAnchorablePane>
                             <xcad:LayoutAnchorablePane>

@@ -21,18 +21,22 @@ namespace DataExplorer.Domain.Filters.BooleanFilters
         public bool IncludeTrue
         {
             get { return _includeTrue; }
+            set { _includeTrue = value; }
         }
 
         public bool IncludeFalse
         {
             get { return _includeFalse; }
+            set { _includeFalse = value; }
         }
         
         public override Func<Row, bool> CreatePredicate()
         {
             return _column.HasNulls 
-                ? new NullableBooleanPredicate().Create(_column, _includeTrue, _includeFalse, _includeNull) 
-                : new BooleanPredicate().Create(_column, _includeTrue, _includeFalse);
+                ? new NullableBooleanPredicate()
+                    .Create(_column, _includeTrue, _includeFalse, _includeNull) 
+                : new BooleanPredicate()
+                    .Create(_column, _includeTrue, _includeFalse);
         }
     }
 }
