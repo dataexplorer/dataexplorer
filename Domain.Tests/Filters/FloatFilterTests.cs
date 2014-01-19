@@ -9,32 +9,30 @@ namespace DataExplorer.Domain.Tests.Filters
     {
         private FloatFilter _filter;
         private Column _column;
-        private double _lowerValue;
-        private double _upperValue;
         private bool _includeNull;
 
         [SetUp]
         public void SetUp()
         {
-            _lowerValue = double.MinValue;
-            _upperValue = double.MaxValue;
             _includeNull = true;
             _column = new ColumnBuilder().Build();
-            _filter = new FloatFilter(_column, _lowerValue, _upperValue, _includeNull);
+            _filter = new FloatFilter(_column, double.MinValue, double.MaxValue, _includeNull);
         }
 
         [Test]
-        public void TestGetLowerValueShouldReturnLowerValue()
+        public void TestGetSetLowerValueShouldGetSetLowerValue()
         {
+            _filter.LowerValue = 0.5;
             var result = _filter.LowerValue;
-            Assert.That(result, Is.EqualTo(_lowerValue));
+            Assert.That(result, Is.EqualTo(0.5));
         }
 
         [Test]
-        public void TestGetUpperValueShouldReturnLowerValue()
+        public void TestGetSetUpperValueShouldGetSetLowerValue()
         {
+            _filter.UpperValue = 0.5;
             var result = _filter.UpperValue;
-            Assert.That(result, Is.EqualTo(_upperValue));
+            Assert.That(result, Is.EqualTo(0.5));
         }
 
         [Test]

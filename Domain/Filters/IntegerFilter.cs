@@ -7,8 +7,8 @@ namespace DataExplorer.Domain.Filters
 {
     public class IntegerFilter : Filter
     {
-        protected readonly int _lowerValue;
-        protected readonly int _upperValue;
+        protected int _lowerValue;
+        protected int _upperValue;
 
         public IntegerFilter(Column column, int lowerValue, int upperValue, bool includeNull)
             : base(column, includeNull)
@@ -20,11 +20,13 @@ namespace DataExplorer.Domain.Filters
         public int LowerValue
         {
             get { return _lowerValue; }
+            set { _lowerValue = value; }
         }
 
         public int UpperValue
         {
             get { return _upperValue; }
+            set { _upperValue = value; }
         }
 
         public override Func<Row, bool> CreatePredicate()

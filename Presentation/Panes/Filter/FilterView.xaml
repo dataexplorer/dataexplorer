@@ -6,6 +6,7 @@
              xmlns:filter="clr-namespace:DataExplorer.Presentation.Panes.Filter"
              xmlns:booleanFilters="clr-namespace:DataExplorer.Presentation.Panes.Filter.BooleanFilters"
              xmlns:dateTimeFilters="clr-namespace:DataExplorer.Presentation.Panes.Filter.DateTimeFilters"
+             xmlns:floatFilters="clr-namespace:DataExplorer.Presentation.Panes.Filter.FloatFilters"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
@@ -50,6 +51,11 @@
                                     <dateTimeFilters:DateRangeFilterView />
                                 </DataTemplate>
                             </filter:FilterDataTemplateSelector.DateRangeFilterDataTemplate>
+                            <filter:FilterDataTemplateSelector.FloatRangeFilterDataTemplate>
+                                <DataTemplate>
+                                    <floatFilters:FloatRangeFilterView />
+                                </DataTemplate>
+                            </filter:FilterDataTemplateSelector.FloatRangeFilterDataTemplate>
                             <!--<filter:FilterDataTemplateSelector.IntegerFilterDataTemplate>
                                 <DataTemplate>
                                     <views:IntegerFilterView />
@@ -60,11 +66,7 @@
                                     <views:IntegerRangeFilterView />
                                 </DataTemplate>
                             </filter:FilterDataTemplateSelector.IntegerRangeFilterDataTemplate>
-                            <filter:FilterDataTemplateSelector.FloatFilterDataTemplate>
-                                <DataTemplate>
-                                    <views:FloatFilterView />
-                                </DataTemplate>
-                            </filter:FilterDataTemplateSelector.FloatFilterDataTemplate>
+                            
                             <filter:FilterDataTemplateSelector.FloatRangeFilterDataTemplate>
                                 <DataTemplate>
                                     <views:FloatRangeFilterView />

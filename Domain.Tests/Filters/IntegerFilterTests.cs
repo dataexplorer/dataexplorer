@@ -1,4 +1,5 @@
-﻿using DataExplorer.Domain.Columns;
+﻿using System;
+using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Filters;
 using DataExplorer.Domain.Tests.Columns;
 using NUnit.Framework;
@@ -9,30 +10,28 @@ namespace DataExplorer.Domain.Tests.Filters
     {
         private IntegerFilter _filter;
         private Column _column;
-        private int _lowerValue;
-        private int _upperValue;
 
         [SetUp]
         public void SetUp()
         {
-            _lowerValue = int.MinValue;
-            _upperValue = int.MaxValue;
             _column = new ColumnBuilder().Build();
-            _filter = new IntegerFilter(_column, _lowerValue, _upperValue, false);
+            _filter = new IntegerFilter(_column, Int32.MinValue, Int32.MaxValue, false);
         }
 
         [Test]
-        public void TestGetLowerValueShouldReturnLowerValue()
+        public void TestGetSetLowerValueShouldGetSetLowerValue()
         {
+            _filter.LowerValue = 1;
             var result = _filter.LowerValue;
-            Assert.That(result, Is.EqualTo(_lowerValue));
+            Assert.That(result, Is.EqualTo(1));
         }
 
         [Test]
-        public void TestGetUpperValueShouldReturnLowerValue()
+        public void TestGetSetUpperValueShouldGetSetLowerValue()
         {
+            _filter.UpperValue = 1;
             var result = _filter.UpperValue;
-            Assert.That(result, Is.EqualTo(_upperValue));
+            Assert.That(result, Is.EqualTo(1));
         }
 
         [Test]

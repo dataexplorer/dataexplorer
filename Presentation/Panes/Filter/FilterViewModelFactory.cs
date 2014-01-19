@@ -3,6 +3,7 @@ using DataExplorer.Application.Core.Commands;
 using DataExplorer.Domain.Filters;
 using DataExplorer.Presentation.Panes.Filter.BooleanFilters;
 using DataExplorer.Presentation.Panes.Filter.DateTimeFilters;
+using DataExplorer.Presentation.Panes.Filter.FloatFilters;
 
 namespace DataExplorer.Presentation.Panes.Filter
 {
@@ -22,6 +23,9 @@ namespace DataExplorer.Presentation.Panes.Filter
 
             if (filter is DateTimeFilter)
                 return new DateRangeFilterViewModel(_commandBus, (DateTimeFilter) filter);
+
+            if (filter is FloatFilter)
+                return new FloatRangeFilterViewModel(_commandBus, (FloatFilter) filter);
 
             throw new ArgumentException("Filter view model could not be created because filter type not valid.");
         }

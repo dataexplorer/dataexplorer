@@ -10,21 +10,20 @@ namespace DataExplorer.Domain.Tests.Filters
     {
         private StringFilter _filter;
         private Column _column;
-        private string _value;
-
+        
         [SetUp]
         public void SetUp()
         {
-            _value = "Test";
             _column = new ColumnBuilder().Build();
-            _filter = new StringFilter(_column, _value, false);
+            _filter = new StringFilter(_column, string.Empty, false);
         }
 
         [Test]
         public void TestGetValueShouldReturnValue()
         {
+            _filter.Value = "Test";
             var result = _filter.Value;
-            Assert.That(result, Is.EqualTo(_value));
+            Assert.That(result, Is.EqualTo("Test"));
         }
 
         [Test]

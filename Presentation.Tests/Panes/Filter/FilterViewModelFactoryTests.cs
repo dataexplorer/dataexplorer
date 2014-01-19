@@ -8,6 +8,7 @@ using DataExplorer.Domain.Filters;
 using DataExplorer.Presentation.Panes.Filter;
 using DataExplorer.Presentation.Panes.Filter.BooleanFilters;
 using DataExplorer.Presentation.Panes.Filter.DateTimeFilters;
+using DataExplorer.Presentation.Panes.Filter.FloatFilters;
 using Moq;
 using NUnit.Framework;
 
@@ -43,6 +44,15 @@ namespace DataExplorer.Presentation.Tests.Panes.Filter
             var filter = new DateTimeFilter(null, DateTime.MinValue, DateTime.MaxValue, true);
             var result = _factory.Create(filter);
             Assert.That(result, Is.TypeOf<DateRangeFilterViewModel>());
+            Assert.That(result.Filter, Is.EqualTo(filter));
+        }
+
+        [Test]
+        public void TestCreateShouldCreateFloatRangeFilter()
+        {
+            var filter = new FloatFilter(null, double.MinValue, double.MaxValue, true);
+            var result = _factory.Create(filter);
+            Assert.That(result, Is.TypeOf<FloatRangeFilterViewModel>());
             Assert.That(result.Filter, Is.EqualTo(filter));
         }
     }

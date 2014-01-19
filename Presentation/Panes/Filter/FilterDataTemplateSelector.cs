@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using DataExplorer.Presentation.Panes.Filter.BooleanFilters;
 using DataExplorer.Presentation.Panes.Filter.DateTimeFilters;
+using DataExplorer.Presentation.Panes.Filter.FloatFilters;
 
 namespace DataExplorer.Presentation.Panes.Filter
 {
@@ -24,12 +25,12 @@ namespace DataExplorer.Presentation.Panes.Filter
             if (item is DateRangeFilterViewModel)
                 return DateRangeFilterDataTemplate;
 
+            if (item is FloatRangeFilterViewModel)
+                return FloatRangeFilterDataTemplate;
+
             //if (item is IntegerRangeFilterViewModel)
             //    return IntegerRangeFilterDataTemplate;
-
-            //if (item is FloatRangeFilterViewModel)
-            //    return FloatRangeFilterDataTemplate;
-
+            
             ////if (item is NotNullFilterViewModel)
             ////    return NotNullFilterDataTemplate;
 

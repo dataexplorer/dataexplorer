@@ -7,7 +7,7 @@ namespace DataExplorer.Domain.Filters
 {
     public class StringFilter : Filter
     {
-        protected readonly string _value;
+        protected string _value;
         
         public StringFilter(Column column, string value, bool includeNull)
             : base(column, includeNull)
@@ -18,6 +18,7 @@ namespace DataExplorer.Domain.Filters
         public string Value
         {
             get { return _value; }
+            set { _value = value; }
         }
 
         public override Func<Row, bool> CreatePredicate()
