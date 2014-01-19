@@ -13,9 +13,7 @@ namespace DataExplorer.Presentation.Panes.Filter.DateTimeFilters
     {
         private readonly DateTimeFilter _filter;
 
-        public DateRangeFilterViewModel(
-            ICommandBus commandBus, 
-            DateTimeFilter filter) 
+        public DateRangeFilterViewModel(ICommandBus commandBus, DateTimeFilter filter) 
             : base(commandBus, filter)
         {
             _filter = filter;

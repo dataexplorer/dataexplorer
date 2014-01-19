@@ -166,6 +166,10 @@
       <DependentUpon>IntegerRangeFilterView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Panes\Filter\IntegerFilters\IntegerRangeFilterViewModel.cs" />
+    <Compile Include="Panes\Filter\NullFilters\NullFilterView.xaml.cs">
+      <DependentUpon>NullFilterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\Filter\NullFilters\NullFilterViewModel.cs" />
     <Compile Include="Panes\Filter\StringFilters\StringFilterView.xaml.cs">
       <DependentUpon>StringFilterView.xaml</DependentUpon>
     </Compile>
@@ -405,6 +409,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Panes\Filter\IntegerFilters\IntegerRangeFilterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panes\Filter\NullFilters\NullFilterView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

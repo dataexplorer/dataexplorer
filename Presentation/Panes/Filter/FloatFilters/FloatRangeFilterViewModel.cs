@@ -13,9 +13,7 @@ namespace DataExplorer.Presentation.Panes.Filter.FloatFilters
     {
         private readonly FloatFilter _filter;
 
-        public FloatRangeFilterViewModel(
-            ICommandBus commandBus, 
-            FloatFilter filter) 
+        public FloatRangeFilterViewModel(ICommandBus commandBus, FloatFilter filter) 
             : base(commandBus, filter)
         {
             _filter = filter;

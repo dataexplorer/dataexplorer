@@ -13,9 +13,7 @@ namespace DataExplorer.Presentation.Panes.Filter.IntegerFilters
     {
         private readonly IntegerFilter _filter;
 
-        public IntegerRangeFilterViewModel(
-            ICommandBus commandBus, 
-            IntegerFilter filter) 
+        public IntegerRangeFilterViewModel(ICommandBus commandBus, IntegerFilter filter) 
             : base(commandBus, filter)
         {
             _filter = filter;

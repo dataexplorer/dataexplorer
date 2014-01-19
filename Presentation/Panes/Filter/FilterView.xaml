@@ -9,6 +9,7 @@
              xmlns:floatFilters="clr-namespace:DataExplorer.Presentation.Panes.Filter.FloatFilters"
              xmlns:integerFilters="clr-namespace:DataExplorer.Presentation.Panes.Filter.IntegerFilters"
              xmlns:stringFilters="clr-namespace:DataExplorer.Presentation.Panes.Filter.StringFilters"
+             xmlns:nullFilters="clr-namespace:DataExplorer.Presentation.Panes.Filter.NullFilters"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
@@ -63,38 +64,16 @@
                                     <integerFilters:IntegerRangeFilterView />
                                 </DataTemplate>
                             </filter:FilterDataTemplateSelector.IntegerRangeFilterDataTemplate>
+                            <filter:FilterDataTemplateSelector.NullFilterDataTemplate>
+                                <DataTemplate>
+                                    <nullFilters:NullFilterView />
+                                </DataTemplate>
+                            </filter:FilterDataTemplateSelector.NullFilterDataTemplate>
                             <filter:FilterDataTemplateSelector.StringFilterDataTemplate>
                                 <DataTemplate>
                                     <stringFilters:StringFilterView />
                                 </DataTemplate>
                             </filter:FilterDataTemplateSelector.StringFilterDataTemplate>
-                            <!--<filter:FilterDataTemplateSelector.IntegerFilterDataTemplate>
-                                <DataTemplate>
-                                    <views:IntegerFilterView />
-                                </DataTemplate>
-                            </filter:FilterDataTemplateSelector.IntegerFilterDataTemplate>
-
-                            
-                            <filter:FilterDataTemplateSelector.FloatRangeFilterDataTemplate>
-                                <DataTemplate>
-                                    <views:FloatRangeFilterView />
-                                </DataTemplate>
-                            </filter:FilterDataTemplateSelector.FloatRangeFilterDataTemplate>
-                            <filter:FilterDataTemplateSelector.NotNullFilterDataTemplate>
-                                <DataTemplate>
-                                    <views:NotNullFilterView />
-                                </DataTemplate>
-                            </filter:FilterDataTemplateSelector.NotNullFilterDataTemplate>
-                            <filter:FilterDataTemplateSelector.NullFilterDataTemplate>
-                                <DataTemplate>
-                                    <views:NullFilterView />
-                                </DataTemplate>
-                            </filter:FilterDataTemplateSelector.NullFilterDataTemplate>
-                            <filter:FilterDataTemplateSelector.ImageFilterDataTemplate>
-                                <DataTemplate>
-                                    <views:ImageFilterView />
-                                </DataTemplate>
-                            </filter:FilterDataTemplateSelector.ImageFilterDataTemplate> -->
                         </filter:FilterDataTemplateSelector>
                     </ContentControl.ContentTemplateSelector>
                 </ContentControl>

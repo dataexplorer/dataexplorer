@@ -5,6 +5,7 @@ using DataExplorer.Presentation.Panes.Filter.BooleanFilters;
 using DataExplorer.Presentation.Panes.Filter.DateTimeFilters;
 using DataExplorer.Presentation.Panes.Filter.FloatFilters;
 using DataExplorer.Presentation.Panes.Filter.IntegerFilters;
+using DataExplorer.Presentation.Panes.Filter.NullFilters;
 using DataExplorer.Presentation.Panes.Filter.StringFilters;
 
 namespace DataExplorer.Presentation.Panes.Filter
@@ -31,6 +32,9 @@ namespace DataExplorer.Presentation.Panes.Filter
 
             if (filter is IntegerFilter)
                 return new IntegerRangeFilterViewModel(_commandBus, (IntegerFilter) filter);
+
+            if (filter is NullFilter)
+                return new NullFilterViewModel(_commandBus, (NullFilter) filter);
 
             if (filter is StringFilter)
                 return new StringFilterViewModel(_commandBus, (StringFilter) filter);
