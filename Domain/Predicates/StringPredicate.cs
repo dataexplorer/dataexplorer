@@ -13,8 +13,8 @@ namespace DataExplorer.Domain.Predicates
     {
         public Func<Row, bool> Create(Column column, string value)
         {
-            return p => ((string)p[column.Index]) != null 
-                && ((string)p[column.Index]).StartsWith(value, true, CultureInfo.InvariantCulture);
+            return p => ((string) p[column.Index]) != null 
+                && ((string) p[column.Index]).StartsWith(value, true, CultureInfo.InvariantCulture);
         }
     }
 }

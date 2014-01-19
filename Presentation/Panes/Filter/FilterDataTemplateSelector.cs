@@ -5,6 +5,7 @@ using DataExplorer.Presentation.Panes.Filter.BooleanFilters;
 using DataExplorer.Presentation.Panes.Filter.DateTimeFilters;
 using DataExplorer.Presentation.Panes.Filter.FloatFilters;
 using DataExplorer.Presentation.Panes.Filter.IntegerFilters;
+using DataExplorer.Presentation.Panes.Filter.StringFilters;
 
 namespace DataExplorer.Presentation.Panes.Filter
 {
@@ -38,8 +39,8 @@ namespace DataExplorer.Presentation.Panes.Filter
             //if (item is NullFilterViewModel)
             //    return NullFilterDataTemplate;
 
-            //if (item is StringFilterViewModel)
-            //    return StringFilterDataTemplate;
+            if (item is StringFilterViewModel)
+                return StringFilterDataTemplate;
 
             return base.SelectTemplate(item, container);
         }

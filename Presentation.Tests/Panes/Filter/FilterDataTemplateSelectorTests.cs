@@ -9,6 +9,7 @@ using DataExplorer.Presentation.Panes.Filter.BooleanFilters;
 using DataExplorer.Presentation.Panes.Filter.DateTimeFilters;
 using DataExplorer.Presentation.Panes.Filter.FloatFilters;
 using DataExplorer.Presentation.Panes.Filter.IntegerFilters;
+using DataExplorer.Presentation.Panes.Filter.StringFilters;
 using NUnit.Framework;
 
 namespace DataExplorer.Presentation.Tests.Panes.Filter
@@ -56,6 +57,15 @@ namespace DataExplorer.Presentation.Tests.Panes.Filter
         {
             _selector.IntegerRangeFilterDataTemplate = _dataTemplate;
             var result = _selector.SelectTemplate(new IntegerRangeFilterViewModel(null, null), null);
+            Assert.That(result, Is.EqualTo(_dataTemplate));
+        }
+
+
+        [Test]
+        public void TestSelectTemplateShouldReturnStringFilterDataTemplate()
+        {
+            _selector.StringFilterDataTemplate = _dataTemplate;
+            var result = _selector.SelectTemplate(new StringFilterViewModel(null, null), null);
             Assert.That(result, Is.EqualTo(_dataTemplate));
         }
     }

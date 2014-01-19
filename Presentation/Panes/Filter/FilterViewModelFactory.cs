@@ -5,6 +5,7 @@ using DataExplorer.Presentation.Panes.Filter.BooleanFilters;
 using DataExplorer.Presentation.Panes.Filter.DateTimeFilters;
 using DataExplorer.Presentation.Panes.Filter.FloatFilters;
 using DataExplorer.Presentation.Panes.Filter.IntegerFilters;
+using DataExplorer.Presentation.Panes.Filter.StringFilters;
 
 namespace DataExplorer.Presentation.Panes.Filter
 {
@@ -30,6 +31,9 @@ namespace DataExplorer.Presentation.Panes.Filter
 
             if (filter is IntegerFilter)
                 return new IntegerRangeFilterViewModel(_commandBus, (IntegerFilter) filter);
+
+            if (filter is StringFilter)
+                return new StringFilterViewModel(_commandBus, (StringFilter) filter);
 
             throw new ArgumentException("Filter view model could not be created because filter type not valid.");
         }

@@ -166,6 +166,10 @@
       <DependentUpon>IntegerRangeFilterView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Panes\Filter\IntegerFilters\IntegerRangeFilterViewModel.cs" />
+    <Compile Include="Panes\Filter\StringFilters\StringFilterView.xaml.cs">
+      <DependentUpon>StringFilterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\Filter\StringFilters\StringFilterViewModel.cs" />
     <Compile Include="Panes\Layout\ILayoutPaneViewModel.cs" />
     <Compile Include="Panes\Layout\LayoutPaneView.xaml.cs">
       <DependentUpon>LayoutPaneView.xaml</DependentUpon>
@@ -401,6 +405,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Panes\Filter\IntegerFilters\IntegerRangeFilterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panes\Filter\StringFilters\StringFilterView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

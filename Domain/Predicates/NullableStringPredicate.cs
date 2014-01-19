@@ -12,12 +12,12 @@ namespace DataExplorer.Domain.Predicates
     {
         public Func<Row, bool> Create(Column column, string value, bool includeNulls)
         {
-            var integerPredicate = new StringPredicate()
+            var stringPredicate = new StringPredicate()
                 .Create(column, value);
 
             return p => (((string) p[column.Index]) == null
                     && includeNulls)
-                || integerPredicate(p);
+                || stringPredicate(p);
         }
     }
 }

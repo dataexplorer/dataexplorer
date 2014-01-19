@@ -23,8 +23,11 @@ namespace DataExplorer.Domain.Filters
 
         public override Func<Row, bool> CreatePredicate()
         {
-            return new StringPredicate()
-                .Create(_column, _value);
+            return _column.HasNulls
+                ? new NullableStringPredicate()
+                    .Create(_column, _value, _includeNull)
+                : new StringPredicate()
+                    .Create(_column,_value);
         }
     }
 }

@@ -10,6 +10,7 @@ using DataExplorer.Presentation.Panes.Filter.BooleanFilters;
 using DataExplorer.Presentation.Panes.Filter.DateTimeFilters;
 using DataExplorer.Presentation.Panes.Filter.FloatFilters;
 using DataExplorer.Presentation.Panes.Filter.IntegerFilters;
+using DataExplorer.Presentation.Panes.Filter.StringFilters;
 using Moq;
 using NUnit.Framework;
 
@@ -63,6 +64,15 @@ namespace DataExplorer.Presentation.Tests.Panes.Filter
             var filter = new IntegerFilter(null, int.MinValue, int.MaxValue, true);
             var result = _factory.Create(filter);
             Assert.That(result, Is.TypeOf<IntegerRangeFilterViewModel>());
+            Assert.That(result.Filter, Is.EqualTo(filter));
+        }
+
+        [Test]
+        public void TestCreateShouldCreateStringFilter()
+        {
+            var filter = new StringFilter(null, string.Empty, true);
+            var result = _factory.Create(filter);
+            Assert.That(result, Is.TypeOf<StringFilterViewModel>());
             Assert.That(result.Filter, Is.EqualTo(filter));
         }
     }
