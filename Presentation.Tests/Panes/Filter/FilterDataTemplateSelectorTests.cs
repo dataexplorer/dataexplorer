@@ -28,7 +28,7 @@ namespace DataExplorer.Presentation.Tests.Panes.Filter
         public void TestSelectTemplateShouldReturnBooleanFilterDataTemplate()
         {
             _selector.BooleanFilterDataTemplate = _dataTemplate;
-            var result = _selector.SelectTemplate(new BooleanFilterViewModel(null), null);
+            var result = _selector.SelectTemplate(new BooleanFilterViewModel(null, null), null);
             Assert.That(result, Is.EqualTo(_dataTemplate));
         }
     }

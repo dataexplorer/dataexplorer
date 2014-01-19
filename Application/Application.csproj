@@ -93,11 +93,14 @@
     <Compile Include="Core\Queries\QueryBus.cs" />
     <Compile Include="Exporters\TabFile\ITabExporter.cs" />
     <Compile Include="Exporters\TabFile\TabExporter.cs" />
+    <Compile Include="Filters\Commands\FilterCommand.cs" />
+    <Compile Include="Filters\Commands\UpdateFilterCommandHandler.cs" />
     <Compile Include="Filters\Events\FilterAddedEvent.cs" />
     <Compile Include="Filters\Events\FilterChangedEvent.cs" />
     <Compile Include="Filters\Events\FilterEvent.cs" />
     <Compile Include="Filters\Events\FilterRemovedEvent.cs" />
     <Compile Include="Filters\IFilterRepository.cs" />
+    <Compile Include="Filters\Commands\UpdateFilterCommand.cs" />
     <Compile Include="FilterTrees\Commands\ISelectFilterTreeNodeCommand.cs" />
     <Compile Include="FilterTrees\Commands\SelectFilterTreeNodeCommand.cs" />
     <Compile Include="FilterTrees\Commands\SelectFilterTreeNodeCommandHandler.cs" />

@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataExplorer.Application.Core.Commands;
+using DataExplorer.Application.Filters.Commands;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Tests.Columns;
 using DataExplorer.Domain.Tests.Filters;
 using DataExplorer.Presentation.Panes.Filter;
+using Moq;
 using NUnit.Framework;
 
 namespace DataExplorer.Presentation.Tests.Panes.Filter
@@ -15,6 +18,7 @@ namespace DataExplorer.Presentation.Tests.Panes.Filter
     public class FilterViewModelTests
     {
         private FilterViewModel _viewModel;
+        private Mock<ICommandBus> _mockCommandBus;
         private Domain.Filters.Filter _filter;
         private Column _column;
 
@@ -28,7 +32,9 @@ namespace DataExplorer.Presentation.Tests.Panes.Filter
 
             _filter = new FakeFilter(_column, false);
 
-            _viewModel = new FakeViewModel(_filter);
+            _mockCommandBus = new Mock<ICommandBus>();
+
+            _viewModel = new FakeViewModel(_filter, _mockCommandBus.Object);
         }
 
         [Test]
@@ -36,6 +42,13 @@ namespace DataExplorer.Presentation.Tests.Panes.Filter
         {
             var result = _viewModel.Label;
             Assert.That(result, Is.EqualTo(_column.Name));
+        }
+
+        [Test]
+        public void TestGetIsIncludeNullVisibleShouldReturnTrueIfColumnHasNulls()
+        {
+            var result = _viewModel.IsIncludeNullVisible;
+            Assert.That(result, Is.True);
         }
 
         [Test]
@@ -47,16 +60,18 @@ namespace DataExplorer.Presentation.Tests.Panes.Filter
         }
 
         [Test]
-        public void TestGetIsIncludeNullVisibleShouldReturnTrueIfColumnHasNulls()
+        public void TestSetIncludeNullShouldExecuteUpdateFilterCommand()
         {
-            var result = _viewModel.IsIncludeNullVisible;
-            Assert.That(result, Is.True);
+            _viewModel.IncludeNull = true;
+            _mockCommandBus.Verify(p => p.Execute(
+                It.Is<UpdateFilterCommand>(q => q.Filter == _filter)),
+                Times.Once());
         }
     }
 
     public class FakeViewModel : FilterViewModel
     {
-        public FakeViewModel(Domain.Filters.Filter filter) : base(filter)
+        public FakeViewModel(Domain.Filters.Filter filter, ICommandBus commandBus) : base(filter, commandBus)
         {
         }
     }
