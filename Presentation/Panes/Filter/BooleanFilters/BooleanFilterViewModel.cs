@@ -9,7 +9,7 @@ namespace DataExplorer.Presentation.Panes.Filter.BooleanFilters
     {
         private readonly BooleanFilter _filter;
 
-        public BooleanFilterViewModel(BooleanFilter filter, ICommandBus commandBus) : base(filter, commandBus)
+        public BooleanFilterViewModel(ICommandBus commandBus, BooleanFilter filter) : base(commandBus, filter)
         {
             _filter = filter;
         }

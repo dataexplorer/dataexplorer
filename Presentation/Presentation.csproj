@@ -86,6 +86,9 @@
     <Compile Include="Core\Collections\FastObservableCollection.cs" />
     <Compile Include="Core\Commands\AsyncDelegateCommand.cs" />
     <Compile Include="Core\Commands\DelegateCommand.cs" />
+    <Compile Include="Core\Controls\RangeSlider.xaml.cs">
+      <DependentUpon>RangeSlider.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Core\Converters\FriendlyDataTypeNameConverter.cs" />
     <Compile Include="Core\Events\DialogClosedEvent.cs" />
     <Compile Include="Core\Geometry\GeometryCalculator.cs" />
@@ -139,6 +142,10 @@
       <DependentUpon>BooleanFilterView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Panes\Filter\BooleanFilters\BooleanFilterViewModel.cs" />
+    <Compile Include="Panes\Filter\DateTimeFilters\DateRangeFilterView.xaml.cs">
+      <DependentUpon>DateRangeFilterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\Filter\DateTimeFilters\DateRangeFilterViewModel.cs" />
     <Compile Include="Panes\Filter\FilterView.xaml.cs">
       <DependentUpon>FilterView.xaml</DependentUpon>
     </Compile>
@@ -341,6 +348,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Resource>
+    <Page Include="Core\Controls\RangeSlider.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Core\Resources\LinkButtonStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -362,6 +373,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Panes\Filter\BooleanFilters\BooleanFilterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panes\Filter\DateTimeFilters\DateRangeFilterView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -440,6 +455,7 @@
       <Name>Domain</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

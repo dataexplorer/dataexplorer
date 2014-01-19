@@ -80,7 +80,7 @@ namespace DataExplorer.Presentation.Tests.Panes.Filter
 
     public class FakeViewModel : FilterViewModel
     {
-        public FakeViewModel(Domain.Filters.Filter filter, ICommandBus commandBus) : base(filter, commandBus)
+        public FakeViewModel(Domain.Filters.Filter filter, ICommandBus commandBus) : base(commandBus, filter)
         {
         }
     }

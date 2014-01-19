@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using DataExplorer.Presentation.Panes.Filter;
 using DataExplorer.Presentation.Panes.Filter.BooleanFilters;
+using DataExplorer.Presentation.Panes.Filter.DateTimeFilters;
 using NUnit.Framework;
 
 namespace DataExplorer.Presentation.Tests.Panes.Filter
@@ -29,6 +30,14 @@ namespace DataExplorer.Presentation.Tests.Panes.Filter
         {
             _selector.BooleanFilterDataTemplate = _dataTemplate;
             var result = _selector.SelectTemplate(new BooleanFilterViewModel(null, null), null);
+            Assert.That(result, Is.EqualTo(_dataTemplate));
+        }
+
+        [Test]
+        public void TestSelectTemplateShouldReturnDateRangeFilterDataTemplate()
+        {
+            _selector.DateRangeFilterDataTemplate = _dataTemplate;
+            var result = _selector.SelectTemplate(new DateRangeFilterViewModel(null, null), null);
             Assert.That(result, Is.EqualTo(_dataTemplate));
         }
     }

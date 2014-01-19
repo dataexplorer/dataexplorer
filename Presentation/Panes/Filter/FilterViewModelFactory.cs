@@ -2,6 +2,7 @@
 using DataExplorer.Application.Core.Commands;
 using DataExplorer.Domain.Filters;
 using DataExplorer.Presentation.Panes.Filter.BooleanFilters;
+using DataExplorer.Presentation.Panes.Filter.DateTimeFilters;
 
 namespace DataExplorer.Presentation.Panes.Filter
 {
@@ -17,7 +18,10 @@ namespace DataExplorer.Presentation.Panes.Filter
         public FilterViewModel Create(Domain.Filters.Filter filter)
         {
             if (filter is BooleanFilter)
-                return new BooleanFilterViewModel((BooleanFilter) filter, _commandBus);
+                return new BooleanFilterViewModel(_commandBus, (BooleanFilter) filter);
+
+            if (filter is DateTimeFilter)
+                return new DateRangeFilterViewModel(_commandBus, (DateTimeFilter) filter);
 
             throw new ArgumentException("Filter view model could not be created because filter type not valid.");
         }

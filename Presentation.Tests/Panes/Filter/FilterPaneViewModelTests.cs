@@ -55,7 +55,7 @@ namespace DataExplorer.Presentation.Tests.Panes.Filter
 
     internal class FakeFilterViewModel : FilterViewModel
     {
-        public FakeFilterViewModel(Domain.Filters.Filter filter) : base(filter, null)
+        public FakeFilterViewModel(Domain.Filters.Filter filter) : base(null, filter)
         {
         }
     }

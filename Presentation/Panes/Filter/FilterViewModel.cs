@@ -1,18 +1,19 @@
 ﻿using System;
 using DataExplorer.Application.Core.Commands;
 using DataExplorer.Application.Filters.Commands;
+using DataExplorer.Presentation.Core;
 using DataExplorer.Presentation.Core.Commands;
 using ICommand = System.Windows.Input.ICommand;
 
 namespace DataExplorer.Presentation.Panes.Filter
 {
-    public abstract class FilterViewModel
+    public abstract class FilterViewModel : BaseViewModel
     {
         protected readonly ICommandBus _commandBus;
         private readonly Domain.Filters.Filter _filter;
         private readonly ICommand _closeCommand;
 
-        protected FilterViewModel(Domain.Filters.Filter filter, ICommandBus commandBus)
+        protected FilterViewModel(ICommandBus commandBus, Domain.Filters.Filter filter)
         {
             _filter = filter;
             _commandBus = commandBus;

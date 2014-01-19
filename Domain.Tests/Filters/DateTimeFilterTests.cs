@@ -11,32 +11,32 @@ namespace DataExplorer.Domain.Tests.Filters
     {
         private DateTimeFilter _filter;
         private Column _column;
-        private DateTime _lowerValue;
-        private DateTime _upperValue;
+        private DateTime _value;
         private bool _includeNull;
-
+        
         [SetUp]
         public void SetUp()
         {
-            _lowerValue = DateTime.MinValue;
-            _upperValue = DateTime.MaxValue;
+            _value = new DateTime(2001, 01, 01);
             _includeNull = true;
             _column = new ColumnBuilder().Build();
-            _filter = new DateTimeFilter(_column, _lowerValue, _upperValue, _includeNull);
+            _filter = new DateTimeFilter(_column, DateTime.MinValue, DateTime.MaxValue, _includeNull);
         }
 
         [Test]
-        public void TestGetLowerValueShouldReturnLowerValue()
+        public void TestGetSetLowerValueShouldGetSetLowerValue()
         {
+            _filter.LowerValue = _value;
             var result = _filter.LowerValue;
-            Assert.That(result, Is.EqualTo(_lowerValue));
+            Assert.That(result, Is.EqualTo(_value));
         }
 
         [Test]
-        public void TestGetUpperValueShouldReturnUpperValue()
+        public void TestGetSetUpperValueShouldGetSetUpperValue()
         {
+            _filter.UpperValue = _value;
             var result = _filter.UpperValue;
-            Assert.That(result, Is.EqualTo(_upperValue));
+            Assert.That(result, Is.EqualTo(_value));
         }
 
         [Test]
@@ -50,7 +50,7 @@ namespace DataExplorer.Domain.Tests.Filters
         public void TestCreatePredicateShouldReturnNullableBooleanPredicate()
         {
             var column = new ColumnBuilder().WithNulls().Build();
-            _filter = new DateTimeFilter(column, _lowerValue, _upperValue, true);
+            _filter = new DateTimeFilter(column, DateTime.MinValue, DateTime.MaxValue, true);
             var result = _filter.CreatePredicate();
             Assert.That(result, Is.Not.Null);
         }

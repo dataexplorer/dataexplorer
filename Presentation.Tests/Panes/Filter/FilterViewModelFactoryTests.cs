@@ -7,6 +7,7 @@ using DataExplorer.Application.Core.Commands;
 using DataExplorer.Domain.Filters;
 using DataExplorer.Presentation.Panes.Filter;
 using DataExplorer.Presentation.Panes.Filter.BooleanFilters;
+using DataExplorer.Presentation.Panes.Filter.DateTimeFilters;
 using Moq;
 using NUnit.Framework;
 
@@ -28,11 +29,20 @@ namespace DataExplorer.Presentation.Tests.Panes.Filter
         }
 
         [Test]
-        public void TestCreateShouldCreateBooleanFilterFactory()
+        public void TestCreateShouldCreateBooleanFilter()
         {
             var filter = new BooleanFilter(null, true, true, true);
             var result = _factory.Create(filter);
             Assert.That(result, Is.TypeOf<BooleanFilterViewModel>());
+            Assert.That(result.Filter, Is.EqualTo(filter));
+        }
+
+        [Test]
+        public void TestCreateShouldCreateDateRangeFilter()
+        {
+            var filter = new DateTimeFilter(null, DateTime.MinValue, DateTime.MaxValue, true);
+            var result = _factory.Create(filter);
+            Assert.That(result, Is.TypeOf<DateRangeFilterViewModel>());
             Assert.That(result.Filter, Is.EqualTo(filter));
         }
     }

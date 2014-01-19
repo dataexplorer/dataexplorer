@@ -7,8 +7,8 @@ namespace DataExplorer.Domain.Filters
 {
     public class DateTimeFilter : Filter
     {
-        protected readonly DateTime _lowerValue;
-        protected readonly DateTime _upperValue;
+        protected DateTime _lowerValue;
+        protected DateTime _upperValue;
         
         public DateTimeFilter(Column column, DateTime lowerValue, DateTime upperValue, bool includeNull) 
             : base(column, includeNull)
@@ -20,11 +20,13 @@ namespace DataExplorer.Domain.Filters
         public DateTime LowerValue
         {
             get { return _lowerValue; }
+            set { _lowerValue = value; }
         }
 
         public DateTime UpperValue
         {
             get { return _upperValue; }
+            set { _upperValue = value; }
         }
 
         public override Func<Row, bool> CreatePredicate()

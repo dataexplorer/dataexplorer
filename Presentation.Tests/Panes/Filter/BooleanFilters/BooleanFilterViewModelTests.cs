@@ -23,8 +23,8 @@ namespace DataExplorer.Presentation.Tests.Panes.Filter.BooleanFilters
             _mockCommandBus = new Mock<ICommandBus>();
 
             _viewModel = new BooleanFilterViewModel(
-                _filter, 
-                _mockCommandBus.Object);
+                _mockCommandBus.Object, 
+                _filter);
         }
 
         [Test]

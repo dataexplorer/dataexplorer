@@ -60,6 +60,8 @@
     <Compile Include="Core\Canvas\Items\FakeCanvasItem.cs" />
     <Compile Include="Core\Collections\FastObservableCollectionTests.cs" />
     <Compile Include="Core\Commands\DelegateCommandTests.cs" />
+    <Compile Include="Core\Controls\RangeSliderTestHarness.cs" />
+    <Compile Include="Core\Controls\RangeSliderTests.cs" />
     <Compile Include="Core\Converters\FriendlyDataTypeNameConverterTests.cs" />
     <Compile Include="Core\FakeControl.cs" />
     <Compile Include="Core\FakeVisual.cs" />
@@ -78,6 +80,7 @@
     <Compile Include="Importers\Footer\CsvFileImportFooterViewModelTests.cs" />
     <Compile Include="Importers\Header\CsvFileImportHeaderViewModelTests.cs" />
     <Compile Include="Panes\Filter\BooleanFilters\BooleanFilterViewModelTests.cs" />
+    <Compile Include="Panes\Filter\DateTimeFilters\DateRangeFilterViewModelTests.cs" />
     <Compile Include="Panes\Filter\FilterDataTemplateSelectorTests.cs" />
     <Compile Include="Panes\Filter\FilterPaneViewModelTests.cs" />
     <Compile Include="Panes\Filter\FilterViewModelFactoryTests.cs" />

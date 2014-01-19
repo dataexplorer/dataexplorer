@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using DataExplorer.Presentation.Panes.Filter.BooleanFilters;
+using DataExplorer.Presentation.Panes.Filter.DateTimeFilters;
 
 namespace DataExplorer.Presentation.Panes.Filter
 {
@@ -20,8 +21,8 @@ namespace DataExplorer.Presentation.Panes.Filter
             if (item is BooleanFilterViewModel)
                 return BooleanFilterDataTemplate;
 
-            //if (item is DateRangeFilterViewModel)
-            //    return DateRangeFilterDataTemplate;
+            if (item is DateRangeFilterViewModel)
+                return DateRangeFilterDataTemplate;
 
             //if (item is IntegerRangeFilterViewModel)
             //    return IntegerRangeFilterDataTemplate;

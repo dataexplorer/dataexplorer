@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:filter="clr-namespace:DataExplorer.Presentation.Panes.Filter"
              xmlns:booleanFilters="clr-namespace:DataExplorer.Presentation.Panes.Filter.BooleanFilters"
+             xmlns:dateTimeFilters="clr-namespace:DataExplorer.Presentation.Panes.Filter.DateTimeFilters"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
@@ -44,6 +45,11 @@
                                     <booleanFilters:BooleanFilterView />
                                 </DataTemplate>
                             </filter:FilterDataTemplateSelector.BooleanFilterDataTemplate>
+                            <filter:FilterDataTemplateSelector.DateRangeFilterDataTemplate>
+                                <DataTemplate>
+                                    <dateTimeFilters:DateRangeFilterView />
+                                </DataTemplate>
+                            </filter:FilterDataTemplateSelector.DateRangeFilterDataTemplate>
                             <!--<filter:FilterDataTemplateSelector.IntegerFilterDataTemplate>
                                 <DataTemplate>
                                     <views:IntegerFilterView />
@@ -84,12 +90,7 @@
                                 <DataTemplate>
                                     <views:StringFilterView />
                                 </DataTemplate>
-                            </filter:FilterDataTemplateSelector.StringFilterDataTemplate>
-                            <filter:FilterDataTemplateSelector.DateRangeFilterDataTemplate>
-                                <DataTemplate>
-                                    <views:DateRangeFilterView />
-                                </DataTemplate>
-                            </filter:FilterDataTemplateSelector.DateRangeFilterDataTemplate>-->
+                            </filter:FilterDataTemplateSelector.StringFilterDataTemplate> -->
                         </filter:FilterDataTemplateSelector>
                     </ContentControl.ContentTemplateSelector>
                 </ContentControl>
