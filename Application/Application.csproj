@@ -94,6 +94,8 @@
     <Compile Include="Exporters\TabFile\ITabExporter.cs" />
     <Compile Include="Exporters\TabFile\TabExporter.cs" />
     <Compile Include="Filters\Commands\FilterCommand.cs" />
+    <Compile Include="Filters\Commands\RemoveFilterCommand.cs" />
+    <Compile Include="Filters\Commands\RemoveFilterCommandHandler.cs" />
     <Compile Include="Filters\Commands\UpdateFilterCommandHandler.cs" />
     <Compile Include="Filters\Events\FilterAddedEvent.cs" />
     <Compile Include="Filters\Events\FilterChangedEvent.cs" />

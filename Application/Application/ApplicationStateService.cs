@@ -39,6 +39,8 @@ namespace DataExplorer.Application.Application
         public void SetIsStartMenuVisible(bool isVisible)
         {
             _state.IsStartMenuVisible = isVisible;
+
+            // TODO: Move this into an application-level event handler
             _eventBus.Raise(new StartMenuVisibilityChangedEvent());
         }
 
@@ -50,6 +52,8 @@ namespace DataExplorer.Application.Application
         public void SetIsNavigationTreeVisible(bool isVisible)
         {
             _state.IsNavigationTreeVisible = isVisible;
+
+            // TODO: Move this into an application-level event handler
             _eventBus.Raise(new NavigationTreeVisibilityChangedEvent());
         }
 
@@ -73,6 +77,7 @@ namespace DataExplorer.Application.Application
             _state.SelectedRows = rows;
         }
 
+        // TODO: Move this into an application-level event handler
         public void Handle(CsvFileImportingEvent args)
         {
             SetIsStartMenuVisible(false);
@@ -81,11 +86,13 @@ namespace DataExplorer.Application.Application
             SetSelectedRows(new List<Row>());
         }
 
+        // TODO: Move this into an application-level event handler
         public void Handle(CsvFileImportedEvent args)
         {
             SetIsNavigationTreeVisible(true);
         }
 
+        // TODO: Move this into an application-level event handler
         public void Handle(ProjectOpeningEvent args)
         {
             SetIsStartMenuVisible(false);
@@ -94,6 +101,7 @@ namespace DataExplorer.Application.Application
             SetSelectedRows(new List<Row>());
         }
 
+        // TODO: Move this into an application-level event handler
         public void Handle(ProjectOpenedEvent args)
         {
             SetIsNavigationTreeVisible(true);

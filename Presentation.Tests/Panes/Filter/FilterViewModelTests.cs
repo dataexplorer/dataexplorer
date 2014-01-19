@@ -67,6 +67,15 @@ namespace DataExplorer.Presentation.Tests.Panes.Filter
                 It.Is<UpdateFilterCommand>(q => q.Filter == _filter)),
                 Times.Once());
         }
+
+        [Test]
+        public void TestExecuteCloseCommandShouldExecuteRemoveFilterCommand()
+        {
+            _viewModel.CloseCommand.Execute(null);
+            _mockCommandBus.Verify(p => p.Execute(
+            It.Is<RemoveFilterCommand>(q => q.Filter == _filter)),
+            Times.Once());
+        }
     }
 
     public class FakeViewModel : FilterViewModel

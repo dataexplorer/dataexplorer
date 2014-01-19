@@ -73,6 +73,7 @@
     <Compile Include="Core\Queries\FakeQueryHandler.cs" />
     <Compile Include="Core\Queries\QueryBusTests.cs" />
     <Compile Include="Exporters\TabFile\TabExporterTests.cs" />
+    <Compile Include="Filters\Commands\RemoveFilterCommandHandlerTests.cs" />
     <Compile Include="Filters\Commands\UpdateFilterCommandHandlerTests.cs" />
     <Compile Include="FilterTrees\Commands\SelectFilterTreeNodeCommandTests.cs" />
     <Compile Include="FilterTrees\Queries\GetRootFilterTreeNodesQueryHandlerTests.cs" />
