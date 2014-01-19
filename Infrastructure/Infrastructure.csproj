@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Application\ApplicationWrapper.cs" />
     <Compile Include="Clipboard\ClipboardWrapper.cs" />
+    <Compile Include="Exporters\TabExporter.cs" />
     <Compile Include="Importers\CsvFile\CsvFile.cs" />
     <Compile Include="Importers\CsvFile\CsvFileDataAdapter.cs" />
     <Compile Include="Importers\CsvFile\CsvFileParser.cs" />

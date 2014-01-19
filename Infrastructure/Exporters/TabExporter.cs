@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using DataExplorer.Application.Exporters;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Rows;
 
-namespace DataExplorer.Application.Exporters.TabFile
+namespace DataExplorer.Infrastructure.Exporters
 {
     public class TabExporter : ITabExporter
     {

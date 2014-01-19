@@ -91,8 +91,7 @@
     <Compile Include="Core\Queries\IQueryBus.cs" />
     <Compile Include="Core\Queries\IQueryHandler.cs" />
     <Compile Include="Core\Queries\QueryBus.cs" />
-    <Compile Include="Exporters\TabFile\ITabExporter.cs" />
-    <Compile Include="Exporters\TabFile\TabExporter.cs" />
+    <Compile Include="Exporters\ITabExporter.cs" />
     <Compile Include="Filters\Commands\FilterCommand.cs" />
     <Compile Include="Filters\Commands\RemoveFilterCommand.cs" />
     <Compile Include="Filters\Commands\RemoveFilterCommandHandler.cs" />

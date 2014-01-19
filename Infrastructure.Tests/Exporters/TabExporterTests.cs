@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using DataExplorer.Application.Exporters.TabFile;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Rows;
 using DataExplorer.Domain.Tests.Columns;
 using DataExplorer.Domain.Tests.Rows;
+using DataExplorer.Infrastructure.Exporters;
 using NUnit.Framework;
 
-namespace DataExplorer.Application.Tests.Exporters.TabFile
+namespace DataExplorer.Infrastructure.Tests.Exporters
 {
     [TestFixture]
     public class TabExporterTests

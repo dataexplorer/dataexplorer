@@ -5,7 +5,6 @@ using DataExplorer.Application.Importers.CsvFiles.Events;
 using DataExplorer.Application.Projects.Events;
 using DataExplorer.Application.Views.ScatterPlots.Commands;
 using DataExplorer.Domain.Core.Events;
-using DataExplorer.Domain.Views.ScatterPlots;
 using DataExplorer.Domain.Views.ScatterPlots.Events;
 
 namespace DataExplorer.Application.Views.ScatterPlots
