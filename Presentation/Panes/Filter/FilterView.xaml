@@ -7,6 +7,7 @@
              xmlns:booleanFilters="clr-namespace:DataExplorer.Presentation.Panes.Filter.BooleanFilters"
              xmlns:dateTimeFilters="clr-namespace:DataExplorer.Presentation.Panes.Filter.DateTimeFilters"
              xmlns:floatFilters="clr-namespace:DataExplorer.Presentation.Panes.Filter.FloatFilters"
+             xmlns:integerFilters="clr-namespace:DataExplorer.Presentation.Panes.Filter.IntegerFilters"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
@@ -56,16 +57,17 @@
                                     <floatFilters:FloatRangeFilterView />
                                 </DataTemplate>
                             </filter:FilterDataTemplateSelector.FloatRangeFilterDataTemplate>
+                            <filter:FilterDataTemplateSelector.IntegerRangeFilterDataTemplate>
+                                <DataTemplate>
+                                    <integerFilters:IntegerRangeFilterView />
+                                </DataTemplate>
+                            </filter:FilterDataTemplateSelector.IntegerRangeFilterDataTemplate>
                             <!--<filter:FilterDataTemplateSelector.IntegerFilterDataTemplate>
                                 <DataTemplate>
                                     <views:IntegerFilterView />
                                 </DataTemplate>
                             </filter:FilterDataTemplateSelector.IntegerFilterDataTemplate>
-                            <filter:FilterDataTemplateSelector.IntegerRangeFilterDataTemplate>
-                                <DataTemplate>
-                                    <views:IntegerRangeFilterView />
-                                </DataTemplate>
-                            </filter:FilterDataTemplateSelector.IntegerRangeFilterDataTemplate>
+
                             
                             <filter:FilterDataTemplateSelector.FloatRangeFilterDataTemplate>
                                 <DataTemplate>

@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using DataExplorer.Presentation.Panes.Filter.BooleanFilters;
 using DataExplorer.Presentation.Panes.Filter.DateTimeFilters;
 using DataExplorer.Presentation.Panes.Filter.FloatFilters;
+using DataExplorer.Presentation.Panes.Filter.IntegerFilters;
 
 namespace DataExplorer.Presentation.Panes.Filter
 {
@@ -28,8 +29,8 @@ namespace DataExplorer.Presentation.Panes.Filter
             if (item is FloatRangeFilterViewModel)
                 return FloatRangeFilterDataTemplate;
 
-            //if (item is IntegerRangeFilterViewModel)
-            //    return IntegerRangeFilterDataTemplate;
+            if (item is IntegerRangeFilterViewModel)
+                return IntegerRangeFilterDataTemplate;
             
             ////if (item is NotNullFilterViewModel)
             ////    return NotNullFilterDataTemplate;

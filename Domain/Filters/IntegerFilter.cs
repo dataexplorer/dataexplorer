@@ -31,8 +31,11 @@ namespace DataExplorer.Domain.Filters
 
         public override Func<Row, bool> CreatePredicate()
         {
-            return new IntegerPredicate()
-                .Create(_column, _lowerValue, _upperValue);
+            return _column.HasNulls
+                ? new NullableIntegerPredicate()
+                    .Create(_column, _lowerValue, _upperValue, _includeNull)
+                : new IntegerPredicate()
+                    .Create(_column, _lowerValue, _upperValue);
         }
     }
 }
