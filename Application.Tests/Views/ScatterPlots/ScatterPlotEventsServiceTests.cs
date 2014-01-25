@@ -4,8 +4,7 @@ using DataExplorer.Application.Importers.CsvFiles.Events;
 using DataExplorer.Application.Projects.Events;
 using DataExplorer.Application.Views.ScatterPlots;
 using DataExplorer.Application.Views.ScatterPlots.Commands;
-using DataExplorer.Domain.Views.ScatterPlots;
-using DataExplorer.Domain.Views.ScatterPlots.Events;
+using DataExplorer.Application.Views.ScatterPlots.Layouts.Events;
 using Moq;
 using NUnit.Framework;
 
@@ -45,7 +44,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots
         [Test]
         public void TestHandleScatterPlotLayoutChangedEventShouldUpdatePlots()
         {
-            var @event = new ScatterPlotLayoutColumnChangedEvent();
+            var @event = new LayoutChangedEvent();
             _service.Handle(@event);
             _mockTask.Verify(p => p.Execute(It.IsAny<UpdatePlotsCommand>()),
                 Times.Once());

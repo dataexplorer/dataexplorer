@@ -174,7 +174,8 @@
     <Compile Include="Views\ScatterPlots\Commands\ZoomOutCommandHandler.cs" />
     <Compile Include="Views\ScatterPlots\Commands\ZoomToFullExtentCommand.cs" />
     <Compile Include="Views\ScatterPlots\Commands\ZoomToFullExtentCommandHandler.cs" />
-    <Compile Include="Views\ScatterPlots\Events\ScatterPlotLayoutChangedEvent.cs" />
+    <Compile Include="Views\ScatterPlots\Layouts\Events\LayoutChangedEvent.cs" />
+    <Compile Include="Views\ScatterPlots\Layouts\Events\LayoutResetEvent.cs" />
     <Compile Include="Views\ScatterPlots\IScatterPlotAdapter.cs" />
     <Compile Include="Views\ScatterPlots\Layouts\Commands\ClearLayoutCommand.cs" />
     <Compile Include="Views\ScatterPlots\Layouts\Commands\ClearLayoutCommandHandler.cs" />

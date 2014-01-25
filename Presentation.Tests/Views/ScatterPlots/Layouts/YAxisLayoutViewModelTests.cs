@@ -4,15 +4,11 @@ using System.Linq;
 using DataExplorer.Application.Columns;
 using DataExplorer.Application.Columns.Queries;
 using DataExplorer.Application.Core.Messages;
-using DataExplorer.Application.Core.Queries;
-using DataExplorer.Application.Views.ScatterPlots;
-using DataExplorer.Application.Views.ScatterPlots.Events;
 using DataExplorer.Application.Views.ScatterPlots.Layouts.Commands;
+using DataExplorer.Application.Views.ScatterPlots.Layouts.Events;
 using DataExplorer.Application.Views.ScatterPlots.Layouts.Queries;
-using DataExplorer.Domain.Views.ScatterPlots;
-using DataExplorer.Domain.Views.ScatterPlots.Events;
 using DataExplorer.Presentation.Core.Layout;
-using DataExplorer.Presentation.Views.ScatterPlots.Layout;
+using DataExplorer.Presentation.Tests.Core;
 using DataExplorer.Presentation.Views.ScatterPlots.Layout.YAxis;
 using Moq;
 using NUnit.Framework;
@@ -20,7 +16,7 @@ using NUnit.Framework;
 namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Layouts
 {
     [TestFixture]
-    public class YAxisLayoutViewModelTests
+    public class YAxisLayoutViewModelTests : ViewModelTests
     {
         private YAxisLayoutViewModel _viewModel;
         private Mock<IMessageBus> _mockMessageBus;
@@ -77,22 +73,20 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Layouts
         }
 
         [Test]
-        public void TestHandleLayoutChangedEventShouldRaiseProperyChangedEvents()
+        public void TestHandleLayoutChangedEventShouldNotifyPropertyChanged()
         {
-            var eventArgs = new List<PropertyChangedEventArgs>();
-            _viewModel.PropertyChanged += (s, e) => eventArgs.Add(e);
-            _viewModel.Handle(new ScatterPlotLayoutChangedEvent());
-            Assert.That(eventArgs.Any(p => p.PropertyName == "SelectedColumn"));
-            Assert.That(eventArgs.Any(p => p.PropertyName == "Columns"));
+            AssertPropertyChanged(_viewModel, () => _viewModel.SelectedColumn,
+                () => _viewModel.Handle(new LayoutChangedEvent()));
         }
-        
+
         [Test]
-        public void TestHandleLayoutColumnChangedEventShouldRaiseSelectedColumnPropertyChangedEvent()
+        public void TestHandleLayoutResetEventShouldNotifyPropertyChanged()
         {
-            var wasRaised = false;
-            _viewModel.PropertyChanged += (s, e) => { wasRaised = true; };
-            _viewModel.Handle(new ScatterPlotLayoutColumnChangedEvent());
-            Assert.That(wasRaised, Is.True);
+            AssertPropertyChanged(_viewModel, () => _viewModel.Columns,
+                () => _viewModel.Handle(new LayoutResetEvent()));
+
+            AssertPropertyChanged(_viewModel, () => _viewModel.SelectedColumn,
+                () => _viewModel.Handle(new LayoutResetEvent()));
         }
     }
 }

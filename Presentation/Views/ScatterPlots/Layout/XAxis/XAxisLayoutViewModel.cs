@@ -4,8 +4,8 @@ using System.Linq;
 using DataExplorer.Application.Columns.Queries;
 using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Core.Messages;
-using DataExplorer.Application.Views.ScatterPlots.Events;
 using DataExplorer.Application.Views.ScatterPlots.Layouts.Commands;
+using DataExplorer.Application.Views.ScatterPlots.Layouts.Events;
 using DataExplorer.Application.Views.ScatterPlots.Layouts.Queries;
 using DataExplorer.Domain.Core.Events;
 using DataExplorer.Domain.Views.ScatterPlots.Events;
@@ -17,8 +17,8 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Layout.XAxis
     public class XAxisLayoutViewModel 
         : BaseViewModel, 
         IXAxisLayoutViewModel,
-        IEventHandler<ScatterPlotLayoutChangedEvent>,
-        IDomainHandler<ScatterPlotLayoutColumnChangedEvent>
+        IEventHandler<LayoutChangedEvent>,
+        IEventHandler<LayoutResetEvent>
     {
         private readonly IMessageBus _messageBus;
         
@@ -77,14 +77,14 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Layout.XAxis
             _messageBus.Execute(new SetXColumnCommand(column.Id));
         }
 
-        public void Handle(ScatterPlotLayoutChangedEvent args)
+        public void Handle(LayoutChangedEvent args)
         {
-            OnPropertyChanged(() => Columns);
             OnPropertyChanged(() => SelectedColumn);
         }
 
-        public void Handle(ScatterPlotLayoutColumnChangedEvent args)
+        public void Handle(LayoutResetEvent args)
         {
+            OnPropertyChanged(() => Columns);
             OnPropertyChanged(() => SelectedColumn);
         }
     }

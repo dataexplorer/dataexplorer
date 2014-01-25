@@ -132,7 +132,6 @@
     <Compile Include="Views\ScatterPlots\ScatterPlot.cs" />
     <Compile Include="Views\ScatterPlots\Events\ScatterPlotChangedEvent.cs" />
     <Compile Include="Views\ScatterPlots\ScatterPlotLayout.cs" />
-    <Compile Include="Views\ScatterPlots\Events\ScatterPlotLayoutColumnChangedEvent.cs" />
     <Compile Include="Views\ScatterPlots\ScatterPlotRenderer.cs" />
   </ItemGroup>
   <ItemGroup>

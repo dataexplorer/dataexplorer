@@ -4,10 +4,9 @@ using System.Linq;
 using DataExplorer.Application.Columns.Queries;
 using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Core.Messages;
-using DataExplorer.Application.Views.ScatterPlots.Events;
 using DataExplorer.Application.Views.ScatterPlots.Layouts.Commands;
+using DataExplorer.Application.Views.ScatterPlots.Layouts.Events;
 using DataExplorer.Application.Views.ScatterPlots.Layouts.Queries;
-using DataExplorer.Domain;
 using DataExplorer.Domain.Core.Events;
 using DataExplorer.Domain.Views.ScatterPlots.Events;
 using DataExplorer.Presentation.Core;
@@ -18,8 +17,8 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Layout.Color
     public class ColorLayoutViewModel 
         : BaseViewModel, 
         IColorLayoutViewModel,
-        IEventHandler<ScatterPlotLayoutChangedEvent>,
-        IDomainHandler<ScatterPlotLayoutColumnChangedEvent>
+        IEventHandler<LayoutChangedEvent>,
+        IEventHandler<LayoutResetEvent>
     {
         private readonly IMessageBus _messageBus;
 
@@ -122,14 +121,14 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Layout.Color
             _messageBus.Execute(new SetColorPaletteCommand(colorPalette));
         }
 
-        public void Handle(ScatterPlotLayoutChangedEvent args)
+        public void Handle(LayoutChangedEvent args)
         {
-            OnPropertyChanged(() => Columns);
             OnPropertyChanged(() => SelectedColumn);
         }
 
-        public void Handle(ScatterPlotLayoutColumnChangedEvent args)
+        public void Handle(LayoutResetEvent args)
         {
+            OnPropertyChanged(() => Columns);
             OnPropertyChanged(() => SelectedColumn);
         }
     }

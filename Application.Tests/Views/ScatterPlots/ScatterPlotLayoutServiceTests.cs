@@ -4,7 +4,7 @@ using DataExplorer.Application.Core.Messages;
 using DataExplorer.Application.Importers.CsvFiles.Events;
 using DataExplorer.Application.Projects.Events;
 using DataExplorer.Application.Views.ScatterPlots;
-using DataExplorer.Application.Views.ScatterPlots.Events;
+using DataExplorer.Application.Views.ScatterPlots.Layouts.Events;
 using Moq;
 using NUnit.Framework;
 
@@ -28,7 +28,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots
         {
             var args = new ProjectOpenedEvent();
             _service.Handle(args);
-            _mockEventBus.Verify(p => p.Raise(It.IsAny<ScatterPlotLayoutChangedEvent>()));
+            _mockEventBus.Verify(p => p.Raise(It.IsAny<LayoutResetEvent>()));
         }
 
         [Test]
@@ -36,7 +36,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots
         {
             var args = new ProjectClosedEvent();
             _service.Handle(args);
-            _mockEventBus.Verify(p => p.Raise(It.IsAny<ScatterPlotLayoutChangedEvent>()));
+            _mockEventBus.Verify(p => p.Raise(It.IsAny<LayoutResetEvent>()));
         }
 
         [Test]
@@ -44,7 +44,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots
         {
             var args = new CsvFileImportedEvent();
             _service.Handle(args);
-            _mockEventBus.Verify(p => p.Raise(It.IsAny<ScatterPlotLayoutChangedEvent>()));
+            _mockEventBus.Verify(p => p.Raise(It.IsAny<LayoutResetEvent>()));
         }
     }
 }

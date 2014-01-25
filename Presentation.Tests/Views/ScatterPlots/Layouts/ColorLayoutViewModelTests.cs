@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 using DataExplorer.Application.Columns;
 using DataExplorer.Application.Columns.Queries;
 using DataExplorer.Application.Core.Messages;
-using DataExplorer.Application.Views.ScatterPlots.Events;
 using DataExplorer.Application.Views.ScatterPlots.Layouts.Commands;
+using DataExplorer.Application.Views.ScatterPlots.Layouts.Events;
 using DataExplorer.Application.Views.ScatterPlots.Layouts.Queries;
 using DataExplorer.Domain;
 using DataExplorer.Domain.Colors;
@@ -112,21 +112,20 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Layouts
         }
 
         [Test]
-        public void TestHandleScatterPlotLayoutChangedShouldNotifyPropertyChanged()
+        public void TestHandleLayoutChangedEventShouldNotifyPropertyChanged()
         {
-            AssertPropertyChanged(_viewModel, () => _viewModel.Columns, 
-                () => _viewModel.Handle(new ScatterPlotLayoutChangedEvent()));
-
             AssertPropertyChanged(_viewModel, () => _viewModel.SelectedColumn,
-                () => _viewModel.Handle(new ScatterPlotLayoutChangedEvent()));
+                () => _viewModel.Handle(new LayoutChangedEvent()));
         }
 
         [Test]
-        public void TestHandleScatterPlotLayoutColumnChangedShouldNotifyPropertyChanged()
+        public void TestHandleLayoutResetEventShouldNotifyPropertyChanged()
         {
-            AssertPropertyChanged(_viewModel, () => _viewModel.SelectedColumn,
-                () => _viewModel.Handle(new ScatterPlotLayoutChangedEvent()));
+            AssertPropertyChanged(_viewModel, () => _viewModel.Columns, 
+                () => _viewModel.Handle(new LayoutResetEvent()));
 
+            AssertPropertyChanged(_viewModel, () => _viewModel.SelectedColumn,
+                () => _viewModel.Handle(new LayoutResetEvent()));
         }
     }
 }

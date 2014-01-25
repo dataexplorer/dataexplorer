@@ -2,7 +2,7 @@
 using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Importers.CsvFiles.Events;
 using DataExplorer.Application.Projects.Events;
-using DataExplorer.Application.Views.ScatterPlots.Events;
+using DataExplorer.Application.Views.ScatterPlots.Layouts.Events;
 
 namespace DataExplorer.Application.Views.ScatterPlots
 {
@@ -20,17 +20,17 @@ namespace DataExplorer.Application.Views.ScatterPlots
 
         public void Handle(ProjectOpenedEvent args)
         {
-            _eventBus.Raise(new ScatterPlotLayoutChangedEvent());
+            _eventBus.Raise(new LayoutResetEvent());
         }
 
         public void Handle(ProjectClosedEvent args)
         {
-            _eventBus.Raise(new ScatterPlotLayoutChangedEvent());
+            _eventBus.Raise(new LayoutResetEvent());
         }
 
         public void Handle(CsvFileImportedEvent args)
         {
-            _eventBus.Raise(new ScatterPlotLayoutChangedEvent());
+            _eventBus.Raise(new LayoutResetEvent());
         }
     }
 }

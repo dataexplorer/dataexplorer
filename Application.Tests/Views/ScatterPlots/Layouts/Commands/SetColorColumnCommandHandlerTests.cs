@@ -5,8 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using DataExplorer.Application.Columns;
+using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Views;
 using DataExplorer.Application.Views.ScatterPlots.Layouts.Commands;
+using DataExplorer.Application.Views.ScatterPlots.Layouts.Events;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Tests.Columns;
 using DataExplorer.Domain.Tests.Views.ScatterPlots;
@@ -22,6 +24,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Layouts.Commands
         private SetColorColumnCommandHandler _handler;
         private Mock<IColumnRepository> _mockColumnRepository;
         private Mock<IViewRepository> _mockRepository;
+        private Mock<IEventBus> _mockEventBus;
         private ScatterPlot _scatterPlot;
         private ScatterPlotLayout _layout;
         private Column _column;
@@ -45,9 +48,12 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Layouts.Commands
             _mockRepository.Setup(p => p.Get<ScatterPlot>())
                 .Returns(_scatterPlot);
 
+            _mockEventBus = new Mock<IEventBus>();
+            
             _handler = new SetColorColumnCommandHandler(
                 _mockColumnRepository.Object,
-                _mockRepository.Object);
+                _mockRepository.Object,
+                _mockEventBus.Object);
         }
 
         [Test]
@@ -55,6 +61,13 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Layouts.Commands
         {
             _handler.Execute(new SetColorColumnCommand(_columnDto.Id));
             Assert.That(_layout.ColorColumn, Is.EqualTo(_column));
+        }
+
+        [Test]
+        public void TestExecuteShouldRaiseLayoutChangedEvent()
+        {
+            _handler.Execute(new SetColorColumnCommand(_columnDto.Id));
+            _mockEventBus.Verify(p => p.Raise(It.IsAny<LayoutChangedEvent>()));
         }
     }
 }

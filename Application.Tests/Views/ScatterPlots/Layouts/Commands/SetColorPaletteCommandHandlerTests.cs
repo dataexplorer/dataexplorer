@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.Columns;
+using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Views;
 using DataExplorer.Application.Views.ScatterPlots.Layouts.Commands;
+using DataExplorer.Application.Views.ScatterPlots.Layouts.Events;
 using DataExplorer.Domain;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Tests.Colors;
@@ -22,6 +24,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Layouts.Commands
     {
         private SetColorPaletteCommandHandler _handler;
         private Mock<IViewRepository> _mockRepository;
+        private Mock<IEventBus> _mockEventBus;
         private ScatterPlot _scatterPlot;
         private ScatterPlotLayout _layout;
         private ColorPalette _colorPalette;
@@ -39,8 +42,11 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Layouts.Commands
             _mockRepository.Setup(p => p.Get<ScatterPlot>())
                 .Returns(_scatterPlot);
 
+            _mockEventBus = new Mock<IEventBus>();
+            
             _handler = new SetColorPaletteCommandHandler(
-                _mockRepository.Object);
+                _mockRepository.Object,
+                _mockEventBus.Object);
         }
 
         [Test]
@@ -48,6 +54,13 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Layouts.Commands
         {
             _handler.Execute(new SetColorPaletteCommand(_colorPalette));
             Assert.That(_layout.ColorPalette, Is.EqualTo(_colorPalette));
+        }
+
+        [Test]
+        public void TestExecuteShouldRaiseLayoutChangedEvent()
+        {
+            _handler.Execute(new SetColorPaletteCommand(_colorPalette));
+            _mockEventBus.Verify(p => p.Raise(It.IsAny<LayoutChangedEvent>()));
         }
     }
 }

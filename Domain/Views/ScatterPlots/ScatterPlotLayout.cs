@@ -1,6 +1,4 @@
 ﻿using DataExplorer.Domain.Columns;
-using DataExplorer.Domain.Core.Events;
-using DataExplorer.Domain.Views.ScatterPlots.Events;
 
 namespace DataExplorer.Domain.Views.ScatterPlots
 {
@@ -14,41 +12,25 @@ namespace DataExplorer.Domain.Views.ScatterPlots
         public Column XAxisColumn
         {
             get { return _xAxisColumn; }
-            set
-            {
-                _xAxisColumn = value;
-                DomainEvents.Raise(new ScatterPlotLayoutColumnChangedEvent());
-            }
+            set { _xAxisColumn = value; }
         }
 
         public Column YAxisColumn
         {
             get { return _yAxisColumn; }
-            set
-            {
-                _yAxisColumn = value;
-                DomainEvents.Raise(new ScatterPlotLayoutColumnChangedEvent());
-            }
+            set { _yAxisColumn = value; }
         }
 
         public Column ColorColumn
         {
             get { return _colorColumn; }
-            set
-            {
-                _colorColumn = value;
-                DomainEvents.Raise(new ScatterPlotLayoutColumnChangedEvent());
-            }
+            set { _colorColumn = value; }
         }
 
         public ColorPalette ColorPalette
         {
             get { return _colorPalette; }
-            set
-            {
-                _colorPalette = value;
-                DomainEvents.Raise(new ScatterPlotLayoutColumnChangedEvent());
-            }
+            set { _colorPalette = value; }
         }
 
         public void Clear()
@@ -57,8 +39,6 @@ namespace DataExplorer.Domain.Views.ScatterPlots
             _yAxisColumn = null;
             _colorColumn = null;
             _colorPalette = null;
-
-            DomainEvents.Raise(new ScatterPlotLayoutColumnChangedEvent());
         }
     }
 }

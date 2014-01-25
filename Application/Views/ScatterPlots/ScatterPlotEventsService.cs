@@ -4,15 +4,15 @@ using DataExplorer.Application.Filters.Events;
 using DataExplorer.Application.Importers.CsvFiles.Events;
 using DataExplorer.Application.Projects.Events;
 using DataExplorer.Application.Views.ScatterPlots.Commands;
-using DataExplorer.Domain.Core.Events;
-using DataExplorer.Domain.Views.ScatterPlots.Events;
+using DataExplorer.Application.Views.ScatterPlots.Layouts.Events;
+
 
 namespace DataExplorer.Application.Views.ScatterPlots
 {
     public class ScatterPlotEventsService 
         : IEventHandler<ProjectOpenedEvent>,
         IEventHandler<ProjectClosedEvent>,
-        IDomainHandler<ScatterPlotLayoutColumnChangedEvent>,
+        IEventHandler<LayoutChangedEvent>,
         IEventHandler<CsvFileImportedEvent>,
         IEventHandler<FilterAddedEvent>,
         IEventHandler<FilterRemovedEvent>,
@@ -35,7 +35,7 @@ namespace DataExplorer.Application.Views.ScatterPlots
             _commandBus.Execute(new UpdatePlotsCommand());
         }
 
-        public void Handle(ScatterPlotLayoutColumnChangedEvent args)
+        public void Handle(LayoutChangedEvent args)
         {
             _commandBus.Execute(new UpdatePlotsCommand());
         }

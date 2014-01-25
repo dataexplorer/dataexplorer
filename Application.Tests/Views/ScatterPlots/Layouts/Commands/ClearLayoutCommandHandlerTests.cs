@@ -1,11 +1,10 @@
 ﻿using System.Windows;
+using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Views;
 using DataExplorer.Application.Views.ScatterPlots.Layouts.Commands;
-using DataExplorer.Domain.Core.Events;
+using DataExplorer.Application.Views.ScatterPlots.Layouts.Events;
 using DataExplorer.Domain.Tests.Columns;
-using DataExplorer.Domain.Views;
 using DataExplorer.Domain.Views.ScatterPlots;
-using DataExplorer.Domain.Views.ScatterPlots.Events;
 using Moq;
 using NUnit.Framework;
 
@@ -16,6 +15,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Layouts.Commands
     {
         private ClearLayoutCommandHandler _handler;
         private Mock<IViewRepository> _mockRepository;
+        private Mock<IEventBus> _mockEventBus;
         private ScatterPlot _scatterPlot;
         private ScatterPlotLayout _layout;
 
@@ -31,9 +31,14 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Layouts.Commands
             _scatterPlot = new ScatterPlot(_layout, new Rect(), null);
             
             _mockRepository = new Mock<IViewRepository>();
-            _mockRepository.Setup(p => p.Get<ScatterPlot>()).Returns(_scatterPlot);
+            _mockRepository.Setup(p => p.Get<ScatterPlot>())
+                .Returns(_scatterPlot);
 
-            _handler = new ClearLayoutCommandHandler(_mockRepository.Object);
+            _mockEventBus = new Mock<IEventBus>();
+
+            _handler = new ClearLayoutCommandHandler(
+                _mockRepository.Object,
+                _mockEventBus.Object);
         }
 
         [Test]
@@ -53,11 +58,8 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Layouts.Commands
         [Test]
         public void TestExecuteShouldRaiseLayoutChangedEvent()
         {
-            var wasRaised = false;
-            DomainEvents.Register<ScatterPlotLayoutColumnChangedEvent>(p => { wasRaised = true; });
             _handler.Execute(new ClearLayoutCommand());
-            Assert.That(wasRaised, Is.True);
-            DomainEvents.ClearHandlers();
+            _mockEventBus.Verify(p => p.Raise(It.IsAny<LayoutChangedEvent>()), Times.Once());
         }
     }
 }
