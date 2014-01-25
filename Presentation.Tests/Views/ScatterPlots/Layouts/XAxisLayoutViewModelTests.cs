@@ -13,6 +13,7 @@ using DataExplorer.Domain.Views.ScatterPlots;
 using DataExplorer.Domain.Views.ScatterPlots.Events;
 using DataExplorer.Presentation.Core.Layout;
 using DataExplorer.Presentation.Views.ScatterPlots.Layout;
+using DataExplorer.Presentation.Views.ScatterPlots.Layout.XAxis;
 using Moq;
 using NUnit.Framework;
 

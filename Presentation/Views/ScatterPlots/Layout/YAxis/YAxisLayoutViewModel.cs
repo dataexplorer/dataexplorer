@@ -1,22 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DataExplorer.Application.Columns.Queries;
 using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Core.Messages;
-using DataExplorer.Application.Core.Queries;
 using DataExplorer.Application.Views.ScatterPlots.Events;
 using DataExplorer.Application.Views.ScatterPlots.Layouts.Commands;
 using DataExplorer.Application.Views.ScatterPlots.Layouts.Queries;
 using DataExplorer.Domain.Core.Events;
-using DataExplorer.Domain.Views.ScatterPlots;
 using DataExplorer.Domain.Views.ScatterPlots.Events;
 using DataExplorer.Presentation.Core;
 using DataExplorer.Presentation.Core.Layout;
 
-namespace DataExplorer.Presentation.Views.ScatterPlots.Layout
+namespace DataExplorer.Presentation.Views.ScatterPlots.Layout.YAxis
 {
     public class YAxisLayoutViewModel 
         : BaseViewModel, 

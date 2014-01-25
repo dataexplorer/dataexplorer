@@ -101,8 +101,13 @@
     <Compile Include="Views\ScatterPlots\Commands\ZoomOutTaskTests.cs" />
     <Compile Include="Views\ScatterPlots\Commands\ZoomToFullExtentCommandHandlerTests.cs" />
     <Compile Include="Views\ScatterPlots\Layouts\Commands\ClearLayoutCommandHandlerTests.cs" />
+    <Compile Include="Views\ScatterPlots\Layouts\Commands\SetColorColumnCommandHandlerTests.cs" />
+    <Compile Include="Views\ScatterPlots\Layouts\Commands\SetColorPaletteCommandHandlerTests.cs" />
     <Compile Include="Views\ScatterPlots\Layouts\Commands\SetXColumnCommandHandlerTests.cs" />
     <Compile Include="Views\ScatterPlots\Layouts\Commands\SetYColumnCommandHandlerTests.cs" />
+    <Compile Include="Views\ScatterPlots\Layouts\Queries\GetAllColorPalettesQueryHandlerTests.cs" />
+    <Compile Include="Views\ScatterPlots\Layouts\Queries\GetColorColumnQueryHandlerTests.cs" />
+    <Compile Include="Views\ScatterPlots\Layouts\Queries\GetColorPaletteQueryHandlerTests.cs" />
     <Compile Include="Views\ScatterPlots\Layouts\Queries\GetXColumnQueryHandlerTests.cs" />
     <Compile Include="Views\ScatterPlots\Layouts\Queries\GetYColumnQueryHandlerTests.cs" />
     <Compile Include="Views\ScatterPlots\Queries\GetScatterPlotsTaskTests.cs" />

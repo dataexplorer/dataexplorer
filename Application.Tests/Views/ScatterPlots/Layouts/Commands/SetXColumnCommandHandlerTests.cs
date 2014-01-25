@@ -4,6 +4,7 @@ using DataExplorer.Application.Views;
 using DataExplorer.Application.Views.ScatterPlots.Layouts.Commands;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Tests.Columns;
+using DataExplorer.Domain.Tests.Views.ScatterPlots;
 using DataExplorer.Domain.Views;
 using DataExplorer.Domain.Views.ScatterPlots;
 using Moq;
@@ -27,8 +28,10 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Layouts.Commands
         {
             _columnDto = new ColumnDto() { Id = 1 };
             _column = new ColumnBuilder().Build();
-            _layout = new ScatterPlotLayout();
-            _scatterPlot = new ScatterPlot(_layout, new Rect(), null);
+            _layout = new ScatterPlotLayoutBuilder().Build();
+            _scatterPlot = new ScatterPlotBuilder()
+                .WithLayout(_layout)
+                .Build();
 
             _mockColumnRepository = new Mock<IColumnRepository>();
             _mockColumnRepository.Setup(p => p.Get(_columnDto.Id)).Returns(_column);
@@ -42,7 +45,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Layouts.Commands
         }
 
         [Test]
-        public void TestSetXColumnShouldSetXColumn()
+        public void TestExecuteShouldSetColumn()
         {
             _handler.Execute(new SetXColumnCommand(_columnDto.Id));
             Assert.That(_layout.XAxisColumn, Is.EqualTo(_column));

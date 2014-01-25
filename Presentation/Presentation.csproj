@@ -86,6 +86,7 @@
     <Compile Include="Core\Collections\FastObservableCollection.cs" />
     <Compile Include="Core\Commands\AsyncDelegateCommand.cs" />
     <Compile Include="Core\Commands\DelegateCommand.cs" />
+    <Compile Include="Core\Controls\ColorPaletteControl.cs" />
     <Compile Include="Core\Controls\RangeSlider.xaml.cs">
       <DependentUpon>RangeSlider.xaml</DependentUpon>
     </Compile>
@@ -298,21 +299,27 @@
     <Compile Include="Views\ScatterPlots\IScatterPlotViewModelCommands.cs" />
     <Compile Include="Views\ScatterPlots\IScatterPlotViewModelQueries.cs" />
     <Compile Include="Views\ScatterPlots\IScatterPlotViewScaler.cs" />
+    <Compile Include="Views\ScatterPlots\Layout\Color\ColorLayoutView.xaml.cs">
+      <DependentUpon>ColorLayoutView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ScatterPlots\Layout\Color\ColorLayoutViewModel.cs" />
+    <Compile Include="Views\ScatterPlots\Layout\Color\ColorPaletteViewModel.cs" />
+    <Compile Include="Views\ScatterPlots\Layout\Color\IColorLayoutViewModel.cs" />
     <Compile Include="Views\ScatterPlots\Layout\IScatterPlotLayoutViewModel.cs" />
-    <Compile Include="Views\ScatterPlots\Layout\IXAxisLayoutViewModel.cs" />
-    <Compile Include="Views\ScatterPlots\Layout\IYAxisLayoutViewModel.cs" />
+    <Compile Include="Views\ScatterPlots\Layout\XAxis\IXAxisLayoutViewModel.cs" />
+    <Compile Include="Views\ScatterPlots\Layout\YAxis\IYAxisLayoutViewModel.cs" />
     <Compile Include="Views\ScatterPlots\Layout\ScatterPlotLayoutView.xaml.cs">
       <DependentUpon>ScatterPlotLayoutView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ScatterPlots\Layout\ScatterPlotLayoutViewModel.cs" />
-    <Compile Include="Views\ScatterPlots\Layout\XAxisLayoutView.xaml.cs">
+    <Compile Include="Views\ScatterPlots\Layout\XAxis\XAxisLayoutView.xaml.cs">
       <DependentUpon>XAxisLayoutView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ScatterPlots\Layout\XAxisLayoutViewModel.cs" />
-    <Compile Include="Views\ScatterPlots\Layout\YAxisLayoutView.xaml.cs">
+    <Compile Include="Views\ScatterPlots\Layout\XAxis\XAxisLayoutViewModel.cs" />
+    <Compile Include="Views\ScatterPlots\Layout\YAxis\YAxisLayoutView.xaml.cs">
       <DependentUpon>YAxisLayoutView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ScatterPlots\Layout\YAxisLayoutViewModel.cs" />
+    <Compile Include="Views\ScatterPlots\Layout\YAxis\YAxisLayoutViewModel.cs" />
     <Compile Include="Views\ScatterPlots\Plots\Queries\GetPlotsQuery.cs" />
     <Compile Include="Views\ScatterPlots\Plots\Queries\IGetPlotsQuery.cs" />
     <Compile Include="Views\ScatterPlots\Plots\Renderers\IPlotRenderer.cs" />
@@ -460,15 +467,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\ScatterPlots\Layout\Color\ColorLayoutView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ScatterPlots\Layout\ScatterPlotLayoutView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\ScatterPlots\Layout\XAxisLayoutView.xaml">
+    <Page Include="Views\ScatterPlots\Layout\XAxis\XAxisLayoutView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\ScatterPlots\Layout\YAxisLayoutView.xaml">
+    <Page Include="Views\ScatterPlots\Layout\YAxis\YAxisLayoutView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

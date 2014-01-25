@@ -1,8 +1,8 @@
-﻿using DataExplorer.Domain.Columns;
-using DataExplorer.Domain.Core.Events;
+﻿using System.Collections.Generic;
+using DataExplorer.Domain.Colors;
+using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Tests.Columns;
 using DataExplorer.Domain.Views.ScatterPlots;
-using DataExplorer.Domain.Views.ScatterPlots.Events;
 using NUnit.Framework;
 
 namespace DataExplorer.Domain.Tests.Views.ScatterPlots
@@ -11,92 +11,65 @@ namespace DataExplorer.Domain.Tests.Views.ScatterPlots
     public class ScatterPlotLayoutTests
     {
         private ScatterPlotLayout _layout;
-        private Column _xAxisColumn;
-        private Column _yAxisColumn;
+        private Column _column;
+        public ColorPalette _colorPalette;
 
         [SetUp]
         public void SetUp()
         {
-            _xAxisColumn = new ColumnBuilder().Build();
-            _yAxisColumn = new ColumnBuilder().Build();
-            _layout = new ScatterPlotLayout()
-            {
-                XAxisColumn = _xAxisColumn,
-                YAxisColumn = _yAxisColumn
-            };
+            _column = new ColumnBuilder().Build();
+
+            _colorPalette = new ColorPalette("Test", new List<Color>());
+
+            _layout = new ScatterPlotLayout();
         }
 
         [Test]
-        public void TestGetXAxisColumnShouldReturnXAxisColumn()
+        public void TestGetSetXAxisColumn()
         {
+            _layout.XAxisColumn = _column;
             var result = _layout.XAxisColumn;
-            Assert.That(result, Is.EqualTo(_xAxisColumn));
+            Assert.That(result, Is.EqualTo(_column));
         }
 
         [Test]
-        public void TestSetXAxisColumnShouldSetXAxisColumn()
+        public void TestGetSetYAxisColumn()
         {
-            var column = new ColumnBuilder().Build();
-            _layout.XAxisColumn = column;
-            Assert.That(_layout.XAxisColumn, Is.EqualTo(column));
-        }
-
-        [Test]
-        public void TestSetXAxisColumnShouldRaiseScatterPlotLayoutChangedEvent()
-        {
-            var column = new ColumnBuilder().Build();
-            var wasRaised = false;
-            DomainEvents.Register<ScatterPlotLayoutColumnChangedEvent>(p => { wasRaised = true; });
-            _layout.XAxisColumn = column;
-            Assert.That(wasRaised, Is.True);
-            DomainEvents.ClearHandlers();
-        }
-
-        [Test]
-        public void TestGetYAxisColumnShouldReturnYAxisColumn()
-        {
+            _layout.YAxisColumn = _column;
             var result = _layout.YAxisColumn;
-            Assert.That(result, Is.EqualTo(_yAxisColumn));
+            Assert.That(result, Is.EqualTo(_column));
         }
 
         [Test]
-        public void TestSetYAxisColumnShouldSetYAxisColumn()
+        public void TestGetSetColorColumn()
         {
-            var column = new ColumnBuilder().Build();
-            _layout.YAxisColumn = column;
-            Assert.That(_layout.YAxisColumn, Is.EqualTo(column));
+            _layout.ColorColumn = _column;
+            var result = _layout.ColorColumn;
+            Assert.That(result, Is.EqualTo(_column));
         }
 
         [Test]
-        public void TestSetYAxisColumnShouldRaiseScatterPlotLayoutChangedEvent()
+        public void TestGetSetColorPalette()
         {
-            var column = new ColumnBuilder().Build();
-            var wasRaised = false;
-            DomainEvents.Register<ScatterPlotLayoutColumnChangedEvent>(p => { wasRaised = true; });
-            _layout.YAxisColumn = column;
-            Assert.That(wasRaised, Is.True);
-            DomainEvents.ClearHandlers();
+            _layout.ColorPalette = _colorPalette;
+            var result = _layout.ColorPalette;
+            Assert.That(result, Is.EqualTo(_colorPalette));
         }
-
+        
         [Test]
         public void TestClearShouldClearLayout()
         {
-            var column = new ColumnBuilder().Build();
-            _layout.XAxisColumn = column;
-            _layout.YAxisColumn = column;
+            _layout.XAxisColumn = _column;
+            _layout.YAxisColumn = _column;
+            _layout.ColorColumn = _column;
+            _layout.ColorPalette = _colorPalette;
+
             _layout.Clear();
+            
             Assert.That(_layout.XAxisColumn, Is.Null);
             Assert.That(_layout.YAxisColumn, Is.Null);
-        }
-
-        [Test]
-        public void TestClearShouldRaiseLayoutChangedEvent()
-        {
-            var wasRaised = false;
-            DomainEvents.Register<ScatterPlotLayoutColumnChangedEvent>(p => { wasRaised = true; });
-            _layout.Clear();
-            Assert.That(wasRaised, Is.True);
-
+            Assert.That(_layout.ColorColumn, Is.Null);
+            Assert.That(_layout.ColorPalette, Is.Null);
         }
     }
 }

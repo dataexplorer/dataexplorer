@@ -1,11 +1,16 @@
-﻿using System.Windows;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using DataExplorer.Application.Columns;
 using DataExplorer.Application.Views;
 using DataExplorer.Application.Views.ScatterPlots.Layouts.Commands;
+using DataExplorer.Domain;
 using DataExplorer.Domain.Columns;
+using DataExplorer.Domain.Tests.Colors;
 using DataExplorer.Domain.Tests.Columns;
 using DataExplorer.Domain.Tests.Views.ScatterPlots;
-using DataExplorer.Domain.Views;
 using DataExplorer.Domain.Views.ScatterPlots;
 using Moq;
 using NUnit.Framework;
@@ -13,44 +18,36 @@ using NUnit.Framework;
 namespace DataExplorer.Application.Tests.Views.ScatterPlots.Layouts.Commands
 {
     [TestFixture]
-    public class SetYColumnCommandHandlerTests
+    public class SetColorPaletteCommandHandlerTests
     {
-        private SetYColumnCommandHandler _handler;
-        private Mock<IColumnRepository> _mockColumnRepository;
+        private SetColorPaletteCommandHandler _handler;
         private Mock<IViewRepository> _mockRepository;
         private ScatterPlot _scatterPlot;
         private ScatterPlotLayout _layout;
-        private Column _column;
-        private ColumnDto _columnDto;
+        private ColorPalette _colorPalette;
 
         [SetUp]
         public void SetUp()
         {
-            _columnDto = new ColumnDto() { Id = 1 };
-            _column = new ColumnBuilder().Build();
+            _colorPalette = new ColorPaletteBuilder().Build();
             _layout = new ScatterPlotLayoutBuilder().Build();
             _scatterPlot = new ScatterPlotBuilder()
                 .WithLayout(_layout)
                 .Build();
-
-            _mockColumnRepository = new Mock<IColumnRepository>();
-            _mockColumnRepository.Setup(p => p.Get(_columnDto.Id))
-                .Returns(_column);
-
+            
             _mockRepository = new Mock<IViewRepository>();
             _mockRepository.Setup(p => p.Get<ScatterPlot>())
                 .Returns(_scatterPlot);
 
-            _handler = new SetYColumnCommandHandler(
-                _mockColumnRepository.Object,
+            _handler = new SetColorPaletteCommandHandler(
                 _mockRepository.Object);
         }
 
         [Test]
-        public void TestSetYColumnShouldSetYColumn()
+        public void TestExecuteShouldSetColumn()
         {
-            _handler.Execute(new SetYColumnCommand(_columnDto.Id));
-            Assert.That(_layout.YAxisColumn, Is.EqualTo(_column));
+            _handler.Execute(new SetColorPaletteCommand(_colorPalette));
+            Assert.That(_layout.ColorPalette, Is.EqualTo(_colorPalette));
         }
     }
 }

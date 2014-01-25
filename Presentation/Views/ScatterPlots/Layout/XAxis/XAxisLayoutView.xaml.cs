@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace DataExplorer.Presentation.Views.ScatterPlots.Layout
+namespace DataExplorer.Presentation.Views.ScatterPlots.Layout.XAxis
 {
     /// <summary>
     /// Interaction logic for XAxisLayoutView.xaml

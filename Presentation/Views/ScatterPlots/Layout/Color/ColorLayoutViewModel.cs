@@ -1,44 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataExplorer.Application.Columns;
 using DataExplorer.Application.Columns.Queries;
 using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Core.Messages;
-using DataExplorer.Application.Core.Queries;
-using DataExplorer.Application.Views.ScatterPlots;
 using DataExplorer.Application.Views.ScatterPlots.Events;
 using DataExplorer.Application.Views.ScatterPlots.Layouts.Commands;
 using DataExplorer.Application.Views.ScatterPlots.Layouts.Queries;
+using DataExplorer.Domain;
 using DataExplorer.Domain.Core.Events;
-using DataExplorer.Domain.Views.ScatterPlots;
 using DataExplorer.Domain.Views.ScatterPlots.Events;
 using DataExplorer.Presentation.Core;
 using DataExplorer.Presentation.Core.Layout;
 
-namespace DataExplorer.Presentation.Views.ScatterPlots.Layout
+namespace DataExplorer.Presentation.Views.ScatterPlots.Layout.Color
 {
-    public class XAxisLayoutViewModel 
+    public class ColorLayoutViewModel 
         : BaseViewModel, 
-        IXAxisLayoutViewModel,
+        IColorLayoutViewModel,
         IEventHandler<ScatterPlotLayoutChangedEvent>,
         IDomainHandler<ScatterPlotLayoutColumnChangedEvent>
     {
         private readonly IMessageBus _messageBus;
-        
-        public XAxisLayoutViewModel(IMessageBus messageBus)
+
+        public ColorLayoutViewModel(IMessageBus messageBus)
         {
             _messageBus = messageBus;
         }
 
         public string Label
         {
-            get { return "x-Axis"; }
+            get { return "Color"; }
         }
 
-        public List<LayoutItemViewModel> Columns
+        public IEnumerable<LayoutItemViewModel> Columns
         {
             get { return GetColumnViewModels(); }
         }
@@ -47,6 +42,17 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Layout
         {
             get { return GetSelectedColumnViewModel(); }
             set { SetSelectedColumnViewModel(value); }
+        }
+
+        public List<ColorPaletteViewModel> ColorPalettes
+        {
+            get { return GetColorPaletteViewModels(); }
+        }
+
+        public ColorPaletteViewModel SelectedColorPalette
+        {
+            get { return GetSelectedColorPaletteViewModel(); }
+            set { SetSelectedColorPaletteViewModel(value); }
         }
 
         private List<LayoutItemViewModel> GetColumnViewModels()
@@ -62,7 +68,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Layout
 
         private LayoutItemViewModel GetSelectedColumnViewModel()
         {
-            var columnDto = _messageBus.Execute(new GetXColumnQuery());
+            var columnDto = _messageBus.Execute(new GetColorColumnQuery());
 
             if (columnDto == null)
                 return null;
@@ -80,7 +86,40 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Layout
 
             var column = value.Column;
 
-            _messageBus.Execute(new SetXColumnCommand(column.Id));
+            _messageBus.Execute(new SetColorColumnCommand(column.Id));
+        }
+
+        private List<ColorPaletteViewModel> GetColorPaletteViewModels()
+        {
+            var colorPalettes = _messageBus.Execute(new GetAllColorPalettesQuery());
+
+            var viewModels = colorPalettes
+                .Select(p => new ColorPaletteViewModel(p))
+                .ToList();
+
+            return viewModels;
+        }
+
+        private ColorPaletteViewModel GetSelectedColorPaletteViewModel()
+        {
+            var colorPalette = _messageBus.Execute(new GetColorPaletteQuery());
+
+            if (colorPalette == null)
+                return null;
+
+            var viewModel = new ColorPaletteViewModel(colorPalette);
+
+            return viewModel;
+        }
+
+        private void SetSelectedColorPaletteViewModel(ColorPaletteViewModel viewModel)
+        {
+            if (viewModel == null)
+                return;
+
+            var colorPalette = viewModel.ColorPalette;
+
+            _messageBus.Execute(new SetColorPaletteCommand(colorPalette));
         }
 
         public void Handle(ScatterPlotLayoutChangedEvent args)

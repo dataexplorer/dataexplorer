@@ -73,6 +73,7 @@
     <Compile Include="Core\Services\ControlToBitmapRendererTests.cs" />
     <Compile Include="Core\Services\DependencyPropertyServiceTests.cs" />
     <Compile Include="Core\Services\VisualServiceTests.cs" />
+    <Compile Include="Core\ViewModelTests.cs" />
     <Compile Include="Dialogs\DialogServiceTests.cs" />
     <Compile Include="Importers\Body\CsvFileImportBodyViewModelTests.cs" />
     <Compile Include="Importers\Body\SourceMapViewModelTests.cs" />
@@ -126,6 +127,8 @@
     <Compile Include="Views\ScatterPlots\Grid\Labels\Renderers\YAxisGridLabelRendererTests.cs" />
     <Compile Include="Views\ScatterPlots\Grid\Lines\Queries\GetXAxisGridLinesQueryTests.cs" />
     <Compile Include="Views\ScatterPlots\Grid\Lines\Renderers\XAxisGridLineRendererTests.cs" />
+    <Compile Include="Views\ScatterPlots\Layouts\ColorLayoutViewModelTests.cs" />
+    <Compile Include="Views\ScatterPlots\Layouts\ColorPaletteViewModelTests.cs" />
     <Compile Include="Views\ScatterPlots\Layouts\ScatterPlotLayoutViewModelTests.cs" />
     <Compile Include="Views\ScatterPlots\Layouts\XAxisLayoutViewModelTests.cs" />
     <Compile Include="Views\ScatterPlots\Layouts\YAxisLayoutViewModelTests.cs" />

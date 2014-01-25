@@ -49,6 +49,10 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Colors\ColorPaletteBuilder.cs" />
+    <Compile Include="Colors\ColorPaletteFactoryTests.cs" />
+    <Compile Include="Colors\ColorPaletteTests.cs" />
+    <Compile Include="Colors\ColorTests.cs" />
     <Compile Include="Columns\ColumnBuilder.cs" />
     <Compile Include="Columns\ColumnTests.cs" />
     <Compile Include="Converters\DataTypeConverterFactoryTests.cs" />
@@ -119,6 +123,8 @@
     <Compile Include="Sources\Maps\SourceMapFactoryTests.cs" />
     <Compile Include="Sources\SourceMapTests.cs" />
     <Compile Include="Views\FakeView.cs" />
+    <Compile Include="Views\ScatterPlots\ScatterPlotBuilder.cs" />
+    <Compile Include="Views\ScatterPlots\ScatterPlotLayoutBuilder.cs" />
     <Compile Include="Views\ScatterPlots\ScatterPlotLayoutTests.cs" />
     <Compile Include="Views\ScatterPlots\ScatterPlotRendererTests.cs" />
     <Compile Include="Views\ScatterPlots\ScatterPlotTests.cs" />
