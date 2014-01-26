@@ -126,6 +126,9 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Layouts
 
             AssertPropertyChanged(_viewModel, () => _viewModel.SelectedColumn,
                 () => _viewModel.Handle(new LayoutResetEvent()));
+
+            AssertPropertyChanged(_viewModel, () => _viewModel.SelectedColorPalette,
+                () => _viewModel.Handle(new LayoutChangedEvent()));
         }
     }
 }

@@ -30,5 +30,20 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Layout.Color
         {
             get { return _colorPalette; }
         }
+
+        public override bool Equals(object obj)
+        {
+            if (!(obj is ColorPaletteViewModel))
+                return false;
+
+            var other = (ColorPaletteViewModel) obj;
+
+            return _colorPalette.Name == other._colorPalette.Name;
+        }
+
+        public override int GetHashCode()
+        {
+            return (_colorPalette != null ? _colorPalette.GetHashCode() : 0);
+        }
     }
 }

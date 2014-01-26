@@ -124,12 +124,14 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Layout.Color
         public void Handle(LayoutChangedEvent args)
         {
             OnPropertyChanged(() => SelectedColumn);
+            OnPropertyChanged(() => SelectedColorPalette);
         }
 
         public void Handle(LayoutResetEvent args)
         {
             OnPropertyChanged(() => Columns);
             OnPropertyChanged(() => SelectedColumn);
+            OnPropertyChanged(() => SelectedColorPalette);
         }
     }
 }
