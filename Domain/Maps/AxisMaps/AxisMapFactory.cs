@@ -15,16 +15,31 @@ namespace DataExplorer.Domain.Maps.AxisMaps
                 return new BooleanToAxisMap(targetMin, targetMax);
 
             if (column.Type == typeof(DateTime))
-                return new DateTimeToAxisMap((DateTime)column.Min, (DateTime)column.Max, targetMin, targetMax);
+                return new DateTimeToAxisMap(
+                    (DateTime) column.Min, 
+                    (DateTime) column.Max, 
+                    targetMin, 
+                    targetMax);
 
             if (column.Type == typeof(Double))
-                return new FloatToAxisMap((double)column.Min, (double)column.Max, targetMin, targetMax);
+                return new FloatToAxisMap(
+                    (double) column.Min, 
+                    (double) column.Max, 
+                    targetMin, 
+                    targetMax);
 
             if (column.Type == typeof(Int32))
-                return new IntegerToAxisMap((int)column.Min, (int)column.Max, targetMin, targetMax);
+                return new IntegerToAxisMap(
+                    (int) column.Min, 
+                    (int) column.Max, 
+                    targetMin, 
+                    targetMax);
 
             if (column.Type == typeof(String))
-                return new StringToAxisMap(column.Values.Cast<string>().ToList(), targetMin, targetMax);
+                return new StringToAxisMap(
+                    column.Values.Cast<string>().ToList(), 
+                    targetMin, 
+                    targetMax);
 
             throw new ArgumentException("Column data type is not valid data type for an axis map.");
         }

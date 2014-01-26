@@ -28,31 +28,31 @@ namespace DataExplorer.Domain.Tests.Maps.AxisMaps
         }
 
         [Test]
-        public void TestCreateAxisMapForBooleanShouldReturnABooleanToAxisMap()
+        public void TestCreateShouldReturnABooleanToAxisMap()
         {
             AssertResult<Boolean>(typeof(BooleanToAxisMap));
         }
 
         [Test]
-        public void TestCreateAxisMapForDateTimeShouldReturnADateTimeToAxisMap()
+        public void TestCreateShouldReturnADateTimeToAxisMap()
         {
             AssertResult<DateTime>(typeof(DateTimeToAxisMap));
         }
 
         [Test]
-        public void TestCreateAxisMapForFloatShouldReturnAFloatToAxisMap()
+        public void TestCreateShouldReturnAFloatToAxisMap()
         {
             AssertResult<Double>(typeof(FloatToAxisMap));
         }
 
         [Test]
-        public void TestCreateAxisMapForIntegerShouldReturnAnIntegerToAxisMap()
+        public void TestCreateShouldReturnAnIntegerToAxisMap()
         {
             AssertResult<Int32>(typeof(IntegerToAxisMap));
         }
 
         [Test]
-        public void TestCreateAxisMapForStringShouldReturnAStringToAxisMap()
+        public void TestCreateShouldReturnAStringToAxisMap()
         {
             AssertResult<String>(typeof(StringToAxisMap));
         }

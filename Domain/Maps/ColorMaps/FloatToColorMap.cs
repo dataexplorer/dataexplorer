@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataExplorer.Domain.Colors;
 
-namespace DataExplorer.Domain.Maps.AxisMaps
+namespace DataExplorer.Domain.Maps.ColorMaps
 {
-    public class FloatToAxisMap : AxisMap
+    public class FloatToColorMap : ColorMap
     {
         // NOTE: Must half all incoming values to avoid overflow
         // NOTE: since width from min to max is greater than 0 to max
@@ -16,39 +17,41 @@ namespace DataExplorer.Domain.Maps.AxisMaps
         private readonly double _sourceMin;
         private readonly double _sourceMax;
         private readonly double _sourceWidth;
-        private readonly double _targetMin;
-        private readonly double _targetMax;
+        private readonly List<Color> _colors;
         private readonly double _targetWidth;
 
-        public FloatToAxisMap(double sourceMin, double sourceMax, double targetMin, double targetMax)
+        public FloatToColorMap(
+            double sourceMin, 
+            double sourceMax, 
+            List<Color> colors)
         {
             _sourceMin = sourceMin;
             _sourceMax = sourceMax;
             _sourceWidth = sourceMax * ScaleFactor - sourceMin * ScaleFactor;
-            
-            _targetMin = targetMin;
-            _targetMax = targetMax;
-            _targetWidth = targetMax - targetMin;
+
+            _colors = colors;
+            _targetWidth = colors.Count() - 1;
         }
 
-        public override double? Map(object value)
+        public override Color Map(object value)
         {
             if (value == null)
-                return null;
+                return NullColor;
 
             var width = (double) value * ScaleFactor - _sourceMin * ScaleFactor;
 
             var ratio = width / _sourceWidth;
-            
-            return _targetMin + (ratio * _targetWidth);
+
+            var index =  (int) (ratio * _targetWidth);
+
+            return _colors[index];
         }
 
-        public override object MapInverse(double? value)
+        public override object MapInverse(Color value)
         {
-            if (!value.HasValue)
-                return null;
+            var index = _colors.IndexOf(value);
 
-            var ratio = (double) value / _targetWidth;
+            var ratio = index / _targetWidth;
 
             var result = _sourceMin + ((_sourceWidth * ratio) * InverseScaleFactor);
 

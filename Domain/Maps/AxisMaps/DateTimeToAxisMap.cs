@@ -11,18 +11,18 @@ namespace DataExplorer.Domain.Maps.AxisMaps
         private readonly double _sourceMin;
         private readonly double _sourceMax;
         private readonly double _targetMin;
-        private readonly double _targetMax;
         private readonly double _sourceWidth;
+        private readonly double _targetMax;
         private readonly double _targetWidth;
 
         public DateTimeToAxisMap(DateTime sourceMin, DateTime sourceMax, double targetMin, double targetMax)
         {
             _sourceMin = sourceMin.Ticks;
             _sourceMax = sourceMax.Ticks;
+            _sourceWidth = sourceMax.Ticks - sourceMin.Ticks;
+            
             _targetMin = targetMin;
             _targetMax = targetMax;
-
-            _sourceWidth = sourceMax.Ticks - sourceMin.Ticks;
             _targetWidth = targetMax - targetMin;
         }
 

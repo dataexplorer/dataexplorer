@@ -3,47 +3,47 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataExplorer.Domain.Colors;
 
-namespace DataExplorer.Domain.Maps.AxisMaps
+namespace DataExplorer.Domain.Maps.ColorMaps
 {
-    public class IntegerToAxisMap : AxisMap
+    public class IntegerToColorMap : ColorMap
     {
         private readonly int _sourceMin;
         private readonly int _sourceMax;
         private readonly double _sourceWidth;
-        private readonly double _targetMin;
-        private readonly double _targetMax;
+        private readonly List<Color> _colors;
         private readonly double _targetWidth;
 
-        public IntegerToAxisMap(int sourceMin, int sourceMax, double targetMin, double targetMax)
+        public IntegerToColorMap(int sourceMin, int sourceMax, List<Color> colors)
         {
             _sourceMin = sourceMin;
             _sourceMax = sourceMax;
             _sourceWidth = (double) sourceMax - (double) sourceMin;
-            
-            _targetMin = targetMin;
-            _targetMax = targetMax;
-            _targetWidth = targetMax - targetMin;
+
+            _colors = colors;
+            _targetWidth = _colors.Count - 1;
         }
 
-        public override double? Map(object value)
+        public override Color Map(object value)
         {
             if (value == null)
-                return null;
+                return NullColor;
 
-            var width = (double) (int) value - _sourceMin;
+            var width = (double)((int) value - _sourceMin);
 
             var ratio = width / _sourceWidth;
-            
-            return _targetMin + (ratio * _targetWidth);
+
+            var index = (int) (ratio * _targetWidth);
+
+            return _colors[index];
         }
 
-        public override object MapInverse(double? value)
+        public override object MapInverse(Color value)
         {
-            if (!value.HasValue)
-                return null;
+            var index = _colors.IndexOf(value);
 
-            var ratio = (double) value / _targetWidth;
+            var ratio = index / _targetWidth;
 
             var result = _sourceMin + (_sourceWidth * ratio);
 

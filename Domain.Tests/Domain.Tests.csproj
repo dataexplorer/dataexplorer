@@ -104,6 +104,12 @@
     <Compile Include="Maps\AxisMaps\FloatToAxisMapTests.cs" />
     <Compile Include="Maps\AxisMaps\IntegerToAxisMapTests.cs" />
     <Compile Include="Maps\AxisMaps\StringToAxisMapTests.cs" />
+    <Compile Include="Maps\ColorMaps\BooleanToColorMapTests.cs" />
+    <Compile Include="Maps\ColorMaps\ColorMapFactoryTests.cs" />
+    <Compile Include="Maps\ColorMaps\DateTimeToColorMapTests.cs" />
+    <Compile Include="Maps\ColorMaps\FloatToColorMapTests.cs" />
+    <Compile Include="Maps\ColorMaps\IntegerToColorMapTests.cs" />
+    <Compile Include="Maps\ColorMaps\StringToColorMapTests.cs" />
     <Compile Include="Maps\MapFactoryTests.cs" />
     <Compile Include="Predicates\BooleanPredicateTests.cs" />
     <Compile Include="Predicates\DateTimePredicateTests.cs" />

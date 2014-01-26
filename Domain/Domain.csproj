@@ -101,7 +101,15 @@
     <Compile Include="Maps\AxisMaps\IAxisMapFactory.cs" />
     <Compile Include="Maps\AxisMaps\IntegerToAxisMap.cs" />
     <Compile Include="Maps\AxisMaps\StringToAxisMap.cs" />
-    <Compile Include="Maps\AxisMap.cs" />
+    <Compile Include="Maps\AxisMaps\AxisMap.cs" />
+    <Compile Include="Maps\ColorMaps\BooleanToColorMap.cs" />
+    <Compile Include="Maps\ColorMaps\ColorMap.cs" />
+    <Compile Include="Maps\ColorMaps\ColorMapFactory.cs" />
+    <Compile Include="Maps\ColorMaps\DateTimeToColorMap.cs" />
+    <Compile Include="Maps\ColorMaps\FloatToColorMap.cs" />
+    <Compile Include="Maps\ColorMaps\IColorMapFactory.cs" />
+    <Compile Include="Maps\ColorMaps\IntegerToColorMap.cs" />
+    <Compile Include="Maps\ColorMaps\StringToColorMap.cs" />
     <Compile Include="Maps\IMapFactory.cs" />
     <Compile Include="Maps\MapFactory.cs" />
     <Compile Include="Predicates\BooleanPredicate.cs" />
@@ -139,9 +147,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Maps\ColorMaps\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
