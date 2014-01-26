@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using DataExplorer.Domain.Colors;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Views.ScatterPlots;
 using DataExplorer.Infrastructure.Serializers.Properties;
@@ -15,12 +16,18 @@ namespace DataExplorer.Infrastructure.Serializers.Views.ScatterPlots
         private const string LayoutTag = "layout";
         private const string XAxisColumnIdTag = "x-axis-column-id";
         private const string YAxisColumnIdTag = "y-axis-column-id";
+        private const string ColorColumnIdTag = "color-column-id";
+        private const string ColorPaletteNameTag = "color-palette-name";
 
         private readonly IPropertySerializer _propertySerializer;
+        private readonly IColorPaletteFactory _colorPaletteFactory;
 
-        public ScatterPlotLayoutSerializer(IPropertySerializer propertySerializer)
+        public ScatterPlotLayoutSerializer(
+            IPropertySerializer propertySerializer,
+            IColorPaletteFactory colorPaletteFactory)
         {
             _propertySerializer = propertySerializer;
+            _colorPaletteFactory = colorPaletteFactory;
         }
 
         public XElement Serialize(ScatterPlotLayout layout)
@@ -30,6 +37,10 @@ namespace DataExplorer.Infrastructure.Serializers.Views.ScatterPlots
             AddProperty(xLayout, XAxisColumnIdTag, GetColumnId(layout.XAxisColumn));
 
             AddProperty(xLayout, YAxisColumnIdTag, GetColumnId(layout.YAxisColumn));
+
+            AddProperty(xLayout, ColorColumnIdTag, GetColumnId(layout.ColorColumn));
+
+            AddProperty(xLayout, ColorPaletteNameTag, layout.ColorPalette.Name);
 
             return xLayout;
         }
@@ -41,7 +52,7 @@ namespace DataExplorer.Infrastructure.Serializers.Views.ScatterPlots
                 : column.Id;
         }
 
-        private void AddProperty(XElement parent, string name, int? value)
+        private void AddProperty<T>(XElement parent, string name, T value)
         {
             var xProperty = _propertySerializer.Serialize(name, value);
 
@@ -58,10 +69,20 @@ namespace DataExplorer.Infrastructure.Serializers.Views.ScatterPlots
 
             var yAxisColumn = GetColumn(columns, yAxisColumnId);
 
+            var colorColumnId = DeserializeProperty<int?>(xLayout, ColorColumnIdTag);
+
+            var colorColumn = GetColumn(columns, colorColumnId);
+
+            var colorPaletteName = DeserializeProperty<string>(xLayout, ColorPaletteNameTag);
+
+            var colorPalette = _colorPaletteFactory.GetColorPalette(colorPaletteName);
+
             var layout = new ScatterPlotLayout()
             {
                 XAxisColumn = xAxisColumn, 
-                YAxisColumn = yAxisColumn
+                YAxisColumn = yAxisColumn,
+                ColorColumn = colorColumn,
+                ColorPalette = colorPalette
             };
 
             return layout;
