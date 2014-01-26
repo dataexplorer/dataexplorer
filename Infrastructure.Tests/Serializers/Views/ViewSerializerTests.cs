@@ -2,6 +2,7 @@
 using System.Xml.Linq;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Tests.Views;
+using DataExplorer.Domain.Tests.Views.ScatterPlots;
 using DataExplorer.Domain.Views.ScatterPlots;
 using DataExplorer.Infrastructure.Serializers.Views;
 using DataExplorer.Infrastructure.Serializers.Views.ScatterPlots;
@@ -22,7 +23,7 @@ namespace DataExplorer.Infrastructure.Tests.Serializers.Views
         [SetUp]
         public void SetUp()
         {
-            _scatterPlot = new ScatterPlot();
+            _scatterPlot = new ScatterPlotBuilder().Build();
             _xScatterPlot = new XElement("scatter-plot");
 
             _columns = new List<Column>();

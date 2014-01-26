@@ -131,10 +131,12 @@
     <Compile Include="Sources\SourceMapTests.cs" />
     <Compile Include="Views\FakeView.cs" />
     <Compile Include="Views\ScatterPlots\ScatterPlotBuilder.cs" />
+    <Compile Include="Views\ScatterPlots\ScatterPlotFactoryTests.cs" />
     <Compile Include="Views\ScatterPlots\ScatterPlotLayoutBuilder.cs" />
     <Compile Include="Views\ScatterPlots\ScatterPlotLayoutTests.cs" />
     <Compile Include="Views\ScatterPlots\ScatterPlotRendererTests.cs" />
     <Compile Include="Views\ScatterPlots\ScatterPlotTests.cs" />
+    <Compile Include="Views\ViewFactoryTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

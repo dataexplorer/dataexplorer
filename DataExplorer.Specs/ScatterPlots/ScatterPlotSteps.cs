@@ -1,4 +1,5 @@
 ﻿using System;
+using DataExplorer.Domain.Tests.Views.ScatterPlots;
 using DataExplorer.Domain.Views.ScatterPlots;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
@@ -18,7 +19,7 @@ namespace DataExplorer.Specs.ScatterPlots
         [Given(@"a scatterplot view")]
         public void GivenAScatterplotView()
         {
-            var scatterPlot = new ScatterPlot();
+            var scatterPlot = new ScatterPlotBuilder().Build();
             _appContext.ScatterPlot = scatterPlot;
             _appContext.DataContext.Views.Add(scatterPlot.GetType(), scatterPlot);
         }

@@ -15,7 +15,7 @@ namespace DataExplorer.Domain.Tests.Views.ScatterPlots
         [SetUp]
         public void SetUp()
         {
-            _scatterPlot = new ScatterPlot();
+            _scatterPlot = new ScatterPlotBuilder().Build();
         }
 
         // TODO: Should I eliminate this duplication with DCI?

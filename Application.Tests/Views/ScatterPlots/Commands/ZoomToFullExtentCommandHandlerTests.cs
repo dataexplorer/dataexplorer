@@ -2,6 +2,7 @@
 using DataExplorer.Application.Views;
 using DataExplorer.Application.Views.ScatterPlots.Commands;
 using DataExplorer.Domain.Core.Events;
+using DataExplorer.Domain.Tests.Views.ScatterPlots;
 using DataExplorer.Domain.Views;
 using DataExplorer.Domain.Views.ScatterPlots;
 using DataExplorer.Domain.Views.ScatterPlots.Events;
@@ -22,7 +23,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Commands
         [SetUp]
         public void SetUp()
         {
-            _scatterPlot = new ScatterPlot();
+            _scatterPlot = new ScatterPlotBuilder().Build();
             
             _mockRepository = new Mock<IViewRepository>();
             _mockRepository.Setup(p => p.Get<ScatterPlot>()).Returns(_scatterPlot);

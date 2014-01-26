@@ -3,6 +3,7 @@ using System.Linq;
 using DataExplorer.Application.Views;
 using DataExplorer.Application.Views.ScatterPlots;
 using DataExplorer.Application.Views.ScatterPlots.Queries;
+using DataExplorer.Domain.Tests.Views.ScatterPlots;
 using DataExplorer.Domain.Views;
 using DataExplorer.Domain.Views.ScatterPlots;
 using Moq;
@@ -29,7 +30,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Queries
             _plots = new List<Plot> { _plot };
             _plotDto = new PlotDto();
             _plotDtos = new List<PlotDto> { _plotDto };
-            _scatterPlot = new ScatterPlot();
+            _scatterPlot = new ScatterPlotBuilder().Build();
             _scatterPlot.SetPlots(_plots);
 
             _mockRepository = new Mock<IViewRepository>();
