@@ -94,9 +94,11 @@
     <Compile Include="FilterTrees\StringFilterTrees\StringFilterTreeLeaf.cs" />
     <Compile Include="FilterTrees\StringFilterTrees\StringFilterTreeNode.cs" />
     <Compile Include="FilterTrees\StringFilterTrees\StringFilterTreeRoot.cs" />
+    <Compile Include="Maps\AxisMaps\AxisMapFactory.cs" />
     <Compile Include="Maps\AxisMaps\BooleanToAxisMap.cs" />
     <Compile Include="Maps\AxisMaps\DateTimeToAxisMap.cs" />
     <Compile Include="Maps\AxisMaps\FloatToAxisMap.cs" />
+    <Compile Include="Maps\AxisMaps\IAxisMapFactory.cs" />
     <Compile Include="Maps\AxisMaps\IntegerToAxisMap.cs" />
     <Compile Include="Maps\AxisMaps\StringToAxisMap.cs" />
     <Compile Include="Maps\AxisMap.cs" />
@@ -136,6 +138,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Maps\ColorMaps\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

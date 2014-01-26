@@ -1,7 +1,9 @@
 ﻿using System;
+using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Maps;
 using DataExplorer.Domain.Maps.AxisMaps;
 using DataExplorer.Domain.Tests.Columns;
+using Moq;
 using NUnit.Framework;
 
 namespace DataExplorer.Domain.Tests.Maps
@@ -10,42 +12,25 @@ namespace DataExplorer.Domain.Tests.Maps
     public class MapFactoryTests
     {
         private MapFactory _factory;
+        private Mock<IAxisMapFactory> _mockAxisMapFactory;
+        private Column _column;
 
         [SetUp]
         public void SetUp()
         {
-            _factory = new MapFactory();
-        }
+            _column = new ColumnBuilder().Build();
 
-        [Test]
-        public void TestCreateAxisMapForFloatShouldReturnAFloatToAxisMap()
-        {
-            var column = new ColumnBuilder()
-                .WithType(typeof(Double))
-                .WithValue(0d)
-                .WithValue(1d)
-                .Build();
-            var result = _factory.CreateAxisMap(column, 0d, 1d);
-            Assert.That(result, Is.TypeOf<FloatToAxisMap>());
-        }
+            _mockAxisMapFactory = new Mock<IAxisMapFactory>();
 
+            _factory = new MapFactory(
+                _mockAxisMapFactory.Object);
+        }
+        
         [Test]
         public void TestCreateAxisMapForBooleanShouldReturnABooleanToAxisMap()
         {
-            var column = new ColumnBuilder()
-                .WithType(typeof(Boolean))
-                .WithValue(0d)
-                .WithValue(1d)
-                .Build();
-            var result = _factory.CreateAxisMap(column, 0d, 1d);
-            Assert.That(result, Is.TypeOf<BooleanToAxisMap>());
-        }
-
-        [Test]
-        public void TestCreateAxisMapForInvalidDataTypeShouldThrowArgumentException()
-        {
-            var column = new ColumnBuilder().WithType(typeof(Object)).Build();
-            Assert.That(() => _factory.CreateAxisMap(column, 0d, 1d), Throws.ArgumentException);
+            _factory.CreateAxisMap(_column, 0d, 1d);
+            _mockAxisMapFactory.Verify(p => p.Create(_column, 0d, 1d));
         }
     }
 }

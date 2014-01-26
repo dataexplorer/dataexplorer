@@ -98,6 +98,7 @@
     <Compile Include="FilterTrees\StringFilterTrees\StringFilterTreeLeafTests.cs" />
     <Compile Include="FilterTrees\StringFilterTrees\StringFilterTreeNodeTests.cs" />
     <Compile Include="FilterTrees\StringFilterTrees\StringFilterTreeRootTests.cs" />
+    <Compile Include="Maps\AxisMaps\AxisMapFactoryTests.cs" />
     <Compile Include="Maps\AxisMaps\BooleanToAxisMapTests.cs" />
     <Compile Include="Maps\AxisMaps\DateTimeToAxisMapTests.cs" />
     <Compile Include="Maps\AxisMaps\FloatToAxisMapTests.cs" />
