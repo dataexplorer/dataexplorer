@@ -1,19 +1,18 @@
-﻿using DataExplorer.Application.Columns;
-using DataExplorer.Application.Core.Events;
+﻿using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Importers.CsvFiles.Events;
 using DataExplorer.Application.Projects.Events;
 using DataExplorer.Application.Views.ScatterPlots.Layouts.Events;
 
 namespace DataExplorer.Application.Views.ScatterPlots
 {
-    public class ScatterPlotLayoutEventService : 
+    public class LayoutEventService : 
         IEventHandler<ProjectOpenedEvent>,
         IEventHandler<ProjectClosedEvent>,
         IEventHandler<CsvFileImportedEvent>
     {
         private readonly IEventBus _eventBus;
 
-        public ScatterPlotLayoutEventService(IEventBus eventBus)
+        public LayoutEventService(IEventBus eventBus)
         {
             _eventBus = eventBus;
         }

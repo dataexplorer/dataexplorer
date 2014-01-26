@@ -8,13 +8,14 @@ using DataExplorer.Application.Projects.Events;
 using DataExplorer.Domain.FilterTrees;
 using DataExplorer.Domain.Tests.FilterTrees;
 using DataExplorer.Presentation.Panes.Navigation.NavigationTree;
+using DataExplorer.Presentation.Tests.Core;
 using Moq;
 using NUnit.Framework;
 
 namespace DataExplorer.Presentation.Tests.Panes.Navigation.NavigationTree
 {
     [TestFixture]
-    public class NavigationTreeViewModelTests
+    public class NavigationTreeViewModelTests : ViewModelTests
     {
         private NavigationTreeViewModel _viewModel;
         private Mock<IMessageBus> _service;
@@ -39,23 +40,6 @@ namespace DataExplorer.Presentation.Tests.Panes.Navigation.NavigationTree
         }
 
         [Test]
-        public void TestHandleCsvFileImportingEventShouldClearRootNodeViewModels()
-        {
-            _viewModel.Handle(new CsvFileImportingEvent());
-            Assert.That(_viewModel.TreeNodeViewModels.Count(), Is.EqualTo(0));
-            Assert.That(_wasTreeNodeViewModelChangedRaised, Is.True);
-        }
-
-        [Test]
-        public void TestHandleCsvFileImportedEventShouldCreateRootNodeViewModels()
-        {
-            _viewModel.Handle(new CsvFileImportedEvent());
-            var results = _viewModel.TreeNodeViewModels;
-            Assert.That(results.Count(), Is.EqualTo(1));
-            Assert.That(_wasTreeNodeViewModelChangedRaised, Is.True);
-        }
-
-        [Test]
         public void TestHandleProjectOpeningEventShouldClearRootNodeViewModels()
         {
             _viewModel.Handle(new ProjectOpeningEvent());
@@ -65,6 +49,31 @@ namespace DataExplorer.Presentation.Tests.Panes.Navigation.NavigationTree
 
         [Test]
         public void TestHandleProjectOpenedEventShouldCreateRootNodeViewModels()
+        {
+            _viewModel.Handle(new CsvFileImportedEvent());
+            var results = _viewModel.TreeNodeViewModels;
+            Assert.That(results.Count(), Is.EqualTo(1));
+            Assert.That(_wasTreeNodeViewModelChangedRaised, Is.True);
+        }
+
+        [Test]
+        public void TestHandleProjectClosedEventShouldClearRootNodeViewModels()
+        {
+            _viewModel.Handle(new ProjectClosedEvent());
+            Assert.That(_viewModel.TreeNodeViewModels.Count(), Is.EqualTo(0));
+            Assert.That(_wasTreeNodeViewModelChangedRaised, Is.True);
+        }
+
+        [Test]
+        public void TestHandleCsvFileImportingEventShouldClearRootNodeViewModels()
+        {
+            _viewModel.Handle(new CsvFileImportingEvent());
+            Assert.That(_viewModel.TreeNodeViewModels.Count(), Is.EqualTo(0));
+            Assert.That(_wasTreeNodeViewModelChangedRaised, Is.True);
+        }
+
+        [Test]
+        public void TestHandleCsvFileImportedEventShouldCreateRootNodeViewModels()
         {
             _viewModel.Handle(new CsvFileImportedEvent());
             var results = _viewModel.TreeNodeViewModels;

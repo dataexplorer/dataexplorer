@@ -3,18 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataExplorer.Application.Core.Queries;
 using DataExplorer.Application.Filters.Events;
+using DataExplorer.Application.Filters.Queries;
+using DataExplorer.Application.Importers.CsvFiles.Events;
+using DataExplorer.Application.Projects.Events;
 using DataExplorer.Domain.Tests.Filters;
 using DataExplorer.Presentation.Panes.Filter;
+using DataExplorer.Presentation.Tests.Core;
 using Moq;
 using NUnit.Framework;
 
 namespace DataExplorer.Presentation.Tests.Panes.Filter
 {
     [TestFixture]
-    public class FilterPaneViewModelTests
+    public class FilterPaneViewModelTests : ViewModelTests
     {
         private FilterPaneViewModel _viewModel;
+        private Mock<IQueryBus> _mockQueryBus;
         private Mock<IFilterViewModelFactory> _mockFactory;
         private FakeFilter _filter;
         private FakeFilterViewModel _filterViewModel;
@@ -25,31 +31,65 @@ namespace DataExplorer.Presentation.Tests.Panes.Filter
             _filter = new FakeFilter();
             _filterViewModel = new FakeFilterViewModel(_filter);
 
+            _mockQueryBus = new Mock<IQueryBus>();
+            _mockQueryBus.Setup(p => p.Execute(It.IsAny<GetFiltersQuery>()))
+                .Returns(new List<Domain.Filters.Filter> {_filter});
+
             _mockFactory = new Mock<IFilterViewModelFactory>();
             _mockFactory.Setup(p => p.Create(_filter)).Returns(_filterViewModel);
 
-            _viewModel = new FilterPaneViewModel(_mockFactory.Object);
+            _viewModel = new FilterPaneViewModel(
+                _mockQueryBus.Object,
+                _mockFactory.Object);
         }
 
         [Test]
-        public void TestConstructorShouldCreateEmptyListOfViewModels()
+        public void TestHandleSelectedFilterRaisePropertyChanged()
         {
-            Assert.That(_viewModel.FilterViewModels.Count, Is.EqualTo(0));
+            AssertPropertyChanged(_viewModel, () => _viewModel.FilterViewModels,
+                () => _viewModel.Handle(new FilterAddedEvent(_filter)));
         }
 
         [Test]
-        public void TestHandleSelectedFilterAddedEventShouldAddFilterViewModel()
+        public void TestHandleSelectedFilterRemovedEventShouldRaisePropertyChanged()
         {
-            _viewModel.Handle(new FilterAddedEvent(_filter));
-            Assert.That(_viewModel.FilterViewModels, Contains.Item(_filterViewModel));
+            AssertPropertyChanged(_viewModel, () => _viewModel.FilterViewModels,
+                () => _viewModel.Handle(new FilterRemovedEvent(_filter)));
         }
 
         [Test]
-        public void TestHandleSelectedFilterRemovedEventShouldRemoveFilterViewModel()
+        public void TestHandleProjectOpeningShouldRaisePropertyChanged()
         {
-            _viewModel.FilterViewModels.Add(_filterViewModel);
-            _viewModel.Handle(new FilterRemovedEvent(_filter));
-            Assert.That(_viewModel.FilterViewModels.Contains(_filterViewModel), Is.False);
+            AssertPropertyChanged(_viewModel, () => _viewModel.FilterViewModels,
+                () => _viewModel.Handle(new ProjectOpeningEvent()));
+        }
+
+        [Test]
+        public void TestHandleProjectOpenedShouldRaisePropertyChanged()
+        {
+            AssertPropertyChanged(_viewModel, () => _viewModel.FilterViewModels,
+                () => _viewModel.Handle(new ProjectOpenedEvent()));
+        }
+
+        [Test]
+        public void TestHandleProjectClosedShouldRaisePropertyChanged()
+        {
+            AssertPropertyChanged(_viewModel, () => _viewModel.FilterViewModels,
+                () => _viewModel.Handle(new ProjectClosedEvent()));
+        }
+
+        [Test]
+        public void TestHandleDataSourceImportingShouldRaisePropertyChanged()
+        {
+            AssertPropertyChanged(_viewModel, () => _viewModel.FilterViewModels,
+                () => _viewModel.Handle(new CsvFileImportingEvent()));
+        }
+
+        [Test]
+        public void TestHandleDataSourceImportedShouldRaisePropertyChanged()
+        {
+            AssertPropertyChanged(_viewModel, () => _viewModel.FilterViewModels,
+                () => _viewModel.Handle(new CsvFileImportedEvent()));
         }
     }
 

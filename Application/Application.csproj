@@ -102,6 +102,8 @@
     <Compile Include="Filters\Events\FilterRemovedEvent.cs" />
     <Compile Include="Filters\IFilterRepository.cs" />
     <Compile Include="Filters\Commands\UpdateFilterCommand.cs" />
+    <Compile Include="Filters\Queries\GetFiltersQuery.cs" />
+    <Compile Include="Filters\Queries\GetFiltersQueryHandler.cs" />
     <Compile Include="FilterTrees\Commands\ISelectFilterTreeNodeCommand.cs" />
     <Compile Include="FilterTrees\Commands\SelectFilterTreeNodeCommand.cs" />
     <Compile Include="FilterTrees\Commands\SelectFilterTreeNodeCommandHandler.cs" />
@@ -204,7 +206,7 @@
     <Compile Include="Views\ScatterPlots\Queries\GetViewExtentQueryHandler.cs" />
     <Compile Include="Views\ScatterPlots\ScatterPlotAdapter.cs" />
     <Compile Include="Views\ScatterPlots\ScatterPlotEventsService.cs" />
-    <Compile Include="Views\ScatterPlots\ScatterPlotLayoutEventService.cs" />
+    <Compile Include="Views\ScatterPlots\LayoutEventService.cs" />
     <Compile Include="Web\Commands\OpenDownloadDataPageCommand.cs" />
     <Compile Include="Web\Commands\OpenDownloadDataPageCommandHandler.cs" />
   </ItemGroup>

@@ -13,14 +13,14 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots
     [TestFixture]
     public class ScatterPlotLayoutServiceTests
     {
-        private ScatterPlotLayoutEventService _service;
+        private LayoutEventService _service;
         private Mock<IEventBus> _mockEventBus;
         
         [SetUp]
         public void SetUp()
         {
             _mockEventBus = new Mock<IEventBus>();
-            _service = new ScatterPlotLayoutEventService(_mockEventBus.Object);
+            _service = new LayoutEventService(_mockEventBus.Object);
         }
         
         [Test]

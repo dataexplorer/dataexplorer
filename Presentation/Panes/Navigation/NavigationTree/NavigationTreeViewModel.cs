@@ -5,8 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Core.Messages;
-using DataExplorer.Application.Core.Queries;
-using DataExplorer.Application.FilterTrees;
 using DataExplorer.Application.FilterTrees.Queries;
 using DataExplorer.Application.Importers.CsvFiles.Events;
 using DataExplorer.Application.Projects.Events;
@@ -17,10 +15,11 @@ namespace DataExplorer.Presentation.Panes.Navigation.NavigationTree
     public class NavigationTreeViewModel 
         : BaseViewModel, 
         INavigationTreeViewModel,
-        IEventHandler<CsvFileImportingEvent>,
-        IEventHandler<CsvFileImportedEvent>,
         IEventHandler<ProjectOpeningEvent>,
-        IEventHandler<ProjectOpenedEvent>
+        IEventHandler<ProjectOpenedEvent>,
+        IEventHandler<ProjectClosedEvent>,
+        IEventHandler<CsvFileImportingEvent>,
+        IEventHandler<CsvFileImportedEvent>
     {
         private readonly IMessageBus _messageBus;
 
@@ -37,22 +36,27 @@ namespace DataExplorer.Presentation.Panes.Navigation.NavigationTree
             _treeNodeViewModels = new List<TreeNodeViewModel>();
         }
 
-        public void Handle(CsvFileImportingEvent args)
-        {
-            ClearViewModels();
-        }
-
-        public void Handle(CsvFileImportedEvent args)
-        {
-            RefreshViewModels();
-        }
-
         public void Handle(ProjectOpeningEvent args)
         {
             ClearViewModels();
         }
 
         public void Handle(ProjectOpenedEvent args)
+        {
+            RefreshViewModels();
+        }
+
+        public void Handle(ProjectClosedEvent args)
+        {
+            RefreshViewModels();
+        }
+
+        public void Handle(CsvFileImportingEvent args)
+        {
+            ClearViewModels();
+        }
+
+        public void Handle(CsvFileImportedEvent args)
         {
             RefreshViewModels();
         }

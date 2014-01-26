@@ -116,44 +116,6 @@ namespace DataExplorer.Application.Tests.Application
         }
 
         [Test]
-        public void TestHandleCsvFileImportingEventShouldHideStartMenu()
-        {
-            _service.Handle(new CsvFileImportingEvent());
-            _mockState.VerifySet(p => p.IsStartMenuVisible = false, Times.Once());
-            _mockEventBus.Verify(p => p.Raise(It.IsAny<StartMenuVisibilityChangedEvent>()));
-        }
-
-        [Test]
-        public void TestHandleCsvFileImportingEventShouldHideNavigationTree()
-        {
-            _service.Handle(new CsvFileImportingEvent());
-            _mockState.VerifySet(p => p.IsNavigationTreeVisible = false, Times.Once());
-            _mockEventBus.Verify(p => p.Raise(It.IsAny<NavigationTreeVisibilityChangedEvent>()));
-        }
-
-        [Test]
-        public void TestHandleCsvFileImportingEventShouldClearSelectedFilter()
-        {
-            _service.Handle(new CsvFileImportingEvent());
-            _mockState.VerifySet(p => p.SelectedFilter = null, Times.Once());
-        }
-        
-        [Test]
-        public void TestHandleCsvFileImportingEventShouldClearSelectedRows()
-        {
-            _service.Handle(new CsvFileImportingEvent());
-            _mockState.VerifySet(p => p.SelectedRows = new List<Row>(), Times.Once());
-        }
-        
-        [Test]
-        public void TestHandleCsvFileImportedEventShouldShowNavigationTreeVisible()
-        {
-            _service.Handle(new CsvFileImportedEvent());
-            _mockState.VerifySet(p => p.IsNavigationTreeVisible = true, Times.Once());
-            _mockEventBus.Verify(p => p.Raise(It.IsAny<NavigationTreeVisibilityChangedEvent>()));
-        }
-        
-        [Test]
         public void TestHandleProjectOpeningEventShouldSetHideStartMenu()
         {
             _service.Handle(new ProjectOpeningEvent());
@@ -187,6 +149,74 @@ namespace DataExplorer.Application.Tests.Application
         public void TestHandleProjectOpenedEventShouldShowNavigationTree()
         {
             _service.Handle(new ProjectOpenedEvent());
+            _mockState.VerifySet(p => p.IsNavigationTreeVisible = true, Times.Once());
+            _mockEventBus.Verify(p => p.Raise(It.IsAny<NavigationTreeVisibilityChangedEvent>()));
+        }
+
+        [Test]
+        public void TestHandleProjectClosedShouldHideNavigationTree()
+        {
+            _service.Handle(new ProjectClosedEvent());
+            _mockState.VerifySet(p => p.IsNavigationTreeVisible = false, Times.Once());
+            _mockEventBus.Verify(p => p.Raise(It.IsAny<NavigationTreeVisibilityChangedEvent>()));
+        }
+
+        [Test]
+        public void TestHandleProjectClosedShouldShowStartMenu()
+        {
+            _service.Handle(new ProjectClosedEvent());
+            _mockState.VerifySet(p => p.IsStartMenuVisible = true, Times.Once());
+            _mockEventBus.Verify(p => p.Raise(It.IsAny<StartMenuVisibilityChangedEvent>()));
+        }
+
+        [Test]
+        public void TestHandleProjectClosedShouldClearSelectedFilter()
+        {
+            _service.Handle(new ProjectClosedEvent());
+            _mockState.VerifySet(p => p.SelectedFilter = null, Times.Once());
+        }
+
+        [Test]
+        public void TestHandleProjectClosedShouldClearSelectedRows()
+        {
+            _service.Handle(new ProjectClosedEvent());
+            _mockState.VerifySet(p => p.SelectedRows = new List<Row>(), Times.Once());
+        }
+
+        [Test]
+        public void TestHandleCsvFileImportingEventShouldHideStartMenu()
+        {
+            _service.Handle(new CsvFileImportingEvent());
+            _mockState.VerifySet(p => p.IsStartMenuVisible = false, Times.Once());
+            _mockEventBus.Verify(p => p.Raise(It.IsAny<StartMenuVisibilityChangedEvent>()));
+        }
+
+        [Test]
+        public void TestHandleCsvFileImportingEventShouldHideNavigationTree()
+        {
+            _service.Handle(new CsvFileImportingEvent());
+            _mockState.VerifySet(p => p.IsNavigationTreeVisible = false, Times.Once());
+            _mockEventBus.Verify(p => p.Raise(It.IsAny<NavigationTreeVisibilityChangedEvent>()));
+        }
+
+        [Test]
+        public void TestHandleCsvFileImportingEventShouldClearSelectedFilter()
+        {
+            _service.Handle(new CsvFileImportingEvent());
+            _mockState.VerifySet(p => p.SelectedFilter = null, Times.Once());
+        }
+
+        [Test]
+        public void TestHandleCsvFileImportingEventShouldClearSelectedRows()
+        {
+            _service.Handle(new CsvFileImportingEvent());
+            _mockState.VerifySet(p => p.SelectedRows = new List<Row>(), Times.Once());
+        }
+
+        [Test]
+        public void TestHandleCsvFileImportedEventShouldShowNavigationTreeVisible()
+        {
+            _service.Handle(new CsvFileImportedEvent());
             _mockState.VerifySet(p => p.IsNavigationTreeVisible = true, Times.Once());
             _mockEventBus.Verify(p => p.Raise(It.IsAny<NavigationTreeVisibilityChangedEvent>()));
         }

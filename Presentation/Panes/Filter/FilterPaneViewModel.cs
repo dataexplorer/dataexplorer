@@ -1,8 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using DataExplorer.Application.Core.Events;
+using DataExplorer.Application.Core.Queries;
 using DataExplorer.Application.Filters.Events;
+using DataExplorer.Application.Filters.Queries;
+using DataExplorer.Application.Importers.CsvFiles.Events;
+using DataExplorer.Application.Projects.Events;
 using DataExplorer.Presentation.Core;
 
 namespace DataExplorer.Presentation.Panes.Filter
@@ -11,37 +16,73 @@ namespace DataExplorer.Presentation.Panes.Filter
         : BaseViewModel, 
         IFilterPaneViewModel,
         IEventHandler<FilterAddedEvent>,
-        IEventHandler<FilterRemovedEvent>
+        IEventHandler<FilterRemovedEvent>,
+        IEventHandler<ProjectOpeningEvent>,
+        IEventHandler<ProjectOpenedEvent>,
+        IEventHandler<ProjectClosedEvent>,
+        IEventHandler<CsvFileImportingEvent>,
+        IEventHandler<CsvFileImportedEvent>
     {
+        private readonly IQueryBus _queryBus;
         private readonly IFilterViewModelFactory _factory;
-        private readonly ObservableCollection<FilterViewModel> _filterViewModels;
-
-        public FilterPaneViewModel(IFilterViewModelFactory factory)
+        
+        public FilterPaneViewModel(
+            IQueryBus queryBus, 
+            IFilterViewModelFactory factory)
         {
+            _queryBus = queryBus;
             _factory = factory;
-            _filterViewModels = new ObservableCollection<FilterViewModel>();
         }
 
-        public ObservableCollection<FilterViewModel> FilterViewModels
+        public List<FilterViewModel> FilterViewModels
         {
-            get { return _filterViewModels; }
+            get { return GetFilterViewModels(); }
         }
 
         public void Handle(FilterAddedEvent args)
         {
-            var filterViewModel = _factory.Create(args.Filter);
-
-            _filterViewModels.Add(filterViewModel);
-
             OnPropertyChanged(() => FilterViewModels);
         }
 
         public void Handle(FilterRemovedEvent args)
         {
-            var filterViewModel = _filterViewModels
-                .First(p => p.Filter == args.Filter);
+            OnPropertyChanged(() => FilterViewModels);
+        }
 
-            _filterViewModels.Remove(filterViewModel);
+        public void Handle(ProjectOpeningEvent args)
+        {
+            OnPropertyChanged(() => FilterViewModels);
+        }
+
+        public void Handle(ProjectOpenedEvent args)
+        {
+            OnPropertyChanged(() => FilterViewModels);
+        }
+
+        public void Handle(ProjectClosedEvent args)
+        {
+            OnPropertyChanged(() => FilterViewModels);
+        }
+
+        public void Handle(CsvFileImportingEvent args)
+        {
+            OnPropertyChanged(() => FilterViewModels);
+        }
+
+        public void Handle(CsvFileImportedEvent args)
+        {
+            OnPropertyChanged(() => FilterViewModels);
+        }
+
+        private List<FilterViewModel> GetFilterViewModels()
+        {
+            var filters = _queryBus.Execute(new GetFiltersQuery());
+
+            var viewModels = filters
+                .Select(p => _factory.Create(p))
+                .ToList();
+
+            return viewModels;
         }
     }
 }
