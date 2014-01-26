@@ -15,7 +15,14 @@ namespace DataExplorer.Presentation.Tests.Core.Canvas.Items
         [SetUp]
         public void SetUp()
         {
-            _circle = new CanvasCircle() { X = 0, Y = 0, Radius = 8 };
+            _circle = new CanvasCircle()
+            {
+                X = 0,
+                Y = 0,
+                Radius = 8,
+                Color = Colors.LightBlue
+            };
+
             _brush = new SolidColorBrush(Colors.LightBlue);
             _pen = new Pen(Brushes.Black, 1);
         }

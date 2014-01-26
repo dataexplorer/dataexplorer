@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using DataExplorer.Domain.Colors;
 using DataExplorer.Domain.Maps;
 using DataExplorer.Domain.Rows;
 
@@ -6,6 +7,8 @@ namespace DataExplorer.Domain.Views.ScatterPlots
 {
     public class ScatterPlotRenderer : IScatterPlotRenderer
     {
+        private static Color DefaultColor = new Color(173, 216, 230);
+
         private readonly IMapFactory _factory;
 
         public ScatterPlotRenderer(IMapFactory factory)
@@ -21,6 +24,10 @@ namespace DataExplorer.Domain.Views.ScatterPlots
 
             var yAxisMap = layout.YAxisColumn != null
                 ? _factory.CreateAxisMap(layout.YAxisColumn, 0d, 1d)
+                : null;
+
+            var colorMap = layout.ColorColumn != null
+                ? _factory.CreateColorMap(layout.ColorColumn, layout.ColorPalette)
                 : null;
             
             var plots = new List<Plot>();
@@ -38,6 +45,10 @@ namespace DataExplorer.Domain.Views.ScatterPlots
                 plot.Y = layout.YAxisColumn != null
                     ? yAxisMap.Map(row[layout.YAxisColumn.Index]) ?? 0.0
                     : 0.0;
+
+                plot.Color = layout.ColorColumn != null
+                    ? colorMap.Map(row[layout.ColorColumn.Index])
+                    : DefaultColor;
 
                 plots.Add(plot);
             }

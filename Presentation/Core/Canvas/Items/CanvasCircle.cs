@@ -11,14 +11,16 @@ namespace DataExplorer.Presentation.Core.Canvas.Items
         
         public double Radius { get; set; }
 
+        public Color Color { get; set; }
+
         public override VisualItem Draw()
         {
             var visual = new VisualItem();
 
             visual.Id = Id;
 
-            // TODO: Move default brush and pen to static fiels and intialize / freeze in static constructer
-            var brush = new SolidColorBrush(Colors.LightBlue);
+            // TODO: Move default brush and pen to static fields and intialize / freeze in static constructer
+            var brush = new SolidColorBrush(Color);
             brush.Freeze();
 
             var unselectedPen = new Pen(Brushes.Black, 1);

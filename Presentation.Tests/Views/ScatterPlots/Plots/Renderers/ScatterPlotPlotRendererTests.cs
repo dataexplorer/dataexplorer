@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Media;
 using DataExplorer.Application.Views.ScatterPlots;
 using DataExplorer.Presentation.Core.Canvas.Items;
 using DataExplorer.Presentation.Core.Geometry;
@@ -29,12 +30,13 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Plots.Renderers
         {
             _controlSize = new Size();
             _viewExtent = new Rect();
-            _plot = new PlotDto() { Id = 1, X = 1d, Y = 2d };
+            _plot = new PlotDto() { Id = 1, X = 1d, Y = 2d, Color = new Domain.Colors.Color(0, 0, 0) };
             _plots = new List<PlotDto> { _plot };
             _circle = new CanvasCircle();
 
             _mockResizer = new Mock<IViewResizer>();
-            _mockResizer.Setup(p => p.ResizeView(_controlSize, _viewExtent)).Returns(_viewExtent);
+            _mockResizer.Setup(p => p.ResizeView(_controlSize, _viewExtent))
+                .Returns(_viewExtent);
 
             _mockComputer = new Mock<IScaleComputer>();
             _mockComputer.Setup(p => p.ComputeScale(_controlSize, _viewExtent)).Returns(1d);
@@ -42,7 +44,8 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Plots.Renderers
             _mockCalculator = new Mock<IGeometryCalculator>();
 
             _mockFactory = new Mock<IGeometryFactory>();
-            _mockFactory.Setup(p => p.CreateCircle(_plot.Id, It.IsAny<Rect>())).Returns(_circle);
+            _mockFactory.Setup(p => p.CreateCircle(_plot.Id, It.IsAny<Rect>(), It.IsAny<Color>()))
+                .Returns(_circle);
 
             _renderer = new PlotRenderer(
                 _mockResizer.Object,

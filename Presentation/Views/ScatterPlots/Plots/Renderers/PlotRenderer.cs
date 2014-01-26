@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using System.Windows.Media;
 using DataExplorer.Application.Views.ScatterPlots;
 using DataExplorer.Presentation.Core.Canvas.Items;
 using DataExplorer.Presentation.Core.Geometry;
@@ -40,7 +41,9 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Plots.Renderers
         {
             var extent = _calculator.CalculateExtent(controlSize, viewExtent, scale, new Point(plot.X, plot.Y));
 
-            var circle = _factory.CreateCircle(plot.Id, extent);
+            var color = Color.FromRgb(plot.Color.Red, plot.Color.Green, plot.Color.Blue);
+
+            var circle = _factory.CreateCircle(plot.Id, extent, color);
 
             return circle;
         }
