@@ -3,7 +3,6 @@ using System.Windows.Input;
 using System.Windows.Threading;
 using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Core.Messages;
-using DataExplorer.Application.Importers.CsvFiles;
 using DataExplorer.Application.Importers.CsvFiles.Commands;
 using DataExplorer.Application.Importers.CsvFiles.Events;
 using DataExplorer.Application.Importers.CsvFiles.Queries;
@@ -17,12 +16,12 @@ namespace DataExplorer.Presentation.Importers.CsvFile.Footer
         BaseViewModel,
         ICsvFileImportFooterViewModel,
         IEventHandler<CsvFileSourceChangedEvent>,
-        IEventHandler<CsvFileImportingEvent>,
-        IEventHandler<CsvFileImportedEvent>,
-        IEventHandler<CsvFileImportProgressChangedEvent>
+        IEventHandler<SourceImportingEvent>,
+        IEventHandler<SourceImportedEvent>,
+        IEventHandler<SourceImportProgressChangedEvent>
     {
         private readonly IMessageBus _messageBus;
-        private readonly AsyncDelegateCommand _importCommand;
+        private readonly DelegateCommand _importCommand;
         private readonly DelegateCommand _cancelCommand;
 
         private bool _isImporting;
@@ -53,7 +52,7 @@ namespace DataExplorer.Presentation.Importers.CsvFile.Footer
         public CsvFileImportFooterViewModel(IMessageBus messageBus)
         {
             _messageBus = messageBus;
-            _importCommand = new AsyncDelegateCommand(Import, CanImport);
+            _importCommand = new DelegateCommand(Import, CanImport);
             _cancelCommand = new DelegateCommand(Cancel);
 
             _isImporting = false;
@@ -81,7 +80,7 @@ namespace DataExplorer.Presentation.Importers.CsvFile.Footer
             _importCommand.RaiseCanExecuteChanged();
         }
 
-        public void Handle(CsvFileImportingEvent args)
+        public void Handle(SourceImportingEvent args)
         {
             _isImporting = true;
 
@@ -92,7 +91,7 @@ namespace DataExplorer.Presentation.Importers.CsvFile.Footer
             OnPropertyChanged(() => Progress);
         }
 
-        public void Handle(CsvFileImportedEvent args)
+        public void Handle(SourceImportedEvent args)
         {
             _isImporting = false;
 
@@ -106,7 +105,7 @@ namespace DataExplorer.Presentation.Importers.CsvFile.Footer
                 DialogClosed(this, EventArgs.Empty);
         }
 
-        public void Handle(CsvFileImportProgressChangedEvent args)
+        public void Handle(SourceImportProgressChangedEvent args)
         {
             _progress = args.Progress;
 

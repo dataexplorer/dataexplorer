@@ -9,7 +9,7 @@ namespace DataExplorer.Application.Tests.Importers.CsvFile.Events
         [Test]
         public void TestConstructorShouldSetProgress()
         {
-            var @event = new CsvFileImportProgressChangedEvent(50);
+            var @event = new SourceImportProgressChangedEvent(50);
             Assert.That(@event.Progress, Is.EqualTo(50));
         }
     }

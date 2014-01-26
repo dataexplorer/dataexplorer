@@ -17,11 +17,9 @@ namespace DataExplorer.Presentation.Panes.Filter
         IFilterPaneViewModel,
         IEventHandler<FilterAddedEvent>,
         IEventHandler<FilterRemovedEvent>,
-        IEventHandler<ProjectOpeningEvent>,
         IEventHandler<ProjectOpenedEvent>,
         IEventHandler<ProjectClosedEvent>,
-        IEventHandler<CsvFileImportingEvent>,
-        IEventHandler<CsvFileImportedEvent>
+        IEventHandler<SourceImportedEvent>
     {
         private readonly IQueryBus _queryBus;
         private readonly IFilterViewModelFactory _factory;
@@ -49,11 +47,6 @@ namespace DataExplorer.Presentation.Panes.Filter
             OnPropertyChanged(() => FilterViewModels);
         }
 
-        public void Handle(ProjectOpeningEvent args)
-        {
-            OnPropertyChanged(() => FilterViewModels);
-        }
-
         public void Handle(ProjectOpenedEvent args)
         {
             OnPropertyChanged(() => FilterViewModels);
@@ -64,12 +57,7 @@ namespace DataExplorer.Presentation.Panes.Filter
             OnPropertyChanged(() => FilterViewModels);
         }
 
-        public void Handle(CsvFileImportingEvent args)
-        {
-            OnPropertyChanged(() => FilterViewModels);
-        }
-
-        public void Handle(CsvFileImportedEvent args)
+        public void Handle(SourceImportedEvent args)
         {
             OnPropertyChanged(() => FilterViewModels);
         }

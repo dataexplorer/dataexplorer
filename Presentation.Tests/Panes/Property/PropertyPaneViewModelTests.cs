@@ -6,19 +6,21 @@ using DataExplorer.Application.Columns;
 using DataExplorer.Application.Columns.Queries;
 using DataExplorer.Application.Core.Queries;
 using DataExplorer.Application.Importers.CsvFiles.Events;
+using DataExplorer.Application.Projects.Events;
 using DataExplorer.Application.Rows;
 using DataExplorer.Application.Rows.Events;
 using DataExplorer.Application.Rows.Queries;
 using DataExplorer.Domain.Rows;
 using DataExplorer.Domain.Tests.Rows;
 using DataExplorer.Presentation.Panes.Property;
+using DataExplorer.Presentation.Tests.Core;
 using Moq;
 using NUnit.Framework;
 
 namespace DataExplorer.Presentation.Tests.Panes.Property
 {
     [TestFixture]
-    public class PropertyPaneViewModelTests
+    public class PropertyPaneViewModelTests : ViewModelTests
     {
         private PropertyPaneViewModel _viewModel;
         private Mock<IQueryBus> _mockQueryBus;
@@ -66,27 +68,29 @@ namespace DataExplorer.Presentation.Tests.Panes.Property
         [Test]
         public void TestHandleSelectedRowsChangedShouldFirePropertiesChangedEvent()
         {
-            AssertPropertiesChangedEventWasRaised(() => _viewModel.Handle(new SelectedRowsChangedEvent()));
+            AssertPropertyChanged(_viewModel, () => _viewModel.Properties, 
+                () => _viewModel.Handle(new SelectedRowsChangedEvent()));
         }
 
         [Test]
-        public void TestHandleCsvFileImportingShouldFirePropertiesChangedEvent()
+        public void TestHandleProjectOpenedShouldFirePropertiesChangedEvent()
         {
-            AssertPropertiesChangedEventWasRaised(() => _viewModel.Handle(new CsvFileImportingEvent()));
+            AssertPropertyChanged(_viewModel, () => _viewModel.Properties,
+                () => _viewModel.Handle(new ProjectOpenedEvent()));
         }
 
         [Test]
-        public void TestHandleProjectOpeningShouldFirePropertiesChangedEvent()
+        public void TestHandleProjectClosedShouldFirePropertiesChangedEvent()
         {
-            AssertPropertiesChangedEventWasRaised(() => _viewModel.Handle(new SelectedRowsChangedEvent()));
+            AssertPropertyChanged(_viewModel, () => _viewModel.Properties,
+                () => _viewModel.Handle(new ProjectClosedEvent()));
         }
 
-        private void AssertPropertiesChangedEventWasRaised(Action action)
+        [Test]
+        public void TestHandleSourceImportedShouldFirePropertiesChangedEvent()
         {
-            var wasRaised = false;
-            _viewModel.PropertyChanged += (s, e) => { wasRaised = e.PropertyName == "Properties"; };
-            action.Invoke();
-            Assert.That(wasRaised, Is.True);
+            AssertPropertyChanged(_viewModel, () => _viewModel.Properties,
+                () => _viewModel.Handle(new SourceImportedEvent()));
         }
     }
 }

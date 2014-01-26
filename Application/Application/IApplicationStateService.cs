@@ -18,8 +18,12 @@ namespace DataExplorer.Application.Application
 
         void SetSelectedFilter(Filter filter);
 
+        void ClearSelectedFilter();
+
         List<Row> GetSelectedRows();
 
         void SetSelectedRows(List<Row> rows);
+
+        void ClearSelectedRows();
     }
 }

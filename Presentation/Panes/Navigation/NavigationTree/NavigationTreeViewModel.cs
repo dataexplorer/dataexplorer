@@ -15,11 +15,9 @@ namespace DataExplorer.Presentation.Panes.Navigation.NavigationTree
     public class NavigationTreeViewModel 
         : BaseViewModel, 
         INavigationTreeViewModel,
-        IEventHandler<ProjectOpeningEvent>,
         IEventHandler<ProjectOpenedEvent>,
         IEventHandler<ProjectClosedEvent>,
-        IEventHandler<CsvFileImportingEvent>,
-        IEventHandler<CsvFileImportedEvent>
+        IEventHandler<SourceImportedEvent>
     {
         private readonly IMessageBus _messageBus;
 
@@ -36,11 +34,6 @@ namespace DataExplorer.Presentation.Panes.Navigation.NavigationTree
             _treeNodeViewModels = new List<TreeNodeViewModel>();
         }
 
-        public void Handle(ProjectOpeningEvent args)
-        {
-            ClearViewModels();
-        }
-
         public void Handle(ProjectOpenedEvent args)
         {
             RefreshViewModels();
@@ -48,15 +41,10 @@ namespace DataExplorer.Presentation.Panes.Navigation.NavigationTree
 
         public void Handle(ProjectClosedEvent args)
         {
-            RefreshViewModels();
-        }
-
-        public void Handle(CsvFileImportingEvent args)
-        {
             ClearViewModels();
         }
 
-        public void Handle(CsvFileImportedEvent args)
+        public void Handle(SourceImportedEvent args)
         {
             RefreshViewModels();
         }

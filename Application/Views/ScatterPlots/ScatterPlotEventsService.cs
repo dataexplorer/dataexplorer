@@ -13,7 +13,7 @@ namespace DataExplorer.Application.Views.ScatterPlots
         : IEventHandler<ProjectOpenedEvent>,
         IEventHandler<ProjectClosedEvent>,
         IEventHandler<LayoutChangedEvent>,
-        IEventHandler<CsvFileImportedEvent>,
+        IEventHandler<SourceImportedEvent>,
         IEventHandler<FilterAddedEvent>,
         IEventHandler<FilterRemovedEvent>,
         IEventHandler<FilterChangedEvent>
@@ -40,7 +40,7 @@ namespace DataExplorer.Application.Views.ScatterPlots
             _commandBus.Execute(new UpdatePlotsCommand());
         }
 
-        public void Handle(CsvFileImportedEvent args)
+        public void Handle(SourceImportedEvent args)
         {
             _commandBus.Execute(new UpdatePlotsCommand());
         }

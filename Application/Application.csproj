@@ -120,9 +120,9 @@
     <Compile Include="Importers\CsvFiles\Commands\UpdateCsvFileSourceCommandHandler.cs" />
     <Compile Include="Importers\CsvFiles\CsvFileSourceAdapter.cs" />
     <Compile Include="Importers\CsvFiles\CsvFileSourceDto.cs" />
-    <Compile Include="Importers\CsvFiles\Events\CsvFileImportedEvent.cs" />
-    <Compile Include="Importers\CsvFiles\Events\CsvFileImportingEvent.cs" />
-    <Compile Include="Importers\CsvFiles\Events\CsvFileImportProgressChangedEvent.cs" />
+    <Compile Include="Importers\CsvFiles\Events\SourceImportedEvent.cs" />
+    <Compile Include="Importers\CsvFiles\Events\SourceImportingEvent.cs" />
+    <Compile Include="Importers\CsvFiles\Events\SourceImportProgressChangedEvent.cs" />
     <Compile Include="Importers\CsvFiles\Events\CsvFileSourceChangedEvent.cs" />
     <Compile Include="Importers\CsvFiles\ICsvFileSourceAdapter.cs" />
     <Compile Include="Importers\CsvFiles\Queries\CanImportQuery.cs" />
@@ -135,6 +135,7 @@
     <Compile Include="Importers\IDataTypeDetector.cs" />
     <Compile Include="Importers\ISourceRepository.cs" />
     <Compile Include="IProcess.cs" />
+    <Compile Include="Projects\Events\ProjectClosingEvent.cs" />
     <Compile Include="Projects\IXmlFileService.cs" />
     <Compile Include="Maps\Queries\GetAxisMapQuery.cs" />
     <Compile Include="Maps\Queries\GetAxisMapQueryHandler.cs" />

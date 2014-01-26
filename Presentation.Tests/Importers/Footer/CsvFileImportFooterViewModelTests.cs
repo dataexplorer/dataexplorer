@@ -1,9 +1,7 @@
 ﻿using DataExplorer.Application.Core.Messages;
-using DataExplorer.Application.Importers.CsvFiles;
 using DataExplorer.Application.Importers.CsvFiles.Commands;
 using DataExplorer.Application.Importers.CsvFiles.Events;
 using DataExplorer.Application.Importers.CsvFiles.Queries;
-using DataExplorer.Presentation.Importers.CsvFile;
 using DataExplorer.Presentation.Importers.CsvFile.Footer;
 using Moq;
 using NUnit.Framework;
@@ -61,89 +59,89 @@ namespace DataExplorer.Presentation.Tests.Importers.Footer
         }
 
         [Test]
-        public void TestHandleDataImportingShouldUpdateIsProgressBarVisible()
+        public void TestHandleSourceImportingShouldUpdateIsProgressBarVisible()
         {
-            _viewModel.Handle(new CsvFileImportingEvent());
+            _viewModel.Handle(new SourceImportingEvent());
             Assert.That(_viewModel.IsProgressBarVisible, Is.True);
         }
 
         [Test]
-        public void TestHandleDataImportingShouldSetProgressToZero()
+        public void TestHandleSourceImportingShouldSetProgressToZero()
         {
-            _viewModel.Handle(new CsvFileImportingEvent());
+            _viewModel.Handle(new SourceImportingEvent());
             Assert.That(_viewModel.Progress, Is.EqualTo(0));
         }
 
         [Test]
-        public void TestHandleDataImportingShouldNotifyIsProgressBarVisibleChanged()
+        public void TestHandleSourceImportingShouldNotifyIsProgressBarVisibleChanged()
         {
             var wasRaised = false;
             _viewModel.PropertyChanged += (s, e) => { wasRaised = (e.PropertyName == "IsProgressBarVisible"); };
-            _viewModel.Handle(new CsvFileImportingEvent());
+            _viewModel.Handle(new SourceImportingEvent());
         }
 
         [Test]
-        public void TestHandleDataImportingShouldNotifyProgressChanged()
+        public void TestHandleSourceImportingShouldNotifyProgressChanged()
         {
             var wasRaised = false;
             _viewModel.PropertyChanged += (s, e) => { wasRaised = (e.PropertyName == "Progress"); };
-            _viewModel.Handle(new CsvFileImportingEvent());
+            _viewModel.Handle(new SourceImportingEvent());
         }
 
         [Test]
-        public void TestHandlDataImportedShouldUpdateIsProgressBarVisible()
+        public void TestHandleSourceImportedShouldUpdateIsProgressBarVisible()
         {
-            _viewModel.Handle(new CsvFileImportedEvent());
+            _viewModel.Handle(new SourceImportedEvent());
             Assert.That(_viewModel.IsProgressBarVisible, Is.False);
         }
 
         [Test]
-        public void TestHandleDataImportedShouldSetProgressToZero()
+        public void TestHandleSourceImportedShouldSetProgressToZero()
         {
-            _viewModel.Handle(new CsvFileImportedEvent());
+            _viewModel.Handle(new SourceImportedEvent());
             Assert.That(_viewModel.Progress, Is.EqualTo(0));
         }
 
         [Test]
-        public void TestHandlDataImportedShouldNotifyIsProgressBarVisibleChanged()
+        public void TestHandleSourceImportedShouldNotifyIsProgressBarVisibleChanged()
         {
             var wasRaised = false;
             _viewModel.PropertyChanged += (s, e) =>
             { if (e.PropertyName == "IsProgressBarVisible") wasRaised = true; };
-            _viewModel.Handle(new CsvFileImportedEvent());
+            _viewModel.Handle(new SourceImportedEvent());
             Assert.That(wasRaised, Is.True);
         }
 
         [Test]
-        public void TestHandleDataImportedShouldNotifyProgressChanged()
+        public void TestHandleSourceImportedShouldNotifyProgressChanged()
         {
             var wasRaised = false;
             _viewModel.PropertyChanged += (s, e) => { wasRaised = (e.PropertyName == "Progress"); };
-            _viewModel.Handle(new CsvFileImportedEvent());
+            _viewModel.Handle(new SourceImportedEvent());
         }
 
         [Test]
-        public void TestHandleDataImportedShouldCloseTheDialog()
+        public void TestHandleSourceImportedShouldCloseTheDialog()
         {
             var wasRaised = false;
             _viewModel.DialogClosed += (s, e) => { wasRaised = true; };
-            _viewModel.Handle(new CsvFileImportedEvent());
+            _viewModel.Handle(new SourceImportedEvent());
             Assert.That(wasRaised, Is.True);
         }
 
         [Test]
-        public void TestHandleDataImportProgressChangedShouldUpdateProgress()
+        public void TestHandleSourceImportProgressChangedShouldUpdateProgress()
         {
-            _viewModel.Handle(new CsvFileImportProgressChangedEvent(50));
+            _viewModel.Handle(new SourceImportProgressChangedEvent(50));
             Assert.That(_viewModel.Progress, Is.EqualTo(50));
         }
 
         [Test]
-        public void TestHandleDataImportProgressChangedShouldNotifyProgressChanged()
+        public void TestHandleSourceImportProgressChangedShouldNotifyProgressChanged()
         {
             var wasRaised = false;
             _viewModel.PropertyChanged += (s, e) => { wasRaised = (e.PropertyName == "Progress"); };
-            _viewModel.Handle(new CsvFileImportProgressChangedEvent(50));
+            _viewModel.Handle(new SourceImportProgressChangedEvent(50));
             Assert.That(wasRaised, Is.True);
         }
     }

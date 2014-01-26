@@ -8,21 +8,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using DataExplorer.Application.Core.Events;
+using DataExplorer.Application.Importers.CsvFiles.Events;
+using DataExplorer.Application.Projects.Events;
 using DataExplorer.Domain.Core.Events;
-using DataExplorer.Domain.Views.ScatterPlots;
 using DataExplorer.Domain.Views.ScatterPlots.Events;
 using DataExplorer.Presentation.Core;
 using DataExplorer.Presentation.Core.Canvas.Items;
 using DataExplorer.Presentation.Core.Collections;
-using DataExplorer.Presentation.Views.ScatterPlots.Commands;
-using DataExplorer.Presentation.Views.ScatterPlots.Queries;
-using DataExplorer.Presentation.Views.ScatterPlots.Scalers;
 
 namespace DataExplorer.Presentation.Views.ScatterPlots
 {
     public class ScatterPlotViewModel 
         : BaseViewModel, 
         IScatterPlotViewModel,
+        IEventHandler<ProjectOpenedEvent>,
+        IEventHandler<ProjectClosedEvent>,
+        IEventHandler<SourceImportedEvent>,
         IDomainHandler<ScatterPlotChangedEvent>
     {
         private readonly IScatterPlotContextMenuViewModel _contextMenuViewModel;
@@ -93,6 +95,26 @@ namespace DataExplorer.Presentation.Views.ScatterPlots
             OnPropertyChanged(() => Items);
         }
 
+        public void Handle(ProjectOpenedEvent args)
+        {
+            OnPropertyChanged(() => Items);
+            OnPropertyChanged(() => SelectedItems);
+        }
+
+        public void Handle(ProjectClosedEvent args)
+        {
+            _selectedItems.Clear();
+
+            OnPropertyChanged(() => Items);
+            OnPropertyChanged(() => SelectedItems);
+        }
+
+        public void Handle(SourceImportedEvent args)
+        {
+            OnPropertyChanged(() => Items);
+            OnPropertyChanged(() => SelectedItems);
+        }
+        
         private void HandleSelectedItemsChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             _commands.Select(_selectedItems.ToList());

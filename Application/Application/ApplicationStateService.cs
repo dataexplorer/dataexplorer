@@ -18,8 +18,8 @@ namespace DataExplorer.Application.Application
         IEventHandler<ProjectOpeningEvent>,
         IEventHandler<ProjectOpenedEvent>,
         IEventHandler<ProjectClosedEvent>,
-        IEventHandler<CsvFileImportingEvent>,
-        IEventHandler<CsvFileImportedEvent>
+        IEventHandler<SourceImportingEvent>,
+        IEventHandler<SourceImportedEvent>
 
     {
         private readonly IApplicationState _state;
@@ -69,6 +69,11 @@ namespace DataExplorer.Application.Application
             _state.SelectedFilter = filter;
         }
 
+        public void ClearSelectedFilter()
+        {
+            _state.SelectedFilter = null;
+        }
+
         public List<Row> GetSelectedRows()
         {
              return _state.SelectedRows;
@@ -79,13 +84,16 @@ namespace DataExplorer.Application.Application
             _state.SelectedRows = rows;
         }
 
+        public void ClearSelectedRows()
+        {
+            _state.SelectedRows.Clear();
+        }
+
         // TODO: Move this into an application-level event handler
         public void Handle(ProjectOpeningEvent args)
         {
             SetIsStartMenuVisible(false);
             SetIsNavigationTreeVisible(false);
-            SetSelectedFilter(null);
-            SetSelectedRows(new List<Row>());
         }
 
         // TODO: Move this into an application-level event handler
@@ -99,21 +107,17 @@ namespace DataExplorer.Application.Application
         {
             SetIsStartMenuVisible(true);
             SetIsNavigationTreeVisible(false);
-            SetSelectedFilter(null);
-            SetSelectedRows(new List<Row>());
         }
 
         // TODO: Move this into an application-level event handler
-        public void Handle(CsvFileImportingEvent args)
+        public void Handle(SourceImportingEvent args)
         {
             SetIsStartMenuVisible(false);
             SetIsNavigationTreeVisible(false);
-            SetSelectedFilter(null);
-            SetSelectedRows(new List<Row>());
         }
 
         // TODO: Move this into an application-level event handler
-        public void Handle(CsvFileImportedEvent args)
+        public void Handle(SourceImportedEvent args)
         {
             SetIsNavigationTreeVisible(true);
         }

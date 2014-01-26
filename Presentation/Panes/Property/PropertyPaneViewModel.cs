@@ -9,7 +9,6 @@ using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Core.Queries;
 using DataExplorer.Application.Importers.CsvFiles.Events;
 using DataExplorer.Application.Projects.Events;
-using DataExplorer.Application.Rows;
 using DataExplorer.Application.Rows.Events;
 using DataExplorer.Application.Rows.Queries;
 using DataExplorer.Presentation.Core;
@@ -20,8 +19,9 @@ namespace DataExplorer.Presentation.Panes.Property
         : BaseViewModel,
         IPropertyPaneViewModel,
         IEventHandler<SelectedRowsChangedEvent>,
-        IEventHandler<CsvFileImportingEvent>,
-        IEventHandler<ProjectOpeningEvent>
+        IEventHandler<ProjectOpenedEvent>,
+        IEventHandler<ProjectClosedEvent>,
+        IEventHandler<SourceImportedEvent>
     {
         private readonly IQueryBus _queryBus;
         private readonly IProcess _process;
@@ -69,12 +69,17 @@ namespace DataExplorer.Presentation.Panes.Property
             OnPropertyChanged(() => Properties);
         }
 
-        public void Handle(CsvFileImportingEvent args)
+        public void Handle(ProjectOpenedEvent args)
         {
             OnPropertyChanged(() => Properties);
         }
 
-        public void Handle(ProjectOpeningEvent args)
+        public void Handle(ProjectClosedEvent args)
+        {
+            OnPropertyChanged(() => Properties);
+        }
+
+        public void Handle(SourceImportedEvent args)
         {
             OnPropertyChanged(() => Properties);
         }

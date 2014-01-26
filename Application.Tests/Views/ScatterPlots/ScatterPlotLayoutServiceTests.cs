@@ -42,7 +42,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots
         [Test]
         public void TestHandleDataImportedEventShouldRaiseLayoutColumnsChangedEvent()
         {
-            var args = new CsvFileImportedEvent();
+            var args = new SourceImportedEvent();
             _service.Handle(args);
             _mockEventBus.Verify(p => p.Raise(It.IsAny<LayoutResetEvent>()));
         }

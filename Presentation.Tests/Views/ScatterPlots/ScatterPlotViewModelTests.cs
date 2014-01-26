@@ -1,9 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using DataExplorer.Application.Importers.CsvFiles.Events;
+using DataExplorer.Application.Projects.Events;
 using DataExplorer.Domain.Views.ScatterPlots;
 using DataExplorer.Domain.Views.ScatterPlots.Events;
 using DataExplorer.Presentation.Core.Canvas.Items;
+using DataExplorer.Presentation.Tests.Core;
+using DataExplorer.Presentation.Tests.Core.Canvas.Items;
 using DataExplorer.Presentation.Views.ScatterPlots;
 using Moq;
 using NUnit.Framework;
@@ -11,7 +15,7 @@ using NUnit.Framework;
 namespace DataExplorer.Presentation.Tests.Views.ScatterPlots
 {
     [TestFixture]
-    public class ScatterPlotViewModelTests
+    public class ScatterPlotViewModelTests : ViewModelTests
     {
         private ScatterPlotViewModel _viewModel;
         private Mock<IScatterPlotContextMenuViewModel> _mockContextMenuViewModel;
@@ -100,6 +104,27 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots
             var vector = new Vector();
             _viewModel.HandlePan(vector);
             _mockCommands.Verify(p => p.Pan(vector, _controlSize), Times.Once());
+        }
+
+        [Test]
+        public void TestHandleProjectOpenedShouldClearSelectedItems()
+        {
+            AssertPropertyChanged(_viewModel, () => _viewModel.SelectedItems,
+                () => _viewModel.Handle(new ProjectOpenedEvent()));
+        }
+
+        [Test]
+        public void TestHandleProjectClosedShouldClearSelectedItems()
+        {
+            AssertPropertyChanged(_viewModel, () => _viewModel.SelectedItems, 
+                () => _viewModel.Handle(new ProjectClosedEvent()));
+        }
+
+        [Test]
+        public void TestHandleSourceImportedShouldClearSelectedItems()
+        {
+            AssertPropertyChanged(_viewModel, () => _viewModel.SelectedItems,
+                () => _viewModel.Handle(new SourceImportedEvent()));
         }
 
         [Test]

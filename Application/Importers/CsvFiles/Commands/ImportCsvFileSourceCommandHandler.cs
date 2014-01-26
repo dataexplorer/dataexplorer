@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataExplorer.Application.Application;
 using DataExplorer.Application.Columns;
 using DataExplorer.Application.Core.Commands;
 using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Importers.CsvFiles.Events;
+using DataExplorer.Application.Projects.Events;
 using DataExplorer.Application.Rows;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Converters;
@@ -19,38 +22,59 @@ namespace DataExplorer.Application.Importers.CsvFiles.Commands
         : ICommandHandler<ImportCsvFileSourceCommand>
     {
         private readonly ISourceRepository _repository;
+        private readonly IEventBus _eventBus;
+        private readonly IApplicationStateService _stateService;
+        private readonly IDataContext _dataContext;
         private readonly ICsvFileDataAdapter _dataAdapter;
         private readonly IDataTypeConverterFactory _converterFactory;
         private readonly IRowRepository _rowRepository;
         private readonly IColumnRepository _columnRepository;
-        private readonly IDataContext _dataContext;
-        private readonly IEventBus _eventBus;
 
         public ImportCsvFileSourceCommandHandler(
             ISourceRepository repository, 
+            IEventBus eventBus, 
+            IApplicationStateService stateService,
+            IDataContext dataContext, 
             ICsvFileDataAdapter dataAdapter, 
             IDataTypeConverterFactory converterFactory, 
             IRowRepository rowRepository, 
-            IColumnRepository columnRepository, 
-            IDataContext dataContext, 
-            IEventBus eventBus)
+            IColumnRepository columnRepository)
         {
             _repository = repository;
+            _eventBus = eventBus;
+            _stateService = stateService;
+            _dataContext = dataContext;
             _dataAdapter = dataAdapter;
             _converterFactory = converterFactory;
             _rowRepository = rowRepository;
             _columnRepository = columnRepository;
-            _dataContext = dataContext;
-            _eventBus = eventBus;
         }
 
         public void Execute(ImportCsvFileSourceCommand command)
         {
-            _eventBus.Raise(new CsvFileImportingEvent());
-
             var source = _repository.GetSource<CsvFileSource>();
 
+            CloseExistingProject();
+
+            Import(source);
+        }
+
+        private void CloseExistingProject()
+        {
+            _eventBus.Raise(new ProjectClosingEvent());
+
+            _stateService.ClearSelectedFilter();
+
+            _stateService.ClearSelectedRows();
+
             _dataContext.Clear();
+
+            _eventBus.Raise(new ProjectClosedEvent());
+        }
+
+        private void Import(CsvFileSource source)
+        {
+            _eventBus.Raise(new SourceImportingEvent());
 
             _repository.SetSource(source);
 
@@ -59,42 +83,56 @@ namespace DataExplorer.Application.Importers.CsvFiles.Commands
             var dataTable = _dataAdapter.GetDataTable(source);
 
             var converters = dataColumns
-                .Select(p => _converterFactory.Create(typeof(string), p.DataType))
+                .Select(p => _converterFactory.Create(typeof (string), p.DataType))
                 .ToList();
 
-            // TODO: Move into separate component
-            for (int i = 0; i < dataTable.Rows.Count; i++)
-            {
-                var dataRow = dataTable.Rows[i];
+            CreateRowsAsync(dataTable, dataColumns, converters);
 
-                var row = new Row(i + 1, dataColumns.Count);
+            CreateColumnsAsync(dataColumns);
 
-                for (int j = 0; j < dataColumns.Count; j++)
-                    row[j] = converters[j].Convert(dataRow[j]);
+            _eventBus.Raise(new SourceImportedEvent());
+        }
 
-                _rowRepository.Add(row);
+        private void CreateRowsAsync(DataTable dataTable, List<DataColumn> dataColumns, List<IDataTypeConverter> converters)
+        {
+            Parallel.For(0, dataTable.Rows.Count, 
+                i => CreateRow(dataTable, dataColumns, converters, i));
+        }
 
-                var progress = (i + 1) / (double)dataTable.Rows.Count;
+        private void CreateRow(DataTable dataTable, List<DataColumn> dataColumns, List<IDataTypeConverter> converters, int i)
+        {
+            var dataRow = dataTable.Rows[i];
 
-                _eventBus.Raise(new CsvFileImportProgressChangedEvent(progress));
-            }
+            var row = new Row(i + 1, dataColumns.Count);
 
-            // TODO: Move into separate component
-            for (int i = 0; i < dataColumns.Count; i++)
-            {
-                var dataColumn = dataColumns[i];
+            for (int j = 0; j < dataColumns.Count; j++)
+                row[j] = converters[j].Convert(dataRow[j]);
 
-                var values = _rowRepository.GetAll()
-                    .Select(p => p[i])
-                    .OrderBy(p => p)
-                    .ToList();
+            _rowRepository.Add(row);
 
-                var column = new Column(i + 1, i, dataColumn.ColumnName, dataColumn.DataType, values);
+            var progress = (i + 1)/(double) dataTable.Rows.Count;
 
-                _columnRepository.Add(column);
-            }
+            _eventBus.Raise(new SourceImportProgressChangedEvent(progress));
+        }
 
-            _eventBus.Raise(new CsvFileImportedEvent());
+        private void CreateColumnsAsync(List<DataColumn> dataColumns)
+        {
+            Parallel.For(0, dataColumns.Count, 
+                i => CreateColumn(dataColumns, i));
+        }
+
+        private void CreateColumn(List<DataColumn> dataColumns, int i)
+        {
+            var dataColumn = dataColumns[i];
+
+            var values = _rowRepository.GetAll()
+                .Select(p => p[i])
+                .OrderBy(p => p)
+                .ToList();
+
+            var column = new Column(i + 1, i, dataColumn.ColumnName, dataColumn.DataType, values);
+
+            _columnRepository.Add(column);
         }
     }
 }

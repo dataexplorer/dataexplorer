@@ -53,7 +53,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots
         [Test]
         public void TestHandleDataImportedEventShouldUpdatePlots()
         {
-            var @event = new CsvFileImportedEvent();
+            var @event = new SourceImportedEvent();
             _service.Handle(@event);
             _mockTask.Verify(p => p.Execute(It.IsAny<UpdatePlotsCommand>()),
                 Times.Once());

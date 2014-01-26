@@ -8,7 +8,7 @@ namespace DataExplorer.Application.Views.ScatterPlots
     public class LayoutEventService : 
         IEventHandler<ProjectOpenedEvent>,
         IEventHandler<ProjectClosedEvent>,
-        IEventHandler<CsvFileImportedEvent>
+        IEventHandler<SourceImportedEvent>
     {
         private readonly IEventBus _eventBus;
 
@@ -27,7 +27,7 @@ namespace DataExplorer.Application.Views.ScatterPlots
             _eventBus.Raise(new LayoutResetEvent());
         }
 
-        public void Handle(CsvFileImportedEvent args)
+        public void Handle(SourceImportedEvent args)
         {
             _eventBus.Raise(new LayoutResetEvent());
         }

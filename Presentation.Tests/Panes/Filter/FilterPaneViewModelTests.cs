@@ -56,14 +56,7 @@ namespace DataExplorer.Presentation.Tests.Panes.Filter
             AssertPropertyChanged(_viewModel, () => _viewModel.FilterViewModels,
                 () => _viewModel.Handle(new FilterRemovedEvent(_filter)));
         }
-
-        [Test]
-        public void TestHandleProjectOpeningShouldRaisePropertyChanged()
-        {
-            AssertPropertyChanged(_viewModel, () => _viewModel.FilterViewModels,
-                () => _viewModel.Handle(new ProjectOpeningEvent()));
-        }
-
+       
         [Test]
         public void TestHandleProjectOpenedShouldRaisePropertyChanged()
         {
@@ -79,17 +72,10 @@ namespace DataExplorer.Presentation.Tests.Panes.Filter
         }
 
         [Test]
-        public void TestHandleDataSourceImportingShouldRaisePropertyChanged()
+        public void TestHandleSourceImportedShouldRaisePropertyChanged()
         {
             AssertPropertyChanged(_viewModel, () => _viewModel.FilterViewModels,
-                () => _viewModel.Handle(new CsvFileImportingEvent()));
-        }
-
-        [Test]
-        public void TestHandleDataSourceImportedShouldRaisePropertyChanged()
-        {
-            AssertPropertyChanged(_viewModel, () => _viewModel.FilterViewModels,
-                () => _viewModel.Handle(new CsvFileImportedEvent()));
+                () => _viewModel.Handle(new SourceImportedEvent()));
         }
     }
 

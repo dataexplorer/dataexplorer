@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataExplorer.Application.Application;
 using DataExplorer.Application.Core.Commands;
 using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Projects.Events;
@@ -13,23 +14,26 @@ namespace DataExplorer.Application.Projects.Commands
         : ICommandHandler<OpenProjectCommand>
     {
         private readonly IDialogService _dialogService;
+        private readonly IEventBus _eventBus;
+        private readonly IApplicationStateService _stateService;
+        private readonly IDataContext _dataContext;
         private readonly IXmlFileService _xmlFileService;
         private readonly IProjectSerializer _projectSerializer;
-        private readonly IDataContext _dataContext;
-        private readonly IEventBus _eventBus;
 
         public OpenProjectCommandHandler(
             IDialogService dialogService,
-            IXmlFileService xmlFileService,
-            IProjectSerializer projectSerializer, 
+            IEventBus eventBus,
+            IApplicationStateService stateService,
             IDataContext dataContext, 
-            IEventBus eventBus)
+            IXmlFileService xmlFileService, 
+            IProjectSerializer projectSerializer)
         {
             _dialogService = dialogService;
             _xmlFileService = xmlFileService;
             _projectSerializer = projectSerializer;
             _dataContext = dataContext;
             _eventBus = eventBus;
+            _stateService = stateService;
         }
 
         public void Execute(OpenProjectCommand command)
@@ -39,6 +43,26 @@ namespace DataExplorer.Application.Projects.Commands
             if (filePath == null)
                 return;
 
+            CloseExistingProject();
+
+            OpenProject(filePath);
+        }
+
+        private void CloseExistingProject()
+        {
+            _eventBus.Raise(new ProjectClosingEvent());
+
+            _stateService.ClearSelectedFilter();
+
+            _stateService.ClearSelectedRows();
+
+            _dataContext.Clear();
+
+            _eventBus.Raise(new ProjectClosedEvent());
+        }
+
+        private void OpenProject(string filePath)
+        {
             _eventBus.Raise(new ProjectOpeningEvent());
 
             var xProject = _xmlFileService.Load(filePath);
