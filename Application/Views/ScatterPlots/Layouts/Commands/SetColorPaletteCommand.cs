@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.Core.Commands;
 using DataExplorer.Domain;
+using DataExplorer.Domain.Colors;
 
 namespace DataExplorer.Application.Views.ScatterPlots.Layouts.Commands
 {

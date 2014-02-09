@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DataExplorer.Application.Columns;
 using DataExplorer.Application.Core.Queries;
 using DataExplorer.Domain;
+using DataExplorer.Domain.Colors;
 using DataExplorer.Domain.Views.ScatterPlots;
 
 namespace DataExplorer.Application.Views.ScatterPlots.Layouts.Queries

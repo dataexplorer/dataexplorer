@@ -1,4 +1,5 @@
 ﻿using DataExplorer.Domain.Maps;
+using DataExplorer.Domain.Maps.AxisMaps;
 
 namespace DataExplorer.Application.Tests.Maps
 {

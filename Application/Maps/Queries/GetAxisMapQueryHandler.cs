@@ -7,6 +7,7 @@ using DataExplorer.Application.Columns;
 using DataExplorer.Application.Core.Queries;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Maps;
+using DataExplorer.Domain.Maps.AxisMaps;
 
 namespace DataExplorer.Application.Maps.Queries
 {

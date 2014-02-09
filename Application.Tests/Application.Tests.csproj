@@ -85,6 +85,9 @@
     <Compile Include="Importers\CsvFile\Queries\GetCsvFileSourceMapsQueryHandlerTests.cs" />
     <Compile Include="Importers\CsvFile\Queries\GetCsvFileSourceQueryHandlerTests.cs" />
     <Compile Include="Importers\DataTypeDetectorTests.cs" />
+    <Compile Include="Legends\Colors\Factories\BooleanColorLegendItemFactoryTests.cs" />
+    <Compile Include="Legends\Colors\Factories\ColorLegendItemFactoryTests.cs" />
+    <Compile Include="Legends\Colors\Queries\GetColorLegendItemsQueryHandlerTests.cs" />
     <Compile Include="Maps\FakeAxisMap.cs" />
     <Compile Include="Maps\Queries\GetAxisMapQueryHandlerTests.cs" />
     <Compile Include="Projects\Commands\CloseProjectCommandHandlerTests.cs" />
@@ -111,7 +114,7 @@
     <Compile Include="Views\ScatterPlots\Layouts\Queries\GetColorPaletteQueryHandlerTests.cs" />
     <Compile Include="Views\ScatterPlots\Layouts\Queries\GetXColumnQueryHandlerTests.cs" />
     <Compile Include="Views\ScatterPlots\Layouts\Queries\GetYColumnQueryHandlerTests.cs" />
-    <Compile Include="Views\ScatterPlots\Queries\GetScatterPlotsTaskTests.cs" />
+    <Compile Include="Views\ScatterPlots\Queries\GetScatterPlotsQueryHandlerTests.cs" />
     <Compile Include="Views\ScatterPlots\Queries\GetViewExtentTaskTests.cs" />
     <Compile Include="Views\ScatterPlots\ScatterPlotAdapterTests.cs" />
     <Compile Include="Views\ScatterPlots\ScatterPlotEventsServiceTests.cs" />

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DataExplorer.Domain.Maps;
+using DataExplorer.Domain.Maps.AxisMaps;
 using DataExplorer.Domain.Views.ScatterPlots;
 using DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories.BooleanGridLines;
 using DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories.DateTimeGridLines;

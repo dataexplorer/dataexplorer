@@ -58,7 +58,8 @@
                             </xcad:LayoutAnchorablePane>
                             <xcad:LayoutAnchorablePane>
                                 <xcad:LayoutAnchorable Title="Legend">
-                                    <TextBlock>Pane 5</TextBlock>
+                                    <legend:LegendPane 
+                                        DataContext="{Binding LegendPaneViewModel}" />
                                 </xcad:LayoutAnchorable>
                             </xcad:LayoutAnchorablePane>
                             <xcad:LayoutAnchorablePane>

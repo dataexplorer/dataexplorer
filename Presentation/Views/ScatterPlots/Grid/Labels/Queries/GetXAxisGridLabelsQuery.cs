@@ -1,11 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
-using DataExplorer.Application.Columns;
 using DataExplorer.Application.Columns.Queries;
 using DataExplorer.Application.Core.Queries;
-using DataExplorer.Application.Maps;
 using DataExplorer.Application.Maps.Queries;
-using DataExplorer.Application.Views.ScatterPlots;
 using DataExplorer.Application.Views.ScatterPlots.Layouts.Queries;
 using DataExplorer.Application.Views.ScatterPlots.Queries;
 using DataExplorer.Presentation.Core.Canvas.Items;

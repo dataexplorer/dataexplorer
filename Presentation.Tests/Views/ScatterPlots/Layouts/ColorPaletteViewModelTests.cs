@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using DataExplorer.Domain;
+using DataExplorer.Domain.Colors;
 using DataExplorer.Domain.Tests.Colors;
 using DataExplorer.Presentation.Views.ScatterPlots.Layout.Color;
 using NUnit.Framework;

@@ -7,6 +7,7 @@ using DataExplorer.Application.Columns;
 using DataExplorer.Application.Views;
 using DataExplorer.Application.Views.ScatterPlots.Layouts.Queries;
 using DataExplorer.Domain;
+using DataExplorer.Domain.Colors;
 using DataExplorer.Domain.Tests.Colors;
 using DataExplorer.Domain.Tests.Views.ScatterPlots;
 using DataExplorer.Domain.Views.ScatterPlots;

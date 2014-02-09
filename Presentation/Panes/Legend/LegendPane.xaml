@@ -3,11 +3,21 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:colors="clr-namespace:DataExplorer.Presentation.Panes.Legend.Colors"
     mc:Ignorable="d" 
     d:DesignHeight="300"
     d:DesignWidth="300">
-    <Grid>
-        <TextBlock>Legend Pane</TextBlock>
-    </Grid>
+    <StackPanel>
+        <colors:ColorLegend 
+            Title="{Binding ColorLegendViewModel.Title}"
+            Items="{Binding ColorLegendViewModel.Items}" />
+    </StackPanel>
+    <UserControl.ContextMenu>
+        <ContextMenu>
+            <MenuItem 
+                Header="Copy Legend"
+                Command="{Binding CopyLegendCommand}" />
+        </ContextMenu>
+    </UserControl.ContextMenu>
 </UserControl>

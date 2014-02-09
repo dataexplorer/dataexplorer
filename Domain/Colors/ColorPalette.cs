@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataExplorer.Domain.Colors;
 
-namespace DataExplorer.Domain
+namespace DataExplorer.Domain.Colors
 {
     public class ColorPalette
     {

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Presentation.Panes.Filter;
 using DataExplorer.Presentation.Panes.Layout;
+using DataExplorer.Presentation.Panes.Legend;
 using DataExplorer.Presentation.Panes.Navigation;
 using DataExplorer.Presentation.Panes.Property;
 using DataExplorer.Presentation.Panes.Viewer;
@@ -20,6 +21,7 @@ namespace DataExplorer.Presentation.Shell.MainWindow
         private readonly IViewerPaneViewModel _viewerPaneViewModel;
         private readonly IFilterPaneViewModel _filterPaneViewModel;
         private readonly ILayoutPaneViewModel _layoutPaneViewModel;
+        private readonly ILegendPaneViewModel _legendPaneViewModel;
         private readonly IPropertyPaneViewModel _propertyPaneViewModel;
         private readonly IStatusBarViewModel _statusBarViewModel;
 
@@ -29,6 +31,7 @@ namespace DataExplorer.Presentation.Shell.MainWindow
             IViewerPaneViewModel viewerPaneViewModel,
             IFilterPaneViewModel filterPaneViewModel,
             ILayoutPaneViewModel layoutPaneViewModel,
+            ILegendPaneViewModel legendPaneViewModel,
             IPropertyPaneViewModel propertyPaneViewModel,
             IStatusBarViewModel statusBarViewModel)
         {
@@ -37,6 +40,7 @@ namespace DataExplorer.Presentation.Shell.MainWindow
             _viewerPaneViewModel = viewerPaneViewModel;
             _filterPaneViewModel = filterPaneViewModel;
             _layoutPaneViewModel = layoutPaneViewModel;
+            _legendPaneViewModel = legendPaneViewModel;
             _propertyPaneViewModel = propertyPaneViewModel;
             _statusBarViewModel = statusBarViewModel;
         }
@@ -64,6 +68,11 @@ namespace DataExplorer.Presentation.Shell.MainWindow
         public ILayoutPaneViewModel LayoutPaneViewModel
         {
             get { return _layoutPaneViewModel; }
+        }
+
+        public ILegendPaneViewModel LegendPaneViewModel
+        {
+             get { return _legendPaneViewModel; }
         }
 
         public IPropertyPaneViewModel PropertyPaneViewModel

@@ -180,9 +180,17 @@
       <DependentUpon>LayoutPaneView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Panes\Layout\LayoutPaneViewModel.cs" />
+    <Compile Include="Panes\Legend\BaseLegend.cs" />
+    <Compile Include="Panes\Legend\Colors\ColorLegendItemViewModel.cs" />
+    <Compile Include="Panes\Legend\Colors\ColorLegend.cs" />
+    <Compile Include="Panes\Legend\Colors\ColorLegendViewModel.cs" />
+    <Compile Include="Panes\Legend\Colors\IColorLegendItem.cs" />
+    <Compile Include="Panes\Legend\Colors\IColorLegendViewModel.cs" />
+    <Compile Include="Panes\Legend\ILegendPaneViewModel.cs" />
     <Compile Include="Panes\Legend\LegendPane.xaml.cs">
       <DependentUpon>LegendPane.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Panes\Legend\LegendPaneViewModel.cs" />
     <Compile Include="Panes\Navigation\INavigationPaneViewModel.cs" />
     <Compile Include="Panes\Navigation\NavigationPaneView.xaml.cs">
       <DependentUpon>NavigationPaneView.xaml</DependentUpon>

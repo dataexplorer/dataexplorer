@@ -9,6 +9,7 @@ using DataExplorer.Application.Views;
 using DataExplorer.Application.Views.ScatterPlots.Layouts.Commands;
 using DataExplorer.Application.Views.ScatterPlots.Layouts.Events;
 using DataExplorer.Domain;
+using DataExplorer.Domain.Colors;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Tests.Colors;
 using DataExplorer.Domain.Tests.Columns;

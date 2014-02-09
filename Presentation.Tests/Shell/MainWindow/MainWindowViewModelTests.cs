@@ -1,5 +1,6 @@
 ﻿using DataExplorer.Presentation.Panes.Filter;
 using DataExplorer.Presentation.Panes.Layout;
+using DataExplorer.Presentation.Panes.Legend;
 using DataExplorer.Presentation.Panes.Navigation;
 using DataExplorer.Presentation.Panes.Property;
 using DataExplorer.Presentation.Panes.Viewer;
@@ -20,6 +21,7 @@ namespace DataExplorer.Presentation.Tests.Shell.MainWindow
         private Mock<IViewerPaneViewModel> _mockViewerViewModel;
         private Mock<IFilterPaneViewModel> _mockFilterPaneViewModel;
         private Mock<ILayoutPaneViewModel> _mockLayoutPaneViewModel;
+        private Mock<ILegendPaneViewModel> _mockLegendPaneViewModel;
         private Mock<IPropertyPaneViewModel> _mockPropertyPaneViewModel;
         private Mock<IStatusBarViewModel> _mockStatusBarViewModel;
 
@@ -31,6 +33,7 @@ namespace DataExplorer.Presentation.Tests.Shell.MainWindow
             _mockNavigationPaneViewModel = new Mock<INavigationPaneViewModel>();
             _mockFilterPaneViewModel = new Mock<IFilterPaneViewModel>();
             _mockLayoutPaneViewModel = new Mock<ILayoutPaneViewModel>();
+            _mockLegendPaneViewModel = new Mock<ILegendPaneViewModel>();
             _mockPropertyPaneViewModel = new Mock<IPropertyPaneViewModel>();
             _mockStatusBarViewModel = new Mock<IStatusBarViewModel>();
 
@@ -40,6 +43,7 @@ namespace DataExplorer.Presentation.Tests.Shell.MainWindow
                 _mockViewerViewModel.Object,
                 _mockFilterPaneViewModel.Object,
                 _mockLayoutPaneViewModel.Object,
+                _mockLegendPaneViewModel.Object,
                 _mockPropertyPaneViewModel.Object,
                 _mockStatusBarViewModel.Object);
         }
@@ -77,6 +81,13 @@ namespace DataExplorer.Presentation.Tests.Shell.MainWindow
         {
             var result = _viewModel.LayoutPaneViewModel;
             Assert.That(result, Is.EqualTo(_mockLayoutPaneViewModel.Object));
+        }
+
+        [Test]
+        public void TestGetLegendPaneViewModelShouldReturnViewModel()
+        {
+            var result = _viewModel.LegendPaneViewModel;
+            Assert.That(result, Is.EqualTo(_mockLegendPaneViewModel.Object));
         }
 
         [Test]

@@ -135,6 +135,17 @@
     <Compile Include="Importers\IDataTypeDetector.cs" />
     <Compile Include="Importers\ISourceRepository.cs" />
     <Compile Include="IProcess.cs" />
+    <Compile Include="Legends\Colors\ColorLegendItemDto.cs" />
+    <Compile Include="Legends\Colors\Factories\BooleanColorLegendItemFactory.cs" />
+    <Compile Include="Legends\Colors\Factories\ColorLegendItemFactory.cs" />
+    <Compile Include="Legends\Colors\Factories\IDateTimeColorLegendFactory.cs" />
+    <Compile Include="Legends\Colors\Factories\IBooleanColorLegendFactory.cs" />
+    <Compile Include="Legends\Colors\Factories\IColorLegendItemFactory.cs" />
+    <Compile Include="Legends\Colors\Factories\IFloatColorLegendFactory.cs" />
+    <Compile Include="Legends\Colors\Factories\IIntegerColorLegendFactory.cs" />
+    <Compile Include="Legends\Colors\Factories\IStringColorLegendFactory.cs" />
+    <Compile Include="Legends\Colors\Queries\GetColorLegendItemsQuery.cs" />
+    <Compile Include="Legends\Colors\Queries\GetColorLegendItemsQueryHandler.cs" />
     <Compile Include="Projects\Events\ProjectClosingEvent.cs" />
     <Compile Include="Projects\IXmlFileService.cs" />
     <Compile Include="Maps\Queries\GetAxisMapQuery.cs" />

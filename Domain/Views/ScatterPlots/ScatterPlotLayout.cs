@@ -1,4 +1,5 @@
-﻿using DataExplorer.Domain.Columns;
+﻿using DataExplorer.Domain.Colors;
+using DataExplorer.Domain.Columns;
 
 namespace DataExplorer.Domain.Views.ScatterPlots
 {

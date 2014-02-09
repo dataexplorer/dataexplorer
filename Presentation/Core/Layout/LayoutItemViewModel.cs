@@ -33,6 +33,12 @@ namespace DataExplorer.Presentation.Core.Layout
 
             var other = (LayoutItemViewModel) obj;
 
+            if (_column == null)
+                return false;
+
+            if (other.Column == null)
+                return false;
+
             return _column.Id == other._column.Id;
         }
 
