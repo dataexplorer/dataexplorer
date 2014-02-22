@@ -15,9 +15,9 @@ using NUnit.Framework;
 namespace DataExplorer.Application.Tests.Legends.Colors.Factories
 {
     [TestFixture]
-    public class ColorLegendItemFactoryTests
+    public class ColorLegendFactoryTests
     {
-        private ColorLegendItemFactory _factory;
+        private ColorLegendFactory _factory;
         private Mock<IBooleanColorLegendFactory> _mockBooleanFactory;
         private Mock<IDateTimeColorLegendFactory> _mockDateTimeFactory;
         private Mock<IFloatColorLegendFactory> _mockFloatFactory;
@@ -42,7 +42,7 @@ namespace DataExplorer.Application.Tests.Legends.Colors.Factories
             _mockIntegerFactory = new Mock<IIntegerColorLegendFactory>();
             _mockStringFactory = new Mock<IStringColorLegendFactory>();
 
-            _factory = new ColorLegendItemFactory(
+            _factory = new ColorLegendFactory(
                 _mockBooleanFactory.Object,
                 _mockDateTimeFactory.Object,
                 _mockFloatFactory.Object,
@@ -54,28 +54,28 @@ namespace DataExplorer.Application.Tests.Legends.Colors.Factories
         public void TestCreateBooleanColorLegendItems()
         {
             _factory.Create(typeof(Boolean), _colorMap, _values, _palette);
-            _mockBooleanFactory.Verify(p => p.Create(_colorMap, It.IsAny<List<bool>>(), _palette), Times.Once());
+            _mockBooleanFactory.Verify(p => p.Create(_colorMap, It.IsAny<List<bool?>>(), _palette), Times.Once());
         }
 
         [Test]
         public void TestCreateDateTimeColorLegendItems()
         {
             _factory.Create(typeof(DateTime), _colorMap, _values, _palette);
-            _mockDateTimeFactory.Verify(p => p.Create(_colorMap, It.IsAny<List<DateTime>>(), _palette), Times.Once());
+            _mockDateTimeFactory.Verify(p => p.Create(_colorMap, It.IsAny<List<DateTime?>>(), _palette), Times.Once());
         }
 
         [Test]
         public void TestCreateFloatColorLegendItems()
         {
             _factory.Create(typeof(Double), _colorMap, _values, _palette);
-            _mockFloatFactory.Verify(p => p.Create(_colorMap, It.IsAny<List<double>>(), _palette), Times.Once());
+            _mockFloatFactory.Verify(p => p.Create(_colorMap, It.IsAny<List<double?>>(), _palette), Times.Once());
         }
 
         [Test]
         public void TestCreateIntegerColorLegendItems()
         {
             _factory.Create(typeof(Int32), _colorMap, _values, _palette);
-            _mockIntegerFactory.Verify(p => p.Create(_colorMap, It.IsAny<List<int>>(), _palette), Times.Once());
+            _mockIntegerFactory.Verify(p => p.Create(_colorMap, It.IsAny<List<int?>>(), _palette), Times.Once());
         }
 
         [Test]

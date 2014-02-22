@@ -56,6 +56,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories.IntegerGri
             return map.Map(value).GetValueOrDefault();
         }
 
+        // TODO: Need to Refactor to a common location
         private string GetLabelName(int value)
         {
             if (value <= -1000000 || value >= 1000000)

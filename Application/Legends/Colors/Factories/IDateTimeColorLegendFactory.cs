@@ -10,6 +10,6 @@ namespace DataExplorer.Application.Legends.Colors.Factories
 {
     public interface IDateTimeColorLegendFactory
     {
-        List<ColorLegendItemDto> Create(ColorMap map, List<DateTime> values, ColorPalette palette);
+        IEnumerable<ColorLegendItemDto> Create(ColorMap map, List<DateTime?> values, ColorPalette palette);
     }
 }

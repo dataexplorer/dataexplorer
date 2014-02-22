@@ -10,6 +10,6 @@ namespace DataExplorer.Application.Legends.Colors.Factories
 {
     public interface IBooleanColorLegendFactory
     {
-        IEnumerable<ColorLegendItemDto> Create(ColorMap colorMap, List<bool> values, ColorPalette palette);
+        IEnumerable<ColorLegendItemDto> Create(ColorMap colorMap, List<bool?> values, ColorPalette palette);
     }
 }

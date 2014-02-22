@@ -88,15 +88,19 @@ namespace DataExplorer.Application.Importers.CsvFiles.Commands
 
             CreateRowsAsync(dataTable, dataColumns, converters);
 
-            CreateColumnsAsync(dataColumns);
+            CreateColumns(dataColumns);
 
             _eventBus.Raise(new SourceImportedEvent());
         }
 
         private void CreateRowsAsync(DataTable dataTable, List<DataColumn> dataColumns, List<IDataTypeConverter> converters)
         {
-            Parallel.For(0, dataTable.Rows.Count, 
-                i => CreateRow(dataTable, dataColumns, converters, i));
+            for (int i = 0; i < dataTable.Rows.Count; i++)
+                CreateRow(dataTable, dataColumns, converters, i);
+
+            // NOTE:  Removed due to odd async issue
+            //Parallel.For(0, dataTable.Rows.Count, 
+            //    i => CreateRow(dataTable, dataColumns, converters, i));
         }
 
         private void CreateRow(DataTable dataTable, List<DataColumn> dataColumns, List<IDataTypeConverter> converters, int i)
@@ -115,10 +119,14 @@ namespace DataExplorer.Application.Importers.CsvFiles.Commands
             _eventBus.Raise(new SourceImportProgressChangedEvent(progress));
         }
 
-        private void CreateColumnsAsync(List<DataColumn> dataColumns)
+        private void CreateColumns(List<DataColumn> dataColumns)
         {
-            Parallel.For(0, dataColumns.Count, 
-                i => CreateColumn(dataColumns, i));
+            for (int i = 0; i< dataColumns.Count; i++)
+                CreateColumn(dataColumns, i);
+
+            // NOTE: Removed due to odd async issue
+            //Parallel.For(0, dataColumns.Count, 
+            //    i => CreateColumn(dataColumns, i));
         }
 
         private void CreateColumn(List<DataColumn> dataColumns, int i)

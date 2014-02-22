@@ -5,7 +5,7 @@ using DataExplorer.Domain.Maps.ColorMaps;
 
 namespace DataExplorer.Application.Legends.Factories
 {
-    public interface IColorLegendItemFactory
+    public interface IColorLegendFactory
     {
         IEnumerable<ColorLegendItemDto> Create(Type type, ColorMap map, List<object> values, ColorPalette palette);
     }

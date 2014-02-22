@@ -10,6 +10,6 @@ namespace DataExplorer.Application.Legends.Colors.Factories
 {
     public interface IIntegerColorLegendFactory
     {
-        List<ColorLegendItemDto> Create(ColorMap map, List<int> values, ColorPalette palette);
+        IEnumerable<ColorLegendItemDto> Create(ColorMap map, List<int?> values, ColorPalette palette);
     }
 }

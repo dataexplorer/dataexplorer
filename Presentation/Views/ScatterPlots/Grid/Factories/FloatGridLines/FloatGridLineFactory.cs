@@ -58,6 +58,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Grid.Factories.FloatGridL
             return map.Map(value).GetValueOrDefault();
         }
 
+        // TODO: Need to refactor to common class
         private string GetLabelName(double value)
         {
             if (value <= -1000000d || value >= 1000000d 

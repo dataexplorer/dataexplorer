@@ -28,7 +28,7 @@ namespace DataExplorer.Application.Tests.Legends.Queries
         private GetColorLegendItemsQueryHandler _handler;
         private Mock<IViewRepository> _mockViewRepository;
         private Mock<IMapFactory> _mockMapFactory;
-        private Mock<IColorLegendItemFactory> _mockItemFactory;
+        private Mock<IColorLegendFactory> _mockItemFactory;
         private ScatterPlot _scatterPlot;
         private ScatterPlotLayout _layout;
         private Column _column;
@@ -65,7 +65,7 @@ namespace DataExplorer.Application.Tests.Legends.Queries
             _mockMapFactory.Setup(p => p.CreateColorMap(_column, _palette))
                 .Returns(_map);
 
-            _mockItemFactory = new Mock<IColorLegendItemFactory>();
+            _mockItemFactory = new Mock<IColorLegendFactory>();
             _mockItemFactory.Setup(p =>
                 p.Create(_column.Type, _map, It.IsAny<List<object>>(), _palette))
                 .Returns(new List<ColorLegendItemDto> { _itemDto });

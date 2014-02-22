@@ -7,7 +7,6 @@ using DataExplorer.Application.Legends;
 using DataExplorer.Application.Legends.Colors.Factories;
 using DataExplorer.Domain.Colors;
 using DataExplorer.Domain.Maps.ColorMaps;
-using DataExplorer.Domain.Tests.Colors;
 using DataExplorer.Domain.Tests.Maps;
 using NUnit.Framework;
 
@@ -16,21 +15,21 @@ namespace DataExplorer.Application.Tests.Legends.Colors.Factories
     [TestFixture]
     public class BooleanColorLegendItemFactoryTests
     {
-        private BooleanColorLegendItemFactory _factory;
+        private BooleanColorLegendFactory _factory;
         private ColorMap _colorMap;
-        private List<bool> _values;
+        private List<bool?> _values;
         private ColorPalette _palette;
 
         [SetUp]
         public void SetUp()
         {
             _colorMap = new FakeColorMap();
-            _values = new List<bool>();
+            _values = new List<bool?>();
             _palette = new ColorPaletteFactory().Pastel1;
 
-            _factory = new BooleanColorLegendItemFactory();
+            _factory = new BooleanColorLegendFactory();
         }
-
+        
         [Test]
         public void TestCreateShouldReturnColorLegendItems()
         {

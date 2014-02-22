@@ -85,8 +85,13 @@
     <Compile Include="Importers\CsvFile\Queries\GetCsvFileSourceMapsQueryHandlerTests.cs" />
     <Compile Include="Importers\CsvFile\Queries\GetCsvFileSourceQueryHandlerTests.cs" />
     <Compile Include="Importers\DataTypeDetectorTests.cs" />
+    <Compile Include="Legends\Colors\Factories\BaseColorLegendFactoryTests.cs" />
     <Compile Include="Legends\Colors\Factories\BooleanColorLegendItemFactoryTests.cs" />
-    <Compile Include="Legends\Colors\Factories\ColorLegendItemFactoryTests.cs" />
+    <Compile Include="Legends\Colors\Factories\ColorLegendFactoryTests.cs" />
+    <Compile Include="Legends\Colors\Factories\DateTimeColorLegendFactoryTests.cs" />
+    <Compile Include="Legends\Colors\Factories\FloatColorLegendFactoryTests.cs" />
+    <Compile Include="Legends\Colors\Factories\IntegerColorLegendFactoryTests.cs" />
+    <Compile Include="Legends\Colors\Factories\StringColorLegendFactoryTests.cs" />
     <Compile Include="Legends\Colors\Queries\GetColorLegendItemsQueryHandlerTests.cs" />
     <Compile Include="Maps\FakeAxisMap.cs" />
     <Compile Include="Maps\Queries\GetAxisMapQueryHandlerTests.cs" />

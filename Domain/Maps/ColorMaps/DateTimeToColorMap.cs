@@ -36,6 +36,9 @@ namespace DataExplorer.Domain.Maps.ColorMaps
 
             var index = (int) (ratio * _targetWidth);
 
+            // NOTE: This is a test to see if it fixes the out-of-bounds error
+            index = Math.Min(index, _colors.Count - 1);
+
             return _colors[index];
         }
 

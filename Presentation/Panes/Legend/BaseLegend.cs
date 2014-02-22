@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
-using DataExplorer.Presentation.Panes.Legend.Colors;
 
 namespace DataExplorer.Presentation.Panes.Legend
 {
@@ -41,9 +40,9 @@ namespace DataExplorer.Presentation.Panes.Legend
         {
             if (index < 0 || index >= _visuals.Count + 2)
                 throw new ArgumentOutOfRangeException("index");
-            
+
             if (index == 0)
-                return _backgroundVisual;
+                return null;// _backgroundVisual;
             
             if (index == 1)
                 return _titleVisual;
@@ -53,15 +52,18 @@ namespace DataExplorer.Presentation.Panes.Legend
 
         protected void RenderBackground()
         {
-            _backgroundVisual = new DrawingVisual();
+            var backgroundVisual = new DrawingVisual();
 
-            using (var context = _backgroundVisual.RenderOpen())
+            using (var context = backgroundVisual.RenderOpen())
             {
                 var rectangle = new Rect(0, 0, this.ActualWidth, this.ActualHeight);
                 context.DrawRectangle(Brushes.White, new Pen(Brushes.White, 0), rectangle);
             }
+
+            //_backgroundVisual = backgroundVisual;
+
+            _visuals.Add(backgroundVisual);
             
-            _visuals.Add(_backgroundVisual);
         }
 
         protected void RenderTitle()
