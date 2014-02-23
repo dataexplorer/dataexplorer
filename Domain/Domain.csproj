@@ -112,6 +112,14 @@
     <Compile Include="Maps\ColorMaps\StringToColorMap.cs" />
     <Compile Include="Maps\IMapFactory.cs" />
     <Compile Include="Maps\MapFactory.cs" />
+    <Compile Include="Maps\SizeMaps\BooleanToSizeMap.cs" />
+    <Compile Include="Maps\SizeMaps\DateTimeToSizeMap.cs" />
+    <Compile Include="Maps\SizeMaps\FloatToSizeMap.cs" />
+    <Compile Include="Maps\SizeMaps\StringToSizeMap.cs" />
+    <Compile Include="Maps\SizeMaps\IntegerToSizeMap.cs" />
+    <Compile Include="Maps\SizeMaps\ISizeMapFactory.cs" />
+    <Compile Include="Maps\SizeMaps\SizeMap.cs" />
+    <Compile Include="Maps\SizeMaps\SizeMapFactory.cs" />
     <Compile Include="Predicates\BooleanPredicate.cs" />
     <Compile Include="Predicates\DateTimePredicate.cs" />
     <Compile Include="Predicates\FloatPredicate.cs" />

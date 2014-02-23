@@ -110,7 +110,14 @@
     <Compile Include="Maps\ColorMaps\FloatToColorMapTests.cs" />
     <Compile Include="Maps\ColorMaps\IntegerToColorMapTests.cs" />
     <Compile Include="Maps\ColorMaps\StringToColorMapTests.cs" />
+    <Compile Include="Maps\FakeAxisMap.cs" />
     <Compile Include="Maps\MapFactoryTests.cs" />
+    <Compile Include="Maps\SizeMaps\SizeMapFactoryTests.cs" />
+    <Compile Include="Maps\SizeMaps\BooleanToSizeMapTests.cs" />
+    <Compile Include="Maps\SizeMaps\DateTimeToSizeMapTests.cs" />
+    <Compile Include="Maps\SizeMaps\FloatToSizeMapTests.cs" />
+    <Compile Include="Maps\SizeMaps\IntegerToSizeMapTests.cs" />
+    <Compile Include="Maps\SizeMaps\StringToSizeMapTests.cs" />
     <Compile Include="Predicates\BooleanPredicateTests.cs" />
     <Compile Include="Predicates\DateTimePredicateTests.cs" />
     <Compile Include="Predicates\FloatPredicateTests.cs" />

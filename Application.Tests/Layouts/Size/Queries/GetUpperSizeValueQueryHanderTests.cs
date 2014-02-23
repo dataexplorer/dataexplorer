@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.Layouts.Size.Queries;
 using DataExplorer.Application.Views;
-using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Tests.Views.ScatterPlots;
 using DataExplorer.Domain.Views.ScatterPlots;
 using Moq;
@@ -20,8 +19,7 @@ namespace DataExplorer.Application.Tests.Layouts.Size.Queries
         private Mock<IViewRepository> _mockRepository;
         private ScatterPlot _scatterPlot;
         private ScatterPlotLayout _layout;
-        private Column _column;
-
+        
         [SetUp]
         public void SetUp()
         {

@@ -165,8 +165,6 @@
     <Compile Include="Legends\Colors\Queries\GetColorLegendItemsQueryHandler.cs" />
     <Compile Include="Projects\Events\ProjectClosingEvent.cs" />
     <Compile Include="Projects\IXmlFileService.cs" />
-    <Compile Include="Maps\Queries\GetAxisMapQuery.cs" />
-    <Compile Include="Maps\Queries\GetAxisMapQueryHandler.cs" />
     <Compile Include="Projects\Commands\CloseProjectCommand.cs" />
     <Compile Include="Projects\Commands\CloseProjectCommandHandler.cs" />
     <Compile Include="Projects\Commands\ICloseProjectCommand.cs" />

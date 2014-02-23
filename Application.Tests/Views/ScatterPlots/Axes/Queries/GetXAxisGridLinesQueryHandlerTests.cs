@@ -1,15 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
-using DataExplorer.Application.Columns;
-using DataExplorer.Application.Columns.Queries;
-using DataExplorer.Application.Core.Queries;
-using DataExplorer.Application.Maps.Queries;
 using DataExplorer.Application.Tests.Maps;
 using DataExplorer.Application.Views;
 using DataExplorer.Application.Views.ScatterPlots.Axes.Factories;
 using DataExplorer.Application.Views.ScatterPlots.Axes.Queries;
-using DataExplorer.Application.Views.ScatterPlots.Queries;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Maps;
 using DataExplorer.Domain.Maps.AxisMaps;
