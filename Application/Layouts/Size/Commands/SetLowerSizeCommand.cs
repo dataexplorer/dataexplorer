@@ -7,11 +7,11 @@ using DataExplorer.Application.Core.Commands;
 
 namespace DataExplorer.Application.Layouts.Size.Commands
 {
-    public class SetUpperSizeValueCommand : ICommand
+    public class SetLowerSizeCommand : ICommand
     {
         private readonly double _value;
 
-        public SetUpperSizeValueCommand(double value)
+        public SetLowerSizeCommand(double value)
         {
             _value = value;
         }

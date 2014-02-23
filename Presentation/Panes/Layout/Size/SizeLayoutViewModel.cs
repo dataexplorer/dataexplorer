@@ -113,22 +113,22 @@ namespace DataExplorer.Presentation.Panes.Layout.Size
 
         private double GetLowerSizeSliderValue()
         {
-            return _messageBus.Execute(new GetLowerSizeValueQuery());
+            return _messageBus.Execute(new GetLowerSizeQuery());
         }
 
         private void SetLowerSizeSliderValue(double value)
         {
-            _messageBus.Execute(new SetLowerSizeValueCommand(value));
+            _messageBus.Execute(new SetLowerSizeCommand(value));
         }
 
         private double GetUpperSizeSliderValue()
         {
-            return _messageBus.Execute(new GetUpperSizeValueQuery());
+            return _messageBus.Execute(new GetUpperSizeQuery());
         }
 
         private void SetUpperSizeSliderValue(double value)
         {
-            _messageBus.Execute(new SetUpperSizeValueCommand(value));
+            _messageBus.Execute(new SetUpperSizeCommand(value));
         }
 
         public void Handle(LayoutChangedEvent args)

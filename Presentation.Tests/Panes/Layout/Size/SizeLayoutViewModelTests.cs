@@ -34,9 +34,9 @@ namespace DataExplorer.Presentation.Tests.Panes.Layout.Size
                 .Returns(new List<ColumnDto> { _columnDto });
             _mockMessageBus.Setup(p => p.Execute(It.IsAny<GetSizeColumnQuery>()))
                 .Returns(_columnDto);
-            _mockMessageBus.Setup(p => p.Execute(It.IsAny<GetLowerSizeValueQuery>()))
+            _mockMessageBus.Setup(p => p.Execute(It.IsAny<GetLowerSizeQuery>()))
                 .Returns(0.1d);
-            _mockMessageBus.Setup(p => p.Execute(It.IsAny<GetUpperSizeValueQuery>()))
+            _mockMessageBus.Setup(p => p.Execute(It.IsAny<GetUpperSizeQuery>()))
                 .Returns(0.9d);
             
             _viewModel = new SizeLayoutViewModel(
@@ -109,7 +109,7 @@ namespace DataExplorer.Presentation.Tests.Panes.Layout.Size
         {
             _viewModel.LowerSizeSliderValue = 0.2;
 
-            _mockMessageBus.Verify(p => p.Execute(It.Is<SetLowerSizeValueCommand>(q => q.Value == 0.2d)));
+            _mockMessageBus.Verify(p => p.Execute(It.Is<SetLowerSizeCommand>(q => q.Value == 0.2d)));
         }
 
         [Test]
@@ -125,7 +125,7 @@ namespace DataExplorer.Presentation.Tests.Panes.Layout.Size
         {
             _viewModel.UpperSizeSliderValue = 0.8;
 
-            _mockMessageBus.Verify(p => p.Execute(It.Is<SetUpperSizeValueCommand>(q => q.Value == 0.8d)));
+            _mockMessageBus.Verify(p => p.Execute(It.Is<SetUpperSizeCommand>(q => q.Value == 0.8d)));
         }
 
         [Test]

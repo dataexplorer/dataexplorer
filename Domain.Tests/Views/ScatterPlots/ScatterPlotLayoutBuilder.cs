@@ -42,6 +42,24 @@ namespace DataExplorer.Domain.Tests.Views.ScatterPlots
             return this;
         }
 
+        public ScatterPlotLayoutBuilder WithSizeColumn(Column column)
+        {
+            _layout.SizeColumn = column;
+            return this;
+        }
+
+        public ScatterPlotLayoutBuilder WithLowerSize(double size)
+        {
+            _layout.LowerSize = size;
+            return this;
+        }
+
+        public ScatterPlotLayoutBuilder WithUpperSize(double size)
+        {
+            _layout.UpperSize = size;
+            return this;
+        }
+
         public ScatterPlotLayout Build()
         {
             return _layout;

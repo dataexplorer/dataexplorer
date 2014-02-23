@@ -1,19 +1,23 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using DataExplorer.Application.Core.Commands;
 using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Layouts.General.Events;
 using DataExplorer.Application.Views;
 using DataExplorer.Domain.Views.ScatterPlots;
 
-namespace DataExplorer.Application.Layouts.Color.Commands
+namespace DataExplorer.Application.Layouts.Size.Commands
 {
-    public class SetColorPaletteCommandHandler 
-        : ICommandHandler<SetColorPaletteCommand>
+    public class SetLowerSizeCommandHandler
+        : ICommandHandler<SetLowerSizeCommand>
     {
         private readonly IViewRepository _repository;
         private readonly IEventBus _eventBus;
 
-        public SetColorPaletteCommandHandler(
+        public SetLowerSizeCommandHandler(
             IViewRepository repository, 
             IEventBus eventBus)
         {
@@ -21,13 +25,13 @@ namespace DataExplorer.Application.Layouts.Color.Commands
             _eventBus = eventBus;
         }
 
-        public void Execute(SetColorPaletteCommand command)
+        public void Execute(SetLowerSizeCommand command)
         {
             var scatterPlot = _repository.Get<ScatterPlot>();
 
             var layout = scatterPlot.GetLayout();
 
-            layout.ColorPalette = command.Entity;
+            layout.LowerSize = command.Value;
 
             _eventBus.Raise(new LayoutChangedEvent());
         }

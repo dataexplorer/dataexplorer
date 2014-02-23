@@ -9,6 +9,9 @@ namespace DataExplorer.Domain.Views.ScatterPlots
         private Column _yAxisColumn;
         private Column _colorColumn;
         private ColorPalette _colorPalette;
+        private Column _sizeColumn;
+        private double _lowerSize;
+        private double _upperSize;
 
         public Column XAxisColumn
         {
@@ -34,12 +37,33 @@ namespace DataExplorer.Domain.Views.ScatterPlots
             set { _colorPalette = value; }
         }
 
+        public Column SizeColumn
+        {
+            get { return _sizeColumn; } 
+            set { _sizeColumn = value; }
+        }
+
+        public double LowerSize
+        {
+            get { return _lowerSize; }
+            set { _lowerSize = value; }
+        }
+
+        public double UpperSize
+        {
+            get { return _upperSize; }
+            set { _upperSize = value; }
+        }
+
         public void Clear()
         {
             _xAxisColumn = null;
             _yAxisColumn = null;
             _colorColumn = null;
             _colorPalette = null;
+            _sizeColumn = null;
+            _lowerSize = 0d; // TODO: Need to decide on a default
+            _upperSize = 1d; // TODO: Need to decide on a default
         }
     }
 }

@@ -85,6 +85,12 @@
     <Compile Include="Importers\CsvFile\Queries\GetCsvFileSourceMapsQueryHandlerTests.cs" />
     <Compile Include="Importers\CsvFile\Queries\GetCsvFileSourceQueryHandlerTests.cs" />
     <Compile Include="Importers\DataTypeDetectorTests.cs" />
+    <Compile Include="Layouts\Size\Commands\SetLowerSizeCommandHandlerTests.cs" />
+    <Compile Include="Layouts\Size\Commands\SetSizeColumnQueryHandlerTests.cs" />
+    <Compile Include="Layouts\Size\Commands\SetUpperSizeCommandHandlerTests.cs" />
+    <Compile Include="Layouts\Size\Queries\GetLowerSizeValueQueryHandlerTests.cs" />
+    <Compile Include="Layouts\Size\Queries\GetSizeColumnQueryHandlerTests.cs" />
+    <Compile Include="Layouts\Size\Queries\GetUpperSizeValueQueryHanderTests.cs" />
     <Compile Include="Legends\Colors\Factories\BaseColorLegendFactoryTests.cs" />
     <Compile Include="Legends\Colors\Factories\BooleanColorLegendItemFactoryTests.cs" />
     <Compile Include="Legends\Colors\Factories\ColorLegendFactoryTests.cs" />
@@ -140,8 +146,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Dialogs\" />
-    <Folder Include="Layouts\Size\Commands\" />
-    <Folder Include="Layouts\Size\Queries\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

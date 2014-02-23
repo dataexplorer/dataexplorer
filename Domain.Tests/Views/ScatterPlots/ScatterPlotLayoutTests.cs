@@ -55,6 +55,14 @@ namespace DataExplorer.Domain.Tests.Views.ScatterPlots
             var result = _layout.ColorPalette;
             Assert.That(result, Is.EqualTo(_colorPalette));
         }
+
+        [Test]
+        public void TestGetSetSizeColumn()
+        {
+            _layout.SizeColumn = _column;
+            var result = _layout.SizeColumn;
+            Assert.That(result, Is.EqualTo(_column));
+        }
         
         [Test]
         public void TestClearShouldClearLayout()
@@ -63,6 +71,7 @@ namespace DataExplorer.Domain.Tests.Views.ScatterPlots
             _layout.YAxisColumn = _column;
             _layout.ColorColumn = _column;
             _layout.ColorPalette = _colorPalette;
+            _layout.SizeColumn = _column;
 
             _layout.Clear();
             
@@ -70,6 +79,9 @@ namespace DataExplorer.Domain.Tests.Views.ScatterPlots
             Assert.That(_layout.YAxisColumn, Is.Null);
             Assert.That(_layout.ColorColumn, Is.Null);
             Assert.That(_layout.ColorPalette, Is.Null);
+            Assert.That(_layout.SizeColumn, Is.Null);
+            Assert.That(_layout.LowerSize, Is.EqualTo(0d));
+            Assert.That(_layout.UpperSize, Is.EqualTo(1d));
         }
     }
 }
