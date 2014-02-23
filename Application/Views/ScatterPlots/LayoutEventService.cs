@@ -1,6 +1,6 @@
 ﻿using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Importers.CsvFiles.Events;
-using DataExplorer.Application.Layouts.Events;
+using DataExplorer.Application.Layouts.General.Events;
 using DataExplorer.Application.Projects.Events;
 
 namespace DataExplorer.Application.Views.ScatterPlots

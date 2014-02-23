@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.Core.Commands;
-using DataExplorer.Application.Layouts.Commands;
+using DataExplorer.Application.Layouts.General.Commands;
 using DataExplorer.Application.Views.ScatterPlots;
 using DataExplorer.Application.Views.ScatterPlots.Commands;
 using DataExplorer.Presentation.Core.Commands;

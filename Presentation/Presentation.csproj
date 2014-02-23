@@ -33,12 +33,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
@@ -180,6 +177,11 @@
       <DependentUpon>LayoutPaneView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Panes\Layout\LayoutPaneViewModel.cs" />
+    <Compile Include="Panes\Layout\Size\ISizeLayoutViewModel.cs" />
+    <Compile Include="Panes\Layout\Size\SizeLayoutView.xaml.cs">
+      <DependentUpon>SizeLayoutView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\Layout\Size\SizeLayoutViewModel.cs" />
     <Compile Include="Panes\Legend\BaseLegend.cs" />
     <Compile Include="Panes\Legend\Colors\ColorLegendItemViewModel.cs" />
     <Compile Include="Panes\Legend\Colors\ColorLegend.cs" />
@@ -286,20 +288,20 @@
     <Compile Include="Panes\Layout\Color\ColorPaletteViewModel.cs" />
     <Compile Include="Panes\Layout\Color\IColorLayoutViewModel.cs" />
     <Compile Include="Panes\Layout\IScatterPlotLayoutViewModel.cs" />
-    <Compile Include="Panes\Layout\XAxis\IXAxisLayoutViewModel.cs" />
-    <Compile Include="Panes\Layout\YAxis\IYAxisLayoutViewModel.cs" />
+    <Compile Include="Panes\Layout\Location\IXAxisLayoutViewModel.cs" />
+    <Compile Include="Panes\Layout\Location\IYAxisLayoutViewModel.cs" />
     <Compile Include="Panes\Layout\ScatterPlotLayoutView.xaml.cs">
       <DependentUpon>ScatterPlotLayoutView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Panes\Layout\ScatterPlotLayoutViewModel.cs" />
-    <Compile Include="Panes\Layout\XAxis\XAxisLayoutView.xaml.cs">
+    <Compile Include="Panes\Layout\Location\XAxisLayoutView.xaml.cs">
       <DependentUpon>XAxisLayoutView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Panes\Layout\XAxis\XAxisLayoutViewModel.cs" />
-    <Compile Include="Panes\Layout\YAxis\YAxisLayoutView.xaml.cs">
+    <Compile Include="Panes\Layout\Location\XAxisLayoutViewModel.cs" />
+    <Compile Include="Panes\Layout\Location\YAxisLayoutView.xaml.cs">
       <DependentUpon>YAxisLayoutView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Panes\Layout\YAxis\YAxisLayoutViewModel.cs" />
+    <Compile Include="Panes\Layout\Location\YAxisLayoutViewModel.cs" />
     <Compile Include="Views\ScatterPlots\Renderers\Plots\IPlotRenderer.cs" />
     <Compile Include="Views\ScatterPlots\Renderers\Plots\PlotRenderer.cs" />
     <Compile Include="Views\ScatterPlots\Queries\GetAllItemsQuery.cs" />
@@ -405,6 +407,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Panes\Layout\Size\SizeLayoutView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Panes\Legend\LegendPane.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -449,11 +455,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Panes\Layout\XAxis\XAxisLayoutView.xaml">
+    <Page Include="Panes\Layout\Location\XAxisLayoutView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Panes\Layout\YAxis\YAxisLayoutView.xaml">
+    <Page Include="Panes\Layout\Location\YAxisLayoutView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -472,9 +478,7 @@
       <Name>Domain</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Panes\Layout\Size\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

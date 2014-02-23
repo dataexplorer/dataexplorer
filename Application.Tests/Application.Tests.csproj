@@ -121,16 +121,16 @@
     <Compile Include="Views\ScatterPlots\Commands\ZoomInTaskTests.cs" />
     <Compile Include="Views\ScatterPlots\Commands\ZoomOutTaskTests.cs" />
     <Compile Include="Views\ScatterPlots\Commands\ZoomToFullExtentCommandHandlerTests.cs" />
-    <Compile Include="Layouts\Commands\ClearLayoutCommandHandlerTests.cs" />
-    <Compile Include="Layouts\Commands\SetColorColumnCommandHandlerTests.cs" />
-    <Compile Include="Layouts\Commands\SetColorPaletteCommandHandlerTests.cs" />
-    <Compile Include="Layouts\Commands\SetXColumnCommandHandlerTests.cs" />
-    <Compile Include="Layouts\Commands\SetYColumnCommandHandlerTests.cs" />
-    <Compile Include="Layouts\Queries\GetAllColorPalettesQueryHandlerTests.cs" />
-    <Compile Include="Layouts\Queries\GetColorColumnQueryHandlerTests.cs" />
-    <Compile Include="Layouts\Queries\GetColorPaletteQueryHandlerTests.cs" />
-    <Compile Include="Layouts\Queries\GetXColumnQueryHandlerTests.cs" />
-    <Compile Include="Layouts\Queries\GetYColumnQueryHandlerTests.cs" />
+    <Compile Include="Layouts\General\Commands\ClearLayoutCommandHandlerTests.cs" />
+    <Compile Include="Layouts\Color\Commands\SetColorColumnCommandHandlerTests.cs" />
+    <Compile Include="Layouts\Color\Commands\SetColorPaletteCommandHandlerTests.cs" />
+    <Compile Include="Layouts\Location\Commands\SetXColumnCommandHandlerTests.cs" />
+    <Compile Include="Layouts\Location\Commands\SetYColumnCommandHandlerTests.cs" />
+    <Compile Include="Layouts\Color\Queries\GetAllColorPalettesQueryHandlerTests.cs" />
+    <Compile Include="Layouts\Color\Queries\GetColorColumnQueryHandlerTests.cs" />
+    <Compile Include="Layouts\Color\Queries\GetColorPaletteQueryHandlerTests.cs" />
+    <Compile Include="Layouts\Location\Queries\GetXColumnQueryHandlerTests.cs" />
+    <Compile Include="Layouts\Location\Queries\GetYColumnQueryHandlerTests.cs" />
     <Compile Include="Views\ScatterPlots\Queries\GetScatterPlotsQueryHandlerTests.cs" />
     <Compile Include="Views\ScatterPlots\Queries\GetViewExtentTaskTests.cs" />
     <Compile Include="Views\ScatterPlots\ScatterPlotAdapterTests.cs" />
@@ -140,6 +140,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Dialogs\" />
+    <Folder Include="Layouts\Size\Commands\" />
+    <Folder Include="Layouts\Size\Queries\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

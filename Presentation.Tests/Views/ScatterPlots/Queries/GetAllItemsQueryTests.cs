@@ -4,7 +4,7 @@ using System.Linq;
 using System.Windows;
 using DataExplorer.Application.Columns;
 using DataExplorer.Application.Core.Queries;
-using DataExplorer.Application.Layouts.Queries;
+using DataExplorer.Application.Layouts.Location.Queries;
 using DataExplorer.Application.Views.ScatterPlots;
 using DataExplorer.Application.Views.ScatterPlots.Axes.Queries;
 using DataExplorer.Application.Views.ScatterPlots.Queries;

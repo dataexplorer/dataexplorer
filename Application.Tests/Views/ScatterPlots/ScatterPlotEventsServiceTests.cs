@@ -1,7 +1,7 @@
 ﻿using DataExplorer.Application.Core.Commands;
 using DataExplorer.Application.Filters.Events;
 using DataExplorer.Application.Importers.CsvFiles.Events;
-using DataExplorer.Application.Layouts.Events;
+using DataExplorer.Application.Layouts.General.Events;
 using DataExplorer.Application.Projects.Events;
 using DataExplorer.Application.Views.ScatterPlots;
 using DataExplorer.Application.Views.ScatterPlots.Commands;

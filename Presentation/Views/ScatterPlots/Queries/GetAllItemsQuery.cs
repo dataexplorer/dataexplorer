@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using DataExplorer.Application.Core.Queries;
-using DataExplorer.Application.Layouts.Queries;
+using DataExplorer.Application.Layouts.Location.Queries;
 using DataExplorer.Application.Views.ScatterPlots.Axes.Queries;
 using DataExplorer.Application.Views.ScatterPlots.Queries;
 using DataExplorer.Presentation.Core.Canvas.Items;

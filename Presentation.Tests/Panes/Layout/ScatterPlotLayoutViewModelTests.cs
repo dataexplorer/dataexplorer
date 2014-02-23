@@ -1,7 +1,7 @@
 ﻿using DataExplorer.Presentation.Panes.Layout;
 using DataExplorer.Presentation.Panes.Layout.Color;
-using DataExplorer.Presentation.Panes.Layout.XAxis;
-using DataExplorer.Presentation.Panes.Layout.YAxis;
+using DataExplorer.Presentation.Panes.Layout.Location;
+using DataExplorer.Presentation.Panes.Layout.Size;
 using Moq;
 using NUnit.Framework;
 
@@ -14,6 +14,7 @@ namespace DataExplorer.Presentation.Tests.Panes.Layout
         private Mock<IXAxisLayoutViewModel> _mockXAxisLayoutViewModel;
         private Mock<IYAxisLayoutViewModel> _mockYAxisLayoutViewModel;
         private Mock<IColorLayoutViewModel> _mockColorLayoutViewModel;
+        private Mock<ISizeLayoutViewModel> _mockSizeLayoutViewModel;
 
         [SetUp]
         public void SetUp()
@@ -21,11 +22,13 @@ namespace DataExplorer.Presentation.Tests.Panes.Layout
             _mockXAxisLayoutViewModel = new Mock<IXAxisLayoutViewModel>();
             _mockYAxisLayoutViewModel = new Mock<IYAxisLayoutViewModel>();
             _mockColorLayoutViewModel = new Mock<IColorLayoutViewModel>();
+            _mockSizeLayoutViewModel = new Mock<ISizeLayoutViewModel>();
 
             _viewModel = new ScatterPlotLayoutViewModel(
                 _mockXAxisLayoutViewModel.Object,
                 _mockYAxisLayoutViewModel.Object,
-                _mockColorLayoutViewModel.Object);
+                _mockColorLayoutViewModel.Object,
+                _mockSizeLayoutViewModel.Object);
         }
 
         [Test]
