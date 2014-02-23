@@ -16,6 +16,9 @@ namespace DataExplorer.Persistence.Views.Serializers.ScatterPlots
         private const string YAxisColumnIdTag = "y-axis-column-id";
         private const string ColorColumnIdTag = "color-column-id";
         private const string ColorPaletteNameTag = "color-palette-name";
+        private const string SizeColumnIdTag = "size-column-id";
+        private const string LowerSizeTag = "lower-size";
+        private const string UpperSizeTag = "upper-size";
 
         private readonly IPropertySerializer _propertySerializer;
         private readonly IColorPaletteFactory _colorPaletteFactory;
@@ -40,6 +43,12 @@ namespace DataExplorer.Persistence.Views.Serializers.ScatterPlots
 
             AddProperty(xLayout, ColorPaletteNameTag, layout.ColorPalette.Name);
 
+            AddProperty(xLayout, SizeColumnIdTag, GetColumnId(layout.SizeColumn));
+
+            AddProperty(xLayout, LowerSizeTag, layout.LowerSize);
+
+            AddProperty(xLayout, UpperSizeTag, layout.UpperSize);
+
             return xLayout;
         }
 
@@ -59,38 +68,45 @@ namespace DataExplorer.Persistence.Views.Serializers.ScatterPlots
 
         public ScatterPlotLayout Deserialize(XElement xLayout, IEnumerable<Column> columns)
         {
-            var xAxisColumnId = DeserializeProperty<int?>(xLayout, XAxisColumnIdTag);
+            var xAxisColumn = DeserializeColumn(xLayout, XAxisColumnIdTag, columns);
 
-            var xAxisColumn = GetColumn(columns, xAxisColumnId);
+            var yAxisColumn = DeserializeColumn(xLayout, YAxisColumnIdTag, columns);
 
-            var yAxisColumnId = DeserializeProperty<int?>(xLayout, YAxisColumnIdTag);
-
-            var yAxisColumn = GetColumn(columns, yAxisColumnId);
-
-            var colorColumnId = DeserializeProperty<int?>(xLayout, ColorColumnIdTag);
-
-            var colorColumn = GetColumn(columns, colorColumnId);
+            var colorColumn = DeserializeColumn(xLayout, ColorColumnIdTag, columns);
 
             var colorPaletteName = DeserializeProperty<string>(xLayout, ColorPaletteNameTag);
 
             var colorPalette = _colorPaletteFactory.GetColorPalette(colorPaletteName);
+
+            var sizeColumn = DeserializeColumn(xLayout, SizeColumnIdTag, columns);
+
+            var lowerSize = DeserializeProperty<double>(xLayout, LowerSizeTag);
+
+            var upperSize = DeserializeProperty<double>(xLayout, UpperSizeTag);
 
             var layout = new ScatterPlotLayout()
             {
                 XAxisColumn = xAxisColumn, 
                 YAxisColumn = yAxisColumn,
                 ColorColumn = colorColumn,
-                ColorPalette = colorPalette
+                ColorPalette = colorPalette,
+                SizeColumn = sizeColumn,
+                LowerSize = lowerSize,
+                UpperSize = upperSize
             };
 
             return layout;
         }
 
-        private Column GetColumn(IEnumerable<Column> columns, int? xAxisColumnId)
+        private Column DeserializeColumn(XElement parent, string name, IEnumerable<Column> columns)
         {
-            return xAxisColumnId != null 
-                ? columns.First(p => p.Id == xAxisColumnId) 
+            var columnId = DeserializeProperty<int?>(parent, name);
+
+            var column = columnId != null 
+                ? columns.First(p => p.Id == columnId) 
                 : null;
+
+            return column;
         }
 
         private T DeserializeProperty<T>(XElement parent, string name)
