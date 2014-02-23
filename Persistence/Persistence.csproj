@@ -37,14 +37,56 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Columns\ColumnRepository.cs" />
+    <Compile Include="Columns\Serializers\ColumnDataTypeSerializer.cs" />
+    <Compile Include="Columns\Serializers\ColumnSerializer.cs" />
+    <Compile Include="Columns\Serializers\ColumnSetSerializer.cs" />
+    <Compile Include="Columns\Serializers\IColumnDataTypeSerializer.cs" />
+    <Compile Include="Columns\Serializers\IColumnSerializer.cs" />
+    <Compile Include="Columns\Serializers\IColumnSetSerializer.cs" />
     <Compile Include="DataContext.cs" />
     <Compile Include="Filters\FilterRepository.cs" />
+    <Compile Include="Filters\Serializers\BooleanFilters\BooleanFilterSerializer.cs" />
+    <Compile Include="Filters\Serializers\BooleanFilters\IBooleanFilterSerializer.cs" />
+    <Compile Include="Filters\Serializers\DateTimeFilters\DateTimeFilterSerializer.cs" />
+    <Compile Include="Filters\Serializers\DateTimeFilters\IDateTimeFilterSerializer.cs" />
+    <Compile Include="Filters\Serializers\FilterSerializer.cs" />
+    <Compile Include="Filters\Serializers\FilterSetSerializer.cs" />
+    <Compile Include="Filters\Serializers\FloatFilters\FloatFilterSerializer.cs" />
+    <Compile Include="Filters\Serializers\FloatFilters\IFloatFilterSerializer.cs" />
+    <Compile Include="Filters\Serializers\IFilterSerializer.cs" />
+    <Compile Include="Filters\Serializers\IFilterSetSerializer.cs" />
+    <Compile Include="Filters\Serializers\IntegerFilters\IIntegerFilterSerializer.cs" />
+    <Compile Include="Filters\Serializers\IntegerFilters\IntegerFilterSerializer.cs" />
+    <Compile Include="Filters\Serializers\NullFilters\INullFilterSerializer.cs" />
+    <Compile Include="Filters\Serializers\NullFilters\NullFilterSerializer.cs" />
+    <Compile Include="Filters\Serializers\StringFilters\IStringFilterSerializer.cs" />
+    <Compile Include="Filters\Serializers\StringFilters\StringFilterSerializer.cs" />
+    <Compile Include="Projects\IPropertySerializer.cs" />
+    <Compile Include="Projects\ProjectSerializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Projects\PropertySerializer.cs" />
     <Compile Include="Rows\RowRepository.cs" />
+    <Compile Include="Rows\Serializers\IRowSerializer.cs" />
+    <Compile Include="Rows\Serializers\IRowSetSerializer.cs" />
+    <Compile Include="Rows\Serializers\RowSerializer.cs" />
+    <Compile Include="Rows\Serializers\RowSetSerializer.cs" />
+    <Compile Include="Sources\Serializers\ISourceSerializer.cs" />
+    <Compile Include="Sources\Serializers\ISourceSetSerializer.cs" />
+    <Compile Include="Sources\Serializers\SourceSerializer.cs" />
+    <Compile Include="Sources\Serializers\SourceSetSerializer.cs" />
     <Compile Include="Sources\SourceRepository.cs" />
+    <Compile Include="Views\Serializers\IViewSerializer.cs" />
+    <Compile Include="Views\Serializers\IViewSetSerializer.cs" />
+    <Compile Include="Views\Serializers\ScatterPlots\IScatterPlotLayoutSerializer.cs" />
+    <Compile Include="Views\Serializers\ScatterPlots\IScatterPlotSerializer.cs" />
+    <Compile Include="Views\Serializers\ScatterPlots\ScatterPlotLayoutSerializer.cs" />
+    <Compile Include="Views\Serializers\ScatterPlots\ScatterPlotSerializer.cs" />
+    <Compile Include="Views\Serializers\ViewSerializer.cs" />
+    <Compile Include="Views\Serializers\ViewSetSerializer.cs" />
     <Compile Include="Views\ViewRepository.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -54,47 +54,6 @@
     <Compile Include="Importers\CsvFile\ICsvFileParser.cs" />
     <Compile Include="Process\ProcessWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Serializers\Columns\ColumnDataTypeSerializer.cs" />
-    <Compile Include="Serializers\Columns\ColumnSerializer.cs" />
-    <Compile Include="Serializers\Columns\ColumnSetSerializer.cs" />
-    <Compile Include="Serializers\Columns\IColumnDataTypeSerializer.cs" />
-    <Compile Include="Serializers\Columns\IColumnSerializer.cs" />
-    <Compile Include="Serializers\Columns\IColumnSetSerializer.cs" />
-    <Compile Include="Serializers\Filters\BooleanFilters\BooleanFilterSerializer.cs" />
-    <Compile Include="Serializers\Filters\BooleanFilters\IBooleanFilterSerializer.cs" />
-    <Compile Include="Serializers\Filters\DateTimeFilters\DateTimeFilterSerializer.cs" />
-    <Compile Include="Serializers\Filters\DateTimeFilters\IDateTimeFilterSerializer.cs" />
-    <Compile Include="Serializers\Filters\FilterSerializer.cs" />
-    <Compile Include="Serializers\Filters\FilterSetSerializer.cs" />
-    <Compile Include="Serializers\Filters\FloatFilters\FloatFilterSerializer.cs" />
-    <Compile Include="Serializers\Filters\FloatFilters\IFloatFilterSerializer.cs" />
-    <Compile Include="Serializers\Filters\IFilterSerializer.cs" />
-    <Compile Include="Serializers\Filters\IFilterSetSerializer.cs" />
-    <Compile Include="Serializers\Filters\IntegerFilters\IIntegerFilterSerializer.cs" />
-    <Compile Include="Serializers\Filters\IntegerFilters\IntegerFilterSerializer.cs" />
-    <Compile Include="Serializers\Filters\NullFilters\INullFilterSerializer.cs" />
-    <Compile Include="Serializers\Filters\NullFilters\NullFilterSerializer.cs" />
-    <Compile Include="Serializers\Filters\StringFilters\IStringFilterSerializer.cs" />
-    <Compile Include="Serializers\Filters\StringFilters\StringFilterSerializer.cs" />
-    <Compile Include="Serializers\ProjectSerializer.cs" />
-    <Compile Include="Serializers\Properties\IPropertySerializer.cs" />
-    <Compile Include="Serializers\Properties\PropertySerializer.cs" />
-    <Compile Include="Serializers\Rows\IRowSerializer.cs" />
-    <Compile Include="Serializers\Rows\IRowSetSerializer.cs" />
-    <Compile Include="Serializers\Rows\RowSerializer.cs" />
-    <Compile Include="Serializers\Rows\RowSetSerializer.cs" />
-    <Compile Include="Serializers\Sources\ISourceSerializer.cs" />
-    <Compile Include="Serializers\Sources\ISourceSetSerializer.cs" />
-    <Compile Include="Serializers\Sources\SourceSerializer.cs" />
-    <Compile Include="Serializers\Sources\SourceSetSerializer.cs" />
-    <Compile Include="Serializers\Views\IViewSerializer.cs" />
-    <Compile Include="Serializers\Views\IViewSetSerializer.cs" />
-    <Compile Include="Serializers\Views\ScatterPlots\IScatterPlotLayoutSerializer.cs" />
-    <Compile Include="Serializers\Views\ScatterPlots\IScatterPlotSerializer.cs" />
-    <Compile Include="Serializers\Views\ScatterPlots\ScatterPlotLayoutSerializer.cs" />
-    <Compile Include="Serializers\Views\ScatterPlots\ScatterPlotSerializer.cs" />
-    <Compile Include="Serializers\Views\ViewSerializer.cs" />
-    <Compile Include="Serializers\Views\ViewSetSerializer.cs" />
     <Compile Include="XmlFiles\XmlFileService.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -107,6 +66,7 @@
       <Name>Domain</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

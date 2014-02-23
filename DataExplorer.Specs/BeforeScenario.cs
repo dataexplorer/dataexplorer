@@ -11,7 +11,6 @@ using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Core.Queries;
 using DataExplorer.Application.Projects;
 using DataExplorer.Infrastructure.Importers.CsvFile;
-using DataExplorer.Infrastructure.Serializers;
 using DataExplorer.Infrastructure.XmlFiles;
 using DataExplorer.Persistence;
 using DataExplorer.Presentation.Dialogs;
