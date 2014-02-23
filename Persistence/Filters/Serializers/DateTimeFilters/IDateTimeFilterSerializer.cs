@@ -10,6 +10,6 @@ namespace DataExplorer.Persistence.Filters.Serializers.DateTimeFilters
     {
         XElement Serialize(DateTimeFilter filter);
 
-        DateTimeFilter Deserialize(XElement xFilter, IEnumerable<Column> columns);
+        DateTimeFilter Deserialize(XElement xFilter, List<Column> columns);
     }
 }

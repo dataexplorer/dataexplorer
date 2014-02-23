@@ -31,7 +31,7 @@ namespace DataExplorer.Persistence.Views.Serializers
             return xViews;
         }
 
-        public IEnumerable<View> Deserialize(XElement xViews, IEnumerable<Column> columns)
+        public IEnumerable<View> Deserialize(XElement xViews, List<Column> columns)
         {
             var views = new List<View>();
 

@@ -8,7 +8,9 @@ using DataExplorer.Persistence.Projects;
 
 namespace DataExplorer.Persistence.Filters.Serializers.FloatFilters
 {
-    public class FloatFilterSerializer : IFloatFilterSerializer
+    public class FloatFilterSerializer 
+        : BaseSerializer,
+        IFloatFilterSerializer
     {
         private const string FilterTag = "float-filter";
         private const string ColumnIdTag = "column-id";
@@ -16,18 +18,16 @@ namespace DataExplorer.Persistence.Filters.Serializers.FloatFilters
         private const string UpperValueTag = "upper-value";
         private const string IncludeNullTag = "include-null";
 
-        private readonly IPropertySerializer _propertySerializer;
-
         public FloatFilterSerializer(IPropertySerializer propertySerializer)
+            : base(propertySerializer)
         {
-            _propertySerializer = propertySerializer;
         }
 
         public XElement Serialize(FloatFilter filter)
         {
             var xFilter = new XElement(FilterTag);
 
-            AddProperty(xFilter, ColumnIdTag, filter.Column.Id);
+            AddColumn(xFilter, ColumnIdTag, filter.Column);
 
             AddProperty(xFilter, LowerValueTag, filter.LowerValue);
 
@@ -38,36 +38,17 @@ namespace DataExplorer.Persistence.Filters.Serializers.FloatFilters
             return xFilter;
         }
 
-        private void AddProperty<T>(XElement xElement, string name, T value)
+        public FloatFilter Deserialize(XElement xFilter, List<Column> columns)
         {
-            var xProperty = _propertySerializer.Serialize(name, value);
+            var column = GetColumn(xFilter, ColumnIdTag, columns);
 
-            xElement.Add(xProperty);
-        }
+            var lowerValue = GetProperty<Double>(xFilter, LowerValueTag);
 
-        public FloatFilter Deserialize(XElement xFilter, IEnumerable<Column> columns)
-        {
-            var id = DeserializeProperty<int>(xFilter, ColumnIdTag);
+            var upperValue = GetProperty<Double>(xFilter, UpperValueTag);
 
-            var column = columns.First(p => p.Id == id);
-
-            var lowerValue = DeserializeProperty<Double>(xFilter, LowerValueTag);
-
-            var upperValue = DeserializeProperty<Double>(xFilter, UpperValueTag);
-
-            var includeNull = DeserializeProperty<bool>(xFilter, IncludeNullTag);
+            var includeNull = GetProperty<bool>(xFilter, IncludeNullTag);
 
             return new FloatFilter(column, lowerValue, upperValue, includeNull);
-        }
-
-        private T DeserializeProperty<T>(XElement xColumn, string name)
-        {
-            var xProperty = xColumn.Elements()
-                .First(p => p.Name == name);
-
-            var value = _propertySerializer.Deserialize<T>(xProperty);
-
-            return value;
         }
     }
 }

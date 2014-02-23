@@ -46,6 +46,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseSerializerTests.cs" />
     <Compile Include="Columns\ColumnRepositoryTests.cs" />
     <Compile Include="Columns\Serializers\ColumnSerializerTests.cs" />
     <Compile Include="Columns\Serializers\ColumnSetSerializerTests.cs" />

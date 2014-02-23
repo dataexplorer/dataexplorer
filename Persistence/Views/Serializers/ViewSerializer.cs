@@ -25,7 +25,7 @@ namespace DataExplorer.Persistence.Views.Serializers
             throw new ArgumentException("View cannot be serialized because view is not recognized.");
         }
 
-        public View Deserialize(XElement xView, IEnumerable<Column> columns)
+        public View Deserialize(XElement xView, List<Column> columns)
         {
             if (xView.Name.LocalName == "scatter-plot")
                 return _scatterPlotSerializer.Deserialize(xView, columns);

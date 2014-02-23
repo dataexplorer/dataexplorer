@@ -174,7 +174,7 @@ namespace DataExplorer.Persistence.Projects
             return rows;
         }
 
-        private IEnumerable<Filter> DeserializeFilters(XElement xProject, IEnumerable<Column> columns)
+        private IEnumerable<Filter> DeserializeFilters(XElement xProject, List<Column> columns)
         {
             var xFilters = xProject.Element(FiltersTag);
             
@@ -183,7 +183,7 @@ namespace DataExplorer.Persistence.Projects
             return filters;
         }
 
-        private IEnumerable<View> DeserializeViews(XElement xProject, IEnumerable<Column> columns)
+        private IEnumerable<View> DeserializeViews(XElement xProject, List<Column> columns)
         {
             var xViews = xProject.Element(ViewsTag);
 

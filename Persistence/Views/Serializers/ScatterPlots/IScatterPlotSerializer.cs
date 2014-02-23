@@ -10,6 +10,6 @@ namespace DataExplorer.Persistence.Views.Serializers.ScatterPlots
     {
         XElement Serialize(ScatterPlot scatterPlot);
 
-        ScatterPlot Deserialize(XElement xView, IEnumerable<Column> columns);
+        ScatterPlot Deserialize(XElement xView, List<Column> columns);
     }
 }

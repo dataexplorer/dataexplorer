@@ -40,6 +40,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseSerializer.cs" />
     <Compile Include="Columns\ColumnRepository.cs" />
     <Compile Include="Columns\Serializers\ColumnDataTypeSerializer.cs" />
     <Compile Include="Columns\Serializers\ColumnSerializer.cs" />

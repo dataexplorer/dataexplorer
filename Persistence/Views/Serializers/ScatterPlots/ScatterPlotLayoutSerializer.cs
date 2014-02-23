@@ -9,7 +9,9 @@ using DataExplorer.Persistence.Projects;
 
 namespace DataExplorer.Persistence.Views.Serializers.ScatterPlots
 {
-    public class ScatterPlotLayoutSerializer : IScatterPlotLayoutSerializer
+    public class ScatterPlotLayoutSerializer 
+        : BaseSerializer,
+        IScatterPlotLayoutSerializer
     {
         private const string LayoutTag = "layout";
         private const string XAxisColumnIdTag = "x-axis-column-id";
@@ -20,14 +22,13 @@ namespace DataExplorer.Persistence.Views.Serializers.ScatterPlots
         private const string LowerSizeTag = "lower-size";
         private const string UpperSizeTag = "upper-size";
 
-        private readonly IPropertySerializer _propertySerializer;
         private readonly IColorPaletteFactory _colorPaletteFactory;
 
         public ScatterPlotLayoutSerializer(
             IPropertySerializer propertySerializer,
-            IColorPaletteFactory colorPaletteFactory)
+            IColorPaletteFactory colorPaletteFactory) 
+            : base(propertySerializer)
         {
-            _propertySerializer = propertySerializer;
             _colorPaletteFactory = colorPaletteFactory;
         }
 
@@ -35,15 +36,15 @@ namespace DataExplorer.Persistence.Views.Serializers.ScatterPlots
         {
             var xLayout = new XElement(LayoutTag);
 
-            AddProperty(xLayout, XAxisColumnIdTag, GetColumnId(layout.XAxisColumn));
+            AddColumn(xLayout, XAxisColumnIdTag, layout.XAxisColumn);
 
-            AddProperty(xLayout, YAxisColumnIdTag, GetColumnId(layout.YAxisColumn));
+            AddColumn(xLayout, YAxisColumnIdTag, layout.YAxisColumn);
 
-            AddProperty(xLayout, ColorColumnIdTag, GetColumnId(layout.ColorColumn));
+            AddColumn(xLayout, ColorColumnIdTag, layout.ColorColumn);
 
             AddProperty(xLayout, ColorPaletteNameTag, layout.ColorPalette.Name);
 
-            AddProperty(xLayout, SizeColumnIdTag, GetColumnId(layout.SizeColumn));
+            AddColumn(xLayout, SizeColumnIdTag, layout.SizeColumn);
 
             AddProperty(xLayout, LowerSizeTag, layout.LowerSize);
 
@@ -51,38 +52,24 @@ namespace DataExplorer.Persistence.Views.Serializers.ScatterPlots
 
             return xLayout;
         }
-
-        private int? GetColumnId(Column column)
+        
+        public ScatterPlotLayout Deserialize(XElement xLayout, List<Column> columns)
         {
-            return (column == null) 
-                ? (int?) null 
-                : column.Id;
-        }
+            var xAxisColumn = GetColumn(xLayout, XAxisColumnIdTag, columns);
 
-        private void AddProperty<T>(XElement parent, string name, T value)
-        {
-            var xProperty = _propertySerializer.Serialize(name, value);
+            var yAxisColumn = GetColumn(xLayout, YAxisColumnIdTag, columns);
 
-            parent.Add(xProperty);
-        }
+            var colorColumn = GetColumn(xLayout, ColorColumnIdTag, columns);
 
-        public ScatterPlotLayout Deserialize(XElement xLayout, IEnumerable<Column> columns)
-        {
-            var xAxisColumn = DeserializeColumn(xLayout, XAxisColumnIdTag, columns);
-
-            var yAxisColumn = DeserializeColumn(xLayout, YAxisColumnIdTag, columns);
-
-            var colorColumn = DeserializeColumn(xLayout, ColorColumnIdTag, columns);
-
-            var colorPaletteName = DeserializeProperty<string>(xLayout, ColorPaletteNameTag);
+            var colorPaletteName = GetProperty<string>(xLayout, ColorPaletteNameTag);
 
             var colorPalette = _colorPaletteFactory.GetColorPalette(colorPaletteName);
 
-            var sizeColumn = DeserializeColumn(xLayout, SizeColumnIdTag, columns);
+            var sizeColumn = GetColumn(xLayout, SizeColumnIdTag, columns);
 
-            var lowerSize = DeserializeProperty<double>(xLayout, LowerSizeTag);
+            var lowerSize = GetProperty<double>(xLayout, LowerSizeTag);
 
-            var upperSize = DeserializeProperty<double>(xLayout, UpperSizeTag);
+            var upperSize = GetProperty<double>(xLayout, UpperSizeTag);
 
             var layout = new ScatterPlotLayout()
             {
@@ -96,26 +83,6 @@ namespace DataExplorer.Persistence.Views.Serializers.ScatterPlots
             };
 
             return layout;
-        }
-
-        private Column DeserializeColumn(XElement parent, string name, IEnumerable<Column> columns)
-        {
-            var columnId = DeserializeProperty<int?>(parent, name);
-
-            var column = columnId != null 
-                ? columns.First(p => p.Id == columnId) 
-                : null;
-
-            return column;
-        }
-
-        private T DeserializeProperty<T>(XElement parent, string name)
-        {
-            var xProperty = parent.Elements().First(p => p.Name.LocalName == name);
-
-            var property = _propertySerializer.Deserialize<T>(xProperty);
-
-            return property;
         }
     }
 }

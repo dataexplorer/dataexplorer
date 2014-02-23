@@ -10,6 +10,6 @@ namespace DataExplorer.Persistence.Filters.Serializers.FloatFilters
     {
         XElement Serialize(FloatFilter filter);
 
-        FloatFilter Deserialize(XElement xFilter, IEnumerable<Column> columns);
+        FloatFilter Deserialize(XElement xFilter, List<Column> columns);
     }
 }

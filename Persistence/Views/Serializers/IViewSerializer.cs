@@ -9,6 +9,6 @@ namespace DataExplorer.Persistence.Views.Serializers
     {
         XElement Serialize(View view);
 
-        View Deserialize(XElement xView, IEnumerable<Column> columns);
+        View Deserialize(XElement xView, List<Column> columns);
     }
 }

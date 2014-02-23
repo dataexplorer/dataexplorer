@@ -8,7 +8,9 @@ using DataExplorer.Persistence.Projects;
 
 namespace DataExplorer.Persistence.Filters.Serializers.DateTimeFilters
 {
-    public class DateTimeFilterSerializer : IDateTimeFilterSerializer
+    public class DateTimeFilterSerializer 
+        : BaseSerializer,
+        IDateTimeFilterSerializer
     {
         private const string FilterTag = "datetime-filter";
         private const string ColumnIdTag = "column-id";
@@ -16,18 +18,17 @@ namespace DataExplorer.Persistence.Filters.Serializers.DateTimeFilters
         private const string UpperValueTag = "upper-value";
         private const string IncludeNullTag = "include-null";
 
-        private readonly IPropertySerializer _propertySerializer;
-
         public DateTimeFilterSerializer(IPropertySerializer propertySerializer)
+            : base(propertySerializer)
         {
-            _propertySerializer = propertySerializer;
+        
         }
 
         public XElement Serialize(DateTimeFilter filter)
         {
             var xFilter = new XElement(FilterTag);
 
-            AddProperty(xFilter, ColumnIdTag, filter.Column.Id);
+            AddColumn(xFilter, ColumnIdTag, filter.Column);
 
             AddProperty(xFilter, LowerValueTag, filter.LowerValue);
 
@@ -38,36 +39,17 @@ namespace DataExplorer.Persistence.Filters.Serializers.DateTimeFilters
             return xFilter;
         }
 
-        private void AddProperty<T>(XElement xElement, string name, T value)
+        public DateTimeFilter Deserialize(XElement xFilter, List<Column> columns)
         {
-            var xProperty = _propertySerializer.Serialize(name, value);
+            var column = GetColumn(xFilter, ColumnIdTag, columns);
 
-            xElement.Add(xProperty);
-        }
+            var lowerValue = GetProperty<DateTime>(xFilter, LowerValueTag);
 
-        public DateTimeFilter Deserialize(XElement xFilter, IEnumerable<Column> columns)
-        {
-            var id = DeserializeProperty<int>(xFilter, ColumnIdTag);
+            var upperValue = GetProperty<DateTime>(xFilter, UpperValueTag);
 
-            var column = columns.First(p => p.Id == id);
-
-            var lowerValue = DeserializeProperty<DateTime>(xFilter, LowerValueTag);
-
-            var upperValue = DeserializeProperty<DateTime>(xFilter, UpperValueTag);
-
-            var includeNull = DeserializeProperty<bool>(xFilter, IncludeNullTag);
+            var includeNull = GetProperty<bool>(xFilter, IncludeNullTag);
 
             return new DateTimeFilter(column, lowerValue, upperValue, includeNull);
-        }
-
-        private T DeserializeProperty<T>(XElement xColumn, string name)
-        {
-            var xProperty = xColumn.Elements()
-                .First(p => p.Name == name);
-
-            var value = _propertySerializer.Deserialize<T>(xProperty);
-
-            return value;
         }
     }
 }

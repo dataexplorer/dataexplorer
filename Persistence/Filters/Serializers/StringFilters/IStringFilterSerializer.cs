@@ -10,6 +10,6 @@ namespace DataExplorer.Persistence.Filters.Serializers.StringFilters
     {
         XElement Serialize(StringFilter filter);
 
-        StringFilter Deserialize(XElement xFilter, IEnumerable<Column> columns);
+        StringFilter Deserialize(XElement xFilter, List<Column> columns);
     }
 }

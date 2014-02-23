@@ -70,7 +70,7 @@ namespace DataExplorer.Persistence.Filters.Serializers
             throw new ArgumentException(FilterCannotBeSerializedMessage);
         }
 
-        public Filter Deserialize(XElement xFilter, IEnumerable<Column> columns)
+        public Filter Deserialize(XElement xFilter, List<Column> columns)
         {
             if (xFilter.Name.LocalName == NullFilterTag)
                 return _nullFilterSerializer.Deserialize(xFilter, columns);

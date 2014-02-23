@@ -10,6 +10,6 @@ namespace DataExplorer.Persistence.Filters.Serializers.BooleanFilters
     {
         XElement Serialize(BooleanFilter filter);
 
-        BooleanFilter Deserialize(XElement xFilter, IEnumerable<Column> columns);
+        BooleanFilter Deserialize(XElement xFilter, List<Column> columns);
     }
 }

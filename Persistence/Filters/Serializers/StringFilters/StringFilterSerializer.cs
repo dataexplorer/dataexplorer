@@ -8,25 +8,26 @@ using DataExplorer.Persistence.Projects;
 
 namespace DataExplorer.Persistence.Filters.Serializers.StringFilters
 {
-    public class StringFilterSerializer : IStringFilterSerializer
+    public class StringFilterSerializer 
+        : BaseSerializer,
+        IStringFilterSerializer
     {
         private const string FilterTag = "integer-filter";
         private const string ColumnIdTag = "column-id";
         private const string ValueTag = "value";
         private const string IncludeNullTag = "include-null";
         
-        private readonly IPropertySerializer _propertySerializer;
-
-        public StringFilterSerializer(IPropertySerializer propertySerializer)
+        public StringFilterSerializer(IPropertySerializer propertySerializer) 
+            : base(propertySerializer)
         {
-            _propertySerializer = propertySerializer;
+            
         }
 
         public XElement Serialize(StringFilter filter)
         {
             var xFilter = new XElement(FilterTag);
 
-            AddProperty(xFilter, ColumnIdTag, filter.Column.Id);
+            AddColumn(xFilter, ColumnIdTag, filter.Column);
 
             AddProperty(xFilter, ValueTag, filter.Value);
 
@@ -34,35 +35,16 @@ namespace DataExplorer.Persistence.Filters.Serializers.StringFilters
             
             return xFilter;
         }
-
-        private void AddProperty<T>(XElement xElement, string name, T value)
+        
+        public StringFilter Deserialize(XElement xFilter, List<Column> columns)
         {
-            var xProperty = _propertySerializer.Serialize(name, value);
+            var column = GetColumn(xFilter, ColumnIdTag, columns);
 
-            xElement.Add(xProperty);
-        }
+            var value = GetProperty<string>(xFilter, ValueTag);
 
-        public StringFilter Deserialize(XElement xFilter, IEnumerable<Column> columns)
-        {
-            var id = DeserializeProperty<int>(xFilter, ColumnIdTag);
-
-            var column = columns.First(p => p.Id == id);
-
-            var value = DeserializeProperty<string>(xFilter, ValueTag);
-
-            var includeNull = DeserializeProperty<bool>(xFilter, IncludeNullTag);
+            var includeNull = GetProperty<bool>(xFilter, IncludeNullTag);
 
             return new StringFilter(column, value, includeNull);
-        }
-
-        private T DeserializeProperty<T>(XElement xColumn, string name)
-        {
-            var xProperty = xColumn.Elements()
-                .First(p => p.Name == name);
-
-            var value = _propertySerializer.Deserialize<T>(xProperty);
-
-            return value;
         }
     }
 }

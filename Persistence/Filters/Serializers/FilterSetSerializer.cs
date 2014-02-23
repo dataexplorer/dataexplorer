@@ -31,7 +31,7 @@ namespace DataExplorer.Persistence.Filters.Serializers
             return xFilters;
         }
 
-        public IEnumerable<Filter> Deserialize(XElement xFilters, IEnumerable<Column> columns)
+        public IEnumerable<Filter> Deserialize(XElement xFilters, List<Column> columns)
         {
             var filters = new List<Filter>();
 

@@ -9,41 +9,44 @@ using DataExplorer.Persistence.Projects;
 
 namespace DataExplorer.Persistence.Views.Serializers.ScatterPlots
 {
-    public class ScatterPlotSerializer : IScatterPlotSerializer
+    public class ScatterPlotSerializer 
+        : BaseSerializer,
+        IScatterPlotSerializer
     {
         private const string ScatterPlotTag = "scatter-plot";
         private const string LayoutTag = "layout";
         private const string ExtentTag = "extent";
 
         private readonly IScatterPlotLayoutSerializer _layoutSerializer;
-        private readonly IPropertySerializer _propertySerializer;
 
         public ScatterPlotSerializer(
-            IPropertySerializer propertySerializer, 
-            IScatterPlotLayoutSerializer layoutSerializer)
+            IPropertySerializer propertySerializer,
+            IScatterPlotLayoutSerializer layoutSerializer) 
+            : base(propertySerializer)
         {
-            _propertySerializer = propertySerializer;
             _layoutSerializer = layoutSerializer;
         }
 
         public XElement Serialize(ScatterPlot scatterPlot)
         {
+            var xScatterPlot = new XElement(ScatterPlotTag);
+
+            AddProperty(xScatterPlot, ExtentTag, scatterPlot.GetViewExtent());
+
             var xLayout = _layoutSerializer.Serialize(scatterPlot.GetLayout());
 
-            var xExtent = _propertySerializer.Serialize(ExtentTag, scatterPlot.GetViewExtent());
+            xScatterPlot.Add(xLayout);
 
-            return new XElement(ScatterPlotTag, xLayout, xExtent);
+            return xScatterPlot;
         }
 
-        public ScatterPlot Deserialize(XElement xView, IEnumerable<Column> columns)
+        public ScatterPlot Deserialize(XElement xView, List<Column> columns)
         {
             var xLayout = xView.Elements().First(p => p.Name.LocalName == LayoutTag);
 
             var layout = _layoutSerializer.Deserialize(xLayout, columns);
 
-            var xExtent = xView.Elements().First(p => p.Name.LocalName == ExtentTag);
-
-            var extent = _propertySerializer.Deserialize<Rect>(xExtent);
+            var extent = GetProperty<Rect>(xView, ExtentTag);
 
             return new ScatterPlot(layout, extent, new List<Plot>());
         }

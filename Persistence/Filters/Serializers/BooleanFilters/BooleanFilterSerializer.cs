@@ -8,26 +8,27 @@ using DataExplorer.Persistence.Projects;
 
 namespace DataExplorer.Persistence.Filters.Serializers.BooleanFilters
 {
-    public class BooleanFilterSerializer : IBooleanFilterSerializer
+    public class BooleanFilterSerializer 
+        : BaseSerializer,
+        IBooleanFilterSerializer
     {
         private const string FilterTag = "boolean-filter";
         private const string ColumnIdTag = "column-id";
         private const string IncludeTrueTag = "include-true";
         private const string IncludeFalseTag = "include-false";
         private const string IncludeNullTag = "include-null";
-
-        private readonly IPropertySerializer _propertySerializer;
-
+        
         public BooleanFilterSerializer(IPropertySerializer propertySerializer)
+            : base(propertySerializer)
         {
-            _propertySerializer = propertySerializer;
+        
         }
 
         public XElement Serialize(BooleanFilter filter)
         {
             var xFilter = new XElement(FilterTag);
 
-            AddProperty(xFilter, ColumnIdTag, filter.Column.Id);
+            AddColumn(xFilter, ColumnIdTag, filter.Column);
 
             AddProperty(xFilter, IncludeTrueTag, filter.IncludeTrue);
 
@@ -38,36 +39,17 @@ namespace DataExplorer.Persistence.Filters.Serializers.BooleanFilters
             return xFilter;
         }
 
-        private void AddProperty<T>(XElement xElement, string name, T value)
+        public BooleanFilter Deserialize(XElement xFilter, List<Column> columns)
         {
-            var xProperty = _propertySerializer.Serialize(name, value);
+            var column = GetColumn(xFilter, ColumnIdTag, columns);
 
-            xElement.Add(xProperty);
-        }
+            var includeTrue = GetProperty<bool>(xFilter, IncludeTrueTag);
 
-        public BooleanFilter Deserialize(XElement xFilter, IEnumerable<Column> columns)
-        {
-            var id = DeserializeProperty<int>(xFilter, ColumnIdTag);
+            var includeFalse = GetProperty<bool>(xFilter, IncludeFalseTag);
 
-            var column = columns.First(p => p.Id == id);
-
-            var includeTrue = DeserializeProperty<bool>(xFilter, IncludeTrueTag);
-
-            var includeFalse = DeserializeProperty<bool>(xFilter, IncludeFalseTag);
-
-            var includeNull = DeserializeProperty<bool>(xFilter, IncludeNullTag);
+            var includeNull = GetProperty<bool>(xFilter, IncludeNullTag);
             
             return new BooleanFilter(column, includeTrue, includeFalse, includeNull);
-        }
-
-        private T DeserializeProperty<T>(XElement xColumn, string name)
-        {
-            var xProperty = xColumn.Elements()
-                .First(p => p.Name == name);
-
-            var value = _propertySerializer.Deserialize<T>(xProperty);
-
-            return value;
         }
     }
 }

@@ -9,37 +9,31 @@ using DataExplorer.Persistence.Projects;
 
 namespace DataExplorer.Persistence.Rows.Serializers
 {
-    public class RowSerializer : IRowSerializer
+    public class RowSerializer 
+        : BaseSerializer,
+        IRowSerializer
     {
         private const string RowTag = "row";
         private const string IdTag = "id";
         private const string FieldsTag = "fields";
 
-        private readonly IPropertySerializer _propertySerializer;
-
-        public RowSerializer(IPropertySerializer propertySerializer)
+        public RowSerializer(IPropertySerializer propertySerializer) 
+            : base(propertySerializer)
         {
-            _propertySerializer = propertySerializer;
+            
         }
 
         public XElement Serialize(Row row, IEnumerable<Column> columns)
         {
             var xRow = new XElement(RowTag);
 
-            SerializeProperty(xRow, IdTag, row.Id);
+            AddProperty(xRow, IdTag, row.Id);
 
             SerializeFields(xRow, row, columns.ToList());
 
             return xRow;
         }
-
-        private void SerializeProperty<T>(XElement xColumn, string name, T value)
-        {
-            var xProperty = _propertySerializer.Serialize(name, value);
-
-            xColumn.Add(xProperty);
-        }
-
+        
         private void SerializeFields(XElement xRow, Row row, List<Column> columns)
         {
             var xFields = new XElement(FieldsTag);
@@ -73,7 +67,7 @@ namespace DataExplorer.Persistence.Rows.Serializers
 
         public Row Deserialize(XElement xRow, IEnumerable<Type> columns)
         {
-            var id = DeserializeProperty<int>(xRow, IdTag);
+            var id = GetProperty<int>(xRow, IdTag);
 
             var fields = DeserializeFields(xRow, columns.ToList());
 
@@ -81,17 +75,7 @@ namespace DataExplorer.Persistence.Rows.Serializers
 
             return row;
         }
-
-        private T DeserializeProperty<T>(XElement xRow, string name)
-        {
-            var xProperty = xRow.Elements()
-                .First(p => p.Name == name);
-
-            var value = _propertySerializer.Deserialize<T>(xProperty);
-
-            return value;
-        }
-
+        
         private IEnumerable<object> DeserializeFields(XElement xRow, List<Type> dataTypes)
         {
             var xFields = xRow.Elements()

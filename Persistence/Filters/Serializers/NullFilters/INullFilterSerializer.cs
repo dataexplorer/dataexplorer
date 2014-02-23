@@ -10,6 +10,6 @@ namespace DataExplorer.Persistence.Filters.Serializers.NullFilters
     {
         XElement Serialize(NullFilter filter);
 
-        NullFilter Deserialize(XElement xFilter, IEnumerable<Column> columns);
+        NullFilter Deserialize(XElement xFilter, List<Column> columns);
     }
 }
