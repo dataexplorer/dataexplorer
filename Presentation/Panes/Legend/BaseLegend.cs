@@ -15,7 +15,6 @@ namespace DataExplorer.Presentation.Panes.Legend
         protected static readonly double ItemPadding = 2d;
         protected static readonly double TextHeight = 16d;
         
-        private DrawingVisual _backgroundVisual;
         private DrawingVisual _titleVisual;
         protected readonly List<Visual> _visuals = new List<Visual>();
 
@@ -42,7 +41,7 @@ namespace DataExplorer.Presentation.Panes.Legend
                 throw new ArgumentOutOfRangeException("index");
 
             if (index == 0)
-                return null;// _backgroundVisual;
+                return null;  // NOTE: Not sure why I need to do this; remove if unnecessary
             
             if (index == 1)
                 return _titleVisual;
@@ -59,8 +58,6 @@ namespace DataExplorer.Presentation.Panes.Legend
                 var rectangle = new Rect(0, 0, this.ActualWidth, this.ActualHeight);
                 context.DrawRectangle(Brushes.White, new Pen(Brushes.White, 0), rectangle);
             }
-
-            //_backgroundVisual = backgroundVisual;
 
             _visuals.Add(backgroundVisual);
             
