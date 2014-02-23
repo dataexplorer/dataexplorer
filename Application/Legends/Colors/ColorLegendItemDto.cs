@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DataExplorer.Domain.Colors;
 
-namespace DataExplorer.Application.Legends
+namespace DataExplorer.Application.Legends.Colors
 {
     public class ColorLegendItemDto
     {

@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DataExplorer.Application.Legends.Colors.Factories;
 using DataExplorer.Domain.Colors;
 using DataExplorer.Domain.Maps.ColorMaps;
 
-namespace DataExplorer.Application.Legends.Factories
+namespace DataExplorer.Application.Legends.Colors.Factories
 {
     public class ColorLegendFactory : IColorLegendFactory
     {

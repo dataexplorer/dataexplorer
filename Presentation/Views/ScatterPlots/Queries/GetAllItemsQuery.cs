@@ -4,65 +4,87 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using DataExplorer.Application.Core.Queries;
+using DataExplorer.Application.Views.ScatterPlots.Axes.Queries;
+using DataExplorer.Application.Views.ScatterPlots.Layouts.Queries;
+using DataExplorer.Application.Views.ScatterPlots.Queries;
 using DataExplorer.Presentation.Core.Canvas.Items;
-using DataExplorer.Presentation.Views.ScatterPlots.Grid;
-using DataExplorer.Presentation.Views.ScatterPlots.Plots.Queries;
-using DataExplorer.Presentation.Views.ScatterPlots.Titles;
+using DataExplorer.Presentation.Views.ScatterPlots.Grid.Lines.Renderers;
+using DataExplorer.Presentation.Views.ScatterPlots.Plots.Renderers;
+using DataExplorer.Presentation.Views.ScatterPlots.Titles.Renderers;
 
 namespace DataExplorer.Presentation.Views.ScatterPlots.Queries
 {
     public class GetAllItemsQuery : IGetAllItemsQuery
     {
-        private readonly IGridQueries _gridQueries;
-        private readonly IGetPlotsQuery _getPlotsQuery;
-        private readonly ITitleQueries _titleQueries;
+        private readonly IQueryBus _queryBus;
+        private readonly IAxisGridRenderer _gridRenderer;
+        private readonly IPlotRenderer _plotRenderer;
+        private readonly IAxisTitleRenderer _titleRenderer;
 
         public GetAllItemsQuery(
-            IGridQueries gridQueries,
-            IGetPlotsQuery getPlotsQuery,
-            ITitleQueries titleQueries)
+            IQueryBus queryBus,
+            IAxisGridRenderer gridRenderer,
+            IPlotRenderer plotRenderer,
+            IAxisTitleRenderer titleRenderer)
         {
-            _gridQueries = gridQueries;
-            _getPlotsQuery = getPlotsQuery;
-            _titleQueries = titleQueries;
+            _queryBus = queryBus;
+            _gridRenderer = gridRenderer;
+            _plotRenderer = plotRenderer;
+            _titleRenderer = titleRenderer;
         }
 
+        // TODO: Is there any possible way to refactor this to make it more readable?
         public IEnumerable<CanvasItem> Execute(Size controlSize)
         {
-            var xGridLines = _gridQueries.GetXAxisGridLines(controlSize);
+            var viewExtent = _queryBus.Execute(new GetViewExtentQuery());
 
-            foreach (var xGridLine in xGridLines)
+            var xGridLines = _queryBus.Execute(new GetXAxisGridLinesQuery());
+
+            var yGridLines = _queryBus.Execute(new GetYAxisGridLinesQuery());
+
+            var xAxisGridLines = _gridRenderer.RenderXAxisGridLines(xGridLines, viewExtent, controlSize);
+
+            foreach (var xGridLine in xAxisGridLines)
                 yield return xGridLine;
 
-            var yGridLines = _gridQueries.GetYAxisGridLines(controlSize);
+            var yAxisGridLines = _gridRenderer.RenderYAxisGridLines(yGridLines, viewExtent, controlSize);
 
-            foreach (var yGridLine in yGridLines)
+            foreach (var yGridLine in yAxisGridLines)
                 yield return yGridLine;
 
-            var plotItems = _getPlotsQuery.Execute(controlSize);
+            var plots = _queryBus.Execute(new GetPlotsQuery());
 
-            foreach (var canvasItem in plotItems)
-                yield return canvasItem;
+            var canvasPlots = _plotRenderer.RenderPlots(controlSize, viewExtent, plots);
 
-            var xAxisGridLabels = _gridQueries.GetXAxisGridLabels(controlSize);
+            foreach (var canvasPlot in canvasPlots)
+                yield return canvasPlot;
+
+            var xAxisGridLabels = _gridRenderer.RenderXAxisGridLabels(xGridLines, viewExtent, controlSize);
 
             foreach (var xAxisGridLabel in xAxisGridLabels)
                 yield return xAxisGridLabel;
 
-            var yAxisGridLabels = _gridQueries.GetYAxisGridLabels(controlSize);
+            var yAxisGridLabels = _gridRenderer.RenderYAxisGridLabels(yGridLines, viewExtent, controlSize);
 
             foreach (var yAxisGridLabel in yAxisGridLabels)
                 yield return yAxisGridLabel;
 
-            var xAxisTitleItem = _titleQueries.GetXAxisTitle(controlSize);
+            var xColumn = _queryBus.Execute(new GetXColumnQuery());
 
-            if (xAxisTitleItem != null)
-                yield return xAxisTitleItem;
+            var xTitle = xColumn != null
+                ? xColumn.Name
+                : string.Empty;
 
-            var yAxisTitleItem = _titleQueries.GetYAxisTitle(controlSize);
-            
-            if (yAxisTitleItem != null)
-                yield return yAxisTitleItem;
+            yield return _titleRenderer.RenderXAxisTitle(controlSize, xTitle);
+
+            var yColumn = _queryBus.Execute(new GetYColumnQuery());
+
+            var yTitle = yColumn != null
+                ? yColumn.Name
+                : string.Empty;
+
+            yield return _titleRenderer.RenderYAxisTitle(controlSize, yTitle);
         }
     }
 }

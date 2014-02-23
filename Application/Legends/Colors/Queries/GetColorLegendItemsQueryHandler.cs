@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DataExplorer.Application.Core.Queries;
-using DataExplorer.Application.Legends.Factories;
+using DataExplorer.Application.Legends.Colors.Factories;
 using DataExplorer.Application.Views;
 using DataExplorer.Domain.Maps;
 using DataExplorer.Domain.Views.ScatterPlots;
 
-namespace DataExplorer.Application.Legends.Queries
+namespace DataExplorer.Application.Legends.Colors.Queries
 {
     public class GetColorLegendItemsQueryHandler 
         : IQueryHandler<GetColorLegendItemsQuery, List<ColorLegendItemDto>>

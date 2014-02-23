@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataExplorer.Application.Legends;
-using DataExplorer.Application.Legends.Factories;
-using DataExplorer.Application.Legends.Queries;
+using DataExplorer.Application.Legends.Colors;
+using DataExplorer.Application.Legends.Colors.Factories;
+using DataExplorer.Application.Legends.Colors.Queries;
 using DataExplorer.Application.Views;
-using DataExplorer.Domain;
 using DataExplorer.Domain.Colors;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Maps;
@@ -20,7 +17,7 @@ using DataExplorer.Domain.Views.ScatterPlots;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Application.Tests.Legends.Queries
+namespace DataExplorer.Application.Tests.Legends.Colors.Queries
 {
     [TestFixture]
     public class GetColorLegendItemsQueryHandlerTests

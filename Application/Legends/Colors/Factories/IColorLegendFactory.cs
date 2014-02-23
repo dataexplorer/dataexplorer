@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using DataExplorer.Domain.Colors;
 using DataExplorer.Domain.Maps.ColorMaps;
 
-namespace DataExplorer.Application.Legends.Factories
+namespace DataExplorer.Application.Legends.Colors.Factories
 {
     public interface IColorLegendFactory
     {

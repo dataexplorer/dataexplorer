@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.Legends;
+using DataExplorer.Application.Legends.Colors;
 using DataExplorer.Application.Legends.Colors.Factories;
 using DataExplorer.Domain.Colors;
 using DataExplorer.Domain.Maps.ColorMaps;
