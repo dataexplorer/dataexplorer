@@ -7,7 +7,7 @@ using DataExplorer.Presentation.Core.Canvas.Items;
 using DataExplorer.Presentation.Core.Geometry;
 using DataExplorer.Presentation.Views.ScatterPlots.Scalers;
 
-namespace DataExplorer.Presentation.Views.ScatterPlots.Plots.Renderers
+namespace DataExplorer.Presentation.Views.ScatterPlots.Renderers.Plots
 {
     public class PlotRenderer : IPlotRenderer
     {

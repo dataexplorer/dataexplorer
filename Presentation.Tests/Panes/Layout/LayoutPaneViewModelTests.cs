@@ -1,5 +1,4 @@
 ﻿using DataExplorer.Presentation.Panes.Layout;
-using DataExplorer.Presentation.Views.ScatterPlots.Layout;
 using Moq;
 using NUnit.Framework;
 

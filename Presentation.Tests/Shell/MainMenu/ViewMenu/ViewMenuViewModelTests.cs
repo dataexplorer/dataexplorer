@@ -1,7 +1,7 @@
 ﻿using DataExplorer.Application.Core.Commands;
+using DataExplorer.Application.Layouts.Commands;
 using DataExplorer.Application.Views.ScatterPlots;
 using DataExplorer.Application.Views.ScatterPlots.Commands;
-using DataExplorer.Application.Views.ScatterPlots.Layouts.Commands;
 using DataExplorer.Presentation.Shell.MainMenu.ViewMenu;
 using Moq;
 using NUnit.Framework;

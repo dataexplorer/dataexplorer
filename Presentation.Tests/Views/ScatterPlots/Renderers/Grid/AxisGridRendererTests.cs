@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using DataExplorer.Domain.Views.ScatterPlots;
 using DataExplorer.Presentation.Core.Canvas.Items;
-using DataExplorer.Presentation.Views.ScatterPlots.Grid.Labels.Renderers;
-using DataExplorer.Presentation.Views.ScatterPlots.Grid.Lines.Renderers;
+using DataExplorer.Presentation.Views.ScatterPlots.Renderers.Grid;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Grid
+namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Renderers.Grid
 {
     [TestFixture]
     public class AxisGridRendererTests

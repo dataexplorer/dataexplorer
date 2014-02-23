@@ -4,7 +4,7 @@ using DataExplorer.Domain.Views.ScatterPlots;
 using DataExplorer.Presentation.Core.Canvas.Items;
 using DataExplorer.Presentation.Views.ScatterPlots.Scalers;
 
-namespace DataExplorer.Presentation.Views.ScatterPlots.Grid.Labels.Renderers
+namespace DataExplorer.Presentation.Views.ScatterPlots.Renderers.Grid
 {
     public class YAxisGridLabelRenderer : IYAxisGridLabelRenderer
     {

@@ -1,9 +1,9 @@
 ﻿using System.Windows;
 using DataExplorer.Presentation.Core.Canvas.Items;
-using DataExplorer.Presentation.Views.ScatterPlots.Titles.Renderers;
+using DataExplorer.Presentation.Views.ScatterPlots.Renderers.Titles;
 using NUnit.Framework;
 
-namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Titles.Renderers
+namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Renderers.Titles
 {
     [TestFixture]
     public class XAxisTitleRendererTests

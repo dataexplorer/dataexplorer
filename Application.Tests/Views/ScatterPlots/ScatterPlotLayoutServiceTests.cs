@@ -2,9 +2,9 @@
 using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Core.Messages;
 using DataExplorer.Application.Importers.CsvFiles.Events;
+using DataExplorer.Application.Layouts.Events;
 using DataExplorer.Application.Projects.Events;
 using DataExplorer.Application.Views.ScatterPlots;
-using DataExplorer.Application.Views.ScatterPlots.Layouts.Events;
 using Moq;
 using NUnit.Framework;
 

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using DataExplorer.Presentation.Core.Canvas.Items;
-using DataExplorer.Presentation.Views.ScatterPlots.Titles.Renderers;
+using DataExplorer.Presentation.Views.ScatterPlots.Renderers.Titles;
 using Moq;
 using NUnit.Framework;
 

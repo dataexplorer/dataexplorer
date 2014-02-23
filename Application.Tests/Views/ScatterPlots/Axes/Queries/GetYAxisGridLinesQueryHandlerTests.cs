@@ -9,7 +9,6 @@ using DataExplorer.Application.Tests.Maps;
 using DataExplorer.Application.Views;
 using DataExplorer.Application.Views.ScatterPlots.Axes.Factories;
 using DataExplorer.Application.Views.ScatterPlots.Axes.Queries;
-using DataExplorer.Application.Views.ScatterPlots.Layouts.Queries;
 using DataExplorer.Application.Views.ScatterPlots.Queries;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Maps;

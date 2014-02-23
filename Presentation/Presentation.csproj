@@ -279,27 +279,27 @@
     <Compile Include="Views\ScatterPlots\IScatterPlotViewModelCommands.cs" />
     <Compile Include="Views\ScatterPlots\IScatterPlotViewModelQueries.cs" />
     <Compile Include="Views\ScatterPlots\IScatterPlotViewScaler.cs" />
-    <Compile Include="Views\ScatterPlots\Layout\Color\ColorLayoutView.xaml.cs">
+    <Compile Include="Panes\Layout\Color\ColorLayoutView.xaml.cs">
       <DependentUpon>ColorLayoutView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ScatterPlots\Layout\Color\ColorLayoutViewModel.cs" />
-    <Compile Include="Views\ScatterPlots\Layout\Color\ColorPaletteViewModel.cs" />
-    <Compile Include="Views\ScatterPlots\Layout\Color\IColorLayoutViewModel.cs" />
-    <Compile Include="Views\ScatterPlots\Layout\IScatterPlotLayoutViewModel.cs" />
-    <Compile Include="Views\ScatterPlots\Layout\XAxis\IXAxisLayoutViewModel.cs" />
-    <Compile Include="Views\ScatterPlots\Layout\YAxis\IYAxisLayoutViewModel.cs" />
-    <Compile Include="Views\ScatterPlots\Layout\ScatterPlotLayoutView.xaml.cs">
+    <Compile Include="Panes\Layout\Color\ColorLayoutViewModel.cs" />
+    <Compile Include="Panes\Layout\Color\ColorPaletteViewModel.cs" />
+    <Compile Include="Panes\Layout\Color\IColorLayoutViewModel.cs" />
+    <Compile Include="Panes\Layout\IScatterPlotLayoutViewModel.cs" />
+    <Compile Include="Panes\Layout\XAxis\IXAxisLayoutViewModel.cs" />
+    <Compile Include="Panes\Layout\YAxis\IYAxisLayoutViewModel.cs" />
+    <Compile Include="Panes\Layout\ScatterPlotLayoutView.xaml.cs">
       <DependentUpon>ScatterPlotLayoutView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ScatterPlots\Layout\ScatterPlotLayoutViewModel.cs" />
-    <Compile Include="Views\ScatterPlots\Layout\XAxis\XAxisLayoutView.xaml.cs">
+    <Compile Include="Panes\Layout\ScatterPlotLayoutViewModel.cs" />
+    <Compile Include="Panes\Layout\XAxis\XAxisLayoutView.xaml.cs">
       <DependentUpon>XAxisLayoutView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ScatterPlots\Layout\XAxis\XAxisLayoutViewModel.cs" />
-    <Compile Include="Views\ScatterPlots\Layout\YAxis\YAxisLayoutView.xaml.cs">
+    <Compile Include="Panes\Layout\XAxis\XAxisLayoutViewModel.cs" />
+    <Compile Include="Panes\Layout\YAxis\YAxisLayoutView.xaml.cs">
       <DependentUpon>YAxisLayoutView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ScatterPlots\Layout\YAxis\YAxisLayoutViewModel.cs" />
+    <Compile Include="Panes\Layout\YAxis\YAxisLayoutViewModel.cs" />
     <Compile Include="Views\ScatterPlots\Renderers\Plots\IPlotRenderer.cs" />
     <Compile Include="Views\ScatterPlots\Renderers\Plots\PlotRenderer.cs" />
     <Compile Include="Views\ScatterPlots\Queries\GetAllItemsQuery.cs" />
@@ -441,19 +441,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\ScatterPlots\Layout\Color\ColorLayoutView.xaml">
+    <Page Include="Panes\Layout\Color\ColorLayoutView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ScatterPlots\Layout\ScatterPlotLayoutView.xaml">
+    <Page Include="Panes\Layout\ScatterPlotLayoutView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\ScatterPlots\Layout\XAxis\XAxisLayoutView.xaml">
+    <Page Include="Panes\Layout\XAxis\XAxisLayoutView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\ScatterPlots\Layout\YAxis\YAxisLayoutView.xaml">
+    <Page Include="Panes\Layout\YAxis\YAxisLayoutView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -472,7 +472,9 @@
       <Name>Domain</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Panes\Layout\Size\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

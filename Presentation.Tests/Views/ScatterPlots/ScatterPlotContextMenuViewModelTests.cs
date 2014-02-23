@@ -1,10 +1,10 @@
 ﻿using DataExplorer.Application.Clipboard.Commands;
 using DataExplorer.Application.Core.Messages;
+using DataExplorer.Application.Layouts.Commands;
 using DataExplorer.Application.Rows;
 using DataExplorer.Application.Rows.Events;
 using DataExplorer.Application.Views.ScatterPlots;
 using DataExplorer.Application.Views.ScatterPlots.Commands;
-using DataExplorer.Application.Views.ScatterPlots.Layouts.Commands;
 using DataExplorer.Presentation.Views.ScatterPlots;
 using Moq;
 using NUnit.Framework;

@@ -4,7 +4,7 @@ using DataExplorer.Domain.Views.ScatterPlots;
 using DataExplorer.Presentation.Core.Canvas.Items;
 using DataExplorer.Presentation.Views.ScatterPlots.Scalers;
 
-namespace DataExplorer.Presentation.Views.ScatterPlots.Grid.Lines.Renderers
+namespace DataExplorer.Presentation.Views.ScatterPlots.Renderers.Grid
 {
     public class XAxisGridLineRenderer : IXAxisGridLineRenderer
     {

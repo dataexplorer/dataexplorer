@@ -7,10 +7,10 @@ using System.Windows.Media;
 using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Core.Queries;
 using DataExplorer.Application.Importers.CsvFiles.Events;
+using DataExplorer.Application.Layouts.Events;
+using DataExplorer.Application.Layouts.Queries;
 using DataExplorer.Application.Legends.Colors.Queries;
 using DataExplorer.Application.Projects.Events;
-using DataExplorer.Application.Views.ScatterPlots.Layouts.Events;
-using DataExplorer.Application.Views.ScatterPlots.Layouts.Queries;
 using DataExplorer.Presentation.Core;
 
 namespace DataExplorer.Presentation.Panes.Legend.Colors

@@ -5,7 +5,6 @@ using DataExplorer.Application.Columns.Queries;
 using DataExplorer.Application.Core.Queries;
 using DataExplorer.Application.Maps.Queries;
 using DataExplorer.Application.Views.ScatterPlots.Axes.Factories;
-using DataExplorer.Application.Views.ScatterPlots.Layouts.Queries;
 using DataExplorer.Application.Views.ScatterPlots.Queries;
 using DataExplorer.Domain.Maps;
 using DataExplorer.Domain.Views.ScatterPlots;

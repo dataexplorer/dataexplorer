@@ -5,13 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using DataExplorer.Application.Core.Queries;
+using DataExplorer.Application.Layouts.Queries;
 using DataExplorer.Application.Views.ScatterPlots.Axes.Queries;
-using DataExplorer.Application.Views.ScatterPlots.Layouts.Queries;
 using DataExplorer.Application.Views.ScatterPlots.Queries;
 using DataExplorer.Presentation.Core.Canvas.Items;
-using DataExplorer.Presentation.Views.ScatterPlots.Grid.Lines.Renderers;
-using DataExplorer.Presentation.Views.ScatterPlots.Plots.Renderers;
-using DataExplorer.Presentation.Views.ScatterPlots.Titles.Renderers;
+using DataExplorer.Presentation.Views.ScatterPlots.Renderers.Grid;
+using DataExplorer.Presentation.Views.ScatterPlots.Renderers.Plots;
+using DataExplorer.Presentation.Views.ScatterPlots.Renderers.Titles;
 
 namespace DataExplorer.Presentation.Views.ScatterPlots.Queries
 {

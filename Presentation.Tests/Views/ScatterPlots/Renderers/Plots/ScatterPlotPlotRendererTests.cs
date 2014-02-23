@@ -4,12 +4,12 @@ using System.Windows.Media;
 using DataExplorer.Application.Views.ScatterPlots;
 using DataExplorer.Presentation.Core.Canvas.Items;
 using DataExplorer.Presentation.Core.Geometry;
-using DataExplorer.Presentation.Views.ScatterPlots.Plots.Renderers;
+using DataExplorer.Presentation.Views.ScatterPlots.Renderers.Plots;
 using DataExplorer.Presentation.Views.ScatterPlots.Scalers;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Plots.Renderers
+namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Renderers.Plots
 {
     [TestFixture]
     public class ScatterPlotPlotRendererTests

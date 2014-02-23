@@ -116,11 +116,11 @@
     <Compile Include="Views\ScatterPlots\Renderers\Grid\XAxisGridLabelRendererTests.cs" />
     <Compile Include="Views\ScatterPlots\Renderers\Grid\YAxisGridLabelRendererTests.cs" />
     <Compile Include="Views\ScatterPlots\Renderers\Grid\XAxisGridLineRendererTests.cs" />
-    <Compile Include="Views\ScatterPlots\Layouts\ColorLayoutViewModelTests.cs" />
-    <Compile Include="Views\ScatterPlots\Layouts\ColorPaletteViewModelTests.cs" />
-    <Compile Include="Views\ScatterPlots\Layouts\ScatterPlotLayoutViewModelTests.cs" />
-    <Compile Include="Views\ScatterPlots\Layouts\XAxisLayoutViewModelTests.cs" />
-    <Compile Include="Views\ScatterPlots\Layouts\YAxisLayoutViewModelTests.cs" />
+    <Compile Include="Panes\Layout\Color\ColorLayoutViewModelTests.cs" />
+    <Compile Include="Panes\Layout\Color\ColorPaletteViewModelTests.cs" />
+    <Compile Include="Panes\Layout\ScatterPlotLayoutViewModelTests.cs" />
+    <Compile Include="Panes\Layout\XAxis\XAxisLayoutViewModelTests.cs" />
+    <Compile Include="Panes\Layout\YAxis\YAxisLayoutViewModelTests.cs" />
     <Compile Include="Views\ScatterPlots\Renderers\Plots\ScatterPlotPlotRendererTests.cs" />
     <Compile Include="Views\ScatterPlots\Queries\GetAllItemsQueryTests.cs" />
     <Compile Include="Views\ScatterPlots\Queries\GetSelectedItemsQueryTests.cs" />
@@ -140,6 +140,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Core\Canvas\Events\" />
+    <Folder Include="Panes\Layout\Size\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

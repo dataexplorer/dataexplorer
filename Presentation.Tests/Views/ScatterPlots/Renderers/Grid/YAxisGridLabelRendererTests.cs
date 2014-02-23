@@ -2,12 +2,12 @@
 using System.Linq;
 using System.Windows;
 using DataExplorer.Domain.Views.ScatterPlots;
-using DataExplorer.Presentation.Views.ScatterPlots.Grid.Labels.Renderers;
+using DataExplorer.Presentation.Views.ScatterPlots.Renderers.Grid;
 using DataExplorer.Presentation.Views.ScatterPlots.Scalers;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Grid.Labels.Renderers
+namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Renderers.Grid
 {
     [TestFixture]
     public class YAxisGridLabelRendererTests

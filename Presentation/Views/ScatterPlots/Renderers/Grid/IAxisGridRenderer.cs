@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using DataExplorer.Domain.Views.ScatterPlots;
 using DataExplorer.Presentation.Core.Canvas.Items;
 
-namespace DataExplorer.Presentation.Views.ScatterPlots.Grid.Lines.Renderers
+namespace DataExplorer.Presentation.Views.ScatterPlots.Renderers.Grid
 {
     public interface IAxisGridRenderer
     {
