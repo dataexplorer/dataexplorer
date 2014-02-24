@@ -29,7 +29,8 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots
                 Id = 1,
                 X = 2d,
                 Y = 3d,
-                Color = new Color(0, 0, 0)
+                Color = new Color(0, 0, 0),
+                Size = 4d
             };
             var plots = new List<Plot> { plot };
             _mockScatterPlot.Setup(p => p.GetPlots()).Returns(plots);
@@ -38,6 +39,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots
             Assert.That(dtos.Single().X, Is.EqualTo(2d));
             Assert.That(dtos.Single().Y, Is.EqualTo(3d));
             Assert.That(dtos.Single().Color, Is.EqualTo(new Color(0, 0, 0)));
+            Assert.That(dtos.Single().Size, Is.EqualTo(4d));
         }
     }
 }

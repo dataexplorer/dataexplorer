@@ -29,6 +29,10 @@ namespace DataExplorer.Domain.Views.ScatterPlots
             var colorMap = layout.ColorColumn != null
                 ? _factory.CreateColorMap(layout.ColorColumn, layout.ColorPalette)
                 : null;
+
+            var sizeMap = layout.SizeColumn != null
+                ? _factory.CreateSizeMap(layout.SizeColumn, layout.LowerSize, layout.UpperSize)
+                : null;
             
             var plots = new List<Plot>();
             
@@ -49,6 +53,10 @@ namespace DataExplorer.Domain.Views.ScatterPlots
                 plot.Color = layout.ColorColumn != null
                     ? colorMap.Map(row[layout.ColorColumn.Index])
                     : DefaultColor;
+
+                plot.Size = layout.SizeColumn != null
+                    ? sizeMap.Map(row[layout.SizeColumn.Index]) ?? 0.0
+                    : layout.UpperSize;
 
                 plots.Add(plot);
             }

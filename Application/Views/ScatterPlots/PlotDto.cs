@@ -12,5 +12,6 @@ namespace DataExplorer.Application.Views.ScatterPlots
 
         public Color Color;
 
+        public double Size;
     }
 }

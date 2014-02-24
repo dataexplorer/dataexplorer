@@ -5,6 +5,8 @@ namespace DataExplorer.Domain.Views.ScatterPlots
 {
     public class ScatterPlotLayout
     {
+        private const double DefaultSize = 0.0625d;
+
         private Column _xAxisColumn;
         private Column _yAxisColumn;
         private Column _colorColumn;
@@ -12,6 +14,12 @@ namespace DataExplorer.Domain.Views.ScatterPlots
         private Column _sizeColumn;
         private double _lowerSize;
         private double _upperSize;
+
+        public ScatterPlotLayout()
+        {
+            _lowerSize = DefaultSize;
+            _upperSize = DefaultSize;
+        }
 
         public Column XAxisColumn
         {
@@ -62,8 +70,8 @@ namespace DataExplorer.Domain.Views.ScatterPlots
             _colorColumn = null;
             _colorPalette = null;
             _sizeColumn = null;
-            _lowerSize = 0d; // TODO: Need to decide on a default
-            _upperSize = 1d; // TODO: Need to decide on a default
+            _lowerSize = DefaultSize;
+            _upperSize = DefaultSize;
         }
     }
 }

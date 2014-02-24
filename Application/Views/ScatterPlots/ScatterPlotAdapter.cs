@@ -15,6 +15,7 @@ namespace DataExplorer.Application.Views.ScatterPlots
                 dto.X = plot.X;
                 dto.Y = plot.Y;
                 dto.Color = plot.Color;
+                dto.Size = plot.Size;
                 dtos.Add(dto);
             }
             return dtos;

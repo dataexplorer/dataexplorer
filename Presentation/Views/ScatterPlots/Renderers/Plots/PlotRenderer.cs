@@ -39,7 +39,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Renderers.Plots
 
         private CanvasItem RenderPlot(Size controlSize, Rect viewExtent, double scale, PlotDto plot)
         {
-            var extent = _calculator.CalculateExtent(controlSize, viewExtent, scale, new Point(plot.X, plot.Y));
+            var extent = _calculator.CalculateExtent(controlSize, viewExtent, scale, new Point(plot.X, plot.Y), plot.Size);
 
             var color = Color.FromRgb(plot.Color.Red, plot.Color.Green, plot.Color.Blue);
 

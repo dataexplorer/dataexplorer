@@ -7,6 +7,7 @@ using DataExplorer.Domain.Colors;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Maps.AxisMaps;
 using DataExplorer.Domain.Maps.ColorMaps;
+using DataExplorer.Domain.Maps.SizeMaps;
 
 namespace DataExplorer.Domain.Maps
 {
@@ -14,13 +15,16 @@ namespace DataExplorer.Domain.Maps
     {
         private readonly IAxisMapFactory _axisMapFactory;
         private readonly IColorMapFactory _colorMapFactory;
+        private readonly ISizeMapFactory _sizeMapFactory;
 
         public MapFactory(
             IAxisMapFactory axisMapFactory, 
-            IColorMapFactory colorMapFactory)
+            IColorMapFactory colorMapFactory,
+            ISizeMapFactory sizeMapFactory)
         {
             _axisMapFactory = axisMapFactory;
             _colorMapFactory = colorMapFactory;
+            _sizeMapFactory = sizeMapFactory;
         }
 
         public AxisMap CreateAxisMap(Column column, double targetMin, double targetMax)
@@ -31,6 +35,11 @@ namespace DataExplorer.Domain.Maps
         public ColorMap CreateColorMap(Column column, ColorPalette colorPalette)
         {
             return _colorMapFactory.Create(column, colorPalette);
+        }
+
+        public SizeMap CreateSizeMap(Column column, double targetMin, double targetMax)
+        {
+            return _sizeMapFactory.Create(column, targetMin, targetMax);
         }
     }
 }

@@ -4,6 +4,7 @@ using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Maps;
 using DataExplorer.Domain.Maps.AxisMaps;
 using DataExplorer.Domain.Maps.ColorMaps;
+using DataExplorer.Domain.Maps.SizeMaps;
 using DataExplorer.Domain.Tests.Colors;
 using DataExplorer.Domain.Tests.Columns;
 using Moq;
@@ -17,16 +18,19 @@ namespace DataExplorer.Domain.Tests.Maps
         private MapFactory _factory;
         private Mock<IAxisMapFactory> _mockAxisMapFactory;
         private Mock<IColorMapFactory> _mockColorMapFactory;
+        private Mock<ISizeMapFactory> _mockSizeMapFactory;
         private Column _column;
         private ColorPalette _colorPalette;
         private AxisMap _axisMap;
         private ColorMap _colorMap;
+        private SizeMap _sizeMap;
 
         [SetUp]
         public void SetUp()
         {
             _axisMap = new FakeAxisMap();
             _colorMap = new FakeColorMap();
+            _sizeMap = new FakeSizeMap();
 
             _column = new ColumnBuilder().Build();
             _colorPalette = new ColorPaletteBuilder().Build();
@@ -36,11 +40,17 @@ namespace DataExplorer.Domain.Tests.Maps
                 .Returns(_axisMap);
 
             _mockColorMapFactory = new Mock<IColorMapFactory>();
-            _mockColorMapFactory.Setup(p => p.Create(_column, _colorPalette)).Returns(_colorMap);
+            _mockColorMapFactory.Setup(p => p.Create(_column, _colorPalette))
+                .Returns(_colorMap);
             
+            _mockSizeMapFactory = new Mock<ISizeMapFactory>();
+            _mockSizeMapFactory.Setup(p => p.Create(_column, 0d, 1d))
+                .Returns(_sizeMap);
+
             _factory = new MapFactory(
                 _mockAxisMapFactory.Object,
-                _mockColorMapFactory.Object);
+                _mockColorMapFactory.Object,
+                _mockSizeMapFactory.Object);
         }
         
         [Test]
@@ -81,6 +91,19 @@ namespace DataExplorer.Domain.Tests.Maps
         }
 
         public override object MapInverse(Color value)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class FakeSizeMap : SizeMap
+    {
+        public override double? Map(object value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override object MapInverse(double? value)
         {
             throw new NotImplementedException();
         }

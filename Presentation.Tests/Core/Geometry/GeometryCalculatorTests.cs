@@ -8,71 +8,66 @@ namespace DataExplorer.Presentation.Tests.Core.Geometry
     public class GeometryCalculatorTests
     {
         private GeometryCalculator _calculator;
+        private Size _controlSize;
+        private Rect _viewExtent;
+        private Point _plotCenter;
+        private Rect _plotExtent;
+        private double _scale;
+        private double _plotSize;
 
         [SetUp]
         public void SetUp()
         {
+            _controlSize = new Size(0, 0);
+            _viewExtent = new Rect(0, 0, 0, 0);
+            _plotCenter = new Point(0, 0);
+            _plotExtent = new Rect(0, 0, 0, 0);
+            _scale = 1d;
+            _plotSize = 0d;
+
             _calculator = new GeometryCalculator();    
         }
-        
+
         [Test]
         public void TestCalculateExtentShouldCalculateExtentOfGeometry()
         {
-            var controlSize = new Size(0, 0);
-            var viewExtent = new Rect(0, 0, 0, 0);
-            var plotCenter = new Point(0, 0);
-            var plotExtent = new Rect(0, 0, 16, 16);
-            var scale = 1;
-            var result = _calculator.CalculateExtent(controlSize, viewExtent, scale, plotCenter);
-            Assert.That(result, Is.EqualTo(plotExtent));
+            _plotSize = 1d;
+            var result = _calculator.CalculateExtent(_controlSize, _viewExtent, _scale, _plotCenter, _plotSize);
+            Assert.That(result, Is.EqualTo(new Rect(0, 0, 256, 256)));
         }
 
         [Test]
         public void TestCalculateExtentShouldCalculateCenterOfPlot()
         {
-            var controlSize = new Size(0, 0);
-            var viewExtent = new Rect(0, 0, 0, 0);
-            var plotCenter = new Point(1, 2);
-            var plotExtent = new Rect(1, -2, 16, 16);
-            var scale = 1;
-            var result = _calculator.CalculateExtent(controlSize, viewExtent, scale, plotCenter);
-            Assert.That(result, Is.EqualTo(plotExtent));
+            _plotCenter = new Point(1, 2);
+            var result = _calculator.CalculateExtent(_controlSize, _viewExtent, _scale, _plotCenter, _plotSize);
+            Assert.That(result, Is.EqualTo(new Rect(1, -2, 0, 0)));
         }
 
         [Test]
         public void TestCalculateExtentSubtractViewOrigin()
         {
-            var controlSize = new Size(0, 0);
-            var viewExtent = new Rect(1, 2, 0, 0);
-            var plotCenter = new Point(3, 4);
-            var plotExtent = new Rect(2, -2, 16, 16);
-            var scale = 1;
-            var result = _calculator.CalculateExtent(controlSize, viewExtent, scale, plotCenter);
-            Assert.That(result, Is.EqualTo(plotExtent));
+            _viewExtent = new Rect(1, 2, 0, 0);
+            _plotCenter = new Point(3, 4);
+            var result = _calculator.CalculateExtent(_controlSize, _viewExtent, _scale, _plotCenter, _plotSize);
+            Assert.That(result, Is.EqualTo(new Rect(2, -2, 0, 0)));
         }
 
         [Test]
         public void TestCalculateExtentShouldScaleExtent()
         {
-            var controlSize = new Size(0, 0);
-            var viewExtent = new Rect(0, 0, 0, 0);
-            var plotCenter = new Point(1, 2);
-            var plotExtent = new Rect(2, -4, 16, 16);
-            var scale = 2;
-            var result = _calculator.CalculateExtent(controlSize, viewExtent, scale, plotCenter);
-            Assert.That(result, Is.EqualTo(plotExtent));
+            _plotCenter = new Point(1, 2);
+            _scale = 2;
+            var result = _calculator.CalculateExtent(_controlSize, _viewExtent, _scale, _plotCenter, _plotSize);
+            Assert.That(result, Is.EqualTo(new Rect(2, -4, 0, 0)));
         }
 
         [Test]
         public void TestCalculateExtentShouldSubtractControlHeight()
         {
-            var controlSize = new Size(0, 10);
-            var viewExtent = new Rect(0, 0, 0, 0);
-            var plotCenter = new Point(0, 0);
-            var plotExtent = new Rect(0, 10, 16, 16);
-            var scale = 1;
-            var result = _calculator.CalculateExtent(controlSize, viewExtent, scale, plotCenter);
-            Assert.That(result, Is.EqualTo(plotExtent));
+            _controlSize = new Size(0, 10);
+            var result = _calculator.CalculateExtent(_controlSize, _viewExtent, _scale, _plotCenter, _plotSize);
+            Assert.That(result, Is.EqualTo(new Rect(0, 10, 0, 0)));
         }
     }
 }
