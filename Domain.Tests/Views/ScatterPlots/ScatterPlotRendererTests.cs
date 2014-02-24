@@ -119,6 +119,8 @@ namespace DataExplorer.Domain.Tests.Views.ScatterPlots
             _mockSizeMap.Setup(p => p.Map(1.0d)).Returns(1.0d);
 
             _layout.SizeColumn = _column;
+            _layout.LowerSize = 0d;
+            _layout.UpperSize = 1d;
 
             var results = _renderer.RenderPlots(_rows, _layout);
 
