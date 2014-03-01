@@ -9,6 +9,8 @@ namespace DataExplorer.Presentation.Panes.Legend.Sizes
 {
     public class SizeLegend : BaseLegend
     {
+        private const int MaxSize = 128;
+
         public static readonly DependencyProperty ItemsProperty = DependencyProperty.Register(
            "Items",
            typeof(List<SizeLegendItemViewModel>),
@@ -48,8 +50,8 @@ namespace DataExplorer.Presentation.Panes.Legend.Sizes
                 var item = items[i];
 
                 double y = originY + i * 20;
-                
-                double radius = (item.Size / 2) * 256;
+
+                double radius = (item.Size / 2) * MaxSize;
 
                 RenderItem(x, y, radius, pen, brush);
 

@@ -9,6 +9,6 @@ namespace DataExplorer.Application.Legends.Sizes.Factories
 {
     public interface IDateTimeSizeLegendFactory
     {
-        List<SizeLegendItemDto> Create(SizeMap map, List<DateTime?> values, double lowerSize, double upperSize);
+        IEnumerable<SizeLegendItemDto> Create(SizeMap map, List<DateTime?> values, double lowerSize, double upperSize);
     }
 }

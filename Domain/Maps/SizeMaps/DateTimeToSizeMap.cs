@@ -8,7 +8,7 @@ namespace DataExplorer.Domain.Maps.SizeMaps
 {
     public class DateTimeToSizeMap : SizeMap
     {
-         private readonly double _sourceMin;
+        private readonly double _sourceMin;
         private readonly double _sourceMax;
         private readonly double _targetMin;
         private readonly double _sourceWidth;

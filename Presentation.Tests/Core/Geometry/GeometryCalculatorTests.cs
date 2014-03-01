@@ -33,7 +33,7 @@ namespace DataExplorer.Presentation.Tests.Core.Geometry
         {
             _plotSize = 1d;
             var result = _calculator.CalculateExtent(_controlSize, _viewExtent, _scale, _plotCenter, _plotSize);
-            Assert.That(result, Is.EqualTo(new Rect(0, 0, 256, 256)));
+            Assert.That(result, Is.EqualTo(new Rect(0, 0, 128, 128)));
         }
 
         [Test]

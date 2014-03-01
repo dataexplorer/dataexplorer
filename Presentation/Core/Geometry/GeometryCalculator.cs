@@ -4,7 +4,7 @@ namespace DataExplorer.Presentation.Core.Geometry
 {
     public class GeometryCalculator : IGeometryCalculator
     {
-        private const int MaxSize = 256;
+        private const int MaxSize = 128;
 
         // TODO: Should I refector the last three parameters to a single PlotDto?
         public Rect CalculateExtent(Size controlSize, Rect viewExtent, double scale, Point plotCenter, double plotSize)

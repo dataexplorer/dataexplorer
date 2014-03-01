@@ -100,6 +100,7 @@
     <Compile Include="Legends\Colors\Factories\StringColorLegendFactoryTests.cs" />
     <Compile Include="Legends\Colors\Queries\GetColorLegendItemsQueryHandlerTests.cs" />
     <Compile Include="Legends\Sizes\Factories\BooleanSizeLegendFactoryTests.cs" />
+    <Compile Include="Legends\Sizes\Factories\DateTimeSizeLegendFactoryTests.cs" />
     <Compile Include="Legends\Sizes\Factories\SizeLegendFactoryTests.cs" />
     <Compile Include="Legends\Sizes\Queries\GetSizeLegendItemsQueryHandlerTests.cs" />
     <Compile Include="Projects\Commands\CloseProjectCommandHandlerTests.cs" />
