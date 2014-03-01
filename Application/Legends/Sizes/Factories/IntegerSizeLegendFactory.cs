@@ -51,8 +51,8 @@ namespace DataExplorer.Application.Legends.Sizes.Factories
             {
                 var itemDto = new SizeLegendItemDto()
                 {
-                    Size = lowerSize + (unit * i),
-                    Label = GetLabelName((int) map.MapInverse(i * 0.5d))
+                    Size = lowerSize + (i * unit),
+                    Label = GetLabelName((int?) map.MapInverse(i * unit))
                 };
 
                 yield return itemDto;
@@ -60,10 +60,13 @@ namespace DataExplorer.Application.Legends.Sizes.Factories
         }
 
         // TODO: Need to Refactor to a common location
-        private string GetLabelName(int value)
+        private string GetLabelName(int? value)
         {
+            if (!value.HasValue)
+                return "N/A";
+
             if (value <= -1000000 || value >= 1000000)
-                return value.ToString("E2");
+                return value.Value.ToString("E2");
 
             return value.ToString();
         }

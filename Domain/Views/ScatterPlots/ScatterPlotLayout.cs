@@ -5,7 +5,7 @@ namespace DataExplorer.Domain.Views.ScatterPlots
 {
     public class ScatterPlotLayout
     {
-        private const double DefaultSize = 0.0625d;
+        private const double DefaultSize = 0.125d;
 
         private Column _xAxisColumn;
         private Column _yAxisColumn;

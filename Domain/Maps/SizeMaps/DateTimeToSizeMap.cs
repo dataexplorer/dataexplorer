@@ -47,6 +47,9 @@ namespace DataExplorer.Domain.Maps.SizeMaps
 
             var result = _sourceMin + (_sourceWidth * ratio);
 
+            if (double.IsNaN(result.Value))
+                return null;
+
             if (result < DateTime.MinValue.Ticks)
                 return DateTime.MinValue;
 

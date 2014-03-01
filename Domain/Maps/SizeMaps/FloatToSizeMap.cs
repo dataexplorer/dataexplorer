@@ -52,6 +52,9 @@ namespace DataExplorer.Domain.Maps.SizeMaps
 
             var result = _sourceMin + ((_sourceWidth * ratio) * InverseScaleFactor);
 
+            if (double.IsNaN(result))
+                return null;
+
             if (double.IsNegativeInfinity(result))
                 return double.MinValue;
 

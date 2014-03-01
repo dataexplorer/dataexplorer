@@ -51,12 +51,20 @@ namespace DataExplorer.Application.Legends.Sizes.Factories
             {
                 var itemDto = new SizeLegendItemDto()
                 {
-                    Size = lowerSize + (unit * i),
-                    Label = ((DateTime) map.MapInverse(i * 0.5d)).ToShortDateString()
+                    Size = lowerSize + (i * unit),
+                    Label = GetLabelName((DateTime?) map.MapInverse(i * unit))
                 };
 
                 yield return itemDto;
             }
+        }
+
+        private string GetLabelName(DateTime? value)
+        {
+            if (!value.HasValue)
+                return "N/A";
+
+            return value.Value.ToShortDateString();
         }
     }
 }

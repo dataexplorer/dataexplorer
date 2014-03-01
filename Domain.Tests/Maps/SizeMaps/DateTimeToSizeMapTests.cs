@@ -124,5 +124,13 @@ namespace DataExplorer.Domain.Tests.Maps.SizeMaps
             var result = map.MapInverse(value);
             Assert.That(result, Is.EqualTo(expectedDate));
         }
+
+        [Test]
+        public void TestMapInverseReturnsNullWhenResultIsNotANumber()
+        {
+            var map = new DateTimeToSizeMap(DateTime.MinValue, DateTime.MaxValue, 0d, 0d);
+            var result = map.MapInverse(0d);
+            Assert.That(result, Is.Null);
+        }
     }
 }

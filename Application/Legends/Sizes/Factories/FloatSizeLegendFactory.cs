@@ -51,8 +51,8 @@ namespace DataExplorer.Application.Legends.Sizes.Factories
             {
                 var itemDto = new SizeLegendItemDto()
                 {
-                    Size = lowerSize + (unit * i),
-                    Label = GetLabelName((double) map.MapInverse(i * 0.5d))
+                    Size = lowerSize + (i * unit),
+                    Label = GetLabelName((double?) map.MapInverse(i * unit))
                 };
 
                 yield return itemDto;
@@ -60,13 +60,16 @@ namespace DataExplorer.Application.Legends.Sizes.Factories
         }
 
         // TODO: Need to refactor to common class
-        private string GetLabelName(double value)
+        private string GetLabelName(double? value)
         {
+            if (!value.HasValue)
+                return "N/A";
+
             if (value <= -1000000d || value >= 1000000d
                 || (value >= -0.001d && value <= 0.001d && value != 0d))
-                return value.ToString("E2");
+                return value.Value.ToString("E2");
 
-            return value.ToString("N2");
+            return value.Value.ToString("N2");
         }
     }
 }

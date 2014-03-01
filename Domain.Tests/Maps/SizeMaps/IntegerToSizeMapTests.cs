@@ -49,5 +49,13 @@ namespace DataExplorer.Domain.Tests.Maps.SizeMaps
             var result = map.MapInverse(value);
             Assert.That(result, Is.EqualTo(expected));
         }
+
+        [Test]
+        public void TestMapInverseReturnsNullWhenResultIsNotANumber()
+        {
+            var map = new IntegerToSizeMap(-10, 10, 0d, 0d);
+            var result = map.MapInverse(0d);
+            Assert.That(result, Is.Null);
+        }
     }
 }
