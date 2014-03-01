@@ -5,14 +5,20 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:colors="clr-namespace:DataExplorer.Presentation.Panes.Legend.Colors"
+    xmlns:sizes="clr-namespace:DataExplorer.Presentation.Panes.Legend.Sizes"
     mc:Ignorable="d" 
     d:DesignHeight="300"
     d:DesignWidth="300">
-    <StackPanel>
-        <colors:ColorLegend 
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+            <colors:ColorLegend 
             Title="{Binding ColorLegendViewModel.Title}"
             Items="{Binding ColorLegendViewModel.Items}" />
-    </StackPanel>
+            <sizes:SizeLegend 
+            Title="{Binding SizeLegendViewModel.Title}"
+            Items="{Binding SizeLegendViewModel.Items}" />
+        </StackPanel>
+    </ScrollViewer>
     <UserControl.ContextMenu>
         <ContextMenu>
             <MenuItem 

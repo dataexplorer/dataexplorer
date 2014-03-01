@@ -12,72 +12,76 @@
              xmlns:nullFilters="clr-namespace:DataExplorer.Presentation.Panes.Filter.NullFilters"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <Border 
-            BorderBrush="LightGray"
-            BorderThickness="1"
-            CornerRadius="8"
-            HorizontalAlignment="Stretch"
-            Background="White"
-            Padding="2">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <TextBlock
-                    Grid.Row="0"
-                    Margin="5,0,0,0"
-                    Text="{Binding Label}" />
-                <Button 
-                    Grid.Row="0" 
-                    HorizontalAlignment="Right" 
-                    Height="16" 
-                    Width="16" 
-                    Padding="0,-3,0,0" 
-                    Background="{x:Null}" 
-                    BorderBrush="{x:Null}"
-                    Content="x" Command="{Binding CloseCommand}" />
-                <ContentControl 
-                    Grid.Row="1" 
-                    Margin="5,0,5,5"
-                    Content="{Binding}">
-                    <ContentControl.ContentTemplateSelector>
-                        <filter:FilterDataTemplateSelector>
-                            <filter:FilterDataTemplateSelector.BooleanFilterDataTemplate>
-                                <DataTemplate>
-                                    <booleanFilters:BooleanFilterView />
-                                </DataTemplate>
-                            </filter:FilterDataTemplateSelector.BooleanFilterDataTemplate>
-                            <filter:FilterDataTemplateSelector.DateRangeFilterDataTemplate>
-                                <DataTemplate>
-                                    <dateTimeFilters:DateRangeFilterView />
-                                </DataTemplate>
-                            </filter:FilterDataTemplateSelector.DateRangeFilterDataTemplate>
-                            <filter:FilterDataTemplateSelector.FloatRangeFilterDataTemplate>
-                                <DataTemplate>
-                                    <floatFilters:FloatRangeFilterView />
-                                </DataTemplate>
-                            </filter:FilterDataTemplateSelector.FloatRangeFilterDataTemplate>
-                            <filter:FilterDataTemplateSelector.IntegerRangeFilterDataTemplate>
-                                <DataTemplate>
-                                    <integerFilters:IntegerRangeFilterView />
-                                </DataTemplate>
-                            </filter:FilterDataTemplateSelector.IntegerRangeFilterDataTemplate>
-                            <filter:FilterDataTemplateSelector.NullFilterDataTemplate>
-                                <DataTemplate>
-                                    <nullFilters:NullFilterView />
-                                </DataTemplate>
-                            </filter:FilterDataTemplateSelector.NullFilterDataTemplate>
-                            <filter:FilterDataTemplateSelector.StringFilterDataTemplate>
-                                <DataTemplate>
-                                    <stringFilters:StringFilterView />
-                                </DataTemplate>
-                            </filter:FilterDataTemplateSelector.StringFilterDataTemplate>
-                        </filter:FilterDataTemplateSelector>
-                    </ContentControl.ContentTemplateSelector>
-                </ContentControl>
-            </Grid>
-        </Border>
-    </Grid>
+    <ScrollViewer
+        VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <Border 
+                BorderBrush="LightGray"
+                BorderThickness="1"
+                CornerRadius="8"
+                HorizontalAlignment="Stretch"
+                Background="White"
+                Padding="2">
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <TextBlock
+                        Grid.Row="0"
+                        Margin="5,0,0,0"
+                        Text="{Binding Label}" />
+                    <Button 
+                        Grid.Row="0" 
+                        HorizontalAlignment="Right" 
+                        Height="16" 
+                        Width="16" 
+                        Padding="0,-3,0,0" 
+                        Background="{x:Null}" 
+                        BorderBrush="{x:Null}"
+                        Content="x" Command="{Binding CloseCommand}" />
+                    <ContentControl 
+                        Grid.Row="1" 
+                        Margin="5,0,5,5"
+                        Content="{Binding}">
+                        <ContentControl.ContentTemplateSelector>
+                            <filter:FilterDataTemplateSelector>
+                                <filter:FilterDataTemplateSelector.BooleanFilterDataTemplate>
+                                    <DataTemplate>
+                                        <booleanFilters:BooleanFilterView />
+                                    </DataTemplate>
+                                </filter:FilterDataTemplateSelector.BooleanFilterDataTemplate>
+                                <filter:FilterDataTemplateSelector.DateRangeFilterDataTemplate>
+                                    <DataTemplate>
+                                        <dateTimeFilters:DateRangeFilterView />
+                                    </DataTemplate>
+                                </filter:FilterDataTemplateSelector.DateRangeFilterDataTemplate>
+                                <filter:FilterDataTemplateSelector.FloatRangeFilterDataTemplate>
+                                    <DataTemplate>
+                                        <floatFilters:FloatRangeFilterView />
+                                    </DataTemplate>
+                                </filter:FilterDataTemplateSelector.FloatRangeFilterDataTemplate>
+                                <filter:FilterDataTemplateSelector.IntegerRangeFilterDataTemplate>
+                                    <DataTemplate>
+                                        <integerFilters:IntegerRangeFilterView />
+                                    </DataTemplate>
+                                </filter:FilterDataTemplateSelector.IntegerRangeFilterDataTemplate>
+                                <filter:FilterDataTemplateSelector.NullFilterDataTemplate>
+                                    <DataTemplate>
+                                        <nullFilters:NullFilterView />
+                                    </DataTemplate>
+                                </filter:FilterDataTemplateSelector.NullFilterDataTemplate>
+                                <filter:FilterDataTemplateSelector.StringFilterDataTemplate>
+                                    <DataTemplate>
+                                        <stringFilters:StringFilterView />
+                                    </DataTemplate>
+                                </filter:FilterDataTemplateSelector.StringFilterDataTemplate>
+                            </filter:FilterDataTemplateSelector>
+                        </ContentControl.ContentTemplateSelector>
+                    </ContentControl>
+                </Grid>
+            </Border>
+        </Grid>
+    </ScrollViewer>
 </UserControl>

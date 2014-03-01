@@ -176,7 +176,6 @@
     <Compile Include="Panes\Layout\LayoutPaneView.xaml.cs">
       <DependentUpon>LayoutPaneView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Panes\Layout\LayoutPaneViewModel.cs" />
     <Compile Include="Panes\Layout\Size\ISizeLayoutViewModel.cs" />
     <Compile Include="Panes\Layout\Size\SizeLayoutView.xaml.cs">
       <DependentUpon>SizeLayoutView.xaml</DependentUpon>
@@ -292,13 +291,9 @@
     <Compile Include="Panes\Layout\Color\ColorLayoutViewModel.cs" />
     <Compile Include="Panes\Layout\Color\ColorPaletteViewModel.cs" />
     <Compile Include="Panes\Layout\Color\IColorLayoutViewModel.cs" />
-    <Compile Include="Panes\Layout\IScatterPlotLayoutViewModel.cs" />
     <Compile Include="Panes\Layout\Location\IXAxisLayoutViewModel.cs" />
     <Compile Include="Panes\Layout\Location\IYAxisLayoutViewModel.cs" />
-    <Compile Include="Panes\Layout\ScatterPlotLayoutView.xaml.cs">
-      <DependentUpon>ScatterPlotLayoutView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Panes\Layout\ScatterPlotLayoutViewModel.cs" />
+    <Compile Include="Panes\Layout\LayoutPaneViewModel.cs" />
     <Compile Include="Panes\Layout\Location\XAxisLayoutView.xaml.cs">
       <DependentUpon>XAxisLayoutView.xaml</DependentUpon>
     </Compile>
@@ -455,10 +450,6 @@
     <Page Include="Panes\Layout\Color\ColorLayoutView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Panes\Layout\ScatterPlotLayoutView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Panes\Layout\Location\XAxisLayoutView.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Presentation.Core;
 using DataExplorer.Presentation.Panes.Legend.Colors;
+using DataExplorer.Presentation.Panes.Legend.Sizes;
 
 namespace DataExplorer.Presentation.Panes.Legend
 {
@@ -13,15 +14,24 @@ namespace DataExplorer.Presentation.Panes.Legend
         ILegendPaneViewModel
     {
         private readonly IColorLegendViewModel _colorLegendViewModel;
+        private readonly ISizeLegendViewModel _sizeLegendViewModel;
 
-        public LegendPaneViewModel(IColorLegendViewModel colorLegendViewModel)
+        public LegendPaneViewModel(
+            IColorLegendViewModel colorLegendViewModel,
+            ISizeLegendViewModel sizeLegendViewModel)
         {
             _colorLegendViewModel = colorLegendViewModel;
+            _sizeLegendViewModel = sizeLegendViewModel;
         }
 
         public IColorLegendViewModel ColorLegendViewModel
         {
             get { return _colorLegendViewModel; }
+        }
+
+        public ISizeLegendViewModel SizeLegendViewModel
+        {
+            get { return _sizeLegendViewModel; }
         }
     }
 }

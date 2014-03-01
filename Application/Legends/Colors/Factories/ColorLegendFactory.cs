@@ -45,7 +45,7 @@ namespace DataExplorer.Application.Legends.Colors.Factories
             if (type == typeof(String))
                 return _stringFactory.Create(map, values.Cast<string>().ToList(), palette);
 
-            throw new ArgumentException("Could not create color legend items b");
+            throw new ArgumentException("Could not create color legend items because data type was not recognized");
         }
     }
 }

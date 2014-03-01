@@ -14,16 +14,16 @@ namespace DataExplorer.Application.Legends.Colors.Queries
     {
         private readonly IViewRepository _viewRepository;
         private readonly IMapFactory _mapFactory;
-        private readonly IColorLegendFactory _factory;
+        private readonly IColorLegendFactory _legendFactory;
 
         public GetColorLegendItemsQueryHandler(
             IViewRepository viewRepository, 
             IMapFactory mapFactory,
-            IColorLegendFactory factory)
+            IColorLegendFactory legendFactory)
         {
             _viewRepository = viewRepository;
             _mapFactory = mapFactory;
-            _factory = factory;
+            _legendFactory = legendFactory;
         }
 
         public List<ColorLegendItemDto> Execute(GetColorLegendItemsQuery query)
@@ -47,7 +47,7 @@ namespace DataExplorer.Application.Legends.Colors.Queries
                 .Distinct()
                 .ToList();
             
-            var items = _factory.Create(type,  map, values, palette);
+            var items = _legendFactory.Create(type,  map, values, palette);
 
             return items.ToList();
         }

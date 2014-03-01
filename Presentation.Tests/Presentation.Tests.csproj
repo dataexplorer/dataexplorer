@@ -90,7 +90,6 @@
     <Compile Include="Panes\Filter\IntegerFilters\IntegerRangeFilterViewModelTests.cs" />
     <Compile Include="Panes\Filter\NullFilters\NullFilterViewModelTests.cs" />
     <Compile Include="Panes\Filter\StringFilters\StringFilterViewModelTests.cs" />
-    <Compile Include="Panes\Layout\LayoutPaneViewModelTests.cs" />
     <Compile Include="Panes\Layout\Size\SizeLayoutViewModelTests.cs" />
     <Compile Include="Panes\Legend\Colors\ColorLegendViewModelTests.cs" />
     <Compile Include="Panes\Legend\LegendPaneViewModelTests.cs" />
@@ -120,7 +119,7 @@
     <Compile Include="Views\ScatterPlots\Renderers\Grid\XAxisGridLineRendererTests.cs" />
     <Compile Include="Panes\Layout\Color\ColorLayoutViewModelTests.cs" />
     <Compile Include="Panes\Layout\Color\ColorPaletteViewModelTests.cs" />
-    <Compile Include="Panes\Layout\ScatterPlotLayoutViewModelTests.cs" />
+    <Compile Include="Panes\Layout\LayoutPaneViewModelTests.cs" />
     <Compile Include="Panes\Layout\Location\XAxisLayoutViewModelTests.cs" />
     <Compile Include="Panes\Layout\Location\YAxisLayoutViewModelTests.cs" />
     <Compile Include="Views\ScatterPlots\Renderers\Plots\ScatterPlotPlotRendererTests.cs" />

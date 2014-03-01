@@ -131,7 +131,7 @@ namespace DataExplorer.Presentation.Panes.Legend
             RenderItems();
         }
 
-        protected void RenderLabel(double y, string label)
+        protected void RenderLabel(double x, double y, string label)
         {
             var labelVisual = new DrawingVisual();
 
@@ -145,7 +145,7 @@ namespace DataExplorer.Presentation.Panes.Legend
                     12,
                     Brushes.Black);
 
-                context.DrawText(text, new Point(32, y - text.Height / 2));
+                context.DrawText(text, new Point(x, y - text.Height / 2));
             }
             _visuals.Add(labelVisual);
         }

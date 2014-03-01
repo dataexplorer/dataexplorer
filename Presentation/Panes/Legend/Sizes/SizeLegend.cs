@@ -35,7 +35,7 @@ namespace DataExplorer.Presentation.Panes.Legend.Sizes
 
             Height = items.Count * 20 + 16 + 8;
 
-            var x = 16d;
+            var x = 64d;
 
             var originY = 32d;
 
@@ -53,7 +53,7 @@ namespace DataExplorer.Presentation.Panes.Legend.Sizes
 
                 RenderItem(x, y, radius, pen, brush);
 
-                RenderLabel(y, item.Label);
+                RenderLabel(128, y, item.Label);
             }
 
             base.PostRenderItems();

@@ -53,7 +53,7 @@ namespace DataExplorer.Presentation.Panes.Legend.Colors
 
                 RenderItem(x, y, pen, brush);
 
-                RenderLabel(y, item.Label);
+                RenderLabel(32, y, item.Label);
             }
 
             base.PostRenderItems();
