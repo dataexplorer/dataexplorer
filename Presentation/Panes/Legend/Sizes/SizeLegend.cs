@@ -2,24 +2,22 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 
-namespace DataExplorer.Presentation.Panes.Legend.Colors
+namespace DataExplorer.Presentation.Panes.Legend.Sizes
 {
-    public class ColorLegend : BaseLegend
+    public class SizeLegend : BaseLegend
     {
         public static readonly DependencyProperty ItemsProperty = DependencyProperty.Register(
-            "Items",
-            typeof(List<ColorLegendItemViewModel>),
-            typeof(ColorLegend),
-            new PropertyMetadata(OnItemsChanged));
+           "Items",
+           typeof(List<SizeLegendItemViewModel>),
+           typeof(SizeLegend),
+           new PropertyMetadata(OnItemsChanged));
 
-        public List<ColorLegendItemViewModel> Items
+        public List<SizeLegendItemViewModel> Items
         {
-            get { return (List<ColorLegendItemViewModel>)GetValue(ItemsProperty); }
+            get { return (List<SizeLegendItemViewModel>)GetValue(ItemsProperty); }
             set { SetValue(ItemsProperty, value); }
         }
 
@@ -27,7 +25,7 @@ namespace DataExplorer.Presentation.Panes.Legend.Colors
         {
             base.PreRenderItems();
 
-            var items = GetValue(ItemsProperty) as List<ColorLegendItemViewModel>;
+            var items = GetValue(ItemsProperty) as List<SizeLegendItemViewModel>;
 
             if (items == null || !items.Any())
             {
@@ -38,20 +36,22 @@ namespace DataExplorer.Presentation.Panes.Legend.Colors
             Height = items.Count * 20 + 16 + 8;
 
             var x = 16d;
-            
+
             var originY = 32d;
-            
+
             var pen = new Pen(Brushes.Black, 1);
+
+            var brush = Brushes.LightGray;
 
             for (int i = 0; i < items.Count; i++)
             {
                 var item = items[i];
-                
+
                 double y = originY + i * 20;
+                
+                double radius = (item.Size / 2) * 256;
 
-                var brush = new SolidColorBrush(item.Color);
-
-                RenderItem(x, y, pen, brush);
+                RenderItem(x, y, radius, pen, brush);
 
                 RenderLabel(y, item.Label);
             }
@@ -59,15 +59,15 @@ namespace DataExplorer.Presentation.Panes.Legend.Colors
             base.PostRenderItems();
         }
 
-        private void RenderItem(double x, double y, Pen pen, Brush brush)
+        private void RenderItem(double x, double y, double radius, Pen pen, SolidColorBrush brush)
         {
             var visual = new DrawingVisual();
 
             using (var context = visual.RenderOpen())
             {
-                var rectangle = new Rect(x - 8, y - 8, 16, 16);
-                
-                context.DrawRectangle(brush, pen, rectangle);
+                context.PushClip(new RectangleGeometry(new Rect(0, y - 8, 128, 16)));
+
+                context.DrawEllipse(brush, pen, new Point(x, y), radius, radius);
             }
 
             _visuals.Add(visual);

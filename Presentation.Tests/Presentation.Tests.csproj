@@ -94,6 +94,7 @@
     <Compile Include="Panes\Layout\Size\SizeLayoutViewModelTests.cs" />
     <Compile Include="Panes\Legend\Colors\ColorLegendViewModelTests.cs" />
     <Compile Include="Panes\Legend\LegendPaneViewModelTests.cs" />
+    <Compile Include="Panes\Legend\Sizes\SizeLegendViewModelTests.cs" />
     <Compile Include="Panes\Navigation\NavigationPaneViewModelTests.cs" />
     <Compile Include="Panes\Navigation\NavigationTree\NavigationTreeViewModelTests.cs" />
     <Compile Include="Panes\Navigation\NavigationTree\TreeNodeViewModelTests.cs" />

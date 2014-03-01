@@ -193,6 +193,11 @@
       <DependentUpon>LegendPane.xaml</DependentUpon>
     </Compile>
     <Compile Include="Panes\Legend\LegendPaneViewModel.cs" />
+    <Compile Include="Panes\Legend\Sizes\ISizeLegendItem.cs" />
+    <Compile Include="Panes\Legend\Sizes\ISizeLegendViewModel.cs" />
+    <Compile Include="Panes\Legend\Sizes\SizeLegend.cs" />
+    <Compile Include="Panes\Legend\Sizes\SizeLegendItemViewModel.cs" />
+    <Compile Include="Panes\Legend\Sizes\SizeLegendViewModel.cs" />
     <Compile Include="Panes\Navigation\INavigationPaneViewModel.cs" />
     <Compile Include="Panes\Navigation\NavigationPaneView.xaml.cs">
       <DependentUpon>NavigationPaneView.xaml</DependentUpon>

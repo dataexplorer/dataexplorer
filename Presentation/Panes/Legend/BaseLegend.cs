@@ -130,5 +130,24 @@ namespace DataExplorer.Presentation.Panes.Legend
             RenderTitle();
             RenderItems();
         }
+
+        protected void RenderLabel(double y, string label)
+        {
+            var labelVisual = new DrawingVisual();
+
+            using (var context = labelVisual.RenderOpen())
+            {
+                var text = new FormattedText(
+                    label,
+                    CultureInfo.CurrentCulture,
+                    FlowDirection.LeftToRight,
+                    new Typeface("Verdana"),
+                    12,
+                    Brushes.Black);
+
+                context.DrawText(text, new Point(32, y - text.Height / 2));
+            }
+            _visuals.Add(labelVisual);
+        }
     }
 }

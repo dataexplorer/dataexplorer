@@ -3,53 +3,54 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using DataExplorer.Application.Columns;
 using DataExplorer.Application.Core.Queries;
 using DataExplorer.Application.Importers.CsvFiles.Events;
-using DataExplorer.Application.Layouts.Color.Queries;
 using DataExplorer.Application.Layouts.General.Events;
-using DataExplorer.Application.Legends.Colors;
-using DataExplorer.Application.Legends.Colors.Queries;
+using DataExplorer.Application.Layouts.Size.Queries;
+using DataExplorer.Application.Legends.Sizes;
+using DataExplorer.Application.Legends.Sizes.Queries;
 using DataExplorer.Application.Projects.Events;
-using DataExplorer.Domain.Colors;
-using DataExplorer.Presentation.Panes.Legend.Colors;
+using DataExplorer.Presentation.Panes.Legend.Sizes;
 using DataExplorer.Presentation.Tests.Core;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Presentation.Tests.Panes.Legend.Colors
+namespace DataExplorer.Presentation.Tests.Panes.Legend.Sizes
 {
     [TestFixture]
-    public class ColorLegendViewModelTests : ViewModelTests
+    public class SizeLegendViewModelTests : ViewModelTests
     {
-        private ColorLegendViewModel _viewModel;
+        private SizeLegendViewModel _viewModel;
         private Mock<IQueryBus> _mockQueryBus;
-        private ColumnDto _column;
-        private ColorLegendItemDto _colorLegendItemDto;
+        private ColumnDto _columnDto;
+        private SizeLegendItemDto _itemDto;
 
         [SetUp]
         public void SetUp()
         {
-            _column = new ColumnDto() {Name = "test"};
-            _colorLegendItemDto = new ColorLegendItemDto()
+            _columnDto = new ColumnDto() { Name = "test"};
+            _itemDto = new SizeLegendItemDto()
             {
-                Color = new Color(0, 0, 0),
-                Label = "Color 1"
+                Size = 1,
+                Label = "Size 1"
             };
 
             _mockQueryBus = new Mock<IQueryBus>();
-            _mockQueryBus.Setup(p => p.Execute(It.IsAny<GetColorColumnQuery>()))
-                .Returns(_column);
-            _mockQueryBus.Setup(p => p.Execute(It.IsAny<GetColorLegendItemsQuery>()))
-                .Returns(new List<ColorLegendItemDto> {_colorLegendItemDto});
+            _mockQueryBus.Setup(p => p.Execute(It.IsAny<GetSizeColumnQuery>()))
+                .Returns(_columnDto);
+            _mockQueryBus.Setup(p => p.Execute(It.IsAny<GetSizeLegendItemsQuery>()))
+                .Returns(new List<SizeLegendItemDto> { _itemDto });
 
-            _viewModel = new ColorLegendViewModel(_mockQueryBus.Object);
+            _viewModel = new SizeLegendViewModel(
+                _mockQueryBus.Object);
         }
 
         [Test]
-        public void TestTitleShouldReturnEmptyStringIfNoColorColumnSelected()
+        public void TestTitleShouldReturnEmptyStringIfNoSizeColumnSelected()
         {
-            _mockQueryBus.Setup(p => p.Execute(It.IsAny<GetColorColumnQuery>()))
+            _mockQueryBus.Setup(p => p.Execute(It.IsAny<GetSizeColumnQuery>()))
                 .Returns((ColumnDto) null);
             var result = _viewModel.Title;
             Assert.That(result, Is.Empty);
@@ -59,17 +60,15 @@ namespace DataExplorer.Presentation.Tests.Panes.Legend.Colors
         public void TestTitleShouldReturnTitle()
         {
             var result = _viewModel.Title;
-            Assert.That(result, Is.EqualTo(_column.Name));
+            Assert.That(result, Is.EqualTo(_columnDto.Name));
         }
 
         [Test]
         public void TestItemsShouldReturnItems()
         {
             var result = _viewModel.Items;
-            Assert.That(result.Single().Color.R, Is.EqualTo(_colorLegendItemDto.Color.Red));
-            Assert.That(result.Single().Color.G, Is.EqualTo(_colorLegendItemDto.Color.Green));
-            Assert.That(result.Single().Color.B, Is.EqualTo(_colorLegendItemDto.Color.Blue));
-            Assert.That(result.Single().Label, Is.EqualTo(_colorLegendItemDto.Label));
+            Assert.That(result.Single().Size, Is.EqualTo(1));
+            Assert.That(result.Single().Label, Is.EqualTo(_itemDto.Label));
         }
 
         [Test]
