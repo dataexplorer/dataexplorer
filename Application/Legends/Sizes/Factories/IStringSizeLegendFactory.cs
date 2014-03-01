@@ -9,6 +9,6 @@ namespace DataExplorer.Application.Legends.Sizes.Factories
 {
     public interface IStringSizeLegendFactory
     {
-        List<SizeLegendItemDto> Create(SizeMap map, List<string> values, double lowerSize, double upperSize);
+        IEnumerable<SizeLegendItemDto> Create(SizeMap map, List<string> values, double lowerSize, double upperSize);
     }
 }

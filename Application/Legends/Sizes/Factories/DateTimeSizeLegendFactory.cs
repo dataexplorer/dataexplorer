@@ -11,9 +11,6 @@ namespace DataExplorer.Application.Legends.Sizes.Factories
         : BaseSizeLegendFactory,
         IDateTimeSizeLegendFactory
     {
-        private const int MaxDiscreteValues = 4;
-        private const int ContinuousItems = 3;
-
         public IEnumerable<SizeLegendItemDto> Create(SizeMap map, List<DateTime?> values, double lowerSize, double upperSize)
         {
             if (values.Any(p => p.HasValue == false))
