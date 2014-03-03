@@ -13,9 +13,9 @@ using NUnit.Framework;
 namespace DataExplorer.Application.Tests.Layouts.Location.Commands
 {
     [TestFixture]
-    public class SetYColumnCommandHandlerTests
+    public class SetXAxisColumnCommandHandlerTests
     {
-        private SetYColumnCommandHandler _handler;
+        private SetXAxisColumnCommandHandler _handler;
         private Mock<IColumnRepository> _mockColumnRepository;
         private Mock<IViewRepository> _mockRepository;
         private Mock<IEventBus> _mockEventBus;
@@ -35,32 +35,30 @@ namespace DataExplorer.Application.Tests.Layouts.Location.Commands
                 .Build();
 
             _mockColumnRepository = new Mock<IColumnRepository>();
-            _mockColumnRepository.Setup(p => p.Get(_columnDto.Id))
-                .Returns(_column);
+            _mockColumnRepository.Setup(p => p.Get(_columnDto.Id)).Returns(_column);
 
             _mockRepository = new Mock<IViewRepository>();
-            _mockRepository.Setup(p => p.Get<ScatterPlot>())
-                .Returns(_scatterPlot);
+            _mockRepository.Setup(p => p.Get<ScatterPlot>()).Returns(_scatterPlot);
 
             _mockEventBus = new Mock<IEventBus>();
 
-            _handler = new SetYColumnCommandHandler(
+            _handler = new SetXAxisColumnCommandHandler(
                 _mockColumnRepository.Object,
                 _mockRepository.Object,
                 _mockEventBus.Object);
         }
 
         [Test]
-        public void TestExecuteShouldSetYColumn()
+        public void TestExecuteShouldSetColumn()
         {
-            _handler.Execute(new SetYColumnCommand(_columnDto.Id));
-            Assert.That(_layout.YAxisColumn, Is.EqualTo(_column));
+            _handler.Execute(new SetXAxisColumnCommand(_columnDto.Id));
+            Assert.That(_layout.XAxisColumn, Is.EqualTo(_column));
         }
 
         [Test]
         public void TestExecuteShouldRaiseLayoutChangedEvent()
         {
-            _handler.Execute(new SetYColumnCommand(_columnDto.Id));
+            _handler.Execute(new SetXAxisColumnCommand(_columnDto.Id));
             _mockEventBus.Verify(p => p.Raise(It.IsAny<LayoutChangedEvent>()));
         }
     }

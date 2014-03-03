@@ -25,6 +25,14 @@ namespace DataExplorer.Presentation.Tests.Core.Layout
         }
 
         [Test]
+        public void TestGetNameShouldReturnEmptyIfColumnIsNull()
+        {
+            _viewModel = new LayoutItemViewModel(null);
+            var result = _viewModel.Name;
+            Assert.That(result, Is.Empty);
+        }
+
+        [Test]
         public void TestGetColumnShouldReturnColumn()
         {
             var result = _viewModel.Column;

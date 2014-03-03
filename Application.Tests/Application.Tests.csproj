@@ -85,6 +85,8 @@
     <Compile Include="Importers\CsvFile\Queries\GetCsvFileSourceMapsQueryHandlerTests.cs" />
     <Compile Include="Importers\CsvFile\Queries\GetCsvFileSourceQueryHandlerTests.cs" />
     <Compile Include="Importers\DataTypeDetectorTests.cs" />
+    <Compile Include="Layouts\Location\Commands\UnsetXAxisColumnCommandHandlerTests.cs" />
+    <Compile Include="Layouts\Location\Commands\UnsetYAxisColumnCommandHandlerTests.cs" />
     <Compile Include="Layouts\Size\Commands\SetLowerSizeCommandHandlerTests.cs" />
     <Compile Include="Layouts\Size\Commands\SetSizeColumnQueryHandlerTests.cs" />
     <Compile Include="Layouts\Size\Commands\SetUpperSizeCommandHandlerTests.cs" />
@@ -135,8 +137,8 @@
     <Compile Include="Layouts\General\Commands\ClearLayoutCommandHandlerTests.cs" />
     <Compile Include="Layouts\Color\Commands\SetColorColumnCommandHandlerTests.cs" />
     <Compile Include="Layouts\Color\Commands\SetColorPaletteCommandHandlerTests.cs" />
-    <Compile Include="Layouts\Location\Commands\SetXColumnCommandHandlerTests.cs" />
-    <Compile Include="Layouts\Location\Commands\SetYColumnCommandHandlerTests.cs" />
+    <Compile Include="Layouts\Location\Commands\SetXAxisColumnCommandHandlerTests.cs" />
+    <Compile Include="Layouts\Location\Commands\SetYAxisColumnCommandHandlerTests.cs" />
     <Compile Include="Layouts\Color\Queries\GetAllColorPalettesQueryHandlerTests.cs" />
     <Compile Include="Layouts\Color\Queries\GetColorColumnQueryHandlerTests.cs" />
     <Compile Include="Layouts\Color\Queries\GetColorPaletteQueryHandlerTests.cs" />

@@ -3,9 +3,9 @@ using DataExplorer.Application.Core.Commands;
 
 namespace DataExplorer.Application.Layouts.Location.Commands
 {
-    public class SetYColumnCommand : EntityIdCommand
+    public class SetXAxisColumnCommand : EntityIdCommand
     {
-        public SetYColumnCommand(int id) : base(id)
+        public SetXAxisColumnCommand(int id) : base(id)
         {
         }
     }

@@ -19,56 +19,66 @@ namespace DataExplorer.Presentation.Tests.Panes.Layout.Location
     {
         private YAxisLayoutViewModel _viewModel;
         private Mock<IMessageBus> _mockMessageBus;
+        private ColumnDto _columnDto;
 
         [SetUp]
         public void SetUp()
         {
+            _columnDto = new ColumnDto()
+            {
+                Id = 1,
+                Name = "Test"
+            };
+
             _mockMessageBus = new Mock<IMessageBus>();
+            _mockMessageBus.Setup(p => p.Execute(It.IsAny<GetAllColumnsQuery>()))
+                .Returns(new List<ColumnDto> { _columnDto });
+            _mockMessageBus.Setup(p => p.Execute(It.IsAny<GetYColumnQuery>()))
+                .Returns(_columnDto);
 
             _viewModel = new YAxisLayoutViewModel(_mockMessageBus.Object);
         }
 
         [Test]
-        public void TestGetLabelShouldReturnXAxis()
+        public void TestGetLabelShouldReturnYAxis()
         {
             Assert.That(_viewModel.Label, Is.EqualTo("y-Axis"));
         }
 
         [Test]
+        public void TestGetColumnsShouldReturnEmptyColumn()
+        {
+            var result = _viewModel.Columns;
+            Assert.That(result.First().Name, Is.Empty);
+        }
+
+        [Test]
         public void TestGetColumnsShouldReturnColumns()
         {
-            var columnDto = new ColumnDto() { Name = "Test" };
-            var columnDtos = new List<ColumnDto> { columnDto };
-            _mockMessageBus.Setup(p => p.Execute(It.IsAny<GetAllColumnsQuery>())).Returns(columnDtos);
             var result = _viewModel.Columns;
-            Assert.That(result.Single().Name, Is.EqualTo(columnDto.Name));
+            Assert.That(result.Last().Name, Is.EqualTo(_columnDto.Name));
         }
 
         [Test]
         public void TestGetSelectedColumnhouldReturnSelectedColumn()
         {
-            var columnDto = new ColumnDto() { Name = "Test" };
-            _mockMessageBus.Setup(p => p.Execute(It.IsAny<GetYColumnQuery>()))
-                .Returns(columnDto);
             var result = _viewModel.SelectedColumn;
-            Assert.That(result.Name, Is.EqualTo(columnDto.Name));
+            Assert.That(result.Name, Is.EqualTo(_columnDto.Name));
         }
 
         [Test]
-        public void TestSetSelectedColumnShouldReturnIfNull()
+        public void TestSetSelectedColumnToNullShouldUnsetSelectedColumn()
         {
-            _viewModel.SelectedColumn = null;
-            _mockMessageBus.Verify(p => p.Execute(It.IsAny<SetYColumnCommand>()), Times.Never());
+            _viewModel.SelectedColumn = new LayoutItemViewModel(null);
+            _mockMessageBus.Verify(p => p.Execute(It.IsAny<UnsetYAxisColumnCommand>()), Times.Once());
         }
 
         [Test]
         public void TestSetSelectedColumnShouldSetSelectedColumn()
         {
-            var columnDto = new ColumnDto() { Id = 1 };
-            var viewModel = new LayoutItemViewModel(columnDto);
+            var viewModel = new LayoutItemViewModel(_columnDto);
             _viewModel.SelectedColumn = viewModel;
-            _mockMessageBus.Verify(p => p.Execute(It.Is<SetYColumnCommand>(q => q.Id == columnDto.Id)),
-                Times.Once());
+            _mockMessageBus.Verify(p => p.Execute(It.Is<SetYAxisColumnCommand>(q => q.Id == 1)), Times.Once());
         }
 
         [Test]

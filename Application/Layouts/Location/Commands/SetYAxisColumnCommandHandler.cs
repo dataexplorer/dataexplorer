@@ -7,14 +7,14 @@ using DataExplorer.Domain.Views.ScatterPlots;
 
 namespace DataExplorer.Application.Layouts.Location.Commands
 {
-    public class SetYColumnCommandHandler 
-        : ICommandHandler<SetYColumnCommand>
+    public class SetYAxisColumnCommandHandler 
+        : ICommandHandler<SetYAxisColumnCommand>
     {
         private readonly IColumnRepository _columnRepository;
         private readonly IViewRepository _viewRepository;
         private readonly IEventBus _eventBus;
 
-        public SetYColumnCommandHandler(
+        public SetYAxisColumnCommandHandler(
             IColumnRepository columnRepository, 
             IViewRepository viewRepository, 
             IEventBus eventBus)
@@ -24,7 +24,7 @@ namespace DataExplorer.Application.Layouts.Location.Commands
             _eventBus = eventBus;
         }
 
-        public void Execute(SetYColumnCommand command)
+        public void Execute(SetYAxisColumnCommand command)
         {
             var column = _columnRepository.Get(command.Id);
 

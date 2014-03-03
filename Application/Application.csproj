@@ -135,6 +135,10 @@
     <Compile Include="Importers\IDataTypeDetector.cs" />
     <Compile Include="Importers\ISourceRepository.cs" />
     <Compile Include="IProcess.cs" />
+    <Compile Include="Layouts\Location\Commands\UnsetXAxisColumnCommand.cs" />
+    <Compile Include="Layouts\Location\Commands\UnsetXAxisColumnCommandHandler.cs" />
+    <Compile Include="Layouts\Location\Commands\UnsetYAxisColumnCommand.cs" />
+    <Compile Include="Layouts\Location\Commands\UnsetYAxisColumnCommandHandler.cs" />
     <Compile Include="Layouts\Size\Commands\SetLowerSizeCommandHandler.cs" />
     <Compile Include="Layouts\Size\Commands\SetSizeColumnCommandHandler.cs" />
     <Compile Include="Layouts\Size\Commands\SetUpperSizeCommandHandler.cs" />
@@ -252,10 +256,10 @@
     <Compile Include="Layouts\Color\Commands\SetColorColumnCommandHandler.cs" />
     <Compile Include="Layouts\Color\Commands\SetColorPaletteCommand.cs" />
     <Compile Include="Layouts\Color\Commands\SetColorPaletteCommandHandler.cs" />
-    <Compile Include="Layouts\Location\Commands\SetXColumnCommand.cs" />
-    <Compile Include="Layouts\Location\Commands\SetXColumnCommandHandler.cs" />
-    <Compile Include="Layouts\Location\Commands\SetYColumnCommand.cs" />
-    <Compile Include="Layouts\Location\Commands\SetYColumnCommandHandler.cs" />
+    <Compile Include="Layouts\Location\Commands\SetXAxisColumnCommand.cs" />
+    <Compile Include="Layouts\Location\Commands\SetXAxisColumnCommandHandler.cs" />
+    <Compile Include="Layouts\Location\Commands\SetYAxisColumnCommand.cs" />
+    <Compile Include="Layouts\Location\Commands\SetYAxisColumnCommandHandler.cs" />
     <Compile Include="Layouts\Color\Queries\GetAllColorPalettesQuery.cs" />
     <Compile Include="Layouts\Color\Queries\GetColorColumnQuery.cs" />
     <Compile Include="Layouts\Color\Queries\GetColorColumnQueryHandler.cs" />

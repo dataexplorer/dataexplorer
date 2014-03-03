@@ -52,6 +52,8 @@ namespace DataExplorer.Presentation.Panes.Layout.Location
                 .Select(p => new LayoutItemViewModel(p))
                 .ToList();
 
+            _viewModels.Insert(0, new LayoutItemViewModel(null));
+
             return _viewModels;
         }
 
@@ -69,13 +71,10 @@ namespace DataExplorer.Presentation.Panes.Layout.Location
 
         private void SetSelectedColumnViewModel(LayoutItemViewModel value)
         {
-            // TODO: Should this just return or set Y Column to null?
-            if (value == null)
-                return;
-
-            var column = value.Column;
-
-            _messageBus.Execute(new SetYColumnCommand(column.Id));
+            if (value.Column == null)
+                _messageBus.Execute(new UnsetYAxisColumnCommand());
+            else
+                _messageBus.Execute(new SetYAxisColumnCommand(value.Column.Id));
         }
 
         public void Handle(LayoutChangedEvent args)

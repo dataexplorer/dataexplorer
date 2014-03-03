@@ -1,4 +1,8 @@
-﻿using DataExplorer.Application.Columns;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using DataExplorer.Application.Core.Commands;
 using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Layouts.General.Events;
@@ -7,32 +11,26 @@ using DataExplorer.Domain.Views.ScatterPlots;
 
 namespace DataExplorer.Application.Layouts.Location.Commands
 {
-    public class SetXColumnCommandHandler 
-        : ICommandHandler<SetXColumnCommand>
+    public class UnsetXAxisColumnCommandHandler : ICommandHandler<UnsetXAxisColumnCommand>
     {
-        private readonly IColumnRepository _columnRepository;
         private readonly IViewRepository _viewRepository;
         private readonly IEventBus _eventBus;
 
-        public SetXColumnCommandHandler(
-            IColumnRepository columnRepository, 
+        public UnsetXAxisColumnCommandHandler(
             IViewRepository viewRepository, 
             IEventBus eventBus)
         {
-            _columnRepository = columnRepository;
             _viewRepository = viewRepository;
             _eventBus = eventBus;
         }
 
-        public void Execute(SetXColumnCommand command)
+        public void Execute(UnsetXAxisColumnCommand command)
         {
-            var column = _columnRepository.Get(command.Id);
-
             var scatterPlot = _viewRepository.Get<ScatterPlot>();
 
             var layout = scatterPlot.GetLayout();
 
-            layout.XAxisColumn = column;
+            layout.XAxisColumn = null;
 
             _eventBus.Raise(new LayoutChangedEvent());
         }

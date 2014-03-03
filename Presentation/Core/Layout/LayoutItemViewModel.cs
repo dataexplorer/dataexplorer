@@ -13,7 +13,12 @@ namespace DataExplorer.Presentation.Core.Layout
 
         public string Name
         {
-            get { return _column.Name; }
+            get
+            {
+                return _column != null 
+                    ? _column.Name 
+                    : string.Empty;
+            }
         }
 
         public ColumnDto Column
@@ -28,11 +33,14 @@ namespace DataExplorer.Presentation.Core.Layout
 
         public override bool Equals(object obj)
         {
+            if (_column == null && obj == null)
+                return true;
+
             if (!(obj is LayoutItemViewModel))
                 return false;
-
+            
             var other = (LayoutItemViewModel) obj;
-
+            
             if (_column == null)
                 return false;
 
