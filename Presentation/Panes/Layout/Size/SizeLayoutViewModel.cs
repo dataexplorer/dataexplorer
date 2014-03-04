@@ -78,6 +78,8 @@ namespace DataExplorer.Presentation.Panes.Layout.Size
                 .Select(p => new LayoutItemViewModel(p))
                 .ToList();
 
+            viewModels.Insert(0, new LayoutItemViewModel(null));
+
             return viewModels;
         }
 
@@ -89,19 +91,17 @@ namespace DataExplorer.Presentation.Panes.Layout.Size
                 return null;
 
             var viewModel = new LayoutItemViewModel(columnDto);
-
+            
             return viewModel;
         }
 
         private void SetSelectedColumnViewModel(LayoutItemViewModel value)
         {
-            // TODO: Should this just return or set X Column to null?
-            if (value == null)
-                return;
+            if (value.Column == null)
+                _messageBus.Execute(new UnsetSizeColumnCommand());
+            else
+                _messageBus.Execute(new SetSizeColumnCommand(value.Column.Id));
 
-            var column = value.Column;
-
-            _messageBus.Execute(new SetSizeColumnCommand(column.Id));
         }
 
         private bool GetIsLowerSizeSliderVisible()

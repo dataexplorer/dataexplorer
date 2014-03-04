@@ -50,11 +50,18 @@ namespace DataExplorer.Presentation.Tests.Panes.Layout.Size
         }
 
         [Test]
+        public void TestGetColumnsShouldReturnEmptyColumn()
+        {
+            var result = _viewModel.Columns;
+            Assert.That(result.First().Name, Is.Empty);
+        }
+
+        [Test]
         public void TestColumnsShouldReturnColumns()
         {
             var result = _viewModel.Columns;
 
-            Assert.That(result.Single().Column, Is.EqualTo(_columnDto));
+            Assert.That(result.Last().Column, Is.EqualTo(_columnDto));
         }
 
         [Test]
@@ -63,6 +70,13 @@ namespace DataExplorer.Presentation.Tests.Panes.Layout.Size
             var result = _viewModel.SelectedColumn;
 
             Assert.That(result.Column, Is.EqualTo(_columnDto));
+        }
+
+        [Test]
+        public void TestSetSelectedColumnToNullShouldUnsetSelectedColumn()
+        {
+            _viewModel.SelectedColumn = new LayoutItemViewModel(null);
+            _mockMessageBus.Verify(p => p.Execute(It.IsAny<UnsetSizeColumnCommand>()), Times.Once());
         }
 
         [Test]

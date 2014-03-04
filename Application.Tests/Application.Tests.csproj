@@ -85,11 +85,13 @@
     <Compile Include="Importers\CsvFile\Queries\GetCsvFileSourceMapsQueryHandlerTests.cs" />
     <Compile Include="Importers\CsvFile\Queries\GetCsvFileSourceQueryHandlerTests.cs" />
     <Compile Include="Importers\DataTypeDetectorTests.cs" />
+    <Compile Include="Layouts\Color\Commands\UnsetColorColumnCommandHandlerTests.cs" />
     <Compile Include="Layouts\Location\Commands\UnsetXAxisColumnCommandHandlerTests.cs" />
     <Compile Include="Layouts\Location\Commands\UnsetYAxisColumnCommandHandlerTests.cs" />
     <Compile Include="Layouts\Size\Commands\SetLowerSizeCommandHandlerTests.cs" />
     <Compile Include="Layouts\Size\Commands\SetSizeColumnQueryHandlerTests.cs" />
     <Compile Include="Layouts\Size\Commands\SetUpperSizeCommandHandlerTests.cs" />
+    <Compile Include="Layouts\Size\Commands\UnsetSizeColumnCommandHandlerTests.cs" />
     <Compile Include="Layouts\Size\Queries\GetLowerSizeValueQueryHandlerTests.cs" />
     <Compile Include="Layouts\Size\Queries\GetSizeColumnQueryHandlerTests.cs" />
     <Compile Include="Layouts\Size\Queries\GetUpperSizeValueQueryHanderTests.cs" />

@@ -27,11 +27,19 @@ namespace DataExplorer.Presentation.Tests.Panes.Layout.Color
         [SetUp]
         public void SetUp()
         {
-            _columnDto = new ColumnDto();
+            _columnDto = new ColumnDto()
+            {
+                Id = 1,
+                Name = "Test"
+            };
             _colorPalette = new ColorPalette("Test", new List<Domain.Colors.Color>());
 
             _mockMessageBus = new Mock<IMessageBus>();
-            
+            _mockMessageBus.Setup(p => p.Execute(It.IsAny<GetAllColumnsQuery>()))
+                .Returns(new List<ColumnDto> { _columnDto });
+            _mockMessageBus.Setup(p => p.Execute(It.IsAny<GetColorColumnQuery>()))
+                .Returns(_columnDto);
+
             _viewModel = new ColorLayoutViewModel(
                 _mockMessageBus.Object);
         }
@@ -43,25 +51,33 @@ namespace DataExplorer.Presentation.Tests.Panes.Layout.Color
         }
 
         [Test]
+        public void TestGetColumnsShouldReturnEmptyColumn()
+        {
+            var result = _viewModel.Columns;
+            Assert.That(result.First().Name, Is.Empty);
+        }
+
+        [Test]
         public void TestColumnsShouldReturnColumns()
         {
-            _mockMessageBus.Setup(p => p.Execute(It.IsAny<GetAllColumnsQuery>()))
-                .Returns(new List<ColumnDto> { _columnDto });
-
             var result = _viewModel.Columns;
 
-            Assert.That(result.Single().Column, Is.EqualTo(_columnDto));
+            Assert.That(result.Last().Column, Is.EqualTo(_columnDto));
         }
 
         [Test]
         public void TestGetSelectedColumnShouldReturnSelectedColumn()
         {
-            _mockMessageBus.Setup(p => p.Execute(It.IsAny<GetColorColumnQuery>()))
-               .Returns(_columnDto);
-
             var result = _viewModel.SelectedColumn;
             
             Assert.That(result.Column, Is.EqualTo(_columnDto));
+        }
+
+        [Test]
+        public void TestSetSelectedColumnToNullShouldUnsetSelectedColumn()
+        {
+            _viewModel.SelectedColumn = new LayoutItemViewModel(null);
+            _mockMessageBus.Verify(p => p.Execute(It.IsAny<UnsetColorColumnCommand>()), Times.Once());
         }
 
         [Test]

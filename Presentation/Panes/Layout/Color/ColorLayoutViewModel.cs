@@ -60,6 +60,8 @@ namespace DataExplorer.Presentation.Panes.Layout.Color
                 .Select(p => new LayoutItemViewModel(p))
                 .ToList();
 
+            viewModels.Insert(0, new LayoutItemViewModel(null));
+
             return viewModels;
         }
 
@@ -77,13 +79,10 @@ namespace DataExplorer.Presentation.Panes.Layout.Color
 
         private void SetSelectedColumnViewModel(LayoutItemViewModel value)
         {
-            // TODO: Should this just return or set X Column to null?
-            if (value == null)
-                return;
-
-            var column = value.Column;
-
-            _messageBus.Execute(new SetColorColumnCommand(column.Id));
+            if (value.Column == null)
+                _messageBus.Execute(new UnsetColorColumnCommand());
+            else
+                _messageBus.Execute(new SetColorColumnCommand(value.Column.Id));
         }
 
         private List<ColorPaletteViewModel> GetColorPaletteViewModels()
