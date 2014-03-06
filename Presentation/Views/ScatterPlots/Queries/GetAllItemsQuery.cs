@@ -70,7 +70,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Queries
             foreach (var yAxisGridLabel in yAxisGridLabels)
                 yield return yAxisGridLabel;
 
-            var xColumn = _queryBus.Execute(new GetXColumnQuery());
+            var xColumn = _queryBus.Execute(new GetXAxisColumnQuery());
 
             var xTitle = xColumn != null
                 ? xColumn.Name
@@ -78,7 +78,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Queries
 
             yield return _titleRenderer.RenderXAxisTitle(controlSize, xTitle);
 
-            var yColumn = _queryBus.Execute(new GetYColumnQuery());
+            var yColumn = _queryBus.Execute(new GetYAxisColumnQuery());
 
             var yTitle = yColumn != null
                 ? yColumn.Name

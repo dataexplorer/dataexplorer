@@ -5,13 +5,13 @@ using DataExplorer.Domain.Views.ScatterPlots;
 
 namespace DataExplorer.Application.Layouts.Location.Queries
 {
-    public class GetXColumnQueryHandler 
-        : IQueryHandler<GetXColumnQuery, ColumnDto>
+    public class GetXAxisColumnQueryHandler 
+        : IQueryHandler<GetXAxisColumnQuery, ColumnDto>
     {
         private readonly IViewRepository _repository;
         private readonly IColumnAdapter _adapter;
 
-        public GetXColumnQueryHandler(
+        public GetXAxisColumnQueryHandler(
             IViewRepository repository,
             IColumnAdapter adapter)
         {
@@ -19,7 +19,7 @@ namespace DataExplorer.Application.Layouts.Location.Queries
             _adapter = adapter;
         }
 
-        public ColumnDto Execute(GetXColumnQuery query)
+        public ColumnDto Execute(GetXAxisColumnQuery query)
         {
             var scatterPlot = _repository.Get<ScatterPlot>();
 

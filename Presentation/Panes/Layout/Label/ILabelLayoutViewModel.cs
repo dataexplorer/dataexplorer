@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using DataExplorer.Presentation.Core.Layout;
 
-namespace DataExplorer.Presentation.Panes.Layout.Color
+namespace DataExplorer.Presentation.Panes.Layout.Label
 {
-    public interface IColorLayoutViewModel
+    public interface ILabelLayoutViewModel
     {
         string Label { get; }
 
         List<LayoutItemViewModel> Columns { get; }
 
         LayoutItemViewModel SelectedColumn { get; }
-
-        List<ColorPaletteViewModel> ColorPalettes { get; }
-
-        ColorPaletteViewModel SelectedColorPalette { get; }
     }
 }

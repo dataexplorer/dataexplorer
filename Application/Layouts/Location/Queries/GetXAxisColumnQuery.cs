@@ -4,7 +4,7 @@ using DataExplorer.Application.Core.Queries;
 
 namespace DataExplorer.Application.Layouts.Location.Queries
 {
-    public class GetYColumnQuery : IQuery<ColumnDto>
+    public class GetXAxisColumnQuery : IQuery<ColumnDto>
     {
     }
 }

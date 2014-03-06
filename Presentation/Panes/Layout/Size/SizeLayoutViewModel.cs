@@ -32,7 +32,7 @@ namespace DataExplorer.Presentation.Panes.Layout.Size
             get { return "Size"; }
         }
 
-        public IEnumerable<LayoutItemViewModel> Columns
+        public List<LayoutItemViewModel> Columns
         {
             get { return GetColumnViewModels(); }
         }

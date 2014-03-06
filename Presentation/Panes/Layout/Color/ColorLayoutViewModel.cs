@@ -30,7 +30,7 @@ namespace DataExplorer.Presentation.Panes.Layout.Color
             get { return "Color"; }
         }
 
-        public IEnumerable<LayoutItemViewModel> Columns
+        public List<LayoutItemViewModel> Columns
         {
             get { return GetColumnViewModels(); }
         }

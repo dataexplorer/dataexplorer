@@ -11,9 +11,9 @@ using NUnit.Framework;
 namespace DataExplorer.Application.Tests.Layouts.Location.Queries
 {
     [TestFixture]
-    public class GetXColumnQueryHandlerTests
+    public class GetYAxisColumnQueryHandlerTests
     {
-        private GetXColumnQueryHandler _handler;
+        private GetYAxisColumnQueryHandler _handler;
         private Mock<IViewRepository> _mockRepository;
         private Mock<IColumnAdapter> _mockAdapter;
         private ScatterPlot _scatterPlot;
@@ -26,7 +26,7 @@ namespace DataExplorer.Application.Tests.Layouts.Location.Queries
         {
             _columnDto = new ColumnDto();
             _column = new ColumnBuilder().Build();
-            _layout = new ScatterPlotLayout() { XAxisColumn = _column };
+            _layout = new ScatterPlotLayout() { YAxisColumn = _column };
             _scatterPlot = new ScatterPlot(_layout, new Rect(), null);
 
             _mockRepository = new Mock<IViewRepository>();
@@ -35,7 +35,7 @@ namespace DataExplorer.Application.Tests.Layouts.Location.Queries
             _mockAdapter = new Mock<IColumnAdapter>();
             _mockAdapter.Setup(p => p.Adapt(_column)).Returns(_columnDto);
 
-            _handler = new GetXColumnQueryHandler(
+            _handler = new GetYAxisColumnQueryHandler(
                 _mockRepository.Object,
                 _mockAdapter.Object);
         }
@@ -43,7 +43,7 @@ namespace DataExplorer.Application.Tests.Layouts.Location.Queries
         [Test]
         public void TestQueryShouldReturnColumnDto()
         {
-            var result = _handler.Execute(new GetXColumnQuery());
+            var result = _handler.Execute(new GetYAxisColumnQuery());
             Assert.That(result, Is.EqualTo(_columnDto));
         }
     }

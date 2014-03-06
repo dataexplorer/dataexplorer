@@ -145,8 +145,8 @@
     <Compile Include="Layouts\Color\Queries\GetAllColorPalettesQueryHandlerTests.cs" />
     <Compile Include="Layouts\Color\Queries\GetColorColumnQueryHandlerTests.cs" />
     <Compile Include="Layouts\Color\Queries\GetColorPaletteQueryHandlerTests.cs" />
-    <Compile Include="Layouts\Location\Queries\GetXColumnQueryHandlerTests.cs" />
-    <Compile Include="Layouts\Location\Queries\GetYColumnQueryHandlerTests.cs" />
+    <Compile Include="Layouts\Location\Queries\GetXAxisColumnQueryHandlerTests.cs" />
+    <Compile Include="Layouts\Location\Queries\GetYAxisColumnQueryHandlerTests.cs" />
     <Compile Include="Views\ScatterPlots\Queries\GetScatterPlotsQueryHandlerTests.cs" />
     <Compile Include="Views\ScatterPlots\Queries\GetViewExtentTaskTests.cs" />
     <Compile Include="Views\ScatterPlots\ScatterPlotAdapterTests.cs" />

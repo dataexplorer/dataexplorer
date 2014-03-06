@@ -1,23 +1,25 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using DataExplorer.Application.Columns;
 using DataExplorer.Application.Columns.Queries;
 using DataExplorer.Application.Core.Messages;
 using DataExplorer.Application.Layouts.General.Events;
-using DataExplorer.Application.Layouts.Location.Commands;
-using DataExplorer.Application.Layouts.Location.Queries;
+using DataExplorer.Application.Layouts.Label.Commands;
+using DataExplorer.Application.Layouts.Label.Queries;
 using DataExplorer.Presentation.Core.Layout;
-using DataExplorer.Presentation.Panes.Layout.Location;
+using DataExplorer.Presentation.Panes.Layout.Label;
 using DataExplorer.Presentation.Tests.Core;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Presentation.Tests.Panes.Layout.Location
+namespace DataExplorer.Presentation.Tests.Panes.Layout.Label
 {
-    [TestFixture]
-    public class YAxisLayoutViewModelTests : ViewModelTests
+    public class LabelLayoutViewModelTests : ViewModelTests
     {
-        private YAxisLayoutViewModel _viewModel;
+        private LabelLayoutViewModel _viewModel;
         private Mock<IMessageBus> _mockMessageBus;
         private ColumnDto _columnDto;
 
@@ -26,23 +28,23 @@ namespace DataExplorer.Presentation.Tests.Panes.Layout.Location
         {
             _columnDto = new ColumnDto()
             {
-                Id = 1,
+                Id = 1, 
                 Name = "Test"
             };
 
             _mockMessageBus = new Mock<IMessageBus>();
             _mockMessageBus.Setup(p => p.Execute(It.IsAny<GetAllColumnsQuery>()))
                 .Returns(new List<ColumnDto> { _columnDto });
-            _mockMessageBus.Setup(p => p.Execute(It.IsAny<GetYAxisColumnQuery>()))
+            _mockMessageBus.Setup(p => p.Execute(It.IsAny<GetLabelColumnQuery>()))
                 .Returns(_columnDto);
 
-            _viewModel = new YAxisLayoutViewModel(_mockMessageBus.Object);
+            _viewModel = new LabelLayoutViewModel(_mockMessageBus.Object);
         }
 
         [Test]
-        public void TestGetLabelShouldReturnYAxis()
+        public void TestGetLabelShouldReturnLabel()
         {
-            Assert.That(_viewModel.Label, Is.EqualTo("y-Axis"));
+            Assert.That(_viewModel.Label, Is.EqualTo("Label"));
         }
 
         [Test]
@@ -70,7 +72,7 @@ namespace DataExplorer.Presentation.Tests.Panes.Layout.Location
         public void TestSetSelectedColumnToNullShouldUnsetSelectedColumn()
         {
             _viewModel.SelectedColumn = new LayoutItemViewModel(null);
-            _mockMessageBus.Verify(p => p.Execute(It.IsAny<UnsetYAxisColumnCommand>()), Times.Once());
+            _mockMessageBus.Verify(p => p.Execute(It.IsAny<UnsetLabelColumnCommand>()), Times.Once());
         }
 
         [Test]
@@ -78,7 +80,7 @@ namespace DataExplorer.Presentation.Tests.Panes.Layout.Location
         {
             var viewModel = new LayoutItemViewModel(_columnDto);
             _viewModel.SelectedColumn = viewModel;
-            _mockMessageBus.Verify(p => p.Execute(It.Is<SetYAxisColumnCommand>(q => q.Id == 1)), Times.Once());
+            _mockMessageBus.Verify(p => p.Execute(It.Is<SetLabelColumnCommand>(q => q.Id == 1)), Times.Once());
         }
 
         [Test]

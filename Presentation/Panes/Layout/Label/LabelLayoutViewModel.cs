@@ -1,33 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using DataExplorer.Application.Columns.Queries;
 using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Core.Messages;
 using DataExplorer.Application.Layouts.General.Events;
-using DataExplorer.Application.Layouts.Location.Commands;
-using DataExplorer.Application.Layouts.Location.Queries;
+using DataExplorer.Application.Layouts.Label.Commands;
+using DataExplorer.Application.Layouts.Label.Queries;
 using DataExplorer.Presentation.Core;
 using DataExplorer.Presentation.Core.Layout;
 
-namespace DataExplorer.Presentation.Panes.Layout.Location
+namespace DataExplorer.Presentation.Panes.Layout.Label
 {
-    public class XAxisLayoutViewModel 
+    public class LabelLayoutViewModel
         : BaseViewModel, 
-        IXAxisLayoutViewModel,
+        ILabelLayoutViewModel,
         IEventHandler<LayoutChangedEvent>,
         IEventHandler<LayoutResetEvent>
     {
         private readonly IMessageBus _messageBus;
         
-        public XAxisLayoutViewModel(IMessageBus messageBus)
+        public LabelLayoutViewModel(IMessageBus messageBus)
         {
             _messageBus = messageBus;
         }
 
         public string Label
         {
-            get { return "x-Axis"; }
+            get { return "Label"; }
         }
 
         public List<LayoutItemViewModel> Columns
@@ -56,7 +58,7 @@ namespace DataExplorer.Presentation.Panes.Layout.Location
 
         private LayoutItemViewModel GetSelectedColumnViewModel()
         {
-            var columnDto = _messageBus.Execute(new GetXAxisColumnQuery());
+            var columnDto = _messageBus.Execute(new GetLabelColumnQuery());
 
             if (columnDto == null)
                 return null;
@@ -69,9 +71,9 @@ namespace DataExplorer.Presentation.Panes.Layout.Location
         private void SetSelectedColumnViewModel(LayoutItemViewModel value)
         {
             if (value.Column == null)
-                _messageBus.Execute(new UnsetXAxisColumnCommand());
+                _messageBus.Execute(new UnsetLabelColumnCommand());
             else
-                _messageBus.Execute(new SetXAxisColumnCommand(value.Column.Id));
+                _messageBus.Execute(new SetLabelColumnCommand(value.Column.Id));
         }
 
         public void Handle(LayoutChangedEvent args)

@@ -90,6 +90,7 @@
     <Compile Include="Panes\Filter\IntegerFilters\IntegerRangeFilterViewModelTests.cs" />
     <Compile Include="Panes\Filter\NullFilters\NullFilterViewModelTests.cs" />
     <Compile Include="Panes\Filter\StringFilters\StringFilterViewModelTests.cs" />
+    <Compile Include="Panes\Layout\Label\LabelLayoutViewModelTests.cs" />
     <Compile Include="Panes\Layout\Size\SizeLayoutViewModelTests.cs" />
     <Compile Include="Panes\Legend\Colors\ColorLegendViewModelTests.cs" />
     <Compile Include="Panes\Legend\LegendPaneViewModelTests.cs" />

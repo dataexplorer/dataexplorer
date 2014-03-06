@@ -8,6 +8,7 @@
     xmlns:location="clr-namespace:DataExplorer.Presentation.Panes.Layout.Location"
     xmlns:color="clr-namespace:DataExplorer.Presentation.Panes.Layout.Color"
     xmlns:size="clr-namespace:DataExplorer.Presentation.Panes.Layout.Size"
+    xmlns:label="clr-namespace:DataExplorer.Presentation.Panes.Layout.Label"
     mc:Ignorable="d" 
     d:DesignHeight="300" 
     d:DesignWidth="192">
@@ -15,6 +16,7 @@
         VerticalScrollBarVisibility="Auto">
         <Grid>
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -33,6 +35,9 @@
             <size:SizeLayoutView 
             Grid.Row="3"
             DataContext="{Binding SizeLayoutViewModel}" />
+            <label:LabelLayoutView 
+            Grid.Row="4"
+            DataContext="{Binding LabelLayoutViewModel}" />
         </Grid>
     </ScrollViewer>
 </UserControl>

@@ -33,7 +33,7 @@ namespace DataExplorer.Presentation.Tests.Panes.Layout.Location
             _mockMessageBus = new Mock<IMessageBus>();
             _mockMessageBus.Setup(p => p.Execute(It.IsAny<GetAllColumnsQuery>()))
                 .Returns(new List<ColumnDto> { _columnDto });
-            _mockMessageBus.Setup(p => p.Execute(It.IsAny<GetXColumnQuery>()))
+            _mockMessageBus.Setup(p => p.Execute(It.IsAny<GetXAxisColumnQuery>()))
                 .Returns(_columnDto);
 
             _viewModel = new XAxisLayoutViewModel(_mockMessageBus.Object);

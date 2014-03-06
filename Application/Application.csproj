@@ -142,6 +142,9 @@
     <Compile Include="IProcess.cs" />
     <Compile Include="Layouts\Color\Commands\UnsetColorColumnCommand.cs" />
     <Compile Include="Layouts\Color\Commands\UnsetColorColumnCommandHandler.cs" />
+    <Compile Include="Layouts\Label\Commands\SetLabelColumnCommand.cs" />
+    <Compile Include="Layouts\Label\Commands\UnsetLabelColumnCommand.cs" />
+    <Compile Include="Layouts\Label\Queries\GetLabelColumnQuery.cs" />
     <Compile Include="Layouts\Location\Commands\UnsetXAxisColumnCommand.cs" />
     <Compile Include="Layouts\Location\Commands\UnsetXAxisColumnCommandHandler.cs" />
     <Compile Include="Layouts\Location\Commands\UnsetYAxisColumnCommand.cs" />
@@ -275,10 +278,10 @@
     <Compile Include="Layouts\Color\Queries\GetColorPaletteQuery.cs" />
     <Compile Include="Layouts\Color\Queries\GetAllColorPalettesQueryHandler.cs" />
     <Compile Include="Layouts\Color\Queries\GetColorPaletteQueryHandler.cs" />
-    <Compile Include="Layouts\Location\Queries\GetXColumnQuery.cs" />
-    <Compile Include="Layouts\Location\Queries\GetXColumnQueryHandler.cs" />
-    <Compile Include="Layouts\Location\Queries\GetYColumnQuery.cs" />
-    <Compile Include="Layouts\Location\Queries\GetYColumnQueryHandler.cs" />
+    <Compile Include="Layouts\Location\Queries\GetXAxisColumnQuery.cs" />
+    <Compile Include="Layouts\Location\Queries\GetXAxisColumnQueryHandler.cs" />
+    <Compile Include="Layouts\Location\Queries\GetYAxisColumnQuery.cs" />
+    <Compile Include="Layouts\Location\Queries\GetYAxisColumnQueryHandler.cs" />
     <Compile Include="Views\ScatterPlots\PlotDto.cs" />
     <Compile Include="Views\ScatterPlots\Queries\GetPlotsQuery.cs" />
     <Compile Include="Views\ScatterPlots\Queries\GetPlotsQueryHandler.cs" />

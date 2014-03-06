@@ -69,9 +69,9 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Queries
                 .Returns(_axisGridLines);
             _mockQueryBus.Setup(p => p.Execute(It.IsAny<GetPlotsQuery>()))
                 .Returns(_plotDtos);
-            _mockQueryBus.Setup(p => p.Execute(It.IsAny<GetXColumnQuery>()))
+            _mockQueryBus.Setup(p => p.Execute(It.IsAny<GetXAxisColumnQuery>()))
                 .Returns(_columnDto);
-            _mockQueryBus.Setup(p => p.Execute(It.IsAny<GetYColumnQuery>()))
+            _mockQueryBus.Setup(p => p.Execute(It.IsAny<GetYAxisColumnQuery>()))
                 .Returns(_columnDto);
             
             _mockGridRenderer = new Mock<IAxisGridRenderer>();

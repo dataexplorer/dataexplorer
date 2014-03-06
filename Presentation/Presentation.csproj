@@ -173,6 +173,11 @@
     </Compile>
     <Compile Include="Panes\Filter\StringFilters\StringFilterViewModel.cs" />
     <Compile Include="Panes\Layout\ILayoutPaneViewModel.cs" />
+    <Compile Include="Panes\Layout\Label\ILabelLayoutViewModel.cs" />
+    <Compile Include="Panes\Layout\Label\LabelLayoutView.xaml.cs">
+      <DependentUpon>LabelLayoutView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\Layout\Label\LabelLayoutViewModel.cs" />
     <Compile Include="Panes\Layout\LayoutPaneView.xaml.cs">
       <DependentUpon>LayoutPaneView.xaml</DependentUpon>
     </Compile>
@@ -401,6 +406,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Panes\Filter\StringFilters\StringFilterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panes\Layout\Label\LabelLayoutView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

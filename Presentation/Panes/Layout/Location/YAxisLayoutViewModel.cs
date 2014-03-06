@@ -59,7 +59,7 @@ namespace DataExplorer.Presentation.Panes.Layout.Location
 
         private LayoutItemViewModel GetSelectedColumnViewModel()
         {
-            var columnDto = _messageBus.Execute(new GetYColumnQuery());
+            var columnDto = _messageBus.Execute(new GetYAxisColumnQuery());
 
             if (columnDto == null)
                 return null;
