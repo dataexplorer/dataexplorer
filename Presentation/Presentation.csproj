@@ -250,6 +250,7 @@
     <Compile Include="Shell\MainMenu\MainMenuViewModel.cs" />
     <Compile Include="Shell\MainMenu\ViewMenu\IViewMenuViewModel.cs" />
     <Compile Include="Shell\MainMenu\ViewMenu\ViewMenuViewModel.cs" />
+    <Compile Include="Shell\MainWindow\IMainWindow.cs" />
     <Compile Include="Shell\MainWindow\IMainWindowViewModel.cs" />
     <Compile Include="Shell\MainWindow\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

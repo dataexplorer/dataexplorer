@@ -24,6 +24,12 @@
             <MenuItem Header="Copy Image" Command="{Binding CopyImageCommand}" />
         </MenuItem>
         <MenuItem Header="View" DataContext="{Binding ViewMenuViewModel}">
+            <MenuItem Header="Show Navigation" Command="{Binding ShowNavigationPaneCommand}" />
+            <MenuItem Header="Show Filters" Command="{Binding ShowFilterPaneCommand}" />
+            <MenuItem Header="Show Layout" Command="{Binding ShowLayoutPaneCommand}" />
+            <MenuItem Header="Show Legend" Command="{Binding ShowLegendPaneCommand}" />
+            <MenuItem Header="Show Properties" Command="{Binding ShowPropertyPaneCommand}" />
+            <Separator />
             <MenuItem Header="Zoom to Full Extent" Command="{Binding ZoomToFullExtentCommand}" />
             <MenuItem Header="Clear Layout" Command="{Binding ClearLayoutCommand}" />
         </MenuItem>

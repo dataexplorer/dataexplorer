@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace DataExplorer.Presentation.Shell.MainWindow
 {
-    public interface IMainWindowViewModel
+    public interface IMainWindow
     {
+        object DataContext { get; set; }
+        
+        void Show();
     }
 }

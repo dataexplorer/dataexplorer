@@ -9,7 +9,18 @@ namespace DataExplorer.Presentation.Shell.MainMenu.ViewMenu
 {
     public interface IViewMenuViewModel
     {
+        ICommand ShowNavigationPaneCommand { get; }
+
+        ICommand ShowFilterPaneCommand { get; }
+
+        ICommand ShowLayoutPaneCommand { get; }
+
+        ICommand ShowLegendPaneCommand { get; }
+
+        ICommand ShowPropertyPaneCommand { get; }
+
         ICommand ZoomToFullExtentCommand { get; }
+
         ICommand ClearLayoutCommand { get; }
     }
 }

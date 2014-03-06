@@ -52,7 +52,7 @@ namespace DataExplorer
         
         private static void InitializeShell()
         {
-            var mainWindow = _kernel.Get<MainWindow>();
+            var mainWindow = _kernel.Get<IMainWindow>();
             var mainWindowViewModel = _kernel.Get<MainWindowViewModel>();
             mainWindow.DataContext = mainWindowViewModel;
             mainWindow.Show();

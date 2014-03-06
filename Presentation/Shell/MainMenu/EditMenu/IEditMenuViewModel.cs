@@ -11,7 +11,7 @@ namespace DataExplorer.Presentation.Shell.MainMenu.EditMenu
     {
         ICommand CopyCommand { get; }
 
-        
+        ICommand CopyImageCommand { get; }
 
     }
 }

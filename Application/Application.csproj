@@ -52,12 +52,17 @@
     <Compile Include="Application\ApplicationStateService.cs" />
     <Compile Include="Application\Commands\ExitCommand.cs" />
     <Compile Include="Application\Commands\ExitCommandHandler.cs" />
+    <Compile Include="Application\Commands\ShowPaneCommand.cs" />
+    <Compile Include="Application\Commands\ShowPaneCommandHandler.cs" />
     <Compile Include="Application\Events\NavigationTreeVisibilityChangedEvent.cs" />
+    <Compile Include="Application\Events\PaneVisibilityChangedEvent.cs" />
     <Compile Include="Application\Events\StartMenuVisibilityChangedEvent.cs" />
     <Compile Include="Application\IApplication.cs" />
     <Compile Include="Application\IApplicationService.cs" />
     <Compile Include="Application\IApplicationState.cs" />
     <Compile Include="Application\IApplicationStateService.cs" />
+    <Compile Include="Application\Pane.cs" />
+    <Compile Include="Application\Queries\GetIsPaneVisibleQuery.cs" />
     <Compile Include="Clipboard\Commands\CopyDataToClipboardCommand.cs" />
     <Compile Include="Clipboard\Commands\CopyDataToClipboardCommandHandler.cs" />
     <Compile Include="Clipboard\Commands\CopyImageToClipboardCommand.cs" />
