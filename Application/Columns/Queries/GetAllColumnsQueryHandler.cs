@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.Core.Queries;
-using DataExplorer.Domain.Columns;
 
 namespace DataExplorer.Application.Columns.Queries
 {
-    public class GetAllColumnsQueryHandler : IQueryHandler<GetAllColumnsQuery, List<ColumnDto>> 
+    public class GetAllColumnsQueryHandler 
+        : IQueryHandler<GetAllColumnsQuery, List<ColumnDto>> 
     {
         private readonly IColumnRepository _repository;
         private readonly IColumnAdapter _adapter;
