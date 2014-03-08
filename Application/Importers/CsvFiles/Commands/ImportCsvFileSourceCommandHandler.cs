@@ -86,14 +86,14 @@ namespace DataExplorer.Application.Importers.CsvFiles.Commands
                 .Select(p => _converterFactory.Create(typeof (string), p.DataType))
                 .ToList();
 
-            CreateRowsAsync(dataTable, dataColumns, converters);
+            CreateRows(dataTable, dataColumns, converters);
 
             CreateColumns(dataColumns);
 
             _eventBus.Raise(new SourceImportedEvent());
         }
 
-        private void CreateRowsAsync(DataTable dataTable, List<DataColumn> dataColumns, List<IDataTypeConverter> converters)
+        private void CreateRows(DataTable dataTable, List<DataColumn> dataColumns, List<IDataTypeConverter> converters)
         {
             for (int i = 0; i < dataTable.Rows.Count; i++)
                 CreateRow(dataTable, dataColumns, converters, i);

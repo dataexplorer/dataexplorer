@@ -127,5 +127,7 @@ namespace DataExplorer.Domain.Tests.Views.ScatterPlots
             Assert.That(results.Single().Size, Is.EqualTo(1.0d));
         }
 
+       
+
     }
 }

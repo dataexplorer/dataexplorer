@@ -111,6 +111,14 @@
     <Compile Include="Maps\ColorMaps\IntegerToColorMap.cs" />
     <Compile Include="Maps\ColorMaps\StringToColorMap.cs" />
     <Compile Include="Maps\IMapFactory.cs" />
+    <Compile Include="Maps\LabelMaps\BooleanToLabelMap.cs" />
+    <Compile Include="Maps\LabelMaps\DateTimeToLabelMap.cs" />
+    <Compile Include="Maps\LabelMaps\FloatToLabelMap.cs" />
+    <Compile Include="Maps\LabelMaps\ILabelMapFactory.cs" />
+    <Compile Include="Maps\LabelMaps\IntegerToLabelMap.cs" />
+    <Compile Include="Maps\LabelMaps\LabelMap.cs" />
+    <Compile Include="Maps\LabelMaps\LabelMapFactory.cs" />
+    <Compile Include="Maps\LabelMaps\StringToLabelMap.cs" />
     <Compile Include="Maps\MapFactory.cs" />
     <Compile Include="Maps\SizeMaps\BooleanToSizeMap.cs" />
     <Compile Include="Maps\SizeMaps\DateTimeToSizeMap.cs" />

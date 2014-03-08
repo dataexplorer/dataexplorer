@@ -15,7 +15,6 @@ namespace DataExplorer.Domain.Sources.Maps
             {
                 Name = column.ColumnName,
                 SourceType = column.DataType
-                
             };
 
             return map;

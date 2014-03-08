@@ -111,6 +111,12 @@
     <Compile Include="Maps\ColorMaps\IntegerToColorMapTests.cs" />
     <Compile Include="Maps\ColorMaps\StringToColorMapTests.cs" />
     <Compile Include="Maps\FakeAxisMap.cs" />
+    <Compile Include="Maps\LabelMaps\BooleanToLabelMapTests.cs" />
+    <Compile Include="Maps\LabelMaps\DateTimeToLabelMapTests.cs" />
+    <Compile Include="Maps\LabelMaps\FloatToLabelMapTests.cs" />
+    <Compile Include="Maps\LabelMaps\IntegerToLabelMapTests.cs" />
+    <Compile Include="Maps\LabelMaps\LabelMapFactoryTests.cs" />
+    <Compile Include="Maps\LabelMaps\StringToLabelMapTests.cs" />
     <Compile Include="Maps\MapFactoryTests.cs" />
     <Compile Include="Maps\SizeMaps\SizeMapFactoryTests.cs" />
     <Compile Include="Maps\SizeMaps\BooleanToSizeMapTests.cs" />
@@ -154,6 +160,7 @@
       <Name>Domain</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

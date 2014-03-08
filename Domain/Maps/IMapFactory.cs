@@ -7,6 +7,7 @@ using DataExplorer.Domain.Colors;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Maps.AxisMaps;
 using DataExplorer.Domain.Maps.ColorMaps;
+using DataExplorer.Domain.Maps.LabelMaps;
 using DataExplorer.Domain.Maps.SizeMaps;
 
 namespace DataExplorer.Domain.Maps
@@ -18,5 +19,7 @@ namespace DataExplorer.Domain.Maps
         ColorMap CreateColorMap(Column column, ColorPalette colorPalette);
 
         SizeMap CreateSizeMap(Column column, double targetMin, double targetMax);
+
+        LabelMap CreateLabelMap(Column column);
     }
 }
