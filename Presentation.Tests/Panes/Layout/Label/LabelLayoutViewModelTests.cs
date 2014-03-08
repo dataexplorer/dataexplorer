@@ -69,7 +69,15 @@ namespace DataExplorer.Presentation.Tests.Panes.Layout.Label
         }
 
         [Test]
-        public void TestSetSelectedColumnToNullShouldUnsetSelectedColumn()
+        public void TestSetSelectedColumnToNullShouldDoNothing()
+        {
+            _viewModel.SelectedColumn = null;
+            _mockMessageBus.Verify(p => p.Execute(It.IsAny<UnsetLabelColumnCommand>()), Times.Never());
+            _mockMessageBus.Verify(p => p.Execute(It.IsAny<SetLabelColumnCommand>()), Times.Never());
+        }
+
+        [Test]
+        public void TestSetSelectedColumnToNoColumnShouldUnsetSelectedColumn()
         {
             _viewModel.SelectedColumn = new LayoutItemViewModel(null);
             _mockMessageBus.Verify(p => p.Execute(It.IsAny<UnsetLabelColumnCommand>()), Times.Once());

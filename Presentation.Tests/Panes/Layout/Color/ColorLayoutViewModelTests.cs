@@ -74,7 +74,15 @@ namespace DataExplorer.Presentation.Tests.Panes.Layout.Color
         }
 
         [Test]
-        public void TestSetSelectedColumnToNullShouldUnsetSelectedColumn()
+        public void TestSetSelectedColumnToNullShouldDoNothing()
+        {
+            _viewModel.SelectedColumn = null;
+            _mockMessageBus.Verify(p => p.Execute(It.IsAny<UnsetColorColumnCommand>()), Times.Never());
+            _mockMessageBus.Verify(p => p.Execute(It.IsAny<SetColorColumnCommand>()), Times.Never());
+        }
+
+        [Test]
+        public void TestSetSelectedColumnToNoColumnShouldUnsetSelectedColumn()
         {
             _viewModel.SelectedColumn = new LayoutItemViewModel(null);
             _mockMessageBus.Verify(p => p.Execute(It.IsAny<UnsetColorColumnCommand>()), Times.Once());

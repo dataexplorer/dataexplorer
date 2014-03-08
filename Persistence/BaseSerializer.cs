@@ -28,7 +28,10 @@ namespace DataExplorer.Persistence
         protected T GetProperty<T>(XElement xParent, string name)
         {
             var xProperty = xParent.Elements()
-                .First(p => p.Name == name);
+                .FirstOrDefault(p => p.Name == name);
+
+            if (xProperty == null)
+                return default(T);
 
             var value = _propertySerializer.Deserialize<T>(xProperty);
 

@@ -71,6 +71,9 @@ namespace DataExplorer.Presentation.Panes.Layout.Location
 
         private void SetSelectedColumnViewModel(LayoutItemViewModel value)
         {
+            if (value == null)
+                return;
+
             if (value.Column == null)
                 _messageBus.Execute(new UnsetYAxisColumnCommand());
             else

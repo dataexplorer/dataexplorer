@@ -97,6 +97,9 @@ namespace DataExplorer.Presentation.Panes.Layout.Size
 
         private void SetSelectedColumnViewModel(LayoutItemViewModel value)
         {
+            if (value == null)
+                return;
+
             if (value.Column == null)
                 _messageBus.Execute(new UnsetSizeColumnCommand());
             else

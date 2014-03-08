@@ -21,6 +21,7 @@ namespace DataExplorer.Persistence.Views.Serializers.ScatterPlots
         private const string SizeColumnIdTag = "size-column-id";
         private const string LowerSizeTag = "lower-size";
         private const string UpperSizeTag = "upper-size";
+        private const string LabelColumnIdTag = "label-column-id";
 
         private readonly IColorPaletteFactory _colorPaletteFactory;
 
@@ -50,6 +51,8 @@ namespace DataExplorer.Persistence.Views.Serializers.ScatterPlots
 
             AddProperty(xLayout, UpperSizeTag, layout.UpperSize);
 
+            AddColumn(xLayout, LabelColumnIdTag, layout.LabelColumn);
+
             return xLayout;
         }
         
@@ -71,6 +74,8 @@ namespace DataExplorer.Persistence.Views.Serializers.ScatterPlots
 
             var upperSize = GetProperty<double>(xLayout, UpperSizeTag);
 
+            var labelColumn = GetColumn(xLayout, LabelColumnIdTag, columns);
+
             var layout = new ScatterPlotLayout()
             {
                 XAxisColumn = xAxisColumn, 
@@ -79,7 +84,8 @@ namespace DataExplorer.Persistence.Views.Serializers.ScatterPlots
                 ColorPalette = colorPalette,
                 SizeColumn = sizeColumn,
                 LowerSize = lowerSize,
-                UpperSize = upperSize
+                UpperSize = upperSize,
+                LabelColumn = labelColumn
             };
 
             return layout;

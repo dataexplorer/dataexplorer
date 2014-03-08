@@ -48,12 +48,21 @@ namespace DataExplorer.Persistence.Tests
         }
 
         [Test]
+        public void TestGetPropertyShouldReturnDefaultValueIfPropertyDoesNotExist()
+        {
+            _mockPropertySerializer.Setup(p => p.Deserialize<bool?>(_xChild))
+                .Returns(_value);
+            var result = _serializer.GetProperty<bool?>(_xParent, _name);
+            Assert.That(result, Is.Null);
+        }
+
+        [Test]
         public void TestGetPropertyShouldGetProperty()
         {
             _xParent.Add(_xChild);
-            _mockPropertySerializer.Setup(p => p.Deserialize<bool>(_xChild))
+            _mockPropertySerializer.Setup(p => p.Deserialize<bool?>(_xChild))
                 .Returns(_value);
-            var result = _serializer.GetProperty<bool>(_xParent, _name);
+            var result = _serializer.GetProperty<bool?>(_xParent, _name);
             Assert.That(result, Is.EqualTo(_value));
         }
 
@@ -64,6 +73,15 @@ namespace DataExplorer.Persistence.Tests
                 .Returns(_xChild);
             _serializer.AddColumn(_xParent, _name, _column);
             Assert.That(_xParent.Elements().Single(), Is.EqualTo(_xChild));
+        }
+
+        [Test]
+        public void TestGetColumnShouldReturnNullIfPropertyDoesNotExist()
+        {
+            _mockPropertySerializer.Setup(p => p.Deserialize<int?>(_xChild))
+                .Returns(_column.Id);
+            var result = _serializer.GetColumn(_xParent, _name, new List<Column> { _column });
+            Assert.That(result, Is.Null);
         }
 
         [Test]

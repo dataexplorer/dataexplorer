@@ -73,7 +73,15 @@ namespace DataExplorer.Presentation.Tests.Panes.Layout.Size
         }
 
         [Test]
-        public void TestSetSelectedColumnToNullShouldUnsetSelectedColumn()
+        public void TestSetSelectedColumnToNullShouldDoNothing()
+        {
+            _viewModel.SelectedColumn = null;
+            _mockMessageBus.Verify(p => p.Execute(It.IsAny<UnsetSizeColumnCommand>()), Times.Never());
+            _mockMessageBus.Verify(p => p.Execute(It.IsAny<SetSizeColumnCommand>()), Times.Never());
+        }
+
+        [Test]
+        public void TestSetSelectedColumnToNoColumnShouldUnsetSelectedColumn()
         {
             _viewModel.SelectedColumn = new LayoutItemViewModel(null);
             _mockMessageBus.Verify(p => p.Execute(It.IsAny<UnsetSizeColumnCommand>()), Times.Once());
