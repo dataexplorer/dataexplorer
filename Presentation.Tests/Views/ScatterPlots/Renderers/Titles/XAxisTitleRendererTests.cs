@@ -37,7 +37,7 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Renderers.Titles
         public void TestRenderReturnsLabelWithYPositionAtBaseline()
         {
             var result = _renderer.Render(_controlSize, "Test");
-            Assert.That(result.Y, Is.EqualTo(105d));
+            Assert.That(result.Y, Is.EqualTo(100d));
         }
 
         [Test]

@@ -11,7 +11,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Renderers.Titles
             
             label.X = controlSize.Width / 2;
 
-            label.Y = controlSize.Height + 5; 
+            label.Y = controlSize.Height; 
             
             label.Text = text;
 

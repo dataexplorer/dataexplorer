@@ -27,7 +27,7 @@ namespace DataExplorer.Domain.Tests.Maps.LabelMaps
         }
 
         [Test]
-        [TestCase("1/1/0001 00:00:00", "1/1/0001 12:00:00 AM")]
+        [TestCase("1/1/0001 00:00:00", "1/1/0001")]
         [TestCase("10/1/2500 06:15:15", "10/1/2500 6:15:15 AM")]
         [TestCase("7/2/5000 12:30:30", "7/2/5000 12:30:30 PM")]
         [TestCase("4/2/7500 18:45:45", "4/2/7500 6:45:45 PM")]

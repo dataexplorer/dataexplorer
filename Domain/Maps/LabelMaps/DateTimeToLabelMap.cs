@@ -13,7 +13,12 @@ namespace DataExplorer.Domain.Maps.LabelMaps
             if (value == null)
                 return "Null";
 
-            return ((DateTime) value).ToString();
+            var dateTimeValue = (DateTime) value;
+
+            return dateTimeValue.TimeOfDay == TimeSpan.Zero
+                ? dateTimeValue.ToShortDateString()
+                : dateTimeValue.ToString();
+
         }
     }
 }

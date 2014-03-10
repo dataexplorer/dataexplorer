@@ -33,7 +33,11 @@ namespace DataExplorer.Domain.Views.ScatterPlots
             var sizeMap = layout.SizeColumn != null
                 ? _factory.CreateSizeMap(layout.SizeColumn, layout.LowerSize, layout.UpperSize)
                 : null;
-            
+
+            var labelMap = layout.LabelColumn != null
+                ? _factory.CreateLabelMap(layout.LabelColumn)
+                : null;
+
             var plots = new List<Plot>();
             
             foreach (var row in rows)
@@ -57,6 +61,10 @@ namespace DataExplorer.Domain.Views.ScatterPlots
                 plot.Size = layout.SizeColumn != null
                     ? sizeMap.Map(row[layout.SizeColumn.Index]) ?? 0.0
                     : layout.UpperSize;
+
+                plot.Label = layout.LabelColumn != null
+                    ? labelMap.Map(row[layout.LabelColumn.Index])
+                    : null;
 
                 plots.Add(plot);
             }

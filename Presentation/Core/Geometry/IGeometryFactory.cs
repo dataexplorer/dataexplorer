@@ -12,5 +12,7 @@ namespace DataExplorer.Presentation.Core.Geometry
     public interface IGeometryFactory
     {
         CanvasCircle CreateCircle(int id, Rect shapeExtent, Color color);
+
+        CanvasLabel CreateLabel(int id, Point origin, string text);
     }
 }

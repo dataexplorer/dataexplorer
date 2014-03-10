@@ -32,7 +32,7 @@ namespace DataExplorer.Presentation.Tests.Core.Geometry
         public void TestCalculateExtentShouldCalculateExtentOfGeometry()
         {
             _plotSize = 1d;
-            var result = _calculator.CalculateExtent(_controlSize, _viewExtent, _scale, _plotCenter, _plotSize);
+            var result = _calculator.CalculatePlotExtent(_controlSize, _viewExtent, _scale, _plotCenter, _plotSize);
             Assert.That(result, Is.EqualTo(new Rect(0, 0, 128, 128)));
         }
 
@@ -40,7 +40,7 @@ namespace DataExplorer.Presentation.Tests.Core.Geometry
         public void TestCalculateExtentShouldCalculateCenterOfPlot()
         {
             _plotCenter = new Point(1, 2);
-            var result = _calculator.CalculateExtent(_controlSize, _viewExtent, _scale, _plotCenter, _plotSize);
+            var result = _calculator.CalculatePlotExtent(_controlSize, _viewExtent, _scale, _plotCenter, _plotSize);
             Assert.That(result, Is.EqualTo(new Rect(1, -2, 0, 0)));
         }
 
@@ -49,7 +49,7 @@ namespace DataExplorer.Presentation.Tests.Core.Geometry
         {
             _viewExtent = new Rect(1, 2, 0, 0);
             _plotCenter = new Point(3, 4);
-            var result = _calculator.CalculateExtent(_controlSize, _viewExtent, _scale, _plotCenter, _plotSize);
+            var result = _calculator.CalculatePlotExtent(_controlSize, _viewExtent, _scale, _plotCenter, _plotSize);
             Assert.That(result, Is.EqualTo(new Rect(2, -2, 0, 0)));
         }
 
@@ -58,7 +58,7 @@ namespace DataExplorer.Presentation.Tests.Core.Geometry
         {
             _plotCenter = new Point(1, 2);
             _scale = 2;
-            var result = _calculator.CalculateExtent(_controlSize, _viewExtent, _scale, _plotCenter, _plotSize);
+            var result = _calculator.CalculatePlotExtent(_controlSize, _viewExtent, _scale, _plotCenter, _plotSize);
             Assert.That(result, Is.EqualTo(new Rect(2, -4, 0, 0)));
         }
 
@@ -66,8 +66,17 @@ namespace DataExplorer.Presentation.Tests.Core.Geometry
         public void TestCalculateExtentShouldSubtractControlHeight()
         {
             _controlSize = new Size(0, 10);
-            var result = _calculator.CalculateExtent(_controlSize, _viewExtent, _scale, _plotCenter, _plotSize);
+            var result = _calculator.CalculatePlotExtent(_controlSize, _viewExtent, _scale, _plotCenter, _plotSize);
             Assert.That(result, Is.EqualTo(new Rect(0, 10, 0, 0)));
+        }
+
+        [Test]
+        public void TestCalculateLabelOriginShouldCalculateLocationOfLabelRelativeToPlot()
+        {
+            _plotExtent = new Rect(0, 0, 4, 4);
+            var result = _calculator.CalcluateLabelOrigin(_plotExtent);
+            Assert.That(result.X, Is.EqualTo(0));
+            Assert.That(result.Y, Is.EqualTo(17));
         }
     }
 }

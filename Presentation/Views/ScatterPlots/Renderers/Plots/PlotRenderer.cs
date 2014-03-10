@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Media;
 using DataExplorer.Application.Views.ScatterPlots;
@@ -34,18 +35,43 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Renderers.Plots
 
             var scale = _computer.ComputeScale(controlSize, resizedViewExtent);
 
-            return plots.Select(p => RenderPlot(controlSize, resizedViewExtent, scale, p)).ToList();
+            var items = new List<CanvasItem>();
+
+            foreach (var plotDto in plots)
+            {
+                var extent = _calculator.CalculatePlotExtent(controlSize, viewExtent, scale, new Point(plotDto.X, plotDto.Y), plotDto.Size);
+
+                var plotItem = RenderPlot(extent, plotDto);
+
+                items.Add(plotItem);
+
+                if (string.IsNullOrEmpty(plotDto.Label))
+                    continue;
+
+                var labelItem = RenderLabel(extent, plotDto);
+
+                items.Add(labelItem);
+            }
+
+            return items;
         }
 
-        private CanvasItem RenderPlot(Size controlSize, Rect viewExtent, double scale, PlotDto plot)
+        private CanvasItem RenderPlot(Rect extent, PlotDto plot)
         {
-            var extent = _calculator.CalculateExtent(controlSize, viewExtent, scale, new Point(plot.X, plot.Y), plot.Size);
-
             var color = Color.FromRgb(plot.Color.Red, plot.Color.Green, plot.Color.Blue);
 
             var circle = _factory.CreateCircle(plot.Id, extent, color);
 
             return circle;
+        }
+
+        private CanvasItem RenderLabel(Rect plotExtent, PlotDto plotDto)
+        {
+            var origin = _calculator.CalcluateLabelOrigin(plotExtent);
+
+            var label = _factory.CreateLabel(plotDto.Id, origin, plotDto.Label);
+
+            return label;
         }
     }
 }

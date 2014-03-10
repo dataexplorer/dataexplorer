@@ -23,5 +23,20 @@ namespace DataExplorer.Presentation.Core.Geometry
             };
             return circle;
         }
+
+        public CanvasLabel CreateLabel(int id, Point origin, string text)
+        {
+            var label = new CanvasLabel
+            {
+                Id = id,
+                X = origin.X,
+                Y = origin.Y,
+                IsRotated = false,
+                IsSelected = false,
+                Text = text
+            };
+
+            return label;
+        }
     }
 }

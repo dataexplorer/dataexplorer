@@ -9,6 +9,8 @@ namespace DataExplorer.Presentation.Core.Geometry
 {
     public interface IGeometryCalculator
     {
-        Rect CalculateExtent(Size controlSize, Rect viewExtent, double scale, Point plotCenter, double plotSize);
+        Rect CalculatePlotExtent(Size controlSize, Rect viewExtent, double scale, Point plotCenter, double plotSize);
+
+        Point CalcluateLabelOrigin(Rect plotExtent);
     }
 }

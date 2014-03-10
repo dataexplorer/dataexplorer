@@ -12,7 +12,7 @@ using NUnit.Framework;
 namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Renderers.Plots
 {
     [TestFixture]
-    public class ScatterPlotPlotRendererTests
+    public class PlotRendererTests
     {
         private PlotRenderer _renderer;
         private Mock<IViewResizer> _mockResizer;
@@ -24,15 +24,24 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Renderers.Plots
         private PlotDto _plot;
         private List<PlotDto> _plots;
         private CanvasCircle _circle;
+        private CanvasLabel _label;
 
         [SetUp]
         public void SetUp()
         {
             _controlSize = new Size();
             _viewExtent = new Rect();
-            _plot = new PlotDto() { Id = 1, X = 1d, Y = 2d, Color = new Domain.Colors.Color(0, 0, 0) };
+            _plot = new PlotDto()
+            {
+                Id = 1, 
+                X = 1d, 
+                Y = 2d, 
+                Color = new Domain.Colors.Color(0, 0, 0),
+                Label = "Test"
+            };
             _plots = new List<PlotDto> { _plot };
             _circle = new CanvasCircle();
+            _label = new CanvasLabel();
 
             _mockResizer = new Mock<IViewResizer>();
             _mockResizer.Setup(p => p.ResizeView(_controlSize, _viewExtent))
@@ -46,6 +55,8 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Renderers.Plots
             _mockFactory = new Mock<IGeometryFactory>();
             _mockFactory.Setup(p => p.CreateCircle(_plot.Id, It.IsAny<Rect>(), It.IsAny<Color>()))
                 .Returns(_circle);
+            _mockFactory.Setup(p => p.CreateLabel(_plot.Id, It.IsAny<Point>(), _plot.Label))
+                .Returns(_label);
 
             _renderer = new PlotRenderer(
                 _mockResizer.Object,
@@ -58,7 +69,30 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Renderers.Plots
         public void TestRenderPlotsShouldReturnCircle()
         {
             var results = _renderer.RenderPlots(_controlSize, _viewExtent, _plots);
-            Assert.That(results.Count, Is.EqualTo(1));
+            Assert.That(results, Has.Member(_circle));
+        }
+
+        [Test]
+        public void TestRenderPlotsShouldReturnLabel()
+        {
+            var results = _renderer.RenderPlots(_controlSize, _viewExtent, _plots);
+            Assert.That(results, Has.Member(_label));
+        }
+
+        [Test]
+        public void TestRenderPlotsShouldNotReturnLabelIfLabelIsNull()
+        {
+            _plot.Label = null;
+            var results = _renderer.RenderPlots(_controlSize, _viewExtent, _plots);
+            Assert.That(results, !Has.Member(_label));
+        }
+
+        [Test]
+        public void TestRenderPlotsShouldNotReturnLabelIfLabelIsEmpty()
+        {
+            _plot.Label = string.Empty;
+            var results = _renderer.RenderPlots(_controlSize, _viewExtent, _plots);
+            Assert.That(results, !Has.Member(_label));
         }
     }
 }

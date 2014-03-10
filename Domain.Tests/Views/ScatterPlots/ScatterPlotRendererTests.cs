@@ -5,6 +5,7 @@ using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Maps;
 using DataExplorer.Domain.Maps.AxisMaps;
 using DataExplorer.Domain.Maps.ColorMaps;
+using DataExplorer.Domain.Maps.LabelMaps;
 using DataExplorer.Domain.Maps.SizeMaps;
 using DataExplorer.Domain.Rows;
 using DataExplorer.Domain.Tests.Colors;
@@ -25,6 +26,7 @@ namespace DataExplorer.Domain.Tests.Views.ScatterPlots
         private Mock<AxisMap> _mockYAxisMap;
         private Mock<ColorMap> _mockColorMap;
         private Mock<SizeMap> _mockSizeMap;
+        private Mock<LabelMap> _mockLabelMap;
         private ScatterPlotLayout _layout;
         private ColorPalette _colorPalette;
         private Color _color;
@@ -47,6 +49,7 @@ namespace DataExplorer.Domain.Tests.Views.ScatterPlots
             _mockYAxisMap = new Mock<AxisMap>();
             _mockColorMap = new Mock<ColorMap>();
             _mockSizeMap = new Mock<SizeMap>();
+            _mockLabelMap = new Mock<LabelMap>();
 
             _mockMapFactory = new Mock<IMapFactory>();
             
@@ -127,7 +130,20 @@ namespace DataExplorer.Domain.Tests.Views.ScatterPlots
             Assert.That(results.Single().Size, Is.EqualTo(1.0d));
         }
 
-       
+        [Test]
+        public void TestRenderPlotsShouldRenderLabelValue()
+        {
+            _mockMapFactory.Setup(p => p.CreateLabelMap(_column))
+                .Returns(_mockLabelMap.Object);
+
+            _mockLabelMap.Setup(p => p.Map(1.0d)).Returns("0.1");
+
+            _layout.LabelColumn = _column;
+            
+            var results = _renderer.RenderPlots(_rows, _layout);
+
+            Assert.That(results.Single().Label, Is.EqualTo("0.1"));
+        }
 
     }
 }

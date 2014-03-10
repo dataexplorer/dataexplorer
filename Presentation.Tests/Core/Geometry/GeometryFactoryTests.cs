@@ -28,5 +28,18 @@ namespace DataExplorer.Presentation.Tests.Core.Geometry
             Assert.That(result.Radius, Is.EqualTo(1.5d));
             Assert.That(result.Color, Is.EqualTo(color));
         }
+
+        [Test]
+        public void TestCreateLabelShouldCreateLabelBasedOnExtent()
+        {
+            var origin = new Point(1, 2);
+            var text = "Test";
+            var result = _factory.CreateLabel(1, origin, text);
+            Assert.That(result.Id, Is.EqualTo(1));
+            Assert.That(result.X, Is.EqualTo(1));
+            Assert.That(result.Y, Is.EqualTo(2));
+            Assert.That(result.IsRotated, Is.False);
+            Assert.That(result.Text, Is.EqualTo(text));
+        }
     }
 }
