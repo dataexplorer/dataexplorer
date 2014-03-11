@@ -178,9 +178,14 @@
       <DependentUpon>LabelLayoutView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Panes\Layout\Label\LabelLayoutViewModel.cs" />
+    <Compile Include="Panes\Layout\Link\LinkLayoutView.xaml.cs">
+      <DependentUpon>LinkLayoutView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\Layout\Link\LinkLayoutViewModel.cs" />
     <Compile Include="Panes\Layout\LayoutPaneView.xaml.cs">
       <DependentUpon>LayoutPaneView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Panes\Layout\Link\ILinkLayoutViewModel.cs" />
     <Compile Include="Panes\Layout\Size\ISizeLayoutViewModel.cs" />
     <Compile Include="Panes\Layout\Size\SizeLayoutView.xaml.cs">
       <DependentUpon>SizeLayoutView.xaml</DependentUpon>
@@ -416,6 +421,10 @@
     <Page Include="Panes\Layout\LayoutPaneView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Panes\Layout\Link\LinkLayoutView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Panes\Layout\Size\SizeLayoutView.xaml">
       <SubType>Designer</SubType>

@@ -1,6 +1,7 @@
 ﻿using System;
 using DataExplorer.Presentation.Panes.Layout.Color;
 using DataExplorer.Presentation.Panes.Layout.Label;
+using DataExplorer.Presentation.Panes.Layout.Link;
 using DataExplorer.Presentation.Panes.Layout.Location;
 using DataExplorer.Presentation.Panes.Layout.Size;
 
@@ -13,19 +14,22 @@ namespace DataExplorer.Presentation.Panes.Layout
         private readonly IColorLayoutViewModel _colorLayoutViewModel;
         private readonly ISizeLayoutViewModel _sizeLayoutViewModel;
         private readonly ILabelLayoutViewModel _labelLayoutViewModel;
+        private readonly ILinkLayoutViewModel _linkLayoutViewModel;
 
         public LayoutPaneViewModel(
             IXAxisLayoutViewModel xAxisLayoutViewModel, 
             IYAxisLayoutViewModel yAxisLayoutViewModel, 
             IColorLayoutViewModel colorLayoutViewModel,
             ISizeLayoutViewModel sizeLayoutViewModel,
-            ILabelLayoutViewModel labelLayoutViewModel)
+            ILabelLayoutViewModel labelLayoutViewModel,
+            ILinkLayoutViewModel linkLayoutViewModel)
         {
             _xAxisLayoutViewModel = xAxisLayoutViewModel;
             _yAxisLayoutViewModel = yAxisLayoutViewModel;
             _colorLayoutViewModel = colorLayoutViewModel;
             _sizeLayoutViewModel = sizeLayoutViewModel;
             _labelLayoutViewModel = labelLayoutViewModel;
+            _linkLayoutViewModel = linkLayoutViewModel;
         }
 
         public IXAxisLayoutViewModel XAxisLayoutViewModel
@@ -51,6 +55,11 @@ namespace DataExplorer.Presentation.Panes.Layout
         public ILabelLayoutViewModel LabelLayoutViewModel
         {
             get { return _labelLayoutViewModel; }
+        }
+
+        public ILinkLayoutViewModel LinkLayoutViewModel
+        {
+            get { return _linkLayoutViewModel; }
         }
     }
 }

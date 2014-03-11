@@ -9,6 +9,7 @@
     xmlns:color="clr-namespace:DataExplorer.Presentation.Panes.Layout.Color"
     xmlns:size="clr-namespace:DataExplorer.Presentation.Panes.Layout.Size"
     xmlns:label="clr-namespace:DataExplorer.Presentation.Panes.Layout.Label"
+    xmlns:link="clr-namespace:DataExplorer.Presentation.Panes.Layout.Link"
     mc:Ignorable="d" 
     d:DesignHeight="300" 
     d:DesignWidth="192">
@@ -22,22 +23,26 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <location:XAxisLayoutView 
-            Grid.Row="0" 
-            DataContext="{Binding XAxisLayoutViewModel}" />
+                Grid.Row="0" 
+                DataContext="{Binding XAxisLayoutViewModel}" />
             <location:YAxisLayoutView 
-            Grid.Row="1" 
-            DataContext="{Binding YAxisLayoutViewModel}" />
+                Grid.Row="1" 
+                DataContext="{Binding YAxisLayoutViewModel}" />
             <color:ColorLayoutView 
-            Grid.Row="2"
-            DataContext="{Binding ColorLayoutViewModel}" />
+                Grid.Row="2"
+                DataContext="{Binding ColorLayoutViewModel}" />
             <size:SizeLayoutView 
-            Grid.Row="3"
-            DataContext="{Binding SizeLayoutViewModel}" />
+                Grid.Row="3"
+                DataContext="{Binding SizeLayoutViewModel}" />
             <label:LabelLayoutView 
-            Grid.Row="4"
-            DataContext="{Binding LabelLayoutViewModel}" />
+                Grid.Row="4"
+                DataContext="{Binding LabelLayoutViewModel}" />
+            <link:LinkLayoutView 
+                Grid.Row="5"
+                DataContext="{Binding LinkLayoutViewModel}" />
         </Grid>
     </ScrollViewer>
 </UserControl>

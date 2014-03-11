@@ -4,23 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.Columns;
-using DataExplorer.Application.Columns.Queries;
 using DataExplorer.Application.Core.Messages;
 using DataExplorer.Application.Layouts.General.Events;
-using DataExplorer.Application.Layouts.Label.Commands;
-using DataExplorer.Application.Layouts.Label.Queries;
+using DataExplorer.Application.Layouts.Link.Commands;
+using DataExplorer.Application.Layouts.Link.Queries;
 using DataExplorer.Presentation.Core.Layout;
-using DataExplorer.Presentation.Panes.Layout.Label;
+using DataExplorer.Presentation.Panes.Layout.Link;
 using DataExplorer.Presentation.Tests.Core;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Presentation.Tests.Panes.Layout.Label
+namespace DataExplorer.Presentation.Tests.Panes.Layout.Link
 {
     [TestFixture]
-    public class LabelLayoutViewModelTests : ViewModelTests
+    public class LinkLayoutViewModelTests : ViewModelTests
     {
-        private LabelLayoutViewModel _viewModel;
+        private LinkLayoutViewModel _viewModel;
         private Mock<IMessageBus> _mockMessageBus;
         private ColumnDto _columnDto;
 
@@ -29,23 +28,23 @@ namespace DataExplorer.Presentation.Tests.Panes.Layout.Label
         {
             _columnDto = new ColumnDto()
             {
-                Id = 1, 
+                Id = 1,
                 Name = "Test"
             };
 
             _mockMessageBus = new Mock<IMessageBus>();
-            _mockMessageBus.Setup(p => p.Execute(It.IsAny<GetAllColumnsQuery>()))
+            _mockMessageBus.Setup(p => p.Execute(It.IsAny<GetAllLinkColumnsQuery>()))
                 .Returns(new List<ColumnDto> { _columnDto });
-            _mockMessageBus.Setup(p => p.Execute(It.IsAny<GetLabelColumnQuery>()))
+            _mockMessageBus.Setup(p => p.Execute(It.IsAny<GetLinkColumnQuery>()))
                 .Returns(_columnDto);
 
-            _viewModel = new LabelLayoutViewModel(_mockMessageBus.Object);
+            _viewModel = new LinkLayoutViewModel(_mockMessageBus.Object);
         }
 
         [Test]
-        public void TestGetLabelShouldReturnLabel()
+        public void TestGetLinkShouldReturnLink()
         {
-            Assert.That(_viewModel.Label, Is.EqualTo("Label"));
+            Assert.That(_viewModel.Label, Is.EqualTo("Link"));
         }
 
         [Test]
@@ -73,15 +72,15 @@ namespace DataExplorer.Presentation.Tests.Panes.Layout.Label
         public void TestSetSelectedColumnToNullShouldDoNothing()
         {
             _viewModel.SelectedColumn = null;
-            _mockMessageBus.Verify(p => p.Execute(It.IsAny<UnsetLabelColumnCommand>()), Times.Never());
-            _mockMessageBus.Verify(p => p.Execute(It.IsAny<SetLabelColumnCommand>()), Times.Never());
+            _mockMessageBus.Verify(p => p.Execute(It.IsAny<UnsetLinkColumnCommand>()), Times.Never());
+            _mockMessageBus.Verify(p => p.Execute(It.IsAny<SetLinkColumnCommand>()), Times.Never());
         }
 
         [Test]
         public void TestSetSelectedColumnToNoColumnShouldUnsetSelectedColumn()
         {
             _viewModel.SelectedColumn = new LayoutItemViewModel(null);
-            _mockMessageBus.Verify(p => p.Execute(It.IsAny<UnsetLabelColumnCommand>()), Times.Once());
+            _mockMessageBus.Verify(p => p.Execute(It.IsAny<UnsetLinkColumnCommand>()), Times.Once());
         }
 
         [Test]
@@ -89,7 +88,7 @@ namespace DataExplorer.Presentation.Tests.Panes.Layout.Label
         {
             var viewModel = new LayoutItemViewModel(_columnDto);
             _viewModel.SelectedColumn = viewModel;
-            _mockMessageBus.Verify(p => p.Execute(It.Is<SetLabelColumnCommand>(q => q.Id == 1)), Times.Once());
+            _mockMessageBus.Verify(p => p.Execute(It.Is<SetLinkColumnCommand>(q => q.Id == 1)), Times.Once());
         }
 
         [Test]

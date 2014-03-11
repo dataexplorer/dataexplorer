@@ -1,6 +1,7 @@
 ﻿using DataExplorer.Presentation.Panes.Layout;
 using DataExplorer.Presentation.Panes.Layout.Color;
 using DataExplorer.Presentation.Panes.Layout.Label;
+using DataExplorer.Presentation.Panes.Layout.Link;
 using DataExplorer.Presentation.Panes.Layout.Location;
 using DataExplorer.Presentation.Panes.Layout.Size;
 using Moq;
@@ -17,6 +18,7 @@ namespace DataExplorer.Presentation.Tests.Panes.Layout
         private Mock<IColorLayoutViewModel> _mockColorLayoutViewModel;
         private Mock<ISizeLayoutViewModel> _mockSizeLayoutViewModel;
         private Mock<ILabelLayoutViewModel> _mockLabelLayoutViewModel;
+        private Mock<ILinkLayoutViewModel> _mockLinkLayoutViewModel;
 
         [SetUp]
         public void SetUp()
@@ -26,13 +28,15 @@ namespace DataExplorer.Presentation.Tests.Panes.Layout
             _mockColorLayoutViewModel = new Mock<IColorLayoutViewModel>();
             _mockSizeLayoutViewModel = new Mock<ISizeLayoutViewModel>();
             _mockLabelLayoutViewModel = new Mock<ILabelLayoutViewModel>();
+            _mockLinkLayoutViewModel = new Mock<ILinkLayoutViewModel>();
 
             _paneViewModel = new LayoutPaneViewModel(
                 _mockXAxisLayoutViewModel.Object,
                 _mockYAxisLayoutViewModel.Object,
                 _mockColorLayoutViewModel.Object,
                 _mockSizeLayoutViewModel.Object,
-                _mockLabelLayoutViewModel.Object);
+                _mockLabelLayoutViewModel.Object,
+                _mockLinkLayoutViewModel.Object);
         }
 
         [Test]
@@ -68,6 +72,13 @@ namespace DataExplorer.Presentation.Tests.Panes.Layout
         {
             var result = _paneViewModel.LabelLayoutViewModel;
             Assert.That(result, Is.EqualTo(_mockLabelLayoutViewModel.Object));
+        }
+
+        [Test]
+        public void TestGetLinkLayoutViewModelShouldReturnViewModel()
+        {
+            var result = _paneViewModel.LinkLayoutViewModel;
+            Assert.That(result, Is.EqualTo(_mockLinkLayoutViewModel.Object));
         }
     }
 }
