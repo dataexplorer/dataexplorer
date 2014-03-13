@@ -93,6 +93,9 @@ namespace DataExplorer.Persistence.Projects
 
             if (type == typeof(Type))
                 return Type.GetType(xProperty.Value);
+
+            if (type.BaseType == typeof (Enum))
+                return Enum.Parse(type, xProperty.Value);
             
             throw new ArgumentException(PropertyCannotBeDeserialized);
         }

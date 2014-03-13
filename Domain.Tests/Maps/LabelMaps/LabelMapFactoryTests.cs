@@ -23,7 +23,7 @@ namespace DataExplorer.Domain.Tests.Maps.LabelMaps
         [Test]
         public void TestCreateLabelMapForInvalidDataTypeShouldThrowArgumentException()
         {
-            var column = new ColumnBuilder().WithType(typeof(Object)).Build();
+            var column = new ColumnBuilder().WithDataType(typeof(Object)).Build();
             Assert.That(() => _factory.Create(column), Throws.ArgumentException);
         }
 
@@ -61,7 +61,7 @@ namespace DataExplorer.Domain.Tests.Maps.LabelMaps
         {
             var column = new ColumnBuilder()
                 .WithValue(default(T))
-                .WithType(typeof(T))
+                .WithDataType(typeof(T))
                 .Build();
             var result = _factory.Create(column);
             Assert.That(result, Is.TypeOf(mapType));

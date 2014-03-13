@@ -88,6 +88,7 @@
       <DependentUpon>RangeSlider.xaml</DependentUpon>
     </Compile>
     <Compile Include="Core\Converters\FriendlyDataTypeNameConverter.cs" />
+    <Compile Include="Core\Converters\FriendlySemanticTypeNameConverter.cs" />
     <Compile Include="Core\Events\DialogClosedEvent.cs" />
     <Compile Include="Core\Geometry\GeometryCalculator.cs" />
     <Compile Include="Core\Geometry\GeometryFactory.cs" />

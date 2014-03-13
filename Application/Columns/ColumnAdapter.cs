@@ -19,7 +19,7 @@ namespace DataExplorer.Application.Columns
                 Id = column.Id,
                 Index = column.Index,
                 Name = column.Name,
-                Type = column.Type
+                Type = column.DataType
             };
 
             return columnDto;

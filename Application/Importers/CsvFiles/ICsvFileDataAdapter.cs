@@ -7,9 +7,9 @@ namespace DataExplorer.Application.Importers.CsvFiles
     public interface ICsvFileDataAdapter
     {
         bool Exists(CsvFileSource source);
-        
-        DataTable GetDataTable(CsvFileSource source);
-        
-        List<DataColumn> GetDataColumns(CsvFileSource source);
+
+        List<SourceColumn> GetColumns(CsvFileSource source);
+
+        DataTable GetTable(CsvFileSource source);
     }
 }

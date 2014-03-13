@@ -1,4 +1,6 @@
 ﻿using System.Data;
+using DataExplorer.Domain.Semantics;
+using DataExplorer.Domain.Sources;
 using DataExplorer.Domain.Sources.Maps;
 using NUnit.Framework;
 
@@ -18,10 +20,17 @@ namespace DataExplorer.Domain.Tests.Sources.Maps
         [Test]
         public void TestCreateShouldReturnNewSourceMap()
         {
-            var column = new DataColumn("Column 1", typeof(string));
+            var column = new SourceColumn
+            {
+                Name = "Column 1",
+                DataType = typeof(string),
+                SemanticType = SemanticType.Measure
+            };
+
             var result = _factory.Create(column);
-            Assert.That(result.Name, Is.EqualTo(column.ColumnName));
+            Assert.That(result.Name, Is.EqualTo(column.Name));
             Assert.That(result.SourceType, Is.EqualTo(column.DataType));
+            Assert.That(result.SemanticType, Is.EqualTo(column.SemanticType));
         }
     }
 }

@@ -44,7 +44,7 @@ namespace DataExplorer.Application.Views.ScatterPlots.Axes.Queries
                 .Distinct()
                 .ToList();
 
-            var axisLines = _gridLineFactory.Create(column.Type, map, values, viewExtent.Top, viewExtent.Bottom);
+            var axisLines = _gridLineFactory.Create(column.DataType, map, values, viewExtent.Top, viewExtent.Bottom);
 
             return axisLines.ToList();
         }

@@ -63,6 +63,7 @@
     <Compile Include="Core\Controls\RangeSliderTestHarness.cs" />
     <Compile Include="Core\Controls\RangeSliderTests.cs" />
     <Compile Include="Core\Converters\FriendlyDataTypeNameConverterTests.cs" />
+    <Compile Include="Core\Converters\FriendlySemanticTypeConverterTests.cs" />
     <Compile Include="Core\FakeControl.cs" />
     <Compile Include="Core\FakeVisual.cs" />
     <Compile Include="Core\Geometry\GeometryCalculatorTests.cs" />

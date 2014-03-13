@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using DataExplorer.Domain.Columns;
+using DataExplorer.Domain.Semantics;
 
 namespace DataExplorer.Domain.Tests.Columns
 {
@@ -9,7 +10,8 @@ namespace DataExplorer.Domain.Tests.Columns
         private int _id;
         private int _index;
         private string _name;
-        private Type _type;
+        private Type _dataType;
+        private SemanticType _semanticType;
         private bool _hasNulls;
         private List<object> _values; 
 
@@ -31,9 +33,15 @@ namespace DataExplorer.Domain.Tests.Columns
             return this;
         }
 
-        public ColumnBuilder WithType(Type type)
+        public ColumnBuilder WithDataType(Type dataType)
         {
-            _type = type;
+            _dataType = dataType;
+            return this;
+        }
+
+        public ColumnBuilder WithSemanticType(SemanticType semanticType)
+        {
+            _semanticType = semanticType;
             return this;
         }
 
@@ -73,7 +81,7 @@ namespace DataExplorer.Domain.Tests.Columns
             if (_values != null)
                 values.AddRange(_values);
 
-            return new Column(_id, _index, _name, _type, values);
+            return new Column(_id, _index, _name, _dataType, _semanticType, values);
         }
     }
 }

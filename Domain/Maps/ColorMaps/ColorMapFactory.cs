@@ -12,28 +12,28 @@ namespace DataExplorer.Domain.Maps.ColorMaps
     {
         public ColorMap Create(Column column, ColorPalette colorPalette)
         {
-            if (column.Type == typeof(Boolean))
+            if (column.DataType == typeof(Boolean))
                 return new BooleanToColorMap(colorPalette.Colors);
 
-            if (column.Type == typeof(DateTime))
+            if (column.DataType == typeof(DateTime))
                 return new DateTimeToColorMap(
                     (DateTime) column.Min, 
                     (DateTime) column.Max, 
                     colorPalette.Colors);
 
-            if (column.Type == typeof(Double))
+            if (column.DataType == typeof(Double))
                 return new FloatToColorMap(
                     (double) column.Min, 
                     (double) column.Max, 
                     colorPalette.Colors);
 
-            if (column.Type == typeof(Int32))
+            if (column.DataType == typeof(Int32))
                 return new IntegerToColorMap(
                     (int) column.Min, 
                     (int) column.Max, 
                     colorPalette.Colors);
 
-            if (column.Type == typeof(String))
+            if (column.DataType == typeof(String))
                 return new StringToColorMap(
                     column.Values.Cast<string>().ToList(),
                     colorPalette.Colors);

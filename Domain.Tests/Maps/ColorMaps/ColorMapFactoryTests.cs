@@ -24,7 +24,7 @@ namespace DataExplorer.Domain.Tests.Maps.ColorMaps
         [Test]
         public void TestCreateAxisMapForInvalidDataTypeShouldThrowArgumentException()
         {
-            var column = new ColumnBuilder().WithType(typeof(Object)).Build();
+            var column = new ColumnBuilder().WithDataType(typeof(Object)).Build();
 
             var colorPalette = new ColorPaletteBuilder().Build();
 
@@ -66,7 +66,7 @@ namespace DataExplorer.Domain.Tests.Maps.ColorMaps
         {
             var column = new ColumnBuilder()
                 .WithValue(default(T))
-                .WithType(typeof(T))
+                .WithDataType(typeof(T))
                 .Build();
 
             var colorPalette = new ColorPaletteBuilder().Build();

@@ -39,7 +39,7 @@ namespace DataExplorer.Application.Tests.Legends.Sizes.Queries
             _values = new List<string> { "test" };
             _column = new ColumnBuilder()
                 .WithId(1)
-                .WithType(typeof(String))
+                .WithDataType(typeof(String))
                 .WithValue(_values)
                 .Build();
             _layout = new ScatterPlotLayoutBuilder()
@@ -63,7 +63,7 @@ namespace DataExplorer.Application.Tests.Legends.Sizes.Queries
 
             _mockItemFactory = new Mock<ISizeLegendFactory>();
             _mockItemFactory.Setup(p =>
-                p.Create(_column.Type, _map, It.IsAny<List<object>>(), _layout.LowerSize, _layout.UpperSize))
+                p.Create(_column.DataType, _map, It.IsAny<List<object>>(), _layout.LowerSize, _layout.UpperSize))
                 .Returns(new List<SizeLegendItemDto> { _itemDto });
 
             _handler = new GetSizeLegendItemsQueryHandler(

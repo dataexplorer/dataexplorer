@@ -1,4 +1,5 @@
 ﻿using System;
+using DataExplorer.Domain.Semantics;
 
 namespace DataExplorer.Domain.Sources.Maps
 {
@@ -7,5 +8,7 @@ namespace DataExplorer.Domain.Sources.Maps
         public string Name { get; set; }
 
         public Type SourceType { get; set; }
+
+        public SemanticType SemanticType { get; set; }
     }
 }

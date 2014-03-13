@@ -136,8 +136,6 @@
     <Compile Include="Importers\CsvFiles\Queries\GetCsvFileSourceMapsQueryHandler.cs" />
     <Compile Include="Importers\CsvFiles\Queries\GetCsvFileSourceQuery.cs" />
     <Compile Include="Importers\CsvFiles\Queries\GetCsvFileSourceQueryHandler.cs" />
-    <Compile Include="Importers\DataTypeDetector.cs" />
-    <Compile Include="Importers\IDataTypeDetector.cs" />
     <Compile Include="Importers\ISourceRepository.cs" />
     <Compile Include="IProcess.cs" />
     <Compile Include="Layouts\Color\Commands\UnsetColorColumnCommand.cs" />
@@ -151,7 +149,9 @@
     <Compile Include="Layouts\Link\Commands\SetLinkColumnCommand.cs" />
     <Compile Include="Layouts\Link\Commands\UnsetLinkColumnCommand.cs" />
     <Compile Include="Layouts\Link\Queries\GetAllLinkColumnsQuery.cs" />
+    <Compile Include="Layouts\Link\Queries\GetAllLinkColumnsQueryHandler.cs" />
     <Compile Include="Layouts\Link\Queries\GetLinkColumnQuery.cs" />
+    <Compile Include="Layouts\Link\Queries\GetLinkColumnQueryHandler.cs" />
     <Compile Include="Layouts\Location\Commands\UnsetXAxisColumnCommand.cs" />
     <Compile Include="Layouts\Location\Commands\UnsetXAxisColumnCommandHandler.cs" />
     <Compile Include="Layouts\Location\Commands\UnsetYAxisColumnCommand.cs" />

@@ -1,8 +1,8 @@
 ﻿using System;
-using DataExplorer.Domain.Converters;
+using DataExplorer.Domain.DataTypes.Converters;
 using NUnit.Framework;
 
-namespace DataExplorer.Domain.Tests.Converters
+namespace DataExplorer.Domain.Tests.DataTypes.Converters
 {
     [TestFixture]
     public class StringToDateTimeConverterTests

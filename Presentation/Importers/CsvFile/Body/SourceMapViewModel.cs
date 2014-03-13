@@ -1,6 +1,8 @@
-﻿using DataExplorer.Domain.Sources;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using DataExplorer.Domain.Semantics;
 using DataExplorer.Domain.Sources.Maps;
-using DataExplorer.Presentation.Core;
 using DataExplorer.Presentation.Core.Converters;
 
 namespace DataExplorer.Presentation.Importers.CsvFile.Body
@@ -8,12 +10,14 @@ namespace DataExplorer.Presentation.Importers.CsvFile.Body
     public class SourceMapViewModel
     {
         private readonly SourceMap _map;
-        private readonly FriendlyDataTypeNameConverter _converter;
+        private readonly FriendlyDataTypeNameConverter _dataTypeConverter;
+        private readonly FriendlySemanticTypeNameConverter _semanticTypeConverter;
 
         public SourceMapViewModel(SourceMap map)
         {
             _map = map;
-            _converter = new FriendlyDataTypeNameConverter();
+            _dataTypeConverter = new FriendlyDataTypeNameConverter();
+            _semanticTypeConverter = new FriendlySemanticTypeNameConverter();
         }
 
         public SourceMap Map
@@ -28,7 +32,24 @@ namespace DataExplorer.Presentation.Importers.CsvFile.Body
 
         public string SourceType
         {
-            get { return _converter.Convert(_map.SourceType); }
+            get { return _dataTypeConverter.Convert(_map.SourceType); }
+        }
+
+        public List<string> SemanticTypes
+        {
+            get
+            {
+                return Enum.GetValues(typeof (SemanticType))
+                    .Cast<SemanticType>()
+                    .Select(p => _semanticTypeConverter.Convert(p))
+                    .ToList();
+            }
+        }
+
+        public string SelectedSemanticType
+        {
+            get { return _semanticTypeConverter.Convert(_map.SemanticType); }
+            set { _map.SemanticType = _semanticTypeConverter.Convert(value); }
         }
     }
 }

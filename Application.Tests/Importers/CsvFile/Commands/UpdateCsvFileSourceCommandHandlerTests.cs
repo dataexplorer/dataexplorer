@@ -21,8 +21,7 @@ namespace DataExplorer.Application.Tests.Importers.CsvFile.Commands
         private Mock<ISourceMapFactory> _mockFactory;
         private Mock<IEventBus> _mockEventBus;
         private CsvFileSource _source;
-        private List<DataColumn> _dataColumns;
-        private DataColumn _dataColumn;
+        private SourceColumn _sourceColumn;
         private List<SourceMap> _maps; 
         private SourceMap _map;
         private string _filePath;
@@ -33,18 +32,20 @@ namespace DataExplorer.Application.Tests.Importers.CsvFile.Commands
             _filePath = @"C:\Test.csv";
             _map = new SourceMap();
             _maps = new List<SourceMap> { _map };
-            _dataColumn = new DataColumn();
-            _dataColumns = new List<DataColumn> { _dataColumn };
+            _sourceColumn = new SourceColumn();
             _source = new CsvFileSource();
             
             _mockRepository = new Mock<ISourceRepository>();
-            _mockRepository.Setup(p => p.GetSource<CsvFileSource>()).Returns(_source);
+            _mockRepository.Setup(p => p.GetSource<CsvFileSource>())
+                .Returns(_source);
 
             _mockDataAdapter = new Mock<ICsvFileDataAdapter>();
-            _mockDataAdapter.Setup(p => p.GetDataColumns(_source)).Returns(_dataColumns);
+            _mockDataAdapter.Setup(p => p.GetColumns(_source))
+                .Returns(new List<SourceColumn> { _sourceColumn });
 
             _mockFactory = new Mock<ISourceMapFactory>();
-            _mockFactory.Setup(p => p.Create(_dataColumn)).Returns(_map);
+            _mockFactory.Setup(p => p.Create(_sourceColumn))
+                .Returns(_map);
 
             _mockEventBus = new Mock<IEventBus>();
 

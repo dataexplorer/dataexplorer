@@ -11,19 +11,19 @@ namespace DataExplorer.Domain.Maps.LabelMaps
     {
         public LabelMap Create(Column column)
         {
-            if (column.Type == typeof(Boolean))
+            if (column.DataType == typeof(Boolean))
                 return new BooleanToLabelMap();
 
-            if (column.Type == typeof (DateTime))
+            if (column.DataType == typeof (DateTime))
                 return new DateTimeToLabelMap();
 
-            if (column.Type == typeof(Double))
+            if (column.DataType == typeof(Double))
                 return new FloatToLabelMap();
 
-            if (column.Type == typeof(Int32))
+            if (column.DataType == typeof(Int32))
                 return new IntegerToLabelMap();
 
-            if (column.Type == typeof(String))
+            if (column.DataType == typeof(String))
                 return new StringToLabelMap();
 
             throw new ArgumentException("Column data type is not valid data type for an axis map.");

@@ -12,7 +12,7 @@ using DataExplorer.Application.Importers.CsvFiles.Events;
 using DataExplorer.Application.Projects.Events;
 using DataExplorer.Application.Rows;
 using DataExplorer.Domain.Columns;
-using DataExplorer.Domain.Converters;
+using DataExplorer.Domain.DataTypes.Converters;
 using DataExplorer.Domain.Rows;
 using DataExplorer.Domain.Sources;
 
@@ -78,9 +78,9 @@ namespace DataExplorer.Application.Importers.CsvFiles.Commands
 
             _repository.SetSource(source);
 
-            var dataColumns = _dataAdapter.GetDataColumns(source);
+            var dataColumns = _dataAdapter.GetColumns(source);
 
-            var dataTable = _dataAdapter.GetDataTable(source);
+            var dataTable = _dataAdapter.GetTable(source);
 
             var converters = dataColumns
                 .Select(p => _converterFactory.Create(typeof (string), p.DataType))
@@ -93,7 +93,7 @@ namespace DataExplorer.Application.Importers.CsvFiles.Commands
             _eventBus.Raise(new SourceImportedEvent());
         }
 
-        private void CreateRows(DataTable dataTable, List<DataColumn> dataColumns, List<IDataTypeConverter> converters)
+        private void CreateRows(DataTable dataTable, List<SourceColumn> dataColumns, List<IDataTypeConverter> converters)
         {
             for (int i = 0; i < dataTable.Rows.Count; i++)
                 CreateRow(dataTable, dataColumns, converters, i);
@@ -103,7 +103,7 @@ namespace DataExplorer.Application.Importers.CsvFiles.Commands
             //    i => CreateRow(dataTable, dataColumns, converters, i));
         }
 
-        private void CreateRow(DataTable dataTable, List<DataColumn> dataColumns, List<IDataTypeConverter> converters, int i)
+        private void CreateRow(DataTable dataTable, List<SourceColumn> dataColumns, List<IDataTypeConverter> converters, int i)
         {
             var dataRow = dataTable.Rows[i];
 
@@ -119,7 +119,7 @@ namespace DataExplorer.Application.Importers.CsvFiles.Commands
             _eventBus.Raise(new SourceImportProgressChangedEvent(progress));
         }
 
-        private void CreateColumns(List<DataColumn> dataColumns)
+        private void CreateColumns(List<SourceColumn> dataColumns)
         {
             for (int i = 0; i< dataColumns.Count; i++)
                 CreateColumn(dataColumns, i);
@@ -129,7 +129,7 @@ namespace DataExplorer.Application.Importers.CsvFiles.Commands
             //    i => CreateColumn(dataColumns, i));
         }
 
-        private void CreateColumn(List<DataColumn> dataColumns, int i)
+        private void CreateColumn(List<SourceColumn> dataColumns, int i)
         {
             var dataColumn = dataColumns[i];
 
@@ -138,7 +138,14 @@ namespace DataExplorer.Application.Importers.CsvFiles.Commands
                 .OrderBy(p => p)
                 .ToList();
 
-            var column = new Column(i + 1, i, dataColumn.ColumnName, dataColumn.DataType, values);
+            // TODO: Replace with a mapper
+            var column = new Column(
+                i + 1,
+                i, 
+                dataColumn.Name, 
+                dataColumn.DataType,
+                dataColumn.SemanticType,
+                values);
 
             _columnRepository.Add(column);
         }

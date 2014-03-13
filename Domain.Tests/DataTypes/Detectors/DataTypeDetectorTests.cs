@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using DataExplorer.Application.Importers;
+using DataExplorer.Domain.DataTypes.Detectors;
 using NUnit.Framework;
 
-namespace DataExplorer.Application.Tests.Importers
+namespace DataExplorer.Domain.Tests.DataTypes.Detectors
 {
     [TestFixture]
     public class DataTypeDetectorTests

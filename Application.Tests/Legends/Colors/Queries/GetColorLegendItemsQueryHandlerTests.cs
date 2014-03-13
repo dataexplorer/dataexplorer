@@ -40,7 +40,7 @@ namespace DataExplorer.Application.Tests.Legends.Colors.Queries
             _values = new List<string> { "test" };
             _column = new ColumnBuilder()
                 .WithId(1)
-                .WithType(typeof(String))
+                .WithDataType(typeof(String))
                 .WithValue(_values)
                 .Build();
             _palette = new ColorPaletteBuilder().Build();
@@ -64,7 +64,7 @@ namespace DataExplorer.Application.Tests.Legends.Colors.Queries
 
             _mockItemFactory = new Mock<IColorLegendFactory>();
             _mockItemFactory.Setup(p =>
-                p.Create(_column.Type, _map, It.IsAny<List<object>>(), _palette))
+                p.Create(_column.DataType, _map, It.IsAny<List<object>>(), _palette))
                 .Returns(new List<ColorLegendItemDto> { _itemDto });
 
             _handler = new GetColorLegendItemsQueryHandler(

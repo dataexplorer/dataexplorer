@@ -11,31 +11,31 @@ namespace DataExplorer.Domain.Maps.SizeMaps
     {
         public SizeMap Create(Column column, double targetMin, double targetMax)
         {
-            if (column.Type == typeof(Boolean))
+            if (column.DataType == typeof(Boolean))
                 return new BooleanToSizeMap(targetMin, targetMax);
 
-            if (column.Type == typeof(DateTime))
+            if (column.DataType == typeof(DateTime))
                 return new DateTimeToSizeMap(
                     (DateTime)column.Min,
                     (DateTime)column.Max,
                     targetMin,
                     targetMax);
 
-            if (column.Type == typeof(Double))
+            if (column.DataType == typeof(Double))
                 return new FloatToSizeMap(
                     (double)column.Min,
                     (double)column.Max,
                     targetMin,
                     targetMax);
 
-            if (column.Type == typeof(Int32))
+            if (column.DataType == typeof(Int32))
                 return new IntegerToSizeMap(
                     (int)column.Min,
                     (int)column.Max,
                     targetMin,
                     targetMax);
 
-            if (column.Type == typeof(String))
+            if (column.DataType == typeof(String))
                 return new StringToSizeMap(
                     column.Values.Cast<string>().ToList(),
                     targetMin,

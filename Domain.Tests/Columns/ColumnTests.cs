@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using DataExplorer.Domain.Columns;
+using DataExplorer.Domain.Semantics;
 using NUnit.Framework;
 
 namespace DataExplorer.Domain.Tests.Columns
@@ -12,7 +13,14 @@ namespace DataExplorer.Domain.Tests.Columns
         [SetUp]
         public void SetUp()
         {
-            _column = new Column(1, 0, "Test", typeof(bool), new List<object> { 0, 1000, null });
+            _column = new ColumnBuilder()
+                .WithId(1)
+                .WithIndex(0)
+                .WithName("Test")
+                .WithDataType(typeof(bool))
+                .WithSemanticType(SemanticType.Measure)
+                .WithValues(new List<object> { 0, 1000, null })
+                .Build();
         }
 
         [Test]
@@ -37,10 +45,17 @@ namespace DataExplorer.Domain.Tests.Columns
         }
 
         [Test]
-        public void TestGetTypeShouldReturnType()
+        public void TestGetDataTypeShouldReturnDataType()
         {
-            var result = _column.Type;
+            var result = _column.DataType;
             Assert.That(result, Is.EqualTo(typeof(bool)));
+        }
+
+        [Test]
+        public void TestGetSemanticTypeShouldReturnSemanticType()
+        {
+            var result = _column.SemanticType;
+            Assert.That(result, Is.EqualTo(SemanticType.Measure));
         }
 
         [Test]

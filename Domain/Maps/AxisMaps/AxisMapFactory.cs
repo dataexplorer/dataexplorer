@@ -11,31 +11,31 @@ namespace DataExplorer.Domain.Maps.AxisMaps
     {
         public AxisMap Create(Column column, double targetMin, double targetMax)
         {
-            if (column.Type == typeof(Boolean))
+            if (column.DataType == typeof(Boolean))
                 return new BooleanToAxisMap(targetMin, targetMax);
 
-            if (column.Type == typeof(DateTime))
+            if (column.DataType == typeof(DateTime))
                 return new DateTimeToAxisMap(
                     (DateTime) column.Min, 
                     (DateTime) column.Max, 
                     targetMin, 
                     targetMax);
 
-            if (column.Type == typeof(Double))
+            if (column.DataType == typeof(Double))
                 return new FloatToAxisMap(
                     (double) column.Min, 
                     (double) column.Max, 
                     targetMin, 
                     targetMax);
 
-            if (column.Type == typeof(Int32))
+            if (column.DataType == typeof(Int32))
                 return new IntegerToAxisMap(
                     (int) column.Min, 
                     (int) column.Max, 
                     targetMin, 
                     targetMax);
 
-            if (column.Type == typeof(String))
+            if (column.DataType == typeof(String))
                 return new StringToAxisMap(
                     column.Values.Cast<string>().ToList(), 
                     targetMin, 

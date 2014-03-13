@@ -38,7 +38,7 @@ namespace DataExplorer.Application.Legends.Sizes.Queries
             if (column == null)
                 return new List<SizeLegendItemDto>();
 
-            var type = column.Type;
+            var type = column.DataType;
 
             var map = _mapFactory.CreateSizeMap(column, layout.LowerSize, layout.UpperSize);
 

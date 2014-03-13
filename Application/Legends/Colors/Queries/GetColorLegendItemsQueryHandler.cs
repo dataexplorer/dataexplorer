@@ -37,7 +37,7 @@ namespace DataExplorer.Application.Legends.Colors.Queries
             if (column == null)
                 return new List<ColorLegendItemDto>();
 
-            var type = column.Type;
+            var type = column.DataType;
 
             var palette = layout.ColorPalette;
 

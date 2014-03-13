@@ -29,13 +29,13 @@ namespace DataExplorer.Application.Tests.Columns
                 .WithId(1)
                 .WithIndex(0)
                 .WithName("Test")
-                .WithType(typeof(bool))
+                .WithDataType(typeof(bool))
                 .Build();
             var result = _adapter.Adapt(column);
             Assert.That(result.Id, Is.EqualTo(column.Id));
             Assert.That(result.Index, Is.EqualTo(column.Index));
             Assert.That(result.Name, Is.EqualTo(column.Name));
-            Assert.That(result.Type, Is.EqualTo(column.Type));
+            Assert.That(result.Type, Is.EqualTo(column.DataType));
         }
     }
 }

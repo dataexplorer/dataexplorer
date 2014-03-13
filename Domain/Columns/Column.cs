@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataExplorer.Domain.Semantics;
 
 namespace DataExplorer.Domain.Columns
 {
@@ -11,18 +12,26 @@ namespace DataExplorer.Domain.Columns
         private readonly int _id;
         private readonly int _index;
         private readonly string _name;
-        private readonly Type _type;
+        private readonly Type _dataType;
+        private readonly SemanticType _semanticType;
         private readonly List<object> _values;
         private readonly object _min;
         private readonly object _max;
         private readonly bool _hasNulls;
 
-        public Column(int id, int index, string name, Type type, List<object> values)
+        public Column(
+            int id, 
+            int index, 
+            string name, 
+            Type dataType, 
+            SemanticType semanticType, 
+            List<object> values)
         {
             _id = id;
             _index = index;
             _name = name;
-            _type = type;
+            _dataType = dataType;
+            _semanticType = semanticType;
             _values = values;
             _min = values.Min();
             _max = values.Max();
@@ -45,9 +54,14 @@ namespace DataExplorer.Domain.Columns
             get { return _name; }
         }
 
-        public Type Type
+        public Type DataType
         {
-            get { return _type; }
+            get { return _dataType; }
+        }
+
+        public SemanticType SemanticType
+        {
+            get { return _semanticType; }
         }
 
         public object Min

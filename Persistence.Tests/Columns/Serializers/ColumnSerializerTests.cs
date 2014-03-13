@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Xml.Linq;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Rows;
+using DataExplorer.Domain.Semantics;
 using DataExplorer.Domain.Tests.Columns;
 using DataExplorer.Persistence.Columns.Serializers;
 using DataExplorer.Persistence.Projects;
@@ -27,7 +28,8 @@ namespace DataExplorer.Persistence.Tests.Columns.Serializers
                 .WithId(1)
                 .WithIndex(0)
                 .WithName("Test")
-                .WithType(typeof(object))
+                .WithDataType(typeof(object))
+                .WithSemanticType(SemanticType.Unknown)
                 .Build();
 
             _rows = new List<Row>();
@@ -36,7 +38,8 @@ namespace DataExplorer.Persistence.Tests.Columns.Serializers
                 new XElement("id", _column.Id),
                 new XElement("index", _column.Index),
                 new XElement("name", _column.Name),
-                new XElement("type", _column.Type));
+                new XElement("data-type", _column.DataType),
+                new XElement("semantic-type", _column.SemanticType));
 
             _serializer = new ColumnSerializer(
                 new PropertySerializer());
@@ -49,7 +52,8 @@ namespace DataExplorer.Persistence.Tests.Columns.Serializers
             AssertValue(result, "id", _column.Id.ToString());
             AssertValue(result, "index", _column.Index.ToString());
             AssertValue(result, "name", _column.Name);
-            AssertValue(result, "type", _column.Type.ToString());
+            AssertValue(result, "data-type", _column.DataType.ToString());
+            AssertValue(result, "semantic-type", _column.SemanticType.ToString());
         }
         
         [Test]
@@ -59,7 +63,8 @@ namespace DataExplorer.Persistence.Tests.Columns.Serializers
             Assert.That(result.Id, Is.EqualTo(_column.Id));
             Assert.That(result.Index, Is.EqualTo(_column.Index));
             Assert.That(result.Name, Is.EqualTo(_column.Name));
-            Assert.That(result.Type, Is.EqualTo(_column.Type));
+            Assert.That(result.DataType, Is.EqualTo(_column.DataType));
+            Assert.That(result.SemanticType, Is.EqualTo(_column.SemanticType));
         }
     }
 }

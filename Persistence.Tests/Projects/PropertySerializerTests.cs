@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
+using DataExplorer.Domain.Semantics;
 using DataExplorer.Persistence.Projects;
 using NUnit.Framework;
 
@@ -86,6 +87,13 @@ namespace DataExplorer.Persistence.Tests.Projects
         }
 
         [Test]
+        public void TestSerializeShouldSerializeEnum()
+        {
+            var result = _serializer.Serialize(_name, SemanticType.Measure);
+            Assert.That(result.Value, Is.EqualTo("Measure"));
+        }
+
+        [Test]
         public void TestDeserializeShouldDeserializeList()
         {
             var xItem = new XElement("value", true);
@@ -128,6 +136,12 @@ namespace DataExplorer.Persistence.Tests.Projects
         public void TestDeserializeShouldDeserializeType()
         {
             AssertDeserialization(typeof(object), typeof(Type));
+        }
+
+        [Test]
+        public void TestDeserializeShouldDeserializeEnum()
+        {
+            AssertDeserialization(SemanticType.Measure, typeof(SemanticType));
         }
 
         private void AssertDeserialization(object value, Type type)

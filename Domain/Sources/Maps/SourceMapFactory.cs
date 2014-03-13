@@ -9,12 +9,13 @@ namespace DataExplorer.Domain.Sources.Maps
 {
     public class SourceMapFactory : ISourceMapFactory
     {
-        public SourceMap Create(DataColumn column)
+        public SourceMap Create(SourceColumn column)
         {
             var map = new SourceMap()
             {
-                Name = column.ColumnName,
-                SourceType = column.DataType
+                Name = column.Name,
+                SourceType = column.DataType,
+                SemanticType = column.SemanticType,
             };
 
             return map;

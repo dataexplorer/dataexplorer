@@ -37,7 +37,7 @@ namespace DataExplorer.Application.Importers.CsvFiles.Commands
 
             source.FilePath = command.FilePath;
 
-            var columns = _dataAdapter.GetDataColumns(source);
+            var columns = _dataAdapter.GetColumns(source);
 
             var maps = columns
                 .Select(p => _factory.Create(p))

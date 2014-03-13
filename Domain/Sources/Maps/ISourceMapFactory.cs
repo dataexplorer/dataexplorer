@@ -4,6 +4,6 @@ namespace DataExplorer.Domain.Sources.Maps
 {
     public interface ISourceMapFactory
     {
-        SourceMap Create(DataColumn column);
+        SourceMap Create(SourceColumn column);
     }
 }

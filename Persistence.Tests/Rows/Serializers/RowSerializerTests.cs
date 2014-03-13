@@ -27,7 +27,7 @@ namespace DataExplorer.Persistence.Tests.Rows.Serializers
         {
             _column = new ColumnBuilder()
                 .WithName("Column 1")
-                .WithType(typeof(string))
+                .WithDataType(typeof(string))
                 .Build();
             _columns = new List<Column> { _column };
             _dataTypes = new List<Type> { typeof(string) };

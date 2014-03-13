@@ -13,19 +13,19 @@ namespace DataExplorer.Domain.FilterTrees
     {
         public FilterTreeNode CreateRoot(Column column)
         {
-            if (column.Type == typeof(Boolean))
+            if (column.DataType == typeof(Boolean))
                 return new BooleanFilterTreeRoot(column.Name, column);
 
-            if (column.Type == typeof(DateTime))
+            if (column.DataType == typeof(DateTime))
                 return new DateTimeFilterTreeRoot(column.Name, column);
 
-            if (column.Type == typeof(Double))
+            if (column.DataType == typeof(Double))
                 return new FloatFilterTreeRoot(column.Name, column);
 
-            if (column.Type == typeof(Int32))
+            if (column.DataType == typeof(Int32))
                 return new IntegerFilterTreeRoot(column.Name, column);
 
-            if (column.Type == typeof(String))
+            if (column.DataType == typeof(String))
                 return new StringFilterTreeRoot(column.Name, column);
 
             throw new ArgumentException("Column data type is not recognized.");

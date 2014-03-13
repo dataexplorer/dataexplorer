@@ -31,6 +31,25 @@
                     Binding="{Binding SourceType}" 
                     IsReadOnly="True"
                     Foreground="Gray" />
+                <DataGridComboBoxColumn
+                    Header="Semantic Type"
+                    SelectedItemBinding="{Binding Path=SelectedSemanticType, Mode=TwoWay}"
+                    CellStyle="{StaticResource SingleClickEditing}">
+                    <DataGridComboBoxColumn.ElementStyle>
+                        <Style TargetType="ComboBox">
+                            <Setter 
+                                Property="ItemsSource" 
+                                Value="{Binding SemanticTypes}"/>
+                        </Style>
+                    </DataGridComboBoxColumn.ElementStyle>
+                    <DataGridComboBoxColumn.EditingElementStyle>
+                        <Style TargetType="ComboBox">
+                            <Setter 
+                                Property="ItemsSource" 
+                                Value="{Binding SemanticTypes}"/>
+                        </Style>
+                    </DataGridComboBoxColumn.EditingElementStyle>
+                </DataGridComboBoxColumn>
                 <!--<DataGridCheckBoxColumn
                     Header="Import"
                     Binding="{Binding IsImporting}"

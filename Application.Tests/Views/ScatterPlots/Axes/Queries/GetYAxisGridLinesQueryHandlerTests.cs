@@ -37,7 +37,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Axes.Queries
         {
             _values = new List<object>();
             _column = new ColumnBuilder()
-                .WithType(typeof(object))
+                .WithDataType(typeof(object))
                 .WithValues(_values)
                 .Build();
             _layout = new ScatterPlotLayoutBuilder()

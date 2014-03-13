@@ -27,7 +27,7 @@ namespace DataExplorer.Domain.Tests.FilterTrees
         [Test]
         public void TestCreateRootShouldCreateBooleanFilterTreeRoot()
         {
-            var column = new ColumnBuilder().WithType(typeof(Boolean)).Build();
+            var column = new ColumnBuilder().WithDataType(typeof(Boolean)).Build();
             var result = _factory.CreateRoot(column);
             Assert.That(result is BooleanFilterTreeRoot);
         }
@@ -36,7 +36,7 @@ namespace DataExplorer.Domain.Tests.FilterTrees
         public void TestCreateRootShouldCreateDateTimeFilterTreeRoot()
         {
             var column = new ColumnBuilder()
-                .WithType(typeof(DateTime))
+                .WithDataType(typeof(DateTime))
                 .WithValue(DateTime.MinValue)
                 .Build();
             var result = _factory.CreateRoot(column);
@@ -47,7 +47,7 @@ namespace DataExplorer.Domain.Tests.FilterTrees
         public void TestCreateRootShouldCreateFloatFilterTreeRoot()
         {
             var column = new ColumnBuilder()
-                .WithType(typeof(Double))
+                .WithDataType(typeof(Double))
                 .WithValue(double.MinValue)
                 .Build();
             var result = _factory.CreateRoot(column);
@@ -58,7 +58,7 @@ namespace DataExplorer.Domain.Tests.FilterTrees
         public void TestCreateRootShouldCreateIntegerFilterTreeRoot()
         {
             var column = new ColumnBuilder()
-                .WithType(typeof(Int32))
+                .WithDataType(typeof(Int32))
                 .WithValue(0)
                 .Build();
             var result = _factory.CreateRoot(column);
@@ -68,7 +68,7 @@ namespace DataExplorer.Domain.Tests.FilterTrees
         [Test]
         public void TestCreateRootShouldCreateStringFilterTreeRoot()
         {
-            var column = new ColumnBuilder().WithType(typeof(String)).Build();
+            var column = new ColumnBuilder().WithDataType(typeof(String)).Build();
             var result = _factory.CreateRoot(column);
             Assert.That(result is StringFilterTreeRoot);
         }
@@ -76,7 +76,7 @@ namespace DataExplorer.Domain.Tests.FilterTrees
         [Test]
         public void TestCreateShouldThrowExceptionIfTypeIsNotSupported()
         {
-            var column = new ColumnBuilder().WithType(typeof(Object)).Build();
+            var column = new ColumnBuilder().WithDataType(typeof(Object)).Build();
             Assert.That(() => _factory.CreateRoot(column), Throws.ArgumentException);
         }
     }

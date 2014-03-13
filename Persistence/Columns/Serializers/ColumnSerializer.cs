@@ -4,6 +4,7 @@ using System.Linq;
 using System.Xml.Linq;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Rows;
+using DataExplorer.Domain.Semantics;
 using DataExplorer.Persistence.Projects;
 
 namespace DataExplorer.Persistence.Columns.Serializers
@@ -16,7 +17,9 @@ namespace DataExplorer.Persistence.Columns.Serializers
         private const string IdTag = "id";
         private const string IndexTag = "index";
         private const string NameTag = "name";
-        private const string TypeTag = "type";
+        private const string DataTypeTag = "data-type";
+        private const string SemanticTypeTag = "semantic-type";
+
 
         public ColumnSerializer(IPropertySerializer propertySerializer) 
             : base(propertySerializer)
@@ -34,7 +37,9 @@ namespace DataExplorer.Persistence.Columns.Serializers
 
             AddProperty(xColumn, NameTag, column.Name);
 
-            AddProperty(xColumn, TypeTag, column.Type);
+            AddProperty(xColumn, DataTypeTag, column.DataType);
+
+            AddProperty(xColumn, SemanticTypeTag, column.SemanticType);
             
             return xColumn;
         }
@@ -47,11 +52,13 @@ namespace DataExplorer.Persistence.Columns.Serializers
 
             var name = GetProperty<string>(xColumn, NameTag);
 
-            var type = GetProperty<Type>(xColumn, TypeTag);
+            var type = GetProperty<Type>(xColumn, DataTypeTag);
+
+            var semanticType = GetProperty<SemanticType>(xColumn, SemanticTypeTag);
 
             var values = rows.Select(p => p[index]).ToList();
 
-            return new Column(id, index, name, type, values);
+            return new Column(id, index, name, type, semanticType, values);
         }
     }
 }

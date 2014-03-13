@@ -10,8 +10,9 @@ using DataExplorer.Application.Importers.CsvFiles.Events;
 using DataExplorer.Application.Projects.Events;
 using DataExplorer.Application.Rows;
 using DataExplorer.Domain.Columns;
-using DataExplorer.Domain.Converters;
+using DataExplorer.Domain.DataTypes.Converters;
 using DataExplorer.Domain.Rows;
+using DataExplorer.Domain.Semantics;
 using DataExplorer.Domain.Sources;
 using Moq;
 using NUnit.Framework;
@@ -31,24 +32,28 @@ namespace DataExplorer.Application.Tests.Importers.CsvFile.Commands
         private Mock<IRowRepository> _mockRowRepository;
         private Mock<IColumnRepository> _mockColumnRepository;
         private CsvFileSource _source;
-        private DataColumn _column;
-        private List<DataColumn> _columns;
+        private SourceColumn _column;
         private DataTable _dataTable;
         private List<Row> _value;
 
         [SetUp]
         public void SetUp()
         {
-            _column = new DataColumn("Column 1", typeof(string));
-            _columns = new List<DataColumn> { _column };
+            _column = new SourceColumn() 
+            {
+                Name = "Column 1", 
+                DataType = typeof(string), 
+                SemanticType = SemanticType.Unknown
+            };
             _dataTable = new DataTable();
             _value = new List<Row>();
-            _dataTable.Columns.Add(_column);
+            _dataTable.Columns.Add(new DataColumn());
             _dataTable.Rows.Add("Row 1");
             _source = new CsvFileSource();
 
             _mockSourceRepository = new Mock<ISourceRepository>();
-            _mockSourceRepository.Setup(p => p.GetSource<CsvFileSource>()).Returns(_source);
+            _mockSourceRepository.Setup(p => p.GetSource<CsvFileSource>())
+                .Returns(_source);
 
             _mockEventBus = new Mock<IEventBus>();
 
@@ -57,8 +62,10 @@ namespace DataExplorer.Application.Tests.Importers.CsvFile.Commands
             _mockDataContext = new Mock<IDataContext>();
             
             _mockDataAdapter = new Mock<ICsvFileDataAdapter>();
-            _mockDataAdapter.Setup(p => p.GetDataColumns(_source)).Returns(_columns);
-            _mockDataAdapter.Setup(p => p.GetDataTable(_source)).Returns(_dataTable);
+            _mockDataAdapter.Setup(p => p.GetColumns(_source))
+                .Returns(new List<SourceColumn> { _column });
+            _mockDataAdapter.Setup(p => p.GetTable(_source))
+                .Returns(_dataTable);
 
             _mockFactory = new Mock<IDataTypeConverterFactory>();
             _mockFactory.Setup(p => p.Create(typeof(string), typeof(string))).Returns(new PassThroughConverter());
