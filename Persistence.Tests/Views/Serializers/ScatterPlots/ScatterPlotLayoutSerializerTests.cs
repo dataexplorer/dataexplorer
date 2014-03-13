@@ -26,6 +26,7 @@ namespace DataExplorer.Persistence.Tests.Views.Serializers.ScatterPlots
         private ColorPalette _colorPalette;
         private Column _sizeColumn;
         private Column _labelColumn;
+        private Column _linkColumn;
         private XElement _xLayout;
 
         [SetUp]
@@ -37,14 +38,16 @@ namespace DataExplorer.Persistence.Tests.Views.Serializers.ScatterPlots
             _colorPalette = new ColorPaletteBuilder().WithName("Pastel 1").Build();
             _sizeColumn = new ColumnBuilder().WithId(4).Build();
             _labelColumn = new ColumnBuilder().WithId(5).Build();
-            
+            _linkColumn = new ColumnBuilder().WithId(6).Build();
+
             _columns = new List<Column>
             {
                 _xAxisColumn, 
                 _yAxisColumn, 
                 _colorColumn, 
                 _sizeColumn,
-                _labelColumn
+                _labelColumn,
+                _linkColumn
             };
 
             _layout = new ScatterPlotLayout
@@ -56,7 +59,8 @@ namespace DataExplorer.Persistence.Tests.Views.Serializers.ScatterPlots
                 SizeColumn = _sizeColumn,
                 LowerSize = 0.1d,
                 UpperSize = 0.9d,
-                LabelColumn = _labelColumn
+                LabelColumn = _labelColumn,
+                LinkColumn = _linkColumn
             };
 
             _xLayout = new XElement("layout",
@@ -67,7 +71,8 @@ namespace DataExplorer.Persistence.Tests.Views.Serializers.ScatterPlots
                 new XElement("size-column-id", 4),
                 new XElement("lower-size", 0.1d),
                 new XElement("upper-size", 0.9d),
-                new XElement("label-column-id", 5));
+                new XElement("label-column-id", 5),
+                new XElement("link-column-id", 6));
            
             _mockColorPaletteFactory = new Mock<IColorPaletteFactory>();
             _mockColorPaletteFactory.Setup(p => p.GetColorPalette("Pastel 1"))
@@ -90,6 +95,7 @@ namespace DataExplorer.Persistence.Tests.Views.Serializers.ScatterPlots
             AssertValue(result, "lower-size", "0.1");
             AssertValue(result, "upper-size", "0.9");
             AssertValue(result, "label-column-id", "5");
+            AssertValue(result, "link-column-id", "6");
         }
 
         private void AssertValue(XElement result, string name, object value)
@@ -110,6 +116,7 @@ namespace DataExplorer.Persistence.Tests.Views.Serializers.ScatterPlots
             Assert.That(result.LowerSize, Is.EqualTo(0.1d));
             Assert.That(result.UpperSize, Is.EqualTo(0.9d));
             Assert.That(result.LabelColumn, Is.EqualTo(_labelColumn));
+            Assert.That(result.LinkColumn, Is.EqualTo(_linkColumn));
         }
     }
 }

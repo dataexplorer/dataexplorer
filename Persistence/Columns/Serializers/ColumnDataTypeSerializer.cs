@@ -11,7 +11,7 @@ namespace DataExplorer.Persistence.Columns.Serializers
         {
             var xColumns = xColumnSet.Elements("column");
 
-            var xTypes = xColumns.Select(p => p.Element("type"));
+            var xTypes = xColumns.Select(p => p.Element("data-type"));
 
             var types = xTypes.Select(p => Type.GetType(p.Value));
 

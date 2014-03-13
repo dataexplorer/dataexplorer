@@ -89,6 +89,10 @@
     <Compile Include="Layouts\Label\Commands\SetLabelColumnCommandHandlerTests.cs" />
     <Compile Include="Layouts\Label\Commands\UnsetLabelColumnCommandHandlerTests.cs" />
     <Compile Include="Layouts\Label\Queries\GetLabelColumnQueryHandlerTests.cs" />
+    <Compile Include="Layouts\Link\Commands\SetLinkColumnCommandHandlerTests.cs" />
+    <Compile Include="Layouts\Link\Commands\UnsetLinkColumnCommandHandlerTests.cs" />
+    <Compile Include="Layouts\Link\Queries\GetAllLinkColumnsQueryHandlerTests.cs" />
+    <Compile Include="Layouts\Link\Queries\GetLinkColumnQueryHandlerTests.cs" />
     <Compile Include="Layouts\Location\Commands\UnsetXAxisColumnCommandHandlerTests.cs" />
     <Compile Include="Layouts\Location\Commands\UnsetYAxisColumnCommandHandlerTests.cs" />
     <Compile Include="Layouts\Size\Commands\SetLowerSizeCommandHandlerTests.cs" />

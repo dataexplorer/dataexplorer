@@ -66,6 +66,12 @@ namespace DataExplorer.Domain.Tests.Views.ScatterPlots
             return this;
         }
 
+        public ScatterPlotLayoutBuilder WithLinkColumn(Column column)
+        {
+            _layout.LinkColumn = column;
+            return this;
+        }
+
         public ScatterPlotLayout Build()
         {
             return _layout;

@@ -147,7 +147,9 @@
     <Compile Include="Layouts\Label\Queries\GetLabelColumnQuery.cs" />
     <Compile Include="Layouts\Label\Queries\GetLabelColumnQueryHandler.cs" />
     <Compile Include="Layouts\Link\Commands\SetLinkColumnCommand.cs" />
+    <Compile Include="Layouts\Link\Commands\SetLinkColumnCommandHandler.cs" />
     <Compile Include="Layouts\Link\Commands\UnsetLinkColumnCommand.cs" />
+    <Compile Include="Layouts\Link\Commands\UnsetLinkColumnCommandHandler.cs" />
     <Compile Include="Layouts\Link\Queries\GetAllLinkColumnsQuery.cs" />
     <Compile Include="Layouts\Link\Queries\GetAllLinkColumnsQueryHandler.cs" />
     <Compile Include="Layouts\Link\Queries\GetLinkColumnQuery.cs" />

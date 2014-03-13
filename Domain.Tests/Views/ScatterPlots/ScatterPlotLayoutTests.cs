@@ -73,6 +73,14 @@ namespace DataExplorer.Domain.Tests.Views.ScatterPlots
         }
 
         [Test]
+        public void TestGetSetLinkColumn()
+        {
+            _layout.LinkColumn = _column;
+            var result = _layout.LinkColumn;
+            Assert.That(result, Is.EqualTo(_column));
+        }
+
+        [Test]
         public void TestClearShouldClearLayout()
         {
             _layout.XAxisColumn = _column;
@@ -81,6 +89,7 @@ namespace DataExplorer.Domain.Tests.Views.ScatterPlots
             _layout.ColorPalette = _colorPalette;
             _layout.SizeColumn = _column;
             _layout.LabelColumn = _column;
+            _layout.LinkColumn = _column;
 
             _layout.Clear();
             
@@ -92,6 +101,7 @@ namespace DataExplorer.Domain.Tests.Views.ScatterPlots
             Assert.That(_layout.LowerSize, Is.EqualTo(0.125d));
             Assert.That(_layout.UpperSize, Is.EqualTo(0.125d));
             Assert.That(_layout.LabelColumn, Is.Null);
+            Assert.That(_layout.LinkColumn, Is.Null);
         }
     }
 }
