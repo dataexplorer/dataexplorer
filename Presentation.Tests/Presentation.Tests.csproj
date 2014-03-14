@@ -93,6 +93,7 @@
     <Compile Include="Panes\Filter\StringFilters\StringFilterViewModelTests.cs" />
     <Compile Include="Panes\Layout\Label\LabelLayoutViewModelTests.cs" />
     <Compile Include="Panes\Layout\Link\LinkLayoutViewModelTests.cs" />
+    <Compile Include="Panes\Layout\Shape\ShapeLayoutViewModelTests.cs" />
     <Compile Include="Panes\Layout\Size\SizeLayoutViewModelTests.cs" />
     <Compile Include="Panes\Legend\Colors\ColorLegendViewModelTests.cs" />
     <Compile Include="Panes\Legend\LegendPaneViewModelTests.cs" />
@@ -111,6 +112,7 @@
     <Compile Include="Shell\MainMenu\MainMenuViewModelTests.cs" />
     <Compile Include="Shell\MainMenu\ViewMenu\ViewMenuViewModelTests.cs" />
     <Compile Include="Shell\MainWindow\MainWindowViewModelTests.cs" />
+    <Compile Include="Views\ScatterPlots\Commands\ExecuteCommandTests.cs" />
     <Compile Include="Views\ScatterPlots\Commands\PanScatterPlotCommandTests.cs" />
     <Compile Include="Views\ScatterPlots\Commands\ResizeScatterPlotViewExtentCommandTests.cs" />
     <Compile Include="Views\ScatterPlots\Commands\SelectCommandTests.cs" />

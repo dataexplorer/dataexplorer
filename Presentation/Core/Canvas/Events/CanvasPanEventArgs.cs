@@ -1,10 +1,11 @@
 ﻿
 
+using System;
 using System.Windows;
 
 namespace DataExplorer.Presentation.Core.Canvas.Events
 {
-    public class CanvasPanEventArgs
+    public class CanvasPanEventArgs : EventArgs
     {
         private readonly Vector _delta;
         

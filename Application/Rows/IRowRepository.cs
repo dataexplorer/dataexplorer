@@ -7,6 +7,9 @@ namespace DataExplorer.Application.Rows
     public interface IRowRepository
     {
         IEnumerable<Row> GetAll();
+        
+        Row Get(int id);
+        
         void Add(Row row);
     }
 }

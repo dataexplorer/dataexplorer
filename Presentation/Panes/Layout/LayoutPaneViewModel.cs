@@ -3,6 +3,7 @@ using DataExplorer.Presentation.Panes.Layout.Color;
 using DataExplorer.Presentation.Panes.Layout.Label;
 using DataExplorer.Presentation.Panes.Layout.Link;
 using DataExplorer.Presentation.Panes.Layout.Location;
+using DataExplorer.Presentation.Panes.Layout.Shape;
 using DataExplorer.Presentation.Panes.Layout.Size;
 
 namespace DataExplorer.Presentation.Panes.Layout
@@ -13,6 +14,7 @@ namespace DataExplorer.Presentation.Panes.Layout
         private readonly IYAxisLayoutViewModel _yAxisLayoutViewModel;
         private readonly IColorLayoutViewModel _colorLayoutViewModel;
         private readonly ISizeLayoutViewModel _sizeLayoutViewModel;
+        private readonly IShapeLayoutViewModel _shapeLayoutViewModel;
         private readonly ILabelLayoutViewModel _labelLayoutViewModel;
         private readonly ILinkLayoutViewModel _linkLayoutViewModel;
 
@@ -21,6 +23,7 @@ namespace DataExplorer.Presentation.Panes.Layout
             IYAxisLayoutViewModel yAxisLayoutViewModel, 
             IColorLayoutViewModel colorLayoutViewModel,
             ISizeLayoutViewModel sizeLayoutViewModel,
+            IShapeLayoutViewModel shapeLayoutViewModel,
             ILabelLayoutViewModel labelLayoutViewModel,
             ILinkLayoutViewModel linkLayoutViewModel)
         {
@@ -30,6 +33,7 @@ namespace DataExplorer.Presentation.Panes.Layout
             _sizeLayoutViewModel = sizeLayoutViewModel;
             _labelLayoutViewModel = labelLayoutViewModel;
             _linkLayoutViewModel = linkLayoutViewModel;
+            _shapeLayoutViewModel = shapeLayoutViewModel;
         }
 
         public IXAxisLayoutViewModel XAxisLayoutViewModel
@@ -52,6 +56,11 @@ namespace DataExplorer.Presentation.Panes.Layout
             get { return _sizeLayoutViewModel; }
         }
 
+        public IShapeLayoutViewModel ShapeLayoutViewModel
+        {
+            get { return _shapeLayoutViewModel; }
+        }
+        
         public ILabelLayoutViewModel LabelLayoutViewModel
         {
             get { return _labelLayoutViewModel; }

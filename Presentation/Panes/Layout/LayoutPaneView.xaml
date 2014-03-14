@@ -10,6 +10,7 @@
     xmlns:size="clr-namespace:DataExplorer.Presentation.Panes.Layout.Size"
     xmlns:label="clr-namespace:DataExplorer.Presentation.Panes.Layout.Label"
     xmlns:link="clr-namespace:DataExplorer.Presentation.Panes.Layout.Link"
+    xmlns:shape="clr-namespace:DataExplorer.Presentation.Panes.Layout.Shape"
     mc:Ignorable="d" 
     d:DesignHeight="300" 
     d:DesignWidth="192">
@@ -17,6 +18,7 @@
         VerticalScrollBarVisibility="Auto">
         <Grid>
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -37,11 +39,14 @@
             <size:SizeLayoutView 
                 Grid.Row="3"
                 DataContext="{Binding SizeLayoutViewModel}" />
-            <label:LabelLayoutView 
+            <shape:ShapeLayoutView 
                 Grid.Row="4"
+                DataContext="{Binding ShapeLayoutViewModel}" />
+            <label:LabelLayoutView 
+                Grid.Row="5"
                 DataContext="{Binding LabelLayoutViewModel}" />
             <link:LinkLayoutView 
-                Grid.Row="5"
+                Grid.Row="6"
                 DataContext="{Binding LinkLayoutViewModel}" />
         </Grid>
     </ScrollViewer>

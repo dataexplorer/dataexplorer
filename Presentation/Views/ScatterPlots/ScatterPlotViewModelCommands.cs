@@ -16,19 +16,22 @@ namespace DataExplorer.Presentation.Views.ScatterPlots
         private readonly IZoomOutScatterPlotCommand _zoomOutCommand;
         private readonly IPanScatterPlotCommand _panCommand;
         private readonly ISelectCommand _selectCommand;
+        private readonly IExecuteCommand _executeCommand;
 
         public ScatterPlotViewModelCommands(
-            IResizeScatterPlotViewExtentCommand resizeCommand, 
-            IZoomInScatterPlotCommand zoomInCommand, 
-            IZoomOutScatterPlotCommand zoomOutCommand, 
+            IResizeScatterPlotViewExtentCommand resizeCommand,
+            IZoomInScatterPlotCommand zoomInCommand,
+            IZoomOutScatterPlotCommand zoomOutCommand,
             IPanScatterPlotCommand panCommand,
-            ISelectCommand selectCommand)
+            ISelectCommand selectCommand,
+            IExecuteCommand executeCommand)
         {
             _resizeCommand = resizeCommand;
             _zoomInCommand = zoomInCommand;
             _zoomOutCommand = zoomOutCommand;
             _panCommand = panCommand;
             _selectCommand = selectCommand;
+            _executeCommand = executeCommand;
         }
 
         public void Resize(Size controlSize)
@@ -54,6 +57,11 @@ namespace DataExplorer.Presentation.Views.ScatterPlots
         public void Select(List<CanvasItem> items)
         {
             _selectCommand.Execute(items);
+        }
+
+        public void Execute(int id)
+        {
+            _executeCommand.Execute(id);
         }
     }
 }

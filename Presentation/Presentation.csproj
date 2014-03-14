@@ -67,6 +67,8 @@
     <Compile Include="Core\BaseViewModel.cs" />
     <Compile Include="Core\Canvas\CanvasControl.cs" />
     <Compile Include="Core\Canvas\CanvasRenderer.cs" />
+    <Compile Include="Core\Canvas\Events\CanvasExecuteEvent.cs" />
+    <Compile Include="Core\Canvas\Events\CanvasExecuteEventArgs.cs" />
     <Compile Include="Core\Canvas\Events\CanvasPanEvent.cs" />
     <Compile Include="Core\Canvas\Events\CanvasPanEventArgs.cs" />
     <Compile Include="Core\Canvas\Events\CanvasZoomInEvent.cs" />
@@ -187,6 +189,11 @@
       <DependentUpon>LayoutPaneView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Panes\Layout\Link\ILinkLayoutViewModel.cs" />
+    <Compile Include="Panes\Layout\Shape\IShapeLayoutViewModel.cs" />
+    <Compile Include="Panes\Layout\Shape\ShapeLayoutView.xaml.cs">
+      <DependentUpon>ShapeLayoutView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\Layout\Shape\ShapeLayoutViewModel.cs" />
     <Compile Include="Panes\Layout\Size\ISizeLayoutViewModel.cs" />
     <Compile Include="Panes\Layout\Size\SizeLayoutView.xaml.cs">
       <DependentUpon>SizeLayoutView.xaml</DependentUpon>
@@ -272,6 +279,8 @@
       <DependentUpon>StatusBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="Shell\StatusBar\StatusBarViewModel.cs" />
+    <Compile Include="Views\ScatterPlots\Commands\ExecuteCommand.cs" />
+    <Compile Include="Views\ScatterPlots\Commands\IExecuteCommand.cs" />
     <Compile Include="Views\ScatterPlots\Commands\IPanScatterPlotCommand.cs" />
     <Compile Include="Views\ScatterPlots\Commands\IResizeScatterPlotViewExtentCommand.cs" />
     <Compile Include="Views\ScatterPlots\Commands\ISelectCommand.cs" />
@@ -424,6 +433,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Panes\Layout\Link\LinkLayoutView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panes\Layout\Shape\ShapeLayoutView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -30,5 +30,11 @@ namespace DataExplorer.Presentation.Views.ScatterPlots
             var viewModel = ((ScatterPlotViewModel) DataContext);
             viewModel.HandlePan(e.Delta);
         }
+
+        private void HandleExecute(object sender, CanvasExecuteEventArgs e)
+        {
+            var viewModel = ((ScatterPlotViewModel)DataContext);
+            viewModel.HandleExecute(e.Id);
+        }
     }
 }

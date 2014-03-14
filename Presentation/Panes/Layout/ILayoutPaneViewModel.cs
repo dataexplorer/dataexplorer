@@ -7,6 +7,7 @@ using DataExplorer.Presentation.Panes.Layout.Color;
 using DataExplorer.Presentation.Panes.Layout.Label;
 using DataExplorer.Presentation.Panes.Layout.Link;
 using DataExplorer.Presentation.Panes.Layout.Location;
+using DataExplorer.Presentation.Panes.Layout.Shape;
 using DataExplorer.Presentation.Panes.Layout.Size;
 
 namespace DataExplorer.Presentation.Panes.Layout
@@ -20,6 +21,8 @@ namespace DataExplorer.Presentation.Panes.Layout
         IColorLayoutViewModel ColorLayoutViewModel { get; }
         
         ISizeLayoutViewModel SizeLayoutViewModel { get; }
+
+        IShapeLayoutViewModel ShapeLayoutViewModel { get; }
 
         ILabelLayoutViewModel LabelLayoutViewModel { get; }
 

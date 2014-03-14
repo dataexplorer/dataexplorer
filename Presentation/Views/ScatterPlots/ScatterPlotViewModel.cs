@@ -90,6 +90,11 @@ namespace DataExplorer.Presentation.Views.ScatterPlots
             _commands.Pan(vector, _controlSize);
         }
 
+        public void HandleExecute(int id)
+        {
+            _commands.Execute(id);
+        }
+
         public void Handle(ScatterPlotChangedEvent args)
         {
             OnPropertyChanged(() => Items);

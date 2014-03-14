@@ -17,7 +17,8 @@
             SelectedItems="{Binding SelectedItems}"
             ZoomIn="HandleZoomIn"
             ZoomOut="HandleZoomOut"
-            Pan="HandlePan">
+            Pan="HandlePan"
+            Execute="HandleExecute">
             <canvas:CanvasControl.ContextMenu>
                 <ContextMenu>
                     <MenuItem 

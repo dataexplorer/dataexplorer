@@ -158,6 +158,12 @@
     <Compile Include="Layouts\Location\Commands\UnsetXAxisColumnCommandHandler.cs" />
     <Compile Include="Layouts\Location\Commands\UnsetYAxisColumnCommand.cs" />
     <Compile Include="Layouts\Location\Commands\UnsetYAxisColumnCommandHandler.cs" />
+    <Compile Include="Layouts\Shape\Commands\SetShapeColumnCommand.cs" />
+    <Compile Include="Layouts\Shape\Commands\UnsetShapeColumnCommand.cs" />
+    <Compile Include="Layouts\Shape\Queries\GetAllShapeColumnsQuery.cs" />
+    <Compile Include="Layouts\Shape\Queries\GetAllShapeColumnsQueryHandler.cs" />
+    <Compile Include="Layouts\Shape\Queries\GetShapeColumnQuery.cs" />
+    <Compile Include="Layouts\Shape\Queries\GetShapeColumnQueryHandler.cs" />
     <Compile Include="Layouts\Size\Commands\SetLowerSizeCommandHandler.cs" />
     <Compile Include="Layouts\Size\Commands\SetSizeColumnCommandHandler.cs" />
     <Compile Include="Layouts\Size\Commands\SetUpperSizeCommandHandler.cs" />
@@ -256,6 +262,8 @@
     <Compile Include="Views\ScatterPlots\Axes\Queries\GetXAxisGridLinesQueryHandler.cs" />
     <Compile Include="Views\ScatterPlots\Axes\Queries\GetYAxisGridLinesQuery.cs" />
     <Compile Include="Views\ScatterPlots\Axes\Queries\GetYAxisGridLinesQueryHandler.cs" />
+    <Compile Include="Views\ScatterPlots\Commands\ExecuteCommand.cs" />
+    <Compile Include="Views\ScatterPlots\Commands\ExecuteCommandHandler.cs" />
     <Compile Include="Views\ScatterPlots\Commands\PanCommand.cs" />
     <Compile Include="Views\ScatterPlots\Commands\PanCommandHandler.cs" />
     <Compile Include="Views\ScatterPlots\Commands\SetViewExtentCommand.cs" />

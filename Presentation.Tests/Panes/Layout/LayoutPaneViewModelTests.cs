@@ -3,6 +3,7 @@ using DataExplorer.Presentation.Panes.Layout.Color;
 using DataExplorer.Presentation.Panes.Layout.Label;
 using DataExplorer.Presentation.Panes.Layout.Link;
 using DataExplorer.Presentation.Panes.Layout.Location;
+using DataExplorer.Presentation.Panes.Layout.Shape;
 using DataExplorer.Presentation.Panes.Layout.Size;
 using Moq;
 using NUnit.Framework;
@@ -17,6 +18,7 @@ namespace DataExplorer.Presentation.Tests.Panes.Layout
         private Mock<IYAxisLayoutViewModel> _mockYAxisLayoutViewModel;
         private Mock<IColorLayoutViewModel> _mockColorLayoutViewModel;
         private Mock<ISizeLayoutViewModel> _mockSizeLayoutViewModel;
+        private Mock<IShapeLayoutViewModel> _mockShapeLayoutViewModel;
         private Mock<ILabelLayoutViewModel> _mockLabelLayoutViewModel;
         private Mock<ILinkLayoutViewModel> _mockLinkLayoutViewModel;
 
@@ -27,6 +29,7 @@ namespace DataExplorer.Presentation.Tests.Panes.Layout
             _mockYAxisLayoutViewModel = new Mock<IYAxisLayoutViewModel>();
             _mockColorLayoutViewModel = new Mock<IColorLayoutViewModel>();
             _mockSizeLayoutViewModel = new Mock<ISizeLayoutViewModel>();
+            _mockShapeLayoutViewModel = new Mock<IShapeLayoutViewModel>();
             _mockLabelLayoutViewModel = new Mock<ILabelLayoutViewModel>();
             _mockLinkLayoutViewModel = new Mock<ILinkLayoutViewModel>();
 
@@ -35,6 +38,7 @@ namespace DataExplorer.Presentation.Tests.Panes.Layout
                 _mockYAxisLayoutViewModel.Object,
                 _mockColorLayoutViewModel.Object,
                 _mockSizeLayoutViewModel.Object,
+                _mockShapeLayoutViewModel.Object,
                 _mockLabelLayoutViewModel.Object,
                 _mockLinkLayoutViewModel.Object);
         }

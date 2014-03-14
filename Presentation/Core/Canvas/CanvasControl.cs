@@ -22,6 +22,7 @@ namespace DataExplorer.Presentation.Core.Canvas
         public event CanvasPanEvent Pan;
         public event CanvasZoomInEvent ZoomIn;
         public event CanvasZoomOutEvent ZoomOut;
+        public event CanvasExecuteEvent Execute;
 
         public static readonly DependencyProperty ControlSizeProperty = DependencyProperty.Register(
             "ControlSize",
@@ -159,53 +160,49 @@ namespace DataExplorer.Presentation.Core.Canvas
             base.OnMouseDown(e);
 
             _isMouseDown = true;
+
             _previousMousePosition = Mouse.GetPosition(this);
 
             var location = e.GetPosition(this);
-            
+
             var hitResult = VisualTreeHelper.HitTest(this, location);
-            
-            bool isHit = hitResult.VisualHit.GetType() == typeof(VisualItem) 
-                && ((VisualItem) hitResult.VisualHit).Id.HasValue;
-            
-            if (!isHit)
-                ClearSelectedItems();
-            else
+
+            if (!IsHit(hitResult))
             {
-                if (e.ChangedButton != MouseButton.Right
-                    && ((Keyboard.Modifiers & ModifierKeys.Control) == 0))
-                    ClearSelectedItems();
-
-                var hitVisualItem = (VisualItem) hitResult.VisualHit;
-
-                var items = (List<CanvasItem>) GetValue(ItemsProperty);
-
-                var hitItem = items.First(p => p.Id == hitVisualItem.Id);
-
-                if (!hitItem.IsSelected)
-                    AddSelectedItem(hitItem);
-                else if (e.ChangedButton != MouseButton.Right)
-                    RemoveSelectedItem(hitItem);    
+                GetSelectedItems().Clear();
+                return;
             }
+            
+            if (e.ChangedButton != MouseButton.Right
+                && ((Keyboard.Modifiers & ModifierKeys.Control) == 0))
+                GetSelectedItems().Clear();
 
-            //this.Draw();
+            var hitVisualItem = (VisualItem) hitResult.VisualHit;
+
+            var items = (List<CanvasItem>) GetValue(ItemsProperty);
+
+            var hitItem = items.First(p => p.Id == hitVisualItem.Id);
+
+            if (!hitItem.IsSelected)
+                GetSelectedItems().Add(hitItem);
+            else if (e.ChangedButton != MouseButton.Right && !IsDoubleClick(e))
+                GetSelectedItems().Remove(hitItem);
+
+            if (IsDoubleClick(e))
+                OnExecute(new CanvasExecuteEventArgs(hitItem.Id.Value));
         }
 
-        private void ClearSelectedItems()
+        private static bool IsHit(HitTestResult hitResult)
         {
-            GetSelectedItems().Clear();
+            return hitResult.VisualHit.GetType() == typeof(VisualItem)
+                   && ((VisualItem) hitResult.VisualHit).Id.HasValue;
         }
 
-        private void AddSelectedItem(CanvasItem item)
+        private bool IsDoubleClick(MouseButtonEventArgs e)
         {
-            GetSelectedItems().Add(item);
+            return e.ClickCount == 2;
         }
-
-        private void RemoveSelectedItem(CanvasItem item)
-        {
-            GetSelectedItems().Remove(item);
-        }
-
+        
         protected override void OnMouseUp(MouseButtonEventArgs e)
         {
             base.OnMouseUp(e);
@@ -222,6 +219,7 @@ namespace DataExplorer.Presentation.Core.Canvas
             if (_isMouseDown)
             {
                 var delta = _previousMousePosition - location;
+
                 OnPan(new CanvasPanEventArgs(delta));
             }
 
@@ -282,6 +280,12 @@ namespace DataExplorer.Presentation.Core.Canvas
         {
             if (ZoomOut != null) 
                 ZoomOut(this, e);
+        }
+
+        protected virtual void OnExecute(CanvasExecuteEventArgs e)
+        {
+            if (Execute != null)
+                Execute(this, e);
         }
     }
 }

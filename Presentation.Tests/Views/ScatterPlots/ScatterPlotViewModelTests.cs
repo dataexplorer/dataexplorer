@@ -35,8 +35,10 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots
             _mockContextMenuViewModel = new Mock<IScatterPlotContextMenuViewModel>();
             
             _mockQueries = new Mock<IScatterPlotViewModelQueries>();
-            _mockQueries.Setup(p => p.GetItems(It.IsAny<Size>())).Returns(_items);
-            _mockQueries.Setup(p => p.GetSelectedItems(_items)).Returns(_items);
+            _mockQueries.Setup(p => p.GetItems(It.IsAny<Size>()))
+                .Returns(_items);
+            _mockQueries.Setup(p => p.GetSelectedItems(_items))
+                .Returns(_items);
             
             _mockCommands = new Mock<IScatterPlotViewModelCommands>();
             
@@ -104,6 +106,13 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots
             var vector = new Vector();
             _viewModel.HandlePan(vector);
             _mockCommands.Verify(p => p.Pan(vector, _controlSize), Times.Once());
+        }
+
+        [Test]
+        public void TestExecuteShouldExecuteLink()
+        {
+            _viewModel.HandleExecute(1);
+            _mockCommands.Verify(p => p.Execute(1), Times.Once());
         }
 
         [Test]

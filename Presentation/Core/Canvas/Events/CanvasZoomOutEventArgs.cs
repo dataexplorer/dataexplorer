@@ -1,8 +1,9 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 
 namespace DataExplorer.Presentation.Core.Canvas.Events
 {
-    public class CanvasZoomOutEventArgs
+    public class CanvasZoomOutEventArgs : EventArgs
     {
         private readonly Point _point;
 

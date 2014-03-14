@@ -18,6 +18,7 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots
         private Mock<IZoomOutScatterPlotCommand> _mockZoomOutCommand;
         private Mock<IPanScatterPlotCommand> _mockPanCommand;
         private Mock<ISelectCommand> _mockSelectCommand;
+        private Mock<IExecuteCommand> _mockExecuteCommand;
 
         [SetUp]
         public void SetUp()
@@ -27,13 +28,15 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots
             _mockZoomOutCommand = new Mock<IZoomOutScatterPlotCommand>();
             _mockPanCommand = new Mock<IPanScatterPlotCommand>();
             _mockSelectCommand = new Mock<ISelectCommand>();
+            _mockExecuteCommand = new Mock<IExecuteCommand>();
 
             _commands = new ScatterPlotViewModelCommands(
                 _mockResizeCommand.Object,
                 _mockZoomInCommand.Object,
                 _mockZoomOutCommand.Object,
                 _mockPanCommand.Object,
-                _mockSelectCommand.Object);
+                _mockSelectCommand.Object,
+                _mockExecuteCommand.Object);
         }
 
         [Test]
@@ -78,6 +81,13 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots
             var items = new List<CanvasItem> { item };
             _commands.Select(items);
             _mockSelectCommand.Verify(p => p.Execute(items));
+        }
+
+        [Test]
+        public void TestExecuteShouldExecuteCommand()
+        {
+            _commands.Execute(1);
+            _mockExecuteCommand.Verify(p => p.Execute(1), Times.Once());
         }
     }
 }
