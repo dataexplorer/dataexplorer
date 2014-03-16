@@ -52,6 +52,7 @@
     <Compile Include="Importers\CsvFile\CsvFileParser.cs" />
     <Compile Include="Importers\CsvFile\ICsvFile.cs" />
     <Compile Include="Importers\CsvFile\ICsvFileParser.cs" />
+    <Compile Include="Loaders\BitmapImageWrapper.cs" />
     <Compile Include="Process\ProcessWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XmlFiles\XmlFileService.cs" />

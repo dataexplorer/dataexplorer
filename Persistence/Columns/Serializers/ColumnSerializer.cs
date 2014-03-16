@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Media.Imaging;
 using System.Xml.Linq;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Rows;
@@ -52,13 +53,27 @@ namespace DataExplorer.Persistence.Columns.Serializers
 
             var name = GetProperty<string>(xColumn, NameTag);
 
-            var type = GetProperty<Type>(xColumn, DataTypeTag);
+            var dataType = GetProperty<Type>(xColumn, DataTypeTag);
 
             var semanticType = GetProperty<SemanticType>(xColumn, SemanticTypeTag);
 
             var values = rows.Select(p => p[index]).ToList();
 
-            return new Column(id, index, name, type, semanticType, values);
+            // TODO: Try to move the aggregation logic below into a common location
+            var isComparable = !(dataType == typeof(BitmapImage));
+
+            var min = isComparable
+                ? values.Min()
+                : null;
+
+            var max = isComparable
+                ? values.Max()
+                : null;
+
+            var hasNulls = values
+                .Any(p => p == null);
+
+            return new Column(id, index, name, dataType, semanticType, values, min, max, hasNulls);
         }
     }
 }

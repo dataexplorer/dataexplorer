@@ -22,14 +22,16 @@ namespace DataExplorer.Domain.Tests.Sources.Maps
         {
             var column = new SourceColumn
             {
+                Index = 1,
                 Name = "Column 1",
                 DataType = typeof(string),
                 SemanticType = SemanticType.Measure
             };
 
-            var result = _factory.Create(column);
+            var result = _factory.Create(column.Index, column.Name, column.DataType, column.SemanticType);
+            Assert.That(result.Index, Is.EqualTo(column.Index));
             Assert.That(result.Name, Is.EqualTo(column.Name));
-            Assert.That(result.SourceType, Is.EqualTo(column.DataType));
+            Assert.That(result.DataType, Is.EqualTo(column.DataType));
             Assert.That(result.SemanticType, Is.EqualTo(column.SemanticType));
         }
     }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Media.Imaging;
 using DataExplorer.Domain.DataTypes.Converters;
 using NUnit.Framework;
 
@@ -44,9 +45,16 @@ namespace DataExplorer.Domain.Tests.DataTypes.Converters
         }
 
         [Test]
-        public void TestCreateStringToStringConverter()
+        public void TestCreateStringShouldUsePathThroughConverter()
         {
             var result = _factory.Create(typeof(String), typeof(String));
+            Assert.That(result, Is.TypeOf<PassThroughConverter>());
+        }
+
+        [Test]
+        public void TestCreateBitmapImageShouldUsePathThroughConverter()
+        {
+            var result = _factory.Create(typeof(String), typeof(BitmapImage));
             Assert.That(result, Is.TypeOf<PassThroughConverter>());
         }
 

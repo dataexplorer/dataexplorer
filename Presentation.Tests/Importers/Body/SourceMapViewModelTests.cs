@@ -29,7 +29,7 @@ namespace DataExplorer.Presentation.Tests.Importers.Body
         [Test]
         public void TestSourcTypeShouldReturnSourceType()
         {
-            _map.SourceType = typeof(String);
+            _map.DataType = typeof(String);
             var result = _viewModel.SourceType;
             Assert.That(result, Is.EqualTo("String"));
         }

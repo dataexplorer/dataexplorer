@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DataExplorer.Application.Importers;
 using DataExplorer.Domain.DataTypes.Detectors;
 using DataExplorer.Domain.Semantics;
 using DataExplorer.Domain.Sources;
@@ -50,8 +49,7 @@ namespace DataExplorer.Infrastructure.Tests.Importers.CsvFiles
             _dataAdapter = new CsvFileDataAdapter(
                 _mockFile.Object,
                 _mockParser.Object,
-                _mockDataTypeDetector.Object,
-                _mockSemanticTypeDetector.Object);
+                _mockDataTypeDetector.Object);
         }
 
         [Test]
@@ -68,9 +66,8 @@ namespace DataExplorer.Infrastructure.Tests.Importers.CsvFiles
            var result = _dataAdapter.GetColumns(_source);
             _mockParser.Verify(p => p.OpenFile(@"C:\Test.csv"), Times.Once());
             _mockParser.Verify(p => p.CloseFile(), Times.Once());
-            Assert.That(result.Single().Name, Is.EqualTo("Column 1"));
+            Assert.That(result.Single().ColumnName, Is.EqualTo("Column 1"));
             Assert.That(result.Single().DataType, Is.EqualTo(typeof(String)));
-            Assert.That(result.Single().SemanticType, Is.EqualTo(SemanticType.Measure));
         }
 
         [Test]

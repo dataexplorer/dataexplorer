@@ -32,7 +32,7 @@ namespace DataExplorer.Presentation.Importers.CsvFile.Body
 
         public string SourceType
         {
-            get { return _dataTypeConverter.Convert(_map.SourceType); }
+            get { return _dataTypeConverter.Convert(_map.DataType); }
         }
 
         public List<string> SemanticTypes

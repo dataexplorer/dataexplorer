@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Media.Imaging;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Semantics;
 
@@ -81,7 +83,20 @@ namespace DataExplorer.Domain.Tests.Columns
             if (_values != null)
                 values.AddRange(_values);
 
-            return new Column(_id, _index, _name, _dataType, _semanticType, values);
+            var isComparable = !(_dataType == typeof (BitmapImage));
+
+            var min = isComparable 
+                ? values.Min()
+                : null;
+
+            var max = isComparable 
+                ? values.Max()
+                : null;
+
+            var hasNulls = values
+                .Any(p => p == null);
+
+            return new Column(_id, _index, _name, _dataType, _semanticType, values, min, max, hasNulls);
         }
     }
 }

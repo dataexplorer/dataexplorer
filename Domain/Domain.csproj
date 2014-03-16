@@ -36,6 +36,7 @@
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,6 +50,8 @@
     <Compile Include="Colors\ColorPaletteFactory.cs" />
     <Compile Include="Colors\IColorPaletteFactory.cs" />
     <Compile Include="Columns\Column.cs" />
+    <Compile Include="Columns\ColumnFactory.cs" />
+    <Compile Include="Columns\IColumnFactory.cs" />
     <Compile Include="DataTypes\Converters\DataTypeConverterFactory.cs" />
     <Compile Include="DataTypes\Converters\IDataTypeConverter.cs" />
     <Compile Include="DataTypes\Converters\IDataTypeConverterFactory.cs" />
@@ -62,6 +65,12 @@
     <Compile Include="Core\Events\IDomainHandler.cs" />
     <Compile Include="DataTypes\Detectors\DataTypeDetector.cs" />
     <Compile Include="DataTypes\Detectors\IDataTypeDetector.cs" />
+    <Compile Include="DataTypes\Loaders\DataLoaderFactory.cs" />
+    <Compile Include="DataTypes\Loaders\IBitmapImageWrapper.cs" />
+    <Compile Include="DataTypes\Loaders\IDataLoader.cs" />
+    <Compile Include="DataTypes\Loaders\IDataLoaderFactory.cs" />
+    <Compile Include="DataTypes\Loaders\ImageLoader.cs" />
+    <Compile Include="FilterTrees\ImageFilterTrees\ImageFilterTreeRoot.cs" />
     <Compile Include="Semantics\ISemanticTypeDetector.cs" />
     <Compile Include="Filters\BooleanFilter.cs" />
     <Compile Include="Filters\DateTimeFilter.cs" />

@@ -1,11 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using DataExplorer.Application;
-using DataExplorer.Application.Importers;
 using DataExplorer.Application.Importers.CsvFiles;
 using DataExplorer.Domain.DataTypes.Detectors;
-using DataExplorer.Domain.Semantics;
 using DataExplorer.Domain.Sources;
 
 namespace DataExplorer.Infrastructure.Importers.CsvFile
@@ -15,18 +12,15 @@ namespace DataExplorer.Infrastructure.Importers.CsvFile
         private readonly ICsvFile _csvFile;
         private readonly ICsvFileParser _parser;
         private readonly IDataTypeDetector _dataTypeDetector;
-        private readonly ISemanticTypeDetector _semanticTypeDetector;
 
         public CsvFileDataAdapter(
             ICsvFile csvFile,
             ICsvFileParser parser,
-            IDataTypeDetector dataTypeDetector, 
-            ISemanticTypeDetector semanticTypeDetector)
+            IDataTypeDetector dataTypeDetector)
         {
             _csvFile = csvFile;
             _parser = parser;
             _dataTypeDetector = dataTypeDetector;
-            _semanticTypeDetector = semanticTypeDetector;
         }
 
         public bool Exists(CsvFileSource source)
@@ -34,7 +28,7 @@ namespace DataExplorer.Infrastructure.Importers.CsvFile
             return _csvFile.Exists(source.FilePath);
         }
 
-        public List<SourceColumn> GetColumns(CsvFileSource source)
+        public List<DataColumn> GetColumns(CsvFileSource source)
         {
             var dataTable = new DataTable();
 
@@ -64,9 +58,11 @@ namespace DataExplorer.Infrastructure.Importers.CsvFile
             return dataTable;
         }
 
-        private List<SourceColumn> GetDataColumns(DataTable dataTable)
+        // TODO: Should this method just return direct (i.e. non-infered) data types?
+        // TODO: Or should I eliminate it all together?
+        private List<DataColumn> GetDataColumns(DataTable dataTable)
         {
-            var dataColumns = new List<SourceColumn>();
+            var dataColumns = new List<DataColumn>();
            
             for (int i = 0; i < dataTable.Columns.Count; i++)
             {
@@ -75,15 +71,12 @@ namespace DataExplorer.Infrastructure.Importers.CsvFile
 
                 var dataType = _dataTypeDetector.Detect(values);
 
-                var semanticType = _semanticTypeDetector.Detect(dataType, values);
-
                 var columnName = dataTable.Columns[i].ColumnName;
 
-                var dataColumn = new SourceColumn
+                var dataColumn = new DataColumn
                 {
-                    Name = columnName,
+                    ColumnName = columnName,
                     DataType = dataType,
-                    SemanticType = semanticType
                 };
                 
                 dataColumns.Add(dataColumn);

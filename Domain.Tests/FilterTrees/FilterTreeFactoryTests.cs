@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Windows.Media.Imaging;
 using DataExplorer.Domain.FilterTrees;
 using DataExplorer.Domain.FilterTrees.BooleanFilterTrees;
 using DataExplorer.Domain.FilterTrees.DateTimeFilterTrees;
 using DataExplorer.Domain.FilterTrees.FloatFilterTrees;
+using DataExplorer.Domain.FilterTrees.ImageFilterTrees;
 using DataExplorer.Domain.FilterTrees.IntegerFilterTrees;
 using DataExplorer.Domain.FilterTrees.StringFilterTrees;
 using DataExplorer.Domain.Tests.Columns;
@@ -71,6 +73,16 @@ namespace DataExplorer.Domain.Tests.FilterTrees
             var column = new ColumnBuilder().WithDataType(typeof(String)).Build();
             var result = _factory.CreateRoot(column);
             Assert.That(result is StringFilterTreeRoot);
+        }
+
+        [Test]
+        public void TestCreateRootShouldCreateImageFilterTreeRoot()
+        {
+            var column = new ColumnBuilder()
+                .WithDataType(typeof(BitmapImage))
+                .Build();
+            var result = _factory.CreateRoot(column);
+            Assert.That(result is ImageFilterTreeRoot);
         }
 
         [Test]

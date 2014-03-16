@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Media.Imaging;
 
 namespace DataExplorer.Domain.DataTypes.Converters
 {
@@ -21,6 +22,9 @@ namespace DataExplorer.Domain.DataTypes.Converters
                     return new StringToFloatConverter();
 
                 if (targetType == typeof(String))
+                    return new PassThroughConverter();
+
+                if (targetType == typeof(BitmapImage))
                     return new PassThroughConverter();
             }
 

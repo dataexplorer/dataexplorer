@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataExplorer.Domain.Sources.Maps;
+using DataExplorer.Domain.Tests.Sources.Maps;
 using Moq;
 using TechTalk.SpecFlow;
 
@@ -46,6 +48,17 @@ namespace DataExplorer.Specs.Importers
             var dataRow = new string[] { "Field 1" };
             _appContext.FakeCsvFile.AddRow(dataRow);
         }
+
+        [Given(@"a map exists for the the CSV file source")]
+        public void GivenAMapExistsForTheTheCSVFileSource()
+        {
+            var map = new SourceMapBuilder()
+                .WithIndex(0)
+                .WithDataType(typeof (string))
+                .Build();
+            _appContext.CsvFileSource.SetMaps(new List<SourceMap> { map });
+        }
+
 
         [When(@"I import the CSV file source")]
         public void WhenIImportTheCSVFileSource()

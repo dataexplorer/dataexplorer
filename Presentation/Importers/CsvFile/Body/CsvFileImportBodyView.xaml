@@ -27,7 +27,7 @@
                     IsReadOnly="True"
                     Binding="{Binding Name}" />
                 <DataGridTextColumn 
-                    Header="Source Type" 
+                    Header="Data Type" 
                     Binding="{Binding SourceType}" 
                     IsReadOnly="True"
                     Foreground="Gray" />

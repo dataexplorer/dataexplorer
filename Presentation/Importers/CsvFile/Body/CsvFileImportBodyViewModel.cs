@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.Core.Events;
@@ -30,9 +31,12 @@ namespace DataExplorer.Presentation.Importers.CsvFile.Body
 
         private List<SourceMapViewModel> GetMapViewModels()
         {
-            return _queryBus.Execute(new GetCsvFileSourceMapsQuery())
-                .Select(p => new SourceMapViewModel(p))
+            var maps = _queryBus.Execute(new GetCsvFileSourceMapsQuery());
+                
+            var mapViewModels = maps.Select(p => new SourceMapViewModel(p))
                 .ToList();
+
+            return mapViewModels;
         }
 
         public void Handle(CsvFileSourceChangedEvent args)

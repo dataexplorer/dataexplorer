@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,8 +14,10 @@ using DataExplorer.Application.Projects.Events;
 using DataExplorer.Application.Rows;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.DataTypes.Converters;
+using DataExplorer.Domain.DataTypes.Loaders;
 using DataExplorer.Domain.Rows;
 using DataExplorer.Domain.Sources;
+using DataExplorer.Domain.Sources.Maps;
 
 namespace DataExplorer.Application.Importers.CsvFiles.Commands
 {
@@ -27,8 +30,10 @@ namespace DataExplorer.Application.Importers.CsvFiles.Commands
         private readonly IDataContext _dataContext;
         private readonly ICsvFileDataAdapter _dataAdapter;
         private readonly IDataTypeConverterFactory _converterFactory;
-        private readonly IRowRepository _rowRepository;
+        private readonly IDataLoaderFactory _loaderFactory;
+        private readonly IColumnFactory _columnFactory;
         private readonly IColumnRepository _columnRepository;
+        private readonly IRowRepository _rowRepository;
 
         public ImportCsvFileSourceCommandHandler(
             ISourceRepository repository, 
@@ -36,9 +41,11 @@ namespace DataExplorer.Application.Importers.CsvFiles.Commands
             IApplicationStateService stateService,
             IDataContext dataContext, 
             ICsvFileDataAdapter dataAdapter, 
-            IDataTypeConverterFactory converterFactory, 
-            IRowRepository rowRepository, 
-            IColumnRepository columnRepository)
+            IDataTypeConverterFactory converterFactory,
+            IDataLoaderFactory loaderFactory,
+            IColumnFactory columnFactory,
+            IColumnRepository columnRepository, 
+            IRowRepository rowRepository)
         {
             _repository = repository;
             _eventBus = eventBus;
@@ -46,8 +53,10 @@ namespace DataExplorer.Application.Importers.CsvFiles.Commands
             _dataContext = dataContext;
             _dataAdapter = dataAdapter;
             _converterFactory = converterFactory;
-            _rowRepository = rowRepository;
+            _loaderFactory = loaderFactory;
+            _columnFactory = columnFactory;
             _columnRepository = columnRepository;
+            _rowRepository = rowRepository;
         }
 
         public void Execute(ImportCsvFileSourceCommand command)
@@ -78,76 +87,122 @@ namespace DataExplorer.Application.Importers.CsvFiles.Commands
 
             _repository.SetSource(source);
 
-            var dataColumns = _dataAdapter.GetColumns(source);
-
             var dataTable = _dataAdapter.GetTable(source);
 
-            var converters = dataColumns
-                .Select(p => _converterFactory.Create(typeof (string), p.DataType))
+            var maps = source.GetMaps();
+
+            var basePath = Path.GetDirectoryName(source.FilePath);
+
+            var columnAggregates = maps
+                .Select(p => CreateColumnAggregate(p, basePath))
                 .ToList();
 
-            CreateRows(dataTable, dataColumns, converters);
+            CreateRows(dataTable, columnAggregates);
 
-            CreateColumns(dataColumns);
-
+            CreateColumns(maps);
+            
             _eventBus.Raise(new SourceImportedEvent());
         }
 
-        private void CreateRows(DataTable dataTable, List<SourceColumn> dataColumns, List<IDataTypeConverter> converters)
+        private ColumnAggregate CreateColumnAggregate(SourceMap column, string basePath)
         {
-            for (int i = 0; i < dataTable.Rows.Count; i++)
-                CreateRow(dataTable, dataColumns, converters, i);
+            var converter = _converterFactory.Create(typeof (string), column.DataType);
 
-            // NOTE:  Removed due to odd async issue
-            //Parallel.For(0, dataTable.Rows.Count, 
-            //    i => CreateRow(dataTable, dataColumns, converters, i));
+            var loader = _loaderFactory.Create(column.DataType, basePath);
+
+            var aggregate = new ColumnAggregate(column, converter, loader);
+
+            return aggregate;
         }
 
-        private void CreateRow(DataTable dataTable, List<SourceColumn> dataColumns, List<IDataTypeConverter> converters, int i)
+        private void CreateColumns(List<SourceMap> sourceMaps)
+        {
+            // NOTE:  Removed parallel-for loop due to odd async issues
+            for (int i = 0; i < sourceMaps.Count; i++)
+                CreateColumn(sourceMaps, i);
+        }
+
+        private void CreateColumn(List<SourceMap> sourceMap, int i)
+        {
+            var map = sourceMap[i];
+
+            var values = _rowRepository.GetAll()
+                .Select(p => p[i])
+                .ToList();
+
+            var column = _columnFactory.Create(
+                i + 1,
+                i, 
+                map.Name, 
+                map.DataType,
+                map.SemanticType,
+                values);
+
+            _columnRepository.Add(column);
+        }
+
+        private void CreateRows(
+            DataTable dataTable, 
+            List<ColumnAggregate> columnAggregates)
+        {
+            // NOTE:  Removed parallel-for loop due to odd async issues
+            for (int i = 0; i < dataTable.Rows.Count; i++)
+                CreateRow(dataTable, columnAggregates, i);
+        }
+
+        private void CreateRow(
+            DataTable dataTable, 
+            List<ColumnAggregate> columnAggregates, 
+            int i)
         {
             var dataRow = dataTable.Rows[i];
 
-            var row = new Row(i + 1, dataColumns.Count);
+            var row = new Row(i + 1, columnAggregates.Count);
 
-            for (int j = 0; j < dataColumns.Count; j++)
-                row[j] = converters[j].Convert(dataRow[j]);
+            for (int j = 0; j < columnAggregates.Count; j++)
+            {
+                var field = columnAggregates[j].Converter.Convert(dataRow[j]);
+
+                if (columnAggregates[j].Loader != null)
+                    field = columnAggregates[j].Loader.Load((string) field);
+
+                row[j] = field;
+            }  
 
             _rowRepository.Add(row);
 
-            var progress = (i + 1)/(double) dataTable.Rows.Count;
+            var progress = (i + 1) / (double) dataTable.Rows.Count;
 
             _eventBus.Raise(new SourceImportProgressChangedEvent(progress));
         }
 
-        private void CreateColumns(List<SourceColumn> dataColumns)
+        private class ColumnAggregate
         {
-            for (int i = 0; i< dataColumns.Count; i++)
-                CreateColumn(dataColumns, i);
+            private readonly SourceMap _sourceMap;
+            private readonly IDataTypeConverter _converter;
+            private readonly IDataLoader _loader;
 
-            // NOTE: Removed due to odd async issue
-            //Parallel.For(0, dataColumns.Count, 
-            //    i => CreateColumn(dataColumns, i));
-        }
+            public ColumnAggregate(SourceMap sourceMap, IDataTypeConverter converter, IDataLoader loader)
+            {
+                _sourceMap = sourceMap;
+                _converter = converter;
+                _loader = loader;
+            }
 
-        private void CreateColumn(List<SourceColumn> dataColumns, int i)
-        {
-            var dataColumn = dataColumns[i];
+            public SourceMap SourceMap
+            {
+                get { return _sourceMap; }
+            }
 
-            var values = _rowRepository.GetAll()
-                .Select(p => p[i])
-                .OrderBy(p => p)
-                .ToList();
+            public IDataTypeConverter Converter
+            {
+                get { return _converter; }
+            }
 
-            // TODO: Replace with a mapper
-            var column = new Column(
-                i + 1,
-                i, 
-                dataColumn.Name, 
-                dataColumn.DataType,
-                dataColumn.SemanticType,
-                values);
-
-            _columnRepository.Add(column);
+            public IDataLoader Loader
+            {
+                get { return _loader; }
+            }
         }
     }
 }

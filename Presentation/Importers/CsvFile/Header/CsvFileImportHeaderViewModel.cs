@@ -28,7 +28,7 @@ namespace DataExplorer.Presentation.Importers.CsvFile.Header
         
         public string FilePath
         {
-            get { return _messageBus.Execute(new GetCsvFileSourceQuery()).FilePath; }
+            get { return GetFilePath(); }
         }
 
         public ICommand BrowseCommand
@@ -45,7 +45,13 @@ namespace DataExplorer.Presentation.Importers.CsvFile.Header
             _browseCommand = new DelegateCommand(Browse);
         }
 
-        
+        private string GetFilePath()
+        {
+            var source = _messageBus.Execute(new GetCsvFileSourceQuery());
+                
+            return source.FilePath;
+        }
+
         private void Browse(object parameter)
         {
             var dialog = _dialogFactory.CreateOpenFileDialog();

@@ -8,7 +8,7 @@ namespace DataExplorer.Application.Importers.CsvFiles
     {
         bool Exists(CsvFileSource source);
 
-        List<SourceColumn> GetColumns(CsvFileSource source);
+        List<DataColumn> GetColumns(CsvFileSource source);
 
         DataTable GetTable(CsvFileSource source);
     }

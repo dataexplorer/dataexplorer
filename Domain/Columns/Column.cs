@@ -25,7 +25,10 @@ namespace DataExplorer.Domain.Columns
             string name, 
             Type dataType, 
             SemanticType semanticType, 
-            List<object> values)
+            List<object> values,
+            object min,
+            object max,
+            bool hasNulls)
         {
             _id = id;
             _index = index;
@@ -33,10 +36,9 @@ namespace DataExplorer.Domain.Columns
             _dataType = dataType;
             _semanticType = semanticType;
             _values = values;
-            _min = values.Min();
-            _max = values.Max();
-            _hasNulls = values
-                .Any(p => p == null);
+            _min = min;
+            _max = max;
+            _hasNulls = hasNulls;
         }
 
         public int Id

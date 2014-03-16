@@ -48,6 +48,8 @@
   <ItemGroup>
     <Compile Include="Exporters\TabExporterTests.cs" />
     <Compile Include="Importers\CsvFiles\CsvFileDataAdapterTests.cs" />
+    <Compile Include="Importers\DataColumnBuilder.cs" />
+    <Compile Include="Importers\DataTableBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

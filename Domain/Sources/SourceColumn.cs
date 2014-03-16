@@ -9,6 +9,8 @@ namespace DataExplorer.Domain.Sources
 {
     public class SourceColumn
     {
+        public int Index { get; set; }
+
         public string Name { get; set; }
 
         public Type DataType { get; set; }
