@@ -70,7 +70,9 @@
     <Compile Include="DataTypes\Loaders\IDataLoader.cs" />
     <Compile Include="DataTypes\Loaders\IDataLoaderFactory.cs" />
     <Compile Include="DataTypes\Loaders\ImageLoader.cs" />
+    <Compile Include="Filters\ImageFilter.cs" />
     <Compile Include="FilterTrees\ImageFilterTrees\ImageFilterTreeRoot.cs" />
+    <Compile Include="Predicates\ImagePredicate.cs" />
     <Compile Include="Semantics\ISemanticTypeDetector.cs" />
     <Compile Include="Filters\BooleanFilter.cs" />
     <Compile Include="Filters\DateTimeFilter.cs" />

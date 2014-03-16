@@ -8,6 +8,7 @@ using DataExplorer.Presentation.Panes.Filter;
 using DataExplorer.Presentation.Panes.Filter.BooleanFilters;
 using DataExplorer.Presentation.Panes.Filter.DateTimeFilters;
 using DataExplorer.Presentation.Panes.Filter.FloatFilters;
+using DataExplorer.Presentation.Panes.Filter.ImageFilters;
 using DataExplorer.Presentation.Panes.Filter.IntegerFilters;
 using DataExplorer.Presentation.Panes.Filter.NullFilters;
 using DataExplorer.Presentation.Panes.Filter.StringFilters;
@@ -74,6 +75,14 @@ namespace DataExplorer.Presentation.Tests.Panes.Filter
         {
             _selector.StringFilterDataTemplate = _dataTemplate;
             var result = _selector.SelectTemplate(new StringFilterViewModel(null, null), null);
+            Assert.That(result, Is.EqualTo(_dataTemplate));
+        }
+
+        [Test]
+        public void TestSelectTemplateShouldReturnImageFilterDataTemplate()
+        {
+            _selector.ImageFilterDataTemplate = _dataTemplate;
+            var result = _selector.SelectTemplate(new ImageFilterViewModel(null, null), null);
             Assert.That(result, Is.EqualTo(_dataTemplate));
         }
     }

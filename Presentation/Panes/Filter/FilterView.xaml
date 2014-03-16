@@ -10,6 +10,7 @@
              xmlns:integerFilters="clr-namespace:DataExplorer.Presentation.Panes.Filter.IntegerFilters"
              xmlns:stringFilters="clr-namespace:DataExplorer.Presentation.Panes.Filter.StringFilters"
              xmlns:nullFilters="clr-namespace:DataExplorer.Presentation.Panes.Filter.NullFilters"
+             xmlns:imageFilters="clr-namespace:DataExplorer.Presentation.Panes.Filter.ImageFilters"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <ScrollViewer
@@ -77,6 +78,11 @@
                                         <stringFilters:StringFilterView />
                                     </DataTemplate>
                                 </filter:FilterDataTemplateSelector.StringFilterDataTemplate>
+                                <filter:FilterDataTemplateSelector.ImageFilterDataTemplate>
+                                    <DataTemplate>
+                                        <imageFilters:ImageFilterView />
+                                    </DataTemplate>
+                                </filter:FilterDataTemplateSelector.ImageFilterDataTemplate>
                             </filter:FilterDataTemplateSelector>
                         </ContentControl.ContentTemplateSelector>
                     </ContentControl>

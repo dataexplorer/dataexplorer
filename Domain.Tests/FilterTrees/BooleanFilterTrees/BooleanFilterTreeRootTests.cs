@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Filters;
 using DataExplorer.Domain.FilterTrees.BooleanFilterTrees;
 using DataExplorer.Domain.Tests.Columns;
@@ -9,30 +10,34 @@ namespace DataExplorer.Domain.Tests.FilterTrees.BooleanFilterTrees
     [TestFixture]
     public class BooleanFilterTreeRootTests
     {
+        private Column _column;
+        private BooleanFilterTreeRoot _node;
+
+        [SetUp]
+        public void SetUp()
+        {
+            _column = new ColumnBuilder().Build();
+            _node = new BooleanFilterTreeRoot("Test", _column);
+        }
+
         [Test]
         public void TestCreateChildrenShouldCreateFalseLeaf()
         {
-            var column = new ColumnBuilder().Build();
-            var node = new BooleanFilterTreeRoot("Test", column);
-            var results = node.CreateChildren().ToList();
+            var results = _node.CreateChildren().ToList();
             Assert.That(results[0].Name, Is.EqualTo("False"));
         }
 
         [Test]
         public void TestCreateChildrenShouldCreateTrueLeaf()
         {
-            var column = new ColumnBuilder().Build();
-            var node = new BooleanFilterTreeRoot("Test", column);
-            var results = node.CreateChildren().ToList();
+            var results = _node.CreateChildren().ToList();
             Assert.That(results[1].Name, Is.EqualTo("True"));
         }
 
         [Test]
         public void TestCreateChildrenShouldNotCreateNullLeafIfColumnHasNoNulls()
         {
-            var column = new ColumnBuilder().Build();
-            var node = new BooleanFilterTreeRoot("Test", column);
-            var results = node.CreateChildren().ToList();
+            var results = _node.CreateChildren().ToList();
             Assert.That(results[0].Name, Is.Not.EqualTo("Null"));
         }
 
@@ -48,9 +53,7 @@ namespace DataExplorer.Domain.Tests.FilterTrees.BooleanFilterTrees
         [Test]
         public void TestCreateFilterShouldReturnFilter()
         {
-            var column = new ColumnBuilder().Build();
-            var node = new BooleanFilterTreeRoot(string.Empty, column);
-            var result = (BooleanFilter) node.CreateFilter();
+            var result = (BooleanFilter) _node.CreateFilter();
             Assert.That(result.IncludeTrue, Is.True);
             Assert.That(result.IncludeFalse, Is.True);
         }

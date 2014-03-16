@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Filters;
+using DataExplorer.Domain.FilterTrees.NullFilterTrees;
 
 namespace DataExplorer.Domain.FilterTrees.ImageFilterTrees
 {
@@ -16,12 +17,17 @@ namespace DataExplorer.Domain.FilterTrees.ImageFilterTrees
 
         public override IEnumerable<FilterTreeNode> CreateChildren()
         {
-            return new List<FilterTreeNode>();
+            var children = new List<FilterTreeNode>();
+
+            var nullNode = new NullFilterTreeLeaf("Null", _column);
+            children.Add(nullNode);
+
+            return children;
         }
 
         public override Filter CreateFilter()
         {
-            throw new NotImplementedException();
+            return new ImageFilter(_column, _column.HasNulls, true);
         }
     }
 }

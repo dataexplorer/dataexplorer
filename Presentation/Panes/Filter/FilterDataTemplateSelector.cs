@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using DataExplorer.Presentation.Panes.Filter.BooleanFilters;
 using DataExplorer.Presentation.Panes.Filter.DateTimeFilters;
 using DataExplorer.Presentation.Panes.Filter.FloatFilters;
+using DataExplorer.Presentation.Panes.Filter.ImageFilters;
 using DataExplorer.Presentation.Panes.Filter.IntegerFilters;
 using DataExplorer.Presentation.Panes.Filter.NullFilters;
 using DataExplorer.Presentation.Panes.Filter.StringFilters;
@@ -19,6 +20,7 @@ namespace DataExplorer.Presentation.Panes.Filter
         public DataTemplate NotNullFilterDataTemplate { get; set; }
         public DataTemplate NullFilterDataTemplate { get; set; }
         public DataTemplate StringFilterDataTemplate { get; set; }
+        public DataTemplate ImageFilterDataTemplate { get; set; }
 
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
@@ -39,6 +41,9 @@ namespace DataExplorer.Presentation.Panes.Filter
 
             if (item is StringFilterViewModel)
                 return StringFilterDataTemplate;
+
+            if (item is ImageFilterViewModel)
+                return ImageFilterDataTemplate;
 
             return base.SelectTemplate(item, container);
         }

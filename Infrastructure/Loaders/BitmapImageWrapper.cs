@@ -12,7 +12,18 @@ namespace DataExplorer.Infrastructure.Loaders
     {
         public BitmapImage Load(Uri uri)
         {
-            return new BitmapImage(uri);
+            try
+            {
+                return new BitmapImage(uri);
+            }
+            catch (Exception)
+            {
+                // TODO: Need to report failed loads
+                // TODO: Maybe just count nulls compared to expected 
+                // TOOD: images in the end to determine failures
+                return null;
+            }
+            
         }
     }
 }

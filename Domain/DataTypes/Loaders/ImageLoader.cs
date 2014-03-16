@@ -26,7 +26,12 @@ namespace DataExplorer.Domain.DataTypes.Loaders
                 : new Uri(uri);
 
             var image = _bitmapImageWrapper.Load(fullUri);
+
+            if (image == null)
+                return null;
+
             image.Freeze();
+
             return image;
         }
 

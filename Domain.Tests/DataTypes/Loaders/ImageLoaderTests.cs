@@ -60,5 +60,15 @@ namespace DataExplorer.Domain.Tests.DataTypes.Loaders
             var result = _loader.Load(@"ImageFolder\Image.jpg");
             Assert.That(result, Is.EqualTo(_image));
         }
+
+        [Test]
+        public void TestLoaderShouldReturnNullsIfImageFailedToLoad()
+        {
+            var uri = new Uri("http://www.test.com/image.jpg");
+            _mockBitmapImageWrapper.Setup(p => p.Load(uri))
+                .Returns((BitmapImage) null);
+            var result = _loader.Load(uri.ToString());
+            Assert.That(result, Is.Null);
+        }
     }
 }

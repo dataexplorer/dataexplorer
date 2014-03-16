@@ -4,6 +4,7 @@ using DataExplorer.Domain.Filters;
 using DataExplorer.Presentation.Panes.Filter.BooleanFilters;
 using DataExplorer.Presentation.Panes.Filter.DateTimeFilters;
 using DataExplorer.Presentation.Panes.Filter.FloatFilters;
+using DataExplorer.Presentation.Panes.Filter.ImageFilters;
 using DataExplorer.Presentation.Panes.Filter.IntegerFilters;
 using DataExplorer.Presentation.Panes.Filter.NullFilters;
 using DataExplorer.Presentation.Panes.Filter.StringFilters;
@@ -38,6 +39,9 @@ namespace DataExplorer.Presentation.Panes.Filter
 
             if (filter is StringFilter)
                 return new StringFilterViewModel(_commandBus, (StringFilter) filter);
+
+            if (filter is ImageFilter)
+                return new ImageFilterViewModel(_commandBus, (ImageFilter) filter);
 
             throw new ArgumentException("Filter view model could not be created because filter type not valid.");
         }

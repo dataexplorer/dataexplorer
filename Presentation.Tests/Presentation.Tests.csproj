@@ -88,6 +88,7 @@
     <Compile Include="Panes\Filter\FilterViewModelFactoryTests.cs" />
     <Compile Include="Panes\Filter\FilterViewModelTests.cs" />
     <Compile Include="Panes\Filter\FloatFilters\FloatRangeFilterViewModelTests.cs" />
+    <Compile Include="Panes\Filter\ImageFilters\ImageFilterViewModelTests.cs" />
     <Compile Include="Panes\Filter\IntegerFilters\IntegerRangeFilterViewModelTests.cs" />
     <Compile Include="Panes\Filter\NullFilters\NullFilterViewModelTests.cs" />
     <Compile Include="Panes\Filter\StringFilters\StringFilterViewModelTests.cs" />

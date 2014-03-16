@@ -75,6 +75,7 @@
     <Compile Include="Filters\FakeFilter.cs" />
     <Compile Include="Filters\FilterTests.cs" />
     <Compile Include="Filters\FloatFilterTests.cs" />
+    <Compile Include="Filters\ImageFilterTests.cs" />
     <Compile Include="Filters\IntegerFilterTests.cs" />
     <Compile Include="Filters\NullFilterTests.cs" />
     <Compile Include="Filters\StringFilterTests.cs" />
@@ -97,6 +98,7 @@
     <Compile Include="FilterTrees\FloatFilterTrees\FloatFilterTreeLeafTests.cs" />
     <Compile Include="FilterTrees\FloatFilterTrees\FloatFilterTreeNodeTests.cs" />
     <Compile Include="FilterTrees\FloatFilterTrees\FloatFilterTreeRootTests.cs" />
+    <Compile Include="FilterTrees\ImageFilterTrees\ImageFilterTreeRootTests.cs" />
     <Compile Include="FilterTrees\IntegerFilterTrees\IntegerFilterTreeLeafTests.cs" />
     <Compile Include="FilterTrees\IntegerFilterTrees\IntegerFilterTreeNodeTests.cs" />
     <Compile Include="FilterTrees\IntegerFilterTrees\IntegerFilterTreeRootTests.cs" />
@@ -133,6 +135,7 @@
     <Compile Include="Predicates\BooleanPredicateTests.cs" />
     <Compile Include="Predicates\DateTimePredicateTests.cs" />
     <Compile Include="Predicates\FloatPredicateTests.cs" />
+    <Compile Include="Predicates\ImagePredicateTests.cs" />
     <Compile Include="Predicates\IntegerPredicateTests.cs" />
     <Compile Include="Predicates\NullableBooleanPredicateTests.cs" />
     <Compile Include="Predicates\NullableDateTimePredicateTests.cs" />
