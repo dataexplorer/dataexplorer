@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Media.Imaging;
 using DataExplorer.Presentation.Core.Converters;
 using NUnit.Framework;
 
@@ -18,9 +19,10 @@ namespace DataExplorer.Presentation.Tests.Core.Converters
         [Test]
         [TestCase(typeof(Boolean), "Boolean")]
         [TestCase(typeof(DateTime), "DateTime")]
-        [TestCase(typeof(Double), "Double")]
+        [TestCase(typeof(Double), "Float")]
         [TestCase(typeof(Int32), "Integer")]
         [TestCase(typeof(String), "String")]
+        [TestCase(typeof(BitmapImage), "Image")]
         public void TestConvertShouldReturnFriendlyName(Type type, string expected)
         {
             var result = _converter.Convert(type);
