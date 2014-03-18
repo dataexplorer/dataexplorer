@@ -23,13 +23,7 @@ namespace DataExplorer.Presentation.Core.Canvas.Items
             var brush = new SolidColorBrush(Color);
             brush.Freeze();
 
-            var unselectedPen = new Pen(Brushes.Black, 1);
-            unselectedPen.Freeze();
-
-            var selectedPen = new Pen(Brushes.Blue, 2);
-            selectedPen.Freeze();
-
-            var pen = IsSelected ? selectedPen : unselectedPen;
+            var pen = GetPen();
 
             using (var context = visual.RenderOpen())
             {

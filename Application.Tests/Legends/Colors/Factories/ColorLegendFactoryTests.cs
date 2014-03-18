@@ -8,6 +8,7 @@ using DataExplorer.Domain.Colors;
 using DataExplorer.Domain.Maps.ColorMaps;
 using DataExplorer.Domain.Tests.Colors;
 using DataExplorer.Domain.Tests.Maps;
+using DataExplorer.Domain.Tests.Maps.ColorMaps;
 using Moq;
 using NUnit.Framework;
 

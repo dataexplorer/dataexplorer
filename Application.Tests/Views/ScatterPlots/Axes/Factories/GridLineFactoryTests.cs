@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DataExplorer.Application.Tests.Maps;
 using DataExplorer.Application.Views.ScatterPlots.Axes.Factories;
 using DataExplorer.Application.Views.ScatterPlots.Axes.Factories.BooleanGridLines;
 using DataExplorer.Application.Views.ScatterPlots.Axes.Factories.DateTimeGridLines;
@@ -9,6 +8,7 @@ using DataExplorer.Application.Views.ScatterPlots.Axes.Factories.FloatGridLines;
 using DataExplorer.Application.Views.ScatterPlots.Axes.Factories.IntegerGridLines;
 using DataExplorer.Application.Views.ScatterPlots.Axes.Factories.StringGridLines;
 using DataExplorer.Domain.Maps.AxisMaps;
+using DataExplorer.Domain.Tests.Maps.AxisMaps;
 using DataExplorer.Domain.Views.ScatterPlots;
 using Moq;
 using NUnit.Framework;

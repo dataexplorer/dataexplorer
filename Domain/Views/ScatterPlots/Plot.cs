@@ -1,4 +1,5 @@
-﻿using DataExplorer.Domain.Colors;
+﻿using System.Windows.Media.Imaging;
+using DataExplorer.Domain.Colors;
 
 namespace DataExplorer.Domain.Views.ScatterPlots
 {
@@ -13,6 +14,8 @@ namespace DataExplorer.Domain.Views.ScatterPlots
         public Color Color;
 
         public double Size;
+
+        public BitmapImage Image;
 
         public string Label;
     }

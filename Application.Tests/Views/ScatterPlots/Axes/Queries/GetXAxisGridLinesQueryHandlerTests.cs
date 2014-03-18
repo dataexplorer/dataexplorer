@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
-using DataExplorer.Application.Tests.Maps;
 using DataExplorer.Application.Views;
 using DataExplorer.Application.Views.ScatterPlots.Axes.Factories;
 using DataExplorer.Application.Views.ScatterPlots.Axes.Queries;
@@ -9,6 +8,7 @@ using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Maps;
 using DataExplorer.Domain.Maps.AxisMaps;
 using DataExplorer.Domain.Tests.Columns;
+using DataExplorer.Domain.Tests.Maps.AxisMaps;
 using DataExplorer.Domain.Tests.Views.ScatterPlots;
 using DataExplorer.Domain.Views.ScatterPlots;
 using Moq;

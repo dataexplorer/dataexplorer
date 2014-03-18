@@ -7,6 +7,7 @@ using DataExplorer.Application.Legends.Sizes;
 using DataExplorer.Application.Legends.Sizes.Factories;
 using DataExplorer.Domain.Maps.SizeMaps;
 using DataExplorer.Domain.Tests.Maps;
+using DataExplorer.Domain.Tests.Maps.SizeMaps;
 using NUnit.Framework;
 
 namespace DataExplorer.Application.Tests.Legends.Sizes.Factories

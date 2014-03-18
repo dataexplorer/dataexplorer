@@ -8,6 +8,10 @@ using DataExplorer.Domain.Maps.LabelMaps;
 using DataExplorer.Domain.Maps.SizeMaps;
 using DataExplorer.Domain.Tests.Colors;
 using DataExplorer.Domain.Tests.Columns;
+using DataExplorer.Domain.Tests.Maps.AxisMaps;
+using DataExplorer.Domain.Tests.Maps.ColorMaps;
+using DataExplorer.Domain.Tests.Maps.LabelMaps;
+using DataExplorer.Domain.Tests.Maps.SizeMaps;
 using Moq;
 using NUnit.Framework;
 
@@ -84,53 +88,6 @@ namespace DataExplorer.Domain.Tests.Maps
             var result = _factory.CreateLabelMap(_column);
 
             Assert.That(result, Is.EqualTo(_labelMap));
-        }
-    }
-
-    public class FakeAxisMap : AxisMap
-    {
-        public override double? Map(object value)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override object MapInverse(double? value)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    public class FakeColorMap : ColorMap
-    {
-        public override Color Map(object value)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override object MapInverse(Color value)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    public class FakeSizeMap : SizeMap
-    {
-        public override double? Map(object value)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override object MapInverse(double? value)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    public class FakeLabelMap : LabelMap
-    {
-        public override string Map(object value)
-        {
-            throw new NotImplementedException();
         }
     }
 }

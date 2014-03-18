@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Media;
 using DataExplorer.Application.Views.ScatterPlots;
+using DataExplorer.Presentation.Core.Canvas.Factories;
 using DataExplorer.Presentation.Core.Canvas.Items;
 using DataExplorer.Presentation.Core.Geometry;
 using DataExplorer.Presentation.Views.ScatterPlots.Scalers;
@@ -60,11 +61,13 @@ namespace DataExplorer.Presentation.Views.ScatterPlots.Renderers.Plots
         {
             var color = Color.FromRgb(plot.Color.Red, plot.Color.Green, plot.Color.Blue);
 
-            var circle = _factory.CreateCircle(plot.Id, extent, color);
+            var plotItem = plot.Image != null 
+                ? (CanvasItem) _factory.CreateImage(plot.Id, extent, plot.Image)
+                : (CanvasItem) _factory.CreateCircle(plot.Id, extent, color);
 
-            return circle;
+            return plotItem;
         }
-
+        
         private CanvasItem RenderLabel(Rect plotExtent, PlotDto plotDto)
         {
             var origin = _calculator.CalcluateLabelOrigin(plotExtent);

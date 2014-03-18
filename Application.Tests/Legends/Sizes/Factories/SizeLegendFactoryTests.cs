@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DataExplorer.Application.Legends.Sizes.Factories;
 using DataExplorer.Domain.Maps.SizeMaps;
 using DataExplorer.Domain.Tests.Maps;
+using DataExplorer.Domain.Tests.Maps.SizeMaps;
 using Moq;
 using NUnit.Framework;
 

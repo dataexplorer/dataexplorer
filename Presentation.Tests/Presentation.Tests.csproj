@@ -67,7 +67,7 @@
     <Compile Include="Core\FakeControl.cs" />
     <Compile Include="Core\FakeVisual.cs" />
     <Compile Include="Core\Geometry\GeometryCalculatorTests.cs" />
-    <Compile Include="Core\Geometry\GeometryFactoryTests.cs" />
+    <Compile Include="Core\Canvas\Factories\CanvasItemFactoryTests.cs" />
     <Compile Include="Core\Layout\LayoutItemViewModelTests.cs" />
     <Compile Include="Core\Services\CanvasToBitmapExporterTests.cs" />
     <Compile Include="Core\Services\ControlFinderTests.cs" />

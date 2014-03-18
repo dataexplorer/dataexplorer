@@ -34,10 +34,12 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Queries
             _scatterPlot.SetPlots(_plots);
 
             _mockRepository = new Mock<IViewRepository>();
-            _mockRepository.Setup(p => p.Get<ScatterPlot>()).Returns(_scatterPlot);
+            _mockRepository.Setup(p => p.Get<ScatterPlot>())
+                .Returns(_scatterPlot);
             
             _mockAdapter = new Mock<IScatterPlotAdapter>();
-            _mockAdapter.Setup(p => p.Adapt(_plots)).Returns(_plotDtos);
+            _mockAdapter.Setup(p => p.Adapt(_plots))
+                .Returns(_plotDtos);
             
             _handler = new GetPlotsQueryHandler(
                 _mockRepository.Object,

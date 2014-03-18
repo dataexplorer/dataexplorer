@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DataExplorer.Application.Columns;
 using DataExplorer.Application.Views;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Views.ScatterPlots;
 
-namespace DataExplorer.Application.Layouts
+namespace DataExplorer.Application.Layouts.Base.Queries
 {
     public abstract class BaseGetLayoutColumnQueryHandler
     {

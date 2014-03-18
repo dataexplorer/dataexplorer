@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using DataExplorer.Application.Core.Queries;
-using DataExplorer.Domain.Views;
 using DataExplorer.Domain.Views.ScatterPlots;
 
 namespace DataExplorer.Application.Views.ScatterPlots.Queries

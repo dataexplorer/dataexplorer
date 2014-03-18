@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.Columns;
 using DataExplorer.Application.Core.Queries;
+using DataExplorer.Application.Layouts.Base.Queries;
 using DataExplorer.Application.Views;
 
 namespace DataExplorer.Application.Layouts.Link.Queries

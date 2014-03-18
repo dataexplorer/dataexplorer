@@ -78,6 +78,7 @@
     <Compile Include="Core\Canvas\ICanvasRenderer.cs" />
     <Compile Include="Core\Canvas\Items\CanvasBackground.cs" />
     <Compile Include="Core\Canvas\Items\CanvasCircle.cs" />
+    <Compile Include="Core\Canvas\Items\CanvasImage.cs" />
     <Compile Include="Core\Canvas\Items\CanvasItem.cs" />
     <Compile Include="Core\Canvas\Items\CanvasLabel.cs" />
     <Compile Include="Core\Canvas\Items\CanvasLine.cs" />
@@ -93,9 +94,9 @@
     <Compile Include="Core\Converters\FriendlySemanticTypeNameConverter.cs" />
     <Compile Include="Core\Events\DialogClosedEvent.cs" />
     <Compile Include="Core\Geometry\GeometryCalculator.cs" />
-    <Compile Include="Core\Geometry\GeometryFactory.cs" />
+    <Compile Include="Core\Canvas\Factories\CanvasItemFactory.cs" />
     <Compile Include="Core\Geometry\IGeometryCalculator.cs" />
-    <Compile Include="Core\Geometry\IGeometryFactory.cs" />
+    <Compile Include="Core\Canvas\Factories\IGeometryFactory.cs" />
     <Compile Include="Core\Layout\LayoutItemViewModel.cs" />
     <Compile Include="Core\Services\CanvasToBitmapExporter.cs" />
     <Compile Include="Core\Services\ControlFinder.cs" />

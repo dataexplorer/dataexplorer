@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using DataExplorer.Application.Views.ScatterPlots;
+using DataExplorer.Presentation.Core.Canvas.Factories;
 using DataExplorer.Presentation.Core.Canvas.Items;
 using DataExplorer.Presentation.Core.Geometry;
 using DataExplorer.Presentation.Views.ScatterPlots.Renderers.Plots;
@@ -23,8 +25,9 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Renderers.Plots
         private Rect _viewExtent;
         private PlotDto _plot;
         private List<PlotDto> _plots;
-        private CanvasCircle _circle;
-        private CanvasLabel _label;
+        private CanvasCircle _canvasCircle;
+        private CanvasImage _canvasImage;
+        private CanvasLabel _canvasLabel;
 
         [SetUp]
         public void SetUp()
@@ -37,11 +40,13 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Renderers.Plots
                 X = 1d, 
                 Y = 2d, 
                 Color = new Domain.Colors.Color(0, 0, 0),
-                Label = "Test"
+                Label = "Test",
+                Image = new BitmapImage()
             };
             _plots = new List<PlotDto> { _plot };
-            _circle = new CanvasCircle();
-            _label = new CanvasLabel();
+            _canvasCircle = new CanvasCircle();
+            _canvasImage = new CanvasImage();
+            _canvasLabel = new CanvasLabel();
 
             _mockResizer = new Mock<IViewResizer>();
             _mockResizer.Setup(p => p.ResizeView(_controlSize, _viewExtent))
@@ -54,9 +59,11 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Renderers.Plots
 
             _mockFactory = new Mock<IGeometryFactory>();
             _mockFactory.Setup(p => p.CreateCircle(_plot.Id, It.IsAny<Rect>(), It.IsAny<Color>()))
-                .Returns(_circle);
+                .Returns(_canvasCircle);
+            _mockFactory.Setup(p => p.CreateImage(_plot.Id, It.IsAny<Rect>(), _plot.Image))
+                .Returns(_canvasImage);
             _mockFactory.Setup(p => p.CreateLabel(_plot.Id, It.IsAny<Point>(), _plot.Label))
-                .Returns(_label);
+                .Returns(_canvasLabel);
 
             _renderer = new PlotRenderer(
                 _mockResizer.Object,
@@ -68,15 +75,23 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Renderers.Plots
         [Test]
         public void TestRenderPlotsShouldReturnCircle()
         {
+            _plot.Image = null;
             var results = _renderer.RenderPlots(_controlSize, _viewExtent, _plots);
-            Assert.That(results, Has.Member(_circle));
+            Assert.That(results, Has.Member(_canvasCircle));
+        }
+
+        [Test]
+        public void TestRenderPlotsShouldReturnImageIfImageIsPresent()
+        {
+            var results = _renderer.RenderPlots(_controlSize, _viewExtent, _plots);
+            Assert.That(results, Has.Member(_canvasImage));
         }
 
         [Test]
         public void TestRenderPlotsShouldReturnLabel()
         {
             var results = _renderer.RenderPlots(_controlSize, _viewExtent, _plots);
-            Assert.That(results, Has.Member(_label));
+            Assert.That(results, Has.Member(_canvasLabel));
         }
 
         [Test]
@@ -84,7 +99,7 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Renderers.Plots
         {
             _plot.Label = null;
             var results = _renderer.RenderPlots(_controlSize, _viewExtent, _plots);
-            Assert.That(results, !Has.Member(_label));
+            Assert.That(results, !Has.Member(_canvasLabel));
         }
 
         [Test]
@@ -92,7 +107,7 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots.Renderers.Plots
         {
             _plot.Label = string.Empty;
             var results = _renderer.RenderPlots(_controlSize, _viewExtent, _plots);
-            Assert.That(results, !Has.Member(_label));
+            Assert.That(results, !Has.Member(_canvasLabel));
         }
     }
 }

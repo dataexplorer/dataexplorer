@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Windows.Media.Imaging;
 using DataExplorer.Domain.Colors;
 using DataExplorer.Domain.Maps;
 using DataExplorer.Domain.Rows;
@@ -61,6 +62,10 @@ namespace DataExplorer.Domain.Views.ScatterPlots
                 plot.Size = layout.SizeColumn != null
                     ? sizeMap.Map(row[layout.SizeColumn.Index]) ?? 0.0
                     : layout.UpperSize;
+
+                plot.Image = layout.ShapeColumn != null
+                    ? (BitmapImage) row[layout.ShapeColumn.Index] 
+                    : null;
 
                 plot.Label = layout.LabelColumn != null
                     ? labelMap.Map(row[layout.LabelColumn.Index])

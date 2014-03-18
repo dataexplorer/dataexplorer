@@ -9,6 +9,7 @@ using DataExplorer.Application.Legends.Colors.Factories;
 using DataExplorer.Domain.Colors;
 using DataExplorer.Domain.Maps.ColorMaps;
 using DataExplorer.Domain.Tests.Maps;
+using DataExplorer.Domain.Tests.Maps.ColorMaps;
 using NUnit.Framework;
 
 namespace DataExplorer.Application.Tests.Legends.Colors.Factories

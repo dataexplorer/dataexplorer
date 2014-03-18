@@ -12,6 +12,7 @@ using DataExplorer.Domain.Maps;
 using DataExplorer.Domain.Maps.SizeMaps;
 using DataExplorer.Domain.Tests.Columns;
 using DataExplorer.Domain.Tests.Maps;
+using DataExplorer.Domain.Tests.Maps.SizeMaps;
 using DataExplorer.Domain.Tests.Views.ScatterPlots;
 using DataExplorer.Domain.Views.ScatterPlots;
 using Moq;

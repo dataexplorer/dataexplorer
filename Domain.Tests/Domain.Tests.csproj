@@ -118,7 +118,10 @@
     <Compile Include="Maps\ColorMaps\FloatToColorMapTests.cs" />
     <Compile Include="Maps\ColorMaps\IntegerToColorMapTests.cs" />
     <Compile Include="Maps\ColorMaps\StringToColorMapTests.cs" />
-    <Compile Include="Maps\FakeAxisMap.cs" />
+    <Compile Include="Maps\AxisMaps\FakeAxisMap.cs" />
+    <Compile Include="Maps\ColorMaps\FakeColorMap.cs" />
+    <Compile Include="Maps\LabelMaps\FakeLabelMap.cs" />
+    <Compile Include="Maps\SizeMaps\FakeSizeMap.cs" />
     <Compile Include="Maps\LabelMaps\BooleanToLabelMapTests.cs" />
     <Compile Include="Maps\LabelMaps\DateTimeToLabelMapTests.cs" />
     <Compile Include="Maps\LabelMaps\FloatToLabelMapTests.cs" />

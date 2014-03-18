@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Media.Imaging;
 using DataExplorer.Domain.Colors;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Maps;
@@ -128,6 +129,20 @@ namespace DataExplorer.Domain.Tests.Views.ScatterPlots
             var results = _renderer.RenderPlots(_rows, _layout);
 
             Assert.That(results.Single().Size, Is.EqualTo(1.0d));
+        }
+
+        [Test]
+        public void TestRenderPlotsShouldRenderImageValue()
+        {
+            var image = new BitmapImage();
+
+            _rows[0][0]= image;
+
+            _layout.ShapeColumn = _column;
+
+            var results = _renderer.RenderPlots(_rows, _layout);
+
+            Assert.That(results.Single().Image, Is.EqualTo(image));
         }
 
         [Test]
