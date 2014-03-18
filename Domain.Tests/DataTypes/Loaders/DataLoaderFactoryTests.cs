@@ -15,13 +15,10 @@ namespace DataExplorer.Domain.Tests.DataTypes.Loaders
     {
         private DataLoaderFactory _factory;
         private Mock<IBitmapImageWrapper> _mockBitmapImageWrapper;
-        private string _basePath;
-
+        
         [SetUp]
         public void SetUp()
         {
-            _basePath = @"C:\DataFolder";
-
             _mockBitmapImageWrapper = new Mock<IBitmapImageWrapper>();
 
             _factory = new DataLoaderFactory(

@@ -14,6 +14,7 @@ namespace DataExplorer.Domain.Views.ScatterPlots
         private Column _sizeColumn;
         private double _lowerSize;
         private double _upperSize;
+        private Column _shapeColumn;
         private Column _labelColumn;
         private Column _linkColumn;
 
@@ -65,6 +66,12 @@ namespace DataExplorer.Domain.Views.ScatterPlots
             set { _upperSize = value; }
         }
 
+        public Column ShapeColumn
+        {
+            get { return _shapeColumn; }
+            set { _shapeColumn = value; }
+        }
+
         public Column LabelColumn
         {
             get { return _labelColumn; }
@@ -86,6 +93,7 @@ namespace DataExplorer.Domain.Views.ScatterPlots
             _sizeColumn = null;
             _lowerSize = DefaultSize;
             _upperSize = DefaultSize;
+            _shapeColumn = null;
             _labelColumn = null;
             _linkColumn = null;
         }

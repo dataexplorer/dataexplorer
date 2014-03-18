@@ -5,34 +5,25 @@ using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.Core.Commands;
 using DataExplorer.Application.Core.Events;
-using DataExplorer.Application.Layouts.General.Events;
+using DataExplorer.Application.Layouts.Base.Commands;
 using DataExplorer.Application.Views;
-using DataExplorer.Domain.Views.ScatterPlots;
 
 namespace DataExplorer.Application.Layouts.Location.Commands
 {
-    public class UnsetXAxisColumnCommandHandler : ICommandHandler<UnsetXAxisColumnCommand>
+    public class UnsetXAxisColumnCommandHandler
+       : BaseUnsetLayoutColumnCommandHandler,
+       ICommandHandler<UnsetXAxisColumnCommand>
     {
-        private readonly IViewRepository _viewRepository;
-        private readonly IEventBus _eventBus;
-
         public UnsetXAxisColumnCommandHandler(
-            IViewRepository viewRepository, 
+            IViewRepository viewRepository,
             IEventBus eventBus)
+            : base(viewRepository, eventBus)
         {
-            _viewRepository = viewRepository;
-            _eventBus = eventBus;
         }
 
         public void Execute(UnsetXAxisColumnCommand command)
         {
-            var scatterPlot = _viewRepository.Get<ScatterPlot>();
-
-            var layout = scatterPlot.GetLayout();
-
-            layout.XAxisColumn = null;
-
-            _eventBus.Raise(new LayoutChangedEvent());
+            base.Execute(layout => layout.XAxisColumn = null);
         }
     }
 }

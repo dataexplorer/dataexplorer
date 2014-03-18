@@ -65,6 +65,14 @@ namespace DataExplorer.Domain.Tests.Views.ScatterPlots
         }
 
         [Test]
+        public void TestGetSetShapeColumn()
+        {
+            _layout.ShapeColumn = _column;
+            var result = _layout.ShapeColumn;
+            Assert.That(result, Is.EqualTo(_column));
+        }
+
+        [Test]
         public void TestGetSetLabelColumn()
         {
             _layout.LabelColumn = _column;
@@ -88,6 +96,7 @@ namespace DataExplorer.Domain.Tests.Views.ScatterPlots
             _layout.ColorColumn = _column;
             _layout.ColorPalette = _colorPalette;
             _layout.SizeColumn = _column;
+            _layout.ShapeColumn = _column;
             _layout.LabelColumn = _column;
             _layout.LinkColumn = _column;
 
@@ -100,6 +109,7 @@ namespace DataExplorer.Domain.Tests.Views.ScatterPlots
             Assert.That(_layout.SizeColumn, Is.Null);
             Assert.That(_layout.LowerSize, Is.EqualTo(0.125d));
             Assert.That(_layout.UpperSize, Is.EqualTo(0.125d));
+            Assert.That(_layout.ShapeColumn, Is.Null);
             Assert.That(_layout.LabelColumn, Is.Null);
             Assert.That(_layout.LinkColumn, Is.Null);
         }

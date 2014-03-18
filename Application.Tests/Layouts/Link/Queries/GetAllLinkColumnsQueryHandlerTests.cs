@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataExplorer.Application.Columns;
-using DataExplorer.Application.Columns.Queries;
 using DataExplorer.Application.Layouts.Link.Queries;
-using DataExplorer.Domain.Columns;
+using DataExplorer.Application.Tests.Layouts.Base.Queries;
 using DataExplorer.Domain.Semantics;
 using DataExplorer.Domain.Tests.Columns;
 using Moq;
@@ -16,30 +14,14 @@ namespace DataExplorer.Application.Tests.Layouts.Link.Queries
 {
     [TestFixture]
     public class GetAllLinkColumnsQueryHandlerTests
+        : BaseGetAllLayoutColumnsQueryHandlerTests
     {
         private GetAllLinkColumnsQueryHandler _handler;
-        private Mock<IColumnRepository> _mockRepository;
-        private Mock<IColumnAdapter> _mockAdapter;
-        private List<Column> _columns;
-        private Column _column;
-        private ColumnDto _columnDto;
 
         [SetUp]
-        public void SetUp()
+        public override void SetUp()
         {
-            _columnDto = new ColumnDto();
-            _column = new ColumnBuilder()
-                .WithSemanticType(SemanticType.Uri)
-                .Build();
-            _columns = new List<Column> { _column };
-
-            _mockRepository = new Mock<IColumnRepository>();
-            _mockRepository.Setup(p => p.GetAll())
-                .Returns(_columns);
-
-            _mockAdapter = new Mock<IColumnAdapter>();
-            _mockAdapter.Setup(p => p.Adapt(_column))
-                .Returns(_columnDto);
+            base.SetUp();
 
             _handler = new GetAllLinkColumnsQueryHandler(
                 _mockRepository.Object,
@@ -47,18 +29,29 @@ namespace DataExplorer.Application.Tests.Layouts.Link.Queries
         }
 
         [Test]
-        public void TestQueryShouldReturnAllUriColumns()
+        [TestCase(SemanticType.Uri)]
+        public void TestExecuteShouldIncludeColumnTypes(SemanticType semanticType)
         {
+            var column = new ColumnBuilder()
+                .WithSemanticType(semanticType)
+                .Build();
+            base.SetUpColumn(column);
             var result = _handler.Execute(new GetAllLinkColumnsQuery());
             Assert.That(result.Single(), Is.EqualTo(_columnDto));
         }
 
         [Test]
-        public void TestQueryShouldNotReturnAnyNonUriColumns()
+        [TestCase(SemanticType.Category)]
+        [TestCase(SemanticType.Image)]
+        [TestCase(SemanticType.Measure)]
+        [TestCase(SemanticType.Name)]
+        [TestCase(SemanticType.Unknown)]
+        public void TestExecuteShouldExcludeColumnTypes(SemanticType semanticType)
         {
-            _columns[0] = new ColumnBuilder()
-                .WithSemanticType(SemanticType.Unknown)
+            var column = new ColumnBuilder()
+                .WithSemanticType(semanticType)
                 .Build();
+            base.SetUpColumn(column);
             var result = _handler.Execute(new GetAllLinkColumnsQuery());
             Assert.That(result, Is.Empty);
         }

@@ -1,11 +1,6 @@
 ﻿using System;
-using DataExplorer.Application.Columns;
 using DataExplorer.Application.Layouts.Color.Queries;
-using DataExplorer.Application.Views;
-using DataExplorer.Domain.Columns;
-using DataExplorer.Domain.Tests.Columns;
-using DataExplorer.Domain.Tests.Views.ScatterPlots;
-using DataExplorer.Domain.Views.ScatterPlots;
+using DataExplorer.Application.Tests.Layouts.Base.Queries;
 using Moq;
 using NUnit.Framework;
 
@@ -13,34 +8,16 @@ namespace DataExplorer.Application.Tests.Layouts.Color.Queries
 {
     [TestFixture]
     public class GetColorColumnQueryHandlerTests
+        : BaseGetLayoutColumnQueryHandlerTests
     {
         private GetColorColumnQueryHandler _handler;
-        private Mock<IViewRepository> _mockRepository;
-        private Mock<IColumnAdapter> _mockAdapter;
-        private ScatterPlot _scatterPlot;
-        private ScatterPlotLayout _layout;
-        private Column _column;
-        private ColumnDto _columnDto;
 
         [SetUp]
-        public void SetUp()
+        public override void SetUp()
         {
-            _columnDto = new ColumnDto();
-            _column = new ColumnBuilder().Build();
-            _layout = new ScatterPlotLayoutBuilder()
-                .WithColorColumn(_column)
-                .Build();
-            _scatterPlot = new ScatterPlotBuilder()
-                .WithLayout(_layout)
-                .Build();
-            
-            _mockRepository = new Mock<IViewRepository>();
-            _mockRepository.Setup(p => p.Get<ScatterPlot>())
-                .Returns(_scatterPlot);
+            base.SetUp();
 
-            _mockAdapter = new Mock<IColumnAdapter>();
-            _mockAdapter.Setup(p => p.Adapt(_column))
-                .Returns(_columnDto);
+            _layout.ColorColumn = _column;
 
             _handler = new GetColorColumnQueryHandler(
                 _mockRepository.Object,
@@ -48,7 +25,7 @@ namespace DataExplorer.Application.Tests.Layouts.Color.Queries
         }
 
         [Test]
-        public void TestExecuteShouldReturnColorColumn()
+        public void TestQueryShouldReturnColumnDto()
         {
             var result = _handler.Execute(new GetColorColumnQuery());
             Assert.That(result, Is.EqualTo(_columnDto));

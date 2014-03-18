@@ -6,35 +6,23 @@ using System.Threading.Tasks;
 using DataExplorer.Application.Columns;
 using DataExplorer.Application.Core.Queries;
 using DataExplorer.Application.Views;
-using DataExplorer.Domain.Views.ScatterPlots;
 
 namespace DataExplorer.Application.Layouts.Size.Queries
 {
-    public class GetSizeColumnQueryHandler 
-        : IQueryHandler<GetSizeColumnQuery, ColumnDto>
+    public class GetSizeColumnQueryHandler
+        : BaseGetLayoutColumnQueryHandler,
+        IQueryHandler<GetSizeColumnQuery, ColumnDto>
     {
-        private readonly IViewRepository _repository;
-        private readonly IColumnAdapter _adapter;
-
         public GetSizeColumnQueryHandler(
-            IViewRepository repository, 
+            IViewRepository repository,
             IColumnAdapter adapter)
+            : base(repository, adapter)
         {
-            _repository = repository;
-            _adapter = adapter;
         }
 
-        public ColumnDto Execute(GetSizeColumnQuery getSizeColumnQuery)
+        public ColumnDto Execute(GetSizeColumnQuery query)
         {
-            var scatterPlot = _repository.Get<ScatterPlot>();
-
-            var layout = scatterPlot.GetLayout();
-
-            var column = layout.SizeColumn;
-
-            var columnDto = _adapter.Adapt(column);
-
-            return columnDto;
+            return base.Execute(p => p.SizeColumn);
         }
     }
 }
