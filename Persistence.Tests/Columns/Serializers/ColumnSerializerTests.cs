@@ -6,7 +6,9 @@ using DataExplorer.Domain.Rows;
 using DataExplorer.Domain.Semantics;
 using DataExplorer.Domain.Tests.Columns;
 using DataExplorer.Persistence.Columns.Serializers;
+using DataExplorer.Persistence.Common.Serializers;
 using DataExplorer.Persistence.Projects;
+using DataExplorer.Persistence.Tests.Common.Serializers;
 using DataExplorer.Persistence.Tests.Projects;
 using NUnit.Framework;
 
@@ -19,8 +21,7 @@ namespace DataExplorer.Persistence.Tests.Columns.Serializers
         private Column _column;
         private List<Row> _rows; 
         private XElement _xColumn;
-
-
+        
         [SetUp]
         public void SetUp()
         {
@@ -28,7 +29,7 @@ namespace DataExplorer.Persistence.Tests.Columns.Serializers
                 .WithId(1)
                 .WithIndex(0)
                 .WithName("Test")
-                .WithDataType(typeof(object))
+                .WithDataType(typeof(Boolean))
                 .WithSemanticType(SemanticType.Unknown)
                 .Build();
 
@@ -38,26 +39,27 @@ namespace DataExplorer.Persistence.Tests.Columns.Serializers
                 new XElement("id", _column.Id),
                 new XElement("index", _column.Index),
                 new XElement("name", _column.Name),
-                new XElement("data-type", _column.DataType),
+                new XElement("data-type", "Boolean"),
                 new XElement("semantic-type", _column.SemanticType));
 
             _serializer = new ColumnSerializer(
-                new PropertySerializer());
+                new PropertySerializer(
+                    new DataTypeSerializer()));
         }
 
         [Test]
-        public void TestSerializeShouldSerializeId()
+        public void TestSerializeShouldSerializeColumn()
         {
             var result = _serializer.Serialize(_column);
             AssertValue(result, "id", _column.Id.ToString());
             AssertValue(result, "index", _column.Index.ToString());
             AssertValue(result, "name", _column.Name);
-            AssertValue(result, "data-type", _column.DataType.ToString());
+            AssertValue(result, "data-type", "Boolean");
             AssertValue(result, "semantic-type", _column.SemanticType.ToString());
         }
         
         [Test]
-        public void TestDeserializeShouldDeserializeId()
+        public void TestDeserializeShouldDeserializeColumn()
         {
             var result = _serializer.Deserialize(_xColumn, _rows);
             Assert.That(result.Id, Is.EqualTo(_column.Id));

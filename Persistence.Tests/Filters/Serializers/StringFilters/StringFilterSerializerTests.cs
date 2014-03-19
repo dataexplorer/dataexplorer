@@ -3,8 +3,10 @@ using System.Xml.Linq;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Filters;
 using DataExplorer.Domain.Tests.Columns;
+using DataExplorer.Persistence.Common.Serializers;
 using DataExplorer.Persistence.Filters.Serializers.StringFilters;
 using DataExplorer.Persistence.Projects;
+using DataExplorer.Persistence.Tests.Common.Serializers;
 using DataExplorer.Persistence.Tests.Projects;
 using NUnit.Framework;
 
@@ -27,13 +29,13 @@ namespace DataExplorer.Persistence.Tests.Filters.Serializers.StringFilters
 
             _filter = new StringFilter(_column, "test", true);
 
-            _xFilter = new XElement("integer-filter",
+            _xFilter = new XElement("string-filter",
                 new XElement("column-id", 1),
                 new XElement("value", "test"),
                 new XElement("include-null", true));
             
             _serializer = new StringFilterSerializer(
-                new PropertySerializer());
+                new PropertySerializer(null));
         }
 
         [Test]

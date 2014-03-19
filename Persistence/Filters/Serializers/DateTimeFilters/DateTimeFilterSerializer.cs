@@ -4,6 +4,7 @@ using System.Linq;
 using System.Xml.Linq;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Filters;
+using DataExplorer.Persistence.Common.Serializers;
 using DataExplorer.Persistence.Projects;
 
 namespace DataExplorer.Persistence.Filters.Serializers.DateTimeFilters

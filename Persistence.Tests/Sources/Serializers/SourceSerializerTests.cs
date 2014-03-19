@@ -1,7 +1,9 @@
 ﻿using System.Xml.Linq;
 using DataExplorer.Domain.Sources;
+using DataExplorer.Persistence.Common.Serializers;
 using DataExplorer.Persistence.Projects;
 using DataExplorer.Persistence.Sources.Serializers;
+using DataExplorer.Persistence.Tests.Common.Serializers;
 using DataExplorer.Persistence.Tests.Projects;
 using NUnit.Framework;
 
@@ -23,7 +25,7 @@ namespace DataExplorer.Persistence.Tests.Sources.Serializers
                 new XElement("file-path", @"C:\Data.csv"));
             
             _serializer = new SourceSerializer(
-                new PropertySerializer());
+                new PropertySerializer(null));
         }
 
         [Test]

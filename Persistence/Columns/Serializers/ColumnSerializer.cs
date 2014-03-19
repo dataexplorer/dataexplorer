@@ -6,7 +6,7 @@ using System.Xml.Linq;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Rows;
 using DataExplorer.Domain.Semantics;
-using DataExplorer.Persistence.Projects;
+using DataExplorer.Persistence.Common.Serializers;
 
 namespace DataExplorer.Persistence.Columns.Serializers
 {
@@ -22,7 +22,8 @@ namespace DataExplorer.Persistence.Columns.Serializers
         private const string SemanticTypeTag = "semantic-type";
 
 
-        public ColumnSerializer(IPropertySerializer propertySerializer) 
+        public ColumnSerializer(
+            IPropertySerializer propertySerializer) 
             : base(propertySerializer)
         {
             

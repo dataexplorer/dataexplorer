@@ -8,6 +8,7 @@ using DataExplorer.Persistence.Filters.Serializers;
 using DataExplorer.Persistence.Filters.Serializers.BooleanFilters;
 using DataExplorer.Persistence.Filters.Serializers.DateTimeFilters;
 using DataExplorer.Persistence.Filters.Serializers.FloatFilters;
+using DataExplorer.Persistence.Filters.Serializers.ImageFilters;
 using DataExplorer.Persistence.Filters.Serializers.IntegerFilters;
 using DataExplorer.Persistence.Filters.Serializers.NullFilters;
 using DataExplorer.Persistence.Filters.Serializers.StringFilters;
@@ -26,6 +27,7 @@ namespace DataExplorer.Persistence.Tests.Filters.Serializers
         private Mock<IFloatFilterSerializer> _mockFloatSerializer;
         private Mock<IIntegerFilterSerializer> _mockIntegerSerializer;
         private Mock<IStringFilterSerializer> _mockStringSerializer;
+        private Mock<IImageFilterSerializer> _mockImageSerializer;
         private Column _column;
         private List<Column> _columns;
 
@@ -41,6 +43,7 @@ namespace DataExplorer.Persistence.Tests.Filters.Serializers
             _mockFloatSerializer = new Mock<IFloatFilterSerializer>();
             _mockIntegerSerializer = new Mock<IIntegerFilterSerializer>();
             _mockStringSerializer = new Mock<IStringFilterSerializer>();
+            _mockImageSerializer = new Mock<IImageFilterSerializer>();
 
             _serializer = new FilterSerializer(
                 _mockNullSerializer.Object,
@@ -48,7 +51,8 @@ namespace DataExplorer.Persistence.Tests.Filters.Serializers
                 _mockDateTimeSerializer.Object,
                 _mockFloatSerializer.Object,
                 _mockIntegerSerializer.Object,
-                _mockStringSerializer.Object);
+                _mockStringSerializer.Object,
+                _mockImageSerializer.Object);
         }
 
         [Test]
@@ -112,6 +116,16 @@ namespace DataExplorer.Persistence.Tests.Filters.Serializers
         }
 
         [Test]
+        public void TestSerializeShouldSerializeImageFilters()
+        {
+            var filter = new ImageFilter(_column, true, true);
+            var xFilter = new XElement("image-filter");
+            _mockImageSerializer.Setup(p => p.Serialize(filter)).Returns(xFilter);
+            var result = _serializer.Serialize(filter);
+            Assert.That(result, Is.EqualTo(xFilter));
+        }
+
+        [Test]
         public void TestDeserializeShouldDeserializeNullFilters()
         {
             var xFilter = new XElement("null-filter");
@@ -167,6 +181,16 @@ namespace DataExplorer.Persistence.Tests.Filters.Serializers
             var xFilter = new XElement("string-filter");
             var filter = new StringFilter(_column, string.Empty, true);
             _mockStringSerializer.Setup(p => p.Deserialize(xFilter, _columns)).Returns(filter);
+            var result = _serializer.Deserialize(xFilter, _columns);
+            Assert.That(result, Is.EqualTo(filter));
+        }
+
+        [Test]
+        public void TestDeserializeShouldDeserializeImageFilters()
+        {
+            var xFilter = new XElement("image-filter");
+            var filter = new ImageFilter(_column, true, true);
+            _mockImageSerializer.Setup(p => p.Deserialize(xFilter, _columns)).Returns(filter);
             var result = _serializer.Deserialize(xFilter, _columns);
             Assert.That(result, Is.EqualTo(filter));
         }

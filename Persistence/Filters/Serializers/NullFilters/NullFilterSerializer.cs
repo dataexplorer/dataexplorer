@@ -4,7 +4,7 @@ using System.Linq;
 using System.Xml.Linq;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Filters;
-using DataExplorer.Persistence.Projects;
+using DataExplorer.Persistence.Common.Serializers;
 
 namespace DataExplorer.Persistence.Filters.Serializers.NullFilters
 {

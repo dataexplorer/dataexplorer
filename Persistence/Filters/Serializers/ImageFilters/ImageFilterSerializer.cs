@@ -1,51 +1,51 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Xml.Linq;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Filters;
 using DataExplorer.Persistence.Common.Serializers;
-using DataExplorer.Persistence.Projects;
 
-namespace DataExplorer.Persistence.Filters.Serializers.StringFilters
+namespace DataExplorer.Persistence.Filters.Serializers.ImageFilters
 {
-    public class StringFilterSerializer 
+    public class ImageFilterSerializer 
         : BaseSerializer,
-        IStringFilterSerializer
+        IImageFilterSerializer
     {
-        private const string FilterTag = "string-filter";
+        private const string FilterTag = "image-filter";
         private const string ColumnIdTag = "column-id";
-        private const string ValueTag = "value";
         private const string IncludeNullTag = "include-null";
-        
-        public StringFilterSerializer(IPropertySerializer propertySerializer) 
+        private const string IncludeNotNullTag = "include-not-null";
+
+        public ImageFilterSerializer(PropertySerializer propertySerializer) 
             : base(propertySerializer)
         {
-            
         }
 
-        public XElement Serialize(StringFilter filter)
+        public XElement Serialize(ImageFilter filter)
         {
             var xFilter = new XElement(FilterTag);
 
             AddColumn(xFilter, ColumnIdTag, filter.Column);
 
-            AddProperty(xFilter, ValueTag, filter.Value);
-
             AddProperty(xFilter, IncludeNullTag, filter.IncludeNull);
-            
+
+            AddProperty(xFilter, IncludeNotNullTag, filter.IncludeNotNull);
+
             return xFilter;
         }
-        
-        public StringFilter Deserialize(XElement xFilter, List<Column> columns)
+
+        public ImageFilter Deserialize(XElement xFilter, List<Column> columns)
         {
             var column = GetColumn(xFilter, ColumnIdTag, columns);
 
-            var value = GetProperty<string>(xFilter, ValueTag);
-
             var includeNull = GetProperty<bool>(xFilter, IncludeNullTag);
 
-            return new StringFilter(column, value, includeNull);
+            var includeNotNull = GetProperty<bool>(xFilter, IncludeNotNullTag);
+
+            return new ImageFilter(column, includeNull, includeNotNull);
         }
     }
 }

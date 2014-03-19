@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 using System.Xml.Linq;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Rows;
+using DataExplorer.Persistence.Common.Serializers;
 using DataExplorer.Persistence.Projects;
 
 namespace DataExplorer.Persistence.Rows.Serializers

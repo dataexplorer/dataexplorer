@@ -6,6 +6,7 @@ using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Tests.Colors;
 using DataExplorer.Domain.Tests.Columns;
 using DataExplorer.Domain.Views.ScatterPlots;
+using DataExplorer.Persistence.Common.Serializers;
 using DataExplorer.Persistence.Projects;
 using DataExplorer.Persistence.Views.Serializers.ScatterPlots;
 using Moq;
@@ -25,6 +26,7 @@ namespace DataExplorer.Persistence.Tests.Views.Serializers.ScatterPlots
         private Column _colorColumn;
         private ColorPalette _colorPalette;
         private Column _sizeColumn;
+        private Column _shapeColumn;
         private Column _labelColumn;
         private Column _linkColumn;
         private XElement _xLayout;
@@ -37,8 +39,9 @@ namespace DataExplorer.Persistence.Tests.Views.Serializers.ScatterPlots
             _colorColumn = new ColumnBuilder().WithId(3).Build();
             _colorPalette = new ColorPaletteBuilder().WithName("Pastel 1").Build();
             _sizeColumn = new ColumnBuilder().WithId(4).Build();
-            _labelColumn = new ColumnBuilder().WithId(5).Build();
-            _linkColumn = new ColumnBuilder().WithId(6).Build();
+            _shapeColumn = new ColumnBuilder().WithId(5).Build();
+            _labelColumn = new ColumnBuilder().WithId(6).Build();
+            _linkColumn = new ColumnBuilder().WithId(7).Build();
 
             _columns = new List<Column>
             {
@@ -47,6 +50,7 @@ namespace DataExplorer.Persistence.Tests.Views.Serializers.ScatterPlots
                 _colorColumn, 
                 _sizeColumn,
                 _labelColumn,
+                _shapeColumn,
                 _linkColumn
             };
 
@@ -59,6 +63,7 @@ namespace DataExplorer.Persistence.Tests.Views.Serializers.ScatterPlots
                 SizeColumn = _sizeColumn,
                 LowerSize = 0.1d,
                 UpperSize = 0.9d,
+                ShapeColumn = _shapeColumn,
                 LabelColumn = _labelColumn,
                 LinkColumn = _linkColumn
             };
@@ -71,15 +76,16 @@ namespace DataExplorer.Persistence.Tests.Views.Serializers.ScatterPlots
                 new XElement("size-column-id", 4),
                 new XElement("lower-size", 0.1d),
                 new XElement("upper-size", 0.9d),
-                new XElement("label-column-id", 5),
-                new XElement("link-column-id", 6));
+                new XElement("shape-column-id", 5),
+                new XElement("label-column-id", 6),
+                new XElement("link-column-id", 7));
            
             _mockColorPaletteFactory = new Mock<IColorPaletteFactory>();
             _mockColorPaletteFactory.Setup(p => p.GetColorPalette("Pastel 1"))
                 .Returns(_colorPalette);
 
             _serializer = new ScatterPlotLayoutSerializer(
-                new PropertySerializer(),
+                new PropertySerializer(null),
                 _mockColorPaletteFactory.Object);
         }
 
@@ -94,8 +100,9 @@ namespace DataExplorer.Persistence.Tests.Views.Serializers.ScatterPlots
             AssertValue(result, "size-column-id", "4");
             AssertValue(result, "lower-size", "0.1");
             AssertValue(result, "upper-size", "0.9");
-            AssertValue(result, "label-column-id", "5");
-            AssertValue(result, "link-column-id", "6");
+            AssertValue(result, "shape-column-id", "5");
+            AssertValue(result, "label-column-id", "6");
+            AssertValue(result, "link-column-id", "7");
         }
 
         private void AssertValue(XElement result, string name, object value)
@@ -115,6 +122,7 @@ namespace DataExplorer.Persistence.Tests.Views.Serializers.ScatterPlots
             Assert.That(result.SizeColumn, Is.EqualTo(_sizeColumn));
             Assert.That(result.LowerSize, Is.EqualTo(0.1d));
             Assert.That(result.UpperSize, Is.EqualTo(0.9d));
+            Assert.That(result.ShapeColumn, Is.EqualTo(_shapeColumn));
             Assert.That(result.LabelColumn, Is.EqualTo(_labelColumn));
             Assert.That(result.LinkColumn, Is.EqualTo(_linkColumn));
         }

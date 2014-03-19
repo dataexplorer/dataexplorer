@@ -2,16 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using System.Windows.Media.Imaging;
 using System.Xml.Linq;
 
-namespace DataExplorer.Persistence.Projects
+namespace DataExplorer.Persistence.Common.Serializers
 {
     public class PropertySerializer : IPropertySerializer
     {
+        private readonly IDataTypeSerializer _dataTypeSerializer;
+
         private const string PropertyCannotBeDeserialized =
             "Property cannot be deserialized because the data type is not recognized.";
 
         private const string ItemName = "item";
+
+        public PropertySerializer(IDataTypeSerializer dataTypeSerializer)
+        {
+            _dataTypeSerializer = dataTypeSerializer;
+        }
 
         public XElement SerializeList<T>(string listName, List<T> values)
         {
@@ -29,6 +37,9 @@ namespace DataExplorer.Persistence.Projects
 
         public XElement Serialize<T>(string name, T value)
         {
+            if (typeof (T) == typeof (Type))
+                return _dataTypeSerializer.Serialize(name, value as Type);
+
             return new XElement(name, value);
         }
 
@@ -91,12 +102,17 @@ namespace DataExplorer.Persistence.Projects
             if (type == typeof(Rect))
                 return DeserializeRect(xProperty);
 
-            if (type == typeof(Type))
-                return Type.GetType(xProperty.Value);
-
             if (type.BaseType == typeof (Enum))
                 return Enum.Parse(type, xProperty.Value);
-            
+
+            if (type == typeof (BitmapImage))
+                return string.IsNullOrEmpty(xProperty.Value) 
+                    ? null 
+                    : new BitmapImage(new Uri(xProperty.Value));
+
+            if (type == typeof(Type))
+                return _dataTypeSerializer.Deserialize(xProperty);
+
             throw new ArgumentException(PropertyCannotBeDeserialized);
         }
 

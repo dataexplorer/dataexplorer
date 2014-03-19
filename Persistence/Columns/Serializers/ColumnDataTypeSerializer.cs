@@ -2,20 +2,28 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
+using DataExplorer.Persistence.Common.Serializers;
 
 namespace DataExplorer.Persistence.Columns.Serializers
 {
     public class ColumnDataTypeSerializer : IColumnDataTypeSerializer
     {
+        private readonly IDataTypeSerializer _dataTypeSerializer;
+
+        public ColumnDataTypeSerializer(IDataTypeSerializer dataTypeSerializer)
+        {
+            _dataTypeSerializer = dataTypeSerializer;
+        }
+
         public List<Type> Deserialize(XElement xColumnSet)
         {
             var xColumns = xColumnSet.Elements("column");
 
             var xTypes = xColumns.Select(p => p.Element("data-type"));
 
-            var types = xTypes.Select(p => Type.GetType(p.Value));
+            var types = xTypes.Select(p => _dataTypeSerializer.Deserialize(p));
 
-            var nullableTypes = types.Select(GetNullableType);
+            var nullableTypes = types.Select(p => GetNullableType(p));
 
             return nullableTypes.ToList();
         }
@@ -34,10 +42,7 @@ namespace DataExplorer.Persistence.Columns.Serializers
             if (type == typeof(Int32))
                 return typeof(Int32?);
 
-            if (type == typeof(String))
-                return typeof(String);
-
-            throw new ArgumentException("Type cannot be deserialized because it has no nullable equivalent.");
+            return type;
         }
     }
 }

@@ -4,8 +4,10 @@ using System.Xml.Linq;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Filters;
 using DataExplorer.Domain.Tests.Columns;
+using DataExplorer.Persistence.Common.Serializers;
 using DataExplorer.Persistence.Filters.Serializers.DateTimeFilters;
 using DataExplorer.Persistence.Projects;
+using DataExplorer.Persistence.Tests.Common.Serializers;
 using DataExplorer.Persistence.Tests.Projects;
 using NUnit.Framework;
 
@@ -35,7 +37,7 @@ namespace DataExplorer.Persistence.Tests.Filters.Serializers.DateTimeFilters
                 new XElement("include-null", true));
            
             _serializer = new DateTimeFilterSerializer(
-                new PropertySerializer());
+                new PropertySerializer(null));
         }
 
         [Test]

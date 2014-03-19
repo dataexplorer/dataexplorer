@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Xml.Linq;
 
-namespace DataExplorer.Persistence.Projects
+namespace DataExplorer.Persistence.Common.Serializers
 {
     public interface IPropertySerializer
     {

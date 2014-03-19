@@ -3,8 +3,10 @@ using System.Xml.Linq;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Filters;
 using DataExplorer.Domain.Tests.Columns;
+using DataExplorer.Persistence.Common.Serializers;
 using DataExplorer.Persistence.Filters.Serializers.NullFilters;
 using DataExplorer.Persistence.Projects;
+using DataExplorer.Persistence.Tests.Common.Serializers;
 using DataExplorer.Persistence.Tests.Projects;
 using NUnit.Framework;
 
@@ -30,7 +32,7 @@ namespace DataExplorer.Persistence.Tests.Filters.Serializers.NullFilters
                 new XElement("column-id", _column.Id));
             
             _serializer = new NullFilterSerializer(
-                new PropertySerializer());
+                new PropertySerializer(null));
         }
 
         [Test]

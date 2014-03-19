@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Tests.Columns;
+using DataExplorer.Persistence.Common.Serializers;
 using DataExplorer.Persistence.Projects;
 using Moq;
 using NUnit.Framework;

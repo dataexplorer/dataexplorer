@@ -5,6 +5,7 @@ using System.Windows;
 using System.Xml.Linq;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Views.ScatterPlots;
+using DataExplorer.Persistence.Common.Serializers;
 using DataExplorer.Persistence.Projects;
 
 namespace DataExplorer.Persistence.Views.Serializers.ScatterPlots

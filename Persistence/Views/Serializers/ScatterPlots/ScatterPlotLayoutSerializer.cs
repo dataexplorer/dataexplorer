@@ -5,6 +5,7 @@ using System.Xml.Linq;
 using DataExplorer.Domain.Colors;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Views.ScatterPlots;
+using DataExplorer.Persistence.Common.Serializers;
 using DataExplorer.Persistence.Projects;
 
 namespace DataExplorer.Persistence.Views.Serializers.ScatterPlots
@@ -21,6 +22,7 @@ namespace DataExplorer.Persistence.Views.Serializers.ScatterPlots
         private const string SizeColumnIdTag = "size-column-id";
         private const string LowerSizeTag = "lower-size";
         private const string UpperSizeTag = "upper-size";
+        private const string ShapeColumnIdTag = "shape-column-id";
         private const string LabelColumnIdTag = "label-column-id";
         private const string LinkColumnIdTag = "link-column-id";
 
@@ -52,6 +54,8 @@ namespace DataExplorer.Persistence.Views.Serializers.ScatterPlots
 
             AddProperty(xLayout, UpperSizeTag, layout.UpperSize);
 
+            AddColumn(xLayout, ShapeColumnIdTag, layout.ShapeColumn);
+
             AddColumn(xLayout, LabelColumnIdTag, layout.LabelColumn);
 
             AddColumn(xLayout, LinkColumnIdTag, layout.LinkColumn);
@@ -77,6 +81,8 @@ namespace DataExplorer.Persistence.Views.Serializers.ScatterPlots
 
             var upperSize = GetProperty<double>(xLayout, UpperSizeTag);
 
+            var shapeColumn = GetColumn(xLayout, ShapeColumnIdTag, columns);
+            
             var labelColumn = GetColumn(xLayout, LabelColumnIdTag, columns);
 
             var linkColumn = GetColumn(xLayout, LinkColumnIdTag, columns);
@@ -90,6 +96,7 @@ namespace DataExplorer.Persistence.Views.Serializers.ScatterPlots
                 SizeColumn = sizeColumn,
                 LowerSize = lowerSize,
                 UpperSize = upperSize,
+                ShapeColumn = shapeColumn,
                 LabelColumn = labelColumn,
                 LinkColumn = linkColumn
             };

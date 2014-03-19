@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using System.Xml.Linq;
 using DataExplorer.Domain.Semantics;
-using DataExplorer.Persistence.Projects;
+using DataExplorer.Persistence.Common.Serializers;
+using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Persistence.Tests.Projects
+namespace DataExplorer.Persistence.Tests.Common.Serializers
 {
     [TestFixture]
     public class PropertySerializerTests
@@ -19,7 +21,8 @@ namespace DataExplorer.Persistence.Tests.Projects
         {
             _name = "PropertyName";
 
-            _serializer = new PropertySerializer();
+            _serializer = new PropertySerializer(
+                new DataTypeSerializer());
         }
 
         [Test]
@@ -80,17 +83,24 @@ namespace DataExplorer.Persistence.Tests.Projects
         }
 
         [Test]
-        public void TestSerializeShouldSerializeType()
-        {
-            var result = _serializer.Serialize(_name, typeof(object));
-            Assert.That(result.Value, Is.EqualTo("System.Object"));
-        }
-
-        [Test]
         public void TestSerializeShouldSerializeEnum()
         {
             var result = _serializer.Serialize(_name, SemanticType.Measure);
             Assert.That(result.Value, Is.EqualTo("Measure"));
+        }
+
+        [Test]
+        public void TestSerializeShouldSerializeRect()
+        {
+            var result = _serializer.Serialize(_name, new Rect(1, 2, 3, 4));
+            Assert.That(result.Value, Is.EqualTo("1,2,3,4"));
+        }
+
+        [Test]
+        public void TestSerializeShouldSerializeType()
+        {
+            var result = _serializer.Serialize(_name, typeof(Boolean));
+            Assert.That(result.Value, Is.EqualTo("Boolean"));
         }
 
         [Test]
@@ -133,15 +143,23 @@ namespace DataExplorer.Persistence.Tests.Projects
         }
 
         [Test]
-        public void TestDeserializeShouldDeserializeType()
+        public void TestDeserializeShouldDeserializeRect()
         {
-            AssertDeserialization(typeof(object), typeof(Type));
+            AssertDeserialization(new Rect(1, 2, 3, 4), typeof(Rect));
         }
 
         [Test]
         public void TestDeserializeShouldDeserializeEnum()
         {
             AssertDeserialization(SemanticType.Measure, typeof(SemanticType));
+        }
+
+        [Test]
+        public void TestDeserializeShouldDeserializeType()
+        {
+            var xProperty = new XElement("Name", "Boolean");
+            var result = _serializer.Deserialize(xProperty, typeof(Type));
+            Assert.That(result, Is.EqualTo(typeof(Boolean)));
         }
 
         private void AssertDeserialization(object value, Type type)

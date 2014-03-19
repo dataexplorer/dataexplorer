@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Xml.Linq;
 using DataExplorer.Domain.Sources;
+using DataExplorer.Persistence.Common.Serializers;
 using DataExplorer.Persistence.Projects;
 
 namespace DataExplorer.Persistence.Sources.Serializers

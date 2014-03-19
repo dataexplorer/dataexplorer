@@ -6,6 +6,7 @@ using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Rows;
 using DataExplorer.Domain.Tests.Columns;
 using DataExplorer.Domain.Tests.Rows;
+using DataExplorer.Persistence.Common.Serializers;
 using DataExplorer.Persistence.Projects;
 using DataExplorer.Persistence.Rows.Serializers;
 using NUnit.Framework;
@@ -42,7 +43,7 @@ namespace DataExplorer.Persistence.Tests.Rows.Serializers
                     new XElement("column-1", "Field 1")));
 
             _serializer = new RowSerializer(
-                new PropertySerializer());
+                new PropertySerializer(null));
         }
 
         [Test]

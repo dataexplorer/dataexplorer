@@ -3,7 +3,7 @@ using System.Linq;
 using System.Xml.Linq;
 using NUnit.Framework;
 
-namespace DataExplorer.Persistence.Tests.Projects
+namespace DataExplorer.Persistence.Tests.Common.Serializers
 {
     public class SerializerTests
     {
