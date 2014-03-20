@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Windows;
+using System.Windows.Media.Imaging;
 using System.Xml.Linq;
 using DataExplorer.Domain.Semantics;
 using DataExplorer.Persistence.Common.Serializers;
@@ -83,6 +87,23 @@ namespace DataExplorer.Persistence.Tests.Common.Serializers
         }
 
         [Test]
+        public void TestSerializeShouldSerializeNullImage()
+        {
+            var result = _serializer.Serialize(_name, (BitmapImage) null);
+            Assert.That(result.Value, Is.Empty);
+        }
+
+        [Test]
+        public void TestSerializeShouldSerializeImage()
+        {
+            var image = CreateImage();
+            var result = _serializer.Serialize("Name", image);
+            var expected = _serializer.Deserialize(result, typeof(BitmapImage));
+            Assert.That(((BitmapImage) expected).PixelHeight, Is.EqualTo(image.PixelHeight));
+            Assert.That(((BitmapImage) expected).PixelWidth, Is.EqualTo(image.PixelWidth));
+        }
+
+        [Test]
         public void TestSerializeShouldSerializeEnum()
         {
             var result = _serializer.Serialize(_name, SemanticType.Measure);
@@ -143,6 +164,24 @@ namespace DataExplorer.Persistence.Tests.Common.Serializers
         }
 
         [Test]
+        public void TestDeserializeShouldDeserializeNullImage()
+        {
+            var xProperty = new XElement("Name", string.Empty);
+            var result = _serializer.Deserialize(xProperty, typeof(BitmapImage));
+            Assert.That(result, Is.Null);
+        }
+
+        [Test]
+        public void TestDeserializeShouldDeserializeImage()
+        {
+            var image = CreateImage();
+            var xProperty = _serializer.Serialize("Name", image);
+            var result = _serializer.Deserialize(xProperty, typeof(BitmapImage));
+            Assert.That(((BitmapImage) result).PixelHeight, Is.EqualTo(image.PixelHeight));
+            Assert.That(((BitmapImage)result).PixelWidth, Is.EqualTo(image.PixelWidth));
+        }
+
+        [Test]
         public void TestDeserializeShouldDeserializeRect()
         {
             AssertDeserialization(new Rect(1, 2, 3, 4), typeof(Rect));
@@ -167,6 +206,20 @@ namespace DataExplorer.Persistence.Tests.Common.Serializers
             var xProperty = new XElement("Name", value);
             var result = _serializer.Deserialize(xProperty, type);
             Assert.That(result, Is.EqualTo(value));
+        }
+
+        private BitmapImage CreateImage()
+        {
+            var bitmap = new Bitmap(128, 128);
+            var stream = new MemoryStream();
+            bitmap.Save(stream, ImageFormat.Bmp);
+
+            var image = new BitmapImage();
+            image.BeginInit();
+            image.StreamSource = stream;
+            image.EndInit();
+
+            return image;
         }
     }
 }

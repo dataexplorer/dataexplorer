@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Media.Imaging;
@@ -37,10 +38,34 @@ namespace DataExplorer.Persistence.Common.Serializers
 
         public XElement Serialize<T>(string name, T value)
         {
+            if (value is BitmapImage)
+                return SerializeImage(name, value as BitmapImage);
+
             if (typeof (T) == typeof (Type))
                 return _dataTypeSerializer.Serialize(name, value as Type);
 
             return new XElement(name, value);
+        }
+
+        private XElement SerializeImage(string name, BitmapImage image)
+        {
+            if (image == null)
+                return new XElement(name, string.Empty);
+
+            var encoder = new PngBitmapEncoder();
+
+            encoder.Frames.Add(BitmapFrame.Create(image));
+            
+            using (var stream = new MemoryStream())
+            {
+                encoder.Save(stream);
+            
+                var bytes = stream.ToArray();
+                
+                var base64 = Convert.ToBase64String(bytes);
+
+                return new XElement(name, base64);
+            }
         }
 
         public List<T> DeserializeList<T>(XElement xProperty)
@@ -102,13 +127,12 @@ namespace DataExplorer.Persistence.Common.Serializers
             if (type == typeof(Rect))
                 return DeserializeRect(xProperty);
 
+            if (type == typeof (BitmapImage))
+                return DeserializeImage(xProperty);
+
             if (type.BaseType == typeof (Enum))
                 return Enum.Parse(type, xProperty.Value);
 
-            if (type == typeof (BitmapImage))
-                return string.IsNullOrEmpty(xProperty.Value) 
-                    ? null 
-                    : new BitmapImage(new Uri(xProperty.Value));
 
             if (type == typeof(Type))
                 return _dataTypeSerializer.Deserialize(xProperty);
@@ -126,6 +150,26 @@ namespace DataExplorer.Persistence.Common.Serializers
             var rect = new Rect(values[0], values[1], values[2], values[3]);
 
             return rect;
+        }
+
+        private BitmapImage DeserializeImage(XElement xProperty)
+        {
+            if (string.IsNullOrEmpty(xProperty.Value))
+                return null;
+
+            var bytes = Convert.FromBase64String(xProperty.Value);
+
+            var image = new BitmapImage();
+            
+            image.BeginInit();
+            
+            image.StreamSource = new MemoryStream(bytes);
+            
+            image.EndInit();
+            
+            image.Freeze();
+            
+            return image;
         }
     }
 }
