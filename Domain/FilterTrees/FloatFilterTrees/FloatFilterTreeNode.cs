@@ -93,8 +93,7 @@ namespace DataExplorer.Domain.FilterTrees.FloatFilterTrees
                 .Where(p => p != null)
                 .Cast<T>()
                 .Where(p => p.CompareTo(low) >= 0)
-                .Where(p => p.CompareTo(high) <= 0)
-                .Distinct();
+                .Where(p => p.CompareTo(high) <= 0);
         }
     }
 }

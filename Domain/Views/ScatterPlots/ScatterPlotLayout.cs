@@ -89,7 +89,7 @@ namespace DataExplorer.Domain.Views.ScatterPlots
             _xAxisColumn = null;
             _yAxisColumn = null;
             _colorColumn = null;
-            _colorPalette = null;
+            _colorPalette = new ColorPaletteFactory().Pastel1;
             _sizeColumn = null;
             _lowerSize = DefaultSize;
             _upperSize = DefaultSize;

@@ -42,11 +42,7 @@ namespace DataExplorer.Application.Legends.Sizes.Queries
 
             var map = _mapFactory.CreateSizeMap(column, layout.LowerSize, layout.UpperSize);
 
-            var values = column.Values
-                .Distinct()
-                .ToList();
-
-            var items = _legendFactory.Create(type, map, values, layout.LowerSize, layout.UpperSize);
+            var items = _legendFactory.Create(type, map, column.Values, layout.LowerSize, layout.UpperSize);
 
             return items.ToList();
         }

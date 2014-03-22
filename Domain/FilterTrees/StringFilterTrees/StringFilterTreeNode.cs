@@ -66,8 +66,7 @@ namespace DataExplorer.Domain.FilterTrees.StringFilterTrees
             return _column.Values
                 .Cast<string>()
                 .Where(p => p.StartsWith(match, 
-                    StringComparison.OrdinalIgnoreCase))
-                .Distinct();
+                    StringComparison.OrdinalIgnoreCase));
         }
     }
 }

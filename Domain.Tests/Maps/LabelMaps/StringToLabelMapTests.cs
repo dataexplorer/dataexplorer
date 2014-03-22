@@ -20,8 +20,8 @@ namespace DataExplorer.Domain.Tests.Maps.LabelMaps
         }
 
         [Test]
-        [TestCase(null, "Null")]
-        [TestCase("", "")]
+        [TestCase(null, "[Null]")]
+        [TestCase("", "[Empty]")]
         [TestCase("Test", "Test")]
         public void TestMapShouldReturnCorrectValues(string value, string expected)
         {

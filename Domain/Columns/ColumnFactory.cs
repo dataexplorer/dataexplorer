@@ -21,11 +21,12 @@ namespace DataExplorer.Domain.Columns
             if (dataType == typeof(BitmapImage))
                 return CreateBitmapImageColumn(id, index, name, dataType, semanticType, values);
 
-            var orderedValues = values
+            var distinctOrderedValues = values
+                .Distinct()
                 .OrderBy(p => p)
                 .ToList();
 
-            return CreateComparableColumn(id, index, name, dataType, semanticType, orderedValues);
+            return CreateComparableColumn(id, index, name, dataType, semanticType, distinctOrderedValues);
         }
 
         private Column CreateComparableColumn(

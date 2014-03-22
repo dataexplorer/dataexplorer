@@ -105,7 +105,7 @@ namespace DataExplorer.Domain.Tests.Views.ScatterPlots
             Assert.That(_layout.XAxisColumn, Is.Null);
             Assert.That(_layout.YAxisColumn, Is.Null);
             Assert.That(_layout.ColorColumn, Is.Null);
-            Assert.That(_layout.ColorPalette, Is.Null);
+            Assert.That(_layout.ColorPalette.Name, Is.EqualTo("Pastel 1"));
             Assert.That(_layout.SizeColumn, Is.Null);
             Assert.That(_layout.LowerSize, Is.EqualTo(0.125d));
             Assert.That(_layout.UpperSize, Is.EqualTo(0.125d));

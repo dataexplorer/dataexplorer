@@ -77,8 +77,6 @@
     <Compile Include="Columns\IColumnRepository.cs" />
     <Compile Include="Columns\Queries\GetAllColumnsQuery.cs" />
     <Compile Include="Columns\Queries\GetAllColumnsQueryHandler.cs" />
-    <Compile Include="Columns\Queries\GetDistinctColumnValuesQuery.cs" />
-    <Compile Include="Columns\Queries\GetDistinctColumnValuesQueryHandler.cs" />
     <Compile Include="Core\Commands\CommandBus.cs" />
     <Compile Include="Core\Commands\EntityCommand.cs" />
     <Compile Include="Core\Commands\EntityIdCommand.cs" />

@@ -62,7 +62,6 @@
     <Compile Include="Clipboard\Queries\CanCopyDataToClipboardQueryHandlerTests.cs" />
     <Compile Include="Columns\ColumnAdapterTests.cs" />
     <Compile Include="Columns\Queries\GetAllColumnsQueryHandlerTests.cs" />
-    <Compile Include="Columns\Queries\GetDistinctColumnValuesQueryHandlerTests.cs" />
     <Compile Include="Core\Commands\CommandBusTests.cs" />
     <Compile Include="Core\Commands\FakeCommand.cs" />
     <Compile Include="Core\Commands\FakeCommandHandler.cs" />

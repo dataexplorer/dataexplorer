@@ -43,11 +43,7 @@ namespace DataExplorer.Application.Legends.Colors.Queries
 
             var map = _mapFactory.CreateColorMap(column, palette);
             
-            var values = column.Values
-                .Distinct()
-                .ToList();
-            
-            var items = _legendFactory.Create(type,  map, values, palette);
+            var items = _legendFactory.Create(type,  map, column.Values, palette);
 
             return items.ToList();
         }
