@@ -32,9 +32,9 @@ namespace DataExplorer.Application.Layouts.Base.Commands
         {
             var column = _columnRepository.Get(id);
 
-            var scatterPlot = _viewRepository.Get<ScatterPlot>();
+            var view = _viewRepository.Get<ScatterPlot>();
 
-            var layout = scatterPlot.GetLayout();
+            var layout = view.GetLayout();
 
             setColumnAction(layout, column);
 

@@ -147,6 +147,7 @@
     <Compile Include="Layouts\Color\Queries\GetAllColorColumnsQuery.cs" />
     <Compile Include="Layouts\Color\Queries\GetAllColorColumnsQueryHandler.cs" />
     <Compile Include="Layouts\General\Commands\AutoLayoutColumnCommand.cs" />
+    <Compile Include="Layouts\General\Commands\AutoLayoutColumnCommandHandler.cs" />
     <Compile Include="Layouts\Label\Commands\SetLabelColumnCommand.cs" />
     <Compile Include="Layouts\Label\Commands\SetLabelColumnCommandHandler.cs" />
     <Compile Include="Layouts\Label\Commands\UnsetLabelColumnCommand.cs" />

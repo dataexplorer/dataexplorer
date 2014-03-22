@@ -91,6 +91,7 @@
     <Compile Include="Layouts\Base\Queries\BaseGetLayoutColumnQueryHandlerTests.cs" />
     <Compile Include="Layouts\Color\Commands\UnsetColorColumnCommandHandlerTests.cs" />
     <Compile Include="Layouts\Color\Queries\GetAllColorColumnsQueryHandlerTests.cs" />
+    <Compile Include="Layouts\General\Commands\AutoLayoutColumnCommandHandlerTests.cs" />
     <Compile Include="Layouts\Label\Commands\SetLabelColumnCommandHandlerTests.cs" />
     <Compile Include="Layouts\Label\Commands\UnsetLabelColumnCommandHandlerTests.cs" />
     <Compile Include="Layouts\Label\Queries\GetAllLabelColumnsQueryHandlerTests.cs" />
