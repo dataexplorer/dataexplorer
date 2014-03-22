@@ -33,5 +33,10 @@
             <MenuItem Header="Zoom to Full Extent" Command="{Binding ZoomToFullExtentCommand}" />
             <MenuItem Header="Clear Layout" Command="{Binding ClearLayoutCommand}" />
         </MenuItem>
+        <MenuItem Header="Help" DataContext="{Binding HelpMenuViewModel}">
+            <MenuItem Header="View Help" Command="{Binding ViewHelpCommand}" />
+            <Separator />
+            <MenuItem Header="About Data Explorer" Command="{Binding ViewAboutCommand}" />
+        </MenuItem>
     </Menu>
 </UserControl>

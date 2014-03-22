@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Presentation.Shell.MainMenu.EditMenu;
 using DataExplorer.Presentation.Shell.MainMenu.FileMenu;
+using DataExplorer.Presentation.Shell.MainMenu.HelpMenu;
 using DataExplorer.Presentation.Shell.MainMenu.ViewMenu;
 
 namespace DataExplorer.Presentation.Shell.MainMenu
@@ -14,15 +15,18 @@ namespace DataExplorer.Presentation.Shell.MainMenu
         private readonly IFileMenuViewModel _fileMenuViewModel;
         private readonly IEditMenuViewModel _editMenuViewModel;
         private readonly IViewMenuViewModel _viewMenuViewModel;
+        private readonly IHelpMenuViewModel _helpMenuViewModel;
 
         public MainMenuViewModel(
             IFileMenuViewModel fileMenuViewModel,
             IEditMenuViewModel editMenuViewModel,
-            IViewMenuViewModel viewMenuViewModel)
+            IViewMenuViewModel viewMenuViewModel,
+            IHelpMenuViewModel helpMenuViewModel)
         {
             _fileMenuViewModel = fileMenuViewModel;
             _editMenuViewModel = editMenuViewModel;
             _viewMenuViewModel = viewMenuViewModel;
+            _helpMenuViewModel = helpMenuViewModel;
         }
 
         public IFileMenuViewModel FileMenuViewModel
@@ -38,6 +42,11 @@ namespace DataExplorer.Presentation.Shell.MainMenu
         public IViewMenuViewModel ViewMenuViewModel
         {
             get { return _viewMenuViewModel; }
+        }
+
+        public IHelpMenuViewModel HelpMenuViewModel
+        {
+            get { return _helpMenuViewModel; }
         }
     }
 }

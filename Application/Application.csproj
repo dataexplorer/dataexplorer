@@ -323,6 +323,10 @@
     <Compile Include="Views\ScatterPlots\LayoutEventService.cs" />
     <Compile Include="Web\Commands\OpenDownloadDataPageCommand.cs" />
     <Compile Include="Web\Commands\OpenDownloadDataPageCommandHandler.cs" />
+    <Compile Include="Web\Commands\ViewAboutCommand.cs" />
+    <Compile Include="Web\Commands\ViewAboutCommandHandler.cs" />
+    <Compile Include="Web\Commands\ViewHelpCommand.cs" />
+    <Compile Include="Web\Commands\ViewHelpCommandHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj">

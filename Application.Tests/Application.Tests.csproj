@@ -172,6 +172,8 @@
     <Compile Include="Views\ScatterPlots\ScatterPlotEventsServiceTests.cs" />
     <Compile Include="Views\ScatterPlots\ScatterPlotLayoutServiceTests.cs" />
     <Compile Include="Web\OpenDownloadDataPageCommandHandlerTests.cs" />
+    <Compile Include="Web\ViewAboutCommandHandlerTests.cs" />
+    <Compile Include="Web\ViewHelpCommandHandlerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Dialogs\" />

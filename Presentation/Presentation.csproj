@@ -269,6 +269,8 @@
     <Compile Include="Shell\MainMenu\EditMenu\IEditMenuViewModel.cs" />
     <Compile Include="Shell\MainMenu\FileMenu\FileMenuViewModel.cs" />
     <Compile Include="Shell\MainMenu\FileMenu\IFileMenuViewModel.cs" />
+    <Compile Include="Shell\MainMenu\HelpMenu\HelpMenuViewModel.cs" />
+    <Compile Include="Shell\MainMenu\HelpMenu\IHelpMenuViewModel.cs" />
     <Compile Include="Shell\MainMenu\IMainMenuViewModel.cs" />
     <Compile Include="Shell\MainMenu\MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
