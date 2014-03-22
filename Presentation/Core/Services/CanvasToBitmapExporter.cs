@@ -24,7 +24,7 @@ namespace DataExplorer.Presentation.Core.Services
         {
             var mainWindow = _windowService.GetMainWindow();
 
-            var canvas = _finder.Find<CanvasControl>(mainWindow);
+            var canvas = _finder.FindDecendant<CanvasControl>(mainWindow);
 
             var image = _renderer.Render(canvas);
 

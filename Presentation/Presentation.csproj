@@ -92,6 +92,8 @@
     </Compile>
     <Compile Include="Core\Converters\FriendlyDataTypeNameConverter.cs" />
     <Compile Include="Core\Converters\FriendlySemanticTypeNameConverter.cs" />
+    <Compile Include="Core\DragDrop\DragDropWrapper.cs" />
+    <Compile Include="Core\DragDrop\IDragDropWrapper.cs" />
     <Compile Include="Core\Events\DialogClosedEvent.cs" />
     <Compile Include="Core\Geometry\GeometryCalculator.cs" />
     <Compile Include="Core\Canvas\Factories\CanvasItemFactory.cs" />
@@ -102,6 +104,7 @@
     <Compile Include="Core\Services\ControlFinder.cs" />
     <Compile Include="Core\Services\ControlToBitmapRenderer.cs" />
     <Compile Include="Core\Services\DependencyPropertyService.cs" />
+    <Compile Include="Panes\Navigation\NavigationTree\NavigationTreeDragDropHelper.cs" />
     <Compile Include="Core\Services\IControlFinder.cs" />
     <Compile Include="Core\Services\IControlToBitmapRenderer.cs" />
     <Compile Include="Core\Services\IDependencyPropertyService.cs" />
@@ -284,8 +287,6 @@
       <DependentUpon>StatusBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="Shell\StatusBar\StatusBarViewModel.cs" />
-    <Compile Include="Views\ScatterPlots\Commands\ExecuteCommand.cs" />
-    <Compile Include="Views\ScatterPlots\Commands\IExecuteCommand.cs" />
     <Compile Include="Views\ScatterPlots\Commands\IPanScatterPlotCommand.cs" />
     <Compile Include="Views\ScatterPlots\Commands\IResizeScatterPlotViewExtentCommand.cs" />
     <Compile Include="Views\ScatterPlots\Commands\ISelectCommand.cs" />

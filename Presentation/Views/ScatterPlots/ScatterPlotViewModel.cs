@@ -11,6 +11,7 @@ using System.Windows.Input;
 using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Importers.CsvFiles.Events;
 using DataExplorer.Application.Projects.Events;
+using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Core.Events;
 using DataExplorer.Domain.Views.ScatterPlots.Events;
 using DataExplorer.Presentation.Core;
@@ -123,6 +124,16 @@ namespace DataExplorer.Presentation.Views.ScatterPlots
         private void HandleSelectedItemsChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             _commands.Select(_selectedItems.ToList());
+        }
+
+        public bool IsValidLayoutDropSource(Column column)
+        {
+            return true;
+        }
+
+        public void HandleSetDragDropLayout(Column column)
+        {
+            _commands.Layout(column.Id);
         }
     }
 }

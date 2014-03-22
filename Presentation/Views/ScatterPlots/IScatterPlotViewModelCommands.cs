@@ -22,5 +22,7 @@ namespace DataExplorer.Presentation.Views.ScatterPlots
         void Select(List<CanvasItem> item);
 
         void Execute(int id);
+
+        void Layout(int id);
     }
 }

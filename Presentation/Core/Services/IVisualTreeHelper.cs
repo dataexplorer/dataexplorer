@@ -11,6 +11,8 @@ namespace DataExplorer.Presentation.Core.Services
     {
         int GetChildrenCount(DependencyObject reference);
 
+        DependencyObject GetParent(DependencyObject reference);
+
         DependencyObject GetChild(DependencyObject reference, int childIndex);
     }
 }

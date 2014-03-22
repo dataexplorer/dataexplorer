@@ -18,7 +18,10 @@
             ZoomIn="HandleZoomIn"
             ZoomOut="HandleZoomOut"
             Pan="HandlePan"
-            Execute="HandleExecute">
+            Execute="HandleExecute"
+            AllowDrop="True"
+            DragOver="HandleDragOver"
+            Drop="HandleDrop">
             <canvas:CanvasControl.ContextMenu>
                 <ContextMenu>
                     <MenuItem 

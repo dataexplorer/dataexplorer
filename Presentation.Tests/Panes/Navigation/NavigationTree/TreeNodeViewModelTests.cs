@@ -3,6 +3,7 @@ using DataExplorer.Application.FilterTrees;
 using DataExplorer.Application.FilterTrees.Commands;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Tests.Columns;
+using DataExplorer.Domain.Tests.Filters;
 using DataExplorer.Domain.Tests.FilterTrees;
 using DataExplorer.Presentation.Panes.Navigation.NavigationTree;
 using Moq;
@@ -17,12 +18,14 @@ namespace DataExplorer.Presentation.Tests.Panes.Navigation.NavigationTree
         private FakeFilterTreeNode _filterTreeNode;
         private Mock<IMessageBus> _mockService;
         private Column _column;
+        private Domain.Filters.Filter _filter;
 
         [SetUp]
         public void SetUp()
         {
             _column = new ColumnBuilder().Build();
-            _filterTreeNode = new FakeFilterTreeNode("Test", _column);
+            _filter = new FakeFilter();
+            _filterTreeNode = new FakeFilterTreeNode("Test", _column, _filter);
             _mockService = new Mock<IMessageBus>();
             _viewModel = new TreeNodeViewModel(
                 _filterTreeNode,
@@ -33,6 +36,12 @@ namespace DataExplorer.Presentation.Tests.Panes.Navigation.NavigationTree
         public void TestGetNameShouldReturnName()
         {
             Assert.That(_viewModel.Name, Is.EqualTo("Test"));
+        }
+
+        [Test]
+        public void TestGetFilterShouldReturnFilter()
+        {
+            Assert.That(_viewModel.Filter, Is.EqualTo(_filter));
         }
 
         [Test]

@@ -24,12 +24,12 @@
                     <Setter 
                         Property="IsSelected" 
                         Value="{Binding IsSelected, Mode=TwoWay}" />
-                    <!--<EventSetter 
-                        Event="TreeViewItem.PreviewMouseLeftButtonDown" 
+                    <EventSetter 
+                        Event="PreviewMouseLeftButtonDown" 
                         Handler="HandlePreviewMouseLeftButtonDown" />
                     <EventSetter 
-                        Event="TreeViewItem.PreviewMouseMove" 
-                        Handler="HandlePreviewMouseMove" />-->
+                        Event="PreviewMouseMove" 
+                        Handler="HandlePreviewMouseMove" />
                 </Style>
             </TreeView.ItemContainerStyle>
             <TreeView.ItemTemplate>

@@ -30,7 +30,7 @@ namespace DataExplorer.Presentation.Tests.Core.Services
             _mockWindowService.Setup(p => p.GetMainWindow()).Returns(_window);
 
             _mockFinder = new Mock<IControlFinder>();
-            _mockFinder.Setup(p => p.Find<CanvasControl>(_window)).Returns(_canvas);
+            _mockFinder.Setup(p => p.FindDecendant<CanvasControl>(_window)).Returns(_canvas);
 
             _mockRenderer = new Mock<IControlToBitmapRenderer>();
             _mockRenderer.Setup(p => p.Render(_canvas)).Returns(_image);

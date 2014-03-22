@@ -15,6 +15,11 @@ namespace DataExplorer.Presentation.Core.Services
             return VisualTreeHelper.GetChildrenCount(reference);
         }
 
+        public DependencyObject GetParent(DependencyObject reference)
+        {
+            return VisualTreeHelper.GetParent(reference);
+        }
+
         public DependencyObject GetChild(DependencyObject reference, int childIndex)
         {
             return VisualTreeHelper.GetChild(reference, childIndex);

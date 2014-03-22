@@ -113,7 +113,6 @@
     <Compile Include="Shell\MainMenu\MainMenuViewModelTests.cs" />
     <Compile Include="Shell\MainMenu\ViewMenu\ViewMenuViewModelTests.cs" />
     <Compile Include="Shell\MainWindow\MainWindowViewModelTests.cs" />
-    <Compile Include="Views\ScatterPlots\Commands\ExecuteCommandTests.cs" />
     <Compile Include="Views\ScatterPlots\Commands\PanScatterPlotCommandTests.cs" />
     <Compile Include="Views\ScatterPlots\Commands\ResizeScatterPlotViewExtentCommandTests.cs" />
     <Compile Include="Views\ScatterPlots\Commands\SelectCommandTests.cs" />

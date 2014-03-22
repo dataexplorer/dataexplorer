@@ -11,8 +11,23 @@ namespace DataExplorer.Presentation.Core.Services
         {
             _helper = helper;
         }
-        
-        public T Find<T>(DependencyObject parent) where T : DependencyObject
+
+        public T FindAncestor<T>(DependencyObject current) where T : DependencyObject
+        {
+            do
+            {
+                if (current is T)
+                    return current as T;
+
+                current = _helper.GetParent(current);
+            }
+
+            while (current != null);
+
+            return null;
+        }
+
+        public T FindDecendant<T>(DependencyObject parent) where T : DependencyObject
         {
             if (parent == null)
                 return null;
@@ -26,7 +41,7 @@ namespace DataExplorer.Presentation.Core.Services
             {
                 var child = _helper.GetChild(parent, i);
                 
-                var result = Find<T>(child);
+                var result = FindDecendant<T>(child);
 
                 if (result != null)
                     return result;

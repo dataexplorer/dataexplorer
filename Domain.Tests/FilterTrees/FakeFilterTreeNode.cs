@@ -25,6 +25,11 @@ namespace DataExplorer.Domain.Tests.FilterTrees
             _filter = filter;
         }
 
+        public FakeFilterTreeNode(string name, Column column, Filter filter) : base(name, column)
+        {
+            _filter = filter;
+        }
+
         public override IEnumerable<FilterTreeNode> CreateChildren()
         {
             throw new NotImplementedException();

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DataExplorer.Presentation.Core.Services;
 
 namespace DataExplorer.Presentation.Panes.Navigation.NavigationTree
 {
@@ -20,19 +21,27 @@ namespace DataExplorer.Presentation.Panes.Navigation.NavigationTree
     /// </summary>
     public partial class NavigationTreeView : UserControl
     {
+        private readonly NavigationTreeDragDropHelper _navigationTreeDragDropHelper;
+
         public NavigationTreeView()
         {
+            _navigationTreeDragDropHelper = new NavigationTreeDragDropHelper();
+
             InitializeComponent();
         }
 
         private void HandlePreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            throw new NotImplementedException();
+            _navigationTreeDragDropHelper.HandlePreviewMouseLeftButtonDown(e.GetPosition(null));
         }
 
         private void HandlePreviewMouseMove(object sender, MouseEventArgs e)
         {
-            throw new NotImplementedException();
+            _navigationTreeDragDropHelper.HandlePreviewMouseMove(
+                TreeView,
+                e.OriginalSource,
+                e.GetPosition(null),
+                e.LeftButton);
         }
     }
 }

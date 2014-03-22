@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
+using DataExplorer.Application.Core.Commands;
+using DataExplorer.Application.Layouts.General.Commands;
+using DataExplorer.Application.Views.ScatterPlots.Commands;
 using DataExplorer.Presentation.Core.Canvas.Items;
 using DataExplorer.Presentation.Tests.Core.Canvas.Items;
 using DataExplorer.Presentation.Views.ScatterPlots;
@@ -18,7 +21,7 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots
         private Mock<IZoomOutScatterPlotCommand> _mockZoomOutCommand;
         private Mock<IPanScatterPlotCommand> _mockPanCommand;
         private Mock<ISelectCommand> _mockSelectCommand;
-        private Mock<IExecuteCommand> _mockExecuteCommand;
+        private Mock<ICommandBus> _mockCommandBus;
 
         [SetUp]
         public void SetUp()
@@ -28,7 +31,7 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots
             _mockZoomOutCommand = new Mock<IZoomOutScatterPlotCommand>();
             _mockPanCommand = new Mock<IPanScatterPlotCommand>();
             _mockSelectCommand = new Mock<ISelectCommand>();
-            _mockExecuteCommand = new Mock<IExecuteCommand>();
+            _mockCommandBus = new Mock<ICommandBus>();
 
             _commands = new ScatterPlotViewModelCommands(
                 _mockResizeCommand.Object,
@@ -36,7 +39,7 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots
                 _mockZoomOutCommand.Object,
                 _mockPanCommand.Object,
                 _mockSelectCommand.Object,
-                _mockExecuteCommand.Object);
+                _mockCommandBus.Object);
         }
 
         [Test]
@@ -87,7 +90,18 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots
         public void TestExecuteShouldExecuteCommand()
         {
             _commands.Execute(1);
-            _mockExecuteCommand.Verify(p => p.Execute(1), Times.Once());
+            _mockCommandBus.Verify(p => p.Execute(
+                It.Is<ExecuteCommand>(q => q.Id == 1)), 
+                Times.Once());
+        }
+
+        [Test]
+        public void TestLayoutShouldExecuteCommand()
+        {
+            _commands.Layout(1);
+            _mockCommandBus.Verify(p => p.Execute(
+                It.Is<AutoLayoutColumnCommand>(q => q.Id == 1)),
+                Times.Once());
         }
     }
 }

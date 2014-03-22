@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows;
 using DataExplorer.Application.Importers.CsvFiles.Events;
 using DataExplorer.Application.Projects.Events;
+using DataExplorer.Domain.Tests.Columns;
 using DataExplorer.Domain.Views.ScatterPlots;
 using DataExplorer.Domain.Views.ScatterPlots.Events;
 using DataExplorer.Presentation.Core.Canvas.Items;
@@ -134,6 +135,20 @@ namespace DataExplorer.Presentation.Tests.Views.ScatterPlots
         {
             AssertPropertyChanged(_viewModel, () => _viewModel.SelectedItems,
                 () => _viewModel.Handle(new SourceImportedEvent()));
+        }
+
+        [Test]
+        public void TestIsValidLayoutDropSourceShouldAlwaysReturnTrue()
+        {
+            Assert.That(_viewModel.IsValidLayoutDropSource(null), Is.True);
+        }
+
+        [Test]
+        public void TestSetDragDropLayoutShouldExecuteAutoAssignLayoutCommand()
+        {
+            var column = new ColumnBuilder().WithId(1).Build();
+            _viewModel.HandleSetDragDropLayout(column);
+            _mockCommands.Verify(p => p.Layout(1), Times.Once());
         }
 
         [Test]

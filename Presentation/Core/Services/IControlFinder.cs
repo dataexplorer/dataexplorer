@@ -4,6 +4,8 @@ namespace DataExplorer.Presentation.Core.Services
 {
     public interface IControlFinder
     {
-        T Find<T>(DependencyObject parent) where T : DependencyObject;
+        T FindAncestor<T>(DependencyObject current) where T : DependencyObject;
+        
+        T FindDecendant<T>(DependencyObject parent) where T : DependencyObject;
     }
 }

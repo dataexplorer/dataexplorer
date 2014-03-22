@@ -29,6 +29,11 @@ namespace DataExplorer.Presentation.Panes.Navigation.NavigationTree
             get { return _filterTreeNode.Name; }
         }
 
+        public Domain.Filters.Filter Filter
+        {
+            get { return _filterTreeNode.CreateFilter(); }
+        }
+
         public IEnumerable<TreeNodeViewModel> Children
         {
             get { return GetChildren(); }
