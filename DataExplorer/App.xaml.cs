@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using DataExplorer.Application.Core.Commands;
 using DataExplorer.Application.Core.Events;
+using DataExplorer.Application.Core.Logs;
 using DataExplorer.Application.Core.Queries;
 using DataExplorer.Domain.Core.Events;
 using DataExplorer.Presentation.Shell.MainWindow;
@@ -21,15 +22,23 @@ namespace DataExplorer
     /// </summary>
     public partial class App : System.Windows.Application
     {
+        private static string AppName = "Data Explorer";
+
         private static IKernel _kernel;
 
         public App()
         {
             InitializeDependencyInjection();
 
+            InitializeLogging();
+
+            LogApplicationIsStarting();
+
             InitializeBuses();
 
             InitializeShell();
+
+            LogApplicationHasStarted();
         }
 
         private static void InitializeDependencyInjection()
@@ -42,6 +51,18 @@ namespace DataExplorer
                 .Configure(c => c.InSingletonScope()));
         }
 
+        public static void InitializeLogging()
+        {
+            var logProvider = _kernel.Get<ILogProvider>();
+            logProvider.CreateLogRepository();
+        }
+
+        private void LogApplicationIsStarting()
+        {
+            var log = _kernel.Get<ILog>();
+            log.Info(AppName + " is starting");
+        }
+
         private static void InitializeBuses()
         {
             CommandBus.Kernel = _kernel;
@@ -49,13 +70,38 @@ namespace DataExplorer
             EventBus.Kernel = _kernel;
             DomainEvents.Kernel = _kernel;
         }
-        
+
         private static void InitializeShell()
         {
             var mainWindow = _kernel.Get<IMainWindow>();
             var mainWindowViewModel = _kernel.Get<MainWindowViewModel>();
             mainWindow.DataContext = mainWindowViewModel;
             mainWindow.Show();
+        }
+
+        private void LogApplicationHasStarted()
+        {
+            var log = _kernel.Get<ILog>();
+            log.Info(AppName + " was started");
+        }
+
+        private void Application_Exit(object sender, ExitEventArgs e)
+        {
+            LogApplicationIsExiting();
+
+            LogApplicationHasExited();
+        }
+
+        private void LogApplicationIsExiting()
+        {
+            var log = _kernel.Get<ILog>();
+            log.Info(AppName + " is exiting.");
+        }
+
+        private void LogApplicationHasExited()
+        {
+            var log = _kernel.Get<ILog>();
+            log.Info(AppName + " has exited.");
         }
     }
 }

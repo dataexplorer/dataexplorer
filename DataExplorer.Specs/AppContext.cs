@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using DataExplorer.Application;
 using DataExplorer.Application.Application;
+using DataExplorer.Application.Core.Logs;
 using DataExplorer.Application.Projects;
 using DataExplorer.Domain.Columns;
 using DataExplorer.Domain.Filters;
@@ -32,6 +33,8 @@ namespace DataExplorer.Specs
         public Mock<IDialogService> MockDialogService;
         public Mock<IXmlFileService> MockXmlFileService;
         public Mock<ICsvFileParser> MockCsvFileParser;
+        public Mock<ILogFolder> MockLogFolder;
+        public Mock<ILogFile> MockLogFile;
 
         public XElement XProject;
         public Project Project;

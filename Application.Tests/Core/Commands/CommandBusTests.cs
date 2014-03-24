@@ -15,6 +15,7 @@ namespace DataExplorer.Application.Tests.Core.Commands
     {
         private CommandBus _bus;
         private IKernel _kernel;
+        private Mock<ICommandLogger> _mockLogger;
         private FakeCommandHandler _handler;
         private FakeCommand _command;
 
@@ -23,14 +24,22 @@ namespace DataExplorer.Application.Tests.Core.Commands
         {
             _command = new FakeCommand();
             _handler = new FakeCommandHandler();
+            _mockLogger = new Mock<ICommandLogger>();
             
             _kernel = new StandardKernel();
             _kernel.Bind<ICommandHandler<FakeCommand>>()
                 .ToConstant(_handler);
 
-            _bus = new CommandBus();
+            _bus = new CommandBus(_mockLogger.Object);
 
             CommandBus.Kernel = _kernel;
+        }
+
+        [Test]
+        public void TestExecuteShouldLogExecutingMessage()
+        {
+            _bus.Execute(_command);
+            _mockLogger.Verify(p => p.LogExecuting(_command));
         }
 
         [Test]
@@ -38,6 +47,13 @@ namespace DataExplorer.Application.Tests.Core.Commands
         {
             _bus.Execute(_command);
             Assert.That(_handler.WasExecuted, Is.True);
+        }
+
+        [Test]
+        public void TestExecuteShouldLogExecutedMessage()
+        {
+            _bus.Execute(_command);
+            _mockLogger.Verify(p => p.LogExecuting(_command));
         }
     }
 }

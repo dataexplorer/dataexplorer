@@ -8,6 +8,7 @@ using DataExplorer.Application;
 using DataExplorer.Application.Application;
 using DataExplorer.Application.Core.Commands;
 using DataExplorer.Application.Core.Events;
+using DataExplorer.Application.Core.Logs;
 using DataExplorer.Application.Core.Queries;
 using DataExplorer.Application.Projects;
 using DataExplorer.Infrastructure.Importers.CsvFile;
@@ -65,6 +66,12 @@ namespace DataExplorer.Specs
             _appContext.MainWindowViewModel = kernel.Get<MainWindowViewModel>();
             _appContext.FileMenuViewModel = kernel.Get<IFileMenuViewModel>();
             _appContext.CsvFileImportViewModel = kernel.Get<ICsvFileImportViewModel>();
+
+            _appContext.MockLogFolder = new Mock<ILogFolder>();
+            kernel.Rebind<ILogFolder>().ToConstant(_appContext.MockLogFolder.Object);
+
+            _appContext.MockLogFile = new Mock<ILogFile>();
+            kernel.Rebind<ILogFile>().ToConstant(_appContext.MockLogFile.Object);
 
             _appContext.DataContext = kernel.Get<IDataContext>();
 
