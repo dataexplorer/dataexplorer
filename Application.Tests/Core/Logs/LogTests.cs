@@ -48,24 +48,41 @@ namespace DataExplorer.Application.Tests.Core.Logs
         }
 
         [Test]
+        public void TestDebugShouldNotLogBelowVerbosityLevel()
+        {
+            _log.VerbosityLevel = LogLevel.Info;
+            _log.Debug(_message);
+            _mockLogProvider.Verify(p => 
+                p.WriteLog(_dateTime, _threadId, LogLevel.Debug, _message), 
+                Times.Never());
+        }
+
+        [Test]
         public void TestDebugShouldWriteLog()
         {
+            _log.VerbosityLevel = LogLevel.Debug;
             _log.Debug(_message);
-            _mockLogProvider.Verify(p => p.WriteLog(_dateTime, _threadId, LogLevel.Debug, _message));
+            _mockLogProvider.Verify(p => 
+                p.WriteLog(_dateTime, _threadId, LogLevel.Debug, _message),
+                Times.Once());
         }
 
         [Test]
         public void TestInfoShouldWriteLog()
         {
             _log.Info(_message);
-            _mockLogProvider.Verify(p => p.WriteLog(_dateTime, _threadId, LogLevel.Info, _message));
+            _mockLogProvider.Verify(p => 
+                p.WriteLog(_dateTime, _threadId, LogLevel.Info, _message),
+                Times.Once());
         }
 
         [Test]
         public void TestWarningShouldWriteLog()
         {
             _log.Warning(_message);
-            _mockLogProvider.Verify(p => p.WriteLog(_dateTime, _threadId, LogLevel.Warn, _message));
+            _mockLogProvider.Verify(p => 
+                p.WriteLog(_dateTime, _threadId, LogLevel.Warn, _message), 
+                Times.Once());
         }
 
         [Test]
@@ -73,7 +90,9 @@ namespace DataExplorer.Application.Tests.Core.Logs
         {
             var message = "Test\r\nType: System.Exception\r\nSource: \r\nStack Trace:\r\n\r\n";
             _log.Error(_exception);
-            _mockLogProvider.Verify(p => p.WriteLog(_dateTime, _threadId, LogLevel.Error, message));
+            _mockLogProvider.Verify(p => 
+                p.WriteLog(_dateTime, _threadId, LogLevel.Error, message), 
+                Times.Once());
         }
 
         [Test]
@@ -81,7 +100,9 @@ namespace DataExplorer.Application.Tests.Core.Logs
         {
             var message = "Test\r\nType: System.Exception\r\nSource: \r\nStack Trace:\r\n\r\n";
             _log.Fatal(_exception);
-            _mockLogProvider.Verify(p => p.WriteLog(_dateTime, _threadId, LogLevel.Fatal, message));
+            _mockLogProvider.Verify(p => 
+                p.WriteLog(_dateTime, _threadId, LogLevel.Fatal, message), 
+                Times.Once());
         }
 
         [Test]
@@ -92,7 +113,9 @@ namespace DataExplorer.Application.Tests.Core.Logs
             var innerException = new Exception("Test2");
             _exception = new Exception(_message, innerException);
             _log.Error(_exception);
-            _mockLogProvider.Verify(p => p.WriteLog(_dateTime, _threadId, LogLevel.Error, message));
+            _mockLogProvider.Verify(p => 
+                p.WriteLog(_dateTime, _threadId, LogLevel.Error, message), 
+                Times.Once());
         }
     }
 }

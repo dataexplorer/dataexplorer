@@ -39,7 +39,7 @@ namespace DataExplorer.Application.Tests.Core.Commands
         public void TestExecuteShouldLogExecutingMessage()
         {
             _bus.Execute(_command);
-            _mockLogger.Verify(p => p.LogExecuting(_command));
+            _mockLogger.Verify(p => p.LogExecuting(_command), Times.Once());
         }
 
         [Test]
@@ -53,7 +53,7 @@ namespace DataExplorer.Application.Tests.Core.Commands
         public void TestExecuteShouldLogExecutedMessage()
         {
             _bus.Execute(_command);
-            _mockLogger.Verify(p => p.LogExecuting(_command));
+            _mockLogger.Verify(p => p.LogExecuting(_command), Times.Once());
         }
     }
 }

@@ -86,9 +86,11 @@
     <Compile Include="Core\Commands\ICommandHandler.cs" />
     <Compile Include="Core\Commands\ICommandLogger.cs" />
     <Compile Include="Core\Events\EventBus.cs" />
+    <Compile Include="Core\Events\EventLogger.cs" />
     <Compile Include="Core\Events\IEvent.cs" />
     <Compile Include="Core\Events\IEventBus.cs" />
     <Compile Include="Core\Events\IEventHandler.cs" />
+    <Compile Include="Core\Events\IEventLogger.cs" />
     <Compile Include="Core\Logs\ILog.cs" />
     <Compile Include="Core\Logs\ILogFile.cs" />
     <Compile Include="Core\Logs\ILogFolder.cs" />
@@ -102,7 +104,9 @@
     <Compile Include="Core\Queries\IQuery.cs" />
     <Compile Include="Core\Queries\IQueryBus.cs" />
     <Compile Include="Core\Queries\IQueryHandler.cs" />
+    <Compile Include="Core\Queries\IQueryLogger.cs" />
     <Compile Include="Core\Queries\QueryBus.cs" />
+    <Compile Include="Core\Queries\QueryLogger.cs" />
     <Compile Include="Core\Threads\IThreadService.cs" />
     <Compile Include="Core\Time\IDateTimeService.cs" />
     <Compile Include="Exporters\ITabExporter.cs" />

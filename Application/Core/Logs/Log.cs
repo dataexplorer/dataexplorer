@@ -14,6 +14,10 @@ namespace DataExplorer.Application.Core.Logs
         private readonly IThreadService _threadService;
         private readonly ILogProvider _logProvider;
 
+        // NOTE: THis needs to be manually changed for now
+        // TODO: Make this a configurable property
+        public LogLevel VerbosityLevel = LogLevel.Info;
+
         public Log(
             IDateTimeService dateTimeService,
             IThreadService threadService,
@@ -51,6 +55,9 @@ namespace DataExplorer.Application.Core.Logs
 
         private void LogMessage(LogLevel logLevel, string message)
         {
+            if (logLevel < VerbosityLevel)
+                return;
+
             var dateTime = _dateTimeService.GetCurrentUtcDateTime();
 
             var threadId = _threadService.GetCurrentThreadId();

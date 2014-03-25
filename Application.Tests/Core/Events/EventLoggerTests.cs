@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataExplorer.Application.Core.Commands;
+using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Core.Logs;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Application.Tests.Core.Commands
+namespace DataExplorer.Application.Tests.Core.Events
 {
     [TestFixture]
-    public class CommandLoggerTests
+    public class EventLoggerTests
     {
-        private CommandLogger _logger;
+        private EventLogger _logger;
         private Mock<ILog> _mockLog;
 
         [SetUp]
@@ -21,21 +21,21 @@ namespace DataExplorer.Application.Tests.Core.Commands
         {
             _mockLog = new Mock<ILog>();
 
-            _logger = new CommandLogger(_mockLog.Object);
+            _logger = new EventLogger(_mockLog.Object);
         }
 
         [Test]
         public void TestLogExecutingShouldLogInfo()
         {
-            _logger.LogExecuting(new FakeCommand());
-            _mockLog.Verify(p => p.Info("Fake Command is executing."), Times.Once());
+            _logger.LogRaised(new FakeEvent());
+            _mockLog.Verify(p => p.Debug("Fake Event was raised."), Times.Once());
         }
 
         [Test]
         public void TestLogExecutedShouldLogInfo()
         {
-            _logger.LogExecuted(new FakeCommand());
-            _mockLog.Verify(p => p.Info("Fake Command was executed."), Times.Once());
+            _logger.LogHandled(new FakeEvent());
+            _mockLog.Verify(p => p.Debug("Fake Event was handled."), Times.Once());
         }
     }
 }

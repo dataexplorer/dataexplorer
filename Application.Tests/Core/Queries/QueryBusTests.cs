@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.Core.Queries;
+using Moq;
 using Ninject;
 using NUnit.Framework;
 
@@ -14,6 +15,7 @@ namespace DataExplorer.Application.Tests.Core.Queries
     {
         private QueryBus _bus;
         private IKernel _kernel;
+        private Mock<IQueryLogger> _mockLogger;
         private FakeQueryHandler _handler;
         private FakeQuery _query;
 
@@ -27,9 +29,18 @@ namespace DataExplorer.Application.Tests.Core.Queries
             _kernel.Bind<IQueryHandler<FakeQuery, bool>>()
                 .ToConstant(_handler);
 
-            _bus = new QueryBus();
+            _mockLogger = new Mock<IQueryLogger>();
+
+            _bus = new QueryBus(_mockLogger.Object);
 
             QueryBus.Kernel = _kernel;
+        }
+
+        [Test]
+        public void TestExecuteShouldLogExecutingMessage()
+        {
+            _bus.Execute(_query);
+            _mockLogger.Verify(p => p.LogExecuting(_query), Times.Once());
         }
 
         [Test]
@@ -37,6 +48,13 @@ namespace DataExplorer.Application.Tests.Core.Queries
         {
             _bus.Execute(_query);
             Assert.That(_handler.WasExecuted, Is.True);
+        }
+
+        [Test]
+        public void TestExecuteShouldLogExecutedMessage()
+        {
+            _bus.Execute(_query);
+            _mockLogger.Verify(p => p.LogExecuting(_query), Times.Once());
         }
     }
 }

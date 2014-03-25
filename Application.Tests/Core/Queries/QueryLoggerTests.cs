@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataExplorer.Application.Core.Commands;
 using DataExplorer.Application.Core.Logs;
+using DataExplorer.Application.Core.Queries;
 using Moq;
 using NUnit.Framework;
 
-namespace DataExplorer.Application.Tests.Core.Commands
+namespace DataExplorer.Application.Tests.Core.Queries
 {
     [TestFixture]
-    public class CommandLoggerTests
+    public class QueryLoggerTests
     {
-        private CommandLogger _logger;
+        private QueryLogger _logger;
         private Mock<ILog> _mockLog;
 
         [SetUp]
@@ -21,21 +21,21 @@ namespace DataExplorer.Application.Tests.Core.Commands
         {
             _mockLog = new Mock<ILog>();
 
-            _logger = new CommandLogger(_mockLog.Object);
+            _logger = new QueryLogger(_mockLog.Object);
         }
 
         [Test]
         public void TestLogExecutingShouldLogInfo()
         {
-            _logger.LogExecuting(new FakeCommand());
-            _mockLog.Verify(p => p.Info("Fake Command is executing."), Times.Once());
+            _logger.LogExecuting(new FakeQuery());
+            _mockLog.Verify(p => p.Debug("Fake Query is executing."), Times.Once());
         }
 
         [Test]
         public void TestLogExecutedShouldLogInfo()
         {
-            _logger.LogExecuted(new FakeCommand());
-            _mockLog.Verify(p => p.Info("Fake Command was executed."), Times.Once());
+            _logger.LogExecuted(new FakeQuery());
+            _mockLog.Verify(p => p.Debug("Fake Query was executed."), Times.Once());
         }
     }
 }
