@@ -38,7 +38,7 @@ namespace DataExplorer.Application.Tests.Core.Events
         }
 
         [Test]
-        public void TestExecuteShouldLogRaisedMessage()
+        public void TestRaiseShouldLogRaisedMessage()
         {
             _bus.Raise(_event);
             _mockLogger.Verify(p => p.LogRaised(_event), Times.Once());
@@ -52,10 +52,18 @@ namespace DataExplorer.Application.Tests.Core.Events
         }
 
         [Test]
-        public void TestExecuteShouldLogHandledMessage()
+        public void TestRaiseShouldLogHandledMessage()
         {
             _bus.Raise(_event);
             _mockLogger.Verify(p => p.LogHandled(_event), Times.Once());
+        }
+
+        [Test]
+        public void TestRaiseShouldLogExceptions()
+        {
+            _handler.ThrowException = true;
+            _bus.Raise(_event);
+            _mockLogger.Verify(p => p.LogException(It.IsAny<Exception>()), Times.Once());
         }
     }
 }

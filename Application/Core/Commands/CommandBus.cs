@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataExplorer.Application.Core.Logs;
 using Ninject;
 
 namespace DataExplorer.Application.Core.Commands
@@ -20,16 +19,25 @@ namespace DataExplorer.Application.Core.Commands
 
         public void Execute(ICommand command)
         {
-            _logger.LogExecuting(command);
+            try
+            {
+                _logger.LogExecuting(command);
 
-            var handlerType = typeof (ICommandHandler<>)
-                .MakeGenericType(command.GetType());
+                var handlerType = typeof(ICommandHandler<>)
+                    .MakeGenericType(command.GetType());
 
-            dynamic handler = Kernel.Get(handlerType);
+                dynamic handler = Kernel.Get(handlerType);
 
-            handler.Execute((dynamic) command);
+                handler.Execute((dynamic)command);
 
-            _logger.LogExecuted(command);
+                _logger.LogExecuted(command);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogException(ex);
+
+                // TODO: Need to display error
+            }
         }
     }
 }

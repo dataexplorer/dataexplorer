@@ -11,5 +11,7 @@ namespace DataExplorer.Application.Core.Events
         void LogRaised(IEvent @event);
 
         void LogHandled(IEvent @event);
+
+        void LogException(Exception ex);
     }
 }

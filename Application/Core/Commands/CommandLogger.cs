@@ -33,6 +33,11 @@ namespace DataExplorer.Application.Core.Commands
             _log.Info(string.Format(ExecutedTemplate, commandName));
         }
 
+        public void LogException(Exception ex)
+        {
+            _log.Error(ex);
+        }
+
         private string ParseCommandName(string name)
         {
             return string.Concat(

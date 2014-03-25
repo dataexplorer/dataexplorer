@@ -55,5 +55,13 @@ namespace DataExplorer.Application.Tests.Core.Commands
             _bus.Execute(_command);
             _mockLogger.Verify(p => p.LogExecuting(_command), Times.Once());
         }
+
+        [Test]
+        public void TestExecuteShouldLogExceptions()
+        {
+            _handler.ThrowException = true;
+            _bus.Execute(_command);
+            _mockLogger.Verify(p => p.LogException(It.IsAny<Exception>()), Times.Once());
+        }
     }
 }

@@ -17,9 +17,6 @@ using Ninject.Extensions.Conventions;
 
 namespace DataExplorer
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : System.Windows.Application
     {
         private static string AppName = "Data Explorer";
@@ -33,6 +30,8 @@ namespace DataExplorer
             InitializeLogging();
 
             LogApplicationIsStarting();
+
+            InitializeExceptionHandlers();
 
             InitializeBuses();
 
@@ -61,6 +60,13 @@ namespace DataExplorer
         {
             var log = _kernel.Get<ILog>();
             log.Info(AppName + " is starting");
+        }
+
+        private void InitializeExceptionHandlers()
+        {
+            Dispatcher.UnhandledException += HandleDispatcherException;
+
+            AppDomain.CurrentDomain.UnhandledException += HandleAppDomainException;
         }
 
         private static void InitializeBuses()
@@ -102,6 +108,18 @@ namespace DataExplorer
         {
             var log = _kernel.Get<ILog>();
             log.Info(AppName + " has exited.");
+        }
+
+        private void HandleDispatcherException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        {
+            var log = _kernel.Get<ILog>();
+            log.Fatal(e.Exception);
+        }
+
+        private void HandleAppDomainException(object sender, UnhandledExceptionEventArgs e)
+        {
+            var log = _kernel.Get<ILog>();
+            log.Fatal((Exception) e.ExceptionObject);
         }
     }
 }

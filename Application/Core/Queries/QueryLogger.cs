@@ -34,6 +34,11 @@ namespace DataExplorer.Application.Core.Queries
             _log.Debug(string.Format(ExecutedTemplate, queryName));
         }
 
+        public void LogException(Exception ex)
+        {
+            _log.Error(ex);
+        }
+
         private string ParseQueryName(string name)
         {
             return string.Concat(

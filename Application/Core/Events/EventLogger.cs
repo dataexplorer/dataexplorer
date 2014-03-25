@@ -33,6 +33,11 @@ namespace DataExplorer.Application.Core.Events
             _log.Debug(string.Format(HandledTemplate, eventName));
         }
 
+        public void LogException(Exception ex)
+        {
+            _log.Error(ex);
+        }
+
         private string ParseEventName(string name)
         {
             return string.Concat(

@@ -37,5 +37,13 @@ namespace DataExplorer.Application.Tests.Core.Queries
             _logger.LogExecuted(new FakeQuery());
             _mockLog.Verify(p => p.Debug("Fake Query was executed."), Times.Once());
         }
+
+        [Test]
+        public void TestLogExceptionShouldLogError()
+        {
+            var ex = new Exception();
+            _logger.LogException(ex);
+            _mockLog.Verify(p => p.Error(ex), Times.Once());
+        }
     }
 }

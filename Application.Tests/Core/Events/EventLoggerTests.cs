@@ -37,5 +37,13 @@ namespace DataExplorer.Application.Tests.Core.Events
             _logger.LogHandled(new FakeEvent());
             _mockLog.Verify(p => p.Debug("Fake Event was handled."), Times.Once());
         }
+
+        [Test]
+        public void TestLogExceptionShouldLogError()
+        {
+            var ex = new Exception();
+            _logger.LogException(ex);
+            _mockLog.Verify(p => p.Error(ex), Times.Once());
+        }
     }
 }

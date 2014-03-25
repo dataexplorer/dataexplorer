@@ -12,5 +12,7 @@ namespace DataExplorer.Application.Core.Queries
         void LogExecuting<T>(IQuery<T> query);
 
         void LogExecuted<T>(IQuery<T> query);
+        
+        void LogException(Exception ex);
     }
 }

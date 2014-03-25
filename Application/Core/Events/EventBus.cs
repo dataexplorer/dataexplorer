@@ -17,17 +17,26 @@ namespace DataExplorer.Application.Core.Events
 
         public void Raise(IEvent @event)
         {
-            _logger.LogRaised(@event);
+            try
+            {
+                _logger.LogRaised(@event);
 
-            var handlerType = typeof(IEventHandler<>)
-                .MakeGenericType(@event.GetType());
+                var handlerType = typeof(IEventHandler<>)
+                    .MakeGenericType(@event.GetType());
 
-            dynamic handlers = Kernel.GetAll(handlerType);
+                dynamic handlers = Kernel.GetAll(handlerType);
 
-            foreach (var handler in handlers)
-                handler.Handle((dynamic) @event);
+                foreach (var handler in handlers)
+                    handler.Handle((dynamic)@event);
 
-            _logger.LogHandled(@event);
+                _logger.LogHandled(@event);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogException(ex);
+
+                // TODO: Need to display error
+            }
         }
     }
 }

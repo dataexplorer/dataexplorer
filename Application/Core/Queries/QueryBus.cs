@@ -19,18 +19,29 @@ namespace DataExplorer.Application.Core.Queries
 
         public TResult Execute<TResult>(IQuery<TResult> query)
         {
-            _logger.LogExecuting(query);
+            try 
+            {
+                _logger.LogExecuting(query);
 
-            var handlerType = typeof (IQueryHandler<,>)
-                .MakeGenericType(query.GetType(), typeof (TResult));
+                var handlerType = typeof (IQueryHandler<,>)
+                    .MakeGenericType(query.GetType(), typeof (TResult));
 
-            dynamic handler = Kernel.Get(handlerType);
+                dynamic handler = Kernel.Get(handlerType);
 
-            var result = handler.Execute((dynamic) query);
+                var result = handler.Execute((dynamic) query);
 
-            _logger.LogExecuted(query);
+                _logger.LogExecuted(query);
 
-            return result;
+                return result;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogException(ex);
+
+                // TODO: Need to display error
+            }
+
+            return default(TResult);
         }
     }
 }

@@ -11,5 +11,7 @@ namespace DataExplorer.Application.Core.Commands
         void LogExecuting(ICommand command);
 
         void LogExecuted(ICommand command);
+
+        void LogException(Exception exception);
     }
 }

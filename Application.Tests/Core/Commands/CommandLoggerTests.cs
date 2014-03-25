@@ -37,5 +37,13 @@ namespace DataExplorer.Application.Tests.Core.Commands
             _logger.LogExecuted(new FakeCommand());
             _mockLog.Verify(p => p.Info("Fake Command was executed."), Times.Once());
         }
+
+        [Test]
+        public void TestLogExceptionShouldLogError()
+        {
+            var ex = new Exception();
+            _logger.LogException(ex);
+            _mockLog.Verify(p => p.Error(ex), Times.Once());
+        }
     }
 }

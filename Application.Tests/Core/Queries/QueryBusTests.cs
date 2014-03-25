@@ -56,5 +56,15 @@ namespace DataExplorer.Application.Tests.Core.Queries
             _bus.Execute(_query);
             _mockLogger.Verify(p => p.LogExecuting(_query), Times.Once());
         }
+
+        [Test]
+        public void TestExecuteShouldLogExceptions()
+        {
+            _handler.ThrowException = true;
+            _bus.Execute(_query);
+            _mockLogger.Verify(p => 
+                p.LogException(It.IsAny<Exception>()),
+                Times.Once());
+        }
     }
 }
