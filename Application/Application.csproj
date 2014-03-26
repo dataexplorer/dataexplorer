@@ -109,6 +109,10 @@
     <Compile Include="Core\Queries\QueryLogger.cs" />
     <Compile Include="Core\Threads\IThreadService.cs" />
     <Compile Include="Core\Time\IDateTimeService.cs" />
+    <Compile Include="Dialogs\IExceptionDialogService.cs" />
+    <Compile Include="Dialogs\IImportDialogService.cs" />
+    <Compile Include="Dialogs\IOpenDialogService.cs" />
+    <Compile Include="Dialogs\ISaveDialogService.cs" />
     <Compile Include="Exporters\ITabExporter.cs" />
     <Compile Include="Filters\Commands\FilterCommand.cs" />
     <Compile Include="Filters\Commands\RemoveFilterCommand.cs" />
@@ -131,7 +135,7 @@
     <Compile Include="Clipboard\IClipboard.cs" />
     <Compile Include="Importers\CsvFiles\ICsvFileDataAdapter.cs" />
     <Compile Include="IDataContext.cs" />
-    <Compile Include="IDialogService.cs" />
+    <Compile Include="Dialogs\IDialogService.cs" />
     <Compile Include="Importers\CsvFiles\Commands\ImportCsvFileSourceCommand.cs" />
     <Compile Include="Importers\CsvFiles\Commands\ImportCsvFileSourceCommandHandler.cs" />
     <Compile Include="Importers\CsvFiles\Commands\UpdateCsvFileSourceCommand.cs" />

@@ -1,9 +1,10 @@
-﻿using System.Windows;
-using DataExplorer.Application.Application;
+﻿using System;
+using System.Drawing;
+using System.Windows;
 using DataExplorer.Presentation.Dialogs;
+using DataExplorer.Presentation.Dialogs.Import;
 using DataExplorer.Presentation.Dialogs.Open;
 using DataExplorer.Presentation.Dialogs.Save;
-using DataExplorer.Presentation.Importers.CsvFile;
 using Moq;
 using NUnit.Framework;
 
@@ -13,103 +14,53 @@ namespace DataExplorer.Presentation.Tests.Dialogs
     public class DialogServiceTests
     {
         private DialogService _service;
-        private Mock<IDialogFactory> _mockFactory;
-        private Mock<IApplication> _mockApplication;
-        private Mock<IDialog> _mockDialog;
-        private Mock<IOpenFileDialog> _mockOpenDialog;
-        private Mock<ISaveFileDialog> _mockSaveDialog;
-        private Mock<ICsvFileImportViewModel> _mockImportCsvFileViewModel;
-        private Window _mainWindow;
-        private string _filePath;
+        private Mock<IImportDialogService> _mockImportService;
+        private Mock<IOpenDialogService> _mockOpenService;
+        private Mock<ISaveDialogService> _mockSaveService;
+        private Mock<IExceptionDialogService> _mockExceptionService;
 
         [SetUp]
         public void SetUp()
         {
-            _mainWindow = new Window();
-            _filePath = @"C:\Test";
-
-            _mockDialog = new Mock<IDialog>();
-
-            _mockOpenDialog = new Mock<IOpenFileDialog>();
-            _mockOpenDialog.Setup(p => p.ShowDialog()).Returns(true);
-            _mockOpenDialog.Setup(p => p.GetFilePath()).Returns(_filePath);
-
-            _mockSaveDialog = new Mock<ISaveFileDialog>();
-            _mockSaveDialog.Setup(p => p.ShowDialog()).Returns(true);
-            _mockSaveDialog.Setup(p => p.GetFilePath()).Returns(_filePath);
-
-            _mockFactory = new Mock<IDialogFactory>();
-            _mockFactory.Setup(p => p.CreateImportCsvFileDialog()).Returns(_mockDialog.Object);
-            _mockFactory.Setup(p => p.CreateOpenFileDialog()).Returns(_mockOpenDialog.Object);
-            _mockFactory.Setup(p => p.CreateSaveFileDialog()).Returns(_mockSaveDialog.Object);
-
-            _mockApplication = new Mock<IApplication>();
-            _mockApplication.Setup(p => p.GetMainWindow()).Returns(_mainWindow);
+            _mockImportService = new Mock<IImportDialogService>();
+            _mockOpenService = new Mock<IOpenDialogService>();
+            _mockSaveService = new Mock<ISaveDialogService>();
+            _mockExceptionService = new Mock<IExceptionDialogService>();
             
-            _mockImportCsvFileViewModel = new Mock<ICsvFileImportViewModel>();
-
             _service = new DialogService(
-                _mockFactory.Object,
-                _mockApplication.Object,
-                _mockImportCsvFileViewModel.Object);
+                _mockImportService.Object,
+                _mockOpenService.Object,
+                _mockSaveService.Object,
+                _mockExceptionService.Object);
         }
 
         [Test]
         public void ShowImportDialogShouldDisplayImportDialog()
         {
             _service.ShowImportDialog();
-            _mockDialog.VerifySet(p => p.DataContext = _mockImportCsvFileViewModel.Object, Times.Once());
-            _mockDialog.Verify(p => p.ShowDialog(), Times.Once());
+            _mockImportService.Verify(p => p.Show(), Times.Once());
         }
 
         [Test]
         public void ShowOpenFileDialogShouldDisplayDialog()
         {
             _service.ShowOpenDialog();
-            _mockOpenDialog.Verify(p => p.SetTitle("Open"), Times.Once());
-            _mockOpenDialog.Verify(p => p.SetDefaultExtension(".xml"), Times.Once());
-            _mockOpenDialog.Verify(p => p.SetFilter("Data Explorer Projects|*.xml"), Times.Once());
-            _mockOpenDialog.Verify(p => p.ShowDialog(), Times.Once());
+            _mockOpenService.Verify(p => p.Show(), Times.Once());
         }
-
-        [Test]
-        public void ShowOpenFileDialogShouldReturnNullIfResultIsFalse()
-        {
-            _mockOpenDialog.Setup(p => p.ShowDialog()).Returns(false);
-            var result = _service.ShowOpenDialog();
-            Assert.That(result, Is.Null);
-        }
-
-        [Test]
-        public void ShowOpenFileDialogShouldReturnFilePath()
-        {
-            var result = _service.ShowOpenDialog();
-            Assert.That(result, Is.EqualTo(_filePath));
-        }
-
+        
         [Test]
         public void ShowSaveFileDialogShouldDisplayDialog()
         {
             _service.ShowSaveDialog();
-            _mockSaveDialog.Verify(p => p.SetTitle("Save"), Times.Once());
-            _mockSaveDialog.Verify(p => p.SetDefaultExtension(".xml"), Times.Once());
-            _mockSaveDialog.Verify(p => p.SetFilter("Data Explorer Projects|*.xml"), Times.Once());
-            _mockSaveDialog.Verify(p => p.ShowDialog(), Times.Once());
+            _mockSaveService.Verify(p => p.Show());
         }
 
         [Test]
-        public void ShowSaveFileDialogShouldReturnNullIfResultIsFalse()
+        public void TestShowExceptionDialogShouldShowDialog()
         {
-            _mockSaveDialog.Setup(p => p.ShowDialog()).Returns(false);
-            var result = _service.ShowSaveDialog();
-            Assert.That(result, Is.Null);
-        }
-
-        [Test]
-        public void ShowSaveFileDialogShouldReturnFilePath()
-        {
-            var result = _service.ShowSaveDialog();
-            Assert.That(result, Is.EqualTo(_filePath));
+            var ex = new Exception();
+            _service.ShowExceptionDialog(ex);
+            _mockExceptionService.Verify(p => p.Show(ex));
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace DataExplorer.Application
+﻿using System;
+
+namespace DataExplorer.Application
 {
     public interface IDialogService
     {
@@ -8,5 +10,6 @@
 
         string ShowSaveDialog();
 
+        void ShowExceptionDialog(Exception ex);
     }
 }

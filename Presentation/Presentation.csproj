@@ -33,6 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -104,6 +105,14 @@
     <Compile Include="Core\Services\ControlFinder.cs" />
     <Compile Include="Core\Services\ControlToBitmapRenderer.cs" />
     <Compile Include="Core\Services\DependencyPropertyService.cs" />
+    <Compile Include="Dialogs\Exceptions\ExceptionDialog.xaml.cs">
+      <DependentUpon>ExceptionDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Exceptions\ExceptionDialogService.cs" />
+    <Compile Include="Dialogs\Exceptions\IExceptionDialog.cs" />
+    <Compile Include="Dialogs\Import\ImportDialogService.cs" />
+    <Compile Include="Dialogs\Open\OpenDialogService.cs" />
+    <Compile Include="Dialogs\Save\SaveDialogService.cs" />
     <Compile Include="Panes\Navigation\NavigationTree\NavigationTreeDragDropHelper.cs" />
     <Compile Include="Core\Services\IControlFinder.cs" />
     <Compile Include="Core\Services\IControlToBitmapRenderer.cs" />
@@ -383,6 +392,10 @@
     <Page Include="Core\Resources\LinkButtonStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\Exceptions\ExceptionDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Importers\CsvFile\Body\CsvFileImportBodyView.xaml">
       <Generator>MSBuild:Compile</Generator>

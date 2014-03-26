@@ -1,90 +1,55 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using DataExplorer.Application;
-using DataExplorer.Application.Application;
-using DataExplorer.Presentation.Importers.CsvFile;
+using DataExplorer.Presentation.Dialogs.Import;
+using DataExplorer.Presentation.Dialogs.Open;
+using DataExplorer.Presentation.Dialogs.Save;
 
 namespace DataExplorer.Presentation.Dialogs
 {
     public class DialogService : IDialogService
     {
-        private const string SaveDialogTitle = "Save";
-        private const string OpenDialogTitle = "Open";
-        private const string DefaultFileExtension = ".xml";
-        private const string FileFilter = "Data Explorer Projects|*.xml";
-
-        private readonly IDialogFactory _factory;
-        private readonly IApplication _application;
-        private readonly ICsvFileImportViewModel _csvFileImportViewModel;
+        private readonly IImportDialogService _importService;
+        private readonly IOpenDialogService _openService;
+        private readonly ISaveDialogService _saveService;
+        private readonly IExceptionDialogService _exceptionService;
 
         public DialogService(
-            IDialogFactory factory, 
-            IApplication application,
-            ICsvFileImportViewModel csvFileImportViewModel)
+            IImportDialogService importService,
+            IOpenDialogService openService,
+            ISaveDialogService saveService,
+            IExceptionDialogService exceptionService)
         {
-            _factory = factory;
-            _application = application;
-            _csvFileImportViewModel = csvFileImportViewModel;
+            _importService = importService;
+            _openService = openService;
+            _saveService = saveService;
+            _exceptionService = exceptionService;
         }
 
         public void ShowImportDialog()
         {
-            if (Dispatcher.CurrentDispatcher.Thread.IsBackground)
-            {
-                Dispatcher.CurrentDispatcher.Invoke(ShowImportDialog);
-                return;
-            }
-
-            var dialog = _factory.CreateImportCsvFileDialog();
-            dialog.DataContext = _csvFileImportViewModel;
-            dialog.Owner = _application.GetMainWindow();
-            dialog.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-            dialog.ShowDialog();
+            _importService.Show();
         }
 
         public string ShowOpenDialog()
         {
-            if (Dispatcher.CurrentDispatcher.Thread.IsBackground)
-                return Dispatcher.CurrentDispatcher.Invoke((Func<string>) ShowOpenDialog);
-
-            var dialog = _factory.CreateOpenFileDialog();
-            dialog.SetTitle(OpenDialogTitle);
-            dialog.SetDefaultExtension(DefaultFileExtension);
-            dialog.SetFilter(FileFilter);
-            
-            var result = dialog.ShowDialog();
-
-            if (!result.HasValue || !result.Value)
-                return null;
-
-            var filePath = dialog.GetFilePath();
-
-            return filePath;
+            return _openService.Show();
         }
 
         public string ShowSaveDialog()
         {
-            if (Dispatcher.CurrentDispatcher.Thread.IsBackground)
-                return Dispatcher.CurrentDispatcher.Invoke((Func<string>) ShowSaveDialog);
+            return _saveService.Show();
+        }
 
-            var dialog = _factory.CreateSaveFileDialog();
-            dialog.SetTitle(SaveDialogTitle);
-            dialog.SetDefaultExtension(DefaultFileExtension);
-            dialog.SetFilter(FileFilter);
-
-            var result = dialog.ShowDialog();
-
-            if (!result.HasValue || !result.Value)
-                return null;
-
-            var filePath = dialog.GetFilePath();
-
-            return filePath;
+        public void ShowExceptionDialog(Exception ex)
+        {
+           _exceptionService.Show(ex);
         }
     }
 }

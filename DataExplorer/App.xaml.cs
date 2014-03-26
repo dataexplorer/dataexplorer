@@ -6,11 +6,13 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
+using DataExplorer.Application;
 using DataExplorer.Application.Core.Commands;
 using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Core.Logs;
 using DataExplorer.Application.Core.Queries;
 using DataExplorer.Domain.Core.Events;
+using DataExplorer.Presentation;
 using DataExplorer.Presentation.Shell.MainWindow;
 using Ninject;
 using Ninject.Extensions.Conventions;
@@ -112,14 +114,21 @@ namespace DataExplorer
 
         private void HandleDispatcherException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
-            var log = _kernel.Get<ILog>();
-            log.Fatal(e.Exception);
+            HandleException(e.Exception);
         }
 
         private void HandleAppDomainException(object sender, UnhandledExceptionEventArgs e)
         {
+            HandleException((Exception) e.ExceptionObject);
+        }
+
+        private void HandleException(Exception ex)
+        {
             var log = _kernel.Get<ILog>();
-            log.Fatal((Exception) e.ExceptionObject);
+            log.Fatal(ex);
+
+            var dialogService = _kernel.Get<IExceptionDialogService>();
+            dialogService.Show(ex);
         }
     }
 }

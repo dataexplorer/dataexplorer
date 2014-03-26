@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.Core.Queries;
+using DataExplorer.Presentation;
 using Moq;
 using Ninject;
 using NUnit.Framework;
@@ -16,6 +17,7 @@ namespace DataExplorer.Application.Tests.Core.Queries
         private QueryBus _bus;
         private IKernel _kernel;
         private Mock<IQueryLogger> _mockLogger;
+        private Mock<IExceptionDialogService> _mockDialogService;
         private FakeQueryHandler _handler;
         private FakeQuery _query;
 
@@ -31,7 +33,11 @@ namespace DataExplorer.Application.Tests.Core.Queries
 
             _mockLogger = new Mock<IQueryLogger>();
 
-            _bus = new QueryBus(_mockLogger.Object);
+            _mockDialogService = new Mock<IExceptionDialogService>();
+
+            _bus = new QueryBus(
+                _mockLogger.Object, 
+                _mockDialogService.Object);
 
             QueryBus.Kernel = _kernel;
         }
@@ -64,6 +70,16 @@ namespace DataExplorer.Application.Tests.Core.Queries
             _bus.Execute(_query);
             _mockLogger.Verify(p => 
                 p.LogException(It.IsAny<Exception>()),
+                Times.Once());
+        }
+
+        [Test]
+        public void TestExecuteShouldShowExceptionDialog()
+        {
+            _handler.ThrowException = true;
+            _bus.Execute(_query);
+            _mockDialogService.Verify(p => p.Show(
+                It.IsAny<Exception>()),
                 Times.Once());
         }
     }

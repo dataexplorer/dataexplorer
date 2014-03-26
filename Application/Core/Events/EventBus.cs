@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DataExplorer.Presentation;
 using Ninject;
 
 namespace DataExplorer.Application.Core.Events
@@ -9,10 +10,14 @@ namespace DataExplorer.Application.Core.Events
     {
         public static IKernel Kernel;
         private readonly IEventLogger _logger;
+        private readonly IExceptionDialogService _dialogService;
 
-        public EventBus(IEventLogger logger)
+        public EventBus(
+            IEventLogger logger, 
+            IExceptionDialogService dialogService)
         {
             _logger = logger;
+            _dialogService = dialogService;
         }
 
         public void Raise(IEvent @event)
@@ -35,7 +40,7 @@ namespace DataExplorer.Application.Core.Events
             {
                 _logger.LogException(ex);
 
-                // TODO: Need to display error
+                _dialogService.Show(ex);
             }
         }
     }

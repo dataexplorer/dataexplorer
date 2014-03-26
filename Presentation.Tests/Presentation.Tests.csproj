@@ -40,6 +40,7 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -76,6 +77,10 @@
     <Compile Include="Core\Services\VisualServiceTests.cs" />
     <Compile Include="Core\ViewModelTests.cs" />
     <Compile Include="Dialogs\DialogServiceTests.cs" />
+    <Compile Include="Dialogs\Exceptions\ExceptionDialogServiceTests.cs" />
+    <Compile Include="Dialogs\Import\ImportDialogServiceTests.cs" />
+    <Compile Include="Dialogs\Open\OpenDialogServiceTests.cs" />
+    <Compile Include="Dialogs\Save\SaveDialogServiceTests.cs" />
     <Compile Include="Importers\Body\CsvFileImportBodyViewModelTests.cs" />
     <Compile Include="Importers\Body\SourceMapViewModelTests.cs" />
     <Compile Include="Importers\CsvFileImportViewModelTests.cs" />

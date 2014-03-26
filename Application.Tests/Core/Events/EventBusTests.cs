@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.Core.Events;
+using DataExplorer.Presentation;
 using Moq;
 using Ninject;
 using NUnit.Framework;
@@ -16,6 +17,7 @@ namespace DataExplorer.Application.Tests.Core.Events
         private EventBus _bus;
         private IKernel _kernel;
         private Mock<IEventLogger> _mockLogger;
+        private Mock<IExceptionDialogService> _mockDialogService;
         private FakeEventHandler _handler;
         private FakeEvent _event;
 
@@ -31,8 +33,11 @@ namespace DataExplorer.Application.Tests.Core.Events
 
             _mockLogger = new Mock<IEventLogger>();
 
+            _mockDialogService = new Mock<IExceptionDialogService>();
+
             _bus = new EventBus(
-                _mockLogger.Object);
+                _mockLogger.Object,
+                _mockDialogService.Object);
 
             EventBus.Kernel = _kernel;
         }
@@ -64,6 +69,16 @@ namespace DataExplorer.Application.Tests.Core.Events
             _handler.ThrowException = true;
             _bus.Raise(_event);
             _mockLogger.Verify(p => p.LogException(It.IsAny<Exception>()), Times.Once());
+        }
+
+        [Test]
+        public void TestExecuteShouldShowExceptionDialog()
+        {
+            _handler.ThrowException = true;
+            _bus.Raise(_event);
+            _mockDialogService.Verify(p => p.Show(
+                It.IsAny<Exception>()),
+                Times.Once());
         }
     }
 }

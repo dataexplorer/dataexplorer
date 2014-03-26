@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataExplorer.Presentation;
 using Ninject;
 
 namespace DataExplorer.Application.Core.Commands
@@ -11,10 +12,14 @@ namespace DataExplorer.Application.Core.Commands
     {
         public static IKernel Kernel;
         private readonly ICommandLogger _logger;
+        private readonly IExceptionDialogService _dialogService;
 
-        public CommandBus(ICommandLogger logger)
+        public CommandBus(
+            ICommandLogger logger, 
+            IExceptionDialogService dialogService)
         {
             _logger = logger;
+            _dialogService = dialogService;
         }
 
         public void Execute(ICommand command)
@@ -36,7 +41,7 @@ namespace DataExplorer.Application.Core.Commands
             {
                 _logger.LogException(ex);
 
-                // TODO: Need to display error
+                _dialogService.Show(ex);
             }
         }
     }
