@@ -17,10 +17,10 @@ namespace DataExplorer.Domain.Maps.ColorMaps
         public StringToColorMap(List<string> sourceValues, List<Color> colors)
         {
             _sourceValues = sourceValues;
-            _sourceWidth = sourceValues.Count() - 1;
+            _sourceWidth = sourceValues.Count();
 
             _colors = colors;
-            _targetWidth = _colors.Count() - 1;
+            _targetWidth = _colors.Count();
         }
 
         public override Color Map(object value)
@@ -30,9 +30,9 @@ namespace DataExplorer.Domain.Maps.ColorMaps
 
             var stringIndex = _sourceValues.IndexOf((string)value);
 
-            var ratio = stringIndex / (_sourceWidth - 1d);
+            var ratio = stringIndex / _sourceWidth;
 
-            var colorIndex = (int)(ratio * _targetWidth);
+            var colorIndex = (int) Math.Floor(ratio * _targetWidth);
 
             return _colors[colorIndex];
         }
@@ -43,12 +43,12 @@ namespace DataExplorer.Domain.Maps.ColorMaps
 
             var ratio = colorIndex / _targetWidth;
 
-            var index = (int) (_sourceWidth * ratio);
+            var index = (int) Math.Ceiling(_sourceWidth * ratio);
 
             if (index < 0)
                 return _sourceValues.First();
 
-            if (index > _sourceWidth - 1)
+            if (index >= _sourceWidth)
                 return _sourceValues.Last();
 
             return _sourceValues[index];
