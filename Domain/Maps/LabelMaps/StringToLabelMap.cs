@@ -10,7 +10,7 @@ namespace DataExplorer.Domain.Maps.LabelMaps
     {
         public override string Map(object value)
         {
-            if (value == string.Empty)
+            if ((string) value == string.Empty)
                 return "[Empty]";
 
             if (value == null)

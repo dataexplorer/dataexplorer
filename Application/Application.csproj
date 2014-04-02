@@ -47,6 +47,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\VersionInfo.cs">
+      <Link>VersionInfo.cs</Link>
+    </Compile>
     <Compile Include="Application\ApplicationService.cs" />
     <Compile Include="Application\ApplicationState.cs" />
     <Compile Include="Application\ApplicationStateService.cs" />

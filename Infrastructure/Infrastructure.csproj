@@ -44,6 +44,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\VersionInfo.cs">
+      <Link>VersionInfo.cs</Link>
+    </Compile>
     <Compile Include="Application\ApplicationWrapper.cs" />
     <Compile Include="Clipboard\ClipboardWrapper.cs" />
     <Compile Include="Exporters\TabExporter.cs" />
