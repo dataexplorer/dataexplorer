@@ -54,6 +54,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\VersionInfo.cs">
+      <Link>VersionInfo.cs</Link>
+    </Compile>
     <Compile Include="Application\ApplicationSteps.cs" />
     <Compile Include="Application\ExitApplication.feature.cs">
       <AutoGen>True</AutoGen>

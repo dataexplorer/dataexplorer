@@ -45,6 +45,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\VersionInfo.cs">
+      <Link>VersionInfo.cs</Link>
+    </Compile>
     <Compile Include="Colors\Color.cs" />
     <Compile Include="Colors\ColorPalette.cs" />
     <Compile Include="Colors\ColorPaletteFactory.cs" />

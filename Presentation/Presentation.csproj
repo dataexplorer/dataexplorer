@@ -65,6 +65,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\VersionInfo.cs">
+      <Link>VersionInfo.cs</Link>
+    </Compile>
     <Compile Include="Core\BaseViewModel.cs" />
     <Compile Include="Core\Canvas\CanvasControl.cs" />
     <Compile Include="Core\Canvas\CanvasRenderer.cs" />

@@ -50,6 +50,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\VersionInfo.cs">
+      <Link>VersionInfo.cs</Link>
+    </Compile>
     <Compile Include="Core\BaseViewModelTests.cs" />
     <Compile Include="Core\Canvas\CanvasControlTestHarness.cs" />
     <Compile Include="Core\Canvas\CanvasControlTests.cs" />
