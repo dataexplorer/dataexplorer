@@ -1,4 +1,4 @@
 Data Explorer
 =======================
 
-Data Explorer is an interactive data visualization tool for casual data users.
+Data Explorer is an open-source interactive data-visualization tool.
