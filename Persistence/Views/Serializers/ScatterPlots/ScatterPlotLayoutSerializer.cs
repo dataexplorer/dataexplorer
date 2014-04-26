@@ -16,10 +16,14 @@ namespace DataExplorer.Persistence.Views.Serializers.ScatterPlots
     {
         private const string LayoutTag = "layout";
         private const string XAxisColumnIdTag = "x-axis-column-id";
+        private const string XAxisReverseTag = "x-axis-reverse";
         private const string YAxisColumnIdTag = "y-axis-column-id";
+        private const string YAxisReverseTag = "y-axis-reverse";
         private const string ColorColumnIdTag = "color-column-id";
+        private const string ColorReverseTag = "color-reverse";
         private const string ColorPaletteNameTag = "color-palette-name";
         private const string SizeColumnIdTag = "size-column-id";
+        private const string SizeReverseTag = "size-reverse";
         private const string LowerSizeTag = "lower-size";
         private const string UpperSizeTag = "upper-size";
         private const string ShapeColumnIdTag = "shape-column-id";
@@ -42,13 +46,21 @@ namespace DataExplorer.Persistence.Views.Serializers.ScatterPlots
 
             AddColumn(xLayout, XAxisColumnIdTag, layout.XAxisColumn);
 
+            AddProperty(xLayout, XAxisReverseTag, layout.XAxisReverse);
+
             AddColumn(xLayout, YAxisColumnIdTag, layout.YAxisColumn);
 
+            AddProperty(xLayout, YAxisReverseTag, layout.YAxisReverse);
+
             AddColumn(xLayout, ColorColumnIdTag, layout.ColorColumn);
+
+            AddProperty(xLayout, ColorReverseTag, layout.ColorReverse);
 
             AddProperty(xLayout, ColorPaletteNameTag, layout.ColorPalette.Name);
 
             AddColumn(xLayout, SizeColumnIdTag, layout.SizeColumn);
+
+            AddProperty(xLayout, SizeReverseTag, layout.SizeReverse);
 
             AddProperty(xLayout, LowerSizeTag, layout.LowerSize);
 
@@ -67,15 +79,23 @@ namespace DataExplorer.Persistence.Views.Serializers.ScatterPlots
         {
             var xAxisColumn = GetColumn(xLayout, XAxisColumnIdTag, columns);
 
+            var xAxisReverse = GetProperty<bool>(xLayout, XAxisReverseTag);
+
             var yAxisColumn = GetColumn(xLayout, YAxisColumnIdTag, columns);
 
+            var yAxisReverse = GetProperty<bool>(xLayout, YAxisReverseTag);
+            
             var colorColumn = GetColumn(xLayout, ColorColumnIdTag, columns);
+
+            var colorReverse = GetProperty<bool>(xLayout, ColorReverseTag);
 
             var colorPaletteName = GetProperty<string>(xLayout, ColorPaletteNameTag);
 
             var colorPalette = _colorPaletteFactory.GetColorPalette(colorPaletteName);
 
             var sizeColumn = GetColumn(xLayout, SizeColumnIdTag, columns);
+
+            var sizeReverse = GetProperty<bool>(xLayout, SizeReverseTag);
 
             var lowerSize = GetProperty<double>(xLayout, LowerSizeTag);
 
@@ -89,11 +109,15 @@ namespace DataExplorer.Persistence.Views.Serializers.ScatterPlots
 
             var layout = new ScatterPlotLayout()
             {
-                XAxisColumn = xAxisColumn, 
+                XAxisColumn = xAxisColumn,
+                XAxisReverse = xAxisReverse,
                 YAxisColumn = yAxisColumn,
+                YAxisReverse =  yAxisReverse,
                 ColorColumn = colorColumn,
+                ColorReverse = colorReverse,
                 ColorPalette = colorPalette,
                 SizeColumn = sizeColumn,
+                SizeReverse = sizeReverse,
                 LowerSize = lowerSize,
                 UpperSize = upperSize,
                 ShapeColumn = shapeColumn,
