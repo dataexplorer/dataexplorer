@@ -71,7 +71,7 @@ namespace DataExplorer.Domain.Tests.Views.ScatterPlots
         [Test]
         public void TestRenderPlotsShouldRenderXAxisValue()
         {
-            _mockMapFactory.Setup(p => p.CreateAxisMap(_column, 0d, 1d))
+            _mockMapFactory.Setup(p => p.CreateAxisMap(_column, 0d, 1d, false))
                 .Returns(_mockXAxisMap.Object);
             
             _mockXAxisMap.Setup(p => p.Map(1.0d)).Returns(1.0d);
@@ -86,7 +86,7 @@ namespace DataExplorer.Domain.Tests.Views.ScatterPlots
         [Test]
         public void TestRenderPlotsShouldRenderYAxisValue()
         {
-            _mockMapFactory.Setup(p => p.CreateAxisMap(_column, 0d, 1d))
+            _mockMapFactory.Setup(p => p.CreateAxisMap(_column, 0d, 1d, false))
                 .Returns(_mockYAxisMap.Object);
 
             _mockYAxisMap.Setup(p => p.Map(1.0d)).Returns(1.0d);

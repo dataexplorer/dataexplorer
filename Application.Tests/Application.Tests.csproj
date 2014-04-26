@@ -93,6 +93,7 @@
     <Compile Include="Importers\CsvFile\Queries\GetCsvFileSourceMapsQueryHandlerTests.cs" />
     <Compile Include="Importers\CsvFile\Queries\GetCsvFileSourceQueryHandlerTests.cs" />
     <Compile Include="Layouts\Base\Commands\BaseSetLayoutColumnCommandHandlerTests.cs" />
+    <Compile Include="Layouts\Base\Commands\BaseSetReverseLayoutCommandHandlerTests.cs" />
     <Compile Include="Layouts\Base\Commands\BaseUnsetLayoutColumnCommandHandlerTests.cs" />
     <Compile Include="Layouts\Base\Queries\BaseGetAllLayoutColumnsQueryHandlerTests.cs" />
     <Compile Include="Layouts\Base\Queries\BaseGetLayoutColumnQueryHandlerTests.cs" />
@@ -107,6 +108,8 @@
     <Compile Include="Layouts\Link\Commands\UnsetLinkColumnCommandHandlerTests.cs" />
     <Compile Include="Layouts\Link\Queries\GetAllLinkColumnsQueryHandlerTests.cs" />
     <Compile Include="Layouts\Link\Queries\GetLinkColumnQueryHandlerTests.cs" />
+    <Compile Include="Layouts\Location\Commands\SetXAxisReverseCommandHandlerTests.cs" />
+    <Compile Include="Layouts\Location\Commands\SetYAxisReverseColumnCommandHandlerTests.cs" />
     <Compile Include="Layouts\Location\Commands\UnsetXAxisColumnCommandHandlerTests.cs" />
     <Compile Include="Layouts\Location\Commands\UnsetYAxisColumnCommandHandlerTests.cs" />
     <Compile Include="Layouts\Location\Queries\GetAllAxisColumnsQueryHandlerTests.cs" />

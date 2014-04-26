@@ -31,9 +31,9 @@ namespace DataExplorer.Domain.Maps
             _labelMapFactory = labelMapFactory;
         }
 
-        public AxisMap CreateAxisMap(Column column, double targetMin, double targetMax)
+        public AxisMap CreateAxisMap(Column column, double targetMin, double targetMax, bool isReverse)
         {
-            return _axisMapFactory.Create(column, targetMin, targetMax, false);
+            return _axisMapFactory.Create(column, targetMin, targetMax, isReverse);
         }
 
         public ColorMap CreateColorMap(Column column, ColorPalette colorPalette)

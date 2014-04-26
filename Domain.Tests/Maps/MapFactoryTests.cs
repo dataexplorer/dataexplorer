@@ -69,7 +69,7 @@ namespace DataExplorer.Domain.Tests.Maps
         [Test]
         public void TestCreateAxisMapForBooleanShouldReturnABooleanToAxisMap()
         {
-            var result = _factory.CreateAxisMap(_column, 0d, 1d);
+            var result = _factory.CreateAxisMap(_column, 0d, 1d, false);
             
             Assert.That(result, Is.EqualTo(_axisMap));
         }

@@ -14,7 +14,7 @@ namespace DataExplorer.Domain.Maps
 {
     public interface IMapFactory
     {
-        AxisMap CreateAxisMap(Column column, double targetMin, double targetMax);
+        AxisMap CreateAxisMap(Column column, double targetMin, double targetMax, bool isReverse);
 
         ColorMap CreateColorMap(Column column, ColorPalette colorPalette);
 

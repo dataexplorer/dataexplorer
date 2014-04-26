@@ -158,6 +158,8 @@
     <Compile Include="Importers\CsvFiles\Queries\GetCsvFileSourceQueryHandler.cs" />
     <Compile Include="Importers\ISourceRepository.cs" />
     <Compile Include="IProcess.cs" />
+    <Compile Include="Layouts\Base\Commands\BaseReverseLayoutCommand.cs" />
+    <Compile Include="Layouts\Base\Commands\BaseReverseLayoutCommandHandler.cs" />
     <Compile Include="Layouts\Base\Commands\BaseSetLayoutColumnCommandHandler.cs" />
     <Compile Include="Layouts\Base\Commands\BaseUnsetLayoutColumnCommandHandler.cs" />
     <Compile Include="Layouts\Base\Queries\BaseGetAllLayoutColumnsQueryHandler.cs" />
@@ -184,6 +186,10 @@
     <Compile Include="Layouts\Link\Queries\GetAllLinkColumnsQueryHandler.cs" />
     <Compile Include="Layouts\Link\Queries\GetLinkColumnQuery.cs" />
     <Compile Include="Layouts\Link\Queries\GetLinkColumnQueryHandler.cs" />
+    <Compile Include="Layouts\Location\Commands\SetXAxisReverseCommand.cs" />
+    <Compile Include="Layouts\Location\Commands\SetXAxisReverseCommandHandler.cs" />
+    <Compile Include="Layouts\Location\Commands\SetYAxisReverseCommand.cs" />
+    <Compile Include="Layouts\Location\Commands\SetYAxisReverseCommandHandler.cs" />
     <Compile Include="Layouts\Location\Commands\UnsetXAxisColumnCommand.cs" />
     <Compile Include="Layouts\Location\Commands\UnsetXAxisColumnCommandHandler.cs" />
     <Compile Include="Layouts\Location\Commands\UnsetYAxisColumnCommand.cs" />

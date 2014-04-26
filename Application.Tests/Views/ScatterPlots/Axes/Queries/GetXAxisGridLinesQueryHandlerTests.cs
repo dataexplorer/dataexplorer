@@ -57,7 +57,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Axes.Queries
                 .Returns(_scatterPlot);
 
             _mockMapFactory = new Mock<IMapFactory>();
-            _mockMapFactory.Setup(p => p.CreateAxisMap(_column, 0d, 1d))
+            _mockMapFactory.Setup(p => p.CreateAxisMap(_column, 0d, 1d, false))
                 .Returns(_axisMap);
 
             _mockFactory = new Mock<IGridLineFactory>();

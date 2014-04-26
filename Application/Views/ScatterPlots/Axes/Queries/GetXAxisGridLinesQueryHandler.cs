@@ -38,7 +38,7 @@ namespace DataExplorer.Application.Views.ScatterPlots.Axes.Queries
             if (column == null)
                 return new List<AxisGridLine>();
 
-            var map = _mapFactory.CreateAxisMap(column, 0d, 1d);
+            var map = _mapFactory.CreateAxisMap(column, 0d, 1d, layout.XAxisReverse);
 
             var values = column.Values
                 .Distinct()
