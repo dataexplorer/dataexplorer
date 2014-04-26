@@ -16,11 +16,15 @@ namespace DataExplorer.Application.Legends.Sizes.Factories
             if (values.Any(p => p == null))
                 yield return CreateNullSizeLegendItem();
 
-            var nonNullValues = values
+            var distinctValues = values
+                .Distinct()
+                .ToList();
+
+            var nonNullValues = distinctValues
                 .Where(p => p != null)
                 .ToList();
 
-            var results = (values.Count() <= MaxDiscreteValues)
+            var results = (distinctValues.Count() <= MaxDiscreteValues)
                 ? CreateDiscreteSizeLegendItems(map, nonNullValues)
                 : CreateContinuousSizeLegendItems(map, lowerSize, upperSize);
 

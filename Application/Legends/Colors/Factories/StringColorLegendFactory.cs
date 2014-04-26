@@ -17,11 +17,15 @@ namespace DataExplorer.Application.Legends.Colors.Factories
             if (values.Any(p => p == null))
                 yield return CreateNullColorLegendItem();
 
-            var nonNullValues = values
+            var distinctValues = values
+                .Distinct()
+                .ToList();
+
+            var nonNullValues = distinctValues
                 .Where(p => p != null)
                 .ToList();
 
-            var results = (values.Count() <= palette.Colors.Count())
+            var results = (distinctValues.Count() <= palette.Colors.Count())
                 ? CreateDiscreteColorLegendItems(map, nonNullValues)
                 : CreateContinuousColorLegendItems(map, palette);
 

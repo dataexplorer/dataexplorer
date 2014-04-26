@@ -16,8 +16,8 @@ namespace DataExplorer.Domain.Maps.SizeMaps
 
         public StringToSizeMap(List<string> sourceValues, double targetMin, double targetMax)
         {
-            _sourceValues = sourceValues;
-            _sourceCount = sourceValues.Count();
+            _sourceValues = sourceValues.Distinct().ToList();
+            _sourceCount = _sourceValues.Count();
             _targetMin = targetMin;
             _targetMax = targetMax;
             _targetWidth = targetMax - targetMin;

@@ -16,8 +16,8 @@ namespace DataExplorer.Domain.Maps.ColorMaps
 
         public StringToColorMap(List<string> sourceValues, List<Color> colors)
         {
-            _sourceValues = sourceValues;
-            _sourceWidth = sourceValues.Count();
+            _sourceValues = sourceValues.Distinct().ToList();
+            _sourceWidth = _sourceValues.Count();
 
             _colors = colors;
             _targetWidth = _colors.Count();
