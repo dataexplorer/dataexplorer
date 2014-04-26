@@ -14,15 +14,22 @@ namespace DataExplorer.Domain.Maps.AxisMaps
         private readonly double _sourceWidth;
         private readonly double _targetMax;
         private readonly double _targetWidth;
+        private readonly bool _isReverse;
 
-        public DateTimeToAxisMap(DateTime sourceMin, DateTime sourceMax, double targetMin, double targetMax)
+        public DateTimeToAxisMap(
+            DateTime sourceMin,
+            DateTime sourceMax,
+            double targetMin,
+            double targetMax,
+            bool isReverse)
         {
             _sourceMin = sourceMin.Ticks;
             _sourceMax = sourceMax.Ticks;
-            _sourceWidth = sourceMax.Ticks - sourceMin.Ticks;
-            
             _targetMin = targetMin;
             _targetMax = targetMax;
+            _isReverse = isReverse;
+
+            _sourceWidth = sourceMax.Ticks - sourceMin.Ticks;
             _targetWidth = targetMax - targetMin;
         }
 
@@ -35,7 +42,11 @@ namespace DataExplorer.Domain.Maps.AxisMaps
 
             var ratio = width / _sourceWidth;
             
-            return _targetMin + (ratio * _targetWidth);
+            var targetValue = _targetMin + (ratio * _targetWidth);
+
+            return _isReverse
+                ? 1 - targetValue
+                : targetValue;
         }
 
         public override object MapInverse(double? value)
@@ -43,7 +54,11 @@ namespace DataExplorer.Domain.Maps.AxisMaps
             if (!value.HasValue)
                 return null;
 
-            var ratio = value / _targetWidth;
+            var targetValue = _isReverse
+                ? 1 - value
+                : value;
+
+            var ratio = targetValue / _targetWidth;
 
             var result = _sourceMin + (_sourceWidth * ratio);
 

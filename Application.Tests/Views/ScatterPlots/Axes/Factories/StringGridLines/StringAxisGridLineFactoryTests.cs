@@ -21,7 +21,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Axes.Factories.Strin
         public void TestCreateShouldReturnValues()
         {
             var sourceValues = new List<object> { "Ape", "Bat", "Cat", "Eel", "Fish" };
-            var map = new StringToAxisMap(sourceValues.Cast<string>().ToList(), 0d, 1d);
+            var map = new StringToAxisMap(sourceValues.Cast<string>().ToList(), 0d, 1d, false);
             var results = _factory.Create(map, sourceValues, 0d, 1d).ToList();
             Assert.That(results.Count, Is.EqualTo(5));
             Assert.That(results.First().LabelName, Is.EqualTo("Ape"));
@@ -32,7 +32,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Axes.Factories.Strin
         public void TestCreateShouldReturnAlphaValues()
         {
             var sourceValues = new List<object> { "Ape", "Bat", "Cat", "Eel", "Fish", "Gnat", "Hawk", "Ibis", "Jackal", "Kiwi", "Lion"};
-            var map = new StringToAxisMap(sourceValues.Cast<string>().ToList(), 0d, 1d);
+            var map = new StringToAxisMap(sourceValues.Cast<string>().ToList(), 0d, 1d, false);
             var results = _factory.Create(map, sourceValues, 0d, 1d).ToList();
             Assert.That(results.Count(), Is.EqualTo(11));
             Assert.That(results.First().LabelName, Is.EqualTo("A"));

@@ -14,7 +14,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Axes.Factories.Boole
         [SetUp]
         public void SetUp()
         {
-            _map = new BooleanToAxisMap(0d, 1d);
+            _map = new BooleanToAxisMap(0d, 1d, false);
 
             _factory = new BooleanGridLineFactory();
         }

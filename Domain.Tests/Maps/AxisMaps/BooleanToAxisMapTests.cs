@@ -6,32 +6,31 @@ namespace DataExplorer.Domain.Tests.Maps.AxisMaps
     [TestFixture]
     public class BooleanToAxisMapTests
     {
-        private BooleanToAxisMap _map;
-
-        [SetUp]
-        public void SetUp()
-        {
-            _map = new BooleanToAxisMap(0d, 1d);
-        }
-
         [Test]
-        [TestCase(null, null)]
-        [TestCase(false, 0d)]
-        [TestCase(true, 1d)]
-        public void TestMapShouldReturnCorrectValues(bool? value, double? expected)
+        [TestCase(null, false, null)]
+        [TestCase(false, false, 0d)]
+        [TestCase(true, false, 1d)]
+        [TestCase(false, true, 1d)]
+        [TestCase(true, true, 0d)]
+        public void TestMapShouldReturnCorrectValues(bool? value, bool isReverse, double? expected)
         {
-            var result = _map.Map(value);
+            var map = new BooleanToAxisMap(0d, 1d, isReverse);
+            var result = map.Map(value);
             Assert.That(result, Is.EqualTo(expected));
         }
 
         [Test]
-        [TestCase(null, null)]
-        [TestCase(0d, false)]
-        [TestCase(0.5d, true)]
-        [TestCase(1d, true)]
-        public void TestMapInverseShouldReturnCorrectValues(double? value, bool? expected)
+        [TestCase(null, false, null)]
+        [TestCase(0d, false, false)]
+        [TestCase(0.5d, false, true)]
+        [TestCase(1d, false, true)]
+        [TestCase(0d, true, true)]
+        [TestCase(0.5d, true, true)]
+        [TestCase(1d, true, false)]
+        public void TestMapInverseShouldReturnCorrectValues(double? value, bool isReverse, bool? expected)
         {
-            var result = _map.MapInverse(value);
+            var map = new BooleanToAxisMap(0d, 1d, isReverse);
+            var result = map.MapInverse(value);
             Assert.That(result, Is.EqualTo(expected));
         }
     }

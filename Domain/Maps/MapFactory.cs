@@ -33,7 +33,7 @@ namespace DataExplorer.Domain.Maps
 
         public AxisMap CreateAxisMap(Column column, double targetMin, double targetMax)
         {
-            return _axisMapFactory.Create(column, targetMin, targetMax);
+            return _axisMapFactory.Create(column, targetMin, targetMax, false);
         }
 
         public ColorMap CreateColorMap(Column column, ColorPalette colorPalette)

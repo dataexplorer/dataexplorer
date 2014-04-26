@@ -13,13 +13,20 @@ namespace DataExplorer.Domain.Maps.AxisMaps
         private readonly double _targetMin;
         private readonly double _targetMax;
         private readonly double _targetWidth;
+        private readonly bool _isReverse;
 
-        public StringToAxisMap(List<string> sourceValues, double targetMin, double targetMax)
+        public StringToAxisMap(
+            List<string> sourceValues, 
+            double targetMin, 
+            double targetMax,
+            bool isReverse)
         {
             _sourceValues = sourceValues.Distinct().ToList();
             _sourceCount = _sourceValues.Count;
             _targetMin = targetMin;
             _targetMax = targetMax;
+            _isReverse = isReverse;
+
             _targetWidth = targetMax - targetMin;
         }
 
@@ -32,7 +39,11 @@ namespace DataExplorer.Domain.Maps.AxisMaps
 
             var ratio = index / (_sourceCount - 1d);
             
-            return _targetMin + (ratio * _targetWidth);
+            var targetValue = _targetMin + (ratio * _targetWidth);
+
+            return _isReverse
+                ? 1 - targetValue
+                : targetValue;
         }
 
         public override object MapInverse(double? value)
@@ -40,7 +51,11 @@ namespace DataExplorer.Domain.Maps.AxisMaps
             if (!value.HasValue)
                 return null;
 
-            var ratio = (double) value / _targetWidth;
+            var targetValue = _isReverse
+                ? 1 - value
+                : value;
+
+            var ratio = (double) targetValue / _targetWidth;
 
             var index = (int)(_sourceCount * ratio);
 

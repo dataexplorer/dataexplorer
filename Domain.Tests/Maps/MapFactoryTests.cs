@@ -44,7 +44,7 @@ namespace DataExplorer.Domain.Tests.Maps
             _colorPalette = new ColorPaletteBuilder().Build();
 
             _mockAxisMapFactory = new Mock<IAxisMapFactory>();
-            _mockAxisMapFactory.Setup(p => p.Create(_column, 0d, 1d))
+            _mockAxisMapFactory.Setup(p => p.Create(_column, 0d, 1d, false))
                 .Returns(_axisMap);
 
             _mockColorMapFactory = new Mock<IColorMapFactory>();

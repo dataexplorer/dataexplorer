@@ -10,11 +10,16 @@ namespace DataExplorer.Domain.Maps.AxisMaps
     {
         private readonly double _targetMin;
         private readonly double _targetMax;
+        private readonly bool _isReverse;
 
-        public BooleanToAxisMap(double targetMin, double targetMax)
+        public BooleanToAxisMap(
+            double targetMin, 
+            double targetMax, 
+            bool isReverse)
         {
             _targetMin = targetMin;
             _targetMax = targetMax;
+            _isReverse = isReverse;
         }
 
         public override double? Map(object value)
@@ -22,9 +27,13 @@ namespace DataExplorer.Domain.Maps.AxisMaps
             if (value == null)
                 return null;
 
-            return (bool) value 
+            var targetValue = ((bool) value)
                 ? _targetMax 
                 : _targetMin;
+
+            return _isReverse
+                ? 1 - targetValue
+                : targetValue;
         }
 
         public override object MapInverse(double? value)
@@ -32,7 +41,11 @@ namespace DataExplorer.Domain.Maps.AxisMaps
             if (!value.HasValue)
                 return null;
 
-            return value != _targetMin;
+            var targetValue = _isReverse
+                ? 1 - value
+                : value;
+
+            return targetValue != _targetMin;
 
         }
     }

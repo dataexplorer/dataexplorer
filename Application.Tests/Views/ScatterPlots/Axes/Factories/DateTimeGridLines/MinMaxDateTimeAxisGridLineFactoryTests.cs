@@ -15,7 +15,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Axes.Factories.DateT
         [SetUp]
         public void SetUp()
         {
-            _map = new DateTimeToAxisMap(DateTime.MinValue, DateTime.MaxValue, 0d, 1d);
+            _map = new DateTimeToAxisMap(DateTime.MinValue, DateTime.MaxValue, 0d, 1d, false);
 
             _factory = new MinMaxDateTimeAxisGridLineFactory();
         }

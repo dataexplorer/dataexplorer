@@ -19,7 +19,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Axes.Factories.Float
         [Test]
         public void TestCreateShouldCreateMinAndMaxValues()
         {
-            var map = new FloatToAxisMap(double.MinValue, double.MaxValue, 0d, 1d);
+            var map = new FloatToAxisMap(double.MinValue, double.MaxValue, 0d, 1d, false);
             var results = _factory.Create(map, 0d, 1d).ToList();
             Assert.That(results[0].Position, Is.EqualTo(0d).Within(0.1));
             Assert.That(results[0].LabelName, Is.EqualTo("-1.80E+308"));
@@ -41,7 +41,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Axes.Factories.Float
         [TestCase(0, 0.000000001, 11, "0.00", "1.00E-009")]
         public void TestCreateShouldCreateCorrectValues(double min, double max, int count, string lowerLabel, string upperLabel)
         {
-            var map = new FloatToAxisMap(min, max, 0d, 1d);
+            var map = new FloatToAxisMap(min, max, 0d, 1d, false);
             var results = _factory.Create(map, 0d, 1d).ToList();
             Assert.That(results.Count(), Is.EqualTo(count));
             Assert.That(results.First().Position, Is.EqualTo(0d).Within(0.001));
