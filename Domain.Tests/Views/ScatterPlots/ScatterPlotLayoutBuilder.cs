@@ -24,15 +24,33 @@ namespace DataExplorer.Domain.Tests.Views.ScatterPlots
             return this;
         }
 
+        public ScatterPlotLayoutBuilder WithXAxisReverse(bool isReverse)
+        {
+            _layout.XAxisReverse = isReverse;
+            return this;
+        }
+
         public ScatterPlotLayoutBuilder WithYAxisColumn(Column column)
         {
             _layout.YAxisColumn = column;
             return this;
         }
 
+        public ScatterPlotLayoutBuilder WithYAxisReverse(bool isReverse)
+        {
+            _layout.YAxisReverse = isReverse;
+            return this;
+        }
+
         public ScatterPlotLayoutBuilder WithColorColumn(Column column)
         {
             _layout.ColorColumn = column;
+            return this;
+        }
+
+        public ScatterPlotLayoutBuilder WithColorReverse(bool isReverse)
+        {
+            _layout.ColorReverse = isReverse;
             return this;
         }
 
@@ -45,6 +63,12 @@ namespace DataExplorer.Domain.Tests.Views.ScatterPlots
         public ScatterPlotLayoutBuilder WithSizeColumn(Column column)
         {
             _layout.SizeColumn = column;
+            return this;
+        }
+
+        public ScatterPlotLayoutBuilder WithSizeReverse(bool isReverse)
+        {
+            _layout.SizeReverse = isReverse;
             return this;
         }
 

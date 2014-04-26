@@ -8,10 +8,14 @@ namespace DataExplorer.Domain.Views.ScatterPlots
         private const double DefaultSize = 0.125d;
 
         private Column _xAxisColumn;
+        private bool _xAxisReverse;
         private Column _yAxisColumn;
+        private bool _yAxisReverse;
         private Column _colorColumn;
+        private bool _colorReverse;
         private ColorPalette _colorPalette;
         private Column _sizeColumn;
+        private bool _sizeReverse;
         private double _lowerSize;
         private double _upperSize;
         private Column _shapeColumn;
@@ -30,16 +34,34 @@ namespace DataExplorer.Domain.Views.ScatterPlots
             set { _xAxisColumn = value; }
         }
 
+        public bool XAxisReverse
+        {
+            get { return _xAxisReverse; }
+            set { _xAxisReverse = value; }
+        }
+
         public Column YAxisColumn
         {
             get { return _yAxisColumn; }
             set { _yAxisColumn = value; }
         }
 
+        public bool YAxisReverse
+        {
+            get { return _yAxisReverse; }
+            set { _yAxisReverse = value; }
+        }
+
         public Column ColorColumn
         {
             get { return _colorColumn; }
             set { _colorColumn = value; }
+        }
+
+        public bool ColorReverse
+        {
+            get { return _colorReverse; }
+            set { _colorReverse = value; }
         }
 
         public ColorPalette ColorPalette
@@ -52,6 +74,12 @@ namespace DataExplorer.Domain.Views.ScatterPlots
         {
             get { return _sizeColumn; } 
             set { _sizeColumn = value; }
+        }
+
+        public bool SizeReverse
+        {
+            get { return _sizeReverse; }
+            set { _sizeReverse = value; }
         }
 
         public double LowerSize
@@ -87,10 +115,14 @@ namespace DataExplorer.Domain.Views.ScatterPlots
         public void Clear()
         {
             _xAxisColumn = null;
+            _xAxisReverse = false;
             _yAxisColumn = null;
+            _yAxisReverse = false;
             _colorColumn = null;
+            _colorReverse = false;
             _colorPalette = new ColorPaletteFactory().Pastel1;
             _sizeColumn = null;
+            _sizeReverse = false;
             _lowerSize = DefaultSize;
             _upperSize = DefaultSize;
             _shapeColumn = null;
