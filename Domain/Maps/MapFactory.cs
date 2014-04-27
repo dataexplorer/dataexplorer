@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Domain.Colors;
 using DataExplorer.Domain.Columns;
+using DataExplorer.Domain.Layouts;
 using DataExplorer.Domain.Maps.AxisMaps;
 using DataExplorer.Domain.Maps.ColorMaps;
 using DataExplorer.Domain.Maps.LabelMaps;
@@ -31,9 +32,9 @@ namespace DataExplorer.Domain.Maps
             _labelMapFactory = labelMapFactory;
         }
 
-        public AxisMap CreateAxisMap(Column column, double targetMin, double targetMax, bool isReverse)
+        public AxisMap CreateAxisMap(Column column, double targetMin, double targetMax, SortOrder sortOrder)
         {
-            return _axisMapFactory.Create(column, targetMin, targetMax, isReverse);
+            return _axisMapFactory.Create(column, targetMin, targetMax, sortOrder);
         }
 
         public ColorMap CreateColorMap(Column column, ColorPalette colorPalette)

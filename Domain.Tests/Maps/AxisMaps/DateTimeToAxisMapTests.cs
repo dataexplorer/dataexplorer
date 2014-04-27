@@ -1,4 +1,5 @@
 ﻿using System;
+using DataExplorer.Domain.Layouts;
 using DataExplorer.Domain.Maps.AxisMaps;
 using NUnit.Framework;
 
@@ -10,7 +11,7 @@ namespace DataExplorer.Domain.Tests.Maps.AxisMaps
         [Test]
         public void TestMapWithNullValue()
         {
-            var map = new DateTimeToAxisMap(DateTime.MinValue, DateTime.MaxValue, 0d, 100d, false);
+            var map = new DateTimeToAxisMap(DateTime.MinValue, DateTime.MaxValue, 0d, 100d, SortOrder.Ascending);
             var result = map.Map(null);
             Assert.That(result, Is.Null);
         }
@@ -23,7 +24,7 @@ namespace DataExplorer.Domain.Tests.Maps.AxisMaps
         [TestCase("12/31/9999", 1.00d)]
         public void TestMapWithDateValues(string date, double expected)
         {
-            var map = new DateTimeToAxisMap(DateTime.MinValue, DateTime.MaxValue, 0d, 1d, false);
+            var map = new DateTimeToAxisMap(DateTime.MinValue, DateTime.MaxValue, 0d, 1d, SortOrder.Ascending);
             var value = DateTime.Parse(date);
             var result = map.Map(value);
             Assert.That(result, Is.EqualTo(expected).Within(0.0001));
@@ -39,7 +40,7 @@ namespace DataExplorer.Domain.Tests.Maps.AxisMaps
         {
             var min = DateTime.Parse("1/1/0001 00:00:00");
             var max = DateTime.Parse("1/2/0001 00:00:00");
-            var map = new DateTimeToAxisMap(min, max, 0d, 1d, false);
+            var map = new DateTimeToAxisMap(min, max, 0d, 1d, SortOrder.Ascending);
             var value = DateTime.Parse(time);
             var result = map.Map(value);
             Assert.That(result, Is.EqualTo(expected).Within(0.0001));
@@ -55,7 +56,7 @@ namespace DataExplorer.Domain.Tests.Maps.AxisMaps
         {
             var min = DateTime.Parse("1/1/0001 00:00:00.000");
             var max = DateTime.Parse("1/1/0001 00:00:01.000");
-            var map = new DateTimeToAxisMap(min, max, 0d, 1d, false);
+            var map = new DateTimeToAxisMap(min, max, 0d, 1d, SortOrder.Ascending);
             var value = DateTime.Parse(time);
             var result = map.Map(value);
             Assert.That(result, Is.EqualTo(expected).Within(0.0001));
@@ -69,7 +70,7 @@ namespace DataExplorer.Domain.Tests.Maps.AxisMaps
         [TestCase("12/31/9999", 0.00d)]
         public void TestMapWithReverseValues(string date, double expected)
         {
-            var map = new DateTimeToAxisMap(DateTime.MinValue, DateTime.MaxValue, 0d, 1d, true);
+            var map = new DateTimeToAxisMap(DateTime.MinValue, DateTime.MaxValue, 0d, 1d, SortOrder.Descending);
             var value = DateTime.Parse(date);
             var result = map.Map(value);
             Assert.That(result, Is.EqualTo(expected).Within(0.0001));
@@ -78,7 +79,7 @@ namespace DataExplorer.Domain.Tests.Maps.AxisMaps
         [Test]
         public void TestMapInverseWithNullValue()
         {
-            var map = new DateTimeToAxisMap(DateTime.MinValue, DateTime.MaxValue, 0d, 1d, false);
+            var map = new DateTimeToAxisMap(DateTime.MinValue, DateTime.MaxValue, 0d, 1d, SortOrder.Ascending);
             var result = map.MapInverse(null);
             Assert.That(result, Is.Null);
         }
@@ -88,7 +89,7 @@ namespace DataExplorer.Domain.Tests.Maps.AxisMaps
         [TestCase(1.1d, "9999-12-31 23:59:59.999")]
         public void TestMapInverseWithOutOfRangeValues(double value, string expected)
         {
-            var map = new DateTimeToAxisMap(DateTime.MinValue, DateTime.MaxValue, 0d, 1d, false);
+            var map = new DateTimeToAxisMap(DateTime.MinValue, DateTime.MaxValue, 0d, 1d, SortOrder.Ascending);
             var expectedDate = DateTime.Parse(expected);
             var result = map.MapInverse(value);
             Assert.That(result, Is.EqualTo(expectedDate).Within(TimeSpan.FromMilliseconds(1)));
@@ -102,7 +103,7 @@ namespace DataExplorer.Domain.Tests.Maps.AxisMaps
         [TestCase(1.00d, "12/31/9999")]
         public void TestMapInverseWithDateValues(double value, string expected)
         {
-            var map = new DateTimeToAxisMap(DateTime.MinValue, DateTime.MaxValue, 0d, 1d, false);
+            var map = new DateTimeToAxisMap(DateTime.MinValue, DateTime.MaxValue, 0d, 1d, SortOrder.Ascending);
             var expectedDate = DateTime.Parse(expected);
             var result = map.MapInverse(value);
             Assert.That(result, Is.EqualTo(expectedDate).Within(TimeSpan.FromDays(1)));
@@ -118,7 +119,7 @@ namespace DataExplorer.Domain.Tests.Maps.AxisMaps
         {
             var min = DateTime.Parse("1/1/0001 00:00:00");
             var max = DateTime.Parse("1/2/0001 00:00:00");
-            var map = new DateTimeToAxisMap(min, max, 0d, 1d, false);
+            var map = new DateTimeToAxisMap(min, max, 0d, 1d, SortOrder.Ascending);
             var expectedDate = DateTime.Parse(expected);
             var result = map.MapInverse(value);
             Assert.That(result, Is.EqualTo(expectedDate));
@@ -133,7 +134,7 @@ namespace DataExplorer.Domain.Tests.Maps.AxisMaps
         {
             var min = DateTime.Parse("1/1/0001 00:00:00.000");
             var max = DateTime.Parse("1/1/0001 00:00:01.000");
-            var map = new DateTimeToAxisMap(min, max, 0d, 1d, false);
+            var map = new DateTimeToAxisMap(min, max, 0d, 1d, SortOrder.Ascending);
             var expectedDate = DateTime.Parse(expected);
             var result = map.MapInverse(value);
             Assert.That(result, Is.EqualTo(expectedDate));
@@ -147,7 +148,7 @@ namespace DataExplorer.Domain.Tests.Maps.AxisMaps
         [TestCase(0.00d, "12/31/9999")]
         public void TestMapInverseWithReverseValues(double value, string expected)
         {
-            var map = new DateTimeToAxisMap(DateTime.MinValue, DateTime.MaxValue, 0d, 1d, true);
+            var map = new DateTimeToAxisMap(DateTime.MinValue, DateTime.MaxValue, 0d, 1d, SortOrder.Descending);
             var expectedDate = DateTime.Parse(expected);
             var result = map.MapInverse(value);
             Assert.That(result, Is.EqualTo(expectedDate).Within(TimeSpan.FromDays(1)));

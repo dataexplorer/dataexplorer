@@ -1,4 +1,5 @@
-﻿using DataExplorer.Domain.Maps.AxisMaps;
+﻿using DataExplorer.Domain.Layouts;
+using DataExplorer.Domain.Maps.AxisMaps;
 using NUnit.Framework;
 
 namespace DataExplorer.Domain.Tests.Maps.AxisMaps
@@ -15,7 +16,7 @@ namespace DataExplorer.Domain.Tests.Maps.AxisMaps
         [TestCase(10, 1.00d)]
         public void TestMapShouldReturnCorrectValues(int? value, double? expected)
         {
-            var map = new IntegerToAxisMap(-10, 10, 0d, 1d, false);
+            var map = new IntegerToAxisMap(-10, 10, 0d, 1d, SortOrder.Ascending);
             var result = map.Map(value);
             Assert.That(result, Is.EqualTo(expected));
         }
@@ -29,7 +30,7 @@ namespace DataExplorer.Domain.Tests.Maps.AxisMaps
         [TestCase(10, 0.00d)]
         public void TestMapShouldReturnReverseValues(int? value, double? expected)
         {
-            var map = new IntegerToAxisMap(-10, 10, 0d, 1d, true);
+            var map = new IntegerToAxisMap(-10, 10, 0d, 1d, SortOrder.Descending);
             var result = map.Map(value);
             Assert.That(result, Is.EqualTo(expected));
         }
@@ -37,7 +38,7 @@ namespace DataExplorer.Domain.Tests.Maps.AxisMaps
         [Test]
         public void TestMapInverseWithLessThanMinValue()
         {
-            var map = new IntegerToAxisMap(int.MinValue, int.MaxValue, 0d, 1d, false);
+            var map = new IntegerToAxisMap(int.MinValue, int.MaxValue, 0d, 1d, SortOrder.Ascending);
             var result = map.MapInverse(-0.1d);
             Assert.That(result, Is.EqualTo(int.MinValue));
         }
@@ -45,7 +46,7 @@ namespace DataExplorer.Domain.Tests.Maps.AxisMaps
         [Test]
         public void TestMapInverseWithGreaterThanMaxValue()
         {
-            var map = new IntegerToAxisMap(int.MinValue, int.MaxValue, 0d, 1d, false);
+            var map = new IntegerToAxisMap(int.MinValue, int.MaxValue, 0d, 1d, SortOrder.Ascending);
             var result = map.MapInverse(1.1d);
             Assert.That(result, Is.EqualTo(int.MaxValue));
         }
@@ -59,7 +60,7 @@ namespace DataExplorer.Domain.Tests.Maps.AxisMaps
         [TestCase(1.00d, 10)]
         public void TestMapInverseShouldReturnCorrectValues(double? value, int? expected)
         {
-            var map = new IntegerToAxisMap(-10, 10, 0d, 1d, false);
+            var map = new IntegerToAxisMap(-10, 10, 0d, 1d, SortOrder.Ascending);
             var result = map.MapInverse(value);
             Assert.That(result, Is.EqualTo(expected));
         }
@@ -73,7 +74,7 @@ namespace DataExplorer.Domain.Tests.Maps.AxisMaps
         [TestCase(1.00d, -10)]
         public void TestMapInverseShouldReturnReverseValues(double? value, int? expected)
         {
-            var map = new IntegerToAxisMap(-10, 10, 0d, 1d, true);
+            var map = new IntegerToAxisMap(-10, 10, 0d, 1d, SortOrder.Descending);
             var result = map.MapInverse(value);
             Assert.That(result, Is.EqualTo(expected));
         }

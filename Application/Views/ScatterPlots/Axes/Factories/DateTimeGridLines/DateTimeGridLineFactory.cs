@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DataExplorer.Domain.Layouts;
 using DataExplorer.Domain.Maps.AxisMaps;
 using DataExplorer.Domain.Views.ScatterPlots;
 
@@ -42,9 +43,13 @@ namespace DataExplorer.Application.Views.ScatterPlots.Axes.Factories.DateTimeGri
 
         public IEnumerable<AxisGridLine> Create(AxisMap map, double lower, double upper)
         {
-            var lowerDateTime = (DateTime) map.MapInverse(lower);
+            var lowerDateTime = map.SortOrder == SortOrder.Ascending
+                ? (DateTime) map.MapInverse(lower)
+                : (DateTime) map.MapInverse(upper);
 
-            var upperDateTime = (DateTime) map.MapInverse(upper);
+            var upperDateTime = map.SortOrder == SortOrder.Ascending
+                ? (DateTime) map.MapInverse(upper)
+                : (DateTime) map.MapInverse(lower);
 
             var widthInYears = upperDateTime.Year - lowerDateTime.Year;
 

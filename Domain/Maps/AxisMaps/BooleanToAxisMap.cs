@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataExplorer.Domain.Layouts;
 
 namespace DataExplorer.Domain.Maps.AxisMaps
 {
@@ -10,16 +11,15 @@ namespace DataExplorer.Domain.Maps.AxisMaps
     {
         private readonly double _targetMin;
         private readonly double _targetMax;
-        private readonly bool _isReverse;
 
         public BooleanToAxisMap(
             double targetMin, 
             double targetMax, 
-            bool isReverse)
+            SortOrder sortOrder) 
+            : base(sortOrder)
         {
             _targetMin = targetMin;
             _targetMax = targetMax;
-            _isReverse = isReverse;
         }
 
         public override double? Map(object value)
@@ -31,9 +31,9 @@ namespace DataExplorer.Domain.Maps.AxisMaps
                 ? _targetMax 
                 : _targetMin;
 
-            return _isReverse
-                ? 1 - targetValue
-                : targetValue;
+            return _sortOrder == SortOrder.Ascending
+                ? targetValue
+                : 1 - targetValue;
         }
 
         public override object MapInverse(double? value)
@@ -41,9 +41,9 @@ namespace DataExplorer.Domain.Maps.AxisMaps
             if (!value.HasValue)
                 return null;
 
-            var targetValue = _isReverse
-                ? 1 - value
-                : value;
+            var targetValue = _sortOrder == SortOrder.Ascending
+                ? value
+                : 1 - value;
 
             return targetValue != _targetMin;
 

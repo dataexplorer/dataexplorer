@@ -5,6 +5,7 @@ using DataExplorer.Application.Views;
 using DataExplorer.Application.Views.ScatterPlots.Axes.Factories;
 using DataExplorer.Application.Views.ScatterPlots.Axes.Queries;
 using DataExplorer.Domain.Columns;
+using DataExplorer.Domain.Layouts;
 using DataExplorer.Domain.Maps;
 using DataExplorer.Domain.Maps.AxisMaps;
 using DataExplorer.Domain.Tests.Columns;
@@ -57,7 +58,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Axes.Queries
                 .Returns(_scatterPlot);
 
             _mockMapFactory = new Mock<IMapFactory>();
-            _mockMapFactory.Setup(p => p.CreateAxisMap(_column, 0d, 1d, false))
+            _mockMapFactory.Setup(p => p.CreateAxisMap(_column, 0d, 1d, SortOrder.Ascending))
                 .Returns(_axisMap);
 
             _mockFactory = new Mock<IGridLineFactory>();

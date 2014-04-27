@@ -20,11 +20,11 @@ namespace DataExplorer.Domain.Views.ScatterPlots
         public List<Plot> RenderPlots(List<Row> rows, ScatterPlotLayout layout)
         {
             var xAxisMap = layout.XAxisColumn != null 
-                ? _factory.CreateAxisMap(layout.XAxisColumn, 0d, 1d, layout.XAxisReverse) 
+                ? _factory.CreateAxisMap(layout.XAxisColumn, 0d, 1d, layout.XAxisSortOrder) 
                 : null;
 
             var yAxisMap = layout.YAxisColumn != null
-                ? _factory.CreateAxisMap(layout.YAxisColumn, 0d, 1d, layout.YAxisReverse)
+                ? _factory.CreateAxisMap(layout.YAxisColumn, 0d, 1d, layout.YAxisSortOrder)
                 : null;
 
             var colorMap = layout.ColorColumn != null

@@ -5,12 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.Core.Commands;
 using DataExplorer.Application.Layouts.Base.Commands;
+using DataExplorer.Domain.Layouts;
 
 namespace DataExplorer.Application.Layouts.Location.Commands
 {
-    public class SetYAxisReverseCommand : BaseReverseLayoutCommand
+    public class SetYAxisSetSortOrderCommand : BaseSetLayoutSortOrderCommand
     {
-        public SetYAxisReverseCommand(bool isReverse) : base(isReverse)
+        public SetYAxisSetSortOrderCommand(SortOrder sortOrder) : base(sortOrder)
         {
         }
     }

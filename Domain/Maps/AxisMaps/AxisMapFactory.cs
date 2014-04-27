@@ -4,18 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Domain.Columns;
+using DataExplorer.Domain.Layouts;
 
 namespace DataExplorer.Domain.Maps.AxisMaps
 {
     public class AxisMapFactory : IAxisMapFactory
     {
-        public AxisMap Create(Column column, double targetMin, double targetMax, bool isReverse)
+        public AxisMap Create(Column column, double targetMin, double targetMax, SortOrder sortOrder)
         {
             if (column.DataType == typeof(Boolean))
                 return new BooleanToAxisMap(
                     targetMin, 
-                    targetMax, 
-                    isReverse);
+                    targetMax,
+                    sortOrder);
 
             if (column.DataType == typeof(DateTime))
                 return new DateTimeToAxisMap(
@@ -23,7 +24,7 @@ namespace DataExplorer.Domain.Maps.AxisMaps
                     (DateTime) column.Max, 
                     targetMin, 
                     targetMax,
-                    isReverse);
+                    sortOrder);
 
             if (column.DataType == typeof(Double))
                 return new FloatToAxisMap(
@@ -31,7 +32,7 @@ namespace DataExplorer.Domain.Maps.AxisMaps
                     (double) column.Max, 
                     targetMin, 
                     targetMax,
-                    isReverse);
+                    sortOrder);
 
             if (column.DataType == typeof(Int32))
                 return new IntegerToAxisMap(
@@ -39,14 +40,14 @@ namespace DataExplorer.Domain.Maps.AxisMaps
                     (int) column.Max, 
                     targetMin, 
                     targetMax,
-                    isReverse);
+                    sortOrder);
 
             if (column.DataType == typeof(String))
                 return new StringToAxisMap(
                     column.Values.Cast<string>().ToList(), 
                     targetMin, 
                     targetMax,
-                    isReverse);
+                    sortOrder);
 
             throw new ArgumentException("Column data type is not valid data type for an axis map.");
         }

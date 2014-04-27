@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DataExplorer.Application.Views.ScatterPlots.Axes.Factories.DateTimeGridLines;
+using DataExplorer.Domain.Layouts;
 using DataExplorer.Domain.Maps.AxisMaps;
 using DataExplorer.Domain.Views.ScatterPlots;
 using Moq;
@@ -44,7 +45,17 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Axes.Factories.DateT
         [Test]
         public void TestCreateShouldReturnMinMaxLabels()
         {
-            var map = new DateTimeToAxisMap(DateTime.MinValue, DateTime.MaxValue, 0d, 1d, false);
+            var map = new DateTimeToAxisMap(new DateTime(2000, 1, 1), new DateTime(2010, 1, 1), 0d, 1d, SortOrder.Ascending);
+           _mockYearFactory.Setup(p => p.Create(map, new DateTime(2000, 1, 1), new DateTime(2010, 1, 1),  1))
+               .Returns(_lines);
+            var results = _factory.Create(map, 0.0d, 1.0d);
+            Assert.That(results.Single(), Is.EqualTo(_line));
+        }
+
+        [Test]
+        public void TestCreateShouldReturnDescendingValues()
+        {
+            var map = new DateTimeToAxisMap(DateTime.MinValue, DateTime.MaxValue, 0d, 1d, SortOrder.Descending);
             _mockMinMaxFactory.Setup(p => p.Create(map)).Returns(_lines);
             var results = _factory.Create(map, -0.1d, 1.1d);
             Assert.That(results.Single(), Is.EqualTo(_line));
@@ -63,7 +74,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Axes.Factories.DateT
         {
             var lower = DateTime.MinValue;
             var upper = lower.AddYears(years);
-            var map = new DateTimeToAxisMap(lower, upper, 0d, 1d, false);
+            var map = new DateTimeToAxisMap(lower, upper, 0d, 1d, SortOrder.Ascending);
             _mockYearFactory.Setup(p => p.Create(map, It.IsAny<DateTime>(), It.IsAny<DateTime>(), step)).Returns(_lines);
             var results = _factory.Create(map, 0d, 1d);
             Assert.That(results.Single(), Is.EqualTo(_line));
@@ -76,7 +87,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Axes.Factories.DateT
         {
             var lower = DateTime.MinValue;
             var upper = lower.AddDays(days);
-            var map = new DateTimeToAxisMap(lower, upper, 0d, 1d, false);
+            var map = new DateTimeToAxisMap(lower, upper, 0d, 1d, SortOrder.Ascending);
             _mockDayFactory.Setup(p => p.CreateQuarters(map, It.IsAny<DateTime>(), It.IsAny<DateTime>())).Returns(_lines);
             var results = _factory.Create(map, 0d, 1d);
             Assert.That(results.Single(), Is.EqualTo(_line));
@@ -89,7 +100,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Axes.Factories.DateT
         {
             var lower = DateTime.MinValue;
             var upper = lower.AddDays(days);
-            var map = new DateTimeToAxisMap(lower, upper, 0d, 1d, false);
+            var map = new DateTimeToAxisMap(lower, upper, 0d, 1d, SortOrder.Ascending);
             _mockDayFactory.Setup(p => p.CreateMonths(map, It.IsAny<DateTime>(), It.IsAny<DateTime>())).Returns(_lines);
             var results = _factory.Create(map, 0d, 1d);
             Assert.That(results.Single(), Is.EqualTo(_line));
@@ -102,7 +113,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Axes.Factories.DateT
         {
             var lower = DateTime.MinValue;
             var upper = lower.AddDays(days);
-            var map = new DateTimeToAxisMap(lower, upper, 0d, 1d, false);
+            var map = new DateTimeToAxisMap(lower, upper, 0d, 1d, SortOrder.Ascending);
             _mockDayFactory.Setup(p => p.CreateWeeks(map, It.IsAny<DateTime>(), It.IsAny<DateTime>())).Returns(_lines);
             var results = _factory.Create(map, 0d, 1d);
             Assert.That(results.Single(), Is.EqualTo(_line));
@@ -115,7 +126,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Axes.Factories.DateT
         {
             var lower = DateTime.MinValue;
             var upper = lower.AddDays(days);
-            var map = new DateTimeToAxisMap(lower, upper, 0d, 1d, false);
+            var map = new DateTimeToAxisMap(lower, upper, 0d, 1d, SortOrder.Ascending);
             _mockDayFactory.Setup(p => p.CreateDays(map, It.IsAny<DateTime>(), It.IsAny<DateTime>())).Returns(_lines);
             var results = _factory.Create(map, 0d, 1d);
             Assert.That(results.Single(), Is.EqualTo(_line));
@@ -128,7 +139,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Axes.Factories.DateT
         {
             var lower = DateTime.MinValue;
             var upper = lower.AddSeconds(seconds);
-            var map = new DateTimeToAxisMap(lower, upper, 0d, 1d, false);
+            var map = new DateTimeToAxisMap(lower, upper, 0d, 1d, SortOrder.Ascending);
             _mockSecondFactory.Setup(p => p.CreateFourHours(map, It.IsAny<DateTime>(), It.IsAny<DateTime>())).Returns(_lines);
             var results = _factory.Create(map, 0d, 1d);
             Assert.That(results.Single(), Is.EqualTo(_line));
@@ -141,7 +152,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Axes.Factories.DateT
         {
             var lower = DateTime.MinValue;
             var upper = lower.AddSeconds(seconds);
-            var map = new DateTimeToAxisMap(lower, upper, 0d, 1d, false);
+            var map = new DateTimeToAxisMap(lower, upper, 0d, 1d, SortOrder.Ascending);
             _mockSecondFactory.Setup(p => p.CreateHours(map, It.IsAny<DateTime>(), It.IsAny<DateTime>())).Returns(_lines);
             var results = _factory.Create(map, 0d, 1d);
             Assert.That(results.Single(), Is.EqualTo(_line));
@@ -154,7 +165,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Axes.Factories.DateT
         {
             var lower = DateTime.MinValue;
             var upper = lower.AddSeconds(seconds);
-            var map = new DateTimeToAxisMap(lower, upper, 0d, 1d, false);
+            var map = new DateTimeToAxisMap(lower, upper, 0d, 1d, SortOrder.Ascending);
             _mockSecondFactory.Setup(p => p.CreateTenMinutes(map, It.IsAny<DateTime>(), It.IsAny<DateTime>())).Returns(_lines);
             var results = _factory.Create(map, 0d, 1d);
             Assert.That(results.Single(), Is.EqualTo(_line));
@@ -167,7 +178,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Axes.Factories.DateT
         {
             var lower = DateTime.MinValue;
             var upper = lower.AddSeconds(seconds);
-            var map = new DateTimeToAxisMap(lower, upper, 0d, 1d, false);
+            var map = new DateTimeToAxisMap(lower, upper, 0d, 1d, SortOrder.Ascending);
             _mockSecondFactory.Setup(p => p.CreateMinutes(map, It.IsAny<DateTime>(), It.IsAny<DateTime>())).Returns(_lines);
             var results = _factory.Create(map, 0d, 1d);
             Assert.That(results.Single(), Is.EqualTo(_line));
@@ -180,7 +191,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Axes.Factories.DateT
         {
             var lower = DateTime.MinValue;
             var upper = lower.AddSeconds(seconds);
-            var map = new DateTimeToAxisMap(lower, upper, 0d, 1d, false);
+            var map = new DateTimeToAxisMap(lower, upper, 0d, 1d, SortOrder.Ascending);
             _mockSecondFactory.Setup(p => p.CreateTenSeconds(map, It.IsAny<DateTime>(), It.IsAny<DateTime>())).Returns(_lines);
             var results = _factory.Create(map, 0d, 1d);
             Assert.That(results.Single(), Is.EqualTo(_line));
@@ -193,7 +204,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Axes.Factories.DateT
         {
             var lower = DateTime.MinValue;
             var upper = lower.AddSeconds(seconds);
-            var map = new DateTimeToAxisMap(lower, upper, 0d, 1d, false);
+            var map = new DateTimeToAxisMap(lower, upper, 0d, 1d, SortOrder.Ascending);
             _mockSecondFactory.Setup(p => p.CreateSeconds(map, It.IsAny<DateTime>(), It.IsAny<DateTime>())).Returns(_lines);
             var results = _factory.Create(map, 0d, 1d);
             Assert.That(results.Single(), Is.EqualTo(_line));

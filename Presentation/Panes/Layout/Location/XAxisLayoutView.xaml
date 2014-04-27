@@ -19,6 +19,13 @@
             ItemsSource="{Binding Columns}" 
             SelectedItem="{Binding SelectedColumn}"
             DisplayMemberPath="Name">
+            <ComboBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem 
+                        Header="{Binding SortCommandText}"  
+                        Command="{Binding SortCommand}" />
+                </ContextMenu>
+            </ComboBox.ContextMenu>
         </ComboBox>
     </Grid>
 </UserControl>

@@ -1,6 +1,7 @@
 ﻿using System;
 using DataExplorer.Domain.Colors;
 using DataExplorer.Domain.Columns;
+using DataExplorer.Domain.Layouts;
 using DataExplorer.Domain.Maps;
 using DataExplorer.Domain.Maps.AxisMaps;
 using DataExplorer.Domain.Maps.ColorMaps;
@@ -44,7 +45,7 @@ namespace DataExplorer.Domain.Tests.Maps
             _colorPalette = new ColorPaletteBuilder().Build();
 
             _mockAxisMapFactory = new Mock<IAxisMapFactory>();
-            _mockAxisMapFactory.Setup(p => p.Create(_column, 0d, 1d, false))
+            _mockAxisMapFactory.Setup(p => p.Create(_column, 0d, 1d, SortOrder.Ascending))
                 .Returns(_axisMap);
 
             _mockColorMapFactory = new Mock<IColorMapFactory>();
@@ -69,7 +70,7 @@ namespace DataExplorer.Domain.Tests.Maps
         [Test]
         public void TestCreateAxisMapForBooleanShouldReturnABooleanToAxisMap()
         {
-            var result = _factory.CreateAxisMap(_column, 0d, 1d, false);
+            var result = _factory.CreateAxisMap(_column, 0d, 1d, SortOrder.Ascending);
             
             Assert.That(result, Is.EqualTo(_axisMap));
         }

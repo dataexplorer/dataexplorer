@@ -97,6 +97,7 @@
     <Compile Include="Layouts\Base\Commands\BaseUnsetLayoutColumnCommandHandlerTests.cs" />
     <Compile Include="Layouts\Base\Queries\BaseGetAllLayoutColumnsQueryHandlerTests.cs" />
     <Compile Include="Layouts\Base\Queries\BaseGetLayoutColumnQueryHandlerTests.cs" />
+    <Compile Include="Layouts\Base\Queries\BaseGetLayoutSortOrderQueryHandlerTests.cs" />
     <Compile Include="Layouts\Color\Commands\UnsetColorColumnCommandHandlerTests.cs" />
     <Compile Include="Layouts\Color\Queries\GetAllColorColumnsQueryHandlerTests.cs" />
     <Compile Include="Layouts\General\Commands\AutoLayoutColumnCommandHandlerTests.cs" />
@@ -113,6 +114,8 @@
     <Compile Include="Layouts\Location\Commands\UnsetXAxisColumnCommandHandlerTests.cs" />
     <Compile Include="Layouts\Location\Commands\UnsetYAxisColumnCommandHandlerTests.cs" />
     <Compile Include="Layouts\Location\Queries\GetAllAxisColumnsQueryHandlerTests.cs" />
+    <Compile Include="Layouts\Location\Queries\GetXAxisSortOrderQueryHandlerTests.cs" />
+    <Compile Include="Layouts\Location\Queries\GetYAxisSortOrderQueryHandler.cs" />
     <Compile Include="Layouts\Shape\Commands\SetShapeColumnCommandHandlerTests.cs" />
     <Compile Include="Layouts\Shape\Commands\UnsetShapeColumnCommandHandlerTests.cs" />
     <Compile Include="Layouts\Shape\Queries\GetAllShapeColumnsQueryHandlerTests.cs" />

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Domain.Colors;
 using DataExplorer.Domain.Columns;
+using DataExplorer.Domain.Layouts;
 using DataExplorer.Domain.Views.ScatterPlots;
 
 namespace DataExplorer.Domain.Tests.Views.ScatterPlots
@@ -24,9 +25,9 @@ namespace DataExplorer.Domain.Tests.Views.ScatterPlots
             return this;
         }
 
-        public ScatterPlotLayoutBuilder WithXAxisReverse(bool isReverse)
+        public ScatterPlotLayoutBuilder WithXAxisSortOrder(SortOrder sortOrder)
         {
-            _layout.XAxisReverse = isReverse;
+            _layout.XAxisSortOrder = sortOrder;
             return this;
         }
 
@@ -36,9 +37,9 @@ namespace DataExplorer.Domain.Tests.Views.ScatterPlots
             return this;
         }
 
-        public ScatterPlotLayoutBuilder WithYAxisReverse(bool isReverse)
+        public ScatterPlotLayoutBuilder WithYAxisSortOrder(SortOrder sortOrder)
         {
-            _layout.YAxisReverse = isReverse;
+            _layout.YAxisSortOrder = sortOrder;
             return this;
         }
 
@@ -48,9 +49,9 @@ namespace DataExplorer.Domain.Tests.Views.ScatterPlots
             return this;
         }
 
-        public ScatterPlotLayoutBuilder WithColorReverse(bool isReverse)
+        public ScatterPlotLayoutBuilder WithColorSortOrder(SortOrder sortOrder)
         {
-            _layout.ColorReverse = isReverse;
+            _layout.ColorSortOrder = sortOrder;
             return this;
         }
 
@@ -66,9 +67,9 @@ namespace DataExplorer.Domain.Tests.Views.ScatterPlots
             return this;
         }
 
-        public ScatterPlotLayoutBuilder WithSizeReverse(bool isReverse)
+        public ScatterPlotLayoutBuilder WithSizeSortOrder(SortOrder sortOrder)
         {
-            _layout.SizeReverse = isReverse;
+            _layout.SizeSortOrder = sortOrder;
             return this;
         }
 

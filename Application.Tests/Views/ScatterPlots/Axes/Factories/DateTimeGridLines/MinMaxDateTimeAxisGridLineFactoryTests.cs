@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using DataExplorer.Application.Views.ScatterPlots.Axes.Factories.DateTimeGridLines;
+using DataExplorer.Domain.Layouts;
 using DataExplorer.Domain.Maps.AxisMaps;
 using NUnit.Framework;
 
@@ -15,7 +16,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Axes.Factories.DateT
         [SetUp]
         public void SetUp()
         {
-            _map = new DateTimeToAxisMap(DateTime.MinValue, DateTime.MaxValue, 0d, 1d, false);
+            _map = new DateTimeToAxisMap(DateTime.MinValue, DateTime.MaxValue, 0d, 1d, SortOrder.Ascending);
 
             _factory = new MinMaxDateTimeAxisGridLineFactory();
         }

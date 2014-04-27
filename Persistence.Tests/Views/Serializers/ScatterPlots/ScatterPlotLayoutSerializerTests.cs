@@ -3,6 +3,7 @@ using System.Linq;
 using System.Xml.Linq;
 using DataExplorer.Domain.Colors;
 using DataExplorer.Domain.Columns;
+using DataExplorer.Domain.Layouts;
 using DataExplorer.Domain.Tests.Colors;
 using DataExplorer.Domain.Tests.Columns;
 using DataExplorer.Domain.Views.ScatterPlots;
@@ -57,14 +58,14 @@ namespace DataExplorer.Persistence.Tests.Views.Serializers.ScatterPlots
             _layout = new ScatterPlotLayout
             {
                 XAxisColumn = _xAxisColumn,
-                XAxisReverse = true,
+                XAxisSortOrder = SortOrder.Descending,
                 YAxisColumn = _yAxisColumn,
-                YAxisReverse = true,
+                YAxisSortOrder = SortOrder.Descending,
                 ColorColumn = _colorColumn,
-                ColorReverse = true,
+                ColorSortOrder = SortOrder.Descending,
                 ColorPalette = _colorPalette,
                 SizeColumn = _sizeColumn,
-                SizeReverse = true,
+                SizeSortOrder = SortOrder.Descending,
                 LowerSize = 0.1d,
                 UpperSize = 0.9d,
                 ShapeColumn = _shapeColumn,
@@ -74,14 +75,14 @@ namespace DataExplorer.Persistence.Tests.Views.Serializers.ScatterPlots
 
             _xLayout = new XElement("layout",
                 new XElement("x-axis-column-id", 1),
-                new XElement("x-axis-reverse", true),
+                new XElement("x-axis-sort-order", "Descending"),
                 new XElement("y-axis-column-id", 2),
-                new XElement("y-axis-reverse", true),
+                new XElement("y-axis-sort-order", "Descending"),
                 new XElement("color-column-id", 3),
-                new XElement("color-reverse", true),
+                new XElement("color-sort-order", "Descending"),
                 new XElement("color-palette-name", "Pastel 1"),
                 new XElement("size-column-id", 4),
-                new XElement("size-reverse", true),
+                new XElement("size-sort-order", "Descending"),
                 new XElement("lower-size", 0.1d),
                 new XElement("upper-size", 0.9d),
                 new XElement("shape-column-id", 5),
@@ -102,14 +103,14 @@ namespace DataExplorer.Persistence.Tests.Views.Serializers.ScatterPlots
         {
             var result = _serializer.Serialize(_layout);
             AssertValue(result, "x-axis-column-id", "1");
-            AssertValue(result, "x-axis-reverse", "true");
+            AssertValue(result, "x-axis-sort-order", "Descending");
             AssertValue(result, "y-axis-column-id", "2");
-            AssertValue(result, "y-axis-reverse", "true");
+            AssertValue(result, "y-axis-sort-order", "Descending");
             AssertValue(result, "color-column-id", "3");
-            AssertValue(result, "color-reverse", "true");
+            AssertValue(result, "color-sort-order", "Descending");
             AssertValue(result, "color-palette-name", "Pastel 1");
             AssertValue(result, "size-column-id", "4");
-            AssertValue(result, "size-reverse", "true");
+            AssertValue(result, "size-sort-order", "Descending");
             AssertValue(result, "lower-size", "0.1");
             AssertValue(result, "upper-size", "0.9");
             AssertValue(result, "shape-column-id", "5");
@@ -128,14 +129,14 @@ namespace DataExplorer.Persistence.Tests.Views.Serializers.ScatterPlots
         {
             var result = _serializer.Deserialize(_xLayout, _columns);
             Assert.That(result.XAxisColumn, Is.EqualTo(_xAxisColumn));
-            Assert.That(result.XAxisReverse, Is.True);
+            Assert.That(result.XAxisSortOrder, Is.EqualTo(SortOrder.Descending));
             Assert.That(result.YAxisColumn, Is.EqualTo(_yAxisColumn));
-            Assert.That(result.YAxisReverse, Is.True);
+            Assert.That(result.YAxisSortOrder, Is.EqualTo(SortOrder.Descending));
             Assert.That(result.ColorColumn, Is.EqualTo(_colorColumn));
-            Assert.That(result.ColorReverse, Is.True);
+            Assert.That(result.ColorSortOrder, Is.EqualTo(SortOrder.Descending));
             Assert.That(result.ColorPalette, Is.EqualTo(_colorPalette));
             Assert.That(result.SizeColumn, Is.EqualTo(_sizeColumn));
-            Assert.That(result.SizeReverse, Is.True);
+            Assert.That(result.SizeSortOrder, Is.EqualTo(SortOrder.Descending));
             Assert.That(result.LowerSize, Is.EqualTo(0.1d));
             Assert.That(result.UpperSize, Is.EqualTo(0.9d));
             Assert.That(result.ShapeColumn, Is.EqualTo(_shapeColumn));

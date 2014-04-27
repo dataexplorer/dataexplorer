@@ -75,6 +75,7 @@
     <Compile Include="DataTypes\Loaders\ImageLoader.cs" />
     <Compile Include="Filters\ImageFilter.cs" />
     <Compile Include="FilterTrees\ImageFilterTrees\ImageFilterTreeRoot.cs" />
+    <Compile Include="Layouts\SortOrder.cs" />
     <Compile Include="Predicates\ImagePredicate.cs" />
     <Compile Include="Semantics\ISemanticTypeDetector.cs" />
     <Compile Include="Filters\BooleanFilter.cs" />

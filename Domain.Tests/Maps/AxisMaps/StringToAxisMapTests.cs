@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using DataExplorer.Domain.Layouts;
 using DataExplorer.Domain.Maps.AxisMaps;
 using NUnit.Framework;
 
@@ -17,7 +18,7 @@ namespace DataExplorer.Domain.Tests.Maps.AxisMaps
         public void TestMapShouldReturnCorrectValues(string value, double? expected)
         {
             var strings = new List<string> { "Apple", "Elephant", "Monkey", "Tiger", "Zebra" };
-            var map = new StringToAxisMap(strings, 0d, 1d, false);
+            var map = new StringToAxisMap(strings, 0d, 1d, SortOrder.Ascending);
             var result = map.Map(value);
             Assert.That(result, Is.EqualTo(expected));
         }
@@ -29,10 +30,10 @@ namespace DataExplorer.Domain.Tests.Maps.AxisMaps
         [TestCase("Monkey", 0.50d)]
         [TestCase("Tiger", 0.25d)]
         [TestCase("Zebra", 0.00d)]
-        public void TestMapShouldReturnReverseValues(string value, double? expected)
+        public void TestMapShouldReturnDescendingValues(string value, double? expected)
         {
             var strings = new List<string> { "Apple", "Elephant", "Monkey", "Tiger", "Zebra" };
-            var map = new StringToAxisMap(strings, 0d, 1d, true);
+            var map = new StringToAxisMap(strings, 0d, 1d, SortOrder.Descending);
             var result = map.Map(value);
             Assert.That(result, Is.EqualTo(expected));
         }
@@ -49,7 +50,7 @@ namespace DataExplorer.Domain.Tests.Maps.AxisMaps
         public void TestMapInverseShouldReturnCorrectValues(double? value, string expected)
         {
             var strings = new List<string> { "Apple", "Elephant", "Monkey", "Tiger", "Zebra" };
-            var map = new StringToAxisMap(strings, 0d, 1d, false);
+            var map = new StringToAxisMap(strings, 0d, 1d, SortOrder.Ascending);
             var result = map.MapInverse(value);
             Assert.That(result, Is.EqualTo(expected));
         }
@@ -63,10 +64,10 @@ namespace DataExplorer.Domain.Tests.Maps.AxisMaps
         [TestCase(0.75d, "Elephant")]
         [TestCase(1.00d, "Apple")]
         [TestCase(1.1d, "Apple")]
-        public void TestMapInverseShouldReturnReverseValues(double? value, string expected)
+        public void TestMapInverseShouldReturnDescendingValues(double? value, string expected)
         {
             var strings = new List<string> { "Apple", "Elephant", "Monkey", "Tiger", "Zebra" };
-            var map = new StringToAxisMap(strings, 0d, 1d, true);
+            var map = new StringToAxisMap(strings, 0d, 1d, SortOrder.Descending);
             var result = map.MapInverse(value);
             Assert.That(result, Is.EqualTo(expected));
         }

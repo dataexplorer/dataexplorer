@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Domain.Colors;
 using DataExplorer.Domain.Columns;
+using DataExplorer.Domain.Layouts;
 using DataExplorer.Domain.Maps.AxisMaps;
 using DataExplorer.Domain.Maps.ColorMaps;
 using DataExplorer.Domain.Maps.LabelMaps;
@@ -14,7 +15,7 @@ namespace DataExplorer.Domain.Maps
 {
     public interface IMapFactory
     {
-        AxisMap CreateAxisMap(Column column, double targetMin, double targetMax, bool isReverse);
+        AxisMap CreateAxisMap(Column column, double targetMin, double targetMax, SortOrder sortOrder);
 
         ColorMap CreateColorMap(Column column, ColorPalette colorPalette);
 

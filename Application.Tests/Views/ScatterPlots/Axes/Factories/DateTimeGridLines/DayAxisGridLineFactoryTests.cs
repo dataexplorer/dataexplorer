@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DataExplorer.Application.Views.ScatterPlots.Axes.Factories.DateTimeGridLines;
+using DataExplorer.Domain.Layouts;
 using DataExplorer.Domain.Maps.AxisMaps;
 using DataExplorer.Domain.Views.ScatterPlots;
 using NUnit.Framework;
@@ -24,7 +25,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Axes.Factories.DateT
         {
             var lower = new DateTime(2000, 1, 1);
             var upper = lower.AddDays(365);
-            var map = new DateTimeToAxisMap(lower, upper, 0d, 1d, false);
+            var map = new DateTimeToAxisMap(lower, upper, 0d, 1d, SortOrder.Ascending);
             var results = _factory.CreateQuarters(map, lower, upper).ToList();
             AssertResults(results, 5, 0d, "1/1/2000", 1d, "1/1/2001");
         }
@@ -34,7 +35,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Axes.Factories.DateT
         {
             var lower = new DateTime(2000, 1, 1);
             var upper = lower.AddDays(90);
-            var map = new DateTimeToAxisMap(lower, upper, 0d, 1d, false);
+            var map = new DateTimeToAxisMap(lower, upper, 0d, 1d, SortOrder.Ascending);
             var results = _factory.CreateMonths(map, lower, upper).ToList();
             AssertResults(results, 4, 0d, "1/1/2000", 1d, "4/1/2000");
         }
@@ -44,7 +45,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Axes.Factories.DateT
         {
             var lower = new DateTime(2000, 1, 1);
             var upper = lower.AddDays(30);
-            var map = new DateTimeToAxisMap(lower, upper, 0d, 1d, false);
+            var map = new DateTimeToAxisMap(lower, upper, 0d, 1d, SortOrder.Ascending);
             var results = _factory.CreateWeeks(map, lower, upper).ToList();
             AssertResults(results, 7, -0.16d, "12/27/1999", 1.23d, "2/7/2000");
         }
@@ -54,7 +55,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Axes.Factories.DateT
         {
             var lower = new DateTime(2000, 1, 1);
             var upper = lower.AddDays(7);
-            var map = new DateTimeToAxisMap(lower, upper, 0d, 1d, false);
+            var map = new DateTimeToAxisMap(lower, upper, 0d, 1d, SortOrder.Ascending);
             var results = _factory.CreateDays(map, lower, upper).ToList();
             AssertResults(results, 8, 0d, "1/1/2000", 1d, "1/8/2000");
         }
