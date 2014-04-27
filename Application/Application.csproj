@@ -169,6 +169,9 @@
     <Compile Include="Layouts\Base\Queries\BaseGetLayoutColumnQueryHandler.cs" />
     <Compile Include="Layouts\Color\Queries\GetAllColorColumnsQuery.cs" />
     <Compile Include="Layouts\Color\Queries\GetAllColorColumnsQueryHandler.cs" />
+    <Compile Include="Layouts\Color\Queries\GetColorSortOrderQuery.cs" />
+    <Compile Include="Layouts\Color\Queries\GetColorSortOrderQueryHandler.cs" />
+    <Compile Include="Layouts\Color\Commands\SetColorSortOrderCommand.cs" />
     <Compile Include="Layouts\General\Commands\AutoLayoutColumnCommand.cs" />
     <Compile Include="Layouts\General\Commands\AutoLayoutColumnCommandHandler.cs" />
     <Compile Include="Layouts\Label\Commands\SetLabelColumnCommand.cs" />
@@ -187,6 +190,7 @@
     <Compile Include="Layouts\Link\Queries\GetAllLinkColumnsQueryHandler.cs" />
     <Compile Include="Layouts\Link\Queries\GetLinkColumnQuery.cs" />
     <Compile Include="Layouts\Link\Queries\GetLinkColumnQueryHandler.cs" />
+    <Compile Include="Layouts\Color\Commands\SetColorSortOrderCommandHandler.cs" />
     <Compile Include="Layouts\Location\Commands\SetXAxisSetSortOrderCommand.cs" />
     <Compile Include="Layouts\Location\Commands\SetXAxisSetSortOrderCommandHandler.cs" />
     <Compile Include="Layouts\Location\Commands\SetYAxisSetSortOrderCommand.cs" />

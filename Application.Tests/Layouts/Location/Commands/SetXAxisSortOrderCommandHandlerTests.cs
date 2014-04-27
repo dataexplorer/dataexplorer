@@ -13,17 +13,17 @@ using NUnit.Framework;
 namespace DataExplorer.Application.Tests.Layouts.Location.Commands
 {
     [TestFixture]
-    public class SetYAxisSortOrderCommandHandlerTests
+    public class SetXAxisSortOrderCommandHandlerTests
         : BaseSetLayoutSortOrderCommandHandlerTests
     {
-        private SetYAxisSetSortOrderCommandHandler _handler;
+        private SetXAxisSetSortOrderCommandHandler _handler;
 
         [SetUp]
         public override void SetUp()
         {
             base.SetUp();
 
-            _handler = new SetYAxisSetSortOrderCommandHandler(
+            _handler = new SetXAxisSetSortOrderCommandHandler(
                 _mockRepository.Object,
                 _mockEventBus.Object);
         }
@@ -31,14 +31,14 @@ namespace DataExplorer.Application.Tests.Layouts.Location.Commands
         [Test]
         public void TestExecuteShouldSetColumn()
         {
-            _handler.Execute(new SetYAxisSetSortOrderCommand(SortOrder.Descending));
-            Assert.That(_layout.YAxisSortOrder, Is.EqualTo(SortOrder.Descending));
+            _handler.Execute(new SetXAxisSetSortOrderCommand(SortOrder.Descending));
+            Assert.That(_layout.XAxisSortOrder, Is.EqualTo(SortOrder.Descending));
         }
 
         [Test]
         public void TestExecuteShouldRaiseLayoutChangedEvent()
         {
-            _handler.Execute(new SetYAxisSetSortOrderCommand(SortOrder.Descending));
+            _handler.Execute(new SetXAxisSetSortOrderCommand(SortOrder.Descending));
             _mockEventBus.Verify(p => p.Raise(It.IsAny<LayoutChangedEvent>()));
         }
     }

@@ -12,7 +12,7 @@ using Moq;
 
 namespace DataExplorer.Application.Tests.Layouts.Base.Commands
 {
-    public class BaseSetReverseLayoutCommandHandlerTests
+    public class BaseSetLayoutSortOrderCommandHandlerTests
     {
         protected Mock<IViewRepository> _mockRepository;
         protected Mock<IEventBus> _mockEventBus;

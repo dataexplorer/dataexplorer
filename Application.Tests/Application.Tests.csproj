@@ -93,13 +93,15 @@
     <Compile Include="Importers\CsvFile\Queries\GetCsvFileSourceMapsQueryHandlerTests.cs" />
     <Compile Include="Importers\CsvFile\Queries\GetCsvFileSourceQueryHandlerTests.cs" />
     <Compile Include="Layouts\Base\Commands\BaseSetLayoutColumnCommandHandlerTests.cs" />
-    <Compile Include="Layouts\Base\Commands\BaseSetReverseLayoutCommandHandlerTests.cs" />
+    <Compile Include="Layouts\Base\Commands\BaseSetLayoutSortOrderCommandHandlerTests.cs" />
     <Compile Include="Layouts\Base\Commands\BaseUnsetLayoutColumnCommandHandlerTests.cs" />
     <Compile Include="Layouts\Base\Queries\BaseGetAllLayoutColumnsQueryHandlerTests.cs" />
     <Compile Include="Layouts\Base\Queries\BaseGetLayoutColumnQueryHandlerTests.cs" />
     <Compile Include="Layouts\Base\Queries\BaseGetLayoutSortOrderQueryHandlerTests.cs" />
+    <Compile Include="Layouts\Color\Commands\SetColorSortOrderCommandHandlerTests.cs" />
     <Compile Include="Layouts\Color\Commands\UnsetColorColumnCommandHandlerTests.cs" />
     <Compile Include="Layouts\Color\Queries\GetAllColorColumnsQueryHandlerTests.cs" />
+    <Compile Include="Layouts\Color\Queries\GetColorSortOrderQueryHandlerTests.cs" />
     <Compile Include="Layouts\General\Commands\AutoLayoutColumnCommandHandlerTests.cs" />
     <Compile Include="Layouts\Label\Commands\SetLabelColumnCommandHandlerTests.cs" />
     <Compile Include="Layouts\Label\Commands\UnsetLabelColumnCommandHandlerTests.cs" />
@@ -109,7 +111,7 @@
     <Compile Include="Layouts\Link\Commands\UnsetLinkColumnCommandHandlerTests.cs" />
     <Compile Include="Layouts\Link\Queries\GetAllLinkColumnsQueryHandlerTests.cs" />
     <Compile Include="Layouts\Link\Queries\GetLinkColumnQueryHandlerTests.cs" />
-    <Compile Include="Layouts\Location\Commands\SetXAxisReverseCommandHandlerTests.cs" />
+    <Compile Include="Layouts\Location\Commands\SetXAxisSortOrderCommandHandlerTests.cs" />
     <Compile Include="Layouts\Location\Commands\SetYAxisReverseColumnCommandHandlerTests.cs" />
     <Compile Include="Layouts\Location\Commands\UnsetXAxisColumnCommandHandlerTests.cs" />
     <Compile Include="Layouts\Location\Commands\UnsetYAxisColumnCommandHandlerTests.cs" />
