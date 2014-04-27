@@ -8,6 +8,7 @@ using DataExplorer.Application.Layouts.Color.Commands;
 using DataExplorer.Application.Layouts.Color.Queries;
 using DataExplorer.Application.Layouts.General.Events;
 using DataExplorer.Domain.Colors;
+using DataExplorer.Domain.Layouts;
 using DataExplorer.Presentation.Core.Layout;
 using DataExplorer.Presentation.Panes.Layout.Color;
 using DataExplorer.Presentation.Tests.Core;
@@ -101,6 +102,22 @@ namespace DataExplorer.Presentation.Tests.Panes.Layout.Color
         }
 
         [Test]
+        public void TestGetSortCommandTextShouldReturnOppositeSortOrder()
+        {
+            var result = _viewModel.SortCommandText;
+            Assert.That(result, Is.EqualTo("Sort Descending"));
+        }
+
+        [Test]
+        public void TestExecuteSortCommandShouldToggleSortOrder()
+        {
+            _viewModel.SortCommand.Execute(null);
+            _mockMessageBus.Verify(p => p.Execute(
+                It.Is<SetColorSortOrderCommand>(q => q.SortOrder == SortOrder.Descending)),
+                Times.Once());
+        }
+
+        [Test]
         public void TestGetColorPalettesReturnsColorPalettes()
         {
             _mockMessageBus.Setup(p => p.Execute(It.IsAny<GetAllColorPalettesQuery>()))
@@ -137,6 +154,9 @@ namespace DataExplorer.Presentation.Tests.Panes.Layout.Color
         {
             AssertPropertyChanged(_viewModel, () => _viewModel.SelectedColumn,
                 () => _viewModel.Handle(new LayoutChangedEvent()));
+
+            AssertPropertyChanged(_viewModel, () => _viewModel.SortCommandText,
+                () => _viewModel.Handle(new LayoutChangedEvent()));
         }
 
         [Test]
@@ -146,6 +166,9 @@ namespace DataExplorer.Presentation.Tests.Panes.Layout.Color
                 () => _viewModel.Handle(new LayoutResetEvent()));
 
             AssertPropertyChanged(_viewModel, () => _viewModel.SelectedColumn,
+                () => _viewModel.Handle(new LayoutResetEvent()));
+
+            AssertPropertyChanged(_viewModel, () => _viewModel.SortCommandText,
                 () => _viewModel.Handle(new LayoutResetEvent()));
 
             AssertPropertyChanged(_viewModel, () => _viewModel.SelectedColorPalette,
