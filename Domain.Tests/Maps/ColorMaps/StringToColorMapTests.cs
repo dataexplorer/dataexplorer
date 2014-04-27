@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Domain.Colors;
+using DataExplorer.Domain.Layouts;
 using DataExplorer.Domain.Maps.ColorMaps;
 using DataExplorer.Domain.Tests.Colors;
 using NUnit.Framework;
@@ -29,7 +30,7 @@ namespace DataExplorer.Domain.Tests.Maps.ColorMaps
                 .WithColor(Color.FromRgb(255, 255, 255))
                 .Build();
 
-            _map = new StringToColorMap(_sourceValues, _colorPalette.Colors);
+            _map = new StringToColorMap(_sourceValues, _colorPalette.Colors, SortOrder.Ascending);
         }
 
         [Test]
@@ -40,13 +41,13 @@ namespace DataExplorer.Domain.Tests.Maps.ColorMaps
         {
             _sourceValues = new List<string> { "A", "Z" };
 
-            _map = new StringToColorMap(_sourceValues, _colorPalette.Colors);
+            _map = new StringToColorMap(_sourceValues, _colorPalette.Colors, SortOrder.Ascending);
 
             var color = new Color(red, green, blue);
             var result = _map.Map(value);
             Assert.That(result, Is.EqualTo(color));
         }
-
+        
         [Test]
         [TestCase(null, 127, 127, 127)]
         [TestCase("A", 255, 0, 0)]
@@ -56,7 +57,7 @@ namespace DataExplorer.Domain.Tests.Maps.ColorMaps
         {
             _sourceValues = new List<string> { "A", "M", "Z" };
 
-            _map = new StringToColorMap(_sourceValues, _colorPalette.Colors);
+            _map = new StringToColorMap(_sourceValues, _colorPalette.Colors, SortOrder.Ascending);
 
             var color = new Color(red, green, blue);
             var result = _map.Map(value);
@@ -73,7 +74,7 @@ namespace DataExplorer.Domain.Tests.Maps.ColorMaps
         {
             _sourceValues = new List<string> { "A", "B", "C", "D" };
 
-            _map = new StringToColorMap(_sourceValues, _colorPalette.Colors);
+            _map = new StringToColorMap(_sourceValues, _colorPalette.Colors, SortOrder.Ascending);
 
             var color = new Color(red, green, blue);
             var result = _map.Map(value);
@@ -91,7 +92,22 @@ namespace DataExplorer.Domain.Tests.Maps.ColorMaps
         {
             _sourceValues = new List<string> { "A", "B", "C", "D", "E" };
 
-            _map = new StringToColorMap(_sourceValues, _colorPalette.Colors);
+            _map = new StringToColorMap(_sourceValues, _colorPalette.Colors, SortOrder.Ascending);
+
+            var color = new Color(red, green, blue);
+            var result = _map.Map(value);
+            Assert.That(result, Is.EqualTo(color));
+        }
+
+        [Test]
+        [TestCase(null, 127, 127, 127)]
+        [TestCase("A", 255, 255, 255)]
+        [TestCase("Z", 0, 255, 0)]
+        public void TestMapShouldReturnDescendingValues(string value, byte red, byte green, byte blue)
+        {
+            _sourceValues = new List<string> { "A", "Z" };
+
+            _map = new StringToColorMap(_sourceValues, _colorPalette.Colors, SortOrder.Descending);
 
             var color = new Color(red, green, blue);
             var result = _map.Map(value);
@@ -106,7 +122,7 @@ namespace DataExplorer.Domain.Tests.Maps.ColorMaps
         {
             _sourceValues = new List<string> { "A", "Z" };
 
-            _map = new StringToColorMap(_sourceValues, _colorPalette.Colors);
+            _map = new StringToColorMap(_sourceValues, _colorPalette.Colors, SortOrder.Ascending);
 
             var color = new Color(red, green, blue);
             var result = _map.MapInverse(color);
@@ -122,7 +138,7 @@ namespace DataExplorer.Domain.Tests.Maps.ColorMaps
         {
             _sourceValues = new List<string> { "A", "M", "Z" };
 
-            _map = new StringToColorMap(_sourceValues, _colorPalette.Colors);
+            _map = new StringToColorMap(_sourceValues, _colorPalette.Colors, SortOrder.Ascending);
 
             var color = new Color(red, green, blue);
             var result = _map.MapInverse(color);
@@ -139,7 +155,7 @@ namespace DataExplorer.Domain.Tests.Maps.ColorMaps
         {
             _sourceValues = new List<string> { "A", "B", "C", "D" };
 
-            _map = new StringToColorMap(_sourceValues, _colorPalette.Colors);
+            _map = new StringToColorMap(_sourceValues, _colorPalette.Colors, SortOrder.Ascending);
 
             var color = new Color(red, green, blue);
             var result = _map.MapInverse(color);
@@ -156,7 +172,22 @@ namespace DataExplorer.Domain.Tests.Maps.ColorMaps
         {
             _sourceValues = new List<string> { "A", "B", "C", "D" };
 
-            _map = new StringToColorMap(_sourceValues, _colorPalette.Colors);
+            _map = new StringToColorMap(_sourceValues, _colorPalette.Colors, SortOrder.Ascending);
+
+            var color = new Color(red, green, blue);
+            var result = _map.MapInverse(color);
+            Assert.That(result, Is.EqualTo(value));
+        }
+
+        [Test]
+        //[TestCase(null, 127, 127, 127)]
+        [TestCase("A", 255, 255, 255)]
+        [TestCase("Z", 0, 255, 0)]
+        public void TestMapInverseShouldReturnDescendingValuesWithTwoValues(string value, byte red, byte green, byte blue)
+        {
+            _sourceValues = new List<string> { "A", "Z" };
+
+            _map = new StringToColorMap(_sourceValues, _colorPalette.Colors, SortOrder.Descending);
 
             var color = new Color(red, green, blue);
             var result = _map.MapInverse(color);

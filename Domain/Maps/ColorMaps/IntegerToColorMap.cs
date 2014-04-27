@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Domain.Colors;
+using DataExplorer.Domain.Layouts;
 
 namespace DataExplorer.Domain.Maps.ColorMaps
 {
@@ -15,7 +16,12 @@ namespace DataExplorer.Domain.Maps.ColorMaps
         private readonly List<Color> _colors;
         private readonly double _targetWidth;
 
-        public IntegerToColorMap(int sourceMin, int sourceMax, List<Color> colors)
+        public IntegerToColorMap(
+            int sourceMin, 
+            int sourceMax, 
+            List<Color> colors, 
+            SortOrder sortOrder)
+            : base(sortOrder)
         {
             _sourceMin = sourceMin;
             _sourceMax = sourceMax;
@@ -36,14 +42,22 @@ namespace DataExplorer.Domain.Maps.ColorMaps
 
             var index = (int) (ratio * _targetWidth);
 
-            return _colors[index];
+            var orderedIndex = _sortOrder == SortOrder.Ascending
+                ? index
+                : _colors.Count - 1 - index;
+
+            return _colors[orderedIndex];
         }
 
         public override object MapInverse(Color value)
         {
             var index = _colors.IndexOf(value);
 
-            var ratio = index / _targetWidth;
+            var orderedIndex = _sortOrder == SortOrder.Ascending
+                ? index
+                : _colors.Count - 1 - index;
+
+            var ratio = orderedIndex / _targetWidth;
 
             var result = _sourceMin + (_sourceWidth * ratio);
 

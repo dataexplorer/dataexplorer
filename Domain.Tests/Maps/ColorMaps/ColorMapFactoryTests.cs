@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataExplorer.Domain.Layouts;
 using DataExplorer.Domain.Maps.ColorMaps;
 using DataExplorer.Domain.Tests.Colors;
 using DataExplorer.Domain.Tests.Columns;
@@ -28,7 +29,7 @@ namespace DataExplorer.Domain.Tests.Maps.ColorMaps
 
             var colorPalette = new ColorPaletteBuilder().Build();
 
-            Assert.That(() => _factory.Create(column, colorPalette), 
+            Assert.That(() => _factory.Create(column, colorPalette, SortOrder.Ascending), 
                 Throws.ArgumentException);
         }
 
@@ -70,8 +71,8 @@ namespace DataExplorer.Domain.Tests.Maps.ColorMaps
                 .Build();
 
             var colorPalette = new ColorPaletteBuilder().Build();
-            
-            var result = _factory.Create(column, colorPalette);
+
+            var result = _factory.Create(column, colorPalette, SortOrder.Ascending);
             
             Assert.That(result, Is.TypeOf(mapType));
         }

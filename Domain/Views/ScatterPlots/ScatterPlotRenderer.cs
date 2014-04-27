@@ -28,7 +28,7 @@ namespace DataExplorer.Domain.Views.ScatterPlots
                 : null;
 
             var colorMap = layout.ColorColumn != null
-                ? _factory.CreateColorMap(layout.ColorColumn, layout.ColorPalette)
+                ? _factory.CreateColorMap(layout.ColorColumn, layout.ColorPalette, layout.ColorSortOrder)
                 : null;
 
             var sizeMap = layout.SizeColumn != null

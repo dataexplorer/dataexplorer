@@ -7,7 +7,12 @@ namespace DataExplorer.Domain.Maps.AxisMaps
     {
         protected readonly SortOrder _sortOrder;
 
-        public AxisMap(SortOrder sortOrder)
+        protected AxisMap()
+        {
+            _sortOrder = SortOrder.Descending;
+        }
+
+        protected AxisMap(SortOrder sortOrder)
         {
             _sortOrder = sortOrder;
         }

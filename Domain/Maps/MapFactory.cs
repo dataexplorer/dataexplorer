@@ -37,9 +37,9 @@ namespace DataExplorer.Domain.Maps
             return _axisMapFactory.Create(column, targetMin, targetMax, sortOrder);
         }
 
-        public ColorMap CreateColorMap(Column column, ColorPalette colorPalette)
+        public ColorMap CreateColorMap(Column column, ColorPalette colorPalette, SortOrder sortOrder)
         {
-            return _colorMapFactory.Create(column, colorPalette);
+            return _colorMapFactory.Create(column, colorPalette, sortOrder);
         }
 
         public SizeMap CreateSizeMap(Column column, double targetMin, double targetMax)

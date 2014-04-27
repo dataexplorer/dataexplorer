@@ -17,7 +17,7 @@ namespace DataExplorer.Domain.Maps
     {
         AxisMap CreateAxisMap(Column column, double targetMin, double targetMax, SortOrder sortOrder);
 
-        ColorMap CreateColorMap(Column column, ColorPalette colorPalette);
+        ColorMap CreateColorMap(Column column, ColorPalette colorPalette, SortOrder sortOrder);
 
         SizeMap CreateSizeMap(Column column, double targetMin, double targetMax);
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Domain.Colors;
+using DataExplorer.Domain.Layouts;
 
 namespace DataExplorer.Domain.Maps.ColorMaps
 {
@@ -14,7 +15,11 @@ namespace DataExplorer.Domain.Maps.ColorMaps
         private readonly List<Color> _colors;
         private readonly double _targetWidth;
 
-        public StringToColorMap(List<string> sourceValues, List<Color> colors)
+        public StringToColorMap(
+            List<string> sourceValues, 
+            List<Color> colors, 
+            SortOrder sortOrder)
+            : base(sortOrder)
         {
             _sourceValues = sourceValues.Distinct().ToList();
             _sourceWidth = _sourceValues.Count();
@@ -34,24 +39,32 @@ namespace DataExplorer.Domain.Maps.ColorMaps
 
             var colorIndex = (int) Math.Floor(ratio * _targetWidth);
 
-            return _colors[colorIndex];
+            var orderedIndex = _sortOrder == SortOrder.Ascending
+                ? colorIndex
+                : _colors.Count - 1 - colorIndex;
+
+            return _colors[orderedIndex];
         }
 
         public override object MapInverse(Color value)
         {
             var colorIndex = _colors.IndexOf(value);
 
-            var ratio = colorIndex / _targetWidth;
+            var orderedIndex = _sortOrder == SortOrder.Ascending
+                ? colorIndex
+                : _colors.Count - 1 - colorIndex;
 
-            var index = (int) Math.Ceiling(_sourceWidth * ratio);
+            var ratio = orderedIndex / _targetWidth;
 
-            if (index < 0)
+            var stringIndex = (int) Math.Ceiling(_sourceWidth * ratio);
+
+            if (stringIndex < 0)
                 return _sourceValues.First();
 
-            if (index >= _sourceWidth)
+            if (stringIndex >= _sourceWidth)
                 return _sourceValues.Last();
 
-            return _sourceValues[index];
+            return _sourceValues[stringIndex];
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Domain.Colors;
+using DataExplorer.Domain.Layouts;
 
 namespace DataExplorer.Domain.Maps.ColorMaps
 {
@@ -15,7 +16,12 @@ namespace DataExplorer.Domain.Maps.ColorMaps
         private readonly List<Color> _colors;
         private double _targetWidth;
 
-        public DateTimeToColorMap(DateTime sourceMin, DateTime sourceMax, List<Color> colors)
+        public DateTimeToColorMap(
+            DateTime sourceMin, 
+            DateTime sourceMax, 
+            List<Color> colors, 
+            SortOrder sortOrder) 
+            : base(sortOrder)
         {
             _sourceMin = sourceMin.Ticks;
             _sourceMax = sourceMax.Ticks;
@@ -36,17 +42,22 @@ namespace DataExplorer.Domain.Maps.ColorMaps
 
             var index = (int) (ratio * _targetWidth);
 
-            // NOTE: This is a test to see if it fixes the out-of-bounds error
-            index = Math.Min(index, _colors.Count - 1);
+            var orderedIndex = _sortOrder == SortOrder.Ascending
+                ? index
+                : _colors.Count - 1 - index;
 
-            return _colors[index];
+            return _colors[orderedIndex];
         }
 
         public override object MapInverse(Color value)
         {
             var index = _colors.IndexOf(value);
 
-            var ratio = index / (_targetWidth - 1);
+            var orderedIndex = _sortOrder == SortOrder.Ascending
+                ? index
+                : _colors.Count - 1 - index;
+
+            var ratio = orderedIndex / (_targetWidth - 1);
 
             var result = _sourceMin + (_sourceWidth * ratio);
 

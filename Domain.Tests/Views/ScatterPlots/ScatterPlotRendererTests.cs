@@ -102,7 +102,7 @@ namespace DataExplorer.Domain.Tests.Views.ScatterPlots
         [Test]
         public void TestRenderPlotsShouldRenderColorValue()
         {
-            _mockMapFactory.Setup(p => p.CreateColorMap(_column, _colorPalette))
+            _mockMapFactory.Setup(p => p.CreateColorMap(_column, _colorPalette, SortOrder.Ascending))
                 .Returns(_mockColorMap.Object);
 
             _mockColorMap.Setup(p => p.Map(1.0d)).Returns(_color);

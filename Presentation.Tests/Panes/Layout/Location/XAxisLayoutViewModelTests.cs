@@ -96,7 +96,7 @@ namespace DataExplorer.Presentation.Tests.Panes.Layout.Location
         public void TestGetSortCommandTextShouldReturnOppositeSortOrder()
         {
             var result = _viewModel.SortCommandText;
-            Assert.That(result, Is.EqualTo("Descending"));
+            Assert.That(result, Is.EqualTo("Sort Descending"));
         }
 
         [Test]

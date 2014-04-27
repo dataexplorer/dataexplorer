@@ -49,7 +49,7 @@ namespace DataExplorer.Domain.Tests.Maps
                 .Returns(_axisMap);
 
             _mockColorMapFactory = new Mock<IColorMapFactory>();
-            _mockColorMapFactory.Setup(p => p.Create(_column, _colorPalette))
+            _mockColorMapFactory.Setup(p => p.Create(_column, _colorPalette, SortOrder.Ascending))
                 .Returns(_colorMap);
             
             _mockSizeMapFactory = new Mock<ISizeMapFactory>();
@@ -78,7 +78,7 @@ namespace DataExplorer.Domain.Tests.Maps
         [Test]
         public void TestCreateColorMapShouldReturnColorMap()
         {
-            var result = _factory.CreateColorMap(_column, _colorPalette);
+            var result = _factory.CreateColorMap(_column, _colorPalette, SortOrder.Ascending);
             
             Assert.That(result, Is.EqualTo(_colorMap));
         }
