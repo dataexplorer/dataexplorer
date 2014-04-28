@@ -10,18 +10,18 @@ using DataExplorer.Application.Views;
 
 namespace DataExplorer.Application.Layouts.Location.Commands
 {
-    public class SetYAxisSetSortOrderCommandHandler 
+    public class SetYAxisSortOrderCommandHandler 
         : BaseSetLayoutSortOrderCommandHandler,
-        ICommandHandler<SetYAxisSetSortOrderCommand>
+        ICommandHandler<SetYAxisSortOrderCommand>
     {
-        public SetYAxisSetSortOrderCommandHandler(
+        public SetYAxisSortOrderCommandHandler(
             IViewRepository repository, 
             IEventBus eventBus) 
             : base(repository, eventBus)
         {
         }
 
-        public void Execute(SetYAxisSetSortOrderCommand command)
+        public void Execute(SetYAxisSortOrderCommand command)
         {
             base.Execute((l, b) => l.YAxisSortOrder = b, command.SortOrder);
         }

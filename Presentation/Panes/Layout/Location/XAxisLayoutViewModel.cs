@@ -110,7 +110,7 @@ namespace DataExplorer.Presentation.Panes.Layout.Location
                 ? SortOrder.Descending
                 : SortOrder.Ascending;
 
-            _messageBus.Execute(new SetXAxisSetSortOrderCommand(newSortOrder));
+            _messageBus.Execute(new SetXAxisSortOrderCommand(newSortOrder));
         }
 
         public void Handle(LayoutChangedEvent args)

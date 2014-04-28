@@ -191,10 +191,10 @@
     <Compile Include="Layouts\Link\Queries\GetLinkColumnQuery.cs" />
     <Compile Include="Layouts\Link\Queries\GetLinkColumnQueryHandler.cs" />
     <Compile Include="Layouts\Color\Commands\SetColorSortOrderCommandHandler.cs" />
-    <Compile Include="Layouts\Location\Commands\SetXAxisSetSortOrderCommand.cs" />
-    <Compile Include="Layouts\Location\Commands\SetXAxisSetSortOrderCommandHandler.cs" />
-    <Compile Include="Layouts\Location\Commands\SetYAxisSetSortOrderCommand.cs" />
-    <Compile Include="Layouts\Location\Commands\SetYAxisSetSortOrderCommandHandler.cs" />
+    <Compile Include="Layouts\Location\Commands\SetXAxisSortOrderCommand.cs" />
+    <Compile Include="Layouts\Location\Commands\SetXAxisSortOrderCommandHandler.cs" />
+    <Compile Include="Layouts\Location\Commands\SetYAxisSortOrderCommand.cs" />
+    <Compile Include="Layouts\Location\Commands\SetYAxisSortOrderCommandHandler.cs" />
     <Compile Include="Layouts\Location\Commands\UnsetXAxisColumnCommand.cs" />
     <Compile Include="Layouts\Location\Commands\UnsetXAxisColumnCommandHandler.cs" />
     <Compile Include="Layouts\Location\Commands\UnsetYAxisColumnCommand.cs" />
@@ -213,6 +213,10 @@
     <Compile Include="Layouts\Shape\Queries\GetAllShapeColumnsQueryHandler.cs" />
     <Compile Include="Layouts\Shape\Queries\GetShapeColumnQuery.cs" />
     <Compile Include="Layouts\Shape\Queries\GetShapeColumnQueryHandler.cs" />
+    <Compile Include="Layouts\Size\Commands\SetSizeSortOrderCommand.cs" />
+    <Compile Include="Layouts\Size\Commands\SetSizeSortOrderCommandHandler.cs" />
+    <Compile Include="Layouts\Size\Queries\GetSizeSortOrderQuery.cs" />
+    <Compile Include="Layouts\Size\Queries\GetSizeSortOrderQueryHandler.cs" />
     <Compile Include="Layouts\Size\Commands\SetLowerSizeCommandHandler.cs" />
     <Compile Include="Layouts\Size\Commands\SetSizeColumnCommandHandler.cs" />
     <Compile Include="Layouts\Size\Commands\SetUpperSizeCommandHandler.cs" />

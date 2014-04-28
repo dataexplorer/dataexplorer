@@ -9,9 +9,9 @@ using DataExplorer.Domain.Layouts;
 
 namespace DataExplorer.Application.Layouts.Location.Commands
 {
-    public class SetYAxisSetSortOrderCommand : BaseSetLayoutSortOrderCommand
+    public class SetYAxisSortOrderCommand : BaseSetLayoutSortOrderCommand
     {
-        public SetYAxisSetSortOrderCommand(SortOrder sortOrder) : base(sortOrder)
+        public SetYAxisSortOrderCommand(SortOrder sortOrder) : base(sortOrder)
         {
         }
     }

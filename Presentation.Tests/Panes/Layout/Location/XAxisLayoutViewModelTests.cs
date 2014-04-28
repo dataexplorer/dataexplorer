@@ -104,7 +104,7 @@ namespace DataExplorer.Presentation.Tests.Panes.Layout.Location
         {
             _viewModel.SortCommand.Execute(null);
             _mockMessageBus.Verify(p => p.Execute(
-                It.Is<SetXAxisSetSortOrderCommand>(q => q.SortOrder == SortOrder.Descending)),
+                It.Is<SetXAxisSortOrderCommand>(q => q.SortOrder == SortOrder.Descending)),
                 Times.Once());
         }
 

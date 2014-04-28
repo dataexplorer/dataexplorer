@@ -112,7 +112,7 @@
     <Compile Include="Layouts\Link\Queries\GetAllLinkColumnsQueryHandlerTests.cs" />
     <Compile Include="Layouts\Link\Queries\GetLinkColumnQueryHandlerTests.cs" />
     <Compile Include="Layouts\Location\Commands\SetXAxisSortOrderCommandHandlerTests.cs" />
-    <Compile Include="Layouts\Location\Commands\SetYAxisReverseColumnCommandHandlerTests.cs" />
+    <Compile Include="Layouts\Location\Commands\SetYAxisSortOrderCommandHandlerTests.cs" />
     <Compile Include="Layouts\Location\Commands\UnsetXAxisColumnCommandHandlerTests.cs" />
     <Compile Include="Layouts\Location\Commands\UnsetYAxisColumnCommandHandlerTests.cs" />
     <Compile Include="Layouts\Location\Queries\GetAllAxisColumnsQueryHandlerTests.cs" />
@@ -125,11 +125,13 @@
     <Compile Include="Layouts\Size\Commands\SetLowerSizeCommandHandlerTests.cs" />
     <Compile Include="Layouts\Size\Commands\SetSizeColumnQueryHandlerTests.cs" />
     <Compile Include="Layouts\Size\Commands\SetUpperSizeCommandHandlerTests.cs" />
+    <Compile Include="Layouts\Size\Commands\SetSizeSortOrderCommandHandlerTests.cs" />
     <Compile Include="Layouts\Size\Commands\UnsetSizeColumnCommandHandlerTests.cs" />
     <Compile Include="Layouts\Size\Queries\GetAllSizeColumnsQueryHandlerTests.cs" />
     <Compile Include="Layouts\Size\Queries\GetLowerSizeValueQueryHandlerTests.cs" />
     <Compile Include="Layouts\Size\Queries\GetSizeColumnQueryHandlerTests.cs" />
     <Compile Include="Layouts\Size\Queries\GetUpperSizeValueQueryHanderTests.cs" />
+    <Compile Include="Layouts\Size\Queries\GetSizeSortOrderQueryHandlerTests.cs" />
     <Compile Include="Legends\Colors\Factories\BaseColorLegendFactoryTests.cs" />
     <Compile Include="Legends\Colors\Factories\BooleanColorLegendItemFactoryTests.cs" />
     <Compile Include="Legends\Colors\Factories\ColorLegendFactoryTests.cs" />
