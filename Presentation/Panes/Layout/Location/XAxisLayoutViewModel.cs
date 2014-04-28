@@ -59,7 +59,7 @@ namespace DataExplorer.Presentation.Panes.Layout.Location
 
         private List<LayoutItemViewModel> GetColumnViewModels()
         {
-            var columns = _messageBus.Execute(new GetAllColumnsQuery());
+            var columns = _messageBus.Execute(new GetAllAxisColumnsQuery());
 
             var viewModels = columns
                 .Select(p => new LayoutItemViewModel(p))

@@ -32,7 +32,7 @@ namespace DataExplorer.Presentation.Tests.Panes.Layout.Location
             };
 
             _mockMessageBus = new Mock<IMessageBus>();
-            _mockMessageBus.Setup(p => p.Execute(It.IsAny<GetAllColumnsQuery>()))
+            _mockMessageBus.Setup(p => p.Execute(It.IsAny<GetAllAxisColumnsQuery>()))
                 .Returns(new List<ColumnDto> { _columnDto });
             _mockMessageBus.Setup(p => p.Execute(It.IsAny<GetXAxisColumnQuery>()))
                 .Returns(_columnDto);

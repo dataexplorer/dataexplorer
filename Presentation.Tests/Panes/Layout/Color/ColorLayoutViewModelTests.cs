@@ -36,7 +36,7 @@ namespace DataExplorer.Presentation.Tests.Panes.Layout.Color
             _colorPalette = new ColorPalette("Test", new List<Domain.Colors.Color>());
 
             _mockMessageBus = new Mock<IMessageBus>();
-            _mockMessageBus.Setup(p => p.Execute(It.IsAny<GetAllColumnsQuery>()))
+            _mockMessageBus.Setup(p => p.Execute(It.IsAny<GetAllColorColumnsQuery>()))
                 .Returns(new List<ColumnDto> { _columnDto });
             _mockMessageBus.Setup(p => p.Execute(It.IsAny<GetColorColumnQuery>()))
                 .Returns(_columnDto);

@@ -31,7 +31,7 @@ namespace DataExplorer.Presentation.Tests.Panes.Layout.Size
             _columnDto = new ColumnDto();
 
             _mockMessageBus = new Mock<IMessageBus>();
-            _mockMessageBus.Setup(p => p.Execute(It.IsAny<GetAllColumnsQuery>()))
+            _mockMessageBus.Setup(p => p.Execute(It.IsAny<GetAllSizeColumnsQuery>()))
                 .Returns(new List<ColumnDto> { _columnDto });
             _mockMessageBus.Setup(p => p.Execute(It.IsAny<GetSizeColumnQuery>()))
                 .Returns(_columnDto);

@@ -34,7 +34,7 @@ namespace DataExplorer.Presentation.Tests.Panes.Layout.Label
             };
 
             _mockMessageBus = new Mock<IMessageBus>();
-            _mockMessageBus.Setup(p => p.Execute(It.IsAny<GetAllColumnsQuery>()))
+            _mockMessageBus.Setup(p => p.Execute(It.IsAny<GetAllLabelColumnsQuery>()))
                 .Returns(new List<ColumnDto> { _columnDto });
             _mockMessageBus.Setup(p => p.Execute(It.IsAny<GetLabelColumnQuery>()))
                 .Returns(_columnDto);
