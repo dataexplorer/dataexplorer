@@ -27,6 +27,13 @@
             SelectedItem="{Binding SelectedColumn}"
             DisplayMemberPath="Name"
             AllowDrop="True">
+            <ComboBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem 
+                        Header="{Binding SortCommandText}"  
+                        Command="{Binding SortCommand}" />
+                </ContextMenu>
+            </ComboBox.ContextMenu>
         </ComboBox>
         <Label 
             Grid.Row="1"

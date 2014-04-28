@@ -9,6 +9,7 @@ using DataExplorer.Application.Core.Messages;
 using DataExplorer.Application.Layouts.General.Events;
 using DataExplorer.Application.Layouts.Size.Commands;
 using DataExplorer.Application.Layouts.Size.Queries;
+using DataExplorer.Domain.Layouts;
 using DataExplorer.Presentation.Core.Layout;
 using DataExplorer.Presentation.Panes.Layout.Size;
 using DataExplorer.Presentation.Tests.Core;
@@ -100,6 +101,22 @@ namespace DataExplorer.Presentation.Tests.Panes.Layout.Size
         }
 
         [Test]
+        public void TestGetSortCommandTextShouldReturnOppositeSortOrder()
+        {
+            var result = _viewModel.SortCommandText;
+            Assert.That(result, Is.EqualTo("Sort Descending"));
+        }
+
+        [Test]
+        public void TestExecuteSortCommandShouldToggleSortOrder()
+        {
+            _viewModel.SortCommand.Execute(null);
+            _mockMessageBus.Verify(p => p.Execute(
+                It.Is<SetSizeSortOrderCommand>(q => q.SortOrder == SortOrder.Descending)),
+                Times.Once());
+        }
+
+        [Test]
         public void TestIsLowerSliderVisibleShouldReturnTrueIfColumnIsSelected()
         {
             var result = _viewModel.IsLowerSizeSliderVisible;
@@ -155,6 +172,8 @@ namespace DataExplorer.Presentation.Tests.Panes.Layout.Size
         {
             AssertPropertyChanged(_viewModel, () => _viewModel.SelectedColumn,
                 () => _viewModel.Handle(new LayoutChangedEvent()));
+            AssertPropertyChanged(_viewModel, () => _viewModel.SortCommandText,
+                () => _viewModel.Handle(new LayoutChangedEvent()));
             AssertPropertyChanged(_viewModel, () => _viewModel.IsLowerSizeSliderVisible,
                 () => _viewModel.Handle(new LayoutChangedEvent()));
             AssertPropertyChanged(_viewModel, () => _viewModel.LowerSizeSliderValue,
@@ -170,6 +189,8 @@ namespace DataExplorer.Presentation.Tests.Panes.Layout.Size
                 () => _viewModel.Handle(new LayoutResetEvent()));
             AssertPropertyChanged(_viewModel, () => _viewModel.SelectedColumn,
                 () => _viewModel.Handle(new LayoutResetEvent()));
+            AssertPropertyChanged(_viewModel, () => _viewModel.SortCommandText,
+                () => _viewModel.Handle(new LayoutChangedEvent()));
             AssertPropertyChanged(_viewModel, () => _viewModel.IsLowerSizeSliderVisible,
                 () => _viewModel.Handle(new LayoutChangedEvent()));
             AssertPropertyChanged(_viewModel, () => _viewModel.LowerSizeSliderValue,

@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using DataExplorer.Application.Columns.Queries;
 using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Core.Messages;
 using DataExplorer.Application.Layouts.General.Events;
 using DataExplorer.Application.Layouts.Size.Commands;
 using DataExplorer.Application.Layouts.Size.Queries;
+using DataExplorer.Domain.Layouts;
 using DataExplorer.Presentation.Core;
+using DataExplorer.Presentation.Core.Commands;
 using DataExplorer.Presentation.Core.Layout;
 
 namespace DataExplorer.Presentation.Panes.Layout.Size
@@ -20,11 +23,14 @@ namespace DataExplorer.Presentation.Panes.Layout.Size
         IEventHandler<LayoutChangedEvent>,
         IEventHandler<LayoutResetEvent>
     {
-         private readonly IMessageBus _messageBus;
+        private readonly IMessageBus _messageBus;
+        private readonly DelegateCommand _sortCommand;
 
         public SizeLayoutViewModel(IMessageBus messageBus)
         {
             _messageBus = messageBus;
+
+            _sortCommand = new DelegateCommand(ToggleSortOrder);
         }
 
         public string Label
@@ -41,6 +47,16 @@ namespace DataExplorer.Presentation.Panes.Layout.Size
         {
             get { return GetSelectedColumnViewModel(); }
             set { SetSelectedColumnViewModel(value); }
+        }
+
+        public string SortCommandText
+        {
+            get { return GetSortCommandText(); }
+        }
+
+        public ICommand SortCommand
+        {
+            get { return _sortCommand; }
         }
 
         public bool IsLowerSizeSliderVisible
@@ -104,7 +120,26 @@ namespace DataExplorer.Presentation.Panes.Layout.Size
                 _messageBus.Execute(new UnsetSizeColumnCommand());
             else
                 _messageBus.Execute(new SetSizeColumnCommand(value.Column.Id));
+        }
 
+        private string GetSortCommandText()
+        {
+            var sortOrder = _messageBus.Execute(new GetSizeSortOrderQuery());
+
+            return sortOrder == SortOrder.Ascending
+                ? "Sort " + SortOrder.Descending
+                : "Sort " + SortOrder.Ascending;
+        }
+
+        private void ToggleSortOrder(object parameters)
+        {
+            var oldSortOrder = _messageBus.Execute(new GetSizeSortOrderQuery());
+
+            var newSortOrder = oldSortOrder == SortOrder.Ascending
+                ? SortOrder.Descending
+                : SortOrder.Ascending;
+
+            _messageBus.Execute(new SetSizeSortOrderCommand(newSortOrder));
         }
 
         private bool GetIsLowerSizeSliderVisible()
@@ -137,6 +172,7 @@ namespace DataExplorer.Presentation.Panes.Layout.Size
         public void Handle(LayoutChangedEvent args)
         {
             OnPropertyChanged(() => SelectedColumn);
+            OnPropertyChanged(() => SortCommandText);
             OnPropertyChanged(() => IsLowerSizeSliderVisible);
             OnPropertyChanged(() => LowerSizeSliderValue);
             OnPropertyChanged(() => UpperSizeSliderValue);
@@ -146,6 +182,7 @@ namespace DataExplorer.Presentation.Panes.Layout.Size
         {
             OnPropertyChanged(() => Columns);
             OnPropertyChanged(() => SelectedColumn);
+            OnPropertyChanged(() => SortCommandText);
             OnPropertyChanged(() => IsLowerSizeSliderVisible);
             OnPropertyChanged(() => LowerSizeSliderValue);
             OnPropertyChanged(() => UpperSizeSliderValue);
