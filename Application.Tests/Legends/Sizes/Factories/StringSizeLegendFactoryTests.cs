@@ -55,6 +55,13 @@ namespace DataExplorer.Application.Tests.Legends.Sizes.Factories
             AssertResult(5, 3);
         }
 
+        [Test]
+        public void TestCreateShouldCreateDescendingDiscreteItems()
+        {
+            _sizeMap = new FakeSizeMap(SortOrder.Descending);
+            AssertResult(3, 3);
+        }
+
         private void AssertResult(int valueCount, int expectedItemCount)
         {
             for (var i = 0; i < valueCount; i++)

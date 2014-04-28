@@ -16,7 +16,7 @@ namespace DataExplorer.Application.Tests.Legends.Sizes.Factories
     public class DateTimeSizeLegendFactoryTests
     {
         private DateTimeSizeLegendFactory _factory;
-        private FakeSizeMap sizeMap;
+        private FakeSizeMap _sizeMap;
         private List<DateTime?> _values;
         private DateTime? _value;
         private double _size;
@@ -32,7 +32,7 @@ namespace DataExplorer.Application.Tests.Legends.Sizes.Factories
             _lowerSize = 0d;
             _upperSize = 1d;
 
-            sizeMap = new FakeSizeMap(SortOrder.Ascending, _size, _value);
+            _sizeMap = new FakeSizeMap(SortOrder.Ascending, _size, _value);
             
             _factory = new DateTimeSizeLegendFactory();
         }
@@ -55,12 +55,19 @@ namespace DataExplorer.Application.Tests.Legends.Sizes.Factories
             AssertResult(5, 3);
         }
 
+        [Test]
+        public void TestCreateShouldCreateDiscreteDescendingItems()
+        {
+            _sizeMap = new FakeSizeMap(SortOrder.Descending);
+            AssertResult(3, 3);
+        }
+
         private void AssertResult(int valueCount, int expectedItemCount)
         {
             for (var i = 0; i < valueCount; i++)
                 _values.Add(_value.Value.AddDays(i));
 
-            var results = _factory.Create(sizeMap, _values, _lowerSize, _upperSize);
+            var results = _factory.Create(_sizeMap, _values, _lowerSize, _upperSize);
             Assert.That(results.Count(), Is.EqualTo(expectedItemCount));
         }
     }

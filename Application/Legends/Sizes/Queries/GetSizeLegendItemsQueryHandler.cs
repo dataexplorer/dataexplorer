@@ -41,7 +41,7 @@ namespace DataExplorer.Application.Legends.Sizes.Queries
 
             var type = column.DataType;
 
-            var map = _mapFactory.CreateSizeMap(column, layout.LowerSize, layout.UpperSize, SortOrder.Ascending);
+            var map = _mapFactory.CreateSizeMap(column, layout.LowerSize, layout.UpperSize, layout.SizeSortOrder);
 
             var items = _legendFactory.Create(type, map, column.Values, layout.LowerSize, layout.UpperSize);
 
