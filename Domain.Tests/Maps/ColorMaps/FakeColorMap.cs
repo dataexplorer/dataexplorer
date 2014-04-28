@@ -7,6 +7,16 @@ namespace DataExplorer.Domain.Tests.Maps.ColorMaps
 {
     public class FakeColorMap : ColorMap
     {
+        private readonly Color _color;
+        private readonly object _value;
+
+        public FakeColorMap(SortOrder sortOrder, Color color, object value)
+            : base(sortOrder)
+        {
+            _color = color;
+            _value = value;
+        }
+
         public FakeColorMap() : base(SortOrder.Ascending)
         {
             
@@ -19,12 +29,12 @@ namespace DataExplorer.Domain.Tests.Maps.ColorMaps
 
         public override Color Map(object value)
         {
-            throw new NotImplementedException();
+            return _color;
         }
 
         public override object MapInverse(Color value)
         {
-            throw new NotImplementedException();
+            return _value;
         }
     }
 }

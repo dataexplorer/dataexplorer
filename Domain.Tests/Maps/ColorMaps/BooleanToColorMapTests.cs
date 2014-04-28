@@ -67,5 +67,17 @@ namespace DataExplorer.Domain.Tests.Maps.ColorMaps
             var result = _map.MapInverse(color);
             Assert.That(result, Is.EqualTo(value));
         }
+
+        [Test]
+        //[TestCase(null, 127, 127, 127)]
+        [TestCase(false, 0, 0, 255)]
+        [TestCase(true, 255, 0, 0)]
+        public void TestMapInverseShouldReturnDescendingValues(bool? value, byte red, byte green, byte blue)
+        {
+            _map = new BooleanToColorMap(_colorPalette.Colors, SortOrder.Descending);
+            var color = new Color(red, green, blue);
+            var result = _map.MapInverse(color);
+            Assert.That(result, Is.EqualTo(value));
+        }
     }
 }

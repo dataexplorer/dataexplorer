@@ -34,10 +34,9 @@ namespace DataExplorer.Domain.Maps.ColorMaps
 
         public override object MapInverse(Color value)
         {
-            if (value.Equals(_colors.First()))
-                return false;
-            
-            return true;
+            return _sortOrder == SortOrder.Ascending
+                ? !value.Equals(_colors.First())
+                : !value.Equals(_colors.Last());
         }
     }
 }

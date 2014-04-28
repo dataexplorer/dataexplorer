@@ -42,7 +42,7 @@ namespace DataExplorer.Application.Legends.Colors.Queries
 
             var palette = layout.ColorPalette;
 
-            var map = _mapFactory.CreateColorMap(column, palette, SortOrder.Ascending);
+            var map = _mapFactory.CreateColorMap(column, palette, layout.ColorSortOrder);
             
             var items = _legendFactory.Create(type,  map, column.Values, palette);
 

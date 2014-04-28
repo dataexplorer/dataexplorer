@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataExplorer.Application.Legends;
 using DataExplorer.Application.Legends.Colors;
 using DataExplorer.Application.Legends.Colors.Factories;
 using DataExplorer.Domain.Colors;
+using DataExplorer.Domain.Layouts;
 using DataExplorer.Domain.Maps.ColorMaps;
-using DataExplorer.Domain.Tests.Maps;
 using DataExplorer.Domain.Tests.Maps.ColorMaps;
 using NUnit.Framework;
 
@@ -38,6 +37,15 @@ namespace DataExplorer.Application.Tests.Legends.Colors.Factories
             var results = _factory.Create(_colorMap, _values, _palette);
             AssertResult(results.First(), _palette.Colors.First(), "False");
             AssertResult(results.Last(), _palette.Colors.Last(), "True");
+        }
+
+        [Test]
+        public void TestCreateShouldReturnDescendingColorLegendItems()
+        {
+            _colorMap = new FakeColorMap(SortOrder.Descending);
+            var results = _factory.Create(_colorMap, _values, _palette);
+            AssertResult(results.First(), _palette.Colors.First(), "True");
+            AssertResult(results.Last(), _palette.Colors.Last(), "False");
         }
 
         private void AssertResult(ColorLegendItemDto itemDto, Color color, string label)

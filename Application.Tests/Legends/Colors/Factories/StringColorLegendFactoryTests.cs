@@ -5,8 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.Legends.Colors.Factories;
 using DataExplorer.Domain.Colors;
+using DataExplorer.Domain.Layouts;
 using DataExplorer.Domain.Maps.ColorMaps;
 using DataExplorer.Domain.Tests.Colors;
+using DataExplorer.Domain.Tests.Maps.ColorMaps;
 using Moq;
 using NUnit.Framework;
 
@@ -16,7 +18,7 @@ namespace DataExplorer.Application.Tests.Legends.Colors.Factories
     public class StringColorLegendFactoryTests
     {
         private StringColorLegendFactory _factory;
-        private Mock<ColorMap> _mockColorMap;
+        private FakeColorMap _colorMap;
         private List<string> _values;
         private ColorPalette _palette;
         private Color _color1;
@@ -28,12 +30,8 @@ namespace DataExplorer.Application.Tests.Legends.Colors.Factories
             _color1 = new Color(255, 0, 0);
             _palette = new ColorPaletteBuilder().Build();
 
-            _mockColorMap = new Mock<ColorMap>();
-            _mockColorMap.Setup(p => p.Map(It.IsAny<string>()))
-                .Returns(_color1);
-            _mockColorMap.Setup(p => p.MapInverse(It.IsAny<Color>()))
-                .Returns("A");
-
+            _colorMap = new FakeColorMap(SortOrder.Ascending, _color1, string.Empty);
+            
             _factory = new StringColorLegendFactory();
         }
 
@@ -54,6 +52,13 @@ namespace DataExplorer.Application.Tests.Legends.Colors.Factories
         {
             AssertResult(16, 8, 8);
         }
+
+        [Test]
+        public void TestCreateShouldCreateDiscreteItemsInDescendingOrder()
+        {
+            _colorMap = new FakeColorMap(SortOrder.Descending, _color1, string.Empty);
+            AssertResult(16, 8, 8);
+        }
         
         private void AssertResult(int valueCount, int colorCount, int itemCount)
         {
@@ -63,11 +68,8 @@ namespace DataExplorer.Application.Tests.Legends.Colors.Factories
             for (var i = 0; i < valueCount; i++)
                 _values.Add(Convert.ToChar(65 + i).ToString());
 
-            var results = _factory.Create(_mockColorMap.Object, _values, _palette);
+            var results = _factory.Create(_colorMap, _values, _palette);
             Assert.That(results.Count(), Is.EqualTo(itemCount));
-            Assert.That(results.First().Color, Is.EqualTo(_palette.Colors.First()));
-            Assert.That(results.First().Label, Is.EqualTo("A"));
-            Assert.That(results.Last().Color, Is.EqualTo(_palette.Colors.Last()));
         }
     }
 }

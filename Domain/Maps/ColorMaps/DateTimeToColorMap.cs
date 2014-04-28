@@ -42,6 +42,9 @@ namespace DataExplorer.Domain.Maps.ColorMaps
 
             var index = (int) (ratio * _targetWidth);
 
+            // NOTE: This seems to fix the out-of-bounds errors
+            index = Math.Min(index, _colors.Count - 1);
+
             var orderedIndex = _sortOrder == SortOrder.Ascending
                 ? index
                 : _colors.Count - 1 - index;
