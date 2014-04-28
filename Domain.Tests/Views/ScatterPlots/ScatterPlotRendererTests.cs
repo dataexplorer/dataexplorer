@@ -118,7 +118,7 @@ namespace DataExplorer.Domain.Tests.Views.ScatterPlots
         [Test]
         public void TestRenderPlotsShouldRenderSizeValue()
         {
-            _mockMapFactory.Setup(p => p.CreateSizeMap(_column, 0d, 1d))
+            _mockMapFactory.Setup(p => p.CreateSizeMap(_column, 0d, 1d, SortOrder.Ascending))
                 .Returns(_mockSizeMap.Object);
 
             _mockSizeMap.Setup(p => p.Map(1.0d)).Returns(1.0d);

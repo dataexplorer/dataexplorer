@@ -53,7 +53,7 @@ namespace DataExplorer.Domain.Tests.Maps
                 .Returns(_colorMap);
             
             _mockSizeMapFactory = new Mock<ISizeMapFactory>();
-            _mockSizeMapFactory.Setup(p => p.Create(_column, 0d, 1d))
+            _mockSizeMapFactory.Setup(p => p.Create(_column, 0d, 1d, SortOrder.Ascending))
                 .Returns(_sizeMap);
 
             _mockLabelMapFactory = new Mock<ILabelMapFactory>();

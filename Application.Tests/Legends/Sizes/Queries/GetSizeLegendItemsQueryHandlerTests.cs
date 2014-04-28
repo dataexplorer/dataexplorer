@@ -8,6 +8,7 @@ using DataExplorer.Application.Legends.Sizes.Factories;
 using DataExplorer.Application.Legends.Sizes.Queries;
 using DataExplorer.Application.Views;
 using DataExplorer.Domain.Columns;
+using DataExplorer.Domain.Layouts;
 using DataExplorer.Domain.Maps;
 using DataExplorer.Domain.Maps.SizeMaps;
 using DataExplorer.Domain.Tests.Columns;
@@ -59,7 +60,7 @@ namespace DataExplorer.Application.Tests.Legends.Sizes.Queries
                 .Returns(_scatterPlot);
 
             _mockMapFactory = new Mock<IMapFactory>();
-            _mockMapFactory.Setup(p => p.CreateSizeMap(_column, _layout.LowerSize, _layout.UpperSize))
+            _mockMapFactory.Setup(p => p.CreateSizeMap(_column, _layout.LowerSize, _layout.UpperSize, SortOrder.Ascending))
                 .Returns(_map);
 
             _mockItemFactory = new Mock<ISizeLegendFactory>();

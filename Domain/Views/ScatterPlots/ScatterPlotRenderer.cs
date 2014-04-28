@@ -32,7 +32,7 @@ namespace DataExplorer.Domain.Views.ScatterPlots
                 : null;
 
             var sizeMap = layout.SizeColumn != null
-                ? _factory.CreateSizeMap(layout.SizeColumn, layout.LowerSize, layout.UpperSize)
+                ? _factory.CreateSizeMap(layout.SizeColumn, layout.LowerSize, layout.UpperSize, layout.SizeSortOrder)
                 : null;
 
             var labelMap = layout.LabelColumn != null

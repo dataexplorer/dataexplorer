@@ -19,7 +19,7 @@ namespace DataExplorer.Domain.Maps
 
         ColorMap CreateColorMap(Column column, ColorPalette colorPalette, SortOrder sortOrder);
 
-        SizeMap CreateSizeMap(Column column, double targetMin, double targetMax);
+        SizeMap CreateSizeMap(Column column, double targetMin, double targetMax, SortOrder sortOrder);
 
         LabelMap CreateLabelMap(Column column);
     }

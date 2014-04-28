@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataExplorer.Domain.Layouts;
 
 namespace DataExplorer.Domain.Maps.SizeMaps
 {
@@ -15,7 +16,13 @@ namespace DataExplorer.Domain.Maps.SizeMaps
         private readonly double _targetMax;
         private readonly double _targetWidth;
 
-        public IntegerToSizeMap(int sourceMin, int sourceMax, double targetMin, double targetMax)
+        public IntegerToSizeMap(
+            int sourceMin, 
+            int sourceMax,
+            double targetMin,
+            double targetMax,
+            SortOrder sortOrder)
+            : base(sortOrder)
         {
             _sourceMin = sourceMin;
             _sourceMax = sourceMax;
@@ -34,8 +41,12 @@ namespace DataExplorer.Domain.Maps.SizeMaps
             var width = (double) (int) value - _sourceMin;
 
             var ratio = width / _sourceWidth;
-            
-            return _targetMin + (ratio * _targetWidth);
+
+            var targetValue = _targetMin + (ratio * _targetWidth);
+
+            return _sortOrder == SortOrder.Ascending
+                ? targetValue
+                : 1 - targetValue;
         }
 
         public override object MapInverse(double? value)
@@ -43,7 +54,11 @@ namespace DataExplorer.Domain.Maps.SizeMaps
             if (!value.HasValue)
                 return null;
 
-            var ratio = (double) value / _targetWidth;
+            var targetValue = _sortOrder == SortOrder.Ascending
+                ? value
+                : 1 - value;
+
+            var ratio = (double)targetValue / _targetWidth;
 
             var result = _sourceMin + (_sourceWidth * ratio);
 

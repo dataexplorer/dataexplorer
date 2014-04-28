@@ -42,9 +42,9 @@ namespace DataExplorer.Domain.Maps
             return _colorMapFactory.Create(column, colorPalette, sortOrder);
         }
 
-        public SizeMap CreateSizeMap(Column column, double targetMin, double targetMax)
+        public SizeMap CreateSizeMap(Column column, double targetMin, double targetMax, SortOrder sortOrder)
         {
-            return _sizeMapFactory.Create(column, targetMin, targetMax);
+            return _sizeMapFactory.Create(column, targetMin, targetMax, sortOrder);
         }
 
         public LabelMap CreateLabelMap(Column column)
