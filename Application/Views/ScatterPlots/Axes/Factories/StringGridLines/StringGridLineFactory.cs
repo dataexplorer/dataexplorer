@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DataExplorer.Domain.Layouts;
 using DataExplorer.Domain.Maps.AxisMaps;
 using DataExplorer.Domain.Views.ScatterPlots;
 
@@ -26,6 +27,9 @@ namespace DataExplorer.Application.Views.ScatterPlots.Axes.Factories.StringGridL
 
         private IEnumerable<AxisGridLine> CreateValueGridLines(AxisMap map, List<object> values, double lower, double upper)
         {
+            if (map.SortOrder == SortOrder.Descending)
+                values.Reverse();
+
             foreach (var value in values)
             {
                 var location = map.Map(value).GetValueOrDefault();
@@ -37,9 +41,13 @@ namespace DataExplorer.Application.Views.ScatterPlots.Axes.Factories.StringGridL
 
         private IEnumerable<AxisGridLine> CreateAlphaGridLines(AxisMap map, List<string> values, double lower, double upper)
         {
-            var lowerString = (string) map.MapInverse(lower);
+            var lowerString = map.SortOrder == SortOrder.Ascending
+                ? (string) map.MapInverse(lower)
+                : (string) map.MapInverse(upper);
 
-            var upperString = (string) map.MapInverse(upper);
+            var upperString = map.SortOrder == SortOrder.Ascending
+                ? (string) map.MapInverse(upper)
+                : (string) map.MapInverse(lower);
 
             var lowerChar = IsFirstCharacterValid(lowerString) 
                 ? lowerString[0]
