@@ -1,0 +1,60 @@
+v0.2.0 - 2014-05-01
+ - Select sort order for location, color, and size
+ - Filtered out images columns from location, color, and size layouts
+ - Fixed bug with string values being mapped as continous rather than categorial values
+ - Fixed bug with incorrect sort order for layout of text after reloading project
+ - Fixed issue with descending text axis label not showing up
+ 
+v0.1.0 - 2014-04-01
+Import
+ - Import CSV files
+ - Open data exploration projects
+ - Download data from website
+ - Import image data from CSV file
+ - Import URL data from CSV file
+
+Visualize
+ - View data as x-y scatterplot
+ - View data with color
+ - View data with size
+ - View data with labels
+ - View data as images
+ - View axis lines and labels
+ - View color and size in legend
+
+Layout
+- Select columns to map to x-axis
+- Select columns to map to y-axis 
+- Select columns to map to color
+- Select color palette
+- Select columns to map to size
+- Adjust size of plot
+- Select columns to map to label
+- Select columns to map to image data
+- Select columns to map to URL link
+
+Navigate
+ - Pan view
+ - Zoom in
+ - Zoom out
+
+Filter
+ - Filter using filter trees
+ - Filter using interactive filters
+
+Interact
+ - Select a single item
+ - Select multiple items
+ - View properties of selected item
+ - Click-through URL hyperlinks
+ - Drag and drop columns onto view surface to layout view
+
+Share
+ - Save data exploration projects
+ - Copy and paste selected data as tab-separated values
+ - Copy and paste data as image
+
+Help
+ - Quick-start pane
+ - Link to help page
+ - Link to About page
