@@ -20,13 +20,15 @@ namespace DataExplorer.Persistence.Columns.Serializers
         private const string NameTag = "name";
         private const string DataTypeTag = "data-type";
         private const string SemanticTypeTag = "semantic-type";
-
+        
+        private readonly IColumnFactory _factory;
 
         public ColumnSerializer(
-            IPropertySerializer propertySerializer) 
+            IPropertySerializer propertySerializer,
+            IColumnFactory factory) 
             : base(propertySerializer)
         {
-            
+            _factory = factory;
         }
 
         public XElement Serialize(Column column)
@@ -59,22 +61,10 @@ namespace DataExplorer.Persistence.Columns.Serializers
             var semanticType = GetProperty<SemanticType>(xColumn, SemanticTypeTag);
 
             var values = rows.Select(p => p[index]).ToList();
+            
+            var column = _factory.Create(id, index, name, dataType, semanticType, values);
 
-            // TODO: Try to move the aggregation logic below into a common location
-            var isComparable = !(dataType == typeof(BitmapImage));
-
-            var min = isComparable
-                ? values.Min()
-                : null;
-
-            var max = isComparable
-                ? values.Max()
-                : null;
-
-            var hasNulls = values
-                .Any(p => p == null);
-
-            return new Column(id, index, name, dataType, semanticType, values, min, max, hasNulls);
+            return column;
         }
     }
 }

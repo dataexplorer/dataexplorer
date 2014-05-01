@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Domain.Colors;
+using DataExplorer.Domain.Layouts;
 using DataExplorer.Domain.Maps.ColorMaps;
 using DataExplorer.Domain.Tests.Colors;
 using NUnit.Framework;
@@ -31,7 +32,8 @@ namespace DataExplorer.Domain.Tests.Maps.ColorMaps
             _map = new DateTimeToColorMap(
                 DateTime.MinValue,
                 DateTime.MaxValue,
-                _colorPalette.Colors);
+                _colorPalette.Colors,
+                SortOrder.Ascending);
         }
 
         [Test]
@@ -54,11 +56,33 @@ namespace DataExplorer.Domain.Tests.Maps.ColorMaps
         }
 
         [Test]
-        [TestCase("1/1/0001", 255, 0, 0)]
+        [TestCase("1/1/0001", 0, 0, 255)]
         [TestCase("7/2/5000", 0, 255, 0)]
-        [TestCase("12/31/9999", 0, 0, 255)]
+        [TestCase("12/31/9999", 255, 0, 0)]
+        public void TestMapReverseReturnCorrectValues(string date, byte red, byte green, byte blue)
+        {
+            _map = new DateTimeToColorMap(
+                DateTime.MinValue,
+                DateTime.MaxValue,
+                _colorPalette.Colors,
+                SortOrder.Descending);
+            var color = new Color(red, green, blue);
+            var value = DateTime.Parse(date);
+            var result = _map.Map(value);
+            Assert.That(result, Is.EqualTo(color));
+        }
+
+        [Test]
+        [TestCase("1/1/0001", 0, 0, 255)]
+        [TestCase("7/2/5000", 0, 255, 0)]
+        [TestCase("12/31/9999", 255, 0, 0)]
         public void TestMapInverseShouldReturnCorrectValues(string date, byte red, byte green, byte blue)
         {
+            _map = new DateTimeToColorMap(
+                DateTime.MinValue,
+                DateTime.MaxValue,
+                _colorPalette.Colors,
+                SortOrder.Descending);
             var color = new Color(red, green, blue);
             var value = DateTime.Parse(date);
             var result = _map.MapInverse(color);

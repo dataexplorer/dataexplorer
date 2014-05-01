@@ -20,19 +20,19 @@ namespace DataExplorer.Domain.Views.ScatterPlots
         public List<Plot> RenderPlots(List<Row> rows, ScatterPlotLayout layout)
         {
             var xAxisMap = layout.XAxisColumn != null 
-                ? _factory.CreateAxisMap(layout.XAxisColumn, 0d, 1d) 
+                ? _factory.CreateAxisMap(layout.XAxisColumn, 0d, 1d, layout.XAxisSortOrder) 
                 : null;
 
             var yAxisMap = layout.YAxisColumn != null
-                ? _factory.CreateAxisMap(layout.YAxisColumn, 0d, 1d)
+                ? _factory.CreateAxisMap(layout.YAxisColumn, 0d, 1d, layout.YAxisSortOrder)
                 : null;
 
             var colorMap = layout.ColorColumn != null
-                ? _factory.CreateColorMap(layout.ColorColumn, layout.ColorPalette)
+                ? _factory.CreateColorMap(layout.ColorColumn, layout.ColorPalette, layout.ColorSortOrder)
                 : null;
 
             var sizeMap = layout.SizeColumn != null
-                ? _factory.CreateSizeMap(layout.SizeColumn, layout.LowerSize, layout.UpperSize)
+                ? _factory.CreateSizeMap(layout.SizeColumn, layout.LowerSize, layout.UpperSize, layout.SizeSortOrder)
                 : null;
 
             var labelMap = layout.LabelColumn != null

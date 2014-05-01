@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataExplorer.Domain.Layouts;
 using DataExplorer.Domain.Maps.SizeMaps;
 
 namespace DataExplorer.Application.Legends.Sizes.Factories
@@ -16,9 +17,19 @@ namespace DataExplorer.Application.Legends.Sizes.Factories
             if (values.Contains(null))
                 yield return CreateNullSizeLegendItem();
 
-            yield return CreateSizeLegendItem("False", lowerSize);
+            if (map.SortOrder == SortOrder.Ascending)
+            {
+                yield return CreateSizeLegendItem("False", lowerSize);
 
-            yield return CreateSizeLegendItem("True", upperSize);
+                yield return CreateSizeLegendItem("True", upperSize);    
+            }
+            else
+            {
+                yield return CreateSizeLegendItem("True", lowerSize);
+
+                yield return CreateSizeLegendItem("False", upperSize);
+            }
+            
         }
 
         private static SizeLegendItemDto CreateSizeLegendItem(string label, double size)

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Domain.Colors;
 using DataExplorer.Domain.Columns;
+using DataExplorer.Domain.Layouts;
 using DataExplorer.Domain.Views.ScatterPlots;
 
 namespace DataExplorer.Domain.Tests.Views.ScatterPlots
@@ -24,15 +25,33 @@ namespace DataExplorer.Domain.Tests.Views.ScatterPlots
             return this;
         }
 
+        public ScatterPlotLayoutBuilder WithXAxisSortOrder(SortOrder sortOrder)
+        {
+            _layout.XAxisSortOrder = sortOrder;
+            return this;
+        }
+
         public ScatterPlotLayoutBuilder WithYAxisColumn(Column column)
         {
             _layout.YAxisColumn = column;
             return this;
         }
 
+        public ScatterPlotLayoutBuilder WithYAxisSortOrder(SortOrder sortOrder)
+        {
+            _layout.YAxisSortOrder = sortOrder;
+            return this;
+        }
+
         public ScatterPlotLayoutBuilder WithColorColumn(Column column)
         {
             _layout.ColorColumn = column;
+            return this;
+        }
+
+        public ScatterPlotLayoutBuilder WithColorSortOrder(SortOrder sortOrder)
+        {
+            _layout.ColorSortOrder = sortOrder;
             return this;
         }
 
@@ -45,6 +64,12 @@ namespace DataExplorer.Domain.Tests.Views.ScatterPlots
         public ScatterPlotLayoutBuilder WithSizeColumn(Column column)
         {
             _layout.SizeColumn = column;
+            return this;
+        }
+
+        public ScatterPlotLayoutBuilder WithSizeSortOrder(SortOrder sortOrder)
+        {
+            _layout.SizeSortOrder = sortOrder;
             return this;
         }
 

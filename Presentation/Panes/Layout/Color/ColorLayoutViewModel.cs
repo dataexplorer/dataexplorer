@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Input;
 using DataExplorer.Application.Columns.Queries;
 using DataExplorer.Application.Core.Events;
 using DataExplorer.Application.Core.Messages;
 using DataExplorer.Application.Layouts.Color.Commands;
 using DataExplorer.Application.Layouts.Color.Queries;
 using DataExplorer.Application.Layouts.General.Events;
+using DataExplorer.Domain.Layouts;
 using DataExplorer.Presentation.Core;
+using DataExplorer.Presentation.Core.Commands;
 using DataExplorer.Presentation.Core.Layout;
 
 namespace DataExplorer.Presentation.Panes.Layout.Color
@@ -19,10 +22,13 @@ namespace DataExplorer.Presentation.Panes.Layout.Color
         IEventHandler<LayoutResetEvent>
     {
         private readonly IMessageBus _messageBus;
+        private readonly DelegateCommand _sortCommand;
 
         public ColorLayoutViewModel(IMessageBus messageBus)
         {
             _messageBus = messageBus;
+
+            _sortCommand = new DelegateCommand(ToggleSortOrder);
         }
 
         public string Label
@@ -41,6 +47,16 @@ namespace DataExplorer.Presentation.Panes.Layout.Color
             set { SetSelectedColumnViewModel(value); }
         }
 
+        public string SortCommandText
+        {
+            get { return GetSortCommandText(); }
+        }
+
+        public ICommand SortCommand
+        {
+            get { return _sortCommand; }
+        }
+
         public List<ColorPaletteViewModel> ColorPalettes
         {
             get { return GetColorPaletteViewModels(); }
@@ -54,7 +70,7 @@ namespace DataExplorer.Presentation.Panes.Layout.Color
 
         private List<LayoutItemViewModel> GetColumnViewModels()
         {
-            var columns = _messageBus.Execute(new GetAllColumnsQuery());
+            var columns = _messageBus.Execute(new GetAllColorColumnsQuery());
 
             var viewModels = columns
                 .Select(p => new LayoutItemViewModel(p))
@@ -86,6 +102,26 @@ namespace DataExplorer.Presentation.Panes.Layout.Color
                 _messageBus.Execute(new UnsetColorColumnCommand());
             else
                 _messageBus.Execute(new SetColorColumnCommand(value.Column.Id));
+        }
+
+        private string GetSortCommandText()
+        {
+            var sortOrder = _messageBus.Execute(new GetColorSortOrderQuery());
+
+            return sortOrder == SortOrder.Ascending
+                ? "Sort " + SortOrder.Descending
+                : "Sort " + SortOrder.Ascending;
+        }
+
+        private void ToggleSortOrder(object parameters)
+        {
+            var oldSortOrder = _messageBus.Execute(new GetColorSortOrderQuery());
+
+            var newSortOrder = oldSortOrder == SortOrder.Ascending
+                ? SortOrder.Descending
+                : SortOrder.Ascending;
+
+            _messageBus.Execute(new SetColorSortOrderCommand(newSortOrder));
         }
 
         private List<ColorPaletteViewModel> GetColorPaletteViewModels()
@@ -125,6 +161,7 @@ namespace DataExplorer.Presentation.Panes.Layout.Color
         {
             OnPropertyChanged(() => SelectedColumn);
             OnPropertyChanged(() => SelectedColorPalette);
+            OnPropertyChanged(() => SortCommandText);
         }
 
         public void Handle(LayoutResetEvent args)
@@ -132,6 +169,7 @@ namespace DataExplorer.Presentation.Panes.Layout.Color
             OnPropertyChanged(() => Columns);
             OnPropertyChanged(() => SelectedColumn);
             OnPropertyChanged(() => SelectedColorPalette);
+            OnPropertyChanged(() => SortCommandText);
         }
     }
 }

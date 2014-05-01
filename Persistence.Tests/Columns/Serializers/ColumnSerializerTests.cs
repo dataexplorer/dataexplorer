@@ -44,7 +44,8 @@ namespace DataExplorer.Persistence.Tests.Columns.Serializers
 
             _serializer = new ColumnSerializer(
                 new PropertySerializer(
-                    new DataTypeSerializer()));
+                    new DataTypeSerializer()),
+                 new ColumnFactory());
         }
 
         [Test]

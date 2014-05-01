@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataExplorer.Domain.Layouts;
 using DataExplorer.Domain.Maps.SizeMaps;
 
 namespace DataExplorer.Application.Legends.Sizes.Factories
@@ -16,11 +17,15 @@ namespace DataExplorer.Application.Legends.Sizes.Factories
             if (values.Any(p => p == null))
                 yield return CreateNullSizeLegendItem();
 
-            var nonNullValues = values
+            var distinctValues = values
+                .Distinct()
+                .ToList();
+
+            var nonNullValues = distinctValues
                 .Where(p => p != null)
                 .ToList();
 
-            var results = (values.Count() <= MaxDiscreteValues)
+            var results = (distinctValues.Count() <= MaxDiscreteValues)
                 ? CreateDiscreteSizeLegendItems(map, nonNullValues)
                 : CreateContinuousSizeLegendItems(map, lowerSize, upperSize);
 
@@ -30,6 +35,9 @@ namespace DataExplorer.Application.Legends.Sizes.Factories
 
         private IEnumerable<SizeLegendItemDto> CreateDiscreteSizeLegendItems(SizeMap map, List<string> values)
         {
+            if (map.SortOrder == SortOrder.Descending)
+                values.Reverse();
+
             for (var i = 0; i < values.Count(); i++)
             {
                 var itemDto = new SizeLegendItemDto()

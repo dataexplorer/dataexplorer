@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DataExplorer.Application.Core.Queries;
 using DataExplorer.Application.Legends.Sizes.Factories;
 using DataExplorer.Application.Views;
+using DataExplorer.Domain.Layouts;
 using DataExplorer.Domain.Maps;
 using DataExplorer.Domain.Views.ScatterPlots;
 
@@ -40,7 +41,7 @@ namespace DataExplorer.Application.Legends.Sizes.Queries
 
             var type = column.DataType;
 
-            var map = _mapFactory.CreateSizeMap(column, layout.LowerSize, layout.UpperSize);
+            var map = _mapFactory.CreateSizeMap(column, layout.LowerSize, layout.UpperSize, layout.SizeSortOrder);
 
             var items = _legendFactory.Create(type, map, column.Values, layout.LowerSize, layout.UpperSize);
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataExplorer.Domain.Layouts;
 using DataExplorer.Domain.Maps.SizeMaps;
 using DataExplorer.Domain.Tests.Columns;
 using NUnit.Framework;
@@ -24,7 +25,7 @@ namespace DataExplorer.Domain.Tests.Maps.SizeMaps
         public void TestCreateSizeMapForInvalidDataTypeShouldThrowArgumentException()
         {
             var column = new ColumnBuilder().WithDataType(typeof(Object)).Build();
-            Assert.That(() => _factory.Create(column, 0d, 1d), Throws.ArgumentException);
+            Assert.That(() => _factory.Create(column, 0d, 1d, SortOrder.Ascending), Throws.ArgumentException);
         }
 
         [Test]
@@ -63,7 +64,7 @@ namespace DataExplorer.Domain.Tests.Maps.SizeMaps
                 .WithValue(default(T))
                 .WithDataType(typeof(T))
                 .Build();
-            var result = _factory.Create(column, 0d, 1d);
+            var result = _factory.Create(column, 0d, 1d, SortOrder.Ascending);
             Assert.That(result, Is.TypeOf(mapType));
         }
     }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DataExplorer.Application.Views.ScatterPlots.Axes.Factories.DateTimeGridLines;
+using DataExplorer.Domain.Layouts;
 using DataExplorer.Domain.Maps.AxisMaps;
 using DataExplorer.Domain.Views.ScatterPlots;
 using NUnit.Framework;
@@ -24,7 +25,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Axes.Factories.DateT
         {
             var lower = new DateTime(2000, 1, 1);
             var upper = lower.AddSeconds(86400);
-            var map = new DateTimeToAxisMap(lower, upper, 0d, 1d);
+            var map = new DateTimeToAxisMap(lower, upper, 0d, 1d, SortOrder.Ascending);
             var results = _factory.CreateFourHours(map, lower, upper).ToList();
             AssertResults(results, 7, 0d, "12:00:00 AM", 1d, "12:00:00 AM");
         }
@@ -34,7 +35,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Axes.Factories.DateT
         {
             var lower = new DateTime(2000, 1, 1);
             var upper = lower.AddSeconds(14400);
-            var map = new DateTimeToAxisMap(lower, upper, 0d, 1d);
+            var map = new DateTimeToAxisMap(lower, upper, 0d, 1d, SortOrder.Ascending);
             var results = _factory.CreateHours(map, lower, upper).ToList();
             AssertResults(results, 5, 0d, "12:00:00 AM", 1d, "4:00:00 AM");
         }
@@ -44,7 +45,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Axes.Factories.DateT
         {
             var lower = new DateTime(2000, 1, 1);
             var upper = lower.AddSeconds(3600);
-            var map = new DateTimeToAxisMap(lower, upper, 0d, 1d);
+            var map = new DateTimeToAxisMap(lower, upper, 0d, 1d, SortOrder.Ascending);
             var results = _factory.CreateTenMinutes(map, lower, upper).ToList();
             AssertResults(results, 7, 0d, "12:00:00 AM", 1d, "1:00:00 AM");
         }
@@ -54,7 +55,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Axes.Factories.DateT
         {
             var lower = new DateTime(2000, 1, 1);
             var upper = lower.AddSeconds(600);
-            var map = new DateTimeToAxisMap(lower, upper, 0d, 1d);
+            var map = new DateTimeToAxisMap(lower, upper, 0d, 1d, SortOrder.Ascending);
             var results = _factory.CreateMinutes(map, lower, upper).ToList();
             AssertResults(results, 11, 0d, "12:00:00 AM", 1d, "12:10:00 AM");
         }
@@ -64,7 +65,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Axes.Factories.DateT
         {
             var lower = new DateTime(2000, 1, 1);
             var upper = lower.AddSeconds(60);
-            var map = new DateTimeToAxisMap(lower, upper, 0d, 1d);
+            var map = new DateTimeToAxisMap(lower, upper, 0d, 1d, SortOrder.Ascending);
             var results = _factory.CreateTenSeconds(map, lower, upper).ToList();
             AssertResults(results, 7, 0d, "12:00:00 AM", 1d, "12:01:00 AM");
         }
@@ -74,7 +75,7 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Axes.Factories.DateT
         {
             var lower = new DateTime(2000, 1, 1);
             var upper = lower.AddSeconds(10);
-            var map = new DateTimeToAxisMap(lower, upper, 0d, 1d);
+            var map = new DateTimeToAxisMap(lower, upper, 0d, 1d, SortOrder.Ascending);
             var results = _factory.CreateSeconds(map, lower, upper).ToList();
             AssertResults(results, 11, 0d, "12:00:00 AM", 1d, "12:00:10 AM");
         }

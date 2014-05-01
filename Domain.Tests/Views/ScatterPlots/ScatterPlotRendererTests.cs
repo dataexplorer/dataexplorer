@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows.Media.Imaging;
 using DataExplorer.Domain.Colors;
 using DataExplorer.Domain.Columns;
+using DataExplorer.Domain.Layouts;
 using DataExplorer.Domain.Maps;
 using DataExplorer.Domain.Maps.AxisMaps;
 using DataExplorer.Domain.Maps.ColorMaps;
@@ -71,7 +72,7 @@ namespace DataExplorer.Domain.Tests.Views.ScatterPlots
         [Test]
         public void TestRenderPlotsShouldRenderXAxisValue()
         {
-            _mockMapFactory.Setup(p => p.CreateAxisMap(_column, 0d, 1d))
+            _mockMapFactory.Setup(p => p.CreateAxisMap(_column, 0d, 1d, SortOrder.Ascending))
                 .Returns(_mockXAxisMap.Object);
             
             _mockXAxisMap.Setup(p => p.Map(1.0d)).Returns(1.0d);
@@ -86,7 +87,7 @@ namespace DataExplorer.Domain.Tests.Views.ScatterPlots
         [Test]
         public void TestRenderPlotsShouldRenderYAxisValue()
         {
-            _mockMapFactory.Setup(p => p.CreateAxisMap(_column, 0d, 1d))
+            _mockMapFactory.Setup(p => p.CreateAxisMap(_column, 0d, 1d, SortOrder.Ascending))
                 .Returns(_mockYAxisMap.Object);
 
             _mockYAxisMap.Setup(p => p.Map(1.0d)).Returns(1.0d);
@@ -101,7 +102,7 @@ namespace DataExplorer.Domain.Tests.Views.ScatterPlots
         [Test]
         public void TestRenderPlotsShouldRenderColorValue()
         {
-            _mockMapFactory.Setup(p => p.CreateColorMap(_column, _colorPalette))
+            _mockMapFactory.Setup(p => p.CreateColorMap(_column, _colorPalette, SortOrder.Ascending))
                 .Returns(_mockColorMap.Object);
 
             _mockColorMap.Setup(p => p.Map(1.0d)).Returns(_color);
@@ -117,7 +118,7 @@ namespace DataExplorer.Domain.Tests.Views.ScatterPlots
         [Test]
         public void TestRenderPlotsShouldRenderSizeValue()
         {
-            _mockMapFactory.Setup(p => p.CreateSizeMap(_column, 0d, 1d))
+            _mockMapFactory.Setup(p => p.CreateSizeMap(_column, 0d, 1d, SortOrder.Ascending))
                 .Returns(_mockSizeMap.Object);
 
             _mockSizeMap.Setup(p => p.Map(1.0d)).Returns(1.0d);

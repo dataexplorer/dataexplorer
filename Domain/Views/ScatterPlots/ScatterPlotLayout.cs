@@ -1,17 +1,23 @@
 ﻿using DataExplorer.Domain.Colors;
 using DataExplorer.Domain.Columns;
+using DataExplorer.Domain.Layouts;
 
 namespace DataExplorer.Domain.Views.ScatterPlots
 {
     public class ScatterPlotLayout
     {
+        private const SortOrder DefaultSortOrder = SortOrder.Ascending;
         private const double DefaultSize = 0.125d;
 
         private Column _xAxisColumn;
+        private SortOrder _xAxisSortOrder;
         private Column _yAxisColumn;
+        private SortOrder _yAxisSortOrder;
         private Column _colorColumn;
+        private SortOrder _colorSortOrder;
         private ColorPalette _colorPalette;
         private Column _sizeColumn;
+        private SortOrder _sizeSortOrder;
         private double _lowerSize;
         private double _upperSize;
         private Column _shapeColumn;
@@ -30,16 +36,34 @@ namespace DataExplorer.Domain.Views.ScatterPlots
             set { _xAxisColumn = value; }
         }
 
+        public SortOrder XAxisSortOrder
+        {
+            get { return _xAxisSortOrder; }
+            set { _xAxisSortOrder = value; }
+        }
+
         public Column YAxisColumn
         {
             get { return _yAxisColumn; }
             set { _yAxisColumn = value; }
         }
 
+        public SortOrder YAxisSortOrder
+        {
+            get { return _yAxisSortOrder; }
+            set { _yAxisSortOrder = value; }
+        }
+
         public Column ColorColumn
         {
             get { return _colorColumn; }
             set { _colorColumn = value; }
+        }
+
+        public SortOrder ColorSortOrder
+        {
+            get { return _colorSortOrder; }
+            set { _colorSortOrder = value; }
         }
 
         public ColorPalette ColorPalette
@@ -52,6 +76,12 @@ namespace DataExplorer.Domain.Views.ScatterPlots
         {
             get { return _sizeColumn; } 
             set { _sizeColumn = value; }
+        }
+
+        public SortOrder SizeSortOrder
+        {
+            get { return _sizeSortOrder; }
+            set { _sizeSortOrder = value; }
         }
 
         public double LowerSize
@@ -87,10 +117,14 @@ namespace DataExplorer.Domain.Views.ScatterPlots
         public void Clear()
         {
             _xAxisColumn = null;
+            _xAxisSortOrder = DefaultSortOrder;
             _yAxisColumn = null;
+            _yAxisSortOrder = DefaultSortOrder;
             _colorColumn = null;
+            _colorSortOrder = DefaultSortOrder;
             _colorPalette = new ColorPaletteFactory().Pastel1;
             _sizeColumn = null;
+            _sizeSortOrder = DefaultSortOrder;
             _lowerSize = DefaultSize;
             _upperSize = DefaultSize;
             _shapeColumn = null;

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Application.Legends.Sizes;
 using DataExplorer.Application.Legends.Sizes.Factories;
+using DataExplorer.Domain.Layouts;
 using DataExplorer.Domain.Maps.SizeMaps;
 using DataExplorer.Domain.Tests.Maps;
 using DataExplorer.Domain.Tests.Maps.SizeMaps;
@@ -38,6 +39,15 @@ namespace DataExplorer.Application.Tests.Legends.Sizes.Factories
             var results = _factory.Create(_sizeMap, _values, _lowerSize, _upperSize);
             AssertResult(results.First(), _lowerSize, "False");
             AssertResult(results.Last(), _upperSize, "True");
+        }
+
+        [Test]
+        public void TestCreateShouldReturnDescendingSizeLegendItems()
+        {
+            _sizeMap = new FakeSizeMap(SortOrder.Descending);
+            var results = _factory.Create(_sizeMap, _values, _lowerSize, _upperSize);
+            AssertResult(results.First(), _lowerSize, "True");
+            AssertResult(results.Last(), _upperSize, "False");
         }
 
         private void AssertResult(SizeLegendItemDto itemDto, double size, string label)

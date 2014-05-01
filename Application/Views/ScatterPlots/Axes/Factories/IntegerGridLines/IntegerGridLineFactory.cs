@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using DataExplorer.Domain.Layouts;
 using DataExplorer.Domain.Maps.AxisMaps;
 using DataExplorer.Domain.Views.ScatterPlots;
 
@@ -8,9 +9,13 @@ namespace DataExplorer.Application.Views.ScatterPlots.Axes.Factories.IntegerGrid
     {
         public IEnumerable<AxisGridLine> Create(AxisMap map, double lower, double upper)
         {
-            var lowerInt = (int) map.MapInverse(lower);
+            var lowerInt = map.SortOrder == SortOrder.Ascending
+                ? (int) map.MapInverse(lower)
+                : (int) map.MapInverse(upper);
 
-            var upperInt = (int) map.MapInverse(upper);
+            var upperInt = map.SortOrder == SortOrder.Ascending
+                ? (int) map.MapInverse(upper)
+                : (int) map.MapInverse(lower);
 
             var width = (double) upperInt - lowerInt;
 

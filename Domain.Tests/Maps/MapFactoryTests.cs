@@ -1,6 +1,7 @@
 ﻿using System;
 using DataExplorer.Domain.Colors;
 using DataExplorer.Domain.Columns;
+using DataExplorer.Domain.Layouts;
 using DataExplorer.Domain.Maps;
 using DataExplorer.Domain.Maps.AxisMaps;
 using DataExplorer.Domain.Maps.ColorMaps;
@@ -44,15 +45,15 @@ namespace DataExplorer.Domain.Tests.Maps
             _colorPalette = new ColorPaletteBuilder().Build();
 
             _mockAxisMapFactory = new Mock<IAxisMapFactory>();
-            _mockAxisMapFactory.Setup(p => p.Create(_column, 0d, 1d))
+            _mockAxisMapFactory.Setup(p => p.Create(_column, 0d, 1d, SortOrder.Ascending))
                 .Returns(_axisMap);
 
             _mockColorMapFactory = new Mock<IColorMapFactory>();
-            _mockColorMapFactory.Setup(p => p.Create(_column, _colorPalette))
+            _mockColorMapFactory.Setup(p => p.Create(_column, _colorPalette, SortOrder.Ascending))
                 .Returns(_colorMap);
             
             _mockSizeMapFactory = new Mock<ISizeMapFactory>();
-            _mockSizeMapFactory.Setup(p => p.Create(_column, 0d, 1d))
+            _mockSizeMapFactory.Setup(p => p.Create(_column, 0d, 1d, SortOrder.Ascending))
                 .Returns(_sizeMap);
 
             _mockLabelMapFactory = new Mock<ILabelMapFactory>();
@@ -69,7 +70,7 @@ namespace DataExplorer.Domain.Tests.Maps
         [Test]
         public void TestCreateAxisMapForBooleanShouldReturnABooleanToAxisMap()
         {
-            var result = _factory.CreateAxisMap(_column, 0d, 1d);
+            var result = _factory.CreateAxisMap(_column, 0d, 1d, SortOrder.Ascending);
             
             Assert.That(result, Is.EqualTo(_axisMap));
         }
@@ -77,7 +78,7 @@ namespace DataExplorer.Domain.Tests.Maps
         [Test]
         public void TestCreateColorMapShouldReturnColorMap()
         {
-            var result = _factory.CreateColorMap(_column, _colorPalette);
+            var result = _factory.CreateColorMap(_column, _colorPalette, SortOrder.Ascending);
             
             Assert.That(result, Is.EqualTo(_colorMap));
         }

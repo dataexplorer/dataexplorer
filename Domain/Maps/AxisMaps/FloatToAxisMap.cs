@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataExplorer.Domain.Layouts;
 
 namespace DataExplorer.Domain.Maps.AxisMaps
 {
@@ -20,14 +21,20 @@ namespace DataExplorer.Domain.Maps.AxisMaps
         private readonly double _targetMax;
         private readonly double _targetWidth;
 
-        public FloatToAxisMap(double sourceMin, double sourceMax, double targetMin, double targetMax)
+        public FloatToAxisMap(
+            double sourceMin, 
+            double sourceMax, 
+            double targetMin, 
+            double targetMax,
+            SortOrder sortOrder)
+            : base(sortOrder)
         {
             _sourceMin = sourceMin;
             _sourceMax = sourceMax;
-            _sourceWidth = sourceMax * ScaleFactor - sourceMin * ScaleFactor;
-            
             _targetMin = targetMin;
             _targetMax = targetMax;
+
+            _sourceWidth = sourceMax * ScaleFactor - sourceMin * ScaleFactor;
             _targetWidth = targetMax - targetMin;
         }
 
@@ -40,7 +47,11 @@ namespace DataExplorer.Domain.Maps.AxisMaps
 
             var ratio = width / _sourceWidth;
             
-            return _targetMin + (ratio * _targetWidth);
+            var targetValue = _targetMin + (ratio * _targetWidth);
+
+            return _sortOrder == SortOrder.Ascending
+                ? targetValue
+                : 1 - targetValue;
         }
 
         public override object MapInverse(double? value)
@@ -48,7 +59,11 @@ namespace DataExplorer.Domain.Maps.AxisMaps
             if (!value.HasValue)
                 return null;
 
-            var ratio = (double) value / _targetWidth;
+            var targetValue = _sortOrder == SortOrder.Ascending
+                ? value
+                : 1 - value;
+
+            var ratio = (double) targetValue / _targetWidth;
 
             var result = _sourceMin + ((_sourceWidth * ratio) * InverseScaleFactor);
 

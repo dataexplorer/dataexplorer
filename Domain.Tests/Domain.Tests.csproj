@@ -110,6 +110,7 @@
     <Compile Include="FilterTrees\StringFilterTrees\StringFilterTreeNodeTests.cs" />
     <Compile Include="FilterTrees\StringFilterTrees\StringFilterTreeRootTests.cs" />
     <Compile Include="Maps\AxisMaps\AxisMapFactoryTests.cs" />
+    <Compile Include="Maps\AxisMaps\AxisMapTests.cs" />
     <Compile Include="Maps\AxisMaps\BooleanToAxisMapTests.cs" />
     <Compile Include="Maps\AxisMaps\DateTimeToAxisMapTests.cs" />
     <Compile Include="Maps\AxisMaps\FloatToAxisMapTests.cs" />
@@ -117,6 +118,7 @@
     <Compile Include="Maps\AxisMaps\StringToAxisMapTests.cs" />
     <Compile Include="Maps\ColorMaps\BooleanToColorMapTests.cs" />
     <Compile Include="Maps\ColorMaps\ColorMapFactoryTests.cs" />
+    <Compile Include="Maps\ColorMaps\ColorMapTests.cs" />
     <Compile Include="Maps\ColorMaps\DateTimeToColorMapTests.cs" />
     <Compile Include="Maps\ColorMaps\FloatToColorMapTests.cs" />
     <Compile Include="Maps\ColorMaps\IntegerToColorMapTests.cs" />
@@ -137,6 +139,7 @@
     <Compile Include="Maps\SizeMaps\DateTimeToSizeMapTests.cs" />
     <Compile Include="Maps\SizeMaps\FloatToSizeMapTests.cs" />
     <Compile Include="Maps\SizeMaps\IntegerToSizeMapTests.cs" />
+    <Compile Include="Maps\SizeMaps\SizeMapTests.cs" />
     <Compile Include="Maps\SizeMaps\StringToSizeMapTests.cs" />
     <Compile Include="Predicates\BooleanPredicateTests.cs" />
     <Compile Include="Predicates\DateTimePredicateTests.cs" />

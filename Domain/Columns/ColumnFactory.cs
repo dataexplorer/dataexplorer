@@ -18,15 +18,9 @@ namespace DataExplorer.Domain.Columns
             SemanticType semanticType,
             List<object> values)
         {
-            if (dataType == typeof(BitmapImage))
-                return CreateBitmapImageColumn(id, index, name, dataType, semanticType, values);
-
-            var distinctOrderedValues = values
-                .Distinct()
-                .OrderBy(p => p)
-                .ToList();
-
-            return CreateComparableColumn(id, index, name, dataType, semanticType, distinctOrderedValues);
+            return dataType == typeof(BitmapImage) 
+                ? CreateBitmapImageColumn(id, index, name, dataType, semanticType, values) 
+                : CreateComparableColumn(id, index, name, dataType, semanticType, values);
         }
 
         private Column CreateComparableColumn(
@@ -35,13 +29,18 @@ namespace DataExplorer.Domain.Columns
             string name, 
             Type dataType, 
             SemanticType semanticType, 
-            List<object> orderedValues)
+            List<object> values)
         {
-            var min = orderedValues.Min();
+            var distinctOrderedValues = values
+                .Distinct()
+                .OrderBy(p => p)
+                .ToList();
 
-            var max = orderedValues.Max();
+            var min = distinctOrderedValues.Min();
 
-            var hasNulls = orderedValues
+            var max = distinctOrderedValues.Max();
+
+            var hasNulls = distinctOrderedValues
                 .Any(p => p == null);
 
             var column = new Column(
@@ -50,7 +49,7 @@ namespace DataExplorer.Domain.Columns
                name,
                dataType,
                semanticType,
-               orderedValues,
+               distinctOrderedValues,
                min,
                max,
                hasNulls);

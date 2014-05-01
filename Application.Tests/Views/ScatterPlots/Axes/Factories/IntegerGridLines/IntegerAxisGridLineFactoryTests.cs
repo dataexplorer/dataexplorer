@@ -1,6 +1,8 @@
 ﻿using System.Linq;
 using DataExplorer.Application.Views.ScatterPlots.Axes.Factories.IntegerGridLines;
+using DataExplorer.Domain.Layouts;
 using DataExplorer.Domain.Maps.AxisMaps;
+using DataExplorer.Domain.Views.ScatterPlots;
 using NUnit.Framework;
 
 namespace DataExplorer.Application.Tests.Views.ScatterPlots.Axes.Factories.IntegerGridLines
@@ -19,12 +21,19 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Axes.Factories.Integ
         [Test]
         public void TestCreateShouldCreateMinAndMaxValues()
         {
-            var map = new IntegerToAxisMap(int.MinValue, int.MaxValue, 0d, 1d);
+            var map = new IntegerToAxisMap(int.MinValue, int.MaxValue, 0d, 1d, SortOrder.Ascending);
             var results = _factory.Create(map, 0d, 1d).ToList();
-            Assert.That(results[0].Position, Is.EqualTo(0d).Within(0.001));
-            Assert.That(results[0].LabelName, Is.EqualTo("-2.15E+009"));
-            Assert.That(results[1].Position, Is.EqualTo(1d).Within(0.001));
-            Assert.That(results[1].LabelName, Is.EqualTo("2.15E+009"));
+            AssertGridLine(results[0], 0.0d, "-2.15E+009");
+            AssertGridLine(results[1], 1.0d, "2.15E+009");
+        }
+
+        [Test]
+        public void TestCreateShouldReverseValuesIfSortOrderIsDescending()
+        {
+            var map = new IntegerToAxisMap(-10, 10, 0d, 1d, SortOrder.Descending);
+            var results = _factory.Create(map, 0d, 1d).ToList();
+            AssertGridLine(results.First(), 1.0d, "-10");
+            AssertGridLine(results.Last(), 0.0d, "10");
         }
 
         [Test]
@@ -38,13 +47,17 @@ namespace DataExplorer.Application.Tests.Views.ScatterPlots.Axes.Factories.Integ
         [TestCase(0, 1000000000, 11, "0", "1.00E+009")]
         public void TestCreateShouldCreateCorrectValues(int min, int max, int count, string lowerLabel, string upperLabel)
         {
-            var map = new IntegerToAxisMap(min, max, 0d, 1d);
+            var map = new IntegerToAxisMap(min, max, 0d, 1d, SortOrder.Ascending);
             var results = _factory.Create(map, 0d, 1d).ToList();
             Assert.That(results.Count(), Is.EqualTo(count));
-            Assert.That(results.First().Position, Is.EqualTo(0d));
-            Assert.That(results.First().LabelName, Is.EqualTo(lowerLabel));
-            Assert.That(results.Last().Position, Is.EqualTo(1d));
-            Assert.That(results.Last().LabelName, Is.EqualTo(upperLabel));
+            AssertGridLine(results.First(), 0.0d, lowerLabel);
+            AssertGridLine(results.Last(), 1.0d, upperLabel);
+        }
+
+        private void AssertGridLine(AxisGridLine gridLine, double position, string label)
+        {
+            Assert.That(gridLine.Position, Is.EqualTo(position).Within(0.001));
+            Assert.That(gridLine.LabelName, Is.EqualTo(label)); 
         }
     }
 }

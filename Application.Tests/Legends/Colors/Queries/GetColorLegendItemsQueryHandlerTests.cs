@@ -7,6 +7,7 @@ using DataExplorer.Application.Legends.Colors.Queries;
 using DataExplorer.Application.Views;
 using DataExplorer.Domain.Colors;
 using DataExplorer.Domain.Columns;
+using DataExplorer.Domain.Layouts;
 using DataExplorer.Domain.Maps;
 using DataExplorer.Domain.Maps.ColorMaps;
 using DataExplorer.Domain.Tests.Colors;
@@ -60,7 +61,7 @@ namespace DataExplorer.Application.Tests.Legends.Colors.Queries
                 .Returns(_scatterPlot);
 
             _mockMapFactory = new Mock<IMapFactory>();
-            _mockMapFactory.Setup(p => p.CreateColorMap(_column, _palette))
+            _mockMapFactory.Setup(p => p.CreateColorMap(_column, _palette, SortOrder.Ascending))
                 .Returns(_map);
 
             _mockItemFactory = new Mock<IColorLegendFactory>();

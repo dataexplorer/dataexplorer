@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using DataExplorer.Domain.Layouts;
 using DataExplorer.Domain.Maps.AxisMaps;
 using DataExplorer.Domain.Views.ScatterPlots;
 
@@ -8,9 +9,13 @@ namespace DataExplorer.Application.Views.ScatterPlots.Axes.Factories.FloatGridLi
     {
         public IEnumerable<AxisGridLine> Create(AxisMap map, double lower, double upper)
         {
-            var lowerFloat = (double) map.MapInverse(lower) / 2;
+            var lowerFloat = map.SortOrder == SortOrder.Ascending
+                ? (double) map.MapInverse(lower) / 2
+                : (double)map.MapInverse(upper) / 2;
 
-            var upperFloat = (double) map.MapInverse(upper) / 2;
+            var upperFloat = map.SortOrder == SortOrder.Ascending
+                ? (double)map.MapInverse(upper) / 2
+                : (double)map.MapInverse(lower) / 2;
 
             if (lowerFloat <=  double.MinValue / 2)
                 yield return CreateAxisGridLine(map, double.MinValue);

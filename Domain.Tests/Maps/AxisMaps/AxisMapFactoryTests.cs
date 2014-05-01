@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataExplorer.Domain.Layouts;
 using DataExplorer.Domain.Maps.AxisMaps;
 using DataExplorer.Domain.Tests.Columns;
 using NUnit.Framework;
@@ -23,8 +24,10 @@ namespace DataExplorer.Domain.Tests.Maps.AxisMaps
         [Test]
         public void TestCreateAxisMapForInvalidDataTypeShouldThrowArgumentException()
         {
-            var column = new ColumnBuilder().WithDataType(typeof(Object)).Build();
-            Assert.That(() => _factory.Create(column, 0d, 1d), Throws.ArgumentException);
+            var column = new ColumnBuilder()
+                .WithDataType(typeof(Object))
+                .Build();
+            Assert.That(() => _factory.Create(column, 0d, 1d, SortOrder.Ascending), Throws.ArgumentException);
         }
 
         [Test]
@@ -63,7 +66,7 @@ namespace DataExplorer.Domain.Tests.Maps.AxisMaps
                 .WithValue(default(T))
                 .WithDataType(typeof(T))
                 .Build();
-            var result = _factory.Create(column, 0d, 1d);
+            var result = _factory.Create(column, 0d, 1d, SortOrder.Ascending);
             Assert.That(result, Is.TypeOf(mapType));
         }
     }

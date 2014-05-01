@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataExplorer.Domain.Colors;
+using DataExplorer.Domain.Layouts;
 using DataExplorer.Domain.Maps.ColorMaps;
 
 namespace DataExplorer.Application.Legends.Colors.Factories
@@ -17,9 +18,18 @@ namespace DataExplorer.Application.Legends.Colors.Factories
             if (values.Contains(null))
                 yield return CreateNullColorLegendItem();
 
-            yield return CreateColorLegendItem("False", palette.Colors.First());
+            if (map.SortOrder == SortOrder.Ascending)
+            {
+                yield return CreateColorLegendItem("False", palette.Colors.First());
 
-            yield return CreateColorLegendItem("True", palette.Colors.Last());
+                yield return CreateColorLegendItem("True", palette.Colors.Last());    
+            }
+            else
+            {
+                yield return CreateColorLegendItem("True", palette.Colors.First());
+
+                yield return CreateColorLegendItem("False", palette.Colors.Last());
+            }
         }
 
         private static ColorLegendItemDto CreateColorLegendItem(string label, Color color)
